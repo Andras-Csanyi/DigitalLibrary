@@ -41,3 +41,11 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
+
+- powershell: |
+    Write-Host "Tagging Build: $env:BuildNumber"
+
+    git tag $env:BuildNumber
+    git push origin $env:BuildNumber
+  env:
+    BuildNumber: $(Build.BuildNumber)
