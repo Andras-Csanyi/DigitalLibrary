@@ -14,8 +14,6 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Factories
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
-    using TeamManager.Ctx.Context;
-
     [ExcludeFromCodeCoverage]
     public class DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity> : WebApplicationFactory<TStartup>
         where TStartup : class
@@ -32,13 +30,6 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Factories
                 if (masterDataDescriptor != null)
                 {
                     services.Remove(masterDataDescriptor);
-                }
-
-                ServiceDescriptor teamManagerDescriptor = services.SingleOrDefault(
-                    d => d.ServiceType == typeof(DbContextOptions<TeamManagerContext>));
-                if (teamManagerDescriptor != null)
-                {
-                    services.Remove(teamManagerDescriptor);
                 }
 
                 services.AddDbContext<MasterDataContext>(options => { options.UseSqlite(entityName); });
