@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <id>DigitalLibrary.IaC.TeamManager.WebApi.old.Client</id>
+        <version>$version$</version>
+        <authors>DigitalLibrary.IaC.TeamManager.WebApi.old.Client</authors>
+        <owners>DigitalLibrary.IaC.TeamManager.WebApi.old.Client</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Package Description</description>
+        <dependencies>
+            <group targetFramework=".NETCoreApp2.2">
+                <dependency id="DigitalLibrary.IaC.TeamManager.DomainModel" version="1.0.0" exclude="Build,Analyzers"/>
+                <dependency id="DigitalLibrary.IaC.TeamManager.WebApi.old.Api" version="1.0.0"
+                            exclude="Build,Analyzers"/>
+                <dependency id="Microsoft.CodeAnalysis.FxCopAnalyzers" version="2.9.2" exclude="Build,Analyzers"/>
+                <dependency id="Newtonsoft.Json" version="12.0.2" exclude="Build,Analyzers"/>
+            </group>
+        </dependencies>
+    </metadata>
+</package>

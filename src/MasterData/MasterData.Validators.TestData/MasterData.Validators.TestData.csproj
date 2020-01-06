@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.Validators.TestData</AssemblyName>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.Validators.TestData</RootNamespace>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+    </ItemGroup>
+
+</Project>

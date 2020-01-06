@@ -1,0 +1,47 @@
+namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
+{
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx.Ctx;
+
+    using DomainModel.DomainModel;
+
+    using Exceptions.Exceptions;
+
+    using FluentValidation;
+
+    using Validators.Validators;
+
+    public partial class MasterDataBusinessLogic
+    {
+        public async Task<Dimension> AddDimensionAsync(Dimension dimension)
+        {
+            try
+            {
+                if (dimension == null)
+                {
+                    throw new MasterDataBusinessLogicArgumentNullException(nameof(dimension));
+                }
+
+                await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
+                        dimension,
+                        ruleSet: ValidatorRulesets.AddNewDimension)
+                    .ConfigureAwait(false);
+
+                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+                {
+                    await ctx.Dimensions.AddAsync(dimension)
+                        .ConfigureAwait(false);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+
+                    return dimension;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataBusinessLogicAddDimensionAsyncOperationException(e.Message, e);
+            }
+        }
+    }
+}

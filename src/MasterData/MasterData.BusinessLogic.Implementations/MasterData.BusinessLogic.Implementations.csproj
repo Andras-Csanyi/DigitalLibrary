@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <LangVersion>default</LangVersion>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations</AssemblyName>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
+        <ProjectReference Include="..\MasterData.Ctx\MasterData.Ctx.csproj"/>
+        <ProjectReference Include="..\MasterData.Validators\MasterData.Validators.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+    </ItemGroup>
+
+</Project>
