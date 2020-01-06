@@ -41,5 +41,3 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
