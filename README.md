@@ -1,4 +1,4 @@
-https://dev.azure.com/sayusiando/DigitalLibraryPublic/_apis/build/status/DigitalLibrary-GitHub
+[![Build status](https://dev.azure.com/sayusiando/DigitalLibraryPublic/_apis/build/status/DigitalLibrary-GitHub)](https://dev.azure.com/sayusiando/DigitalLibraryPublic/_build/latest?definitionId=57)
 
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
