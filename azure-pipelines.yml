@@ -18,6 +18,7 @@ pool: 'contabo'
 
 variables:
   buildConfiguration: 'Release'
+  buildNumber: '$(Build.BuildNumber)'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -42,10 +43,11 @@ steps:
     command: 'publish'
     publishWebProjects: true
 
-- bash: |
-    echo "Tagging Build: $env:BuildNumber"
-
-    git tag $env:BuildNumber
-    git push origin $env:BuildNumber
-  env:
-    BuildNumber: $(Build.BuildNumber)
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Tagging Build: $buildNumber"
+      
+      git tag $buildNumber
+      git push origin $buildNumber
