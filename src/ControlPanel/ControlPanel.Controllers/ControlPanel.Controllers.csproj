@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <AssemblyName>DigitalLibrary.IaC.ControlPanel.Controllers</AssemblyName>
+        <RootNamespace>DigitalLibrary.IaC.ControlPanel.Controllers</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ControlPanel.BusinessLogic.Implementations\ControlPanel.BusinessLogic.Implementations.csproj"/>
+        <ProjectReference Include="..\ControlPanel.WebApi.Api\ControlPanel.WebApi.Api.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+    </ItemGroup>
+
+</Project>

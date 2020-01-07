@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+@inject IBootstrapCSS BootstrapCss
+@* ReSharper disable once RedundantUsingDirective *@
+<div class="sidebar bg-dark">
+    <NavMenu/>
+</div>
+
+<div class="main">
+    @*<div class="top-row px-4">
+            <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
+        </div>*@
+    <div class="header_content bg-dark">
+        <DiLibHeader></DiLibHeader>
+    </div>
+    <div class="main_content">
+        @Body
+    </div>
+</div>

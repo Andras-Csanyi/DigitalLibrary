@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+
+        <IsPackable>false</IsPackable>
+
+        <AssemblyName>DigitalLibrary.IaC.ControlPanel.WebApi.Client.Tests</AssemblyName>
+
+        <RootNamespace>DigitalLibrary.IaC.ControlPanel.WebApi.Client.Tests</RootNamespace>
+
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.10.0"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ControlPanel.WebApi.Client\ControlPanel.WebApi.Client.csproj"/>
+    </ItemGroup>
+
+</Project>

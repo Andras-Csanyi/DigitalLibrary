@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <IsPackable>false</IsPackable>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.Web.Api.Features</AssemblyName>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.Web.Api.Features</RootNamespace>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
+
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+    </ItemGroup>
+</Project>

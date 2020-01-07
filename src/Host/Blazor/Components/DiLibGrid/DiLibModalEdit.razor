@@ -1,0 +1,56 @@
+@using System.Reflection
+@typeparam T
+<BSForm Model="@_editedItem" OnValidSubmit="@Submit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <BSModalHeader>Are you sure...?</BSModalHeader>
+    <BSModalBody>
+        @{
+            foreach (PropertyInfo propertyInfo in _propertyInfosForDisplay)
+            {
+                string value = DiLibGrid.GetTableCellValue(propertyInfo.Name, DiLibGrid.ToBeEdited);
+                string bind = $"{nameof(_editedItem)}.{propertyInfo.Name}";
+                <BSFormGroup>
+                    <BSLabel For="@propertyInfo.Name">@propertyInfo.Name</BSLabel>
+
+                    @{
+                        if (propertyInfo.PropertyType == typeof(string))
+                        {
+                            <BSBasicInput InputType="InputType.Text"
+                                          id="@propertyInfo.Name"
+                                          @bind-Value="@bind"/>
+                        }
+
+                        if (propertyInfo.PropertyType == typeof(int)
+                            || propertyInfo.PropertyType == typeof(long))
+                        {
+                            if (propertyInfo.Name == "Id")
+                            {
+                                <BSBasicInput InputType="InputType.Number"
+                                              id="@propertyInfo.Name"
+                                              IsDisabled="@true"
+                                              @bind-Value="@bind"/>
+                            }
+                            else
+                            {
+                                <BSBasicInput InputType="InputType.Number"
+                                              id="@propertyInfo.Name"
+                                              @bind-Value="@bind"/>
+                            }
+                        }
+                    }
+                </BSFormGroup>
+            }
+        }
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton Color="Color.Secondary"
+                  @onclick="@(async () => await DiLibGridComponent.CancelEditActionHandler().ConfigureAwait(false))">
+            Cancel
+        </BSButton>
+        <BSButton Color="Color.Primary"
+                  ButtonType="ButtonType.Submit">
+            Save
+        </BSButton>
+    </BSModalFooter>
+</BSForm>

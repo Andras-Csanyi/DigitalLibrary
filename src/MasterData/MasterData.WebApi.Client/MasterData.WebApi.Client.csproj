@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.WebApi.Client</AssemblyName>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.WebApi.Client</RootNamespace>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\DiLibHttpClient\DiLibHttpClient.csproj"/>
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+        <ProjectReference Include="..\MasterData.Web.Api\MasterData.Web.Api.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+    </ItemGroup>
+
+</Project>

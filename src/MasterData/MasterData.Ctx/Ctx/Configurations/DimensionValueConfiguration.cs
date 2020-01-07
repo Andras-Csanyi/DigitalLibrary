@@ -1,0 +1,20 @@
+namespace DigitalLibrary.IaC.MasterData.Ctx.Ctx.Configurations
+{
+    using DomainModel.DomainModel;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    public class DimensionValueConfiguration : IEntityTypeConfiguration<DimensionValue>
+    {
+        public void Configure(EntityTypeBuilder<DimensionValue> builder)
+        {
+            builder.ToTable("dimension_value");
+            builder.HasKey(k => k.Id);
+            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Property(p => p.Id).HasColumnName("id");
+            builder.Property(p => p.Value).HasColumnName("value");
+        }
+    }
+}
