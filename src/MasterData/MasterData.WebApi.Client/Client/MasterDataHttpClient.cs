@@ -11,11 +11,11 @@ namespace DigitalLibrary.IaC.MasterData.WebApi.Client.Client
 
     using Web.Api.Api;
 
-    public partial class MasterDataHttpClient : IMasterDataHttpClient
+    public class MasterDataHttpClient : IMasterDataHttpClient
     {
-        private readonly DiLibHttpClient _diLibHttpClient;
+        private readonly IDiLibHttpClient _diLibHttpClient;
 
-        public MasterDataHttpClient(DiLibHttpClient dilibHttpClient)
+        public MasterDataHttpClient(IDiLibHttpClient dilibHttpClient)
         {
             _diLibHttpClient = dilibHttpClient ?? throw new ArgumentNullException();
         }
