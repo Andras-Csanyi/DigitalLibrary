@@ -1,20 +1,22 @@
-namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel.DomainModel;
 
-    using Factories;
-
     using FluentAssertions;
+
+    using QA.Integration.Tests.Factories;
 
     using WebApp;
 
     using Xunit;
     using Xunit.Abstractions;
 
-    [Collection("DigitalLibrary.IaC.MasterData.QA.Integration.Tests")]
+    [ExcludeFromCodeCoverage]
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class DeleteTopDimensionStructure_Should : TestBase<DimensionStructure>
     {
         public DeleteTopDimensionStructure_Should(

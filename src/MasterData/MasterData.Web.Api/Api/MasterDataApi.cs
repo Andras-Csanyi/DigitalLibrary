@@ -73,15 +73,19 @@
 
                 public const string GetTopDimensionStructures = "GetTopDimensionStructures";
 
-                public const string Delete = "Delete";
+                public const string DeleteTopDimensionStructure = "DeleteTopDimensionStructure";
 
-                public const string Update = "Update";
+                public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
                 public const string UpdateTopDimensionStructure = "UpdateTopDimensionStructure";
 
                 public const string AddTopDimensionStructure = "AddTopDimensionStructure";
 
-                public const string Add = "Add";
+                public const string AddDimensionStructure = "AddDimensionStructure";
+
+                public const string GetDimensionStructures = "GetDimensionStructures";
+
+                public const string DeleteDimensionStructure = "DeleteDimensionStructure";
             }
         }
     }

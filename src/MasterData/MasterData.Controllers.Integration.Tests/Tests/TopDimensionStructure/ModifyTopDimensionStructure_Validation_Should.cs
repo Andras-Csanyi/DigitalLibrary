@@ -1,15 +1,16 @@
-namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DiLibHttpClient.Exceptions;
 
     using DomainModel.DomainModel;
 
-    using Factories;
-
     using FluentAssertions;
+
+    using QA.Integration.Tests.Factories;
 
     using WebApi.Client.Client;
 
@@ -18,10 +19,11 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
     using Xunit;
     using Xunit.Abstractions;
 
-    [Collection("DigitalLibrary.IaC.MasterData.QA.Integration.Tests")]
-    public class DeleteTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
+    [ExcludeFromCodeCoverage]
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    public class ModifyTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
     {
-        public DeleteTopDimensionStructure_Validation_Should(
+        public ModifyTopDimensionStructure_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
@@ -35,13 +37,12 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteTopDimensionStructureAsync(null)
-                    .ConfigureAwait(false);
+                await masterDataHttpClient.ModifyTopDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>()
-                .WithInnerException<DiLibHttpClientDeleteException>();
+                .WithInnerException<DiLibHttpClientPutException>();
         }
     }
 }

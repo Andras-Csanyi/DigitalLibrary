@@ -102,7 +102,7 @@
                 Menu dimension = new Menu
                 {
                     Name = "Dimension",
-                    Description = "Dimensions in the syster",
+                    Description = "Dimensions in the system",
                     IsActive = 1,
                     MenuRoute = "dimension",
                     ModuleId = masterDataModule.Id
@@ -119,6 +119,17 @@
                     ModuleId = masterDataModule.Id
                 };
                 ctx.Menus.Add(topDimensionStructure);
+                ctx.SaveChanges();
+
+                Menu dimensionStructure = new Menu
+                {
+                    Name = "Dimension structures",
+                    Description = "Dimension structures",
+                    IsActive = 1,
+                    MenuRoute = "dimensionstructures",
+                    ModuleId = masterDataModule.Id
+                };
+                ctx.Menus.Add(dimensionStructure);
                 ctx.SaveChanges();
             }
             else

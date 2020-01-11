@@ -1,0 +1,48 @@
+@using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel
+<BSTable IsDark="true" IsStriped="true" IsHovarable="true">
+    <BSTableHead>
+        <BSTableRow>
+            <BSTableHeadCell>Id</BSTableHeadCell>
+            <BSTableHeadCell>Name</BSTableHeadCell>
+            <BSTableHeadCell>Desc</BSTableHeadCell>
+            <BSTableHeadCell>Parent</BSTableHeadCell>
+            <BSTableHeadCell>Dimension Name</BSTableHeadCell>
+            <BSTableHeadCell>Is Active?</BSTableHeadCell>
+        </BSTableRow>
+    </BSTableHead>
+    <BSTableBody>
+        @{
+            foreach (DimensionStructure dimensionStructure in Data)
+            {
+                <BSTableRow>
+                    <BSTableCell>@dimensionStructure.Id</BSTableCell>
+                    <BSTableCell>@dimensionStructure.Name</BSTableCell>
+                    <BSTableCell>@dimensionStructure.Desc</BSTableCell>
+                    @{
+                        if (dimensionStructure.ParentDimensionStructure != null)
+                        {
+                            <BSTableCell>@dimensionStructure.ParentDimensionStructure.Name</BSTableCell>
+                        }
+                        else
+                        {
+                            <BSTableCell>none</BSTableCell>
+                        }
+                    }
+                    @{
+                        if (dimensionStructure.Dimension != null)
+                        {
+                            <BSTableCell>@dimensionStructure.Dimension.Name</BSTableCell>
+                        }
+                        else
+                        {
+                            <BSTableCell>none</BSTableCell>
+                        }
+                    }
+                    <BSTableCell>@dimensionStructure.IsActive</BSTableCell>
+                </BSTableRow>
+            }
+        }
+    </BSTableBody>
+    <BSTableFooter>
+    </BSTableFooter>
+</BSTable>

@@ -101,6 +101,7 @@ namespace WebApp
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
             services.AddTransient<MasterDataDimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
+            services.AddTransient<TopDimensionStructureValidator>();
             services.AddTransient<DimensionStructureValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();

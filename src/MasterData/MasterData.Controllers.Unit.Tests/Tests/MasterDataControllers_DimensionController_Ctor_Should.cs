@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Unit.Tests.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

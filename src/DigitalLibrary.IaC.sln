@@ -65,7 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.BusinessLogic.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.WebApi.Client.Tests", "ControlPanel\ControlPanel.WebApi.Client.Tests\ControlPanel.WebApi.Client.Tests.csproj", "{8FB4905A-2E5D-41C2-A46E-1865F4A9E3E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.QA.Integration.Tests", "MasterData\MasterData.QA.Integration.Tests\MasterData.QA.Integration.Tests.csproj", "{6985F649-9C8F-4DC2-9293-61372C5F6116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Controllers.Integration.Tests", "MasterData\MasterData.Controllers.Integration.Tests\MasterData.Controllers.Integration.Tests.csproj", "{6985F649-9C8F-4DC2-9293-61372C5F6116}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.WebApi.Client", "MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj", "{856E6D87-064B-4CE4-842E-BC332330E5B2}"
 EndProject
@@ -87,7 +87,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Host\Blazor\Blazo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Validators.Test", "MasterData\MasterData.Validators.Test\MasterData.Validators.Test.csproj", "{59EE1E74-FBA1-41CD-9647-895E9ABF3C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Controllers.Tests", "MasterData\MasterData.Controllers.Tests\MasterData.Controllers.Tests.csproj", "{1CD4D51E-35D1-4D5F-8D24-830A0833B706}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Controllers.Unit.Tests", "MasterData\MasterData.Controllers.Unit.Tests\MasterData.Controllers.Unit.Tests.csproj", "{1CD4D51E-35D1-4D5F-8D24-830A0833B706}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestFactories", "Utils\IntegrationTestFactories\IntegrationTestFactories.csproj", "{18B9F36D-671C-475B-A984-7E36C0E08E9A}"
 EndProject

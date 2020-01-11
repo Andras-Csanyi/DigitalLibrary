@@ -5,9 +5,9 @@
 
         <IsPackable>false</IsPackable>
 
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Controllers.Tests</AssemblyName>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.Controllers.Unit.Tests</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Controllers.Tests</RootNamespace>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.Controllers.Unit.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

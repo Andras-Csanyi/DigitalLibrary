@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Unit.Tests.Tests
 {
     public class MasterDataControllers_DimensionStructure_Should
     {

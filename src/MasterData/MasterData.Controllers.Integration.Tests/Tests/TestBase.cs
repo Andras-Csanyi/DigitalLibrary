@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -6,9 +6,9 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Tests
 
     using DiLibHttpClient;
 
-    using Factories;
-
     using Microsoft.AspNetCore.Mvc.Testing;
+
+    using QA.Integration.Tests.Factories;
 
     using WebApi.Client.Client;
 

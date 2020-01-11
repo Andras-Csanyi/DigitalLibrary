@@ -25,21 +25,15 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         {
         }
 
-        [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_NullObjects),
-            MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task ThrowException_WhenInputIsNull(
-            long id,
-            DimensionStructure dimensionStructure)
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddDimensionStructureAsync(
-                    id,
-                    dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert
@@ -51,7 +45,6 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
-            long parentId,
             long id,
             string name,
             string desc,
@@ -70,9 +63,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddDimensionStructureAsync(
-                    parentId,
-                    dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert

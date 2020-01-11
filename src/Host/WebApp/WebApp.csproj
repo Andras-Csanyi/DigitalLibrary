@@ -33,14 +33,6 @@
         <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.Validators\MasterData.Validators.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.Web.Api\MasterData.Web.Api.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Exceptions\TeamManager.BusinessLogic.Exceptions.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Implementations\TeamManager.BusinessLogic.Implementations.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Interfaces\TeamManager.BusinessLogic.Interfaces.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Controllers\TeamManager.Controllers.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Ctx\TeamManager.Ctx.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.DomainModel\TeamManager.DomainModel.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Validators\TeamManager.Validators.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.WebApi.Api\TeamManager.WebApi.Api.csproj"/>
         <ProjectReference Include="..\..\Utils\ControlPanel.QA.DataSample\ControlPanel.QA.DataSample.csproj"/>
     </ItemGroup>
 

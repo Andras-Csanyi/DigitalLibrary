@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Tests.Tests
+namespace DigitalLibrary.IaC.MasterData.Controllers.Unit.Tests.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -19,7 +19,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Tests.Tests
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new DimensionStructureController(null); };
+            Func<Task> action = async () => { new TopDimensionStructureController(null); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();

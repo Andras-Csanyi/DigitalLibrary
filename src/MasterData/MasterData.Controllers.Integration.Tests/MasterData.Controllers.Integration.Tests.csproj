@@ -6,9 +6,9 @@
 
         <IsPackable>false</IsPackable>
 
-        <AssemblyName>DigitalLibrary.IaC.MasterData.QA.Integration.Tests</AssemblyName>
+        <AssemblyName>DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.IaC.MasterData.QA.Integration.Tests</RootNamespace>
+        <RootNamespace>DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests</RootNamespace>
 
         <LangVersion>default</LangVersion>
     </PropertyGroup>

@@ -2,6 +2,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection.Metadata.Ecma335;
     using System.Threading.Tasks;
 
     using BusinessLogic.Interfaces.Interfaces;
@@ -25,45 +26,8 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
             _masterDataBusinessLogic = masterDataBusinessLogic ?? throw new ArgumentNullException();
         }
 
-        [HttpGet]
-        [Route(MasterDataApi.DimensionStructure.V1.GetTopDimensionStructures)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<DimensionStructure>>> GetTopDimensionStructures()
-        {
-            try
-            {
-                List<DimensionStructure> result = await _masterDataBusinessLogic.GetTopDimensionStructuresAsync()
-                    .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
         [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.AddTopDimensionStructure)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> AddTopDimensionStructure(
-            DimensionStructure dimensionStructure)
-        {
-            try
-            {
-                DimensionStructure result = await _masterDataBusinessLogic.AddTopDimensionStructureAsync(
-                    dimensionStructure).ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.Add)]
+        [Route(MasterDataApi.DimensionStructure.V1.AddDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> AddDimensionStructure(long parentDimensionStructureId,
@@ -72,7 +36,6 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic.AddDimensionStructureAsync(
-                    parentDimensionStructureId,
                     dimensionStructure).ConfigureAwait(false);
                 return Ok(result);
             }
@@ -83,7 +46,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
         }
 
         [HttpPut]
-        [Route(MasterDataApi.DimensionStructure.V1.Update)]
+        [Route(MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> Update(DimensionStructure dimensionStructure)
@@ -101,28 +64,8 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
             }
         }
 
-        [HttpPut]
-        [Route(MasterDataApi.DimensionStructure.V1.UpdateTopDimensionStructure)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> UpdateTopDimensionStructureAsync(
-            DimensionStructure dimensionStructure)
-        {
-            try
-            {
-                DimensionStructure result = await _masterDataBusinessLogic
-                    .UpdateTopDimensionStructureAsync(dimensionStructure)
-                    .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
         [HttpDelete]
-        [Route(MasterDataApi.DimensionStructure.V1.Delete)]
+        [Route(MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Delete(DimensionStructure dimensionStructure)
@@ -131,6 +74,24 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
             {
                 await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
                 return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructures)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetDimensionStructures()
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
+                    .ConfigureAwait(false);
+                return Ok(result);
             }
             catch (Exception e)
             {

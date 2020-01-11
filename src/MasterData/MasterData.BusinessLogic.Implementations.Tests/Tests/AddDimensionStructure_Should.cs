@@ -62,14 +62,13 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level",
                 Desc = "first level desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionResult.Id
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
             };
 
             // Act
             DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
-                .AddDimensionStructureAsync(
-                    topLeveldimensionStructureResult.Id,
-                    firstLevelDimensionStructure)
+                .AddDimensionStructureAsync(firstLevelDimensionStructure)
                 .ConfigureAwait(false);
 
             // Assert
@@ -151,12 +150,12 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level",
                 Desc = "first level desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionResult.Id
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
             };
 
             DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    topLeveldimensionStructureResult.Id,
                     firstLevelDimensionStructure)
                 .ConfigureAwait(false);
 
@@ -175,13 +174,13 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level - second",
                 Desc = "first level - second - desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionSecondResult.Id
+                DimensionId = firstLevelDimensionSecondResult.Id,
+                ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
             };
 
             // Act
             DimensionStructure firstLevelDimensionStructureSecondResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    topLeveldimensionStructureResult.Id,
                     firstLevelDimensionStructureSecond)
                 .ConfigureAwait(false);
 
@@ -278,11 +277,11 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level dimension structure",
                 Desc = "first level dimension structure desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionResult.Id
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
             };
             DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    topLevelDimensionStructureResult.Id,
                     firstLevelDimensionStructure)
                 .ConfigureAwait(false);
 
@@ -299,13 +298,13 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "second level dimension structure",
                 Desc = "second level dimension structure desc",
                 IsActive = 1,
-                DimensionId = secondLevelDimensionResult.Id
+                DimensionId = secondLevelDimensionResult.Id,
+                ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
             };
 
             // Act
             DimensionStructure secondLevelDimensionStructureResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    firstLevelDimensionStructureResult.Id,
                     secondLevelDimensionStructure)
                 .ConfigureAwait(false);
 
@@ -390,11 +389,11 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level dimension structure",
                 Desc = "first level dimension structure desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionResult.Id
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
             };
             DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    topLevelDimensionStructureResult.Id,
                     firstLevelDimensionStructure)
                 .ConfigureAwait(false);
 
@@ -411,12 +410,12 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "second level dimension structure",
                 Desc = "second level dimension structure desc",
                 IsActive = 1,
-                DimensionId = secondLevelDimensionResult.Id
+                DimensionId = secondLevelDimensionResult.Id,
+                ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
             };
 
             DimensionStructure secondLevelDimensionStructureResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    firstLevelDimensionStructureResult.Id,
                     secondLevelDimensionStructure)
                 .ConfigureAwait(false);
 
@@ -434,13 +433,13 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "second level dimension structure second",
                 Desc = "second level dimension structure second desc",
                 IsActive = 1,
-                DimensionId = secondLevelDimensionSecondResult.Id
+                DimensionId = secondLevelDimensionSecondResult.Id,
+                ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
             };
 
             // Act
             DimensionStructure secondLevelDimensionStructureSecondResult = await masterDataBusinessLogic
                 .AddDimensionStructureAsync(
-                    firstLevelDimensionStructureResult.Id,
                     secondLevelDimensionStructureSecond)
                 .ConfigureAwait(false);
 
@@ -541,14 +540,14 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 Name = "first level",
                 Desc = "first level desc",
                 IsActive = 1,
-                DimensionId = firstLevelDimensionResult.Id
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = 300
             };
 
             // Act
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.AddDimensionStructureAsync(
-                        300,
                         firstLevelDimensionStructure)
                     .ConfigureAwait(false);
             };
