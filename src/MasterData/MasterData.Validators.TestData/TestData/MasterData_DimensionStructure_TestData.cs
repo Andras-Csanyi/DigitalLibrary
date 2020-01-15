@@ -37,14 +37,16 @@ namespace DigitalLibrary.IaC.MasterData.Validators.TestData.TestData
 
         public static IEnumerable<object[]> AddDimensionStructure_Validation_TestData = new List<object[]>
         {
-            new object[] { 0, string.Empty, "desc", 1 },
-            new object[] { 0, "as", "desc", 1 },
+            new object[] { 0, string.Empty, "desc", 1, 100 },
+            new object[] { 0, "as", "desc", 1, 100 },
 
-            new object[] { 0, "name", null, 1 },
-            new object[] { 0, "name", string.Empty, 1 },
-            new object[] { 0, "name", "de", 1 },
+            new object[] { 0, "name", null, 1, 100 },
+            new object[] { 0, "name", string.Empty, 1, 100 },
+            new object[] { 0, "name", "de", 1, 100 },
 
-            new object[] { 0, "name", "desc", 2 },
+            new object[] { 0, "name", "desc", 2, 100 },
+
+            new object[] { 0, "name", "desc", 1, 0 },
         };
 
         public static IEnumerable<object[]> ModifyTopDimensionStructure_Validation_TestData = new List<object[]>

@@ -1,6 +1,7 @@
 namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Ctx.Ctx;
@@ -48,7 +49,19 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementa
                             throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
                         }
 
-                        dimensionStructure.ParentDimensionStructureId = parent.Id;
+                        if (dimensionStructure.DimensionId != null && dimensionStructure.DimensionId != 0)
+                        {
+                            Dimension dimension = await ctx.Dimensions.FindAsync(dimensionStructure.DimensionId)
+                                .ConfigureAwait(false);
+
+                            if (dimension == null)
+                            {
+                                string noSuchErrMsg = $"No dimension with id: " +
+                                                      $"{dimensionStructure.DimensionId}.";
+                                throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
+                            }
+                        }
+
                         await ctx.DimensionStructures.AddAsync(dimensionStructure)
                             .ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);

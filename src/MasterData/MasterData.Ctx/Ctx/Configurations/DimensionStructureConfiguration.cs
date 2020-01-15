@@ -28,8 +28,7 @@ namespace DigitalLibrary.IaC.MasterData.Ctx.Ctx.Configurations
                 .IsRequired(false);
 
             builder.HasOne(p => p.Dimension)
-                .WithOne()
-                .HasForeignKey<DimensionStructure>(fk => fk.DimensionId)
+                .WithMany(p => p.DimensionStructure)
                 .IsRequired(false);
         }
     }

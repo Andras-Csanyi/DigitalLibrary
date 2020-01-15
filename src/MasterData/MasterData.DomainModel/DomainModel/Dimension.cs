@@ -12,6 +12,8 @@
 
         public string Description { get; set; }
 
+        public ICollection<DimensionStructure> DimensionStructure { get; set; }
+
         public ICollection<DimensionDimensionValue> DimensionDimensionValues { get; set; }
     }
 }

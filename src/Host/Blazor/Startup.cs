@@ -7,6 +7,7 @@ namespace Blazor
     using Data;
 
     using DigitalLibrary.IaC.ControlPanel.WebApi.Client.Client.Menu;
+    using DigitalLibrary.IaC.MasterData.Validators.Validators;
     using DigitalLibrary.IaC.MasterData.WebApi.Client.Client;
 
     using DiLibHttpClient;
@@ -32,7 +33,6 @@ namespace Blazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddBootstrapCSS();
             services.AddHttpClient<IControlPanelWebClient, ControlPanelWebClient>(config =>
             {
@@ -48,6 +48,13 @@ namespace Blazor
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
+
+            // validators
+            services.AddTransient<DimensionStructureValidator>();
+            services.AddTransient<MasterDataDimensionValidator>();
+            services.AddTransient<MasterDataDimensionValueValidator>();
+            services.AddTransient<TopDimensionStructureValidator>();
+            services.AddTransient<IMasterDataValidators, MasterDataValidators>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

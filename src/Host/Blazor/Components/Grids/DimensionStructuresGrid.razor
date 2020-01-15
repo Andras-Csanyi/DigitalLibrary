@@ -1,6 +1,15 @@
+@using Blazor.Pages.MasterData
 @using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel
 <BSTable IsDark="true" IsStriped="true" IsHovarable="true">
     <BSTableHead>
+        <BSTableRow>
+            <BSTableHeadCell colspan="6">
+                <BSButton ButtonType="ButtonType.Button"
+                          @onclick="@(async () => await OpenAddWindowAction())">
+                    Add
+                </BSButton>
+            </BSTableHeadCell>
+        </BSTableRow>
         <BSTableRow>
             <BSTableHeadCell>Id</BSTableHeadCell>
             <BSTableHeadCell>Name</BSTableHeadCell>
@@ -12,7 +21,7 @@
     </BSTableHead>
     <BSTableBody>
         @{
-            foreach (DimensionStructure dimensionStructure in Data)
+            foreach (DimensionStructure dimensionStructure in _dimensionStructures)
             {
                 <BSTableRow>
                     <BSTableCell>@dimensionStructure.Id</BSTableCell>
@@ -46,3 +55,88 @@
     <BSTableFooter>
     </BSTableFooter>
 </BSTable>
+
+<BSModal @ref="_addNewModalWindow">
+    <BSForm Model="@_newDimensionStructure"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await SaveDimensionStructureHandler())">
+        @* <DataAnnotationsValidator/> *@
+        @* <ValidationSummary/> *@
+        <BSModalHeader @onclick="@(async () => await CancelAddNewHandler())">
+            Adding new Dimension Structure
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              IsDisabled="true"
+                              @bind-Value="@_newDimensionStructure.Id">
+                    @_newDimensionStructure.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         @bind-Value="@_newDimensionStructure.Name">
+                    @_newDimensionStructure.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         @bind-Value="@_newDimensionStructure.Desc">
+                    @_newDimensionStructure.Desc
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Parent Dimension Structure</BSFormLabel>
+                <BSInput InputType="InputType.Select"
+                         @bind-Value="@_newDimensionStructure.ParentDimensionStructureId">
+                    @{
+                        foreach (DimensionStructure topDimensionStructure in _topDimensionStructures)
+                        {
+                            <option value="@topDimensionStructure.Id">
+                                @topDimensionStructure.Name
+                            </option>
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Dimension</BSFormLabel>
+                <BSInput InputType="InputType.Select"
+                         @bind-Value="@_newDimensionStructure.DimensionId">
+                    @{
+                        foreach (DigitalLibrary.IaC.MasterData.DomainModel.DomainModel.Dimension dimension in 
+                            _dimensions)
+                        {
+                            <option value="@dimension.Id">
+                                @dimension.Name
+                            </option>
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_newDimensionStructure.IsActive">
+                    @_newDimensionStructure.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelAddNewHandler())"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>

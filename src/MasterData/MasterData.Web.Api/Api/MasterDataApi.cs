@@ -42,6 +42,8 @@
                 public const string Find = "Find";
 
                 public const string GetDimensionById = "GetDimensionById";
+
+                public const string GetDimensionsWithoutStructure = "GetDimensionsWithoutStructure";
             }
         }
 

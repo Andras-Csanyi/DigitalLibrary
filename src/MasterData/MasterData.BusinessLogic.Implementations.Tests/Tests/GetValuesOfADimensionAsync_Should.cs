@@ -23,25 +23,28 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Return_DimensionWithASingleDimensionValue()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+                .AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
+                .AddDimensionValueAsync(
                     dimensionValue, dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Act
-            Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(dimensionResult.Id)
+            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+                .GetValuesOfADimensionAsync(dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Assert
@@ -57,41 +60,46 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Return_DimensionWithMultipleValues()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+                .AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
+                .AddDimensionValueAsync(
                     dimensionValue, dimensionResult.Id)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue2 = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue2 = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value2"
             };
-            DimensionValue dimensionValueResult2 = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult2 = await masterDataBusinessLogic
+                .AddDimensionValueAsync(
                     dimensionValue2, dimensionResult.Id)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue3 = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue3 = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value3"
             };
-            DimensionValue dimensionValueResult3 = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult3 = await masterDataBusinessLogic
+                .AddDimensionValueAsync(
                     dimensionValue3, dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Act
-            Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(dimensionResult.Id)
+            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+                .GetValuesOfADimensionAsync(dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Assert
@@ -124,17 +132,19 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Return_JustDimension_WhenDimensionDoesntHaveValues()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+                .AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
             // Act
-            Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(dimensionResult.Id)
+            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+                .GetValuesOfADimensionAsync(dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Assert
@@ -148,7 +158,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             // Arrange
 
             // Act
-            Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(100)
+            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(100)
                 .ConfigureAwait(false);
 
             // Assert

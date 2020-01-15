@@ -30,8 +30,8 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
         [Route(MasterDataApi.DimensionStructure.V1.AddDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> AddDimensionStructure(long parentDimensionStructureId,
-                                                                                  DimensionStructure dimensionStructure)
+        public async Task<ActionResult<DimensionStructure>> AddDimensionStructure(
+            DimensionStructure dimensionStructure)
         {
             try
             {

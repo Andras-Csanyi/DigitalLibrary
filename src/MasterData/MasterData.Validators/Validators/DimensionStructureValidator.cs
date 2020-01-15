@@ -27,7 +27,7 @@ namespace DigitalLibrary.IaC.MasterData.Validators.Validators
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
                     RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
-                    RuleFor(p => p.ParentDimensionStructureId).NotNull();
+                    RuleFor(p => p.ParentDimensionStructureId).NotNull().NotEqual(0);
                 });
             });
         }

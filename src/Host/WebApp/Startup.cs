@@ -94,6 +94,7 @@ namespace WebApp
             services.AddDbContext<MasterDataContext>(options =>
             {
                 options.UseSqlite("Data Source=master_data_test_db.sqlite");
+                options.EnableSensitiveDataLogging();
             });
             // }
 
