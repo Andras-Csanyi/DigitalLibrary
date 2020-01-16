@@ -5,7 +5,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces
 
     using DomainModel.DomainModel;
 
-    public interface IMasterDataBusinessLogic
+    public partial interface IMasterDataBusinessLogic
     {
         Task<Dimension> AddDimensionAsync(Dimension dimension);
 
@@ -31,12 +31,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces
             Dimension dimensionToBeInserted,
             int sortOrder);
 
-
         Task DeleteDimensionAsync(long dimensionId);
-
-
-        Task<List<DimensionStructure>> GetDimensionStructures();
-
 
         Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId);
 
@@ -46,13 +41,6 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces
 
         Task<long> CountTopDimensionStructuresAsync();
 
-        Task<DimensionStructure> AddDimensionStructureAsync(long dimensionStructureId,
-                                                            DimensionStructure dimensionStructure);
-
         Task<DimensionStructure> UpdateTopDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
     }
 }

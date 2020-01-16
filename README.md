@@ -1,23 +1,17 @@
-[![Build status](https://dev.azure.com/sayusiando/DigitalLibraryPublic/_apis/build/status/DigitalLibrary-GitHub)](https://dev.azure.com/sayusiando/DigitalLibraryPublic/_build/latest?definitionId=57)
+# Digital Library Project 
+This project is about how to manage huge amount of different documents while you can manage 
+the content connections between them. The problem space this project tries to find a good
+solution are the following:
 
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+ - ETL documents in from different sources in different format
+ - managing content and relations between different documents and/or its sections
+ - user interface for reading, where the document connections are displayed in the way it elevates
+ the reading experience
+ - support for writing a document where including other document references is easy
+ - support for searching through the stored documents
+ - support for different searching such as full text, thesaurus, etc.
+ 
+ It will be a long journey... 
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
-
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
-asd
+For further info click here and read the 
+[wiki](https://dev.azure.com/sayusiando/DigitalLibrary/_wiki/wikis/Digital%20Libary%20Wiki/16/index).

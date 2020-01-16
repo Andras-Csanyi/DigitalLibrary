@@ -10,6 +10,8 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
@@ -33,14 +35,6 @@
         <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.Validators\MasterData.Validators.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.Web.Api\MasterData.Web.Api.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Exceptions\TeamManager.BusinessLogic.Exceptions.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Implementations\TeamManager.BusinessLogic.Implementations.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.BusinessLogic.Interfaces\TeamManager.BusinessLogic.Interfaces.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Controllers\TeamManager.Controllers.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Ctx\TeamManager.Ctx.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.DomainModel\TeamManager.DomainModel.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.Validators\TeamManager.Validators.csproj"/>
-        <ProjectReference Include="..\..\TeamManager\TeamManager.WebApi.Api\TeamManager.WebApi.Api.csproj"/>
         <ProjectReference Include="..\..\Utils\ControlPanel.QA.DataSample\ControlPanel.QA.DataSample.csproj"/>
     </ItemGroup>
 

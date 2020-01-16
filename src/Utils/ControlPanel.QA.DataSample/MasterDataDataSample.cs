@@ -1,5 +1,7 @@
 namespace ControlPanel.QA.DataSample
 {
+    using System;
+
     using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
     using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel;
 
@@ -10,6 +12,40 @@ namespace ControlPanel.QA.DataSample
             populateBusinessPartnerDimensionStructure(ctx);
             populateNutritionIntakeDimensionStructure(ctx);
             populateRssContentDimensionStructure(ctx);
+            populateDimensionsWithoutStructure(ctx);
+        }
+
+        private static void populateDimensionsWithoutStructure(MasterDataContext ctx)
+        {
+            Dimension dimension1 = new Dimension
+            {
+                Name = "dimension 1",
+                Description = "dimension 1 desc",
+                IsActive = 1
+            };
+            ctx.Dimensions.Add(dimension1);
+            ctx.SaveChanges();
+            Console.WriteLine($"{dimension1.Name} is created...");
+
+            Dimension dimension2 = new Dimension
+            {
+                Name = "dimension 2",
+                Description = "dimension 2 desc",
+                IsActive = 1
+            };
+            ctx.Dimensions.Add(dimension2);
+            ctx.SaveChanges();
+            Console.WriteLine($"{dimension2.Name} is created...");
+
+            Dimension dimension3 = new Dimension
+            {
+                Name = "dimension 3",
+                Description = "dimension 3 desc",
+                IsActive = 1
+            };
+            ctx.Dimensions.Add(dimension3);
+            ctx.SaveChanges();
+            Console.WriteLine($"{dimension3.Name} is created...");
         }
 
         private static void populateRssContentDimensionStructure(MasterDataContext ctx)

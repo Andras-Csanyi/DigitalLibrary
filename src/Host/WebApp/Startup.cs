@@ -94,6 +94,7 @@ namespace WebApp
             services.AddDbContext<MasterDataContext>(options =>
             {
                 options.UseSqlite("Data Source=master_data_test_db.sqlite");
+                options.EnableSensitiveDataLogging();
             });
             // }
 
@@ -101,6 +102,7 @@ namespace WebApp
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
             services.AddTransient<MasterDataDimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
+            services.AddTransient<TopDimensionStructureValidator>();
             services.AddTransient<DimensionStructureValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();

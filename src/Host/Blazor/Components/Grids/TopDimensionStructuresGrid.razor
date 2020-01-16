@@ -50,7 +50,9 @@
     <BSForm Model="@_editedItem" OnValidSubmit="@OnValidEditSubmit" ValidateOnInit="true">
         @* <DataAnnotationsValidator/> *@
         @* <ValidationSummary/> *@
-        <BSModalHeader>Edit Top Level Dimension Structure</BSModalHeader>
+        <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
+            Edit Top Level Dimension Structure
+        </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>
                 <BSFormLabel>Id</BSFormLabel>
@@ -101,7 +103,9 @@
     <BSForm Model="@_newItem" OnValidSubmit="@OnValidAddSubmit" ValidateOnInit="true">
         @* <DataAnnotationsValidator/> *@
         @* <ValidationSummary/> *@
-        <BSModalHeader>Add Top Level Dimension Structure</BSModalHeader>
+        <BSModalHeader @onclick="@(async () => await CancelAddHandler())">
+            Add Top Level Dimension Structure
+        </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>
                 <BSFormLabel>Id</BSFormLabel>
@@ -150,7 +154,9 @@
 
 <BSModal @ref="_deleteModal">
     <BSForm Model="@_deleteItem">
-        <BSModalHeader>Are you sure...?</BSModalHeader>
+        <BSModalHeader @onclick="@(async () => await CancelDeleteHandler())">
+            Are you sure...?
+        </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>
                 <BSFormLabel>Id</BSFormLabel>

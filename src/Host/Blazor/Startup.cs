@@ -7,7 +7,10 @@ namespace Blazor
     using Data;
 
     using DigitalLibrary.IaC.ControlPanel.WebApi.Client.Client.Menu;
+    using DigitalLibrary.IaC.MasterData.Validators.Validators;
     using DigitalLibrary.IaC.MasterData.WebApi.Client.Client;
+
+    using DiLibHttpClient;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -30,17 +33,28 @@ namespace Blazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddBootstrapCSS();
             services.AddHttpClient<IControlPanelWebClient, ControlPanelWebClient>(config =>
             {
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
-            services.AddHttpClient<IMasterDataHttpClient, MasterDataHttpClient>(config =>
+            // services.AddHttpClient<IMasterDataHttpClient, MasterDataHttpClient>(config =>
+            // {
+            //     config.BaseAddress = new Uri("http://localhost:5000");
+            // });
+            services.AddHttpClient("httpClient", config => { config.BaseAddress = new Uri("http://localhost:5000"); });
+            services.AddHttpClient<IDiLibHttpClient, DiLibHttpClient>(config =>
             {
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
-            services.AddHttpClient("httpClient", config => { config.BaseAddress = new Uri("http://localhost:5000"); });
+            services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
+
+            // validators
+            services.AddTransient<DimensionStructureValidator>();
+            services.AddTransient<MasterDataDimensionValidator>();
+            services.AddTransient<MasterDataDimensionValueValidator>();
+            services.AddTransient<TopDimensionStructureValidator>();
+            services.AddTransient<IMasterDataValidators, MasterDataValidators>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +67,8 @@ namespace Blazor
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios,
+                // see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

@@ -33,9 +33,7 @@ namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Factories
                 }
 
                 services.AddDbContext<MasterDataContext>(options => { options.UseSqlite(entityName); });
-
                 ServiceProvider sp = services.BuildServiceProvider();
-
                 using (IServiceScope scope = sp.CreateScope())
                 {
                     IServiceProvider scopedServices = scope.ServiceProvider;
