@@ -1,7 +1,9 @@
 #Money Tracker user journeys
- - Record spending
+ - Record expenses
  - Record incomes
  - Manage partners
  - Automated reports
  - Manage categories
  - Manage budget
+ 
+ ## Managing Expenses
