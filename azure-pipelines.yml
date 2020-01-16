@@ -10,7 +10,7 @@ trigger:
  paths:
      exclude:
          - src/README.md
-         - doc/*
+         - src/doc/*
 
 pr:
 - master
