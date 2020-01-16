@@ -7,9 +7,9 @@
 
         <LangVersion>default</LangVersion>
 
-        <AssemblyName>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests</AssemblyName>
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests</RootNamespace>
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

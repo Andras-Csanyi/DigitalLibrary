@@ -1,14 +1,10 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class AddDimensionAsync_Should : TestBase
     {
@@ -22,7 +18,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Add_ADimension()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
@@ -30,11 +26,11 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             };
 
             // Act
-            Dimension result = await masterDataBusinessLogic.AddDimensionAsync(dimension).ConfigureAwait(false);
+            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic.AddDimensionAsync(dimension).ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();
-            result.Should().BeOfType<Dimension>();
+            result.Should().BeOfType<DomainModel.DomainModel.Dimension>();
             result.Id.Should().NotBe(0);
             result.Name.Should().Be(dimension.Name);
             result.Description.Should().Be(dimension.Description);

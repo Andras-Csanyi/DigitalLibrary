@@ -1,18 +1,14 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Controllers
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using DigitalLibrary.MasterData.Web.Api.Api;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace DigitalLibrary.MasterData.Controllers.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using BusinessLogic.Interfaces.Interfaces;
-
-    using DomainModel.DomainModel;
-
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-
-    using Web.Api.Api;
-
     [ApiController]
     [Route(MasterDataApi.Dimensions.V1.DimensionRouteBase)]
     public class DimensionController : ControllerBase

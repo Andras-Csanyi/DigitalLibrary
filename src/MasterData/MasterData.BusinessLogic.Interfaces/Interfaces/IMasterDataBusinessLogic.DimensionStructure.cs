@@ -1,10 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
     public partial interface IMasterDataBusinessLogic
     {
         Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);

@@ -1,0 +1,87 @@
+﻿@using DigitalLibrary.ControlPanel.DomainModel.Entities
+@using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">DL</a>
+    <button class="navbar-toggler"
+            @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div @onclick="ToggleNavMenu" class="@(collapseNavMenu ? "collapse_sidebar" : null)">
+    <div>
+        <ul class="nav flex-column">
+            <div id="accordion">
+
+                @{
+                    if (dilibModules != null && dilibModules.Any())
+                    {
+                        foreach (Module diLibModule in dilibModules)
+                        {
+                            string headingId = $"heading{diLibModule.Id}";
+                            string dataTargetWithSharp = $"#collapse{diLibModule.Id}";
+                            string dataTargetWithoutSharp = $"collapse{diLibModule.Id}";
+
+                            <div class="card rounded-0">
+                                <div class="card-header rounded-0" id="@headingId">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed"
+                                                data-toggle="collapse"
+                                                data-target="@dataTargetWithSharp"
+                                                aria-expanded="true"
+                                                aria-controls="@dataTargetWithoutSharp">
+                                            @*<LeftHandMenuItemIcon iconName="@diLibModule.IconName"/>*@
+                                            @diLibModule.Name
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="@dataTargetWithoutSharp"
+                                     class="collapse"
+                                     aria-labelledby="@headingId"
+                                     data-parent="#accordion">
+                                    <div class="card-body pl-0">
+                                        <ul style="list-style: none;" class="pl-3">
+                                            @if (diLibModule.Menus.Any())
+                                            {
+                                                @foreach (Menu menu in diLibModule.Menus)
+                                                {
+                                                    <li>
+                                                        <NavLink href="@($"{diLibModule.ModuleRoute}/{menu.MenuRoute}")">
+                                                            @menu.Name
+                                                        </NavLink>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </ul>
+    </div>
+</div>
+
+@code {
+
+    bool collapseNavMenu = true;
+
+    List<Module> dilibModules;
+
+    [Inject]
+    public IControlPanelWebClient _controlPanelWebClient { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        dilibModules = await _controlPanelWebClient.GetAllModulesAsync().ConfigureAwait(false);
+    }
+
+    private async Task ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}

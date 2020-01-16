@@ -1,9 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.Validators.Validators
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.Serialization;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.MasterData.Validators.Validators
+{
     [ExcludeFromCodeCoverage]
     public class MasterDataValidatorFacadeArgumentNullException : Exception
     {

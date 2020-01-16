@@ -1,21 +1,15 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Menu
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Menu;
-
-    using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore;
-
     public partial class MenuBusinessLogic
     {
-        public async Task<Menu> ModifyAsync(Menu modified)
+        public async Task<DomainModel.Entities.Menu> ModifyAsync(DomainModel.Entities.Menu modified)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {
@@ -29,7 +23,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Menu
 
                     await _menuValidator.ValidateAndThrowAsync(modified).ConfigureAwait(false);
 
-                    Menu toBeModified = await ctx.Menus.FindAsync(modified.Id).ConfigureAwait(false);
+                    DomainModel.Entities.Menu toBeModified = await ctx.Menus.FindAsync(modified.Id).ConfigureAwait(false);
 
                     if (toBeModified == null)
                     {

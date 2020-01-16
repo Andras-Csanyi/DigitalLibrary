@@ -1,18 +1,14 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class AddDimensionValue_Should : TestBase
     {
@@ -26,36 +22,36 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task AddMultipleDimensionValue_ToASingleDimension()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "Desc",
                 IsActive = 1
             };
 
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
-            DimensionValue firstDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue firstDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "first value"
             };
-            DimensionValue firstDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue firstDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                     firstDimensionValue, dimensionResult.Id)
                 .ConfigureAwait(false);
 
-            DimensionValue secondDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue secondDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "second value"
             };
 
             // Act
-            DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                     secondDimensionValue, dimensionResult.Id)
                 .ConfigureAwait(false);
 
             // Assert
-            Dimension res = await masterDataBusinessLogic.GetValuesOfADimensionAsync(dimensionResult.Id)
+            DomainModel.DomainModel.Dimension res = await masterDataBusinessLogic.GetValuesOfADimensionAsync(dimensionResult.Id)
                 .ConfigureAwait(false);
             res.Should().NotBeNull();
             res.Name.Should().Be(dimension.Name);
@@ -77,22 +73,22 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Create_AddDimensionValueAndConnectToDimension()
         {
             // Arrange
-            Dimension alreadyExistingDimension = new Dimension
+            DomainModel.DomainModel.Dimension alreadyExistingDimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "Description",
                 IsActive = 1
             };
-            Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            DomainModel.DomainModel.Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 alreadyExistingDimension).ConfigureAwait(false);
 
-            DimensionValue secondDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue secondDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
 
             // Act
-            DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 secondDimensionValue, alreadyExistingDimensionResult.Id).ConfigureAwait(false);
 
             // Assert
@@ -106,42 +102,42 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Create_DimensionValueDimensionRelation_WhenDimensionValueExist_ButNoDimensionRelation()
         {
             // Arrange
-            Dimension alreadyExistingDimension = new Dimension
+            DomainModel.DomainModel.Dimension alreadyExistingDimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "Description",
                 IsActive = 1
             };
-            Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            DomainModel.DomainModel.Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 alreadyExistingDimension).ConfigureAwait(false);
-            Dimension secondDimension = new Dimension
+            DomainModel.DomainModel.Dimension secondDimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "Second dimension",
                 Description = "Second dimension description",
                 IsActive = 1
             };
-            Dimension secondDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            DomainModel.DomainModel.Dimension secondDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 secondDimension).ConfigureAwait(false);
 
-            DimensionValue alreadyExistingDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue alreadyExistingDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
+            DomainModel.DomainModel.DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
                 .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
                 .ConfigureAwait(false);
 
-            DimensionValue secondDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue secondDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
 
             // Act
-            DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 secondDimensionValue, secondDimensionResult.Id).ConfigureAwait(false);
 
             // Assert
-            secondDimensionValueResult.Should().BeOfType<DimensionValue>();
+            secondDimensionValueResult.Should().BeOfType<DomainModel.DomainModel.DimensionValue>();
             secondDimensionValueResult.Id.Should().NotBe(0);
             secondDimensionValueResult.Value.Should().Be(secondDimensionValue.Value);
             secondDimensionValueResult.DimensionDimensionValues.Count.Should().Be(1);
@@ -153,30 +149,30 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task Return_DimensionValue_WithRelatedEntities_WhenDimensionValueAndDimensionRelationAlreadyExist()
         {
             // Arrange
-            Dimension alreadyExistingDimension = new Dimension
+            DomainModel.DomainModel.Dimension alreadyExistingDimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "Description",
                 IsActive = 1
             };
-            Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            DomainModel.DomainModel.Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 alreadyExistingDimension).ConfigureAwait(false);
 
-            DimensionValue alreadyExistingDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue alreadyExistingDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
+            DomainModel.DomainModel.DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
                 .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
                 .ConfigureAwait(false);
 
-            DimensionValue secondDimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue secondDimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "value"
             };
 
             // Act
-            DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue secondDimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 secondDimensionValue, alreadyExistingDimensionResult.Id).ConfigureAwait(false);
 
             // Assert
@@ -197,7 +193,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         {
             // Arrange
             long dimensionId = 100;
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "something string"
             };

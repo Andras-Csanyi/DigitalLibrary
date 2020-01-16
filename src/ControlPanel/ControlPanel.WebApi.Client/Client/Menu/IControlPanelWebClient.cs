@@ -1,23 +1,22 @@
-namespace DigitalLibrary.IaC.ControlPanel.WebApi.Client.Client.Menu
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using DomainModel.Entities;
-
     public interface IControlPanelWebClient
     {
-        Task<List<Menu>> GetAllMenusAsync();
+        Task<List<DomainModel.Entities.Menu>> GetAllMenusAsync();
 
-        Task<List<Menu>> GetAllActiveMenusAsync();
+        Task<List<DomainModel.Entities.Menu>> GetAllActiveMenusAsync();
 
-        Task<Menu> FindMenuAsync(Menu menu);
+        Task<DomainModel.Entities.Menu> FindMenuAsync(DomainModel.Entities.Menu menu);
 
-        Task<Menu> AddMenuAsync(Menu menu);
+        Task<DomainModel.Entities.Menu> AddMenuAsync(DomainModel.Entities.Menu menu);
 
-        Task<Menu> ModifyMenuAsync(Menu menu);
+        Task<DomainModel.Entities.Menu> ModifyMenuAsync(DomainModel.Entities.Menu menu);
 
-        Task DeleteMenuAsync(Menu menu);
+        Task DeleteMenuAsync(DomainModel.Entities.Menu menu);
 
         Task<List<Module>> GetAllModulesAsync();
 

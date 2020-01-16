@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
+{
     [ExcludeFromCodeCoverage]
     public class DeleteDimensionAsync_Should : TestBase
     {

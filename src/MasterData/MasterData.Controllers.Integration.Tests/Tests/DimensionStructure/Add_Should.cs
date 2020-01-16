@@ -1,24 +1,18 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+using FluentAssertions;
+using WebApp;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
-    using WebApp;
-
-    using Xunit;
-    using Xunit.Abstractions;
-
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_Should : TestBase<DimensionStructure>
+    public class Add_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
-        public Add_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Add_Should(DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
                           ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -27,16 +21,16 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.Dime
         public async Task Record_NewEntity()
         {
             // Arrange
-            DimensionStructure topDimensionStructure = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure topDimensionStructure = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "top",
                 Desc = "top desc",
                 IsActive = 1,
             };
-            DimensionStructure topDimensionStructureResult = await masterDataHttpClient.AddTopDimensionStructureAsync(
+            DomainModel.DomainModel.DimensionStructure topDimensionStructureResult = await masterDataHttpClient.AddTopDimensionStructureAsync(
                 topDimensionStructure).ConfigureAwait(false);
 
-            DimensionStructure dimensionStructure = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "dim",
                 Desc = "dim",
@@ -45,7 +39,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.Dime
             };
 
             // Act
-            DimensionStructure result = await masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure)
+            DomainModel.DomainModel.DimensionStructure result = await masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure)
                 .ConfigureAwait(false);
 
             // Assert

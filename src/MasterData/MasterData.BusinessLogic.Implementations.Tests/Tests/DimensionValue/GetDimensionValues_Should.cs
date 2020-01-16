@@ -1,16 +1,12 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class GetDimensionValues_Should : TestBase
     {
@@ -24,26 +20,26 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task ReturnAllDimensionValues_WhenASingleDimensionValueIsInTheSystem()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval"
             };
 
-            DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimensionValue,
                 dimensionResult.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
             result.Count.Should().Be(1);
@@ -54,63 +50,63 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task ReturnAllDimensionValues_WhenMultipleDimensionsHaveMultipleDimensionValues()
         {
             // Arrange
-            Dimension dimension1 = new Dimension
+            DomainModel.DomainModel.Dimension dimension1 = new DomainModel.DomainModel.Dimension
             {
                 Name = "name1",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimension1Result = await masterDataBusinessLogic.AddDimensionAsync(dimension1)
+            DomainModel.DomainModel.Dimension dimension1Result = await masterDataBusinessLogic.AddDimensionAsync(dimension1)
                 .ConfigureAwait(false);
 
-            DimensionValue dimension11Value = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimension11Value = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval11"
             };
 
-            DimensionValue dimension11ValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimension11ValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimension11Value,
                 dimension1Result.Id).ConfigureAwait(false);
 
-            DimensionValue dimension12Value = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimension12Value = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval12"
             };
 
-            DimensionValue dimensionValue12Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValue12Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimension12Value,
                 dimension1Result.Id).ConfigureAwait(false);
 
 
-            Dimension dimension2 = new Dimension
+            DomainModel.DomainModel.Dimension dimension2 = new DomainModel.DomainModel.Dimension
             {
                 Name = "name2",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
+            DomainModel.DomainModel.Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
                 .ConfigureAwait(false);
 
-            DimensionValue dimension21Value = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimension21Value = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval21"
             };
 
-            DimensionValue dimension21ValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimension21ValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimension21Value,
                 dimension2Result.Id).ConfigureAwait(false);
 
-            DimensionValue dimension22Value = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimension22Value = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval22"
             };
 
-            DimensionValue dimensionValue22Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValue22Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimension22Value,
                 dimension2Result.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
             result.Count.Should().Be(4);
@@ -120,35 +116,35 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task ReturnAllDimensionValues_WhenMultipleDimensionValuesAreInTheSystem()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
                 .ConfigureAwait(false);
 
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval"
             };
 
-            DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimensionValue,
                 dimensionResult.Id).ConfigureAwait(false);
 
-            DimensionValue dimensionValue2 = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue2 = new DomainModel.DomainModel.DimensionValue
             {
                 Value = "dimval2"
             };
 
-            DimensionValue dimensionValue2Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DomainModel.DomainModel.DimensionValue dimensionValue2Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimensionValue2,
                 dimensionResult.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionValue> result = await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
             result.Count.Should().Be(2);

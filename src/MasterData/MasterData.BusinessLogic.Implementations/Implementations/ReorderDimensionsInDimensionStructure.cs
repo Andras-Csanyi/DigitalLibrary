@@ -1,10 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> ReorderDimensionsInDimensionStructureAsync(

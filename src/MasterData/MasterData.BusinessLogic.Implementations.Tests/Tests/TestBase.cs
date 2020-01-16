@@ -1,19 +1,14 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests
+using System;
+using System.Diagnostics.CodeAnalysis;
+using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
+using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.Validators.Validators;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-
-    using Ctx.Ctx;
-
-    using Implementations;
-
-    using Interfaces.Interfaces;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Logging;
-
-    using Validators.Validators;
-
     [ExcludeFromCodeCoverage]
     public class TestBase
     {

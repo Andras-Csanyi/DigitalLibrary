@@ -1,22 +1,16 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using DigitalLibrary.MasterData.WebApi.Client.Client;
+using DigitalLibrary.Utils.DiLibHttpClient;
+using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+using Microsoft.AspNetCore.Mvc.Testing;
+using WebApp;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Net.Http;
-
-    using DiLibHttpClient;
-
-    using Microsoft.AspNetCore.Mvc.Testing;
-
-    using QA.Integration.Tests.Factories;
-
-    using WebApi.Client.Client;
-
-    using WebApp;
-
-    using Xunit;
-    using Xunit.Abstractions;
-
     [ExcludeFromCodeCoverage]
     public class TestBase<TTestedEntity> : IClassFixture<DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity>>
         where TTestedEntity : class

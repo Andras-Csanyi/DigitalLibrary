@@ -1,21 +1,15 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Menu
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+using FluentValidation;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Menu;
-
-    using FluentValidation;
-
-    using Validators.Validators;
-
     public partial class MenuBusinessLogic
     {
-        public async Task<Menu> FindAsync(Menu menu)
+        public async Task<DomainModel.Entities.Menu> FindAsync(DomainModel.Entities.Menu menu)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {

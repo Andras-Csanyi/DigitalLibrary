@@ -1,21 +1,16 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Menu
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Menu;
-
-    using Microsoft.EntityFrameworkCore;
-
     public partial class MenuBusinessLogic
     {
-        public async Task<List<Menu>> GetAllActiveAsync()
+        public async Task<List<DomainModel.Entities.Menu>> GetAllActiveAsync()
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {

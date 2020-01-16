@@ -1,10 +1,9 @@
-namespace IntegrationTestFactories.Utils
+using System.Diagnostics.CodeAnalysis;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
+namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
-    using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel;
-
     [ExcludeFromCodeCoverage]
     public static class MasterDataSeed
     {

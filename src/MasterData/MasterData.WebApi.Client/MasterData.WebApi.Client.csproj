@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.WebApi.Client</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.WebApi.Client</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.WebApi.Client</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.WebApi.Client</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 

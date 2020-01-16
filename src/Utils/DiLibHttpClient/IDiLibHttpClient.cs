@@ -1,7 +1,7 @@
-namespace DiLibHttpClient
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace DigitalLibrary.Utils.DiLibHttpClient
+{
     public interface IDiLibHttpClient
     {
         Task<T> Post<T>(T payload, string url);

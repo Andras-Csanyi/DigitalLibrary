@@ -8,9 +8,9 @@
 
         <LangVersion>default</LangVersion>
 
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Features</AssemblyName>
+        <AssemblyName>DigitalLibrary.MasterData.Features</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Features</RootNamespace>
+        <RootNamespace>DigitalLibrary.MasterData.Features</RootNamespace>
 
         <OutputType>Library</OutputType>
     </PropertyGroup>

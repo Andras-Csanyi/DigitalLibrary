@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Web.Api</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Web.Api</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.Web.Api</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Web.Api</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

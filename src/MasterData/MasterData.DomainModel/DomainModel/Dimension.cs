@@ -1,7 +1,7 @@
-﻿namespace DigitalLibrary.IaC.MasterData.DomainModel.DomainModel
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace DigitalLibrary.MasterData.DomainModel.DomainModel
+{
     public class Dimension
     {
         public long Id { get; set; }

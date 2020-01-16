@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.Controllers</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.Controllers</RootNamespace>
+        <AssemblyName>DigitalLibrary.ControlPanel.Controllers</AssemblyName>
+        <RootNamespace>DigitalLibrary.ControlPanel.Controllers</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

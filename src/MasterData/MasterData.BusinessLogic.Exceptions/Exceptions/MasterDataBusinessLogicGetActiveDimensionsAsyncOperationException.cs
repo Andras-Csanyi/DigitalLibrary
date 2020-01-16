@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Exceptions.Exceptions
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions
+{
     public class MasterDataBusinessLogicGetActiveDimensionsAsyncOperationException : Exception
     {
         public MasterDataBusinessLogicGetActiveDimensionsAsyncOperationException()

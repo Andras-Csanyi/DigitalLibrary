@@ -1,12 +1,10 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class CountTopDimensionStructures_Should : TestBase
     {

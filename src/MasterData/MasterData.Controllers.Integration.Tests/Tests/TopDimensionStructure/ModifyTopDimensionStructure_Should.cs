@@ -1,27 +1,20 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.Validators.TestData.TestData;
+using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+using FluentAssertions;
+using WebApp;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
-    using Validators.TestData.TestData;
-
-    using WebApp;
-
-    using Xunit;
-    using Xunit.Abstractions;
-
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class ModifyTopDimensionStructure_Should : TestBase<DimensionStructure>
+    public class ModifyTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
         public ModifyTopDimensionStructure_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -36,13 +29,13 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopD
             int isActive)
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure orig = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "orig",
                 Desc = "orig",
                 IsActive = 1
             };
-            DimensionStructure origResult = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
+            DomainModel.DomainModel.DimensionStructure origResult = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
                 .ConfigureAwait(false);
 
             origResult.Name = name;
@@ -50,7 +43,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopD
             origResult.IsActive = isActive;
 
             // Act
-            DimensionStructure result = await masterDataHttpClient.ModifyTopDimensionStructureAsync(origResult)
+            DomainModel.DomainModel.DimensionStructure result = await masterDataHttpClient.ModifyTopDimensionStructureAsync(origResult)
                 .ConfigureAwait(false);
 
             // Assert

@@ -1,16 +1,11 @@
-namespace DigitalLibrary.IaC.MasterData.WebApi.Client.Client
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using DigitalLibrary.MasterData.Web.Api.Api;
+
+namespace DigitalLibrary.MasterData.WebApi.Client.Client
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    using DiLibHttpClient;
-
-    using DomainModel.DomainModel;
-
-    using Web.Api.Api;
-
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
         public async Task<DimensionStructure> ModifyTopDimensionStructureAsync(DimensionStructure dimensionStructure)

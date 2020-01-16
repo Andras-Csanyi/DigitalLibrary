@@ -1,24 +1,17 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore.Storage;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Module;
-
-    using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators.Validators;
-
     public partial class ModuleBusinessLogic
     {
-        public async Task<Module> AddAsync(Module module)
+        public async Task<DomainModel.Entities.Module> AddAsync(DomainModel.Entities.Module module)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {
@@ -41,7 +34,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
 
                         if (module.Menus.Any())
                         {
-                            foreach (Menu moduleMenu in module.Menus)
+                            foreach (DomainModel.Entities.Menu moduleMenu in module.Menus)
                             {
                                 await _menuBusinessLogic.AddAsync(moduleMenu).ConfigureAwait(false);
                             }

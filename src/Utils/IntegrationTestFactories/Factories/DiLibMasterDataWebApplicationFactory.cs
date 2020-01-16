@@ -1,19 +1,16 @@
-namespace DigitalLibrary.IaC.MasterData.QA.Integration.Tests.Factories
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.Utils.IntegrationTestFactories.Utils;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-
-    using Ctx.Ctx;
-
-    using IntegrationTestFactories.Utils;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc.Testing;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-
     [ExcludeFromCodeCoverage]
     public class DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity> : WebApplicationFactory<TStartup>
         where TStartup : class

@@ -1,31 +1,21 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.Validators.TestData.TestData;
+using DigitalLibrary.MasterData.WebApi.Client.Client;
+using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+using FluentAssertions;
+using WebApp;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
-    using SQLitePCL;
-
-    using Validators.TestData.TestData;
-
-    using WebApi.Client.Client;
-
-    using WebApp;
-
-    using Xunit;
-    using Xunit.Abstractions;
-
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_Validation_Should : TestBase<DimensionStructure>
+    public class Add_Validation_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
-        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
                                      ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -56,7 +46,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.Dime
             long parentId)
         {
             // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
             {
                 Id = id,
                 Name = name,

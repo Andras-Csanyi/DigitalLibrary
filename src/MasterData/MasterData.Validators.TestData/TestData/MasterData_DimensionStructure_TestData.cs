@@ -1,10 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.Validators.TestData.TestData
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
+namespace DigitalLibrary.MasterData.Validators.TestData.TestData
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-
-    using DomainModel.DomainModel;
-
     [ExcludeFromCodeCoverage]
     public static class MasterData_DimensionStructure_TestData
     {

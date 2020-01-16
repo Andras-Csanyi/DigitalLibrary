@@ -4,8 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.BusinessLogic.Exceptions</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.BusinessLogic.Exceptions</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Exceptions</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Exceptions</RootNamespace>
     </PropertyGroup>
 
 

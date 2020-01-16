@@ -1,14 +1,10 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class AddTopDimensionStructure_Should : TestBase
     {
@@ -22,16 +18,16 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task AddNewDimensionStructure()
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 dimension).ConfigureAwait(false);
 
-            DimensionStructure dimensionStructure = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "name",
                 Desc = "desc",
@@ -41,7 +37,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             };
 
             // Act
-            DimensionStructure result = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
+            DomainModel.DomainModel.DimensionStructure result = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
                 dimensionStructure).ConfigureAwait(false);
 
             // Arrange

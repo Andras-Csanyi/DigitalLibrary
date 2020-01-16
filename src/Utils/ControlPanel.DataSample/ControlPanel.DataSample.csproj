@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>DigitalLibrary.Utils.ControlPanel.DataSample</AssemblyName>
+        <RootNamespace>DigitalLibrary.Utils.ControlPanel.DataSample</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\ControlPanel\ControlPanel.Ctx\ControlPanel.Ctx.csproj" />
+        <ProjectReference Include="..\..\ControlPanel\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj" />
+        <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj" />
+        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,10 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.Ctx.Ctx.Configurations
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace DigitalLibrary.MasterData.Ctx.Ctx.Configurations
 {
-    using DomainModel.DomainModel;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
     public class DimensionDimensionValueConfiguration : IEntityTypeConfiguration<DimensionDimensionValue>
     {
         public void Configure(EntityTypeBuilder<DimensionDimensionValue> builder)

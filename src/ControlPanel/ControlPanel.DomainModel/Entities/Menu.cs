@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.ControlPanel.DomainModel.Entities
+namespace DigitalLibrary.ControlPanel.DomainModel.Entities
 {
     public class Menu
     {

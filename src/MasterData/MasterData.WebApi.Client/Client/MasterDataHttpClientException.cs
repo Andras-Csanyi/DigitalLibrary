@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.MasterData.WebApi.Client.Client
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.MasterData.WebApi.Client.Client
+{
     public class MasterDataHttpClientException : Exception
     {
         public MasterDataHttpClientException()

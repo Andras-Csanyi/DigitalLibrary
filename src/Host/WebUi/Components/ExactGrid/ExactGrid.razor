@@ -1,0 +1,60 @@
+@using DigitalLibrary.MasterData.DomainModel.DomainModel
+<BSTable>
+    <BSTableHead>
+        <BSTableRow>
+            @{
+                foreach (string column in Columns)
+                {
+                    <BSTableCell>
+                        @column
+                    </BSTableCell>
+                }
+            }
+        </BSTableRow>
+    </BSTableHead>
+    <BSTableBody>
+        @{
+            if (_dimensionStructures != null && _dimensionStructures.Any())
+            {
+                <BSTableRow>
+                    @{
+                        foreach (DimensionStructure dimensionStructure in _dimensionStructures)
+                        {
+                            <BSTableCell>@dimensionStructure.Id</BSTableCell>
+                            <BSTableCell>@dimensionStructure.Name</BSTableCell>
+                            <BSTableCell>@dimensionStructure.Desc</BSTableCell>
+                            <BSTableCell>
+                                <BSButton ButtonType="ButtonType.Button"
+                                          @onclick="@(async () => await ShowEditModal(dimensionStructure))">
+                                </BSButton>
+                            </BSTableCell>
+                        }
+                    }
+                </BSTableRow>
+            }
+        }
+    </BSTableBody>
+</BSTable>
+
+<BSModal @ref="EditModalWindow">
+    <BSModalHeader>header</BSModalHeader>
+    <BSModalBody>
+        <BSForm Model="@_editedItem" OnValidSubmit="@HandleValidSubmit">
+            <BSFormGroup>
+                <BSFormLabel>@_editedItem.Name</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              @bind-Value="@_editedItem.Name">
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>@_editedItem.Desc</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              @bind-Value="@_editedItem.Desc">
+                </BSBasicInput>
+            </BSFormGroup>
+        </BSForm>
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton ButtonType="ButtonType.Button">Save</BSButton>
+    </BSModalFooter>
+</BSModal>

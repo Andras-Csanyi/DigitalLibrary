@@ -1,25 +1,19 @@
-namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+using FluentAssertions;
+using WebApp;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
-    using WebApp;
-
-    using Xunit;
-    using Xunit.Abstractions;
-
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class AddTopDimensionStructure_Should : TestBase<DimensionStructure>
+    public class AddTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
         public AddTopDimensionStructure_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
             ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
@@ -29,7 +23,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopD
         public async Task Add()
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure orig = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "name",
                 Desc = "desc",
@@ -37,7 +31,7 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopD
             };
 
             // Act
-            DimensionStructure res = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
+            DomainModel.DomainModel.DimensionStructure res = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
                 .ConfigureAwait(false);
 
             // Assert
