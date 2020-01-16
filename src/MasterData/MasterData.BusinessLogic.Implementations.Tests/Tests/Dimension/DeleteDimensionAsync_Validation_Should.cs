@@ -1,7 +1,7 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
-{
-    using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
+{
     [ExcludeFromCodeCoverage]
     public class DeleteDimensionAsync_Validation_Should : TestBase
     {

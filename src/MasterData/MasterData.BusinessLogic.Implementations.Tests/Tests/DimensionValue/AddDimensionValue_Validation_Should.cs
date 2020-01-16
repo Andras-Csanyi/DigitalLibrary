@@ -1,17 +1,12 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class AddDimensionValue_Validation_Should : TestBase
     {
@@ -29,7 +24,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             long dimensionValueId)
         {
             // Arrange
-            DimensionValue dimensionValue = new DimensionValue
+            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
             {
                 Id = dimensionValueId
             };

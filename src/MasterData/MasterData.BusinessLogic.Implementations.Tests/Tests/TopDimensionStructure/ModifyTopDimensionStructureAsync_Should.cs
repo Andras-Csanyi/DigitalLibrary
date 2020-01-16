@@ -1,19 +1,13 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Validators.TestData.TestData;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using Validators.TestData.TestData;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class ModifyTopDimensionStructureAsync_Should : TestBase
     {
@@ -33,7 +27,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             int isActive)
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure orig = new DomainModel.DomainModel.DimensionStructure
             {
                 Name = "asdasd",
                 Desc = "asdasd",
@@ -41,10 +35,10 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
                 ParentDimensionStructureId = 0
             };
 
-            DimensionStructure origRes = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
+            DomainModel.DomainModel.DimensionStructure origRes = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
                 orig).ConfigureAwait(false);
 
-            DimensionStructure mod = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure mod = new DomainModel.DomainModel.DimensionStructure
             {
                 Id = origRes.Id,
                 Name = name,
@@ -53,7 +47,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             };
 
             // Act
-            DimensionStructure res = await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(mod)
+            DomainModel.DomainModel.DimensionStructure res = await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(mod)
                 .ConfigureAwait(false);
 
             // Assert
@@ -68,7 +62,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task ThrowException_WhenThereIsNoGivenTopDimensionStructure()
         {
             // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
+            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
             {
                 Id = 100,
                 Name = "asdasd",

@@ -1,17 +1,13 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Storage;
-
     public partial class MasterDataBusinessLogic
     {
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)

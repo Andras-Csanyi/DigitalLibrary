@@ -1,10 +1,9 @@
-namespace ControlPanel.QA.DataSample
+using System;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
+namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
-    using System;
-
-    using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
-    using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel;
-
     public static class MasterDataDataSample
     {
         public static void Populate(MasterDataContext ctx)

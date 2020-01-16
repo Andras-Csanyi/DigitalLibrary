@@ -1,4 +1,4 @@
-@using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel
+@using DigitalLibrary.MasterData.DomainModel.DomainModel
 <BSTable IsDark="true" IsStriped="true" IsHovarable="true">
     <BSTableHead>
         <BSTableRow>
@@ -106,7 +106,7 @@
                 <BSInput InputType="InputType.Select"
                          @bind-Value="@_newDimensionStructure.DimensionId">
                     @{
-                        foreach (DigitalLibrary.IaC.MasterData.DomainModel.DomainModel.Dimension dimension in 
+                        foreach (Dimension dimension in 
                             _dimensions)
                         {
                             <option value="@dimension.Id">

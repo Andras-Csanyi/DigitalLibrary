@@ -1,14 +1,11 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     public class DeleteDimensionStructureAsync_Validation_Should : TestBase
     {
         public DeleteDimensionStructureAsync_Validation_Should() : base(TestInfo)

@@ -1,9 +1,9 @@
 using System;
 using BlazorStrap;
 using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu;
-using DigitalLibrary.IaC.MasterData.Validators.Validators;
-using DigitalLibrary.IaC.MasterData.WebApi.Client.Client;
-using DiLibHttpClient;
+using DigitalLibrary.MasterData.Validators.Validators;
+using DigitalLibrary.MasterData.WebApi.Client.Client;
+using DigitalLibrary.Utils.DiLibHttpClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +37,7 @@ namespace DigitalLibrary.Ui.WebUi
             //     config.BaseAddress = new Uri("http://localhost:5000");
             // });
             services.AddHttpClient("httpClient", config => { config.BaseAddress = new Uri("http://localhost:5000"); });
-            services.AddHttpClient<IDiLibHttpClient, DiLibHttpClient.DiLibHttpClient>(config =>
+            services.AddHttpClient<IDiLibHttpClient, DiLibHttpClient>(config =>
             {
                 config.BaseAddress = new Uri("http://localhost:5000");
             });

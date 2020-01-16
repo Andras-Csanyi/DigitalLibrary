@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
-{
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+{
     [ExcludeFromCodeCoverage]
     public class GetDimensionStructureById_Should : TestBase
     {

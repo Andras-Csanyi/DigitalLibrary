@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorStrap;
-using DigitalLibrary.IaC.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.IaC.MasterData.WebApi.Client.Client;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using DigitalLibrary.MasterData.WebApi.Client.Client;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

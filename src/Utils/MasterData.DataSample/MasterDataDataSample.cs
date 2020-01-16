@@ -1,7 +1,7 @@
-﻿namespace MasterData.QA.DataSample
-{
-    using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
+﻿using DigitalLibrary.MasterData.Ctx.Ctx;
 
+namespace DigitalLibrary.Utils.MasterData.DataSample
+{
     public class MasterDataDataSample
     {
         public MasterDataDataSample(MasterDataContext ctx)

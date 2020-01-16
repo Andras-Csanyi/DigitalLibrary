@@ -1,11 +1,9 @@
-namespace DigitalLibrary.IaC.MasterData.Validators.Validators
+using System.Diagnostics.CodeAnalysis;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using FluentValidation;
+
+namespace DigitalLibrary.MasterData.Validators.Validators
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    using DomainModel.DomainModel;
-
-    using FluentValidation;
-
     [ExcludeFromCodeCoverage]
     public class MasterDataDimensionValueValidator : AbstractValidator<DimensionValue>
     {

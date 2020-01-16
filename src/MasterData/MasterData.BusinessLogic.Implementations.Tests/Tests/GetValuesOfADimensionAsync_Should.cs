@@ -1,15 +1,12 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class GetValuesOfADimensionAsync_Should : TestBase
     {

@@ -1,18 +1,13 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.DomainModel.DomainModel;
+using DigitalLibrary.MasterData.Validators.Validators;
+using FluentValidation;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentValidation;
-
-    using Validators.Validators;
-
     public partial class MasterDataBusinessLogic
     {
         public async Task<Dimension> AddDimensionAsync(Dimension dimension)

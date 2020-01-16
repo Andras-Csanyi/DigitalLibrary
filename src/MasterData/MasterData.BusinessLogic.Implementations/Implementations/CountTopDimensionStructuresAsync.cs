@@ -1,14 +1,11 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Exceptions;
-
-    using Microsoft.EntityFrameworkCore;
-
     public partial class MasterDataBusinessLogic
     {
         public async Task<long> CountTopDimensionStructuresAsync()

@@ -4,17 +4,16 @@ using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
 using DigitalLibrary.ControlPanel.Controllers.Controllers;
 using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
+using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
+using DigitalLibrary.MasterData.Controllers.Controllers;
+using DigitalLibrary.MasterData.Ctx.Ctx;
+using DigitalLibrary.MasterData.Validators.Validators;
+using DigitalLibrary.Utils.ControlPanel.DataSample;
 
 namespace WebApp
 {
     using System;
-
-    using ControlPanel.QA.DataSample;
-    using DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations;
-    using DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces;
-    using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
-    using DigitalLibrary.IaC.MasterData.Validators.Validators;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -53,7 +52,7 @@ namespace WebApp
                 .AddApplicationPart(
                     typeof(MenuController).Assembly)
                 .AddApplicationPart(
-                    typeof(DigitalLibrary.IaC.MasterData.Controllers.Controllers.DimensionController).Assembly)
+                    typeof(DimensionController).Assembly)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // if (_env.IsStaging())

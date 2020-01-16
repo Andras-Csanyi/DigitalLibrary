@@ -1,4 +1,4 @@
-namespace DigitalLibrary.IaC.MasterData.DomainModel.DomainModel
+namespace DigitalLibrary.MasterData.DomainModel.DomainModel
 {
     public class DimensionDimensionValue
     {

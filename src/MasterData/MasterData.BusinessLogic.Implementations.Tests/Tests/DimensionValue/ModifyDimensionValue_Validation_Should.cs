@@ -1,21 +1,14 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Validators.TestData.TestData;
+using FluentAssertions;
+using FluentValidation;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using FluentValidation;
-
-    using Validators.TestData.TestData;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class ModifyDimensionValue_Validation_Should : TestBase
     {
@@ -31,8 +24,8 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             MemberType = typeof(MasterData_DimensionValue_TestData))]
         public async Task ThrowException_WhenInputIsNull(
             long id,
-            DimensionValue oldDimensionValue,
-            DimensionValue newDimensionValue)
+            DomainModel.DomainModel.DimensionValue oldDimensionValue,
+            DomainModel.DomainModel.DimensionValue newDimensionValue)
         {
             // Arrange
 
@@ -54,8 +47,8 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
         public async Task ThrowException_WhenOldDimensionValue_HasZeroId()
         {
             // Arrange
-            DimensionValue old = new DimensionValue();
-            DimensionValue nw = new DimensionValue();
+            DomainModel.DomainModel.DimensionValue old = new DomainModel.DomainModel.DimensionValue();
+            DomainModel.DomainModel.DimensionValue nw = new DomainModel.DomainModel.DimensionValue();
 
             // Act
             Func<Task> action = async () =>

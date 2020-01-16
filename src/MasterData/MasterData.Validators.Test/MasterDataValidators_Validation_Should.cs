@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using DigitalLibrary.IaC.MasterData.Validators.Validators;
+using DigitalLibrary.MasterData.Validators.Validators;
 using FluentAssertions;
 using Xunit;
 
-namespace DigitalLibrary.IaC.MasterData.Validators.Test
+namespace DigitalLibrary.MasterData.Validators.Test
 {
     [ExcludeFromCodeCoverage]
     public class MasterDataValidators_Validation_Should

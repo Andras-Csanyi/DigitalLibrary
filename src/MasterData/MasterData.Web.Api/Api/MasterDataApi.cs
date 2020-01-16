@@ -1,4 +1,4 @@
-﻿namespace DigitalLibrary.IaC.MasterData.Web.Api.Api
+﻿namespace DigitalLibrary.MasterData.Web.Api.Api
 {
     /// <summary>
     ///     Digital Library MasterData api endpoint

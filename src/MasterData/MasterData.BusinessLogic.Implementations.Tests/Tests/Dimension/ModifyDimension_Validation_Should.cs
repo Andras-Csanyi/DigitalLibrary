@@ -1,21 +1,14 @@
-namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+using DigitalLibrary.MasterData.Validators.TestData.TestData;
+using FluentAssertions;
+using FluentValidation;
+using Xunit;
+
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DomainModel.DomainModel;
-
-    using Exceptions.Exceptions;
-
-    using FluentAssertions;
-
-    using FluentValidation;
-
-    using Validators.TestData.TestData;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class ModifyDimension_Validation_Should : TestBase
     {
@@ -30,7 +23,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             MemberType = typeof(MasterData_Dimension_TestData))]
         public async Task ThrowException_WhenInputsAreNull(
             long id,
-            Dimension dimension)
+            DomainModel.DomainModel.Dimension dimension)
         {
             // Arrange
 
@@ -52,7 +45,7 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Tests.Test
             int isActive)
         {
             // Arrange
-            Dimension dimension = new Dimension
+            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
             {
                 Name = name,
                 Description = desc,

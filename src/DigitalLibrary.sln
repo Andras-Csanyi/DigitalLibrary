@@ -79,9 +79,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Validators.TestD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{5DC05A13-9489-49BE-8335-C5A6E766CDF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.QA.DataSample", "Utils\MasterData.QA.DataSample\MasterData.QA.DataSample.csproj", "{29F659B8-5FA3-4D59-AA06-34DF54BFBD3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.DataSample", "Utils\MasterData.DataSample\MasterData.DataSample.csproj", "{29F659B8-5FA3-4D59-AA06-34DF54BFBD3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.QA.DataSample", "Utils\ControlPanel.QA.DataSample\ControlPanel.QA.DataSample.csproj", "{E315D855-E2CE-4195-91D6-1F1548DE5F0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.DataSample", "Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj", "{E315D855-E2CE-4195-91D6-1F1548DE5F0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUi", "Host\WebUi\WebUi.csproj", "{96006220-9648-4251-AD68-F53F616C39F7}"
 EndProject

@@ -1,16 +1,14 @@
-﻿namespace DiLibHttpClient
+﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Mime;
+using System.Text;
+using System.Threading.Tasks;
+using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
+using Newtonsoft.Json;
+
+namespace DigitalLibrary.Utils.DiLibHttpClient
 {
-    using System;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Net.Mime;
-    using System.Text;
-    using System.Threading.Tasks;
-
-    using Exceptions;
-
-    using Newtonsoft.Json;
-
     public class DiLibHttpClient : IDiLibHttpClient
     {
         private readonly HttpClient _httpClient;
