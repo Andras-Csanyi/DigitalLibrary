@@ -5,14 +5,7 @@ namespace DigitalLibrary.IaC.MasterData.WebApi.Client.Client
 
     using DomainModel.DomainModel;
 
-    public interface IMasterDataHttpClient
+    public partial interface IMasterDataHttpClient
     {
-        Task<List<DimensionStructure>> GetTopDimensionStructuresAsync();
-
-        Task<DimensionStructure> ModifyTopDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task<DimensionStructure> AddTopDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task DeleteTopDimensionStructureAsync(DimensionStructure dimensionStructure);
     }
 }

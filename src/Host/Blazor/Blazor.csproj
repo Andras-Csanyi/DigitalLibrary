@@ -7,7 +7,9 @@
     <ItemGroup>
         <ProjectReference Include="..\..\ControlPanel\ControlPanel.WebApi.Client\ControlPanel.WebApi.Client.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+        <ProjectReference Include="..\..\MasterData\MasterData.Validators\MasterData.Validators.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+        <ProjectReference Include="..\..\Utils\DiLibHttpClient\DiLibHttpClient.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

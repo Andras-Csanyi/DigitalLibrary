@@ -1,6 +1,7 @@
 namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Ctx.Ctx;
@@ -18,35 +19,49 @@ namespace DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementa
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> AddDimensionStructureAsync(
-            long dimensionStructureId,
-            DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction =
-                    await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
+                    .ConfigureAwait(false))
                 {
                     try
                     {
-                        if (dimensionStructure == null || dimensionStructureId == 0)
+                        if (dimensionStructure == null)
+                        {
                             throw new MasterDataBusinessLogicArgumentNullException();
+                        }
 
                         await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                                 dimensionStructure,
                                 ValidatorRulesets.AddNewDimensionStructure)
                             .ConfigureAwait(false);
 
-                        DimensionStructure parent = await ctx.DimensionStructures.FindAsync(dimensionStructureId)
+                        DimensionStructure parent = await ctx.DimensionStructures
+                            .FindAsync(dimensionStructure.ParentDimensionStructureId)
                             .ConfigureAwait(false);
 
                         if (parent == null)
                         {
-                            string noSuchErrMsg = $"No dimension structure with id: {dimensionStructureId}.";
+                            string noSuchErrMsg = $"No dimension structure with id: " +
+                                                  $"{dimensionStructure.ParentDimensionStructureId}.";
                             throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
                         }
 
-                        dimensionStructure.ParentDimensionStructureId = parent.Id;
+                        if (dimensionStructure.DimensionId != null && dimensionStructure.DimensionId != 0)
+                        {
+                            Dimension dimension = await ctx.Dimensions.FindAsync(dimensionStructure.DimensionId)
+                                .ConfigureAwait(false);
+
+                            if (dimension == null)
+                            {
+                                string noSuchErrMsg = $"No dimension with id: " +
+                                                      $"{dimensionStructure.DimensionId}.";
+                                throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
+                            }
+                        }
+
                         await ctx.DimensionStructures.AddAsync(dimensionStructure)
                             .ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);

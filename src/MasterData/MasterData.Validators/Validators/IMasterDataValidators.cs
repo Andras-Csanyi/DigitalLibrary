@@ -6,6 +6,8 @@ namespace DigitalLibrary.IaC.MasterData.Validators.Validators
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
+        public TopDimensionStructureValidator TopDimensionStructureValidator { get; }
+
         public DimensionStructureValidator DimensionStructureValidator { get; }
     }
 }
