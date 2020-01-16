@@ -1,10 +1,9 @@
-namespace DigitalLibrary.IaC.ControlPanel.Ctx.Context.Configurations
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace DigitalLibrary.ControlPanel.Ctx.Context.Configurations
 {
-    using DomainModel.Entities;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
     public class ModuleConfiguration : IEntityTypeConfiguration<Module>
     {
         public void Configure(EntityTypeBuilder<Module> builder)

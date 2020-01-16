@@ -1,15 +1,11 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Tests
+using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
+using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests
 {
-    using Ctx.Context;
-
-    using Implementations.Menu;
-
-    using Microsoft.EntityFrameworkCore;
-
-    using Module;
-
-    using Validators.Validators;
-
     public class TestBase
     {
         protected MenuBusinessLogic MenuBusinessLogic;

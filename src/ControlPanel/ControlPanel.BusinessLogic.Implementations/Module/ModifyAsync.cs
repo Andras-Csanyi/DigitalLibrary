@@ -1,26 +1,19 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Module;
-
-    using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators.Validators;
-
     public partial class ModuleBusinessLogic
     {
-        public async Task<Module> ModifyAsync(Module modify)
+        public async Task<DomainModel.Entities.Module> ModifyAsync(DomainModel.Entities.Module modify)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {
@@ -39,7 +32,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
                                 ruleSet: ValidatorRulesets.Modify)
                             .ConfigureAwait(false);
 
-                        Module module = await ctx.Modules
+                        DomainModel.Entities.Module module = await ctx.Modules
                             .Include(p => p.Menus)
                             .FirstOrDefaultAsync(p => p.Id == modify.Id)
                             .ConfigureAwait(false);
@@ -71,7 +64,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
                         {
                             foreach (long l in diff)
                             {
-                                Menu toBeDeleted = new Menu
+                                DomainModel.Entities.Menu toBeDeleted = new DomainModel.Entities.Menu
                                 {
                                     Id = l
                                 };

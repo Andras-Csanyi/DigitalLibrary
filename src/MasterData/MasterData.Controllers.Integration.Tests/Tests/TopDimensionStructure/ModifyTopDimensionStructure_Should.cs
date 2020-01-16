@@ -1,3 +1,5 @@
+using IntegrationTestFactories.Factories;
+
 namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
 {
     using System.Diagnostics.CodeAnalysis;
@@ -6,9 +8,6 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.TopD
     using DomainModel.DomainModel;
 
     using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
     using Validators.TestData.TestData;
 
     using WebApp;

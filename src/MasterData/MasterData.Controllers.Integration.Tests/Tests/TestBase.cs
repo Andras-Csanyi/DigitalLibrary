@@ -1,3 +1,5 @@
+using IntegrationTestFactories.Factories;
+
 namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests
 {
     using System;
@@ -7,9 +9,6 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests
     using DiLibHttpClient;
 
     using Microsoft.AspNetCore.Mvc.Testing;
-
-    using QA.Integration.Tests.Factories;
-
     using WebApi.Client.Client;
 
     using WebApp;

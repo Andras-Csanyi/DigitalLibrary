@@ -1,20 +1,14 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+using FluentAssertions;
+using FluentValidation;
+using Xunit;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Threading.Tasks;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Menu;
-
-    using FluentAssertions;
-
-    using FluentValidation;
-
-    using Xunit;
-
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
@@ -63,7 +57,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
             string menuRoute)
         {
             // Arrange
-            Menu menu = new Menu
+            DomainModel.Entities.Menu menu = new DomainModel.Entities.Menu
             {
                 Id = id,
                 Name = name,
@@ -94,7 +88,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
             };
             DomainModel.Entities.Module moduleResult = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
 
-            Menu menu = new Menu
+            DomainModel.Entities.Menu menu = new DomainModel.Entities.Menu
             {
                 Name = "name",
                 Description = "desc",
@@ -104,7 +98,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
             };
 
             // Act
-            Menu menuResult = await MenuBusinessLogic.AddAsync(menu).ConfigureAwait(false);
+            DomainModel.Entities.Menu menuResult = await MenuBusinessLogic.AddAsync(menu).ConfigureAwait(false);
 
             // Assert
             menuResult.Id.Should().BeGreaterThan(0);

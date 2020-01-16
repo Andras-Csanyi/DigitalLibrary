@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Exceptions.Module
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
+{
     public class ModuleModifyAsyncOperationException : Exception
     {
         public ModuleModifyAsyncOperationException()

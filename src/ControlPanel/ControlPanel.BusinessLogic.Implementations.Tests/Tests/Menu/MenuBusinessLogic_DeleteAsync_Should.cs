@@ -1,18 +1,13 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Threading.Tasks;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Menu;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
@@ -39,7 +34,7 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
             };
             DomainModel.Entities.Module moduleResult = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
 
-            Menu menuActive = new Menu
+            DomainModel.Entities.Menu menuActive = new DomainModel.Entities.Menu
             {
                 Name = "name",
                 Description = "desc",
@@ -47,9 +42,9 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
                 ModuleId = 1,
                 MenuRoute = "asd"
             };
-            Menu menuActiveResult = await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
+            DomainModel.Entities.Menu menuActiveResult = await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
 
-            Menu menuInactive = new Menu
+            DomainModel.Entities.Menu menuInactive = new DomainModel.Entities.Menu
             {
                 Name = "name",
                 Description = "desc",
@@ -57,11 +52,11 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests.Te
                 ModuleId = 1,
                 MenuRoute = "asd"
             };
-            Menu menuInactiveResult = await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);
+            DomainModel.Entities.Menu menuInactiveResult = await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);
 
             // Act
             await MenuBusinessLogic.DeleteAsync(menuInactiveResult).ConfigureAwait(false);
-            List<Menu> result = await MenuBusinessLogic.GetAllAsync().ConfigureAwait(false);
+            List<DomainModel.Entities.Menu> result = await MenuBusinessLogic.GetAllAsync().ConfigureAwait(false);
 
             // Assert
             result.Count.Should().Be(1);

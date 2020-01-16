@@ -1,10 +1,10 @@
-﻿namespace ControlPanel.QA.DataSample
+﻿using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+
+namespace ControlPanel.QA.DataSample
 {
     using System;
     using System.Linq;
-
-    using DigitalLibrary.IaC.ControlPanel.Ctx.Context;
-    using DigitalLibrary.IaC.ControlPanel.DomainModel.Entities;
 
     public static class ControlPanelDataSample
     {

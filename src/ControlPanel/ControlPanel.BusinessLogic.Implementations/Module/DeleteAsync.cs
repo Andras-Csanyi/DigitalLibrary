@@ -1,25 +1,18 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Module;
-
-    using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore;
-
-    using Validators.Validators;
-
     public partial class ModuleBusinessLogic
     {
-        public async Task DeleteAsync(Module toBeDelete)
+        public async Task DeleteAsync(DomainModel.Entities.Module toBeDelete)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {
@@ -38,13 +31,13 @@ namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
                                 ruleSet: ValidatorRulesets.Delete)
                             .ConfigureAwait(false);
 
-                        List<Menu> menusToBeDelete = await ctx.Menus.Where(p => p.ModuleId == toBeDelete.Id)
+                        List<DomainModel.Entities.Menu> menusToBeDelete = await ctx.Menus.Where(p => p.ModuleId == toBeDelete.Id)
                             .ToListAsync()
                             .ConfigureAwait(false);
 
                         if (menusToBeDelete.Any())
                         {
-                            foreach (Menu menu in menusToBeDelete)
+                            foreach (DomainModel.Entities.Menu menu in menusToBeDelete)
                             {
                                 await _menuBusinessLogic.DeleteAsync(menu).ConfigureAwait(false);
                             }

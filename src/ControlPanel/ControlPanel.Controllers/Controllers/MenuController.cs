@@ -1,21 +1,16 @@
-namespace DigitalLibrary.IaC.ControlPanel.Controllers.Controllers
+using System;
+using System.Collections.Generic;
+using System.Net.Mime;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
+using DigitalLibrary.ControlPanel.Controllers.Exceptions;
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+using DigitalLibrary.ControlPanel.WebApi.Api.Api;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace DigitalLibrary.ControlPanel.Controllers.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Mime;
-    using System.Threading.Tasks;
-
-    using BusinessLogic.Interfaces.Interfaces;
-
-    using DomainModel.Entities;
-
-    using Exceptions;
-
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-
-    using WebApi.Api.Api;
-
     [ApiController]
     [Route(ControlPanelWebApi.Menu.Base)]
     public class MenuController : ControllerBase

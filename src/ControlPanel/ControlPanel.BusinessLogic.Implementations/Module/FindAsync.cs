@@ -1,21 +1,15 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module
+using System;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Ctx.Context;
-
-    using DomainModel.Entities;
-
-    using Exceptions.Module;
-
-    using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore;
-
     public partial class ModuleBusinessLogic
     {
-        public async Task<Module> FindAsync(Module module)
+        public async Task<DomainModel.Entities.Module> FindAsync(DomainModel.Entities.Module module)
         {
             using (ControlPanelContext ctx = new ControlPanelContext(_dbContextOptions))
             {

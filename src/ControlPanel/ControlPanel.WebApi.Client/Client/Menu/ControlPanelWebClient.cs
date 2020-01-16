@@ -1,20 +1,16 @@
-﻿namespace DigitalLibrary.IaC.ControlPanel.WebApi.Client.Client.Menu
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+using DigitalLibrary.ControlPanel.WebApi.Api.Api;
+using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
+using Newtonsoft.Json;
+
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
-    using System.Threading.Tasks;
-
-    using Api.Api;
-
-    using DomainModel.Entities;
-
-    using Exceptions;
-
-    using Newtonsoft.Json;
-
     public class ControlPanelWebClient : IControlPanelWebClient
     {
         private HttpClient _httpClient;
@@ -24,7 +20,7 @@
             _httpClient = httpClient ?? throw new ControlPanelWebApiClientArgumentNullException();
         }
 
-        public async Task<List<Menu>> GetAllMenusAsync()
+        public async Task<List<DomainModel.Entities.Menu>> GetAllMenusAsync()
         {
             try
             {
@@ -35,7 +31,7 @@
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string stringContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                List<Menu> result = JsonConvert.DeserializeObject<List<Menu>>(stringContent);
+                List<DomainModel.Entities.Menu> result = JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
 
                 return result;
             }
@@ -45,7 +41,7 @@
             }
         }
 
-        public async Task<List<Menu>> GetAllActiveMenusAsync()
+        public async Task<List<DomainModel.Entities.Menu>> GetAllActiveMenusAsync()
         {
             try
             {
@@ -57,7 +53,7 @@
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string stringContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                List<Menu> result = JsonConvert.DeserializeObject<List<Menu>>(stringContent);
+                List<DomainModel.Entities.Menu> result = JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
 
                 return result;
             }
@@ -67,7 +63,7 @@
             }
         }
 
-        public async Task<Menu> FindMenuAsync(Menu menu)
+        public async Task<DomainModel.Entities.Menu> FindMenuAsync(DomainModel.Entities.Menu menu)
         {
             try
             {
@@ -93,7 +89,7 @@
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
                     .ConfigureAwait(false);
-                Menu result = JsonConvert.DeserializeObject<Menu>(resultString);
+                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -103,7 +99,7 @@
             }
         }
 
-        public async Task<Menu> AddMenuAsync(Menu menu)
+        public async Task<DomainModel.Entities.Menu> AddMenuAsync(DomainModel.Entities.Menu menu)
         {
             try
             {
@@ -129,7 +125,7 @@
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
                     .ConfigureAwait(false);
-                Menu result = JsonConvert.DeserializeObject<Menu>(resultString);
+                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -139,7 +135,7 @@
             }
         }
 
-        public async Task<Menu> ModifyMenuAsync(Menu menu)
+        public async Task<DomainModel.Entities.Menu> ModifyMenuAsync(DomainModel.Entities.Menu menu)
         {
             try
             {
@@ -165,7 +161,7 @@
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
                     .ConfigureAwait(false);
-                Menu result = JsonConvert.DeserializeObject<Menu>(resultString);
+                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -175,7 +171,7 @@
             }
         }
 
-        public async Task DeleteMenuAsync(Menu menu)
+        public async Task DeleteMenuAsync(DomainModel.Entities.Menu menu)
         {
             try
             {

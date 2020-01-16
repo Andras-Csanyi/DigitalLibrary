@@ -1,14 +1,15 @@
+using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
+using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
+using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
+using DigitalLibrary.ControlPanel.Controllers.Controllers;
+using DigitalLibrary.ControlPanel.Ctx.Context;
+using DigitalLibrary.ControlPanel.Validators.Validators;
+
 namespace WebApp
 {
     using System;
 
     using ControlPanel.QA.DataSample;
-
-    using DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Menu;
-    using DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Module;
-    using DigitalLibrary.IaC.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-    using DigitalLibrary.IaC.ControlPanel.Ctx.Context;
-    using DigitalLibrary.IaC.ControlPanel.Validators.Validators;
     using DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations.Implementations;
     using DigitalLibrary.IaC.MasterData.BusinessLogic.Interfaces.Interfaces;
     using DigitalLibrary.IaC.MasterData.Ctx.Ctx;
@@ -50,7 +51,7 @@ namespace WebApp
                     options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 })
                 .AddApplicationPart(
-                    typeof(DigitalLibrary.IaC.ControlPanel.Controllers.Controllers.MenuController).Assembly)
+                    typeof(MenuController).Assembly)
                 .AddApplicationPart(
                     typeof(DigitalLibrary.IaC.MasterData.Controllers.Controllers.DimensionController).Assembly)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);

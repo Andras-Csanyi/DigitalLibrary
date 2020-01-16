@@ -1,9 +1,8 @@
-namespace DigitalLibrary.IaC.ControlPanel.Validators.Validators
+using DigitalLibrary.ControlPanel.DomainModel.Entities;
+using FluentValidation;
+
+namespace DigitalLibrary.ControlPanel.Validators.Validators
 {
-    using DomainModel.Entities;
-
-    using FluentValidation;
-
     public class ModuleValidator : AbstractValidator<Module>
     {
         public ModuleValidator()

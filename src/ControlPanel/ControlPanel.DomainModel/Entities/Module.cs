@@ -1,7 +1,7 @@
-namespace DigitalLibrary.IaC.ControlPanel.DomainModel.Entities
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace DigitalLibrary.ControlPanel.DomainModel.Entities
+{
     public class Module
     {
         public long Id { get; set; }

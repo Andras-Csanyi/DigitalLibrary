@@ -1,16 +1,13 @@
-namespace MasterData.Validators.Test
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using DigitalLibrary.IaC.MasterData.Validators.Validators;
+using FluentAssertions;
+using Xunit;
+
+namespace DigitalLibrary.IaC.MasterData.Validators.Test
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
-    using DigitalLibrary.IaC.MasterData.Validators.Validators;
-
-    using FluentAssertions;
-
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class MasterDataValidators_Validation_Should
     {

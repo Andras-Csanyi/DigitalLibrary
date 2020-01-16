@@ -1,3 +1,5 @@
+using IntegrationTestFactories.Factories;
+
 namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
 {
     using System;
@@ -7,9 +9,6 @@ namespace DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests.Tests.Dime
     using DomainModel.DomainModel;
 
     using FluentAssertions;
-
-    using QA.Integration.Tests.Factories;
-
     using SQLitePCL;
 
     using Validators.TestData.TestData;

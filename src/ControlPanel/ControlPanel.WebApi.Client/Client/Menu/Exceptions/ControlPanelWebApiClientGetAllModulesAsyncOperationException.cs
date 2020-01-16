@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.ControlPanel.WebApi.Client.Client.Menu.Exceptions
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions
+{
     public class ControlPanelWebApiClientGetAllModulesAsyncOperationException : Exception
     {
         public ControlPanelWebApiClientGetAllModulesAsyncOperationException()

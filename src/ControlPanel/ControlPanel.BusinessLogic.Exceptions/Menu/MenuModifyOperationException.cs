@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.ControlPanel.BusinessLogic.Exceptions.Menu
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
+{
     public class MenuModifyOperationException : Exception
     {
         public MenuModifyOperationException()

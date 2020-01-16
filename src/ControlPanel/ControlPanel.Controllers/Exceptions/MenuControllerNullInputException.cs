@@ -1,8 +1,8 @@
-namespace DigitalLibrary.IaC.ControlPanel.Controllers.Exceptions
-{
-    using System;
-    using System.Runtime.Serialization;
+using System;
+using System.Runtime.Serialization;
 
+namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
+{
     public class MenuControllerNullInputException : Exception
     {
         public MenuControllerNullInputException()
