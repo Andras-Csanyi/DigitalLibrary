@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Interfaces</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Interfaces</RootNamespace>
+        <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Interfaces</AssemblyName>
+        <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Interfaces</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 

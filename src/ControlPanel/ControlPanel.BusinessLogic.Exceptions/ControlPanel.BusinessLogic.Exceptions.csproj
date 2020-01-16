@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Exceptions</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Exceptions</RootNamespace>
+        <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Exceptions</AssemblyName>
+        <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Exceptions</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 

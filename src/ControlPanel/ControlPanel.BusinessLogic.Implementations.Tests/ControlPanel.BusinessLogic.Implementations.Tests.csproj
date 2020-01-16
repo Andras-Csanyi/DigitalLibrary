@@ -5,9 +5,9 @@
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
 
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests</AssemblyName>
+        <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.BusinessLogic.Implementations.Tests</RootNamespace>
+        <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests</RootNamespace>
 
         <OutputType>Library</OutputType>
 

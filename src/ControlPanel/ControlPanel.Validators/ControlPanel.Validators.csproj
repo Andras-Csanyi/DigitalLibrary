@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.Validators</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.Validators</RootNamespace>
+        <AssemblyName>DigitalLibrary.ControlPanel.Validators</AssemblyName>
+        <RootNamespace>DigitalLibrary.ControlPanel.Validators</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 

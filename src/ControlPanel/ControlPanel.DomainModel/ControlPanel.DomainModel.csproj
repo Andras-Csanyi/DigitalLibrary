@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.ControlPanel.DomainModel</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.ControlPanel.DomainModel</RootNamespace>
+        <AssemblyName>DigitalLibrary.ControlPanel.DomainModel</AssemblyName>
+        <RootNamespace>DigitalLibrary.ControlPanel.DomainModel</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
