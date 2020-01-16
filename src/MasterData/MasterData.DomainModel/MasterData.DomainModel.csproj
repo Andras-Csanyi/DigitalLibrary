@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.DomainModel</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.DomainModel</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.DomainModel</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.DomainModel</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
     <ItemGroup>

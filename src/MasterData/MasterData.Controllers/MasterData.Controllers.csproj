@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Controllers</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Controllers</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.Controllers</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Controllers</RootNamespace>
         <OutputType>Library</OutputType>
     </PropertyGroup>
 

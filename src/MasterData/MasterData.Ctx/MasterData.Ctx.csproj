@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Ctx</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Ctx</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.Ctx</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Ctx</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
     <ItemGroup>

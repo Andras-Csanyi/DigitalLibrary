@@ -4,8 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.BusinessLogic.Implementations</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Implementations</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Implementations</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

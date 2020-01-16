@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
-        <AssemblyName>DigitalLibrary.IaC.MasterData.Validators.Test</AssemblyName>
-        <RootNamespace>DigitalLibrary.IaC.MasterData.Validators.Test</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.Validators.Test</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Validators.Test</RootNamespace>
         <LangVersion>default</LangVersion>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
