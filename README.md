@@ -11,7 +11,5 @@ solution are the following:
  - support for searching through the stored documents
  - support for different searching such as full text, thesaurus, etc.
  
- It will be a long journey... 
-
-For further info click here and read the 
-[wiki](https://dev.azure.com/sayusiando/DigitalLibrary/_wiki/wikis/Digital%20Libary%20Wiki/16/index).
+ It will be a long journey and you can find the experience of developing this project in 
+ my [blog](https://sayusiando.com), and further information about the product can be found [here](src/Doc/index.md).
