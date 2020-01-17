@@ -12,6 +12,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
 
         Task<List<Dimension>> GetDimensionsWithoutStructure();
 
-        Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure);
+        
     }
 }
