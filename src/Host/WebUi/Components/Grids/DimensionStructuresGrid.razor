@@ -47,6 +47,13 @@
                         }
                     }
                     <BSTableCell>@dimensionStructure.IsActive</BSTableCell>
+                    <BSTableCell>
+                        <BSButton ButtonType="ButtonType.Button"
+                                  @onclick="@(async () => await OpenEditWindowAction(dimensionStructure))"
+                                  Color="Color.Primary">
+                            Edit
+                        </BSButton>
+                    </BSTableCell>
                 </BSTableRow>
             }
         }
