@@ -66,6 +66,13 @@ namespace DigitalLibrary.MasterData.Validators.TestData.TestData
             
             new object[]{1, "name", "desc", 1, 0},
         };
+        
+        public static IEnumerable<object[]> ModifyDimensionStructure_TestData = new List<object[]>
+        {
+            new object[]{"name2", "desc", 1},
+            new object[]{"name", "desc2", 1},
+            new object[]{"name", "desc2", 0},
+        };
 
         public static IEnumerable<object[]> ModifyTopDimensionStructure_Validation_TestData = new List<object[]>
         {
