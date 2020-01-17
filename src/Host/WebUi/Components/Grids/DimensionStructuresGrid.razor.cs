@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using BlazorStrap;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Validators.Validators;
 using DigitalLibrary.MasterData.WebApi.Client.Client;
+
 using FluentValidation.Results;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
+    using FluentValidation;
+
     public partial class DimensionStructuresGrid
     {
         private BSModal _addNewModalWindow;
@@ -52,7 +58,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task OpenEditWindowAction(DimensionStructure dimensionStructure)
         {
-            _editedDimensionStructure = dimensionStructure;            
+            _editedDimensionStructure = dimensionStructure;
             _editModalWindow.Show();
         }
 
@@ -79,8 +85,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task SaveDimensionStructureHandler()
         {
-            Console.WriteLine($"dim list size: {_dimensionStructures.Count}");
-            await JsRuntime.InvokeAsync<string>("console.log", _newDimensionStructure).ConfigureAwait(false);
             ValidationResult validationResult = await MasterDataValidators
                 .DimensionStructureValidator
                 .ValidateAsync(_newDimensionStructure)
@@ -95,18 +99,30 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
             await MasterDataHttpClient.AddDimensionStructureAsync(_newDimensionStructure)
                 .ConfigureAwait(false);
-            await PopulateTopDimensionStructures().ConfigureAwait(false);
             await PopulateDimensionStructures().ConfigureAwait(false);
-            await PopulateDimensions().ConfigureAwait(false);
             _newDimensionStructure = new DimensionStructure();
             _addNewModalWindow.Hide();
-            Console.WriteLine($"size: {_dimensionStructures.Count}");
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
         private async Task UpdateDimensionStructureHandler()
         {
-            
+            try
+            {
+                await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+                        _editedDimensionStructure,
+                        ruleSet: ValidatorRulesets.UpdateTopDimensionStructure)
+                    .ConfigureAwait(false);
+                await MasterDataHttpClient.UpdateDimensionStructure(_editedDimensionStructure)
+                    .ConfigureAwait(false);
+                await PopulateDimensionStructures().ConfigureAwait(false);
+                _editModalWindow.Hide();
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public async Task CancelEditHandler()
