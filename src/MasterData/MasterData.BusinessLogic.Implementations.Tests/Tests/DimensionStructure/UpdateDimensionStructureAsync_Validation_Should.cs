@@ -4,9 +4,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel.DomainModel;
+
     using Exceptions.Exceptions;
 
     using FluentAssertions;
+
+    using FluentValidation;
+
+    using Validators.TestData.TestData;
 
     using Xunit;
 
@@ -35,8 +41,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
                 .WithInnerException<ArgumentNullException>();
         }
 
-        public async Task ThrowException_WhenInputIsInvalid()
+        [Theory]
+        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
+            MemberType = typeof(MasterData_DimensionStructure_TestData))]
+        public async Task ThrowException_WhenInputIsInvalid(
+            long id,
+            string name,
+            string desc,
+            int isActive,
+            long parentDimensionStructureId)
         {
+            // Arrange
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Id = id,
+                Name = name,
+                Desc = desc,
+                IsActive = isActive,
+                ParentDimensionStructureId = parentDimensionStructureId,
+            };
+            
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateDimensionStructureAsync(dimensionStructure)
+                    .ConfigureAwait(false);
+            };
+            
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+                .WithInnerException<ValidationException>();
         }
     }
 }
