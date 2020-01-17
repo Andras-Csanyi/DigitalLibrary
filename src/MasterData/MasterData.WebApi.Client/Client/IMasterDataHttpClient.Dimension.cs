@@ -11,7 +11,5 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
         Task<Dimension> AddDimensionAsync(Dimension dimension);
 
         Task<List<Dimension>> GetDimensionsWithoutStructure();
-
-        
     }
 }
