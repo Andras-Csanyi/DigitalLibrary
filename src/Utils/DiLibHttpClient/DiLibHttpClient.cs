@@ -38,7 +38,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
                         string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        T result = JsonConvert.DeserializeObject<T>(content);
+                        T result = JsonToObject<T>(content);
                         return result;
                     }
                     catch (Exception e)
@@ -107,7 +107,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                         httpResponseMessage.EnsureSuccessStatusCode();
                         string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
                             .ConfigureAwait(false);
-                        T result = JsonConvert.DeserializeObject<T>(responseString);
+                        T result = JsonToObject<T>(responseString);
                         return result;
                     }
                     catch (Exception e)
@@ -146,7 +146,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
                         string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
                             .ConfigureAwait(false);
-                        T result = JsonConvert.DeserializeObject<T>(resultString);
+                        T result = JsonToObject<T>(resultString);
 
                         return result;
                     }
@@ -166,10 +166,22 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
         private StringContent CreateStringContent<T>(T payload)
         {
-            string payloadString = JsonConvert.SerializeObject(payload);
+            string payloadString = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
             StringContent stringContent = new StringContent(payloadString, Encoding.UTF8);
             stringContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
             return stringContent;
+        }
+
+        private T JsonToObject<T>(string stringResult)
+        {
+            T result = JsonConvert.DeserializeObject<T>(stringResult, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return result;
         }
     }
 }

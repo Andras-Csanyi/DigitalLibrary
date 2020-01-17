@@ -58,7 +58,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.UpdateTopDimensionStructure}";
+                             $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
                 DimensionStructure result = await _diLibHttpClient.Put(updatedDimensionStructure, url)
                     .ConfigureAwait(false);
                 return result;
