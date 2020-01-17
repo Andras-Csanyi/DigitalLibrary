@@ -15,6 +15,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
     {
         private BSModal _addNewModalWindow;
 
+        private BSModal _editModalWindow;
+
+        private DimensionStructure _editedDimensionStructure = new DimensionStructure();
+
         private List<DimensionStructure> _dimensionStructures = new List<DimensionStructure>();
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure();
@@ -44,6 +48,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             {
                 Console.WriteLine(e);
             }
+        }
+
+        private async Task OpenEditWindowAction(DimensionStructure dimensionStructure)
+        {
+            _editedDimensionStructure = dimensionStructure;            
+            _editModalWindow.Show();
         }
 
         private async Task PopulateDimensionStructures()
@@ -94,11 +104,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
+        private async Task UpdateDimensionStructureHandler()
+        {
+            
+        }
+
+        public async Task CancelEditHandler()
+        {
+            _editedDimensionStructure = new DimensionStructure();
+            _editModalWindow.Hide();
+        }
+
         private async Task PopulateDimensions()
         {
             _dimensions = new List<Dimension>();
             _dimensions.Add(new Dimension { Name = "-- Select One --" });
-            List<Dimension> result = await MasterDataHttpClient.GetDimensionsWithoutStructure().ConfigureAwait(false);
+            List<Dimension> result = await MasterDataHttpClient.GetAllActiveDimensions().ConfigureAwait(false);
             _dimensions.AddRange(result);
         }
 
