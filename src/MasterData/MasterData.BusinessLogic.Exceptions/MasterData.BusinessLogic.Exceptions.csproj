@@ -10,9 +10,9 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json" />
     </ItemGroup>
 
 </Project>
