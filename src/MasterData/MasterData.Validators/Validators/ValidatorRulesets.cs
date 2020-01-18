@@ -26,5 +26,6 @@ namespace DigitalLibrary.MasterData.Validators.Validators
         public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
         public const string UpdateTopDimensionStructure = "ModifyDimensionStructure";
+
     }
 }
