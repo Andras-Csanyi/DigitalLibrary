@@ -72,7 +72,7 @@
 <BSModal @ref="_deleteModalWindow">
     <BSForm Model="@_deleteDimensionStructure">
         <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
-            Adding new Dimension Structure
+            Are you sure to delete the below...?
         </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>
@@ -165,7 +165,7 @@
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Button"
-                      Color="Color.Primary"
+                      Color="Color.Danger"
                       @onclick="@(async () => await DeleteHandler())">
                 Delete
             </BSButton>
@@ -180,7 +180,7 @@
         @* <DataAnnotationsValidator/> *@
         @* <ValidationSummary/> *@
         <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
-            Adding new Dimension Structure
+            Edit new Dimension Structure
         </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>

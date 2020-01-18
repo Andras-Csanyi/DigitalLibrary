@@ -29,7 +29,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private List<DimensionStructure> _dimensionStructures = new List<DimensionStructure>();
 
-        private DimensionStructure _deleteDimensionStructure;
+        private DimensionStructure _deleteDimensionStructure = new DimensionStructure();
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure();
 
