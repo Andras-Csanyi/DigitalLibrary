@@ -54,6 +54,13 @@
                             Edit
                         </BSButton>
                     </BSTableCell>
+                    <BSTableCell>
+                        <BSButton ButtonType="ButtonType.Button"
+                                  @onclick="@(async () => await OpenDeleteWindowAction(dimensionStructure))"
+                                  Color="Color.Danger">
+                            Delete
+                        </BSButton>
+                    </BSTableCell>
                 </BSTableRow>
             }
         }
@@ -62,6 +69,109 @@
     </BSTableFooter>
 </BSTable>
 
+<BSModal @ref="_deleteModalWindow">
+    <BSForm Model="@_deleteDimensionStructure">
+        <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
+            Are you sure to delete the below...?
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              IsDisabled="true"
+                              @bind-Value="@_editedDimensionStructure.Id">
+                    @_editedDimensionStructure.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimensionStructure.Name">
+                    @_editedDimensionStructure.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimensionStructure.Desc">
+                    @_editedDimensionStructure.Desc
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Parent Dimension Structure</BSFormLabel>
+                <BSInput InputType="InputType.Select"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimensionStructure.ParentDimensionStructureId">
+                    @{
+                        foreach (DimensionStructure topDimensionStructure in _topDimensionStructures)
+                        {
+                            if (topDimensionStructure.Id == _editedDimensionStructure.ParentDimensionStructureId)
+                            {
+                                <option value="@topDimensionStructure.Id" selected>
+                                    @topDimensionStructure.Name
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@topDimensionStructure.Id">
+                                    @topDimensionStructure.Name
+                                </option>
+                            }
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Dimension</BSFormLabel>
+                <BSInput InputType="InputType.Select"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimensionStructure.DimensionId">
+                    @{
+                        foreach (Dimension dimension in _dimensions)
+                        {
+                            if (dimension.Id == _editedDimensionStructure.DimensionId)
+                            {
+                                <option value="@dimension.Id" selected>
+                                    @dimension.Name
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@dimension.Id">
+                                    @dimension.Name
+                                </option>
+                            }
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="true"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_editedDimensionStructure.IsActive">
+                    @_editedDimensionStructure.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelDeleteHandler())"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Danger"
+                      @onclick="@(async () => await DeleteHandler())">
+                Delete
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
 
 <BSModal @ref="_editModalWindow">
     <BSForm Model="@_editedDimensionStructure"
@@ -70,7 +180,7 @@
         @* <DataAnnotationsValidator/> *@
         @* <ValidationSummary/> *@
         <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
-            Adding new Dimension Structure
+            Edit new Dimension Structure
         </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>

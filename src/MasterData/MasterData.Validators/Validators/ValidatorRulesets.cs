@@ -27,5 +27,6 @@ namespace DigitalLibrary.MasterData.Validators.Validators
 
         public const string UpdateTopDimensionStructure = "ModifyDimensionStructure";
 
+        public const string DeleteDimensionStructure = "DeleteDimensionStructure";
     }
 }

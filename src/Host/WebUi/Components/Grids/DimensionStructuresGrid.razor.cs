@@ -23,9 +23,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private BSModal _editModalWindow;
 
+        private BSModal _deleteModalWindow;
+
         private DimensionStructure _editedDimensionStructure = new DimensionStructure();
 
         private List<DimensionStructure> _dimensionStructures = new List<DimensionStructure>();
+
+        private DimensionStructure _deleteDimensionStructure = new DimensionStructure();
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure();
 
@@ -49,6 +53,37 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                 await PopulateDimensionStructures();
                 await PopulateTopDimensionStructures().ConfigureAwait(false);
                 await PopulateDimensions().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private async Task OpenDeleteWindowAction(DimensionStructure dimensionStructure)
+        {
+            _deleteDimensionStructure = dimensionStructure;
+            _deleteModalWindow.Show();
+        }
+
+        private async Task CancelDeleteHandler()
+        {
+            _deleteDimensionStructure = null;
+            _deleteModalWindow.Hide();
+        }
+
+        private async Task DeleteHandler()
+        {
+            try
+            {
+                await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+                        _deleteDimensionStructure,
+                        ruleSet: ValidatorRulesets.DeleteDimensionStructure)
+                   .ConfigureAwait(false);
+                await MasterDataHttpClient.DeleteDimensionStructureAsync(_deleteDimensionStructure)
+                   .ConfigureAwait(false);
+                await PopulateDimensionStructures().ConfigureAwait(false);
+                _deleteModalWindow.Hide();
             }
             catch (Exception e)
             {
@@ -86,9 +121,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         private async Task SaveDimensionStructureHandler()
         {
             ValidationResult validationResult = await MasterDataValidators
-                .DimensionStructureValidator
-                .ValidateAsync(_newDimensionStructure)
-                .ConfigureAwait(false);
+               .DimensionStructureValidator
+               .ValidateAsync(_newDimensionStructure)
+               .ConfigureAwait(false);
 
             // TODO: it must go to a common error message display component
             if (validationResult.IsValid == false)
@@ -98,7 +133,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             }
 
             await MasterDataHttpClient.AddDimensionStructureAsync(_newDimensionStructure)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             await PopulateDimensionStructures().ConfigureAwait(false);
             _newDimensionStructure = new DimensionStructure();
             _addNewModalWindow.Hide();
@@ -112,9 +147,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                 await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                         _editedDimensionStructure,
                         ruleSet: ValidatorRulesets.UpdateTopDimensionStructure)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 await MasterDataHttpClient.UpdateDimensionStructure(_editedDimensionStructure)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 await PopulateDimensionStructures().ConfigureAwait(false);
                 _editModalWindow.Hide();
                 await InvokeAsync(StateHasChanged).ConfigureAwait(false);
@@ -144,8 +179,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             _topDimensionStructures = new List<DimensionStructure>();
             _topDimensionStructures.Add(new DimensionStructure { Name = "-- Select One --" });
             List<DimensionStructure> result = await MasterDataHttpClient
-                .GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false);
             _topDimensionStructures.AddRange(result);
         }
     }

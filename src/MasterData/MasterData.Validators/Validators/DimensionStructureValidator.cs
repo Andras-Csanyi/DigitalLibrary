@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
 using FluentValidation;
 
 namespace DigitalLibrary.MasterData.Validators.Validators
@@ -28,7 +30,7 @@ namespace DigitalLibrary.MasterData.Validators.Validators
                     RuleFor(p => p.ParentDimensionStructureId).NotNull().NotEqual(0);
                 });
             });
-            
+
             RuleSet(ValidatorRulesets.UpdateDimensionStructure, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
@@ -48,6 +50,8 @@ namespace DigitalLibrary.MasterData.Validators.Validators
                     RuleFor(p => p.ParentDimensionStructureId).NotNull().NotEqual(0);
                 });
             });
+
+            RuleSet(ValidatorRulesets.DeleteDimensionStructure, () => { RuleFor(p => p.Id).NotEqual(0); });
         }
     }
 }
