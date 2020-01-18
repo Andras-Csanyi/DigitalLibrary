@@ -52,5 +52,22 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
                 throw new MasterDataHttpClientException(e.Message, e);
             }
         }
+
+        public async Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                             $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
+                DimensionStructure result = await _diLibHttpClient.Put(updatedDimensionStructure, url)
+                    .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+            
+        }
     }
 }
