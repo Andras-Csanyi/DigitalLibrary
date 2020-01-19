@@ -1,9 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using DomainModel.Entities;
+
     public interface IControlPanelWebClient
     {
         Task<List<DomainModel.Entities.Menu>> GetAllMenusAsync();

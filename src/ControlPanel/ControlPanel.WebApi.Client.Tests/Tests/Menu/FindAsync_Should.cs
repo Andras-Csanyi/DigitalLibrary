@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
+
 using FluentAssertions;
+
 using Xunit;
 
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Menu
 {
+    using Client.Menu.Exceptions;
+
     public class FindAsync_Should : TestBase
     {
         [Trait("Category", "Unit")]
@@ -17,7 +20,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Menu
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                    .FindMenuAsync(null).ConfigureAwait(false);
+                   .FindMenuAsync(null).ConfigureAwait(false);
             };
 
             // Assert

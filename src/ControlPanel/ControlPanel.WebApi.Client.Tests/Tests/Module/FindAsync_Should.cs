@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
+
 using FluentAssertions;
+
 using Xunit;
 
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Module
 {
+    using Client.Menu.Exceptions;
+
     public class FindAsync_Should : TestBase
     {
         [Trait("Category", "Unit")]

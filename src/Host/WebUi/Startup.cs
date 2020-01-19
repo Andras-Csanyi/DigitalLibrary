@@ -1,9 +1,11 @@
 using System;
+
 using BlazorStrap;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu;
+
 using DigitalLibrary.MasterData.Validators.Validators;
 using DigitalLibrary.MasterData.WebApi.Client.Client;
 using DigitalLibrary.Utils.DiLibHttpClient;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace DigitalLibrary.Ui.WebUi
 {
+    using ControlPanel.WebApi.Client.Menu;
+
     public class Startup
     {
         public IConfiguration Configuration { get; }

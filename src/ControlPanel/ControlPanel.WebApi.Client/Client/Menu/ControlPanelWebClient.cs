@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
-
-using Newtonsoft.Json;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
+﻿namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
+
     using Api;
+
+    using DomainModel.Entities;
+
+    using Exceptions;
+
+    using Newtonsoft.Json;
 
     public class ControlPanelWebClient : IControlPanelWebClient
     {
