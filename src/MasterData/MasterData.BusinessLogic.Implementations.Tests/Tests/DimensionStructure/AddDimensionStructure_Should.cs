@@ -55,15 +55,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(firstLevelDimension).ConfigureAwait(false);
 
-            DimensionStructure firstLevelDimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "first level",
-                    Desc = "first level desc",
-                    IsActive = 1,
-                    DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
-                };
+            DimensionStructure firstLevelDimensionStructure = new DimensionStructure
+            {
+                Name = "first level",
+                Desc = "first level desc",
+                IsActive = 1,
+                DimensionId = firstLevelDimensionResult.Id,
+                ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
+            };
 
             // Act
             DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
@@ -565,7 +564,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntity>();
+               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntityException>();
         }
     }
 }

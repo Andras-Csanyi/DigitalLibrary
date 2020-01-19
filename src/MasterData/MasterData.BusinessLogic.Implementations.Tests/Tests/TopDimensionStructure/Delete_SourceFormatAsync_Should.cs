@@ -68,7 +68,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Assert
             action.Should()
                .ThrowExactly<MasterDataBusinessLogicSourceFormatAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntity>();
+               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntityException>();
         }
     }
 }

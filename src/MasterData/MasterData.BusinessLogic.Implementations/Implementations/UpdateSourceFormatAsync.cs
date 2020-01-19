@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         {
                             string msg =
                                 $"There is no {nameof(SourceFormat)} entity with id: {sourceFormat.Id}.";
-                            throw new MasterDataBusinessLogicNoSuchSourceFormatEntity(msg);
+                            throw new MasterDataBusinessLogicNoSuchSourceFormatEntityException(msg);
                         }
 
                         toBeModified.Name = sourceFormat.Name;
