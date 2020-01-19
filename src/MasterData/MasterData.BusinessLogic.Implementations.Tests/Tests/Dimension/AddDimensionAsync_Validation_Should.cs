@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentValidation;
 
-    using Validators.TestData.TestData;
+    using Validators.TestData;
 
     using Xunit;
 

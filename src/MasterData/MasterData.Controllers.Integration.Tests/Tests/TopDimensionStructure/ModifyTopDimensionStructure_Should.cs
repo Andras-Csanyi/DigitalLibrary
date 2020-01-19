@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
 
     using Utils.IntegrationTestFactories.Factories;
 
-    using Validators.TestData.TestData;
+    using Validators.TestData;
 
     using WebApp;
 

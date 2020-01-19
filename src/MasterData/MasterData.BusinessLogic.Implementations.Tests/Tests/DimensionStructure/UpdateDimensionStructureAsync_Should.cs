@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
-    using Validators.TestData.TestData;
+    using Validators.TestData;
 
     using Xunit;
 

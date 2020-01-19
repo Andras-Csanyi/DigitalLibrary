@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace DigitalLibrary.MasterData.Validators.TestData.TestData
+namespace DigitalLibrary.MasterData.Validators.TestData
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
     using DomainModel;
 
     [ExcludeFromCodeCoverage]
