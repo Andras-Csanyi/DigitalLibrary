@@ -3,7 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System;
     using System.Threading.Tasks;
 
-    using Ctx.Ctx;
+    using Ctx;
 
     using Exceptions;
 

@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
-using DigitalLibrary.MasterData.Ctx.Ctx;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
+    using MasterData.Ctx;
+
     [ExcludeFromCodeCoverage]
     public static class MasterDataSeed
     {

@@ -1,9 +1,11 @@
 using System;
-using DigitalLibrary.MasterData.Ctx.Ctx;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
+    using MasterData.Ctx;
+
     public static class MasterDataDataSample
     {
         public static void Populate(MasterDataContext ctx)

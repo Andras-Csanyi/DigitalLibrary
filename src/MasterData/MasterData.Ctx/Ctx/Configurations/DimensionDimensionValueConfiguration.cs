@@ -1,9 +1,10 @@
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DigitalLibrary.MasterData.Ctx.Ctx.Configurations
+namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
+    using DomainModel.DomainModel;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class DimensionDimensionValueConfiguration : IEntityTypeConfiguration<DimensionDimensionValue>
     {
         public void Configure(EntityTypeBuilder<DimensionDimensionValue> builder)
@@ -17,13 +18,13 @@ namespace DigitalLibrary.MasterData.Ctx.Ctx.Configurations
             builder.Property(p => p.DimensionValueId).HasColumnName("dimension_value_id");
 
             builder.HasOne(p => p.Dimension)
-                .WithMany(m => m.DimensionDimensionValues)
-                .HasForeignKey(f => f.DimensionId)
-                .IsRequired(false);
+               .WithMany(m => m.DimensionDimensionValues)
+               .HasForeignKey(f => f.DimensionId)
+               .IsRequired(false);
             builder.HasOne(p => p.DimensionValue)
-                .WithMany(m => m.DimensionDimensionValues)
-                .HasForeignKey(f => f.DimensionValueId)
-                .IsRequired(false);
+               .WithMany(m => m.DimensionDimensionValues)
+               .HasForeignKey(f => f.DimensionValueId)
+               .IsRequired(false);
         }
     }
 }

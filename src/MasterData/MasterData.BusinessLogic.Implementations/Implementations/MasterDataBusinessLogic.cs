@@ -1,6 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
-    using Ctx.Ctx;
+    using Ctx;
 
     using Exceptions;
 

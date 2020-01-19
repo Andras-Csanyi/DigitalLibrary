@@ -1,7 +1,7 @@
-﻿using DigitalLibrary.MasterData.Ctx.Ctx;
-
-namespace DigitalLibrary.Utils.MasterData.DataSample
+﻿namespace DigitalLibrary.Utils.MasterData.DataSample
 {
+    using DigitalLibrary.MasterData.Ctx;
+
     public class MasterDataDataSample
     {
         public MasterDataDataSample(MasterDataContext ctx)

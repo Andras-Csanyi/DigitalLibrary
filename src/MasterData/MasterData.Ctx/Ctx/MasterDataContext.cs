@@ -1,9 +1,11 @@
-﻿using DigitalLibrary.MasterData.Ctx.Ctx.Configurations;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using Microsoft.EntityFrameworkCore;
-
-namespace DigitalLibrary.MasterData.Ctx.Ctx
+﻿namespace DigitalLibrary.MasterData.Ctx
 {
+    using Configurations;
+
+    using DomainModel.DomainModel;
+
+    using Microsoft.EntityFrameworkCore;
+
     public class MasterDataContext : DbContext
     {
         public DbSet<Dimension> Dimensions { get; set; }

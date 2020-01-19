@@ -4,7 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Ctx.Ctx;
+    using Ctx;
 
     using DomainModel.DomainModel;
 

@@ -1,8 +1,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using DigitalLibrary.MasterData.Ctx.Ctx;
+
 using DigitalLibrary.Utils.IntegrationTestFactories.Utils;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ using Microsoft.Extensions.Logging;
 
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
 {
+    using MasterData.Ctx;
+
     [ExcludeFromCodeCoverage]
     public class DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity> : WebApplicationFactory<TStartup>
         where TStartup : class
@@ -36,7 +39,7 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
                     IServiceProvider scopedServices = scope.ServiceProvider;
                     MasterDataContext db = scopedServices.GetRequiredService<MasterDataContext>();
                     ILogger<DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity>> logger = scopedServices
-                        .GetRequiredService<ILogger<DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity>>>();
+                       .GetRequiredService<ILogger<DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity>>>();
 
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
