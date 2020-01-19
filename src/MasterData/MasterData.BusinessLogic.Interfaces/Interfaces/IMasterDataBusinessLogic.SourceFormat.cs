@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<List<DimensionStructure>> GetSourceFormatAsync();
 
-        Task<long> CountSourceFormatAsync();
+        Task<long> CountSourceFormatsAsync();
 
         Task<DimensionStructure> UpdateSourceFormatAsync(DimensionStructure dimensionStructure);
     }

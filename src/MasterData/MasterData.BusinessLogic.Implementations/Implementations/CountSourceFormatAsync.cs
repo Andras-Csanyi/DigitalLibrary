@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<long> CountSourceFormatAsync()
+        public async Task<long> CountSourceFormatsAsync()
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {

@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Arrange
 
             // Act
-            long count = await masterDataBusinessLogic.CountSourceFormatAsync()
+            long count = await masterDataBusinessLogic.CountSourceFormatsAsync()
                .ConfigureAwait(false);
 
             // Assert
