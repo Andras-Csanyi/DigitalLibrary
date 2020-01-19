@@ -36,18 +36,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DimensionStructure topLevelDimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "toplevel",
-                    Desc = "toplevel desc",
-                    IsActive = 1,
-                    DimensionId = topLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 0
-                };
-            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    topLevelDimensionStructure)
+            SourceFormat topLevelDimensionStructure = new SourceFormat
+            {
+                Name = "toplevel",
+                Desc = "toplevel desc",
+                IsActive = 1,
+            };
+            SourceFormat topLeveldimensionStructureResult = await masterDataBusinessLogic
+               .AddSourceFormatAsync(topLevelDimensionStructure)
                .ConfigureAwait(false);
 
             Dimension firstLevelDimension = new Dimension
@@ -57,8 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 IsActive = 1
             };
             Dimension firstLevelDimensionResult = await masterDataBusinessLogic
-               .AddDimensionAsync(
-                    firstLevelDimension).ConfigureAwait(false);
+               .AddDimensionAsync(firstLevelDimension).ConfigureAwait(false);
 
             DimensionStructure firstLevelDimensionStructure =
                 new DimensionStructure
@@ -71,10 +66,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 };
 
             // Act
-            DimensionStructure firstLevelDimensionStructureResult =
-                await masterDataBusinessLogic
-                   .AddDimensionStructureAsync(firstLevelDimensionStructure)
-                   .ConfigureAwait(false);
+            DimensionStructure firstLevelDimensionStructureResult = await masterDataBusinessLogic
+               .AddDimensionStructureAsync(firstLevelDimensionStructure)
+               .ConfigureAwait(false);
 
             // Assert
             firstLevelDimensionStructureResult.Should().NotBeNull();
@@ -97,8 +91,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             topLevelResult.Name.Should().Be(topLeveldimensionStructureResult.Name);
             topLevelResult.Desc.Should().Be(topLeveldimensionStructureResult.Desc);
             topLevelResult.IsActive.Should().Be(topLeveldimensionStructureResult.IsActive);
-            topLevelResult.DimensionId.Should().Be(topLeveldimensionStructureResult.DimensionId);
-            topLevelResult.Dimension.Id.Should().Be(topLeveldimensionStructureResult.DimensionId);
             topLevelResult.Dimension.Name.Should().Be(topLevelDimensionResult.Name);
             topLevelResult.Dimension.Description.Should().Be(topLevelDimensionResult.Description);
             topLevelResult.Dimension.IsActive.Should().Be(topLevelDimensionResult.IsActive);
@@ -130,18 +122,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DimensionStructure topLevelDimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "toplevel",
-                    Desc = "toplevel desc",
-                    IsActive = 1,
-                    DimensionId = topLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 0
-                };
-            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    topLevelDimensionStructure)
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Name = "toplevel",
+                Desc = "toplevel desc",
+                IsActive = 1,
+            };
+            SourceFormat topLeveldimensionStructureResult = await masterDataBusinessLogic.AddSourceFormatAsync(
+                    sourceFormat)
                .ConfigureAwait(false);
 
             Dimension firstLevelDimension = new Dimension
@@ -225,8 +213,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             topLevelResult.Name.Should().Be(topLeveldimensionStructureResult.Name);
             topLevelResult.Desc.Should().Be(topLeveldimensionStructureResult.Desc);
             topLevelResult.IsActive.Should().Be(topLeveldimensionStructureResult.IsActive);
-            topLevelResult.DimensionId.Should().Be(topLeveldimensionStructureResult.DimensionId);
-            topLevelResult.Dimension.Id.Should().Be(topLeveldimensionStructureResult.DimensionId);
             topLevelResult.Dimension.Name.Should().Be(topLevelDimensionResult.Name);
             topLevelResult.Dimension.Description.Should().Be(topLevelDimensionResult.Description);
             topLevelResult.Dimension.IsActive.Should().Be(topLevelDimensionResult.IsActive);
@@ -267,18 +253,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
-            DimensionStructure topLevelDimensionStructure =
-                new DimensionStructure
+            SourceFormat sourceFormat =
+                new SourceFormat
                 {
                     Name = "top level dimension structure",
                     Desc = "top level dimension structure desc",
                     IsActive = 1,
-                    DimensionId = topLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 0
                 };
-            DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    topLevelDimensionStructure)
+            SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(
+                    sourceFormat)
                .ConfigureAwait(false);
 
             Dimension firstLevelDimension = new Dimension
@@ -297,7 +280,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level dimension structure desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
+                    ParentDimensionStructureId = sourceFormatResult.Id,
                 };
             DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
@@ -326,8 +309,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             DimensionStructure secondLevelDimensionStructureResult =
-                await masterDataBusinessLogic
-                   .AddDimensionStructureAsync(
+                await masterDataBusinessLogic.AddDimensionStructureAsync(
                         secondLevelDimensionStructure)
                    .ConfigureAwait(false);
 
@@ -344,12 +326,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // checking structure
             DimensionStructure hierarchy = await masterDataBusinessLogic
-               .GetDimensionStructureById(
-                    topLevelDimensionResult.Id)
+               .GetDimensionStructureById(topLevelDimensionResult.Id)
                .ConfigureAwait(false);
             hierarchy.Id.Should().NotBe(0);
-            hierarchy.Name.Should().Be(topLevelDimensionStructure.Name);
-            hierarchy.Desc.Should().Be(topLevelDimensionStructure.Desc);
+            hierarchy.Name.Should().Be(sourceFormat.Name);
+            hierarchy.Desc.Should().Be(sourceFormat.Desc);
             hierarchy.ChildDimensionStructures.Count.Should().Be(1);
             hierarchy.DimensionId.Should().Be(topLevelDimensionResult.Id);
             hierarchy.Dimension.Id.Should().Be(topLevelDimensionResult.Id);
@@ -388,18 +369,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
-            DimensionStructure topLevelDimensionStructure =
-                new DimensionStructure
+            SourceFormat sourceFormat =
+                new SourceFormat
                 {
                     Name = "top level dimension structure",
                     Desc = "top level dimension structure desc",
                     IsActive = 1,
-                    DimensionId = topLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 0
                 };
-            DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    topLevelDimensionStructure)
+            SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
 
             Dimension firstLevelDimension = new Dimension
@@ -408,8 +385,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Description = "first level desc",
                 IsActive = 1
             };
-            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
-               .AddDimensionAsync(firstLevelDimension)
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(firstLevelDimension)
                .ConfigureAwait(false);
             DimensionStructure firstLevelDimensionStructure =
                 new DimensionStructure
@@ -418,7 +394,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level dimension structure desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
+                    ParentDimensionStructureId = sourceFormatResult.Id,
                 };
             DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
@@ -495,12 +471,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // checking structure
             DimensionStructure hierarchy = await masterDataBusinessLogic
-               .GetDimensionStructureById(
-                    topLevelDimensionResult.Id)
+               .GetDimensionStructureById(topLevelDimensionResult.Id)
                .ConfigureAwait(false);
             hierarchy.Id.Should().NotBe(0);
-            hierarchy.Name.Should().Be(topLevelDimensionStructure.Name);
-            hierarchy.Desc.Should().Be(topLevelDimensionStructure.Desc);
+            hierarchy.Name.Should().Be(sourceFormat.Name);
+            hierarchy.Desc.Should().Be(sourceFormat.Desc);
             hierarchy.ChildDimensionStructures.Count.Should().Be(1);
             hierarchy.DimensionId.Should().Be(topLevelDimensionResult.Id);
             hierarchy.Dimension.Id.Should().Be(topLevelDimensionResult.Id);
@@ -549,18 +524,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DimensionStructure topLevelDimensionStructure =
-                new DimensionStructure
+            SourceFormat sourceFormat =
+                new SourceFormat
                 {
                     Name = "toplevel",
                     Desc = "toplevel desc",
                     IsActive = 1,
-                    DimensionId = topLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 0
                 };
-            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    topLevelDimensionStructure)
+            SourceFormat sourceFormatResult = await masterDataBusinessLogic
+               .AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
 
             Dimension firstLevelDimension = new Dimension
@@ -570,8 +542,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 IsActive = 1
             };
             Dimension firstLevelDimensionResult = await masterDataBusinessLogic
-               .AddDimensionAsync(
-                    firstLevelDimension).ConfigureAwait(false);
+               .AddDimensionAsync(firstLevelDimension)
+               .ConfigureAwait(false);
 
             DimensionStructure firstLevelDimensionStructure =
                 new DimensionStructure
@@ -593,7 +565,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchTopDimensionStructureEntity>();
+               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntity>();
         }
     }
 }

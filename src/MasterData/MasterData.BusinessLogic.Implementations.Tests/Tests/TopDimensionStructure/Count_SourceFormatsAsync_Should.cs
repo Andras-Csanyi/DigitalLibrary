@@ -8,13 +8,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class CountTopDimensionStructures_Should : TestBase
+    public class Count_SourceFormatsAsync_Should : TestBase
     {
-        public CountTopDimensionStructures_Should() : base(TestInfo)
+        public Count_SourceFormatsAsync_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(CountTopDimensionStructures_Should);
+        private const string TestInfo = nameof(Count_SourceFormatsAsync_Should);
 
         [Fact]
         public async Task ReturnsZero_WhenThereAreNoTopDimensionstructures()

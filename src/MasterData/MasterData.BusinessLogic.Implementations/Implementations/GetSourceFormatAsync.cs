@@ -15,14 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<List<DimensionStructure>> GetSourceFormatAsync()
+        public async Task<List<SourceFormat>> GetSourceFormatsAsync()
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
                 try
                 {
-                    List<DimensionStructure> result = await ctx.DimensionStructures
-                       .Where(p => p.ParentDimensionStructureId == 0 || p.ParentDimensionStructureId == null)
+                    List<SourceFormat> result = await ctx.SourceFormats
                        .ToListAsync()
                        .ConfigureAwait(false);
 
@@ -30,7 +29,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 }
                 catch (Exception e)
                 {
-                    throw new MasterDataBusinessLogicGetTopDimensionStructuresAsyncOperationException(e.Message, e);
+                    throw new MasterDataBusinessLogicGetSourceFormatsAsyncOperationException(e.Message, e);
                 }
             }
         }

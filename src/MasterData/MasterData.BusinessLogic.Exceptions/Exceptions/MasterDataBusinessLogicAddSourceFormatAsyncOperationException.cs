@@ -5,23 +5,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
-    public class MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException : Exception
+    public class MasterDataBusinessLogicAddSourceFormatAsyncOperationException : Exception
     {
-        public MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException()
+        public MasterDataBusinessLogicAddSourceFormatAsyncOperationException()
         {
         }
 
-        protected MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException(
+        protected MasterDataBusinessLogicAddSourceFormatAsyncOperationException(
             SerializationInfo? info,
             StreamingContext context) : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicAddSourceFormatAsyncOperationException(string? message) : base(message)
         {
         }
 
-        public MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException(
+        public MasterDataBusinessLogicAddSourceFormatAsyncOperationException(
             string? message,
             Exception? innerException) : base(message, innerException)
         {

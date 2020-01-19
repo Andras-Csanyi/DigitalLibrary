@@ -4,7 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     using Exceptions;
 
@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class AddTopDimensionStructure_Validation_Should : TestBase
+    public class Add_SourceFormatAsync_Validation_Should : TestBase
     {
-        public AddTopDimensionStructure_Validation_Should() : base(TestInfo)
+        public Add_SourceFormatAsync_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(AddTopDimensionStructure_Validation_Should);
+        private const string TestInfo = nameof(Add_SourceFormatAsync_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.AddTopDimensionStructure_Validation_TestData),
@@ -35,24 +35,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             int isActive)
         {
             // Arrange
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Id = id,
-                    Name = name,
-                    Desc = desc,
-                    IsActive = isActive
-                };
+            SourceFormat dimensionStructure = new SourceFormat
+            {
+                Id = id,
+                Name = name,
+                Desc = desc,
+                IsActive = isActive,
+            };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddSourceFormatAsync(
-                    dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
                .WithInnerException<ValidationException>();
         }
 
@@ -68,7 +66,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
     }

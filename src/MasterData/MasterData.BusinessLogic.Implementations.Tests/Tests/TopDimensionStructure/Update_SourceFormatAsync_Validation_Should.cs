@@ -17,14 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class ModifyTopDimensionStructureAsync_Validation_Should : TestBase
+    public class Update_SourceFormatAsync_Validation_Should : TestBase
     {
-        public ModifyTopDimensionStructureAsync_Validation_Should() : base(TestInfo)
+        public Update_SourceFormatAsync_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo =
-            nameof(ModifyTopDimensionStructureAsync_Validation_Should);
+        private const string TestInfo = nameof(Update_SourceFormatAsync_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
@@ -36,25 +35,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             int isActive)
         {
             // Arrange
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Id = id,
-                    ParentDimensionStructureId = null,
-                    Name = name,
-                    Desc = desc,
-                    IsActive = isActive
-                };
+            SourceFormat sourceFormat = new SourceFormat()
+            {
+                Id = id,
+                Name = name,
+                Desc = desc,
+                IsActive = isActive
+            };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateSourceFormatAsync(
-                    dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(sourceFormat).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
                .WithInnerException<ValidationException>();
         }
 
@@ -66,13 +62,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateSourceFormatAsync(
-                        null)
-                   .ConfigureAwait(false);
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
     }

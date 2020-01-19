@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         {
                             string noSuchErrMsg = $"No dimension structure with id: " +
                                 $"{dimensionStructure.ParentDimensionStructureId}.";
-                            throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
+                            throw new MasterDataBusinessLogicNoSuchSourceFormatEntity(noSuchErrMsg);
                         }
 
                         if (dimensionStructure.DimensionId != null && dimensionStructure.DimensionId != 0)
@@ -57,7 +57,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             {
                                 string noSuchErrMsg = $"No dimension with id: " +
                                     $"{dimensionStructure.DimensionId}.";
-                                throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
+                                throw new MasterDataBusinessLogicNoSuchSourceFormatEntity(noSuchErrMsg);
                             }
                         }
 

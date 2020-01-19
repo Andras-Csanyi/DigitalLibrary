@@ -17,15 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 try
                 {
-                    long res = await ctx.DimensionStructures
-                       .LongCountAsync(w => w.ParentDimensionStructureId == null)
-                       .ConfigureAwait(false);
+                    long res = await ctx.SourceFormats.LongCountAsync().ConfigureAwait(false);
 
                     return res;
                 }
                 catch (Exception e)
                 {
-                    throw new MasterDataBusinessLogicCountTopDimensionStructureAsync();
+                    throw new MasterDataBusinessLogicCountSourceFormatsAsync();
                 }
             }
         }

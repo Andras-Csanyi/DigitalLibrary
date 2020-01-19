@@ -7,12 +7,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public partial interface IMasterDataBusinessLogic
     {
-        Task<DimensionStructure> AddSourceFormatAsync(DimensionStructure dimensionStructure);
+        Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat);
 
-        Task<List<DimensionStructure>> GetSourceFormatAsync();
+        Task<List<SourceFormat>> GetSourceFormatsAsync();
 
         Task<long> CountSourceFormatsAsync();
 
-        Task<DimensionStructure> UpdateSourceFormatAsync(DimensionStructure dimensionStructure);
+        Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
+
+        Task DeleteSourceFormatAsync(SourceFormat secondResult);
     }
 }

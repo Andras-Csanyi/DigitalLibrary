@@ -45,39 +45,39 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
 
-            DimensionStructure top = new DimensionStructure
+            SourceFormat sourceFormat = new SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
                 IsActive = 1,
             };
-            DimensionStructure topResult = await masterDataBusinessLogic.AddSourceFormatAsync(
-                top).ConfigureAwait(false);
+            SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(
+                sourceFormat).ConfigureAwait(false);
 
             DimensionStructure orig = new DimensionStructure
             {
                 Name = "name",
                 Desc = "desc",
                 IsActive = 1,
-                ParentDimensionStructureId = topResult.Id,
+                ParentDimensionStructureId = sourceFormatResult.Id,
                 DimensionId = dimension1.Id
             };
             DimensionStructure origResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
                 orig).ConfigureAwait(false);
 
-            DimensionStructure orig2 = new DimensionStructure
+            SourceFormat sourceFormat2 = new SourceFormat
             {
                 Name = "name2",
                 Desc = "desc2",
                 IsActive = 1,
             };
-            DimensionStructure orig2Result = await masterDataBusinessLogic.AddSourceFormatAsync(
-                orig2).ConfigureAwait(false);
+            SourceFormat sourceFormat2Result = await masterDataBusinessLogic.AddSourceFormatAsync(
+                sourceFormat2).ConfigureAwait(false);
 
             origResult.Name = updateName;
             origResult.Desc = updateDesc;
             origResult.IsActive = updateIsActive;
-            origResult.ParentDimensionStructureId = orig2Result.Id;
+            origResult.ParentDimensionStructureId = sourceFormat2Result.Id;
             origResult.DimensionId = dimension2.Id;
 
             // Act
@@ -89,7 +89,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             updatedResult.Name.Should().Be(updateName);
             updatedResult.Desc.Should().Be(updateDesc);
             updatedResult.IsActive.Should().Be(updateIsActive);
-            updatedResult.ParentDimensionStructureId.Should().Be(orig2Result.Id);
+            updatedResult.ParentDimensionStructureId.Should().Be(sourceFormat2Result.Id);
             updatedResult.DimensionId.Should().Be(dimension2Result.Id);
         }
     }

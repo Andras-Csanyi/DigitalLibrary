@@ -15,8 +15,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> AddSourceFormatAsync(
-            DimensionStructure dimensionStructure)
+        public async Task<SourceFormat> AddSourceFormatAsync(
+            SourceFormat sourceFormat)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -24,28 +24,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     try
                     {
-                        if (dimensionStructure == null)
+                        if (sourceFormat == null)
                         {
                             throw new MasterDataBusinessLogicArgumentNullException();
                         }
 
                         await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                                dimensionStructure,
-                                ruleSet: ValidatorRulesets.AddNewTopDimensionStructure)
+                                sourceFormat,
+                                ruleSet: ValidatorRulesets.AddSourceFormat)
                            .ConfigureAwait(false);
 
-                        dimensionStructure.ParentDimensionStructureId = null;
-                        await ctx.DimensionStructures.AddAsync(dimensionStructure)
+                        await ctx.SourceFormats.AddAsync(sourceFormat)
                            .ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
                         await transaction.CommitAsync().ConfigureAwait(false);
 
-                        return dimensionStructure;
+                        return sourceFormat;
                     }
                     catch (Exception e)
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicAddTopDimensionStructureAsyncOperationException(e.Message, e);
+                        throw new MasterDataBusinessLogicAddSourceFormatAsyncOperationException(e.Message, e);
                     }
                 }
             }

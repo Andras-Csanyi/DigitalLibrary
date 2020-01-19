@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<DimensionStructure> result = await _masterDataBusinessLogic.GetSourceFormatAsync()
+                List<DimensionStructure> result = await _masterDataBusinessLogic.GetSourceFormatsAsync()
                    .ConfigureAwait(false);
                 return Ok(result);
             }

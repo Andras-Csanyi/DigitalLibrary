@@ -146,7 +146,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             {
                 await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                         _editedDimensionStructure,
-                        ruleSet: ValidatorRulesets.UpdateTopDimensionStructure)
+                        ruleSet: ValidatorRulesets.UpdateSourceFormat)
                    .ConfigureAwait(false);
                 await MasterDataHttpClient.UpdateDimensionStructure(_editedDimensionStructure)
                    .ConfigureAwait(false);

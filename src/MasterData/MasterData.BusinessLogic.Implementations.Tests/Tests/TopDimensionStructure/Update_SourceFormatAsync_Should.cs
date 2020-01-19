@@ -15,37 +15,35 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class ModifyTopDimensionStructureAsync_Should : TestBase
+    public class Update_SourceFormatAsync_Should : TestBase
     {
-        public ModifyTopDimensionStructureAsync_Should() : base(TestInfo)
+        public Update_SourceFormatAsync_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(ModifyTopDimensionStructureAsync_Should);
+        private const string TestInfo = nameof(Update_SourceFormatAsync_Should);
 
         [Theory]
         [MemberData(
             nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task Modify_TopDimensionStructure(
+        public async Task Modify(
             string name,
             string desc,
             int isActive)
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            SourceFormat orig = new SourceFormat
             {
                 Name = "asdasd",
                 Desc = "asdasd",
                 IsActive = 1,
-                ParentDimensionStructureId = 0
             };
 
-            DimensionStructure origRes = await masterDataBusinessLogic
-               .AddSourceFormatAsync(
-                    orig).ConfigureAwait(false);
+            SourceFormat origRes = await masterDataBusinessLogic.AddSourceFormatAsync(
+                orig).ConfigureAwait(false);
 
-            DimensionStructure mod = new DimensionStructure
+            SourceFormat mod = new SourceFormat
             {
                 Id = origRes.Id,
                 Name = name,
@@ -54,8 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             };
 
             // Act
-            DimensionStructure res = await masterDataBusinessLogic
-               .UpdateSourceFormatAsync(mod)
+            SourceFormat res = await masterDataBusinessLogic.UpdateSourceFormatAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -67,29 +64,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoGivenTopDimensionStructure()
+        public async Task ThrowException_WhenThereIsNoSuchSourceFormat()
         {
             // Arrange
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Id = 100,
-                    Name = "asdasd",
-                    Desc = "asdasd",
-                    IsActive = 1,
-                    ParentDimensionStructureId = 0
-                };
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Id = 100,
+                Name = "asdasd",
+                Desc = "asdasd",
+                IsActive = 1,
+            };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateSourceFormatAsync(dimensionStructure)
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(sourceFormat)
                    .ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchTopDimensionStructureEntity>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
+               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntity>();
         }
     }
 }

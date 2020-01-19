@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators
 
         public const string AddNewDimensionStructure = "AddNewDimensionStructure";
 
-        public const string AddNewTopDimensionStructure = "AddNewTopDimensionStructure";
+        public const string AddSourceFormat = "AddNewTopDimensionStructure";
 
         public const string ModifyDimensionValue = "ModifyDimensionValue";
 
@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.Validators
 
         public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
-        public const string UpdateTopDimensionStructure = "ModifyDimensionStructure";
+        public const string UpdateSourceFormat = "ModifyDimensionStructure";
 
         public const string DeleteDimensionStructure = "DeleteDimensionStructure";
     }

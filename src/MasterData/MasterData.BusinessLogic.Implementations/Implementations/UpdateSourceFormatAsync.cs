@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> UpdateSourceFormatAsync(DimensionStructure dimensionStructure)
+        public async Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -26,44 +26,43 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     try
                     {
-                        if (dimensionStructure == null)
+                        if (sourceFormat == null)
                         {
-                            string msg = $"{nameof(dimensionStructure)} is null.";
+                            string msg = $"{nameof(sourceFormat)} is null.";
                             throw new MasterDataBusinessLogicArgumentNullException(msg);
                         }
 
                         await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                                dimensionStructure,
-                                ValidatorRulesets.UpdateTopDimensionStructure)
+                                sourceFormat,
+                                ValidatorRulesets.UpdateSourceFormat)
                            .ConfigureAwait(false);
 
-                        DimensionStructure toBeModified = await ctx.DimensionStructures
-                           .FindAsync(dimensionStructure.Id)
+                        SourceFormat toBeModified = await ctx.SourceFormats
+                           .FindAsync(sourceFormat.Id)
                            .ConfigureAwait(false);
 
                         if (toBeModified == null)
                         {
                             string msg =
-                                $"There is no {nameof(DimensionStructure)} entity with id: {dimensionStructure.Id}.";
-                            throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(msg);
+                                $"There is no {nameof(SourceFormat)} entity with id: {sourceFormat.Id}.";
+                            throw new MasterDataBusinessLogicNoSuchSourceFormatEntity(msg);
                         }
 
-                        toBeModified.Name = dimensionStructure.Name;
-                        toBeModified.Desc = dimensionStructure.Desc;
-                        toBeModified.DimensionId = dimensionStructure.DimensionId;
-                        toBeModified.ParentDimensionStructureId = dimensionStructure.ParentDimensionStructureId;
-                        toBeModified.IsActive = dimensionStructure.IsActive;
+                        toBeModified.Name = sourceFormat.Name;
+                        toBeModified.Desc = sourceFormat.Desc;
+                        toBeModified.IsActive = sourceFormat.IsActive;
 
                         ctx.Entry(toBeModified).State = EntityState.Modified;
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
-                        await transaction.CommitAsync();
+                        await transaction.CommitAsync().ConfigureAwait(false);
 
                         return toBeModified;
                     }
                     catch (Exception e)
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException(e.Message,
+                        throw new MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException(
+                            e.Message,
                             e);
                     }
                 }

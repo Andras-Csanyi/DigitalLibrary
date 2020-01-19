@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.AddNewTopDimensionStructure, () =>
+            RuleSet(ValidatorRulesets.AddSourceFormat, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -50,7 +50,7 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.UpdateTopDimensionStructure, () =>
+            RuleSet(ValidatorRulesets.UpdateSourceFormat, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
