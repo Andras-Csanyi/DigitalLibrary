@@ -29,7 +29,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             throw new MasterDataBusinessLogicArgumentNullException();
                         }
 
-                        await _masterDataValidators.TopDimensionStructureValidator.ValidateAndThrowAsync(
+                        await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                                 dimensionStructure,
                                 ruleSet: ValidatorRulesets.AddNewTopDimensionStructure)
                            .ConfigureAwait(false);

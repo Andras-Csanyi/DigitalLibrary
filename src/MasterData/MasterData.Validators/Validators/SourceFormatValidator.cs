@@ -7,9 +7,9 @@ namespace DigitalLibrary.MasterData.Validators
     using FluentValidation;
 
     [ExcludeFromCodeCoverage]
-    public class TopDimensionStructureValidator : AbstractValidator<DimensionStructure>
+    public class SourceFormatValidator : AbstractValidator<SourceFormat>
     {
-        public TopDimensionStructureValidator()
+        public SourceFormatValidator()
         {
             RuleSet(ValidatorRulesets.AddNewDimensionStructure, () =>
             {
@@ -27,7 +27,6 @@ namespace DigitalLibrary.MasterData.Validators
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
                     RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
-                    RuleFor(p => p.ParentDimensionStructureId).Null();
                 });
             });
 

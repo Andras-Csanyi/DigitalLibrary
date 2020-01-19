@@ -25,14 +25,14 @@ namespace DigitalLibrary.MasterData.Validators.Test
             {
                 null,
                 new MasterDataDimensionValueValidator(),
-                new TopDimensionStructureValidator(),
+                new SourceFormatValidator(),
                 new DimensionStructureValidator(),
             },
             new object[]
             {
                 new MasterDataDimensionValidator(),
                 null,
-                new TopDimensionStructureValidator(),
+                new SourceFormatValidator(),
                 new DimensionStructureValidator(),
             },
             new object[]
@@ -46,7 +46,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
             {
                 new MasterDataDimensionValidator(),
                 new MasterDataDimensionValueValidator(),
-                new TopDimensionStructureValidator(),
+                new SourceFormatValidator(),
                 null
             }
         };
@@ -56,7 +56,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
         public void ThrowException_WhenAnyCtorInput_IsNull(
             MasterDataDimensionValidator masterDataDimensionValidator,
             MasterDataDimensionValueValidator masterDataDimensionValueValidator,
-            TopDimensionStructureValidator topDimensionStructureValidator,
+            SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator)
         {
             // Arrange
@@ -67,7 +67,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new MasterDataValidators(
                     masterDataDimensionValidator,
                     masterDataDimensionValueValidator,
-                    topDimensionStructureValidator,
+                    sourceFormatValidator,
                     dimensionStructureValidator
                 );
             };

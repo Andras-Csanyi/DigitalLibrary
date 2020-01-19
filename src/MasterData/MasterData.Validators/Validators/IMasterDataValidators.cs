@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.Validators
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
-        public TopDimensionStructureValidator TopDimensionStructureValidator { get; }
+        public SourceFormatValidator SourceFormatValidator { get; }
 
         public DimensionStructureValidator DimensionStructureValidator { get; }
     }
