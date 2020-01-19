@@ -5,6 +5,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
@@ -16,10 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Get_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+    public class Get_Should : TestBase<DimensionStructure>
     {
         public Get_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -28,55 +30,55 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         public async Task Return_All()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure topDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "name",
                     Desc = "desc",
                     IsActive = 1
                 };
-            DomainModel.DomainModel.DimensionStructure topDimensionStructureResult = await masterDataHttpClient
+            DimensionStructure topDimensionStructureResult = await masterDataHttpClient
                .AddTopDimensionStructureAsync(topDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure1 =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure1 =
+                new DimensionStructure
                 {
                     Name = "list1",
                     Desc = "list1",
                     IsActive = 1,
                     ParentDimensionStructureId = topDimensionStructureResult.Id
                 };
-            DomainModel.DomainModel.DimensionStructure dimensionStructure1Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure1Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure1)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure2 =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure2 =
+                new DimensionStructure
                 {
                     Name = "list2",
                     Desc = "list2",
                     IsActive = 1,
                     ParentDimensionStructureId = topDimensionStructureResult.Id
                 };
-            DomainModel.DomainModel.DimensionStructure dimensionStructure2Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure2Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure2)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure3 =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure3 =
+                new DimensionStructure
                 {
                     Name = "list3",
                     Desc = "list3",
                     IsActive = 1,
                     ParentDimensionStructureId = topDimensionStructureResult.Id
                 };
-            DomainModel.DomainModel.DimensionStructure dimensionStructure3Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure3Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure3)
                .ConfigureAwait(false);
 
             // Act
-            List<DomainModel.DomainModel.DimensionStructure> dimensionStructures = await masterDataHttpClient
+            List<DimensionStructure> dimensionStructures = await masterDataHttpClient
                .GetDimensionStructuresAsync()
                .ConfigureAwait(false);
 

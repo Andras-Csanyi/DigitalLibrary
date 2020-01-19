@@ -3,7 +3,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using FluentAssertions;
 

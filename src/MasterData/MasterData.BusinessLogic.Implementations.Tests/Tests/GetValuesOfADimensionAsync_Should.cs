@@ -4,7 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using FluentAssertions;
 
@@ -23,27 +23,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public async Task Return_DimensionWithASingleDimensionValue()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            DomainModel.Dimension dimension = new DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
+            DomainModel.DimensionValue dimensionValue = new DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
+            DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(
                     dimensionValue, dimensionResult.Id)
                .ConfigureAwait(false);
 
             // Act
-            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+            DomainModel.Dimension result = await masterDataBusinessLogic
                .GetValuesOfADimensionAsync(dimensionResult.Id)
                .ConfigureAwait(false);
 
@@ -60,45 +60,45 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public async Task Return_DimensionWithMultipleValues()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            DomainModel.Dimension dimension = new DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimensionValue = new DomainModel.DomainModel.DimensionValue
+            DomainModel.DimensionValue dimensionValue = new DomainModel.DimensionValue
             {
                 Value = "value"
             };
-            DomainModel.DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
+            DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(
                     dimensionValue, dimensionResult.Id)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimensionValue2 = new DomainModel.DomainModel.DimensionValue
+            DomainModel.DimensionValue dimensionValue2 = new DomainModel.DimensionValue
             {
                 Value = "value2"
             };
-            DomainModel.DomainModel.DimensionValue dimensionValueResult2 = await masterDataBusinessLogic
+            DomainModel.DimensionValue dimensionValueResult2 = await masterDataBusinessLogic
                .AddDimensionValueAsync(
                     dimensionValue2, dimensionResult.Id)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimensionValue3 = new DomainModel.DomainModel.DimensionValue
+            DomainModel.DimensionValue dimensionValue3 = new DomainModel.DimensionValue
             {
                 Value = "value3"
             };
-            DomainModel.DomainModel.DimensionValue dimensionValueResult3 = await masterDataBusinessLogic
+            DomainModel.DimensionValue dimensionValueResult3 = await masterDataBusinessLogic
                .AddDimensionValueAsync(
                     dimensionValue3, dimensionResult.Id)
                .ConfigureAwait(false);
 
             // Act
-            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+            DomainModel.Dimension result = await masterDataBusinessLogic
                .GetValuesOfADimensionAsync(dimensionResult.Id)
                .ConfigureAwait(false);
 
@@ -132,18 +132,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public async Task Return_JustDimension_WhenDimensionDoesntHaveValues()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            DomainModel.Dimension dimension = new DomainModel.Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
             // Act
-            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic
+            DomainModel.Dimension result = await masterDataBusinessLogic
                .GetValuesOfADimensionAsync(dimensionResult.Id)
                .ConfigureAwait(false);
 
@@ -158,7 +158,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             // Arrange
 
             // Act
-            DomainModel.DomainModel.Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(100)
+            DomainModel.Dimension result = await masterDataBusinessLogic.GetValuesOfADimensionAsync(100)
                .ConfigureAwait(false);
 
             // Assert

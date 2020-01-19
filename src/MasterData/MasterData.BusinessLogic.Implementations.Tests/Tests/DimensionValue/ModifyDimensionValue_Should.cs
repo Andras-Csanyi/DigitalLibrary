@@ -5,6 +5,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -29,30 +31,30 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ModifyDimensionValue_WhenTheModifiedValueHasASingleDimensionRelation()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimVal1 = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimVal1 = new DimensionValue
             {
                 Value = "dimval1"
             };
-            DomainModel.DomainModel.DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal1,
                 dimensionResult.Id).ConfigureAwait(false);
 
             // Act
-            DomainModel.DomainModel.DimensionValue dimval1Modified = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimval1Modified = new DimensionValue
             {
                 Value = "super-duper value"
             };
-            DomainModel.DomainModel.DimensionValue result = await masterDataBusinessLogic.ModifyDimensionValueAsync(
+            DimensionValue result = await masterDataBusinessLogic.ModifyDimensionValueAsync(
                 dimensionResult.Id,
                 dimVal1Result,
                 dimval1Modified).ConfigureAwait(false);
@@ -62,7 +64,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             result.Id.Should().Be(dimVal1Result.Id);
             result.Value.Should().Be(dimval1Modified.Value);
 
-            DomainModel.DomainModel.Dimension dimCheck = await masterDataBusinessLogic
+            Dimension dimCheck = await masterDataBusinessLogic
                .GetValuesOfADimensionAsync(dimensionResult.Id)
                .ConfigureAwait(false);
             dimCheck.DimensionDimensionValues.Count.Should().Be(1);
@@ -78,13 +80,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ThrowException_WhenThereIsNoSuchDimension()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionValue oldDimensionValue = new DomainModel.DomainModel.DimensionValue
+            DimensionValue oldDimensionValue = new DimensionValue
             {
                 Id = 101,
                 Value = "asd"
             };
 
-            DomainModel.DomainModel.DimensionValue newDimensionValue = new DomainModel.DomainModel.DimensionValue
+            DimensionValue newDimensionValue = new DimensionValue
             {
                 Value = "asdasd"
             };
@@ -105,51 +107,51 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ThrowException_WhenThereIsNoSuchDimensionDimensionValueRelation()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimVal1 = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimVal1 = new DimensionValue
             {
                 Value = "dimval1"
             };
-            DomainModel.DomainModel.DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal1,
                 dimensionResult.Id).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue dimVal2 = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimVal2 = new DimensionValue
             {
                 Value = "dimval2"
             };
-            DomainModel.DomainModel.DimensionValue dimVal2Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DimensionValue dimVal2Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal2,
                 dimensionResult.Id).ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension dimension2 = new DomainModel.DomainModel.Dimension
+            Dimension dimension2 = new Dimension
             {
                 Name = "dimension 2",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimension2Result = await masterDataBusinessLogic
+            Dimension dimension2Result = await masterDataBusinessLogic
                .AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionValue dimVal3 = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimVal3 = new DimensionValue
             {
                 Value = "dimval3"
             };
-            DomainModel.DomainModel.DimensionValue dimVal3Result = await masterDataBusinessLogic.AddDimensionValueAsync(
+            DimensionValue dimVal3Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal3,
                 dimension2Result.Id).ConfigureAwait(false);
 
             // Act
-            DomainModel.DomainModel.DimensionValue dimVal3Modification = new DomainModel.DomainModel.DimensionValue
+            DimensionValue dimVal3Modification = new DimensionValue
             {
                 Value = "modified value"
             };
@@ -170,23 +172,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ThrowException_WhenThereIsNoSuchValue()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
+            Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionValue oldDimensionValue = new DomainModel.DomainModel.DimensionValue
+            DimensionValue oldDimensionValue = new DimensionValue
             {
                 Id = 101,
                 Value = "old one"
             };
 
-            DomainModel.DomainModel.DimensionValue modifiedOldOne = new DomainModel.DomainModel.DimensionValue
+            DimensionValue modifiedOldOne = new DimensionValue
             {
                 Value = "modified stuff"
             };

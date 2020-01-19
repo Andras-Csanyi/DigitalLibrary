@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
 
 namespace DigitalLibrary.MasterData.Validators.TestData.TestData
 {
+    using DomainModel;
+
     [ExcludeFromCodeCoverage]
     public static class MasterData_DimensionStructure_TestData
     {
@@ -47,31 +48,31 @@ namespace DigitalLibrary.MasterData.Validators.TestData.TestData
 
             new object[] { 0, "name", "desc", 1, 0 },
         };
-        
+
         public static IEnumerable<object[]> ModifyDimensionStructure_Validation_TestData = new List<object[]>
         {
-            new object[]{0, "name", "desc", 1, 1 },
-            
-            new object[]{1, string.Empty, "desc", 1, 1 },
-            new object[]{1, " ", "desc", 1, 1},
-            new object[]{1, "as", "desc", 1, 1},
-            new object[]{1, null, "desc", 1, 1},
-            
-            new object[]{1, "name", string.Empty, 1, 1},
-            new object[]{1, "name", " ", 1, 1},
-            new object[]{1, "name", "as", 1, 1},
-            new object[]{1, "name", null, 1, 1},
-            
-            new object[]{1, "name", "desc", 2, 1},
-            
-            new object[]{1, "name", "desc", 1, 0},
+            new object[] { 0, "name", "desc", 1, 1 },
+
+            new object[] { 1, string.Empty, "desc", 1, 1 },
+            new object[] { 1, " ", "desc", 1, 1 },
+            new object[] { 1, "as", "desc", 1, 1 },
+            new object[] { 1, null, "desc", 1, 1 },
+
+            new object[] { 1, "name", string.Empty, 1, 1 },
+            new object[] { 1, "name", " ", 1, 1 },
+            new object[] { 1, "name", "as", 1, 1 },
+            new object[] { 1, "name", null, 1, 1 },
+
+            new object[] { 1, "name", "desc", 2, 1 },
+
+            new object[] { 1, "name", "desc", 1, 0 },
         };
-        
+
         public static IEnumerable<object[]> ModifyDimensionStructure_TestData = new List<object[]>
         {
-            new object[]{"name2", "desc", 1},
-            new object[]{"name", "desc2", 1},
-            new object[]{"name", "desc2", 0},
+            new object[] { "name2", "desc", 1 },
+            new object[] { "name", "desc2", 1 },
+            new object[] { "name", "desc2", 0 },
         };
 
         public static IEnumerable<object[]> ModifyTopDimensionStructure_Validation_TestData = new List<object[]>

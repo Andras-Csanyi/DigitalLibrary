@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -31,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             int isActive)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure orig = new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure orig = new DimensionStructure
             {
                 Name = "asdasd",
                 Desc = "asdasd",
@@ -39,11 +41,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
                 ParentDimensionStructureId = 0
             };
 
-            DomainModel.DomainModel.DimensionStructure origRes = await masterDataBusinessLogic
+            DimensionStructure origRes = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     orig).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure mod = new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure mod = new DimensionStructure
             {
                 Id = origRes.Id,
                 Name = name,
@@ -52,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure res = await masterDataBusinessLogic
+            DimensionStructure res = await masterDataBusinessLogic
                .UpdateTopDimensionStructureAsync(mod)
                .ConfigureAwait(false);
 
@@ -68,8 +70,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
         public async Task ThrowException_WhenThereIsNoGivenTopDimensionStructure()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
                 {
                     Id = 100,
                     Name = "asdasd",

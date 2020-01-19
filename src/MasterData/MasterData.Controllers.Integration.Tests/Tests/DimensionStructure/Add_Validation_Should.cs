@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
@@ -19,10 +21,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_Validation_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+    public class Add_Validation_Should : TestBase<DimensionStructure>
     {
         public Add_Validation_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -53,8 +55,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             long parentId)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
                 {
                     Id = id,
                     Name = name,

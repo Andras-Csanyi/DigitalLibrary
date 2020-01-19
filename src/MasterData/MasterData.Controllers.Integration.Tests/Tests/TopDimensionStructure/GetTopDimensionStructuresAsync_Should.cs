@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
@@ -16,10 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class
-        MasterData_Api_GetTopDimensionStructuresAsync_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+        MasterData_Api_GetTopDimensionStructuresAsync_Should : TestBase<DimensionStructure>
     {
         public MasterData_Api_GetTopDimensionStructuresAsync_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -30,7 +32,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
             // Arrange
 
             // Act
-            List<DomainModel.DomainModel.DimensionStructure> result = await masterDataHttpClient
+            List<DimensionStructure> result = await masterDataHttpClient
                .GetTopDimensionStructuresAsync()
                .ConfigureAwait(false);
 

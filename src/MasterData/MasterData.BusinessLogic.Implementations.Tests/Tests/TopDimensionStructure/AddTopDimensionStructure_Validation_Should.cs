@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -33,8 +35,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             int isActive)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
                 {
                     Id = id,
                     Name = name,

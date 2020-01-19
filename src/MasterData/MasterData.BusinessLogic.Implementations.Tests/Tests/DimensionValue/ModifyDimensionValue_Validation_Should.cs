@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -29,8 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             MemberType = typeof(MasterData_DimensionValue_TestData))]
         public async Task ThrowException_WhenInputIsNull(
             long id,
-            DomainModel.DomainModel.DimensionValue oldDimensionValue,
-            DomainModel.DomainModel.DimensionValue newDimensionValue)
+            DimensionValue oldDimensionValue,
+            DimensionValue newDimensionValue)
         {
             // Arrange
 
@@ -52,8 +54,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ThrowException_WhenOldDimensionValue_HasZeroId()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionValue old = new DomainModel.DomainModel.DimensionValue();
-            DomainModel.DomainModel.DimensionValue nw = new DomainModel.DomainModel.DimensionValue();
+            DimensionValue old = new DimensionValue();
+            DimensionValue nw = new DimensionValue();
 
             // Act
             Func<Task> action = async () =>

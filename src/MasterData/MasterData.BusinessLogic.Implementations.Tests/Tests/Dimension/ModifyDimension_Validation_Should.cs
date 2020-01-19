@@ -4,6 +4,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -28,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             MemberType = typeof(MasterData_Dimension_TestData))]
         public async Task ThrowException_WhenInputsAreNull(
             long id,
-            DomainModel.DomainModel.Dimension dimension)
+            Dimension dimension)
         {
             // Arrange
 
@@ -50,7 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             int isActive)
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = name,
                 Description = desc,

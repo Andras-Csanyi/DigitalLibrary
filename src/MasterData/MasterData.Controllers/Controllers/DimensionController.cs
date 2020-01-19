@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.Controllers
 
     using BusinessLogic.Interfaces;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

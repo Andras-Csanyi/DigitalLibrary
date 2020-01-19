@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
 
 namespace DigitalLibrary.MasterData.WebApi.Client.Client
 {
+    using DomainModel;
+
     public partial interface IMasterDataHttpClient
     {
         Task<List<Dimension>> GetAllActiveDimensions();
@@ -11,7 +12,5 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
         Task<Dimension> AddDimensionAsync(Dimension dimension);
 
         Task<List<Dimension>> GetDimensionsWithoutStructure();
-
-        
     }
 }

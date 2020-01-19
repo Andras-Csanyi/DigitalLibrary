@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
@@ -16,10 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class ModifyTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+    public class ModifyTopDimensionStructure_Should : TestBase<DimensionStructure>
     {
         public ModifyTopDimensionStructure_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -34,13 +36,13 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
             int isActive)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure orig = new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure orig = new DimensionStructure
             {
                 Name = "orig",
                 Desc = "orig",
                 IsActive = 1
             };
-            DomainModel.DomainModel.DimensionStructure origResult = await masterDataHttpClient
+            DimensionStructure origResult = await masterDataHttpClient
                .AddTopDimensionStructureAsync(orig)
                .ConfigureAwait(false);
 
@@ -49,7 +51,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
             origResult.IsActive = isActive;
 
             // Act
-            DomainModel.DomainModel.DimensionStructure result = await masterDataHttpClient
+            DimensionStructure result = await masterDataHttpClient
                .ModifyTopDimensionStructureAsync(origResult)
                .ConfigureAwait(false);
 

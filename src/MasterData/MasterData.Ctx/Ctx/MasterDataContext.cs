@@ -2,7 +2,7 @@
 {
     using Configurations;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using Microsoft.EntityFrameworkCore;
 

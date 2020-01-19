@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Ctx;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using Exceptions;
 

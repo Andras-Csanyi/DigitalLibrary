@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
 
 namespace DigitalLibrary.MasterData.WebApi.Client.Client
 {
+    using DomainModel;
+
     public partial interface IMasterDataHttpClient
     {
         Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure);
@@ -13,7 +14,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.Client
         Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
-        
+
         Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure);
     }
 }

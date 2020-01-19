@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using FluentAssertions;
 
     using Xunit;
@@ -20,17 +22,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
         public async Task AddNewDimensionStructure()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 dimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
                 {
                     Name = "name",
                     Desc = "desc",
@@ -40,7 +42,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
                 };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure result = await masterDataBusinessLogic
+            DimensionStructure result = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     dimensionStructure).ConfigureAwait(false);
 

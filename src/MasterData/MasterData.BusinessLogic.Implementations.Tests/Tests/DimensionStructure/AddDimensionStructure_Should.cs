@@ -5,6 +5,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DomainModel;
+
     using Exceptions;
 
     using FluentAssertions;
@@ -24,18 +26,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task Add_ToFirstLevel()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension topLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension topLevelDimension = new Dimension
             {
                 Name = "top level dimension",
                 Description = "top level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension topLevelDimensionResult = await masterDataBusinessLogic
+            Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "toplevel",
                     Desc = "toplevel desc",
@@ -43,23 +45,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = topLevelDimensionResult.Id,
                     ParentDimensionStructureId = 0
                 };
-            DomainModel.DomainModel.DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
+            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension firstLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimension = new Dimension
             {
                 Name = "first level dimension",
                 Description = "first level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
                     firstLevelDimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "first level",
                     Desc = "first level desc",
@@ -69,7 +71,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureResult =
+            DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(firstLevelDimensionStructure)
                    .ConfigureAwait(false);
@@ -86,7 +88,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevelDimensionStructureResult.ChildDimensionStructures.Count.Should().Be(0);
 
             // checking structure hierarchy
-            DomainModel.DomainModel.DimensionStructure topLevelResult = await masterDataBusinessLogic
+            DimensionStructure topLevelResult = await masterDataBusinessLogic
                .GetDimensionStructureById(
                     topLeveldimensionStructureResult.Id)
                .ConfigureAwait(false);
@@ -104,7 +106,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureResult.Id).Should().NotBeNull();
-            DomainModel.DomainModel.DimensionStructure firstLevel = topLevelResult.ChildDimensionStructures
+            DimensionStructure firstLevel = topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureResult.Id);
             firstLevel.Id.Should().Be(firstLevelDimensionStructureResult.Id);
             firstLevel.Name.Should().Be(firstLevelDimensionStructureResult.Name);
@@ -118,18 +120,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task Add_ToFirstLevelAsSecond()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension topLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension topLevelDimension = new Dimension
             {
                 Name = "top level dimension",
                 Description = "top level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension topLevelDimensionResult = await masterDataBusinessLogic
+            Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "toplevel",
                     Desc = "toplevel desc",
@@ -137,23 +139,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = topLevelDimensionResult.Id,
                     ParentDimensionStructureId = 0
                 };
-            DomainModel.DomainModel.DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
+            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension firstLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimension = new Dimension
             {
                 Name = "first level dimension",
                 Description = "first level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
                     firstLevelDimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "first level",
                     Desc = "first level desc",
@@ -162,25 +164,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
                 };
 
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureResult =
+            DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         firstLevelDimensionStructure)
                    .ConfigureAwait(false);
 
 
-            DomainModel.DomainModel.Dimension firstLevelDimensionSecond = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimensionSecond = new Dimension
             {
                 Name = "first level dimension - second",
                 Description = "first level dimension - second - desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionSecondResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionSecondResult = await masterDataBusinessLogic
                .AddDimensionAsync(
                     firstLevelDimensionSecond).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureSecond =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructureSecond =
+                new DimensionStructure
                 {
                     Name = "first level - second",
                     Desc = "first level - second - desc",
@@ -190,7 +192,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureSecondResult =
+            DimensionStructure firstLevelDimensionStructureSecondResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         firstLevelDimensionStructureSecond)
@@ -214,7 +216,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevelDimensionStructureSecondResult.ChildDimensionStructures.Count.Should().Be(0);
 
             // checking structure hierarchy
-            DomainModel.DomainModel.DimensionStructure topLevelResult = await masterDataBusinessLogic
+            DimensionStructure topLevelResult = await masterDataBusinessLogic
                .GetDimensionStructureById(
                     topLeveldimensionStructureResult.Id)
                .ConfigureAwait(false);
@@ -232,7 +234,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureResult.Id).Should().NotBeNull();
-            DomainModel.DomainModel.DimensionStructure firstLevel = topLevelResult.ChildDimensionStructures
+            DimensionStructure firstLevel = topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureResult.Id);
             firstLevel.Id.Should().Be(firstLevelDimensionStructureResult.Id);
             firstLevel.Name.Should().Be(firstLevelDimensionStructureResult.Name);
@@ -243,7 +245,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureSecondResult.Id).Should().NotBeNull();
-            DomainModel.DomainModel.DimensionStructure firstLevelSecond = topLevelResult.ChildDimensionStructures
+            DimensionStructure firstLevelSecond = topLevelResult.ChildDimensionStructures
                .FirstOrDefault(w => w.Id == firstLevelDimensionStructureSecondResult.Id);
             firstLevelSecond.Id.Should().Be(firstLevelDimensionStructureSecondResult.Id);
             firstLevelSecond.Name.Should().Be(firstLevelDimensionStructureSecondResult.Name);
@@ -256,17 +258,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [Fact]
         public async Task Add_ToSecondLevel()
         {
-            DomainModel.DomainModel.Dimension topLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension topLevelDimension = new Dimension
             {
                 Name = "top level",
                 Description = "top level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension topLevelDimensionResult = await masterDataBusinessLogic
+            Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "top level dimension structure",
                     Desc = "top level dimension structure desc",
@@ -274,22 +276,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = topLevelDimensionResult.Id,
                     ParentDimensionStructureId = 0
                 };
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
+            DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension firstLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimension = new Dimension
             {
                 Name = "first level",
                 Description = "first level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(firstLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "first level dimension structure",
                     Desc = "first level dimension structure desc",
@@ -297,23 +299,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = firstLevelDimensionResult.Id,
                     ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
                 };
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureResult =
+            DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         firstLevelDimensionStructure)
                    .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension secondLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension secondLevelDimension = new Dimension
             {
                 Name = "second level",
                 Description = "second level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension secondLevelDimensionResult = await masterDataBusinessLogic
+            Dimension secondLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(secondLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure secondLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "second level dimension structure",
                     Desc = "second level dimension structure desc",
@@ -323,7 +325,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructureResult =
+            DimensionStructure secondLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         secondLevelDimensionStructure)
@@ -341,7 +343,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .Be(secondLevelDimensionResult.Description);
 
             // checking structure
-            DomainModel.DomainModel.DimensionStructure hierarchy = await masterDataBusinessLogic
+            DimensionStructure hierarchy = await masterDataBusinessLogic
                .GetDimensionStructureById(
                     topLevelDimensionResult.Id)
                .ConfigureAwait(false);
@@ -354,7 +356,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             hierarchy.Dimension.Name.Should().Be(topLevelDimensionResult.Name);
             hierarchy.Dimension.Description.Should().Be(topLevelDimensionResult.Description);
 
-            DomainModel.DomainModel.DimensionStructure firstLevel = hierarchy.ChildDimensionStructures
+            DimensionStructure firstLevel = hierarchy.ChildDimensionStructures
                .FirstOrDefault(p => p.Name == firstLevelDimensionStructure.Name);
             firstLevel.Should().NotBeNull();
             firstLevel.Id.Should().NotBe(0);
@@ -364,7 +366,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevel.DimensionId.Should().Be(firstLevelDimensionResult.Id);
 
 
-            DomainModel.DomainModel.DimensionStructure secondLevel = firstLevel.ChildDimensionStructures
+            DimensionStructure secondLevel = firstLevel.ChildDimensionStructures
                .FirstOrDefault(p => p.Name == secondLevelDimensionStructure.Name);
             secondLevel.Should().NotBeNull();
             secondLevel.Id.Should().NotBe(0);
@@ -377,17 +379,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [Fact]
         public async Task Add_ToSecondLevelAsSecond()
         {
-            DomainModel.DomainModel.Dimension topLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension topLevelDimension = new Dimension
             {
                 Name = "top level",
                 Description = "top level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension topLevelDimensionResult = await masterDataBusinessLogic
+            Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "top level dimension structure",
                     Desc = "top level dimension structure desc",
@@ -395,22 +397,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = topLevelDimensionResult.Id,
                     ParentDimensionStructureId = 0
                 };
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
+            DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension firstLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimension = new Dimension
             {
                 Name = "first level",
                 Description = "first level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(firstLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "first level dimension structure",
                     Desc = "first level dimension structure desc",
@@ -418,23 +420,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = firstLevelDimensionResult.Id,
                     ParentDimensionStructureId = topLevelDimensionStructureResult.Id,
                 };
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructureResult =
+            DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         firstLevelDimensionStructure)
                    .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension secondLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension secondLevelDimension = new Dimension
             {
                 Name = "second level",
                 Description = "second level desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension secondLevelDimensionResult = await masterDataBusinessLogic
+            Dimension secondLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(secondLevelDimension)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure secondLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "second level dimension structure",
                     Desc = "second level dimension structure desc",
@@ -443,23 +445,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
                 };
 
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructureResult =
+            DimensionStructure secondLevelDimensionStructureResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         secondLevelDimensionStructure)
                    .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension secondLevelDimensionSecond = new DomainModel.DomainModel.Dimension
+            Dimension secondLevelDimensionSecond = new Dimension
             {
                 Name = "second level - second",
                 Description = "second level desc - second",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension secondLevelDimensionSecondResult = await masterDataBusinessLogic
+            Dimension secondLevelDimensionSecondResult = await masterDataBusinessLogic
                .AddDimensionAsync(secondLevelDimensionSecond)
                .ConfigureAwait(false);
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructureSecond =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure secondLevelDimensionStructureSecond =
+                new DimensionStructure
                 {
                     Name = "second level dimension structure second",
                     Desc = "second level dimension structure second desc",
@@ -469,7 +471,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure secondLevelDimensionStructureSecondResult =
+            DimensionStructure secondLevelDimensionStructureSecondResult =
                 await masterDataBusinessLogic
                    .AddDimensionStructureAsync(
                         secondLevelDimensionStructureSecond)
@@ -492,7 +494,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .Should().Be(secondLevelDimensionSecondResult.Description);
 
             // checking structure
-            DomainModel.DomainModel.DimensionStructure hierarchy = await masterDataBusinessLogic
+            DimensionStructure hierarchy = await masterDataBusinessLogic
                .GetDimensionStructureById(
                     topLevelDimensionResult.Id)
                .ConfigureAwait(false);
@@ -505,7 +507,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             hierarchy.Dimension.Name.Should().Be(topLevelDimensionResult.Name);
             hierarchy.Dimension.Description.Should().Be(topLevelDimensionResult.Description);
 
-            DomainModel.DomainModel.DimensionStructure firstLevel = hierarchy.ChildDimensionStructures
+            DimensionStructure firstLevel = hierarchy.ChildDimensionStructures
                .FirstOrDefault(p => p.Name == firstLevelDimensionStructure.Name);
             firstLevel.Should().NotBeNull();
             firstLevel.Id.Should().NotBe(0);
@@ -514,7 +516,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevel.ChildDimensionStructures.Count.Should().Be(2);
             firstLevel.DimensionId.Should().Be(firstLevelDimensionResult.Id);
 
-            DomainModel.DomainModel.DimensionStructure secondLevel = firstLevel.ChildDimensionStructures
+            DimensionStructure secondLevel = firstLevel.ChildDimensionStructures
                .FirstOrDefault(p => p.Name == secondLevelDimensionStructure.Name);
             secondLevel.Should().NotBeNull();
             secondLevel.Id.Should().NotBe(0);
@@ -523,7 +525,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             secondLevel.ChildDimensionStructures.Should().BeNullOrEmpty();
             secondLevel.DimensionId.Should().Be(secondLevelDimensionResult.Id);
 
-            DomainModel.DomainModel.DimensionStructure secondLevelSecond = firstLevel.ChildDimensionStructures
+            DimensionStructure secondLevelSecond = firstLevel.ChildDimensionStructures
                .FirstOrDefault(p => p.Name == secondLevelDimensionStructureSecond.Name);
             secondLevelSecond.Should().NotBeNull();
             secondLevelSecond.Id.Should().NotBe(0);
@@ -537,18 +539,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task ThrowException_WhenThereIsNoParentDimensionStructure()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension topLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension topLevelDimension = new Dimension
             {
                 Name = "top level dimension",
                 Description = "top level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension topLevelDimensionResult = await masterDataBusinessLogic
+            Dimension topLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(topLevelDimension)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure topLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure topLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "toplevel",
                     Desc = "toplevel desc",
@@ -556,23 +558,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     DimensionId = topLevelDimensionResult.Id,
                     ParentDimensionStructureId = 0
                 };
-            DomainModel.DomainModel.DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
+            DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
                .AddTopDimensionStructureAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
-            DomainModel.DomainModel.Dimension firstLevelDimension = new DomainModel.DomainModel.Dimension
+            Dimension firstLevelDimension = new Dimension
             {
                 Name = "first level dimension",
                 Description = "first level dimension desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension firstLevelDimensionResult = await masterDataBusinessLogic
+            Dimension firstLevelDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
                     firstLevelDimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure firstLevelDimensionStructure =
-                new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure firstLevelDimensionStructure =
+                new DimensionStructure
                 {
                     Name = "first level",
                     Desc = "first level desc",

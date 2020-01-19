@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
 using FluentValidation;
 
 namespace DigitalLibrary.MasterData.Validators.Validators
 {
+    using DomainModel;
+
     [ExcludeFromCodeCoverage]
     public class MasterDataDimensionValueValidator : AbstractValidator<DimensionValue>
     {

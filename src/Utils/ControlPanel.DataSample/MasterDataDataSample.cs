@@ -1,10 +1,9 @@
 using System;
 
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
     using MasterData.Ctx;
+    using MasterData.DomainModel;
 
     public static class MasterDataDataSample
     {
