@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Web.Api.Api;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalLibrary.MasterData.Controllers.Controllers
 {
+    using BusinessLogic.Interfaces;
+
     [ApiController]
     [Route(MasterDataApi.Dimensions.V1.DimensionRouteBase)]
     public class DimensionController : ControllerBase
@@ -36,7 +39,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             {
                 Dimension result = await _masterDataBusinessLogic.AddDimensionAsync(
                         dimension)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -54,7 +57,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             try
             {
                 Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -74,7 +77,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
                 Dimension result = await _masterDataBusinessLogic.ModifyDimensionAsync(
                         dimensionId,
                         dimension)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -92,7 +95,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             try
             {
                 List<Dimension> result = await _masterDataBusinessLogic.GetActiveDimensionsAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return result;
             }
             catch (Exception e)
@@ -110,7 +113,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             try
             {
                 List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsWithoutStructureAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return result;
             }
             catch (Exception e)

@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Exceptions;
 
-    using Interfaces.Interfaces;
+    using Interfaces;
 
     using Microsoft.EntityFrameworkCore;
 

@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
+
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Web.Api.Api;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalLibrary.MasterData.Controllers.Controllers
 {
+    using BusinessLogic.Interfaces;
+
     [ApiController]
     [Route(MasterDataApi.DimensionStructure.V1.DimensionStructureBase)]
     public class DimensionStructureController : ControllerBase
@@ -49,8 +52,8 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic
-                    .UpdateDimensionStructureAsync(dimensionStructure)
-                    .ConfigureAwait(false);
+                   .UpdateDimensionStructureAsync(dimensionStructure)
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -85,7 +88,7 @@ namespace DigitalLibrary.MasterData.Controllers.Controllers
             try
             {
                 List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)

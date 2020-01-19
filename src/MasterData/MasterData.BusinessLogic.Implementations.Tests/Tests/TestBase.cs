@@ -5,7 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using Ctx.Ctx;
 
-    using Interfaces.Interfaces;
+    using Interfaces;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
