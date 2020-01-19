@@ -10,7 +10,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
-    using Validators.Validators;
+    using Validators;
 
     [ExcludeFromCodeCoverage]
     public class TestBase

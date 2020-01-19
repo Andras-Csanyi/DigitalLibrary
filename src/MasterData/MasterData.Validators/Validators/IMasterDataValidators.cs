@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.Validators.Validators
+namespace DigitalLibrary.MasterData.Validators
 {
     public interface IMasterDataValidators
     {

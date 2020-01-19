@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
 
-    using Validators.Validators;
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {

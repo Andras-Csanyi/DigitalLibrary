@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
-    using Validators.Validators;
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
