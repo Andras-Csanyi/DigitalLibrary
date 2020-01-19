@@ -1,10 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx.Ctx;
+
+    using Microsoft.EntityFrameworkCore.Storage;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task DeleteDimensionAsync(long dimensionId)
@@ -12,7 +14,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
                 using (IDbContextTransaction transactionAsync = await ctx.Database.BeginTransactionAsync()
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {

@@ -1,17 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Ctx.Ctx;
+
+    using DomainModel.DomainModel;
+
     using Exceptions;
+
+    using Interfaces.Interfaces;
+
+    using Microsoft.EntityFrameworkCore;
 
     public partial class MasterDataBusinessLogic : IMasterDataBusinessLogic
     {

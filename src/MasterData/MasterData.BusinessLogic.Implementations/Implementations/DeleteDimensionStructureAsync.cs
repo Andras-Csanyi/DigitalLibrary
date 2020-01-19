@@ -1,15 +1,16 @@
-using System;
-using System.Threading.Tasks;
-
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx.Ctx;
+
+    using DomainModel.DomainModel;
+
     using Exceptions;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Storage;
 
     public partial class MasterDataBusinessLogic
     {

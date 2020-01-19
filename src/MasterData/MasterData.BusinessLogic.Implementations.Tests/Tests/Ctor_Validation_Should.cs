@@ -2,8 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
-using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
-
 using FluentAssertions;
 
 using Xunit;

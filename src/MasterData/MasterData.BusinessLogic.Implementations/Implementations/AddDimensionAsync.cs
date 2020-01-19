@@ -1,15 +1,17 @@
-using System;
-using System.Threading.Tasks;
-
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.Validators.Validators;
-
-using FluentValidation;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx.Ctx;
+
+    using DomainModel.DomainModel;
+
     using Exceptions;
+
+    using FluentValidation;
+
+    using Validators.Validators;
 
     public partial class MasterDataBusinessLogic
     {
