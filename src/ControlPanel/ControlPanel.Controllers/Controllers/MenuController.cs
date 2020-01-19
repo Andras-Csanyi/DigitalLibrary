@@ -14,7 +14,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    using WebApi.Api.Api;
+    using WebApi.Api;
 
     [ApiController]
     [Route(ControlPanelWebApi.Menu.Base)]
