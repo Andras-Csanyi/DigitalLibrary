@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
                .WithMany(m => m.ChildDimensionStructures)
                .HasForeignKey(k => k.SourceFormatId);
             builder.HasOne(p => p.DimensionStructure)
-               .WithMany(m => m.ParentDimensionStructure)
+               .WithMany(m => m.ParentSourceFormatDimensionStructures)
                .HasForeignKey(k => k.DimensionStructureId);
         }
     }

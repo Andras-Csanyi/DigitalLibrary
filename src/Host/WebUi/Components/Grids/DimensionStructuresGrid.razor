@@ -27,9 +27,9 @@
                     <BSTableCell>@dimensionStructure.Name</BSTableCell>
                     <BSTableCell>@dimensionStructure.Desc</BSTableCell>
                     @{
-                        if (dimensionStructure.ParentDimensionStructure != null)
+                        if (dimensionStructure.ParentSourceFormatDimensionStructures != null)
                         {
-                            <BSTableCell>@dimensionStructure.ParentDimensionStructure.Name</BSTableCell>
+                            <BSTableCell>@dimensionStructure.ParentSourceFormatDimensionStructures.Name</BSTableCell>
                         }
                         else
                         {

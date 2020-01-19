@@ -39,7 +39,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                            .ConfigureAwait(false);
 
                         long newDimensionStructureId = 0;
-                        if (dimensionStructure.ParentDimensionStructure.Any())
+                        if (dimensionStructure.ParentSourceFormatDimensionStructures.Any())
                         {
                             newDimensionStructureId = await AddDimensionStructureWithParent(
                                 dimensionStructure,
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                         DimensionStructure result = await ctx.DimensionStructures
                            .Include(i => i.ChildDimensionStructures)
-                           .Include(ii => ii.ParentDimensionStructure)
+                           .Include(ii => ii.ParentSourceFormatDimensionStructures)
                            .FirstOrDefaultAsync(w => w.Id == newDimensionStructureId)
                            .ConfigureAwait(false);
 
@@ -102,7 +102,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 throw new ArgumentNullException(msg);
             }
 
-            long parentSourceFormatId = dimensionStructure.ParentDimensionStructure.FirstOrDefault().SourceFormatId;
+            long parentSourceFormatId =
+                dimensionStructure.ParentSourceFormatDimensionStructures.FirstOrDefault().SourceFormatId;
 
             if (parentSourceFormatId == 0)
             {
