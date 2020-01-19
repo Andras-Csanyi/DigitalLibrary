@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-using DigitalLibrary.ControlPanel.Validators.Validators;
 
 using FluentValidation;
 
@@ -13,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
     using Ctx;
+
+    using Validators;
 
     public partial class ModuleBusinessLogic
     {

@@ -1,12 +1,13 @@
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
-using DigitalLibrary.ControlPanel.Validators.Validators;
 
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests
 {
     using Ctx;
+
+    using Validators;
 
     public class TestBase
     {
