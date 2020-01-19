@@ -1,19 +1,22 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
-using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.Validators.Validators;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Ctx;
+
+    using Interfaces;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+
+    using Validators;
+
     [ExcludeFromCodeCoverage]
     public class TestBase
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
-            .Create(builder => { builder.AddDebug(); });
+           .Create(builder => { builder.AddDebug(); });
 
         protected IMasterDataBusinessLogic masterDataBusinessLogic;
 
@@ -26,12 +29,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
 
             DbContextOptions<MasterDataContext> _dbContextOptions =
                 new DbContextOptionsBuilder<MasterDataContext>()
-                    .UseSqlite($"Data Source = {TestInfo}.sqlite")
+                   .UseSqlite($"Data Source = {TestInfo}.sqlite")
                     // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
-                    .UseLoggerFactory(LoggerFactory)
-                    .EnableDetailedErrors()
-                    .EnableSensitiveDataLogging()
-                    .Options;
+                   .UseLoggerFactory(LoggerFactory)
+                   .EnableDetailedErrors()
+                   .EnableSensitiveDataLogging()
+                   .Options;
 
             MasterDataDimensionValidator masterDataDimensionValidator = new MasterDataDimensionValidator();
             MasterDataDimensionValueValidator masterDataDimensionValueValidator =

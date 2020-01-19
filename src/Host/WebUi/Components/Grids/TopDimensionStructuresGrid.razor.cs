@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using BlazorStrap;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.WebApi.Client.Client;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+
     public partial class TopDimensionStructuresGrid
     {
         private BSModal _addNewModal;
@@ -77,7 +80,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             Task deleteTask = Task.Run(async () => await MasterDataHttpClient.DeleteTopDimensionStructureAsync(
                     _deleteItem)
-                .ConfigureAwait(false));
+               .ConfigureAwait(false));
             deleteTask.GetAwaiter().GetResult();
             GetAllData();
             StateHasChanged();
@@ -95,8 +98,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             try
             {
                 Task<DimensionStructure> modifyTask = Task.Run(async () => await MasterDataHttpClient
-                    .ModifyTopDimensionStructureAsync(_editedItem)
-                    .ConfigureAwait(false));
+                   .ModifyTopDimensionStructureAsync(_editedItem)
+                   .ConfigureAwait(false));
                 modifyTask.GetAwaiter().GetResult();
                 MasterDataHttpClient.ModifyTopDimensionStructureAsync(_editedItem);
                 GetAllData();
@@ -115,8 +118,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             try
             {
                 Task<DimensionStructure> addTask = Task.Run(async () => await MasterDataHttpClient
-                    .AddTopDimensionStructureAsync(_newItem)
-                    .ConfigureAwait(false));
+                   .AddTopDimensionStructureAsync(_newItem)
+                   .ConfigureAwait(false));
                 addTask.GetAwaiter().GetResult();
                 GetAllData();
                 StateHasChanged();
@@ -132,8 +135,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         private void GetAllData()
         {
             Task<List<DimensionStructure>> getTask = Task.Run(async () => await MasterDataHttpClient
-                .GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false));
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false));
             Data = getTask.GetAwaiter().GetResult();
         }
     }

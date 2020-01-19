@@ -1,18 +1,13 @@
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
-
-    using Validators.TestData.TestData;
-
-    using WebApi.Client.Client;
 
     using WebApp;
 
@@ -39,8 +34,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
                 IsActive = 1
             };
             Dimension dimension1Result = await masterDataHttpClient.AddDimensionAsync(dimension1)
-                .ConfigureAwait(false);
-            
+               .ConfigureAwait(false);
+
             Dimension dimension2 = new Dimension
             {
                 Name = "name211",
@@ -48,8 +43,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
                 IsActive = 1
             };
             Dimension dimension2Result = await masterDataHttpClient.AddDimensionAsync(dimension2)
-                .ConfigureAwait(false);
-            
+               .ConfigureAwait(false);
+
             DimensionStructure top = new DimensionStructure
             {
                 Name = "name2222",
@@ -58,7 +53,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
             };
             DimensionStructure topResult = await masterDataHttpClient.AddTopDimensionStructureAsync(
                 top).ConfigureAwait(false);
-            
+
             DimensionStructure orig = new DimensionStructure
             {
                 Name = "name212",
@@ -69,7 +64,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
             };
             DimensionStructure origResult = await masterDataHttpClient.AddDimensionStructureAsync(
                 orig).ConfigureAwait(false);
-            
+
             DimensionStructure orig2 = new DimensionStructure
             {
                 Name = "name21212",
@@ -91,7 +86,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
             // Act
             DimensionStructure updatedResult = await masterDataHttpClient.UpdateDimensionStructure(
                 origResult).ConfigureAwait(false);
-            
+
             // Assert
             updatedResult.Id.Should().Be(origResult.Id);
             updatedResult.Name.Should().Be(updatedName);

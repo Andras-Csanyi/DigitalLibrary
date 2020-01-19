@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using Microsoft.EntityFrameworkCore;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using Microsoft.EntityFrameworkCore;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<List<DimensionStructure>> GetTopDimensionStructuresAsync()
@@ -18,9 +22,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                 try
                 {
                     List<DimensionStructure> result = await ctx.DimensionStructures
-                        .Where(p => p.ParentDimensionStructureId == 0 || p.ParentDimensionStructureId == null)
-                        .ToListAsync()
-                        .ConfigureAwait(false);
+                       .Where(p => p.ParentDimensionStructureId == 0 || p.ParentDimensionStructureId == null)
+                       .ToListAsync()
+                       .ConfigureAwait(false);
 
                     return result;
                 }

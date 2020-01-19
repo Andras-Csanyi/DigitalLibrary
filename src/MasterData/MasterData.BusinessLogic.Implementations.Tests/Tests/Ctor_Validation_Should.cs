@@ -1,13 +1,15 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class Ctor_Validation_Should : TestBase
     {

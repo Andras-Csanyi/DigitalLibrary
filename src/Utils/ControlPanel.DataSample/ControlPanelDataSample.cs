@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Linq;
-using DigitalLibrary.ControlPanel.Ctx.Context;
+
 using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
+    using DigitalLibrary.ControlPanel.Ctx;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+
     public static class ControlPanelDataSample
     {
         public static void Populate(ControlPanelContext ctx)

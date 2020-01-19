@@ -1,11 +1,14 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Menu
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Menu
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Client.Menu.Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     public class ModifyAsync_Should : TestBase
     {
         [Trait("Category", "Unit")]

@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions
+namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException : Exception
     {
         public MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException()

@@ -1,9 +1,10 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-
-namespace DigitalLibrary.MasterData.Validators.TestData.TestData
+namespace DigitalLibrary.MasterData.Validators.TestData
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    using DomainModel;
+
     [ExcludeFromCodeCoverage]
     public static class MasterData_DimensionValue_TestData
     {

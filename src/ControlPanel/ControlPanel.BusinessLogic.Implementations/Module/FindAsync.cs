@@ -1,12 +1,17 @@
 using System;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-using DigitalLibrary.ControlPanel.Ctx.Context;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
+    using Ctx;
+    using Ctx.Ctx;
+
     public partial class ModuleBusinessLogic
     {
         public async Task<DomainModel.Entities.Module> FindAsync(DomainModel.Entities.Module module)
@@ -24,9 +29,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                     await _moduleValidator.ValidateAndThrowAsync(module).ConfigureAwait(false);
 
                     return await ctx.Modules
-                        .Include(p => p.Menus)
-                        .FirstOrDefaultAsync(p => p.Id == module.Id)
-                        .ConfigureAwait(false);
+                       .Include(p => p.Menus)
+                       .FirstOrDefaultAsync(p => p.Id == module.Id)
+                       .ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

@@ -1,12 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     public class DeleteTopDimensionStructureAsync_Should : TestBase
     {
         public DeleteTopDimensionStructureAsync_Should() : base(TestInfo)
@@ -19,31 +24,34 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
         public async Task Delete()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure first = new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure first = new DimensionStructure
             {
                 Name = "first",
                 Desc = "first",
                 IsActive = 1
             };
-            DomainModel.DomainModel.DimensionStructure firstResult = await masterDataBusinessLogic.AddTopDimensionStructureAsync(first)
-                .ConfigureAwait(false);
+            DimensionStructure firstResult = await masterDataBusinessLogic
+               .AddTopDimensionStructureAsync(first)
+               .ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure second = new DomainModel.DomainModel.DimensionStructure
+            DimensionStructure second = new DimensionStructure
             {
                 Name = "second",
                 Desc = "second",
                 IsActive = 1
             };
-            DomainModel.DomainModel.DimensionStructure secondResult = await masterDataBusinessLogic.AddTopDimensionStructureAsync(second)
-                .ConfigureAwait(false);
+            DimensionStructure secondResult = await masterDataBusinessLogic
+               .AddTopDimensionStructureAsync(second)
+               .ConfigureAwait(false);
 
             // Act
             await masterDataBusinessLogic.DeleteDimensionStructureAsync(secondResult).ConfigureAwait(false);
 
             // Assert
             // action.Should().NotThrow();
-            List<DomainModel.DomainModel.DimensionStructure> result = await masterDataBusinessLogic.GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+            List<DimensionStructure> result = await masterDataBusinessLogic
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false);
 
             result.Count.Should().Be(1);
         }
@@ -52,18 +60,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
         public async Task ThrowException_WhenEntityDoesntExist()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure { Id = 100 };
+            DimensionStructure dimensionStructure =
+                new DimensionStructure { Id = 100 };
 
             // Act
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-                .WithInnerException<MasterDataBusinessLogicNoSuchDimensionStructureEntity>();
+               .WithInnerException<MasterDataBusinessLogicNoSuchDimensionStructureEntity>();
         }
     }
 }

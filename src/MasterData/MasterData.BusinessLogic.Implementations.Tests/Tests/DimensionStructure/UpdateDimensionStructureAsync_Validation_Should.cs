@@ -1,18 +1,18 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
-    using Exceptions.Exceptions;
+    using Exceptions;
 
     using FluentAssertions;
 
     using FluentValidation;
 
-    using Validators.TestData.TestData;
+    using Validators.TestData;
 
     using Xunit;
 
@@ -38,7 +38,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-                .WithInnerException<ArgumentNullException>();
+               .WithInnerException<ArgumentNullException>();
         }
 
         [Theory]
@@ -60,17 +60,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
                 IsActive = isActive,
                 ParentDimensionStructureId = parentDimensionStructureId,
             };
-            
+
             // Act
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.UpdateDimensionStructureAsync(dimensionStructure)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
-            
+
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
     }
 }

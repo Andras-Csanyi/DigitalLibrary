@@ -1,4 +1,4 @@
-﻿namespace DigitalLibrary.ControlPanel.WebApi.Api.Api
+﻿namespace DigitalLibrary.ControlPanel.WebApi.Api
 {
     public struct ControlPanelWebApi
     {

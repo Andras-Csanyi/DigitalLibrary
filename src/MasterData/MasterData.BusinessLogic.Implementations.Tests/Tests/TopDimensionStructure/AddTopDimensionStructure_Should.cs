@@ -1,10 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AddTopDimensionStructure_Should : TestBase
     {
@@ -18,27 +22,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
         public async Task AddNewDimensionStructure()
         {
             // Arrange
-            DomainModel.DomainModel.Dimension dimension = new DomainModel.DomainModel.Dimension
+            Dimension dimension = new Dimension
             {
                 Name = "name",
                 Description = "desc",
                 IsActive = 1
             };
-            DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
+            Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 dimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
-            {
-                Name = "name",
-                Desc = "desc",
-                IsActive = 1,
-                ParentDimensionStructureId = 0,
-                DimensionId = dimensionResult.Id
-            };
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
+                {
+                    Name = "name",
+                    Desc = "desc",
+                    IsActive = 1,
+                    ParentDimensionStructureId = 0,
+                    DimensionId = dimensionResult.Id
+                };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure result = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
-                dimensionStructure).ConfigureAwait(false);
+            DimensionStructure result = await masterDataBusinessLogic
+               .AddTopDimensionStructureAsync(
+                    dimensionStructure).ConfigureAwait(false);
 
             // Arrange
             result.Should().NotBeNull();

@@ -1,12 +1,12 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
     using System.Threading.Tasks;
 
-    using DomainModel.DomainModel;
+    using DomainModel;
 
     using FluentAssertions;
 
-    using Validators.TestData.TestData;
+    using Validators.TestData;
 
     using Xunit;
 
@@ -34,8 +34,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
                 IsActive = 1
             };
             Dimension dimension1Result = await masterDataBusinessLogic.AddDimensionAsync(dimension1)
-                .ConfigureAwait(false);
-            
+               .ConfigureAwait(false);
+
             Dimension dimension2 = new Dimension
             {
                 Name = "name2",
@@ -43,8 +43,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
                 IsActive = 1
             };
             Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
-                .ConfigureAwait(false);
-            
+               .ConfigureAwait(false);
+
             DimensionStructure top = new DimensionStructure
             {
                 Name = "name",
@@ -53,7 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             };
             DimensionStructure topResult = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
                 top).ConfigureAwait(false);
-            
+
             DimensionStructure orig = new DimensionStructure
             {
                 Name = "name",
@@ -64,7 +64,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             };
             DimensionStructure origResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
                 orig).ConfigureAwait(false);
-            
+
             DimensionStructure orig2 = new DimensionStructure
             {
                 Name = "name2",
@@ -83,7 +83,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             // Act
             DimensionStructure updatedResult = await masterDataBusinessLogic.UpdateDimensionStructureAsync(
                 orig).ConfigureAwait(false);
-            
+
             // Assert
             updatedResult.Id.Should().Be(origResult.Id);
             updatedResult.Name.Should().Be(updateName);

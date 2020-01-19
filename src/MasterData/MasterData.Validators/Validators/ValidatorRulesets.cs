@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
-namespace DigitalLibrary.MasterData.Validators.Validators
+namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public static class ValidatorRulesets
     {

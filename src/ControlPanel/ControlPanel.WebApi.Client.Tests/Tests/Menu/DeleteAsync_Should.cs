@@ -1,11 +1,14 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Menu
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Menu
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Client.Menu.Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     public class DeleteAsync_Should : TestBase
     {
         [Trait("Category", "Unit")]
@@ -17,7 +20,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Menu
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                    .DeleteMenuAsync(null).ConfigureAwait
+                   .DeleteMenuAsync(null).ConfigureAwait
                         (false);
             };
 

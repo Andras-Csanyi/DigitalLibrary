@@ -4,15 +4,19 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
+
 using BlazorStrap;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.Web.Api.Api;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using Newtonsoft.Json;
 
 namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 {
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
+
     public partial class ExactGrid
     {
         private List<DimensionStructure> _dimensionStructures;
@@ -48,11 +52,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             Columns = await GetColumnNames().ConfigureAwait(false);
             _httpClient = HttpClientFactory.CreateClient("httpClient");
             string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                         $"{MasterDataApi.DimensionStructure.V1.GetTopDimensionStructures}";
+                $"{MasterDataApi.DimensionStructure.V1.GetTopDimensionStructures}";
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get, url);
             HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             httpResponseMessage.EnsureSuccessStatusCode();
             string resultString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             _dimensionStructures = JsonConvert.DeserializeObject<List<DimensionStructure>>(resultString);
@@ -62,8 +66,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
         {
             Type dimensionStructuretype = typeof(DimensionStructure);
             List<string> columnNames = new List<PropertyInfo>(dimensionStructuretype.GetProperties())
-                .Select(n => n.Name)
-                .ToList();
+               .Select(n => n.Name)
+               .ToList();
             return columnNames;
         }
     }

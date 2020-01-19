@@ -1,14 +1,21 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.Validators.TestData.TestData;
-using FluentAssertions;
-using FluentValidation;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using FluentAssertions;
+
+    using FluentValidation;
+
+    using Validators.TestData;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AddDimensionStructure_Validation_Should : TestBase
     {
@@ -31,7 +38,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
 
         [Theory]
@@ -45,14 +52,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             long parentId)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
-            {
-                Id = id,
-                ParentDimensionStructureId = parentId,
-                Name = name,
-                Desc = desc,
-                IsActive = isActive
-            };
+            DimensionStructure dimensionStructure =
+                new DimensionStructure
+                {
+                    Id = id,
+                    ParentDimensionStructureId = parentId,
+                    Name = name,
+                    Desc = desc,
+                    IsActive = isActive
+                };
 
             // Act
             Func<Task> action = async () =>
@@ -62,7 +70,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
     }
 }

@@ -1,11 +1,14 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Client.Menu.Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     public class ModifyAsync_Should : TestBase
     {
         [Trait("Category", "Unit")]
@@ -17,7 +20,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Module
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                    .ModifyModuleAsync(null).ConfigureAwait(false);
+                   .ModifyModuleAsync(null).ConfigureAwait(false);
             };
 
             // Assert

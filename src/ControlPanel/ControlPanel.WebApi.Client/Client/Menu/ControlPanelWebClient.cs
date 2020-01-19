@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-using DigitalLibrary.ControlPanel.WebApi.Api.Api;
-using DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions;
-using Newtonsoft.Json;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
+﻿namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using Api;
+
+    using DomainModel.Entities;
+
+    using Exceptions;
+
+    using Newtonsoft.Json;
+
     public class ControlPanelWebClient : IControlPanelWebClient
     {
         private HttpClient _httpClient;
@@ -26,12 +30,13 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
             {
                 string url = $"{ControlPanelWebApi.Menu.Base}/{ControlPanelWebApi.Menu.GetAll}";
                 HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(url)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string stringContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                List<DomainModel.Entities.Menu> result = JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
+                List<DomainModel.Entities.Menu> result =
+                    JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
 
                 return result;
             }
@@ -48,12 +53,13 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 string url = $"{ControlPanelWebApi.Menu.Base}/{ControlPanelWebApi.Menu.GetAllActive}";
                 HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(
                         url)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string stringContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                List<DomainModel.Entities.Menu> result = JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
+                List<DomainModel.Entities.Menu> result =
+                    JsonConvert.DeserializeObject<List<DomainModel.Entities.Menu>>(stringContent);
 
                 return result;
             }
@@ -83,13 +89,14 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
-                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
+                   .ConfigureAwait(false);
+                DomainModel.Entities.Menu result =
+                    JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -119,13 +126,14 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
-                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
+                   .ConfigureAwait(false);
+                DomainModel.Entities.Menu result =
+                    JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -155,13 +163,14 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
-                DomainModel.Entities.Menu result = JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
+                   .ConfigureAwait(false);
+                DomainModel.Entities.Menu result =
+                    JsonConvert.DeserializeObject<DomainModel.Entities.Menu>(resultString);
 
                 return result;
             }
@@ -192,7 +201,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
             }
@@ -208,12 +217,12 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
             {
                 string url = $"{ControlPanelWebApi.Module.Base}/{ControlPanelWebApi.Module.GetAll}";
                 HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(url)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string stringContent = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 List<Module> result = JsonConvert.DeserializeObject<List<Module>>(stringContent);
 
                 return result;
@@ -230,8 +239,8 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
             {
                 string url = $"{ControlPanelWebApi.Module.Base}/{ControlPanelWebApi.Module.GetAllActive}";
                 HttpResponseMessage httpResponseMessage = await _httpClient
-                    .GetAsync(url)
-                    .ConfigureAwait(false);
+                   .GetAsync(url)
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
@@ -267,12 +276,12 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 Module result = JsonConvert.DeserializeObject<Module>(resultString);
 
                 return result;
@@ -304,12 +313,12 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 Module result = JsonConvert.DeserializeObject<Module>(resultString);
 
@@ -341,12 +350,12 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
                 Module result = JsonConvert.DeserializeObject<Module>(resultString);
 
                 return result;
@@ -377,7 +386,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu
                 request.Content = stringContent;
 
                 HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(request)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 httpResponseMessage.EnsureSuccessStatusCode();
             }

@@ -1,10 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class CountTopDimensionStructures_Should : TestBase
     {
@@ -21,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
 
             // Act
             long count = await masterDataBusinessLogic.CountTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
 
             // Assert
             count.Should().Be(0);

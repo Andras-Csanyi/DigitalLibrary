@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.Validators.Validators
+namespace DigitalLibrary.MasterData.Validators
 {
     public class MasterDataValidators : IMasterDataValidators
     {
@@ -9,9 +9,9 @@ namespace DigitalLibrary.MasterData.Validators.Validators
             DimensionStructureValidator dimensionStructureValidator)
         {
             if (dimensionValidator == null
-                || dimensionValueValidator == null
-                || topDimensionStructureValidator == null
-                || dimensionStructureValidator == null)
+             || dimensionValueValidator == null
+             || topDimensionStructureValidator == null
+             || dimensionStructureValidator == null)
             {
                 throw new MasterDataValidatorFacadeArgumentNullException();
             }

@@ -1,15 +1,21 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.Validators.Validators;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using FluentValidation;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Storage;
+
+    using Validators;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
@@ -17,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
                 using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -29,43 +35,43 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                         await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                                 dimensionStructure,
                                 ValidatorRulesets.AddNewDimensionStructure)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         DimensionStructure parent = await ctx.DimensionStructures
-                            .FindAsync(dimensionStructure.ParentDimensionStructureId)
-                            .ConfigureAwait(false);
+                           .FindAsync(dimensionStructure.ParentDimensionStructureId)
+                           .ConfigureAwait(false);
 
                         if (parent == null)
                         {
                             string noSuchErrMsg = $"No dimension structure with id: " +
-                                                  $"{dimensionStructure.ParentDimensionStructureId}.";
+                                $"{dimensionStructure.ParentDimensionStructureId}.";
                             throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
                         }
 
                         if (dimensionStructure.DimensionId != null && dimensionStructure.DimensionId != 0)
                         {
                             Dimension dimension = await ctx.Dimensions.FindAsync(dimensionStructure.DimensionId)
-                                .ConfigureAwait(false);
+                               .ConfigureAwait(false);
 
                             if (dimension == null)
                             {
                                 string noSuchErrMsg = $"No dimension with id: " +
-                                                      $"{dimensionStructure.DimensionId}.";
+                                    $"{dimensionStructure.DimensionId}.";
                                 throw new MasterDataBusinessLogicNoSuchTopDimensionStructureEntity(noSuchErrMsg);
                             }
                         }
 
                         await ctx.DimensionStructures.AddAsync(dimensionStructure)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
                         await transaction.CommitAsync().ConfigureAwait(false);
 
                         DimensionStructure result = await ctx.DimensionStructures
-                            .Include(i => i.ChildDimensionStructures)
-                            .ThenInclude(theni => theni.Dimension)
-                            .Include(ii => ii.Dimension)
-                            .FirstOrDefaultAsync(w => w.Id == dimensionStructure.Id)
-                            .ConfigureAwait(false);
+                           .Include(i => i.ChildDimensionStructures)
+                           .ThenInclude(theni => theni.Dimension)
+                           .Include(ii => ii.Dimension)
+                           .FirstOrDefaultAsync(w => w.Id == dimensionStructure.Id)
+                           .ConfigureAwait(false);
 
                         return result;
                     }

@@ -1,11 +1,16 @@
 using System;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.ControlPanel.Ctx.Context;
-using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
+    using Ctx;
+    using Ctx.Ctx;
+
+    using Validators;
+
     public partial class MenuBusinessLogic : IMenuBusinessLogic
     {
         private readonly DbContextOptions<ControlPanelContext> _dbContextOptions;

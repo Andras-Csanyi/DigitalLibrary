@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Client.Menu.Exceptions
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class ControlPanelWebApiClientGetAllMenusAsyncOperationException : Exception
     {
         public ControlPanelWebApiClientGetAllMenusAsyncOperationException()

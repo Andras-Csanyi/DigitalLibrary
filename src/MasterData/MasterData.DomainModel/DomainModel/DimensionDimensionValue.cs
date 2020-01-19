@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.DomainModel.DomainModel
+namespace DigitalLibrary.MasterData.DomainModel
 {
     public class DimensionDimensionValue
     {

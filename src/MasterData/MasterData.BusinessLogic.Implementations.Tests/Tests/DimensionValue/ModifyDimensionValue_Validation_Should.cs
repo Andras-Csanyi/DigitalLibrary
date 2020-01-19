@@ -1,14 +1,21 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.Validators.TestData.TestData;
-using FluentAssertions;
-using FluentValidation;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionValue
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using FluentAssertions;
+
+    using FluentValidation;
+
+    using Validators.TestData;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class ModifyDimensionValue_Validation_Should : TestBase
     {
@@ -24,8 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             MemberType = typeof(MasterData_DimensionValue_TestData))]
         public async Task ThrowException_WhenInputIsNull(
             long id,
-            DomainModel.DomainModel.DimensionValue oldDimensionValue,
-            DomainModel.DomainModel.DimensionValue newDimensionValue)
+            DimensionValue oldDimensionValue,
+            DimensionValue newDimensionValue)
         {
             // Arrange
 
@@ -40,15 +47,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicModifyDimensionValueAsyncOperationException>()
-                .WithInnerExceptionExactly<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerExceptionExactly<MasterDataBusinessLogicArgumentNullException>();
         }
 
         [Fact]
         public async Task ThrowException_WhenOldDimensionValue_HasZeroId()
         {
             // Arrange
-            DomainModel.DomainModel.DimensionValue old = new DomainModel.DomainModel.DimensionValue();
-            DomainModel.DomainModel.DimensionValue nw = new DomainModel.DomainModel.DimensionValue();
+            DimensionValue old = new DimensionValue();
+            DimensionValue nw = new DimensionValue();
 
             // Act
             Func<Task> action = async () =>
@@ -61,7 +68,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicModifyDimensionValueAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
     }
 }

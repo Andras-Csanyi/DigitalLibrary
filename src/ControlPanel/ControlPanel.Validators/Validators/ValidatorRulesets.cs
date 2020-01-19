@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.Validators.Validators
+namespace DigitalLibrary.ControlPanel.Validators
 {
     public static class ValidatorRulesets
     {

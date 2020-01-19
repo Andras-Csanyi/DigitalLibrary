@@ -1,12 +1,17 @@
 using System;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
-using DigitalLibrary.ControlPanel.Ctx.Context;
-using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using FluentValidation;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
+    using Ctx;
+    using Ctx.Ctx;
+
+    using Validators;
+
     public partial class MenuBusinessLogic
     {
         public async Task<DomainModel.Entities.Menu> FindAsync(DomainModel.Entities.Menu menu)
@@ -24,7 +29,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
                     await _menuValidator.ValidateAndThrowAsync(
                             menu,
                             ruleSet: ValidatorRulesets.Find)
-                        .ConfigureAwait(false);
+                       .ConfigureAwait(false);
 
                     return await ctx.Menus.FindAsync(menu.Id).ConfigureAwait(false);
                 }

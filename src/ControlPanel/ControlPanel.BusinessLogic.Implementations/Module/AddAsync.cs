@@ -1,14 +1,20 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-using DigitalLibrary.ControlPanel.Ctx.Context;
-using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
+    using Ctx;
+    using Ctx.Ctx;
+
+    using Validators;
+
     public partial class ModuleBusinessLogic
     {
         public async Task<DomainModel.Entities.Module> AddAsync(DomainModel.Entities.Module module)
@@ -27,7 +33,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 
                         await _moduleValidator.ValidateAndThrowAsync(module,
                                 ruleSet: ValidatorRulesets.AddNew)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         await ctx.Modules.AddAsync(module).ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);

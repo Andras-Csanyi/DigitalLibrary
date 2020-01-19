@@ -1,13 +1,18 @@
-using System;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.Validators.Validators;
-using FluentValidation;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
+    using FluentValidation;
+
+    using Validators;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> AddTopDimensionStructureAsync(
@@ -27,11 +32,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                         await _masterDataValidators.TopDimensionStructureValidator.ValidateAndThrowAsync(
                                 dimensionStructure,
                                 ruleSet: ValidatorRulesets.AddNewTopDimensionStructure)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         dimensionStructure.ParentDimensionStructureId = null;
                         await ctx.DimensionStructures.AddAsync(dimensionStructure)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
                         await transaction.CommitAsync().ConfigureAwait(false);
 

@@ -1,9 +1,11 @@
-using DigitalLibrary.ControlPanel.Ctx.Context.Configurations;
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace DigitalLibrary.ControlPanel.Ctx.Context
+namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 {
+    using Configurations;
+
+    using DomainModel.Entities;
+
+    using Microsoft.EntityFrameworkCore;
+
     public class ControlPanelContext : DbContext
     {
         public DbSet<Menu> Menus { get; set; }

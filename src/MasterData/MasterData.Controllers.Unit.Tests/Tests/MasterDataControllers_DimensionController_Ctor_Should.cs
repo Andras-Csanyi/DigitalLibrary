@@ -1,12 +1,13 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.Controllers.Controllers;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.Tests
+namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class MasterDataControllers_DimensionController_Ctor_Should
     {

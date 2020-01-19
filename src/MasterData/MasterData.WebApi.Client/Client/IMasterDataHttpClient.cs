@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.WebApi.Client.Client
+namespace DigitalLibrary.MasterData.WebApi.Client
 {
     public partial interface IMasterDataHttpClient
     {

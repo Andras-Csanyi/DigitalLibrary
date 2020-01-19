@@ -1,22 +1,29 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.WebApi.Client.Client;
-using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using FluentAssertions;
+
+    using Utils.DiLibHttpClient.Exceptions;
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApi.Client;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class ModifyTopDimensionStructure_Validation_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+    public class ModifyTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
     {
         public ModifyTopDimensionStructure_Validation_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -34,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>()
-                .WithInnerException<DiLibHttpClientPutException>();
+               .WithInnerException<DiLibHttpClientPutException>();
         }
     }
 }

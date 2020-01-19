@@ -1,19 +1,22 @@
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
 using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.ControlPanel.Controllers.Controllers;
-using DigitalLibrary.ControlPanel.Ctx.Context;
-using DigitalLibrary.ControlPanel.Validators.Validators;
-using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
-using DigitalLibrary.MasterData.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.MasterData.Controllers.Controllers;
-using DigitalLibrary.MasterData.Ctx.Ctx;
-using DigitalLibrary.MasterData.Validators.Validators;
 using DigitalLibrary.Utils.ControlPanel.DataSample;
 
 namespace WebApp
 {
     using System;
+
+    using DigitalLibrary.ControlPanel.Controllers;
+    using DigitalLibrary.ControlPanel.Ctx;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations;
+    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.Controllers;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.Validators;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -44,16 +47,16 @@ namespace WebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
+               .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 })
-                .AddApplicationPart(
+               .AddApplicationPart(
                     typeof(MenuController).Assembly)
-                .AddApplicationPart(
+               .AddApplicationPart(
                     typeof(DimensionController).Assembly)
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+               .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // if (_env.IsStaging())
             // {

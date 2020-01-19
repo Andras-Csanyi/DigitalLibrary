@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-
-namespace DigitalLibrary.MasterData.DomainModel.DomainModel
+namespace DigitalLibrary.MasterData.DomainModel
 {
+    using System.Collections.Generic;
+
     public class DimensionStructure
     {
         public long Id { get; set; }

@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
-using DigitalLibrary.ControlPanel.Ctx.Context;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
+    using Ctx;
+    using Ctx.Ctx;
+
     public partial class MenuBusinessLogic
     {
         public async Task<List<DomainModel.Entities.Menu>> GetAllActiveAsync()

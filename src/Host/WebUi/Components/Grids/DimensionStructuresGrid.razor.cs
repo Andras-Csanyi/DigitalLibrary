@@ -4,10 +4,6 @@ using System.Threading.Tasks;
 
 using BlazorStrap;
 
-using DigitalLibrary.MasterData.DomainModel.DomainModel;
-using DigitalLibrary.MasterData.Validators.Validators;
-using DigitalLibrary.MasterData.WebApi.Client.Client;
-
 using FluentValidation.Results;
 
 using Microsoft.AspNetCore.Components;
@@ -15,6 +11,10 @@ using Microsoft.JSInterop;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+
     using FluentValidation;
 
     public partial class DimensionStructuresGrid
