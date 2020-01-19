@@ -7,6 +7,22 @@
     {
         public const string Route = "api/masterdata";
 
+        public struct SourceFormat
+        {
+            public const string SourceFormatBase = Route + "/SourceFormat";
+
+            public struct V1
+            {
+                public const string Add = "v1/Add";
+
+                public const string Update = "v1/Update";
+
+                public const string Delete = "v1/Delete";
+
+                public const string GetAll = "v1/GetAll";
+            }
+        }
+
         public struct DimensionAttribute
         {
             public struct V1
