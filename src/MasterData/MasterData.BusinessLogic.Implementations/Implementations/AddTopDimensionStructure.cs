@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> AddTopDimensionStructureAsync(
+        public async Task<DimensionStructure> AddSourceFormatAsync(
             DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

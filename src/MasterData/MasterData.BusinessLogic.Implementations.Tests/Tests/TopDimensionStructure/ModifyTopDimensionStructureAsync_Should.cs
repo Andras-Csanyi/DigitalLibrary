@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             };
 
             DimensionStructure origRes = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     orig).ConfigureAwait(false);
 
             DimensionStructure mod = new DimensionStructure
@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
 
             // Act
             DimensionStructure res = await masterDataBusinessLogic
-               .UpdateTopDimensionStructureAsync(mod)
+               .UpdateSourceFormatAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -83,7 +83,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(dimensionStructure)
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(dimensionStructure)
                    .ConfigureAwait(false);
             };
 

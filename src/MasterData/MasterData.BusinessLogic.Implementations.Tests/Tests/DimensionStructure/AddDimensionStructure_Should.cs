@@ -46,7 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = 0
                 };
             DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
@@ -140,7 +140,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = 0
                 };
             DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
@@ -277,7 +277,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = 0
                 };
             DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
@@ -398,7 +398,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = 0
                 };
             DimensionStructure topLevelDimensionStructureResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 
@@ -559,7 +559,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     ParentDimensionStructureId = 0
                 };
             DimensionStructure topLeveldimensionStructureResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     topLevelDimensionStructure)
                .ConfigureAwait(false);
 

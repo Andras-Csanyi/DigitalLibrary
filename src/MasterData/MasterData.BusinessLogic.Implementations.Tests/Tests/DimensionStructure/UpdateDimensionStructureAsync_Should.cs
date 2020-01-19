@@ -51,7 +51,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Desc = "desc",
                 IsActive = 1,
             };
-            DimensionStructure topResult = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
+            DimensionStructure topResult = await masterDataBusinessLogic.AddSourceFormatAsync(
                 top).ConfigureAwait(false);
 
             DimensionStructure orig = new DimensionStructure
@@ -71,7 +71,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Desc = "desc2",
                 IsActive = 1,
             };
-            DimensionStructure orig2Result = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
+            DimensionStructure orig2Result = await masterDataBusinessLogic.AddSourceFormatAsync(
                 orig2).ConfigureAwait(false);
 
             origResult.Name = updateName;

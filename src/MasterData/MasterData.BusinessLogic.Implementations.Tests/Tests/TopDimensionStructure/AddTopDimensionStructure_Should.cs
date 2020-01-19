@@ -43,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
 
             // Act
             DimensionStructure result = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(
+               .AddSourceFormatAsync(
                     dimensionStructure).ConfigureAwait(false);
 
             // Arrange

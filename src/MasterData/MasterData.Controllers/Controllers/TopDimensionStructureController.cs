@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<DimensionStructure> result = await _masterDataBusinessLogic.GetTopDimensionStructuresAsync()
+                List<DimensionStructure> result = await _masterDataBusinessLogic.GetSourceFormatAsync()
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -52,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                DimensionStructure result = await _masterDataBusinessLogic.AddTopDimensionStructureAsync(
+                DimensionStructure result = await _masterDataBusinessLogic.AddSourceFormatAsync(
                     dimensionStructure).ConfigureAwait(false);
                 return Ok(result);
             }
@@ -91,7 +91,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic
-                   .UpdateTopDimensionStructureAsync(dimensionStructure)
+                   .UpdateSourceFormatAsync(dimensionStructure)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

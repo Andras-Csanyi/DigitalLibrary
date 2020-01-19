@@ -31,7 +31,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
                 IsActive = 1
             };
             DimensionStructure firstResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(first)
+               .AddSourceFormatAsync(first)
                .ConfigureAwait(false);
 
             DimensionStructure second = new DimensionStructure
@@ -41,7 +41,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
                 IsActive = 1
             };
             DimensionStructure secondResult = await masterDataBusinessLogic
-               .AddTopDimensionStructureAsync(second)
+               .AddSourceFormatAsync(second)
                .ConfigureAwait(false);
 
             // Act
@@ -50,7 +50,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Assert
             // action.Should().NotThrow();
             List<DimensionStructure> result = await masterDataBusinessLogic
-               .GetTopDimensionStructuresAsync()
+               .GetSourceFormatAsync()
                .ConfigureAwait(false);
 
             result.Count.Should().Be(1);

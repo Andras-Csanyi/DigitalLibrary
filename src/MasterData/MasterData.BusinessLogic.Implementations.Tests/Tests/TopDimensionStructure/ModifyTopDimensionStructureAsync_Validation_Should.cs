@@ -49,7 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(
                     dimensionStructure).ConfigureAwait(false);
             };
 
@@ -66,7 +66,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimen
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(
                         null)
                    .ConfigureAwait(false);
             };
