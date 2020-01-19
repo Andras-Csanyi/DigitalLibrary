@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 using BlazorStrap;
 
-using DigitalLibrary.MasterData.Web.Api.Api;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -17,6 +15,7 @@ using Newtonsoft.Json;
 namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 {
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
 
     public partial class ExactGrid
     {

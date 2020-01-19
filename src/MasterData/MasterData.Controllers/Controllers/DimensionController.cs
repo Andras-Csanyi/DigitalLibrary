@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    using Web.Api.Api;
+    using Web.Api;
 
     [ApiController]
     [Route(MasterDataApi.Dimensions.V1.DimensionRouteBase)]

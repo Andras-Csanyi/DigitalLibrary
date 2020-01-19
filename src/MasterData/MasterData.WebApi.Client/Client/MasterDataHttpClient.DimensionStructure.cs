@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using DigitalLibrary.MasterData.Web.Api.Api;
-
 namespace DigitalLibrary.MasterData.WebApi.Client.Client
 {
     using DomainModel;
+
+    using Web.Api;
 
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
