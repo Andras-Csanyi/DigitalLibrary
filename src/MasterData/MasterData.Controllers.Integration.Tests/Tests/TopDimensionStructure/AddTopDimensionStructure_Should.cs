@@ -1,13 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class AddTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
@@ -31,8 +35,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
             };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure res = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
-                .ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure res = await masterDataHttpClient
+               .AddTopDimensionStructureAsync(orig)
+               .ConfigureAwait(false);
 
             // Assert
             res.Id.Should().NotBe(0);

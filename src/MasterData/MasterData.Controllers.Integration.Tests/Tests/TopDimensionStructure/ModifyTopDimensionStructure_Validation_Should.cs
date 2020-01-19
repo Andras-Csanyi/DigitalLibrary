@@ -1,16 +1,21 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.WebApi.Client.Client;
-using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.DiLibHttpClient.Exceptions;
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApi.Client.Client;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class ModifyTopDimensionStructure_Validation_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
@@ -34,7 +39,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>()
-                .WithInnerException<DiLibHttpClientPutException>();
+               .WithInnerException<DiLibHttpClientPutException>();
         }
     }
 }

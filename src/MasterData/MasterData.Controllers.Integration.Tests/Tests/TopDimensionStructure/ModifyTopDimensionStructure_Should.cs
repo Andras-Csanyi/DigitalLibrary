@@ -1,14 +1,19 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.Validators.TestData.TestData;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using Validators.TestData.TestData;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class ModifyTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
@@ -35,16 +40,18 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
                 Desc = "orig",
                 IsActive = 1
             };
-            DomainModel.DomainModel.DimensionStructure origResult = await masterDataHttpClient.AddTopDimensionStructureAsync(orig)
-                .ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure origResult = await masterDataHttpClient
+               .AddTopDimensionStructureAsync(orig)
+               .ConfigureAwait(false);
 
             origResult.Name = name;
             origResult.Desc = desc;
             origResult.IsActive = isActive;
 
             // Act
-            DomainModel.DomainModel.DimensionStructure result = await masterDataHttpClient.ModifyTopDimensionStructureAsync(origResult)
-                .ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure result = await masterDataHttpClient
+               .ModifyTopDimensionStructureAsync(origResult)
+               .ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();

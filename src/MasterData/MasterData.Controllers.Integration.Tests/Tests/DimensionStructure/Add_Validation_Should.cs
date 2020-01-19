@@ -1,22 +1,29 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.MasterData.Validators.TestData.TestData;
-using DigitalLibrary.MasterData.WebApi.Client.Client;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using Validators.TestData.TestData;
+
+    using WebApi.Client.Client;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Add_Validation_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
-        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
-                                     ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Add_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
+            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
@@ -46,14 +53,15 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
             long parentId)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
-            {
-                Id = id,
-                Name = name,
-                Desc = desc,
-                IsActive = isActive,
-                ParentDimensionStructureId = parentId
-            };
+            DomainModel.DomainModel.DimensionStructure dimensionStructure =
+                new DomainModel.DomainModel.DimensionStructure
+                {
+                    Id = id,
+                    Name = name,
+                    Desc = desc,
+                    IsActive = isActive,
+                    ParentDimensionStructureId = parentId
+                };
 
             // Act
             Func<Task> action = async () =>

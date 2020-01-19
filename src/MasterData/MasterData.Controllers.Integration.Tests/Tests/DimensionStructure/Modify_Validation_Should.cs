@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.UpdateDimensionStructure(null)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert
@@ -63,14 +63,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.Dimensio
                 IsActive = isActive,
                 ParentDimensionStructureId = parentDimensionStructureId,
             };
-            
+
             // Act
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.UpdateDimensionStructure(dimensionStructure)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
-            
+
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }

@@ -1,17 +1,22 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class MasterData_Api_GetTopDimensionStructuresAsync_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
+    public class
+        MasterData_Api_GetTopDimensionStructuresAsync_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
     {
         public MasterData_Api_GetTopDimensionStructuresAsync_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DomainModel.DomainModel.DimensionStructure> host,
@@ -25,8 +30,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
             // Arrange
 
             // Act
-            List<DomainModel.DomainModel.DimensionStructure> result = await masterDataHttpClient.GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionStructure> result = await masterDataHttpClient
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();

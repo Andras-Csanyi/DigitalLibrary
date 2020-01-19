@@ -1,14 +1,18 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
-using FluentAssertions;
-using WebApp;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class DeleteTopDimensionStructure_Should : TestBase<DomainModel.DomainModel.DimensionStructure>
@@ -29,8 +33,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
                 Desc = "second",
                 IsActive = 1,
             };
-            DomainModel.DomainModel.DimensionStructure firstResult = await masterDataHttpClient.AddTopDimensionStructureAsync(first)
-                .ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure firstResult = await masterDataHttpClient
+               .AddTopDimensionStructureAsync(first)
+               .ConfigureAwait(false);
 
             DomainModel.DomainModel.DimensionStructure second = new DomainModel.DomainModel.DimensionStructure
             {
@@ -38,18 +43,21 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Tests.TopDimen
                 Desc = "second",
                 IsActive = 0
             };
-            DomainModel.DomainModel.DimensionStructure secondResult = await masterDataHttpClient.AddTopDimensionStructureAsync(second)
-                .ConfigureAwait(false);
-            List<DomainModel.DomainModel.DimensionStructure> origRes = await masterDataHttpClient.GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure secondResult = await masterDataHttpClient
+               .AddTopDimensionStructureAsync(second)
+               .ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionStructure> origRes = await masterDataHttpClient
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false);
             int origResCount = origRes.Count;
 
             // Act
             await masterDataHttpClient.DeleteTopDimensionStructureAsync(secondResult).ConfigureAwait(false);
 
             // Assert
-            List<DomainModel.DomainModel.DimensionStructure> res = await masterDataHttpClient.GetTopDimensionStructuresAsync()
-                .ConfigureAwait(false);
+            List<DomainModel.DomainModel.DimensionStructure> res = await masterDataHttpClient
+               .GetTopDimensionStructuresAsync()
+               .ConfigureAwait(false);
             res.Count.Should().Be(origResCount - 1);
         }
     }
