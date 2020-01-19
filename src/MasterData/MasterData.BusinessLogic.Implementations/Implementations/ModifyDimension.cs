@@ -1,14 +1,18 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<Dimension> ModifyDimensionAsync(long dimensionId, Dimension modifiedDimension)
@@ -26,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                     await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
                             modifiedDimension,
                             ruleSet: ValidatorRulesets.ModifyDimension)
-                        .ConfigureAwait(false);
+                       .ConfigureAwait(false);
 
                     Dimension toBeModified = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
 

@@ -1,13 +1,16 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
@@ -25,13 +28,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                         }
 
                         DimensionStructure toBeDeleted = await ctx.DimensionStructures
-                            .FindAsync(dimensionStructure.Id)
-                            .ConfigureAwait(false);
+                           .FindAsync(dimensionStructure.Id)
+                           .ConfigureAwait(false);
 
                         if (toBeDeleted == null)
                         {
                             string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                                         $"with id: {dimensionStructure}.";
+                                $"with id: {dimensionStructure}.";
                             throw new MasterDataBusinessLogicNoSuchDimensionStructureEntity(msg);
                         }
 

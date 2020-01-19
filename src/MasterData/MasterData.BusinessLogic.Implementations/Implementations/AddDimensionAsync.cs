@@ -1,13 +1,16 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Validators.Validators;
+
 using FluentValidation;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<Dimension> AddDimensionAsync(Dimension dimension)
@@ -22,12 +25,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                 await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
                         dimension,
                         ruleSet: ValidatorRulesets.AddNewDimension)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     await ctx.Dimensions.AddAsync(dimension)
-                        .ConfigureAwait(false);
+                       .ConfigureAwait(false);
                     await ctx.SaveChangesAsync().ConfigureAwait(false);
 
                     return dimension;

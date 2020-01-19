@@ -1,15 +1,19 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionValue> AddDimensionValueAsync(
@@ -27,19 +31,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                 await _masterDataValidators.DimensionValueValidator.ValidateAndThrowAsync(
                         dimensionValue,
                         ruleSet: ValidatorRulesets.AddNewDimensionValue)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
-                        .ConfigureAwait(false))
+                       .ConfigureAwait(false))
                     {
                         try
                         {
                             // Check whether dimension exist
                             Dimension dimension = await ctx.Dimensions
-                                .FindAsync(dimensionId)
-                                .ConfigureAwait(true);
+                               .FindAsync(dimensionId)
+                               .ConfigureAwait(true);
 
                             if (dimension == null)
                             {
@@ -49,17 +53,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
 
                             // check whether value already exist
                             DimensionValue doesDimensionValueExists = await ctx.DimensionValues
-                                .FirstOrDefaultAsync(w => w.Value == dimensionValue.Value)
-                                .ConfigureAwait(false);
+                               .FirstOrDefaultAsync(w => w.Value == dimensionValue.Value)
+                               .ConfigureAwait(false);
 
                             if (doesDimensionValueExists != null)
                             {
                                 // check whether dimension - dimension value pair exist
                                 DimensionDimensionValue doesDimensionDimensionValueRelationExist = await ctx
-                                    .DimensionDimensionValues
-                                    .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
-                                                              && p.DimensionValueId == doesDimensionValueExists.Id)
-                                    .ConfigureAwait(false);
+                                   .DimensionDimensionValues
+                                   .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
+                                     && p.DimensionValueId == doesDimensionValueExists.Id)
+                                   .ConfigureAwait(false);
 
                                 // if doesnt exists create one
                                 if (doesDimensionDimensionValueRelationExist == null)
@@ -70,7 +74,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                                         DimensionValueId = doesDimensionValueExists.Id
                                     };
                                     await ctx.DimensionDimensionValues.AddAsync(dimensionDimensionValue)
-                                        .ConfigureAwait(false);
+                                       .ConfigureAwait(false);
                                     await ctx.SaveChangesAsync().ConfigureAwait(false);
                                     return doesDimensionValueExists;
                                 }
@@ -80,7 +84,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                                 DimensionValue alreadyExistingDimensionValue =
                                     await GetDimensionValueWithRelatedEntities(
                                             dimensionValue.Value, ctx)
-                                        .ConfigureAwait(false);
+                                       .ConfigureAwait(false);
                                 return alreadyExistingDimensionValue;
                             }
 
@@ -90,7 +94,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                                 Value = dimensionValue.Value
                             };
                             await ctx.DimensionValues.AddAsync(newDimensionValue)
-                                .ConfigureAwait(false);
+                               .ConfigureAwait(false);
                             await ctx.SaveChangesAsync().ConfigureAwait(false);
 
                             // create dimension - dimension value relation
@@ -100,13 +104,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                                 DimensionValueId = newDimensionValue.Id
                             };
                             await ctx.DimensionDimensionValues.AddAsync(newlyAddedDimensionValue)
-                                .ConfigureAwait(false);
+                               .ConfigureAwait(false);
                             await ctx.SaveChangesAsync().ConfigureAwait(false);
 
                             await transaction.CommitAsync().ConfigureAwait(false);
                             DimensionValue createdDimensionValue =
                                 await GetDimensionValueWithRelatedEntities(dimensionValue.Value, ctx)
-                                    .ConfigureAwait(false);
+                                   .ConfigureAwait(false);
                             return createdDimensionValue;
                         }
                         catch (Exception e)
@@ -134,9 +138,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
             }
 
             DimensionValue res = await ctx.DimensionValues
-                .Include(i => i.DimensionDimensionValues)
-                .FirstOrDefaultAsync(p => p.Value == dimensionValueValue)
-                .ConfigureAwait(false);
+               .Include(i => i.DimensionDimensionValues)
+               .FirstOrDefaultAsync(p => p.Value == dimensionValueValue)
+               .ConfigureAwait(false);
             return res;
         }
     }

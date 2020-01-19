@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<long> CountTopDimensionStructuresAsync()
@@ -15,8 +18,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                 try
                 {
                     long res = await ctx.DimensionStructures
-                        .LongCountAsync(w => w.ParentDimensionStructureId == null)
-                        .ConfigureAwait(false);
+                       .LongCountAsync(w => w.ParentDimensionStructureId == null)
+                       .ConfigureAwait(false);
 
                     return res;
                 }

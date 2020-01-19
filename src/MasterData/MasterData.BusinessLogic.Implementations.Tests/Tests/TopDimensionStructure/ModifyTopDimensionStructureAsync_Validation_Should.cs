@@ -1,14 +1,19 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Validators.TestData.TestData;
+
 using FluentAssertions;
+
 using FluentValidation;
+
 using Xunit;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
 {
+    using Exceptions;
+
     [ExcludeFromCodeCoverage]
     public class ModifyTopDimensionStructureAsync_Validation_Should : TestBase
     {
@@ -29,14 +34,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
             int isActive)
         {
             // Arrange
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
-            {
-                Id = id,
-                ParentDimensionStructureId = null,
-                Name = name,
-                Desc = desc,
-                IsActive = isActive
-            };
+            DomainModel.DomainModel.DimensionStructure dimensionStructure =
+                new DomainModel.DomainModel.DimensionStructure
+                {
+                    Id = id,
+                    ParentDimensionStructureId = null,
+                    Name = name,
+                    Desc = desc,
+                    IsActive = isActive
+                };
 
             // Act
             Func<Task> action = async () =>
@@ -47,7 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
 
         [Fact]
@@ -60,12 +66,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
             {
                 await masterDataBusinessLogic.UpdateTopDimensionStructureAsync(
                         null)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateTopDimensionStructureAsyncOperationException>()
-                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
     }
 }

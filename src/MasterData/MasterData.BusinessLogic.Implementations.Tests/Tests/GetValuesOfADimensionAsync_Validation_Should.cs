@@ -1,12 +1,15 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using FluentAssertions;
+
 using Xunit;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
 {
+    using Exceptions;
+
     [ExcludeFromCodeCoverage]
     public class GetValuesOfADimensionAsync_Validation_Should : TestBase
     {
@@ -25,12 +28,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.GetValuesOfADimensionAsync(0)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicGetDimensionValueAsyncOperationException>()
-                .WithInnerExceptionExactly<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerExceptionExactly<MasterDataBusinessLogicArgumentNullException>();
         }
     }
 }

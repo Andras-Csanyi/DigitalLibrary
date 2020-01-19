@@ -1,12 +1,15 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using FluentAssertions;
+
 using Xunit;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
 {
+    using Exceptions;
+
     [ExcludeFromCodeCoverage]
     public class AddDimensionValue_Validation_Should : TestBase
     {
@@ -33,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.AddDimensionValueAsync(dimensionValue, dimensionId)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert

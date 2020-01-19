@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.Ctx.Configurations
+namespace DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations
 {
     using DomainModel.Entities;
 

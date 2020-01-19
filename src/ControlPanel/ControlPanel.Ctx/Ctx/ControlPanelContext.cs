@@ -1,8 +1,8 @@
-namespace DigitalLibrary.ControlPanel.Ctx
+namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 {
     using Configurations;
 
-    using DigitalLibrary.ControlPanel.DomainModel.Entities;
+    using DomainModel.Entities;
 
     using Microsoft.EntityFrameworkCore;
 

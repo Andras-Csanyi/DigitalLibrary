@@ -6,6 +6,7 @@ using DigitalLibrary.ControlPanel.DomainModel.Entities;
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
     using DigitalLibrary.ControlPanel.Ctx;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
 
     public static class ControlPanelDataSample
     {

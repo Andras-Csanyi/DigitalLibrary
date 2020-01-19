@@ -1,15 +1,19 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
 using DigitalLibrary.MasterData.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> UpdateTopDimensionStructureAsync(DimensionStructure dimensionStructure)
@@ -29,11 +33,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                         await _masterDataValidators.TopDimensionStructureValidator.ValidateAndThrowAsync(
                                 dimensionStructure,
                                 ValidatorRulesets.UpdateTopDimensionStructure)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         DimensionStructure toBeModified = await ctx.DimensionStructures
-                            .FindAsync(dimensionStructure.Id)
-                            .ConfigureAwait(false);
+                           .FindAsync(dimensionStructure.Id)
+                           .ConfigureAwait(false);
 
                         if (toBeModified == null)
                         {

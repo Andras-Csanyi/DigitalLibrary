@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using FluentAssertions;
+
 using Xunit;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
 {
+    using Exceptions;
+
     public class DeleteDimensionStructureAsync_Validation_Should : TestBase
     {
         public DeleteDimensionStructureAsync_Validation_Should() : base(TestInfo)
@@ -23,12 +26,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
             Func<Task> action = async () =>
             {
                 await masterDataBusinessLogic.DeleteDimensionStructureAsync(null)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
     }
 }

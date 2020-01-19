@@ -1,9 +1,9 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions
+namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+
     [ExcludeFromCodeCoverage]
     public class MasterDataBusinessLogicCountDimensionValuesAsyncOperationException : Exception
     {

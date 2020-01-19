@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Ctx.Ctx;
 using DigitalLibrary.MasterData.DomainModel.DomainModel;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations
 {
+    using Exceptions;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId)
@@ -20,14 +23,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                 }
 
                 DimensionStructure topLevel = await ctx.DimensionStructures
-                    .Include(ii => ii.Dimension)
-                    .FirstOrDefaultAsync(id => id.Id == dimensionStructureId)
-                    .ConfigureAwait(false);
+                   .Include(ii => ii.Dimension)
+                   .FirstOrDefaultAsync(id => id.Id == dimensionStructureId)
+                   .ConfigureAwait(false);
 
                 topLevel.ChildDimensionStructures = await GetChildDimensionStructures(
                         topLevel,
                         ctx)
-                    .ConfigureAwait(false);
+                   .ConfigureAwait(false);
 
                 return topLevel;
             }
@@ -38,9 +41,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
             MasterDataContext ctx)
         {
             List<DimensionStructure> children = await ctx.DimensionStructures
-                .Where(p => p.ParentDimensionStructureId == parent.Id)
-                .ToListAsync()
-                .ConfigureAwait(false);
+               .Where(p => p.ParentDimensionStructureId == parent.Id)
+               .ToListAsync()
+               .ConfigureAwait(false);
 
             if (children.Any())
             {
@@ -49,7 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementation
                     dimensionStructure.ChildDimensionStructures = await GetChildDimensionStructures(
                             dimensionStructure,
                             ctx)
-                        .ConfigureAwait(false);
+                       .ConfigureAwait(false);
                 }
             }
 

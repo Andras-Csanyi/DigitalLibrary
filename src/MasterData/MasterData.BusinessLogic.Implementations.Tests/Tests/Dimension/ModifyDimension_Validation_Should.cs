@@ -1,14 +1,19 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using DigitalLibrary.MasterData.BusinessLogic.Exceptions.Exceptions;
+
 using DigitalLibrary.MasterData.Validators.TestData.TestData;
+
 using FluentAssertions;
+
 using FluentValidation;
+
 using Xunit;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Dimension
 {
+    using Exceptions;
+
     [ExcludeFromCodeCoverage]
     public class ModifyDimension_Validation_Should : TestBase
     {
@@ -32,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicModifyDimensionAsyncOperationException>()
-                .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
 
         [Theory]
@@ -60,7 +65,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.Di
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicModifyDimensionAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
     }
 }

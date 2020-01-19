@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
     using Ctx;
+    using Ctx.Ctx;
 
     public partial class MenuBusinessLogic
     {
