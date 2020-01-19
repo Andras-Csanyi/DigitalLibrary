@@ -12,9 +12,7 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int IsActive { get; set; }
 
-        public long? ParentDimensionStructureId { get; set; }
-
-        public DimensionStructure ParentDimensionStructure { get; set; }
+        public IEnumerable<SourceFormatDimensionStructure> ParentDimensionStructure { get; set; }
 
         public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
 

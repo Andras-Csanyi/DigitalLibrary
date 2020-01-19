@@ -19,13 +19,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.Desc).HasColumnName("description");
             builder.Property(p => p.IsActive).HasColumnName("is_active");
             builder.Property(p => p.SortOrder).HasColumnName("sort_number");
-            builder.Property(p => p.ParentDimensionStructureId).HasColumnName("parent_dimensionstructure_id");
             builder.Property(p => p.DimensionId).HasColumnName("dimension_id");
-
-            builder.HasMany(p => p.ChildDimensionStructures)
-               .WithOne(one => one.ParentDimensionStructure)
-               .HasForeignKey(fk => fk.ParentDimensionStructureId)
-               .IsRequired(false);
 
             builder.HasOne(p => p.Dimension)
                .WithMany(p => p.DimensionStructure)
