@@ -1,7 +1,7 @@
-using System.Net.Http;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests
 {
+    using System.Net.Http;
+
     using Client.Menu;
 
     public class TestBase

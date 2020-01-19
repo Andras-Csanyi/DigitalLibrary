@@ -1,13 +1,13 @@
-using System;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 {
+    using System;
+    using System.Threading.Tasks;
+
     using Client.Menu.Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     public class DeleteAsync_Should : TestBase
     {
