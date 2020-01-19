@@ -2,15 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
+    using Ctx;
+
     public partial class ModuleBusinessLogic
     {
         public async Task<DomainModel.Entities.Module> ModifyAsync(DomainModel.Entities.Module modify)
@@ -30,12 +34,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         await _moduleValidator.ValidateAndThrowAsync(
                                 modify,
                                 ruleSet: ValidatorRulesets.Modify)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         DomainModel.Entities.Module module = await ctx.Modules
-                            .Include(p => p.Menus)
-                            .FirstOrDefaultAsync(p => p.Id == modify.Id)
-                            .ConfigureAwait(false);
+                           .Include(p => p.Menus)
+                           .FirstOrDefaultAsync(p => p.Id == modify.Id)
+                           .ConfigureAwait(false);
 
                         if (module == null)
                         {
@@ -50,7 +54,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 
                         await _moduleValidator.ValidateAndThrowAsync(module,
                                 ruleSet: ValidatorRulesets.Modify)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
                         ctx.Entry(module).State = EntityState.Modified;
                         await ctx.SaveChangesAsync().ConfigureAwait(false);

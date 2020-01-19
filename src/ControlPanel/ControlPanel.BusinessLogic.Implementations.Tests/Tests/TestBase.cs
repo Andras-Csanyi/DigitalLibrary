@@ -1,11 +1,13 @@
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
-using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests
 {
+    using Ctx;
+
     public class TestBase
     {
         protected MenuBusinessLogic MenuBusinessLogic;
@@ -20,8 +22,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests
             ModuleValidator moduleValidator = new ModuleValidator();
 
             DbContextOptions<ControlPanelContext> dbContext = new DbContextOptionsBuilder<ControlPanelContext>()
-                .UseSqlite(fileName)
-                .Options;
+               .UseSqlite(fileName)
+               .Options;
 
             MenuBusinessLogic = new MenuBusinessLogic(menuValidator, dbContext);
             ModuleBusinessLogic = new ModuleBusinessLogic(MenuBusinessLogic, moduleValidator, dbContext);

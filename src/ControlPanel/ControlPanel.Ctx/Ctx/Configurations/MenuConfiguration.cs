@@ -1,9 +1,10 @@
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DigitalLibrary.ControlPanel.Ctx.Context.Configurations
+namespace DigitalLibrary.ControlPanel.Ctx.Configurations
 {
+    using DomainModel.Entities;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class MenuConfiguration : IEntityTypeConfiguration<Menu>
     {
         public void Configure(EntityTypeBuilder<Menu> builder)

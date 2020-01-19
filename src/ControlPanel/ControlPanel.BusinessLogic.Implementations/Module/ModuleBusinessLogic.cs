@@ -1,11 +1,14 @@
 using System;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
+    using Ctx;
+
     public partial class ModuleBusinessLogic : IModuleBusinessLogic
     {
         private readonly DbContextOptions<ControlPanelContext> _dbContextOptions;

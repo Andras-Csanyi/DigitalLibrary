@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
+    using Ctx;
+
     public partial class ModuleBusinessLogic
     {
         public async Task DeleteAsync(DomainModel.Entities.Module toBeDelete)
@@ -29,11 +33,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         await _moduleValidator.ValidateAndThrowAsync(
                                 toBeDelete,
                                 ruleSet: ValidatorRulesets.Delete)
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
 
-                        List<DomainModel.Entities.Menu> menusToBeDelete = await ctx.Menus.Where(p => p.ModuleId == toBeDelete.Id)
-                            .ToListAsync()
-                            .ConfigureAwait(false);
+                        List<DomainModel.Entities.Menu> menusToBeDelete = await ctx.Menus
+                           .Where(p => p.ModuleId == toBeDelete.Id)
+                           .ToListAsync()
+                           .ConfigureAwait(false);
 
                         if (menusToBeDelete.Any())
                         {

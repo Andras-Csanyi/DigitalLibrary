@@ -1,12 +1,15 @@
 using System;
 using System.Threading.Tasks;
+
 using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
-using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
+
 using FluentValidation;
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
+    using Ctx;
+
     public partial class MenuBusinessLogic
     {
         public async Task<DomainModel.Entities.Menu> AddAsync(DomainModel.Entities.Menu newMenu)
@@ -24,7 +27,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
                     await _menuValidator.ValidateAndThrowAsync(
                             newMenu,
                             ruleSet: ValidatorRulesets.AddNew)
-                        .ConfigureAwait(false);
+                       .ConfigureAwait(false);
 
                     await ctx.Menus.AddAsync(newMenu).ConfigureAwait(false);
                     await ctx.SaveChangesAsync().ConfigureAwait(false);

@@ -1,9 +1,10 @@
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DigitalLibrary.ControlPanel.Ctx.Context.Configurations
+namespace DigitalLibrary.ControlPanel.Ctx.Configurations
 {
+    using DomainModel.Entities;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class ModuleConfiguration : IEntityTypeConfiguration<Module>
     {
         public void Configure(EntityTypeBuilder<Module> builder)
@@ -20,8 +21,8 @@ namespace DigitalLibrary.ControlPanel.Ctx.Context.Configurations
             builder.Property(p => p.ModuleRoute).HasColumnName("module_route");
 
             builder.HasMany(p => p.Menus)
-                .WithOne(q => q.Module)
-                .HasForeignKey(w => w.ModuleId);
+               .WithOne(q => q.Module)
+               .HasForeignKey(w => w.ModuleId);
         }
     }
 }
