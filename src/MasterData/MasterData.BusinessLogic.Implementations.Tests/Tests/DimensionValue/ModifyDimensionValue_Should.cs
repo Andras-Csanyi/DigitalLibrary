@@ -1,15 +1,15 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionValue
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionValue
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class ModifyDimensionValue_Should : TestBase

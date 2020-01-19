@@ -1,10 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AddTopDimensionStructure_Should : TestBase
     {
@@ -27,18 +29,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.To
             DomainModel.DomainModel.Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 dimension).ConfigureAwait(false);
 
-            DomainModel.DomainModel.DimensionStructure dimensionStructure = new DomainModel.DomainModel.DimensionStructure
-            {
-                Name = "name",
-                Desc = "desc",
-                IsActive = 1,
-                ParentDimensionStructureId = 0,
-                DimensionId = dimensionResult.Id
-            };
+            DomainModel.DomainModel.DimensionStructure dimensionStructure =
+                new DomainModel.DomainModel.DimensionStructure
+                {
+                    Name = "name",
+                    Desc = "desc",
+                    IsActive = 1,
+                    ParentDimensionStructureId = 0,
+                    DimensionId = dimensionResult.Id
+                };
 
             // Act
-            DomainModel.DomainModel.DimensionStructure result = await masterDataBusinessLogic.AddTopDimensionStructureAsync(
-                dimensionStructure).ConfigureAwait(false);
+            DomainModel.DomainModel.DimensionStructure result = await masterDataBusinessLogic
+               .AddTopDimensionStructureAsync(
+                    dimensionStructure).ConfigureAwait(false);
 
             // Arrange
             result.Should().NotBeNull();

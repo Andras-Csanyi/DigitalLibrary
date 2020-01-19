@@ -1,16 +1,16 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-
-using DigitalLibrary.MasterData.Validators.TestData.TestData;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Validators.TestData.TestData;
+
+    using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class ModifyTopDimensionStructureAsync_Should : TestBase

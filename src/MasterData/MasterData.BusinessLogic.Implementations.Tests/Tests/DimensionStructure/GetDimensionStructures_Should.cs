@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class GetDimensionStructures_Should : TestBase
     {

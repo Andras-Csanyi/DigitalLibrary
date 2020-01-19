@@ -1,14 +1,14 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class GetValuesOfADimensionAsync_Validation_Should : TestBase

@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     public class DeleteTopDimensionStructureAsync_Should : TestBase
     {

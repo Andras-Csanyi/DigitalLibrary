@@ -1,13 +1,13 @@
-using System;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     public class DeleteDimensionStructureAsync_Validation_Should : TestBase
     {

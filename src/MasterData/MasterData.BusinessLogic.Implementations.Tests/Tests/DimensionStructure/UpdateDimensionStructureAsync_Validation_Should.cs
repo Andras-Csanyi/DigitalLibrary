@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

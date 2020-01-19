@@ -1,15 +1,15 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-
-using FluentAssertions;
-
-using Xunit;
-
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Tests.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Exceptions;
+
+    using FluentAssertions;
+
+    using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class AddDimensionStructure_Should : TestBase
