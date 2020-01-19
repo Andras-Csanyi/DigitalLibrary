@@ -2,7 +2,6 @@ using System;
 
 using BlazorStrap;
 
-using DigitalLibrary.MasterData.WebApi.Client.Client;
 using DigitalLibrary.Utils.DiLibHttpClient;
 
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +15,7 @@ namespace DigitalLibrary.Ui.WebUi
     using ControlPanel.WebApi.Client.Menu;
 
     using MasterData.Validators;
+    using MasterData.WebApi.Client;
 
     public class Startup
     {

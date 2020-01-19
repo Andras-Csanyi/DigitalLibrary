@@ -1,8 +1,9 @@
-using System;
-using DigitalLibrary.Utils.DiLibHttpClient;
-
-namespace DigitalLibrary.MasterData.WebApi.Client.Client
+namespace DigitalLibrary.MasterData.WebApi.Client
 {
+    using System;
+
+    using Utils.DiLibHttpClient;
+
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
         private readonly IDiLibHttpClient _diLibHttpClient;

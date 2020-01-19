@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
     using Utils.DiLibHttpClient;
     using Utils.IntegrationTestFactories.Factories;
 
-    using WebApi.Client.Client;
+    using WebApi.Client;
 
     using WebApp;
 

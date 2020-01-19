@@ -4,14 +4,13 @@ using System.Threading.Tasks;
 
 using BlazorStrap;
 
-using DigitalLibrary.MasterData.WebApi.Client.Client;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
 
     public partial class TopDimensionStructuresGrid
     {

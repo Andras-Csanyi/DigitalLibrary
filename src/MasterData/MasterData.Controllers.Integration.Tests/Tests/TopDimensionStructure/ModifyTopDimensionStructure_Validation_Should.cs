@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
     using Utils.DiLibHttpClient.Exceptions;
     using Utils.IntegrationTestFactories.Factories;
 
-    using WebApi.Client.Client;
+    using WebApi.Client;
 
     using WebApp;
 

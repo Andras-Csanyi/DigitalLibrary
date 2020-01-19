@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     using Validators.TestData;
 
-    using WebApi.Client.Client;
+    using WebApi.Client;
 
     using WebApp;
 
