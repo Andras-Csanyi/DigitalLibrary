@@ -1,7 +1,6 @@
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
 using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
 using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.ControlPanel.Controllers.Controllers;
 using DigitalLibrary.ControlPanel.Ctx.Context;
 using DigitalLibrary.ControlPanel.Validators.Validators;
 using DigitalLibrary.MasterData.BusinessLogic.Implementations.Implementations;
@@ -14,6 +13,9 @@ using DigitalLibrary.Utils.ControlPanel.DataSample;
 namespace WebApp
 {
     using System;
+
+    using DigitalLibrary.ControlPanel.Controllers;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -44,16 +46,16 @@ namespace WebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
+               .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 })
-                .AddApplicationPart(
+               .AddApplicationPart(
                     typeof(MenuController).Assembly)
-                .AddApplicationPart(
+               .AddApplicationPart(
                     typeof(DimensionController).Assembly)
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+               .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // if (_env.IsStaging())
             // {
