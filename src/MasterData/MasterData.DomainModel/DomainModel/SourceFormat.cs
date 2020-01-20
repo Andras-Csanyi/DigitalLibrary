@@ -14,6 +14,6 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public DimensionStructure RootDimensionStructure { get; set; }
 
-        public long RootDimensionStructureId { get; set; }
+        public long? RootDimensionStructureId { get; set; }
     }
 }

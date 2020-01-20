@@ -15,8 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<SourceFormat> AddSourceFormatAsync(
-            SourceFormat sourceFormat)
+        public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
