@@ -27,14 +27,14 @@
                     <BSTableCell>@dimensionStructure.Name</BSTableCell>
                     <BSTableCell>@dimensionStructure.Desc</BSTableCell>
                     @{
-                        if (dimensionStructure.ParentSourceFormatDimensionStructures != null)
-                        {
-                            <BSTableCell>@dimensionStructure.ParentSourceFormatDimensionStructures.Name</BSTableCell>
-                        }
-                        else
-                        {
-                            <BSTableCell>none</BSTableCell>
-                        }
+@*                         if (dimensionStructure.ParentSourceFormatDimensionStructures != null) *@
+@*                         { *@
+@*                             <BSTableCell>@dimensionStructure.ParentSourceFormatDimensionStructures.Name</BSTableCell> *@
+@*                         } *@
+@*                         else *@
+@*                         { *@
+@*                             <BSTableCell>none</BSTableCell> *@
+@*                         } *@
                     }
                     @{
                         if (dimensionStructure.Dimension != null)
@@ -101,27 +101,27 @@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Parent Dimension Structure</BSFormLabel>
-                <BSInput InputType="InputType.Select"
-                         IsDisabled="true"
-                         @bind-Value="@_editedDimensionStructure.ParentDimensionStructureId">
-                    @{
-                        foreach (DimensionStructure topDimensionStructure in _topDimensionStructures)
-                        {
-                            if (topDimensionStructure.Id == _editedDimensionStructure.ParentDimensionStructureId)
-                            {
-                                <option value="@topDimensionStructure.Id" selected>
-                                    @topDimensionStructure.Name
-                                </option>
-                            }
-                            else
-                            {
-                                <option value="@topDimensionStructure.Id">
-                                    @topDimensionStructure.Name
-                                </option>
-                            }
-                        }
-                    }
-                </BSInput>
+                @*                 <BSInput InputType="InputType.Select" *@
+                @*                          IsDisabled="true" *@
+                @*                          @bind-Value="@_editedDimensionStructure.ParentDimensionStructureId"> *@
+                @*                     @{ *@
+                @*                         foreach (DimensionStructure topDimensionStructure in _topDimensionStructures) *@
+                @*                         { *@
+                @*                             if (topDimensionStructure.Id == _editedDimensionStructure.ParentDimensionStructureId) *@
+                @*                             { *@
+                @*                                 <option value="@topDimensionStructure.Id" selected> *@
+                @*                                     @topDimensionStructure.Name *@
+                @*                                 </option> *@
+                @*                             } *@
+                @*                             else *@
+                @*                             { *@
+                @*                                 <option value="@topDimensionStructure.Id"> *@
+                @*                                     @topDimensionStructure.Name *@
+                @*                                 </option> *@
+                @*                             } *@
+                @*                         } *@
+                @*                     } *@
+                @*                 </BSInput> *@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Dimension</BSFormLabel>
@@ -207,26 +207,26 @@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Parent Dimension Structure</BSFormLabel>
-                <BSInput InputType="InputType.Select"
-                         @bind-Value="@_editedDimensionStructure.ParentDimensionStructureId">
-                    @{
-                        foreach (DimensionStructure topDimensionStructure in _topDimensionStructures)
-                        {
-                            if (topDimensionStructure.Id == _editedDimensionStructure.ParentDimensionStructureId)
-                            {
-                                <option value="@topDimensionStructure.Id" selected>
-                                    @topDimensionStructure.Name
-                                </option>
-                            }
-                            else
-                            {
-                                <option value="@topDimensionStructure.Id">
-                                    @topDimensionStructure.Name
-                                </option>
-                            }
-                        }
-                    }
-                </BSInput>
+                @*                 <BSInput InputType="InputType.Select" *@
+                @*                          @bind-Value="@_editedDimensionStructure.ParentDimensionStructureId"> *@
+                @*                     @{ *@
+                @*                         foreach (DimensionStructure topDimensionStructure in _topDimensionStructures) *@
+                @*                         { *@
+                @*                             if (topDimensionStructure.Id == _editedDimensionStructure.ParentDimensionStructureId) *@
+                @*                             { *@
+                @*                                 <option value="@topDimensionStructure.Id" selected> *@
+                @*                                     @topDimensionStructure.Name *@
+                @*                                 </option> *@
+                @*                             } *@
+                @*                             else *@
+                @*                             { *@
+                @*                                 <option value="@topDimensionStructure.Id"> *@
+                @*                                     @topDimensionStructure.Name *@
+                @*                                 </option> *@
+                @*                             } *@
+                @*                         } *@
+                @*                     } *@
+                @*                 </BSInput> *@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Dimension</BSFormLabel>
@@ -309,17 +309,17 @@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Parent Dimension Structure</BSFormLabel>
-                <BSInput InputType="InputType.Select"
-                         @bind-Value="@_newDimensionStructure.ParentDimensionStructureId">
-                    @{
-                        foreach (DimensionStructure topDimensionStructure in _topDimensionStructures)
-                        {
-                            <option value="@topDimensionStructure.Id">
-                                @topDimensionStructure.Name
-                            </option>
-                        }
-                    }
-                </BSInput>
+                @*                 <BSInput InputType="InputType.Select" *@
+                @*                          @bind-Value="@_newDimensionStructure.ParentDimensionStructureId"> *@
+                @*                     @{ *@
+                @*                         foreach (DimensionStructure topDimensionStructure in _topDimensionStructures) *@
+                @*                         { *@
+                @*                             <option value="@topDimensionStructure.Id"> *@
+                @*                                 @topDimensionStructure.Name *@
+                @*                             </option> *@
+                @*                         } *@
+                @*                     } *@
+                @*                 </BSInput> *@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Dimension</BSFormLabel>

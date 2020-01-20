@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;

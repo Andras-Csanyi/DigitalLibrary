@@ -1,10 +1,10 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel;
+    using DomainModel;
 
     using Exceptions;
 
