@@ -10,11 +10,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using Xunit;
 
-    public class UpdateDimensionStructureAsync_Should : TestBase
+    public class Update_DimensionStructureAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(UpdateDimensionStructureAsync_Should);
+        private const string TestInfo = nameof(Update_DimensionStructureAsync_Should);
 
-        public UpdateDimensionStructureAsync_Should() : base(TestInfo)
+        public Update_DimensionStructureAsync_Should() : base(TestInfo)
         {
         }
 

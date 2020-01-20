@@ -17,11 +17,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class UpdateDimensionStructureAsync_Validation_Should : TestBase
+    public class Update_DimensionStructureAsync_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(UpdateDimensionStructureAsync_Validation_Should);
+        private const string TestInfo = nameof(Update_DimensionStructureAsync_Validation_Should);
 
-        public UpdateDimensionStructureAsync_Validation_Should() : base(TestInfo)
+        public Update_DimensionStructureAsync_Validation_Should() : base(TestInfo)
         {
         }
 

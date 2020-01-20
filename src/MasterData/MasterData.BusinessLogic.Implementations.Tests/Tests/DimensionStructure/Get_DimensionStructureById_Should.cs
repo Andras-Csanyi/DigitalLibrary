@@ -4,11 +4,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Threading.Tasks;
 
     [ExcludeFromCodeCoverage]
-    public class GetDimensionStructureById_Should : TestBase
+    public class Get_DimensionStructureById_Should : TestBase
     {
-        private const string TestInfo = nameof(GetDimensionStructureById_Should);
+        private const string TestInfo = nameof(Get_DimensionStructureById_Should);
 
-        public GetDimensionStructureById_Should() : base(TestInfo)
+        public Get_DimensionStructureById_Should() : base(TestInfo)
         {
         }
 
