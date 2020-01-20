@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -20,9 +20,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class ModifyTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
+    public class DeleteTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
     {
-        public ModifyTopDimensionStructure_Validation_Should(
+        public DeleteTopDimensionStructure_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
@@ -36,12 +36,13 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionSt
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.ModifyTopDimensionStructureAsync(null).ConfigureAwait(false);
+                await masterDataHttpClient.DeleteTopDimensionStructureAsync(null)
+                   .ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>()
-               .WithInnerException<DiLibHttpClientPutException>();
+               .WithInnerException<DiLibHttpClientDeleteException>();
         }
     }
 }

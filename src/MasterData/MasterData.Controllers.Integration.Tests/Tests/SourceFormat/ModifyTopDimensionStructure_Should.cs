@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.TopDimensionStructure
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
