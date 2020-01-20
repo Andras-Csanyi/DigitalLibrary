@@ -98,7 +98,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Desc = businessEntityNameDimension.Description,
                 IsActive = 1,
                 DimensionId = businessEntityNameDimension.Id,
-                ParentDimensionStructureId = businessEntityTopDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(businessEntityNameDimensionStructure);
             ctx.SaveChanges();
@@ -118,7 +117,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Desc = businessEntityType.Description,
                 DimensionId = businessEntityType.Id,
                 IsActive = 1,
-                ParentDimensionStructureId = businessEntityTopDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(businessEntityTypeDimensionStructure);
             ctx.SaveChanges();
@@ -128,7 +126,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Hungarian Postal Address",
                 Desc = "Hungarian Postal Address",
                 IsActive = 1,
-                ParentDimensionStructureId = businessEntityTopDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(businessEntityPostalAddressDimensionStructure);
             ctx.SaveChanges();
@@ -146,7 +143,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Hungarian Town",
                 Desc = "Hungarian town",
                 IsActive = 1,
-                ParentDimensionStructureId = businessEntityPostalAddressDimensionStructure.Id,
                 DimensionId = hungarianTownDimension.Id
             };
             ctx.DimensionStructures.Add(businessEntityPostalAddressTownDimensionStructure);
@@ -166,7 +162,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Desc = hungarianPublicPlaceDimension.Description,
                 IsActive = 1,
                 DimensionId = hungarianPublicPlaceDimension.Id,
-                ParentDimensionStructureId = businessEntityPostalAddressDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(hungarianPublicPlaceDimensionStructure);
             ctx.SaveChanges();
@@ -185,7 +180,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Desc = hungarianPublicPlaceTypeDimension.Description,
                 IsActive = 1,
                 DimensionId = hungarianPublicPlaceTypeDimension.Id,
-                ParentDimensionStructureId = businessEntityPostalAddressDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(hungarianPublicPlaceTypeDimensionStructure);
             ctx.SaveChanges();
@@ -204,7 +198,6 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Desc = hungarianPublicPlaceNumberDimension.Description,
                 IsActive = 1,
                 DimensionId = hungarianPublicPlaceNumberDimension.Id,
-                ParentDimensionStructureId = businessEntityPostalAddressDimensionStructure.Id
             };
             ctx.DimensionStructures.Add(hungarianPublicPlaceNumberDimensionStructure);
             ctx.SaveChanges();
