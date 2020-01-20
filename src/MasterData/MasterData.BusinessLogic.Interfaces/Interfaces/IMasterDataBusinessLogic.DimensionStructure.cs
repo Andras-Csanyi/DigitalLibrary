@@ -14,5 +14,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
+
+        Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);
+
+        Task<DimensionStructure> AddDimensionStructureToSourceformatAsync(
+            long dimensionStructureId,
+            long sourceFormatId);
+
+        Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
+
+        Task<DimensionStructure> AddChildDimensionStructureAsync(
+            long childDimensionStructureId,
+            long parentDimensionId);
+
+        Task<DimensionStructure> AddChildDimensionStructureAsync(
+            DimensionStructure childDimensionStructure,
+            long parentDimensionId);
+
+        Task RemoveChildDimensionStructureAsync(long removedDimensionStructure, long parentDimensionStructure);
     }
 }
