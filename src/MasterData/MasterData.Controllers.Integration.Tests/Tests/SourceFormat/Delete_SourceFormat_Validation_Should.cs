@@ -20,15 +20,15 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class DeleteTopDimensionStructure_Validation_Should : TestBase<DimensionStructure>
+    public class Delete_SourceFormat_Validation_Should : TestBase<DimensionStructure>
     {
-        public DeleteTopDimensionStructure_Validation_Should(
+        public Delete_SourceFormat_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
-        [Fact]
+        // [Fact]
         public async Task ThrowException_WhenInputIsNull()
         {
             // Arrange

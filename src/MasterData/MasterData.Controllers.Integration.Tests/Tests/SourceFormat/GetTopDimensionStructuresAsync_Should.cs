@@ -17,16 +17,15 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class
-        MasterData_Api_GetTopDimensionStructuresAsync_Should : TestBase<DimensionStructure>
+    public class Get_SourceFormat_Should : TestBase<DimensionStructure>
     {
-        public MasterData_Api_GetTopDimensionStructuresAsync_Should(
+        public Get_SourceFormat_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
-        [Fact]
+        // [Fact]
         public async Task Return_AllTopDimensionStructures()
         {
             // Arrange

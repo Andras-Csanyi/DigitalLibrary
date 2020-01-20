@@ -18,18 +18,18 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class ModifyTopDimensionStructure_Should : TestBase<DimensionStructure>
+    public class Modify_SourceFormat_Should : TestBase<DimensionStructure>
     {
-        public ModifyTopDimensionStructure_Should(
+        public Modify_SourceFormat_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
 
-        [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_TestData),
-            MemberType = typeof(MasterData_DimensionStructure_TestData))]
+        // [Theory]
+        // [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_TestData),
+        //     MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task ModifyTopDimensionStructure(
             string name,
             string desc,
