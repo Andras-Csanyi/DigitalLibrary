@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new TopDimensionStructureController(null); };
+            Func<Task> action = async () => { new SourceFormatController(null); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();

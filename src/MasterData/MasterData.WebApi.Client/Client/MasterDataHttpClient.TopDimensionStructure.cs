@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.UpdateTopDimensionStructure}";
+                             $"{MasterDataApi.DimensionStructure.V1.UpdateSourceFormat}";
                 DimensionStructure result = await _diLibHttpClient.Put(dimensionStructure, url)
                    .ConfigureAwait(false);
 
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.GetTopDimensionStructures}";
+                             $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
                 List<DimensionStructure> result = await _diLibHttpClient.Get<List<DimensionStructure>>(url)
                    .ConfigureAwait(false);
                 return result;
@@ -48,7 +48,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.DeleteTopDimensionStructure}";
+                             $"{MasterDataApi.DimensionStructure.V1.DeleteSourceFormatAsync}";
                 await _diLibHttpClient.Delete(dimensionStructure, url).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -62,7 +62,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.AddTopDimensionStructure}";
+                             $"{MasterDataApi.DimensionStructure.V1.AddSourceFormat}";
                 return await _diLibHttpClient.Post(dimensionStructure, url).ConfigureAwait(false);
             }
             catch (Exception e)

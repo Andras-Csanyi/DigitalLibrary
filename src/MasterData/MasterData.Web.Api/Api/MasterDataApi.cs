@@ -89,15 +89,15 @@
             {
                 public const string DimensionStructureBase = "api/masterdata/dimensionstructure/v1";
 
-                public const string GetTopDimensionStructures = "GetTopDimensionStructures";
+                public const string GetSourceFormats = "GetTopDimensionStructures";
 
-                public const string DeleteTopDimensionStructure = "DeleteTopDimensionStructure";
+                public const string DeleteSourceFormatAsync = "DeleteTopDimensionStructure";
 
                 public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
-                public const string UpdateTopDimensionStructure = "UpdateTopDimensionStructure";
+                public const string UpdateSourceFormat = "UpdateTopDimensionStructure";
 
-                public const string AddTopDimensionStructure = "AddTopDimensionStructure";
+                public const string AddSourceFormat = "AddTopDimensionStructure";
 
                 public const string AddDimensionStructure = "AddDimensionStructure";
 

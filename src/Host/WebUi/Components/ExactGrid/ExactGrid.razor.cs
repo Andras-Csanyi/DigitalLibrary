@@ -52,7 +52,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             Columns = await GetColumnNames().ConfigureAwait(false);
             _httpClient = HttpClientFactory.CreateClient("httpClient");
             string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                $"{MasterDataApi.DimensionStructure.V1.GetTopDimensionStructures}";
+                         $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get, url);
             HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
