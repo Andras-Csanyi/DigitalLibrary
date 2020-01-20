@@ -24,6 +24,12 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.Name).HasColumnName("name");
             builder.Property(p => p.Desc).HasColumnName("desc");
             builder.Property(p => p.IsActive).HasColumnName("is_active");
+            builder.Property(p => p.RootDimensionStructureId).HasColumnName("root_dimensionstructure_id");
+
+            builder.HasOne(p => p.RootDimensionStructure)
+               .WithMany(s => s.SourceFormats)
+               .HasForeignKey(k => k.RootDimensionStructureId)
+               .IsRequired(false);
         }
     }
 }

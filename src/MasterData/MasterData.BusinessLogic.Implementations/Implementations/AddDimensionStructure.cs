@@ -39,22 +39,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                            .ConfigureAwait(false);
 
                         long newDimensionStructureId = 0;
-                        if (dimensionStructure.ParentSourceFormatDimensionStructures.Any())
+                        if (dimensionStructure.SourceFormats.Any())
                         {
-                            newDimensionStructureId = await AddDimensionStructureWithParent(
+                            newDimensionStructureId = await AddDimensionStructureWithSourceFormat(
                                 dimensionStructure,
                                 ctx).ConfigureAwait(false);
                         }
                         else
                         {
-                            newDimensionStructureId = await AddDimensionStructureWithoutParent(
+                            newDimensionStructureId = await AddDimensionStructureWithoutSourceFormat(
                                 dimensionStructure,
                                 ctx).ConfigureAwait(false);
                         }
 
                         DimensionStructure result = await ctx.DimensionStructures
                            .Include(i => i.ChildDimensionStructures)
-                           .Include(ii => ii.ParentSourceFormatDimensionStructures)
+                           .Include(ii => ii.SourceFormats)
                            .FirstOrDefaultAsync(w => w.Id == newDimensionStructureId)
                            .ConfigureAwait(false);
 
@@ -69,13 +69,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             }
         }
 
-        private async Task<long> AddDimensionStructureWithoutParent(
+        private async Task<long> AddDimensionStructureWithoutSourceFormat(
             DimensionStructure dimensionStructure,
             MasterDataContext ctx)
         {
             if (dimensionStructure == null || ctx == null)
             {
-                string msg = $"Methodname: {nameof(AddDimensionStructureWithoutParent)}";
+                string msg = $"Methodname: {nameof(AddDimensionStructureWithoutSourceFormat)}";
                 throw new ArgumentNullException(msg);
             }
 
@@ -92,23 +92,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             return newDimensionStructure.Id;
         }
 
-        private async Task<long> AddDimensionStructureWithParent(
+        private async Task<long> AddDimensionStructureWithSourceFormat(
             DimensionStructure dimensionStructure,
             MasterDataContext ctx)
         {
             if (dimensionStructure == null || ctx == null)
             {
-                string msg = $"Methodname: {nameof(AddDimensionStructureWithParent)}";
+                string msg = $"Methodname: {nameof(AddDimensionStructureWithSourceFormat)}";
                 throw new ArgumentNullException(msg);
             }
 
-            long parentSourceFormatId =
-                dimensionStructure.ParentSourceFormatDimensionStructures.FirstOrDefault().SourceFormatId;
+            long parentSourceFormatId = dimensionStructure.SourceFormats.FirstOrDefault().Id;
 
             if (parentSourceFormatId == 0)
             {
                 string msg = $"The provided parent ({typeof(SourceFormat)}) id is invalid. " +
-                    $"Its value is {parentSourceFormatId}";
+                             $"Its value is {parentSourceFormatId}";
                 throw new MasterDataBusinessLogicAddDimensionStructureAsyncOperationException(msg);
             }
 
@@ -131,12 +130,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             await ctx.DimensionStructures.AddAsync(newDimensionStructure).ConfigureAwait(false);
             await ctx.SaveChangesAsync().ConfigureAwait(false);
 
-            SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
-            {
-                DimensionStructureId = newDimensionStructure.Id,
-                SourceFormatId = parentSourceFormatId,
-            };
-            await ctx.SourceFormatDimensionStructures.AddAsync(sourceFormatDimensionStructure).ConfigureAwait(false);
+            parentSourceFormat.RootDimensionStructureId = newDimensionStructure.Id;
+            ctx.Entry(parentSourceFormat).State = EntityState.Modified;
             await ctx.SaveChangesAsync().ConfigureAwait(false);
 
             return newDimensionStructure.Id;

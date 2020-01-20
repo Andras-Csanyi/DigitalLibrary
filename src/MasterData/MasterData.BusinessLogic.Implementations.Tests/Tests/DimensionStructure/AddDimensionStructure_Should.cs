@@ -22,7 +22,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
         private const string TestInfo = nameof(AddDimensionStructure_Should);
 
-        [Fact]
         public async Task Add_ToFirstLevel()
         {
             // Arrange
@@ -61,7 +60,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Desc = "first level desc",
                 IsActive = 1,
                 DimensionId = firstLevelDimensionResult.Id,
-                ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
             };
 
             // Act
@@ -82,8 +80,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // checking structure hierarchy
             DimensionStructure topLevelResult = await masterDataBusinessLogic
-               .GetDimensionStructureById(
-                    topLeveldimensionStructureResult.Id)
+               .GetDimensionStructureById(topLeveldimensionStructureResult.Id)
                .ConfigureAwait(false);
 
             topLevelResult.Id.Should().Be(topLeveldimensionStructureResult.Id);
@@ -107,7 +104,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevel.ChildDimensionStructures.Should().BeEmpty();
         }
 
-        [Fact]
         public async Task Add_ToFirstLevelAsSecond()
         {
             // Arrange
@@ -148,7 +144,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
                 };
 
             DimensionStructure firstLevelDimensionStructureResult =
@@ -175,7 +170,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level - second - desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionSecondResult.Id,
-                    ParentDimensionStructureId = topLeveldimensionStructureResult.Id,
                 };
 
             // Act
@@ -240,7 +234,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             firstLevelSecond.ChildDimensionStructures.Should().BeEmpty();
         }
 
-        [Fact]
         public async Task Add_ToSecondLevel()
         {
             Dimension topLevelDimension = new Dimension
@@ -279,7 +272,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level dimension structure desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = sourceFormatResult.Id,
                 };
             DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
@@ -303,7 +295,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "second level dimension structure desc",
                     IsActive = 1,
                     DimensionId = secondLevelDimensionResult.Id,
-                    ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
                 };
 
             // Act
@@ -356,7 +347,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             secondLevel.DimensionId.Should().Be(secondLevelDimensionResult.Id);
         }
 
-        [Fact]
         public async Task Add_ToSecondLevelAsSecond()
         {
             Dimension topLevelDimension = new Dimension
@@ -393,7 +383,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level dimension structure desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = sourceFormatResult.Id,
                 };
             DimensionStructure firstLevelDimensionStructureResult =
                 await masterDataBusinessLogic
@@ -417,7 +406,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "second level dimension structure desc",
                     IsActive = 1,
                     DimensionId = secondLevelDimensionResult.Id,
-                    ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
                 };
 
             DimensionStructure secondLevelDimensionStructureResult =
@@ -442,7 +430,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "second level dimension structure second desc",
                     IsActive = 1,
                     DimensionId = secondLevelDimensionSecondResult.Id,
-                    ParentDimensionStructureId = firstLevelDimensionStructureResult.Id,
                 };
 
             // Act
@@ -509,7 +496,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             secondLevelSecond.DimensionId.Should().Be(secondLevelDimensionSecondResult.Id);
         }
 
-        [Fact]
         public async Task ThrowException_WhenThereIsNoParentDimensionStructure()
         {
             // Arrange
@@ -551,7 +537,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     Desc = "first level desc",
                     IsActive = 1,
                     DimensionId = firstLevelDimensionResult.Id,
-                    ParentDimensionStructureId = 300
                 };
 
             // Act

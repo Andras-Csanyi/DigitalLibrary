@@ -27,6 +27,7 @@ namespace DigitalLibrary.MasterData.Validators
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
                     RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
+                    RuleFor(p => p.SourceFormats.Count).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });
 
@@ -46,6 +47,7 @@ namespace DigitalLibrary.MasterData.Validators
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
                     RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
+                    RuleFor(p => p.SourceFormats.Count).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });
 

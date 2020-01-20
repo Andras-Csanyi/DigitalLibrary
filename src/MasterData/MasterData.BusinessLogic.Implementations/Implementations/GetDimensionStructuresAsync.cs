@@ -23,8 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     return await ctx.DimensionStructures
                        .Include(i => i.Dimension)
-                       .Include(ii => ii.ParentSourceFormatDimensionStructures)
-                       .Where(p => p.ParentDimensionStructureId != null)
+                       .Include(ii => ii.SourceFormats)
                        .ToListAsync()
                        .ConfigureAwait(false);
                 }

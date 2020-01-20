@@ -20,8 +20,6 @@
 
         public DbSet<SourceFormat> SourceFormats { get; set; }
 
-        public DbSet<SourceFormatDimensionStructure> SourceFormatDimensionStructures { get; set; }
-
         public MasterDataContext(DbContextOptions<MasterDataContext> options) : base(options)
         {
         }

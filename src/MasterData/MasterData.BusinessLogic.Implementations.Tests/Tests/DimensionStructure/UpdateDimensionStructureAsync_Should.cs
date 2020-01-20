@@ -59,7 +59,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Name = "name",
                 Desc = "desc",
                 IsActive = 1,
-                ParentDimensionStructureId = sourceFormatResult.Id,
                 DimensionId = dimension1.Id
             };
             DimensionStructure origResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
@@ -77,7 +76,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             origResult.Name = updateName;
             origResult.Desc = updateDesc;
             origResult.IsActive = updateIsActive;
-            origResult.ParentDimensionStructureId = sourceFormat2Result.Id;
             origResult.DimensionId = dimension2.Id;
 
             // Act
@@ -89,7 +87,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             updatedResult.Name.Should().Be(updateName);
             updatedResult.Desc.Should().Be(updateDesc);
             updatedResult.IsActive.Should().Be(updateIsActive);
-            updatedResult.ParentDimensionStructureId.Should().Be(sourceFormat2Result.Id);
             updatedResult.DimensionId.Should().Be(dimension2Result.Id);
         }
     }

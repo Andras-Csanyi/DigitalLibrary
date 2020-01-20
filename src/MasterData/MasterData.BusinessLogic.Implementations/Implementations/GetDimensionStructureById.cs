@@ -41,8 +41,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             DimensionStructure parent,
             MasterDataContext ctx)
         {
+            List<long> childIds = parent.ChildDimensionStructures.Select(p => p.Id).ToList();
             List<DimensionStructure> children = await ctx.DimensionStructures
-               .Where(p => p.ParentDimensionStructureId == parent.Id)
+               .Where(p => childIds.Contains(p.Id))
                .ToListAsync()
                .ConfigureAwait(false);
 

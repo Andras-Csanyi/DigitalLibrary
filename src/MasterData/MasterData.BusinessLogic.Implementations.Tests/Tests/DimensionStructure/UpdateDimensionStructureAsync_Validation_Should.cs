@@ -58,7 +58,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Name = name,
                 Desc = desc,
                 IsActive = isActive,
-                ParentDimensionStructureId = parentDimensionStructureId,
             };
 
             // Act

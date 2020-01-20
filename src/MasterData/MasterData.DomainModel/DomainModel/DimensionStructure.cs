@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int IsActive { get; set; }
 
-        public IEnumerable<SourceFormatDimensionStructure> ParentSourceFormatDimensionStructures { get; set; }
+        public ICollection<SourceFormat> SourceFormats { get; set; }
 
         public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
 
