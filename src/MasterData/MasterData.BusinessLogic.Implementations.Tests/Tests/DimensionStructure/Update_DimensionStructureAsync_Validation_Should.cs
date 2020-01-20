@@ -68,8 +68,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-               .WithInnerException<ValidationException>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>();
         }
     }
 }

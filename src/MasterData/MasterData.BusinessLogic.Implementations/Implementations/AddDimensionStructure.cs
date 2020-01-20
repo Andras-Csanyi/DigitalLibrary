@@ -23,37 +23,32 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
+                    if (dimensionStructure == null)
                     {
-                        if (dimensionStructure == null)
-                        {
-                            throw new MasterDataBusinessLogicArgumentNullException();
-                        }
-
-                        await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                                dimensionStructure,
-                                ValidatorRulesets.AddNewDimensionStructure)
-                           .ConfigureAwait(false);
-
-                        DimensionStructure newDimensionStructure = new DimensionStructure
-                        {
-                            Name = dimensionStructure.Name,
-                            Desc = dimensionStructure.Desc,
-                            IsActive = dimensionStructure.IsActive,
-                        };
-                        await ctx.DimensionStructures.AddAsync(newDimensionStructure).ConfigureAwait(false);
-                        await ctx.SaveChangesAsync().ConfigureAwait(false);
-
-                        return newDimensionStructure;
+                        throw new MasterDataBusinessLogicArgumentNullException();
                     }
-                    catch (Exception e)
+
+                    await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+                            dimensionStructure,
+                            ValidatorRulesets.AddNewDimensionStructure)
+                       .ConfigureAwait(false);
+
+                    DimensionStructure newDimensionStructure = new DimensionStructure
                     {
-                        await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicAddDimensionStructureAsyncOperationException(e.Message, e);
-                    }
+                        Name = dimensionStructure.Name,
+                        Desc = dimensionStructure.Desc,
+                        IsActive = dimensionStructure.IsActive,
+                    };
+                    await ctx.DimensionStructures.AddAsync(newDimensionStructure).ConfigureAwait(false);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+
+                    return newDimensionStructure;
+                }
+                catch (Exception e)
+                {
+                    throw new MasterDataBusinessLogicAddDimensionStructureAsyncOperationException(e.Message, e);
                 }
             }
         }

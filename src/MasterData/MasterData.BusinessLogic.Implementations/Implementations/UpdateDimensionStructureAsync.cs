@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 if (dimensionStructure == null)
                 {
-                    throw new ArgumentNullException();
+                    throw new ArgumentNullException(nameof(dimensionStructure));
                 }
 
                 await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
@@ -37,9 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     DimensionStructure toBeModified = await ctx.DimensionStructures
-                       .Include(i => i.Dimension)
-                       .Include(i => i.SourceFormats)
-                       .FirstOrDefaultAsync(p => p.Id == dimensionStructure.Id)
+                       .FindAsync(dimensionStructure.Id)
                        .ConfigureAwait(false);
 
                     if (toBeModified == null)
@@ -51,7 +49,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                     toBeModified.Name = dimensionStructure.Name;
                     toBeModified.Desc = dimensionStructure.Desc;
-                    toBeModified.DimensionId = dimensionStructure.DimensionId;
                     toBeModified.IsActive = dimensionStructure.IsActive;
 
                     ctx.Entry(toBeModified).State = EntityState.Modified;
