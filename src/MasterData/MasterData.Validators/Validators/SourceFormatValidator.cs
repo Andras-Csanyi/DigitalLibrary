@@ -68,6 +68,8 @@ namespace DigitalLibrary.MasterData.Validators
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });
+
+            RuleSet(ValidatorRulesets.DeleteSourceFormat, () => { RuleFor(p => p.Id).NotEqual(0); });
         }
     }
 }
