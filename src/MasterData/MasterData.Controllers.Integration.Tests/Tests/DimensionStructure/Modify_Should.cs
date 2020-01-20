@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        [Fact]
+        // [Fact]
         public async Task ThrowException_WhenInputIsInvalid()
         {
             // Arrange
@@ -59,7 +59,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 Name = "name212",
                 Desc = "desc",
                 IsActive = 1,
-                ParentDimensionStructureId = topResult.Id,
                 DimensionId = dimension1Result.Id
             };
             DimensionStructure origResult = await masterDataHttpClient.AddDimensionStructureAsync(
@@ -80,7 +79,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             origResult.Name = updatedName;
             origResult.Desc = updatedDesc;
             origResult.IsActive = updatedIsActive;
-            origResult.ParentDimensionStructureId = orig2Result.Id;
             origResult.DimensionId = dimension2Result.Id;
 
             // Act
@@ -92,7 +90,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             updatedResult.Name.Should().Be(updatedName);
             updatedResult.Desc.Should().Be(updatedDesc);
             updatedResult.IsActive.Should().Be(updatedIsActive);
-            updatedResult.ParentDimensionStructureId.Should().Be(orig2Result.Id);
             updatedResult.DimensionId.Should().Be(dimension2Result.Id);
         }
     }
