@@ -1,0 +1,210 @@
+@using DigitalLibrary.MasterData.DomainModel
+<BSTable IsDark="true" IsStriped="true" IsHovarable="true">
+    <BSTableHead TableHeadType="TableHeadType.Dark">
+        <BSTableRow>
+            <BSTableHeadCell>
+                <BSButton ButtonType="ButtonType.Button"
+                          @onclick="@(async () => await ShowAddNewModal())">
+                    Add
+                </BSButton>
+            </BSTableHeadCell>
+        </BSTableRow>
+        <BSTableRow>
+            <BSTableHeadCell>Id</BSTableHeadCell>
+            <BSTableHeadCell>Name</BSTableHeadCell>
+            <BSTableHeadCell>Desc</BSTableHeadCell>
+            <BSTableHeadCell>Is active?</BSTableHeadCell>
+        </BSTableRow>
+    </BSTableHead>
+    <BSTableBody>
+        @{
+            if (Data != null && Data.Any())
+            {
+                foreach (SourceFormat sourceFormat in Data)
+                {
+                    <BSTableRow>
+                        <BSTableCell>@sourceFormat.Id</BSTableCell>
+                        <BSTableCell>@sourceFormat.Name</BSTableCell>
+                        <BSTableCell>@sourceFormat.Desc</BSTableCell>
+                        <BSTableCell>@sourceFormat.IsActive</BSTableCell>
+                        <BSTableCell>
+                            <BSButton ButtonType="ButtonType.Button"
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await ShowEditModal(sourceFormat))">
+                                Edit
+                            </BSButton>
+                        </BSTableCell>
+                        <BSTableCell>
+                            <BSButton ButtonType="ButtonType.Button"
+                                      Color="Color.Danger"
+                                      @onclick="@(async () => await ShowDeleteModal(sourceFormat))">
+                                Delete
+                            </BSButton>
+                        </BSTableCell>
+                    </BSTableRow>
+                }
+            }
+        }
+    </BSTableBody>
+</BSTable>
+
+<BSModal @ref="_editModal">
+    <BSForm Model="@_editedItem" OnValidSubmit="@OnValidEditSubmit" ValidateOnInit="true">
+        @* <DataAnnotationsValidator/> *@
+        @* <ValidationSummary/> *@
+        <BSModalHeader @onclick="@(async () => await CancelEditHandler())">
+            Edit Top Level Dimension Structure
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput IsDisabled="true"
+                              InputType="InputType.Text"
+                              @bind-Value="@_editedItem.Id">
+                    @_editedItem.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              @bind-Value="@_editedItem.Name">
+                    @_editedItem.Name
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSBasicInput InputType="InputType.TextArea"
+                              @bind-Value="@_editedItem.Desc">
+                    @_editedItem.Desc
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         @bind-Value="@_editedItem.IsActive"
+                         min="0" max="1">
+                    @_editedItem.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelEditHandler())"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_addNewModal">
+    <BSForm Model="@_newItem" OnValidSubmit="@OnValidAddSubmit" ValidateOnInit="true">
+        @* <DataAnnotationsValidator/> *@
+        @* <ValidationSummary/> *@
+        <BSModalHeader @onclick="@(async () => await CancelAddHandler())">
+            Add Top Level Dimension Structure
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput IsDisabled="true"
+                              InputType="InputType.Text"
+                              @bind-Value="@_newItem.Id">
+                    @_newItem.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              @bind-Value="@_newItem.Name">
+                    @_newItem.Name
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSBasicInput InputType="InputType.TextArea"
+                              @bind-Value="@_newItem.Desc">
+                    @_newItem.Desc
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         @bind-Value="@_newItem.IsActive"
+                         min="0" max="1">
+                    @_newItem.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelAddHandler())"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_deleteModal">
+    <BSForm Model="@_deleteItem">
+        <BSModalHeader @onclick="@(async () => await CancelDeleteHandler())">
+            Are you sure...?
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput IsDisabled="true"
+                              InputType="InputType.Text"
+                              @bind-Value="@_deleteItem.Id">
+                    @_deleteItem.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              @bind-Value="@_deleteItem.Name"
+                              IsDisabled="true">
+                    @_deleteItem.Name
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSBasicInput InputType="InputType.TextArea"
+                              @bind-Value="@_deleteItem.Desc"
+                              IsDisabled="true">
+                    @_deleteItem.Desc
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         @bind-Value="@_deleteItem.IsActive"
+                         min="0" max="1"
+                         IsDisabled="true">
+                    @_deleteItem.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelDeleteHandler())"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Primary"
+                      @onclick="@(async () => await DeleteHandler())">
+                Delete
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>

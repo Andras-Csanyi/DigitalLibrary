@@ -1,0 +1,51 @@
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
+{
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+
+    using DomainModel;
+
+    using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using WebApp;
+
+    using Xunit;
+    using Xunit.Abstractions;
+
+    [ExcludeFromCodeCoverage]
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    public class Add_SourceFormat_Should : TestBase<DimensionStructure>
+    {
+        public Add_SourceFormat_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
+        {
+        }
+
+        // [Fact]
+        public async Task Add()
+        {
+            // Arrange
+            SourceFormat orig = new SourceFormat
+            {
+                Name = "name",
+                Desc = "desc",
+                IsActive = 1
+            };
+
+            // Act
+            SourceFormat res = await masterDataHttpClient
+               .AddSourceFormatAsync(orig)
+               .ConfigureAwait(false);
+
+            // Assert
+            res.Id.Should().NotBe(0);
+            res.Name.Should().Be(orig.Name);
+            res.Desc.Should().Be(orig.Desc);
+            res.IsActive.Should().Be(orig.IsActive);
+        }
+    }
+}

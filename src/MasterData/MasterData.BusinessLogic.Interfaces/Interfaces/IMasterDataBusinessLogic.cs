@@ -34,13 +34,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task DeleteDimensionAsync(long dimensionId);
 
         Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId);
-
-        Task<DimensionStructure> AddTopDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task<List<DimensionStructure>> GetTopDimensionStructuresAsync();
-
-        Task<long> CountTopDimensionStructuresAsync();
-
-        Task<DimensionStructure> UpdateTopDimensionStructureAsync(DimensionStructure dimensionStructure);
     }
 }

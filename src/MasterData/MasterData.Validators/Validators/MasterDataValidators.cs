@@ -5,12 +5,12 @@ namespace DigitalLibrary.MasterData.Validators
         public MasterDataValidators(
             MasterDataDimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator dimensionValueValidator,
-            TopDimensionStructureValidator topDimensionStructureValidator,
+            SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator)
         {
             if (dimensionValidator == null
              || dimensionValueValidator == null
-             || topDimensionStructureValidator == null
+             || sourceFormatValidator == null
              || dimensionStructureValidator == null)
             {
                 throw new MasterDataValidatorFacadeArgumentNullException();
@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.Validators
 
             DimensionValidator = dimensionValidator;
             DimensionValueValidator = dimensionValueValidator;
-            TopDimensionStructureValidator = topDimensionStructureValidator;
+            SourceFormatValidator = sourceFormatValidator;
             DimensionStructureValidator = dimensionStructureValidator;
         }
 
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.Validators
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
-        public TopDimensionStructureValidator TopDimensionStructureValidator { get; }
+        public SourceFormatValidator SourceFormatValidator { get; }
 
         public DimensionStructureValidator DimensionStructureValidator { get; }
     }

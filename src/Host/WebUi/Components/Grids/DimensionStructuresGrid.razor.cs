@@ -33,7 +33,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure();
 
-        private List<DimensionStructure> _topDimensionStructures = new List<DimensionStructure>();
+        private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         private List<Dimension> _dimensions = new List<Dimension>();
 
@@ -146,7 +146,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             {
                 await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                         _editedDimensionStructure,
-                        ruleSet: ValidatorRulesets.UpdateTopDimensionStructure)
+                        ruleSet: ValidatorRulesets.UpdateSourceFormat)
                    .ConfigureAwait(false);
                 await MasterDataHttpClient.UpdateDimensionStructure(_editedDimensionStructure)
                    .ConfigureAwait(false);
@@ -176,12 +176,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task PopulateTopDimensionStructures()
         {
-            _topDimensionStructures = new List<DimensionStructure>();
-            _topDimensionStructures.Add(new DimensionStructure { Name = "-- Select One --" });
-            List<DimensionStructure> result = await MasterDataHttpClient
-               .GetTopDimensionStructuresAsync()
+            _sourceFormats = new List<SourceFormat>();
+            _sourceFormats.Add(new SourceFormat { Name = "-- Select One --" });
+            List<SourceFormat> result = await MasterDataHttpClient
+               .GetSourceFormatsAsync()
                .ConfigureAwait(false);
-            _topDimensionStructures.AddRange(result);
+            _sourceFormats.AddRange(result);
         }
     }
 }
