@@ -67,7 +67,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             // Assert
             action.Should()
-               .ThrowExactly<MasterDataBusinessLogicSourceFormatAsyncOperationException>()
+               .ThrowExactly<MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException>()
                .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntityException>();
         }
     }

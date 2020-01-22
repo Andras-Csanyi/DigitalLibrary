@@ -15,22 +15,32 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task DeleteSourceFormatAsync(SourceFormat secondResult)
+        public async Task DeleteSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
             {
-                if (secondResult == null)
+                if (sourceFormat == null)
                 {
-                    throw new MasterDataBusinessLogicArgumentNullException(nameof(secondResult));
+                    throw new MasterDataBusinessLogicArgumentNullException(nameof(sourceFormat));
                 }
 
                 await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                        secondResult,
+                        sourceFormat,
                         ruleSet: ValidatorRulesets.DeleteSourceFormat)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
+                    SourceFormat result = await ctx.SourceFormats.FindAsync(sourceFormat.Id).ConfigureAwait(false);
+
+                    if (result == null)
+                    {
+                        string msg = $"Ther is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
+                        throw new MasterDataBusinessLogicNoSuchSourceFormatEntityException(msg);
+                    }
+
+                    ctx.SourceFormats.Remove(result);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)
