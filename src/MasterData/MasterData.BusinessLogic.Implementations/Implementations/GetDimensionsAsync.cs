@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<List<Dimension>> GetActiveDimensionsAsync()
+        public async Task<List<Dimension>> GetDimensionsAsync()
         {
             try
             {

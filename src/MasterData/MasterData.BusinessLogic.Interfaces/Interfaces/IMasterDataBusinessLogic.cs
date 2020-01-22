@@ -7,8 +7,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public partial interface IMasterDataBusinessLogic
     {
-        Task<Dimension> AddDimensionAsync(Dimension dimension);
-
         Task<DimensionValue> AddDimensionValueAsync(DimensionValue dimensionValue, long dimensionId);
 
         Task<Dimension> GetValuesOfADimensionAsync(long dimensionId);
@@ -22,7 +20,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<long> CountDimensionValuesAsync();
 
-        Task<Dimension> ModifyDimensionAsync(long dimensionId, Dimension modifiedDimension);
 
         Task<Dimension> GetDimensionByIdAsync(long dimensionId);
 
@@ -31,7 +28,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             Dimension dimensionToBeInserted,
             int sortOrder);
 
-        Task DeleteDimensionAsync(long dimensionId);
 
         Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId);
     }

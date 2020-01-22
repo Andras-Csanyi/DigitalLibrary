@@ -95,7 +95,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<Dimension> result = await _masterDataBusinessLogic.GetActiveDimensionsAsync()
+                List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsAsync()
                    .ConfigureAwait(false);
                 return result;
             }
