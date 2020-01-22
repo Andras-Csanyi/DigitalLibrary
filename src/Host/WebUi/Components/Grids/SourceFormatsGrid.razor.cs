@@ -1,32 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using BlazorStrap;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
 
-    public partial class TopDimensionStructuresGrid
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.JSInterop;
+
+    public partial class SourceFormatsGrid
     {
         private BSModal _addNewModal;
 
-        private DimensionStructure _deleteItem = new DimensionStructure();
+        private SourceFormat _deleteItem = new SourceFormat();
 
         private BSModal _deleteModal;
 
-        private DimensionStructure _editedItem = new DimensionStructure();
+        private SourceFormat _editedItem = new SourceFormat();
 
         private BSModal _editModal;
 
-        private DimensionStructure _newItem = new DimensionStructure();
+        private SourceFormat _newItem = new SourceFormat();
 
-        private List<DimensionStructure> Data;
+        private List<SourceFormat> Data;
 
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
@@ -39,23 +39,23 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Data = await MasterDataHttpClient.GetTopDimensionStructuresAsync().ConfigureAwait(false);
+                Data = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
-                await JsRuntime.InvokeAsync<string>("console.log", e).ConfigureAwait(false);
+                Console.WriteLine(e.Message);
             }
         }
 
-        private async Task ShowEditModal(DimensionStructure dimensionStructure)
+        private async Task ShowEditModal(SourceFormat sourceFormat)
         {
-            _editedItem = dimensionStructure;
+            _editedItem = sourceFormat;
             _editModal.Show();
         }
 
-        private async Task ShowDeleteModal(DimensionStructure dimensionStructure)
+        private async Task ShowDeleteModal(SourceFormat sourceFormat)
         {
-            _deleteItem = dimensionStructure;
+            _deleteItem = sourceFormat;
             _deleteModal.Show();
         }
 
@@ -66,19 +66,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task CancelEditHandler()
         {
-            _editedItem = new DimensionStructure();
+            _editedItem = new SourceFormat();
             _editModal.Hide();
         }
 
         private async Task CancelAddHandler()
         {
-            _newItem = new DimensionStructure();
+            _newItem = new SourceFormat();
             _addNewModal.Hide();
         }
 
         private async Task DeleteHandler()
         {
-            Task deleteTask = Task.Run(async () => await MasterDataHttpClient.DeleteTopDimensionStructureAsync(
+            Task deleteTask = Task.Run(async () => await MasterDataHttpClient.DeleteSourceFormatAsync(
                     _deleteItem)
                .ConfigureAwait(false));
             deleteTask.GetAwaiter().GetResult();
@@ -89,7 +89,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task CancelDeleteHandler()
         {
-            _deleteItem = new DimensionStructure();
+            _deleteItem = new SourceFormat();
             _deleteModal.Hide();
         }
 
@@ -97,19 +97,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Task<DimensionStructure> modifyTask = Task.Run(async () => await MasterDataHttpClient
-                   .ModifyTopDimensionStructureAsync(_editedItem)
+                Task<SourceFormat> modifyTask = Task.Run(async () => await MasterDataHttpClient
+                   .UpdateSourceFormatAsync(_editedItem)
                    .ConfigureAwait(false));
                 modifyTask.GetAwaiter().GetResult();
-                MasterDataHttpClient.ModifyTopDimensionStructureAsync(_editedItem);
+                MasterDataHttpClient.UpdateSourceFormatAsync(_editedItem);
                 GetAllData();
                 StateHasChanged();
-                _editedItem = new DimensionStructure();
+                _editedItem = new SourceFormat();
                 _editModal.Hide();
             }
             catch (Exception e)
             {
-                JsRuntime.InvokeAsync<string>("console.log", e);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -117,25 +117,25 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Task<DimensionStructure> addTask = Task.Run(async () => await MasterDataHttpClient
-                   .AddTopDimensionStructureAsync(_newItem)
+                Task<SourceFormat> addTask = Task.Run(async () => await MasterDataHttpClient
+                   .AddSourceFormatAsync(_newItem)
                    .ConfigureAwait(false));
                 addTask.GetAwaiter().GetResult();
                 GetAllData();
                 StateHasChanged();
-                _newItem = new DimensionStructure();
+                _newItem = new SourceFormat();
                 _addNewModal.Hide();
             }
             catch (Exception e)
             {
-                JsRuntime.InvokeAsync<string>("console.log", e);
+                Console.WriteLine(e.Message);
             }
         }
 
         private void GetAllData()
         {
-            Task<List<DimensionStructure>> getTask = Task.Run(async () => await MasterDataHttpClient
-               .GetTopDimensionStructuresAsync()
+            Task<List<SourceFormat>> getTask = Task.Run(async () => await MasterDataHttpClient
+               .GetSourceFormatsAsync()
                .ConfigureAwait(false));
             Data = getTask.GetAwaiter().GetResult();
         }

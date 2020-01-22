@@ -30,17 +30,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         public async Task Return_All()
         {
             // Arrange
-            DimensionStructure topDimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "name",
-                    Desc = "desc",
-                    IsActive = 1
-                };
-            DimensionStructure topDimensionStructureResult = await masterDataHttpClient
-               .AddTopDimensionStructureAsync(topDimensionStructure)
-               .ConfigureAwait(false);
-
             DimensionStructure dimensionStructure1 =
                 new DimensionStructure
                 {

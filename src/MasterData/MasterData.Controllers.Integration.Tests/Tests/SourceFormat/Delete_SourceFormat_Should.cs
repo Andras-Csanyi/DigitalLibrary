@@ -25,40 +25,40 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
-        // [Fact]
+        [Fact]
         public async Task DeleteTheItem()
         {
             // Arrange
-            DimensionStructure first = new DimensionStructure
+            SourceFormat first = new SourceFormat
             {
                 Name = "first",
                 Desc = "second",
                 IsActive = 1,
             };
-            DimensionStructure firstResult = await masterDataHttpClient
-               .AddTopDimensionStructureAsync(first)
+            SourceFormat firstResult = await masterDataHttpClient
+               .AddSourceFormatAsync(first)
                .ConfigureAwait(false);
 
-            DimensionStructure second = new DimensionStructure
+            SourceFormat second = new SourceFormat
             {
                 Name = "second",
                 Desc = "second",
                 IsActive = 0
             };
-            DimensionStructure secondResult = await masterDataHttpClient
-               .AddTopDimensionStructureAsync(second)
+            SourceFormat secondResult = await masterDataHttpClient
+               .AddSourceFormatAsync(second)
                .ConfigureAwait(false);
-            List<DimensionStructure> origRes = await masterDataHttpClient
-               .GetTopDimensionStructuresAsync()
+            List<SourceFormat> origRes = await masterDataHttpClient
+               .GetSourceFormatsAsync()
                .ConfigureAwait(false);
             int origResCount = origRes.Count;
 
             // Act
-            await masterDataHttpClient.DeleteTopDimensionStructureAsync(secondResult).ConfigureAwait(false);
+            await masterDataHttpClient.DeleteSourceFormatAsync(secondResult).ConfigureAwait(false);
 
             // Assert
-            List<DimensionStructure> res = await masterDataHttpClient
-               .GetTopDimensionStructuresAsync()
+            List<SourceFormat> res = await masterDataHttpClient
+               .GetSourceFormatsAsync()
                .ConfigureAwait(false);
             res.Count.Should().Be(origResCount - 1);
         }

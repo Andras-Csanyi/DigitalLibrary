@@ -114,10 +114,10 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
 
                 Menu topDimensionStructure = new Menu
                 {
-                    Name = "Top dimension structures",
-                    Description = "Top level dimension structures",
+                    Name = "Source formats",
+                    Description = "Source formats description",
                     IsActive = 1,
-                    MenuRoute = "topdimensionstructures",
+                    MenuRoute = "sourceformats",
                     ModuleId = masterDataModule.Id
                 };
                 ctx.Menus.Add(topDimensionStructure);

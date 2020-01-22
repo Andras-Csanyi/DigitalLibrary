@@ -2,6 +2,8 @@ using System;
 
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
+    using System.Collections.Generic;
+
     using MasterData.Ctx;
     using MasterData.DomainModel;
 
@@ -9,13 +11,34 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
     {
         public static void Populate(MasterDataContext ctx)
         {
-            populateBusinessPartnerDimensionStructure(ctx);
-            populateNutritionIntakeDimensionStructure(ctx);
-            populateRssContentDimensionStructure(ctx);
-            populateDimensionsWithoutStructure(ctx);
+            PopulateSourceFormats(ctx);
+            PopulateBusinessPartnerDimensionStructure(ctx);
+            PopulateNutritionIntakeDimensionStructure(ctx);
+            PopulateRssContentDimensionStructure(ctx);
+            PopulateDimensionsWithoutStructure(ctx);
         }
 
-        private static void populateDimensionsWithoutStructure(MasterDataContext ctx)
+        private static void PopulateSourceFormats(MasterDataContext ctx)
+        {
+            int amout = 5;
+            List<SourceFormat> sourceFormats = new List<SourceFormat>();
+            for (int i = 0; i < amout; i++)
+            {
+                SourceFormat sourceFormat = new SourceFormat
+                {
+                    Name = $"name - {i}",
+                    Desc = $"desc - {i}",
+                    IsActive = 1
+                };
+                sourceFormats.Add(sourceFormat);
+            }
+
+            ctx.SourceFormats.AddRange(sourceFormats);
+            ctx.SaveChanges();
+            Console.WriteLine("Source formats has been added.");
+        }
+
+        private static void PopulateDimensionsWithoutStructure(MasterDataContext ctx)
         {
             Dimension dimension1 = new Dimension
             {
@@ -48,7 +71,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
             Console.WriteLine($"{dimension3.Name} is created...");
         }
 
-        private static void populateRssContentDimensionStructure(MasterDataContext ctx)
+        private static void PopulateRssContentDimensionStructure(MasterDataContext ctx)
         {
             DimensionStructure rssTopDimensionStructure = new DimensionStructure
             {
@@ -60,7 +83,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
             ctx.SaveChanges();
         }
 
-        private static void populateNutritionIntakeDimensionStructure(MasterDataContext ctx)
+        private static void PopulateNutritionIntakeDimensionStructure(MasterDataContext ctx)
         {
             DimensionStructure nutritionIntakeTopDimensionStructure = new DimensionStructure
             {
@@ -72,7 +95,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
             ctx.SaveChanges();
         }
 
-        private static void populateBusinessPartnerDimensionStructure(MasterDataContext ctx)
+        private static void PopulateBusinessPartnerDimensionStructure(MasterDataContext ctx)
         {
             DimensionStructure businessEntityTopDimensionStructure = new DimensionStructure
             {

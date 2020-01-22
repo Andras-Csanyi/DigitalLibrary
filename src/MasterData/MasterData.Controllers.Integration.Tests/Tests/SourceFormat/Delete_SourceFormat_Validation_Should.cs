@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteTopDimensionStructureAsync(null)
+                await masterDataHttpClient.DeleteSourceFormatAsync(null)
                    .ConfigureAwait(false);
             };
 

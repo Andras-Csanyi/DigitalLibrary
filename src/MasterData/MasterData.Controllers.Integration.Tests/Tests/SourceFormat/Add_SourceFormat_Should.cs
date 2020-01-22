@@ -29,7 +29,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         public async Task Add()
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            SourceFormat orig = new SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
@@ -37,8 +37,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             };
 
             // Act
-            DimensionStructure res = await masterDataHttpClient
-               .AddTopDimensionStructureAsync(orig)
+            SourceFormat res = await masterDataHttpClient
+               .AddSourceFormatAsync(orig)
                .ConfigureAwait(false);
 
             // Assert

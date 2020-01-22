@@ -18,32 +18,29 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Modify_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
     {
-        public Modify_SourceFormat_Should(
+        public Modify_NameDescIsActive_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
-
-        // [Theory]
-        // [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_TestData),
-        //     MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task ModifyTopDimensionStructure(
-            string name,
-            string desc,
-            int isActive)
+        public async Task Update_NameDescIsActive()
         {
             // Arrange
-            DimensionStructure orig = new DimensionStructure
+            string name = "name";
+            string desc = "desc";
+            int isActive = 0;
+
+            SourceFormat orig = new SourceFormat
             {
                 Name = "orig",
                 Desc = "orig",
                 IsActive = 1
             };
-            DimensionStructure origResult = await masterDataHttpClient
-               .AddTopDimensionStructureAsync(orig)
+            SourceFormat origResult = await masterDataHttpClient
+               .AddSourceFormatAsync(orig)
                .ConfigureAwait(false);
 
             origResult.Name = name;
@@ -51,8 +48,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             origResult.IsActive = isActive;
 
             // Act
-            DimensionStructure result = await masterDataHttpClient
-               .ModifyTopDimensionStructureAsync(origResult)
+            SourceFormat result = await masterDataHttpClient
+               .UpdateSourceFormatAsync(origResult)
                .ConfigureAwait(false);
 
             // Assert

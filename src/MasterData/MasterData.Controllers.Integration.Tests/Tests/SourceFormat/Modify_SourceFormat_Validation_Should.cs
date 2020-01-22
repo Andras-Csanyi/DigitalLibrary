@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.ModifyTopDimensionStructureAsync(null).ConfigureAwait(false);
+                await masterDataHttpClient.UpdateSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert

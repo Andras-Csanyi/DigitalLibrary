@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Web.Api;
 
     [ApiController]
-    [Route(MasterDataApi.DimensionStructure.V1.DimensionStructureBase)]
+    [Route(MasterDataApi.SourceFormat.SourceFormatBase)]
     public class SourceFormatController : ControllerBase
     {
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpGet]
-        [Route(MasterDataApi.DimensionStructure.V1.GetSourceFormats)]
+        [Route(MasterDataApi.SourceFormat.V1.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<SourceFormat>>> GetSourceFormatsAsync()
@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.AddSourceFormat)]
+        [Route(MasterDataApi.SourceFormat.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SourceFormat>> AddSourceFormatAsync(
@@ -63,7 +63,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpPut]
-        [Route(MasterDataApi.DimensionStructure.V1.UpdateSourceFormat)]
+        [Route(MasterDataApi.SourceFormat.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SourceFormat>> UpdateSourceFormatAsync(
@@ -83,7 +83,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpDelete]
-        [Route(MasterDataApi.DimensionStructure.V1.DeleteSourceFormatAsync)]
+        [Route(MasterDataApi.SourceFormat.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> DeleteSourceFormatAsync(SourceFormat sourceFormat)

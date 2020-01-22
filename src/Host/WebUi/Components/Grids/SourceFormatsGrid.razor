@@ -20,22 +20,24 @@
         @{
             if (Data != null && Data.Any())
             {
-                foreach (DimensionStructure dimensionStructure in Data)
+                foreach (SourceFormat sourceFormat in Data)
                 {
                     <BSTableRow>
-                        <BSTableCell>@dimensionStructure.Id</BSTableCell>
-                        <BSTableCell>@dimensionStructure.Name</BSTableCell>
-                        <BSTableCell>@dimensionStructure.Desc</BSTableCell>
-                        <BSTableCell>@dimensionStructure.IsActive</BSTableCell>
+                        <BSTableCell>@sourceFormat.Id</BSTableCell>
+                        <BSTableCell>@sourceFormat.Name</BSTableCell>
+                        <BSTableCell>@sourceFormat.Desc</BSTableCell>
+                        <BSTableCell>@sourceFormat.IsActive</BSTableCell>
                         <BSTableCell>
                             <BSButton ButtonType="ButtonType.Button"
-                                      @onclick="@(async () => await ShowEditModal(dimensionStructure))">
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await ShowEditModal(sourceFormat))">
                                 Edit
                             </BSButton>
                         </BSTableCell>
                         <BSTableCell>
                             <BSButton ButtonType="ButtonType.Button"
-                                      @onclick="@(async () => await ShowDeleteModal(dimensionStructure))">
+                                      Color="Color.Danger"
+                                      @onclick="@(async () => await ShowDeleteModal(sourceFormat))">
                                 Delete
                             </BSButton>
                         </BSTableCell>

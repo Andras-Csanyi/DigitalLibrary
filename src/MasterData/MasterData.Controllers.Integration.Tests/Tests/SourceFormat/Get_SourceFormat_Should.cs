@@ -25,19 +25,38 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
-        // [Fact]
-        public async Task Return_AllTopDimensionStructures()
+        [Fact]
+        public async Task Return_All()
         {
             // Arrange
+            SourceFormat first = new SourceFormat
+            {
+                Name = "first",
+                Desc = "second",
+                IsActive = 1,
+            };
+            SourceFormat firstResult = await masterDataHttpClient
+               .AddSourceFormatAsync(first)
+               .ConfigureAwait(false);
+
+            SourceFormat second = new SourceFormat
+            {
+                Name = "second",
+                Desc = "second",
+                IsActive = 0
+            };
+            SourceFormat secondResult = await masterDataHttpClient
+               .AddSourceFormatAsync(second)
+               .ConfigureAwait(false);
 
             // Act
-            List<DimensionStructure> result = await masterDataHttpClient
-               .GetTopDimensionStructuresAsync()
+            List<SourceFormat> result = await masterDataHttpClient
+               .GetSourceFormatsAsync()
                .ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();
-            result.Count.Should().Be(1);
+            result.Count.Should().Be(2);
         }
     }
 }
