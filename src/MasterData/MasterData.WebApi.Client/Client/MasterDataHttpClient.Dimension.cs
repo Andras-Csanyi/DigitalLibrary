@@ -10,12 +10,12 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     public partial class MasterDataHttpClient
     {
-        public async Task<List<Dimension>> GetAllActiveDimensions()
+        public async Task<List<Dimension>> GetDimensionsAsync()
         {
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                    $"{MasterDataApi.Dimensions.V1.GetAllActive}";
+                             $"{MasterDataApi.Dimensions.V1.GetAllActive}";
                 List<Dimension> result = await _diLibHttpClient.Get<List<Dimension>>(url).ConfigureAwait(false);
                 return result;
             }
@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                    $"{MasterDataApi.Dimensions.V1.AddNew}";
+                             $"{MasterDataApi.Dimensions.V1.AddNew}";
                 Dimension result = await _diLibHttpClient.Post(dimension, url).ConfigureAwait(false);
                 return result;
             }
@@ -45,9 +45,23 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                    $"{MasterDataApi.Dimensions.V1.GetDimensionsWithoutStructure}";
+                             $"{MasterDataApi.Dimensions.V1.GetDimensionsWithoutStructure}";
                 List<Dimension> result = await _diLibHttpClient.Get<List<Dimension>>(url).ConfigureAwait(false);
                 return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task DeleteDimensionAsync(long dimensionId)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
+                             $"{MasterDataApi.Dimensions.V1.Delete}";
+                await _diLibHttpClient.Delete(dimensionId, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -60,7 +74,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
+                             $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
                 DimensionStructure result = await _diLibHttpClient.Put(updatedDimensionStructure, url)
                    .ConfigureAwait(false);
                 return result;

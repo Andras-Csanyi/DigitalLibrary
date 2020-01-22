@@ -170,7 +170,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             _dimensions = new List<Dimension>();
             _dimensions.Add(new Dimension { Name = "-- Select One --" });
-            List<Dimension> result = await MasterDataHttpClient.GetAllActiveDimensions().ConfigureAwait(false);
+            List<Dimension> result = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
             _dimensions.AddRange(result);
         }
 

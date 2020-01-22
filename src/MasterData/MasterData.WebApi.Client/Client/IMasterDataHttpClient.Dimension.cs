@@ -7,10 +7,12 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     public partial interface IMasterDataHttpClient
     {
-        Task<List<Dimension>> GetAllActiveDimensions();
+        Task<List<Dimension>> GetDimensionsAsync();
 
         Task<Dimension> AddDimensionAsync(Dimension dimension);
 
         Task<List<Dimension>> GetDimensionsWithoutStructure();
+
+        Task DeleteDimensionAsync(long dimensionId);
     }
 }
