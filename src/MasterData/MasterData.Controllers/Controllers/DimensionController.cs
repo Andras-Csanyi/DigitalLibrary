@@ -71,12 +71,11 @@ namespace DigitalLibrary.MasterData.Controllers
         [Route(MasterDataApi.Dimensions.V1.Modify)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(long dimensionId, Dimension dimension)
+        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(Dimension dimension)
         {
             try
             {
                 Dimension result = await _masterDataBusinessLogic.ModifyDimensionAsync(
-                        dimensionId,
                         dimension)
                    .ConfigureAwait(false);
                 return Ok(result);

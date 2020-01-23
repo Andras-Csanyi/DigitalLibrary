@@ -30,7 +30,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private BSModal _newDimensionModal;
 
+        private BSModal _editDimensionModal;
+
         private Dimension _newDimension = new Dimension();
+
+        private Dimension _editedDimension = new Dimension();
+
+        private Dimension _deleteDimension = new Dimension();
 
         protected override async Task OnInitializedAsync()
         {
@@ -65,7 +71,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             _newDimensionModal.Show();
         }
 
-        private async Task AddDimensionAction()
+        private async Task AddDimensionHandler()
         {
             await JsRuntime.InvokeAsync<string>("console.log", _newDimension).ConfigureAwait(false);
             try
@@ -77,7 +83,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                 await MasterDataHttpClient.AddDimensionAsync(_newDimension)
                    .ConfigureAwait(false);
                 await PopulateDimensionsAsync().ConfigureAwait(false);
-                await HideNewDimensionModal().ConfigureAwait(false);
+                await HideNewDimensionModalAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -85,9 +91,52 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             }
         }
 
-        private async Task HideNewDimensionModal()
+        private async Task HideNewDimensionModalAsync()
         {
             _newDimensionModal.Hide();
+        }
+
+        private async Task HideEditDimensionModalAsync()
+        {
+            _editDimensionModal.Hide();
+        }
+
+        private async Task EditDimensionHandler()
+        {
+            try
+            {
+                await MasterDataValidators.DimensionValidator.ValidateAndThrowAsync(
+                        _editedDimension,
+                        ruleSet: ValidatorRulesets.UpdateDimension)
+                   .ConfigureAwait(false);
+                await MasterDataHttpClient.UpdateDimensionAsync(_editedDimension).ConfigureAwait(false);
+                await PopulateDimensionsAsync().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private async Task DeleteDimensionAction(Dimension dimension)
+        {
+        }
+
+        private async Task CancelEditDimensionAction()
+        {
+            _editedDimension = new Dimension();
+            await HideEditDimensionModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task EditDimensionAction(Dimension dimension)
+        {
+            _editedDimension = dimension;
+            await OpenEditDimensionModal().ConfigureAwait(false);
+        }
+
+        private async Task OpenEditDimensionModal()
+        {
+            _editDimensionModal.Show();
         }
     }
 }

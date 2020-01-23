@@ -69,6 +69,22 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        public async Task<Dimension> UpdateDimensionAsync(Dimension dimension)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
+                             $"{MasterDataApi.Dimensions.V1.Modify}";
+                Dimension result = await _diLibHttpClient.Put(dimension, url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
         public async Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure)
         {
             try

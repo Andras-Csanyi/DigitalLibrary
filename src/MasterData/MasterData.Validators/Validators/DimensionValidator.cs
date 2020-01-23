@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.ModifyDimension, () =>
+            RuleSet(ValidatorRulesets.UpdateDimension, () =>
             {
                 When(p => p.Name == null || p.Description == null, () =>
                 {

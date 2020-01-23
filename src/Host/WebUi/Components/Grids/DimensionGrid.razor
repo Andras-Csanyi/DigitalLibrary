@@ -1,5 +1,5 @@
 @using DigitalLibrary.MasterData.DomainModel
-<BSTable>
+<BSTable IsDark="true" IsStriped="true" IsHovarable="true">
     <BSTableHead>
         <BSTableRow>
             <BSTableHeadCell>
@@ -28,11 +28,15 @@
                     <BSTableCell>@dimension.IsActive</BSTableCell>
                     <BSTableCell>
                         <BSButton ButtonType="ButtonType.Button"
-                                  Color="Color.Primary">
+                                  Color="Color.Primary"
+                                  @onclick="@(async () => await EditDimensionAction(dimension)
+                                                .ConfigureAwait(false))">
                             Edit
                         </BSButton>
                         <BSButton ButtonType="ButtonType.Submit"
-                                  Color="Color.Danger">
+                                  Color="Color.Danger"
+                                  @onclick="@(async () => await DeleteDimensionAction(dimension)
+                                                .ConfigureAwait(false))">
                             Delete
                         </BSButton>
                     </BSTableCell>
@@ -46,7 +50,7 @@
 <BSModal @ref="_newDimensionModal">
     <BSForm Model="@_newDimension"
             ValidateOnInit="true"
-            OnValidSubmit="@(async () => await AddDimensionAction().ConfigureAwait(false))">
+            OnValidSubmit="@(async () => await AddDimensionHandler().ConfigureAwait(false))">
         <BSModalHeader @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
             <BSLabel>Adding new Dimension.</BSLabel>
         </BSModalHeader>
@@ -89,6 +93,62 @@
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Secondary"
                       @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_editDimensionModal">
+    <BSForm Model="@_editedDimension"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await EditDimensionHandler().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelEditDimensionAction().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimension.Id">
+                    @_editedDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="false"
+                         @bind-Value="@_editedDimension.Name">
+                    @_editedDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="false"
+                         @bind-Value="@_editedDimension.Description">
+                    @_editedDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="false"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_editedDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelEditDimensionAction().ConfigureAwait(false))">
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Submit"
