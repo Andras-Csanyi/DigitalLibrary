@@ -30,21 +30,21 @@ namespace DigitalLibrary.MasterData.Validators.Test
             },
             new object[]
             {
-                new MasterDataDimensionValidator(),
+                new DimensionValidator(),
                 null,
                 new SourceFormatValidator(),
                 new DimensionStructureValidator(),
             },
             new object[]
             {
-                new MasterDataDimensionValidator(),
+                new DimensionValidator(),
                 new MasterDataDimensionValueValidator(),
                 null,
                 new DimensionStructureValidator(),
             },
             new object[]
             {
-                new MasterDataDimensionValidator(),
+                new DimensionValidator(),
                 new MasterDataDimensionValueValidator(),
                 new SourceFormatValidator(),
                 null
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
         [Theory]
         [MemberData(nameof(ValidatorCtorInput))]
         public void ThrowException_WhenAnyCtorInput_IsNull(
-            MasterDataDimensionValidator masterDataDimensionValidator,
+            DimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator masterDataDimensionValueValidator,
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator)
@@ -65,7 +65,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
             Func<Task> action = async () =>
             {
                 new MasterDataValidators(
-                    masterDataDimensionValidator,
+                    dimensionValidator,
                     masterDataDimensionValueValidator,
                     sourceFormatValidator,
                     dimensionStructureValidator

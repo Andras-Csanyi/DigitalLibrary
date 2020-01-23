@@ -50,7 +50,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                await PopulateDimensionStructures();
+                await PopulateDimensionStructures().ConfigureAwait(false);
                 await PopulateTopDimensionStructures().ConfigureAwait(false);
                 await PopulateDimensions().ConfigureAwait(false);
             }

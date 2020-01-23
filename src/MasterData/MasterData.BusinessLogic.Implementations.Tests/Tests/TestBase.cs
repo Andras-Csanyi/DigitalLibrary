@@ -36,13 +36,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                    .EnableSensitiveDataLogging()
                    .Options;
 
-            MasterDataDimensionValidator masterDataDimensionValidator = new MasterDataDimensionValidator();
+            DimensionValidator dimensionValidator = new DimensionValidator();
             MasterDataDimensionValueValidator masterDataDimensionValueValidator =
                 new MasterDataDimensionValueValidator();
             SourceFormatValidator sourceFormatValidator = new SourceFormatValidator();
             DimensionStructureValidator dimensionStructureValidator = new DimensionStructureValidator();
             MasterDataValidators masterDataValidators = new MasterDataValidators(
-                masterDataDimensionValidator,
+                dimensionValidator,
                 masterDataDimensionValueValidator,
                 sourceFormatValidator,
                 dimensionStructureValidator);

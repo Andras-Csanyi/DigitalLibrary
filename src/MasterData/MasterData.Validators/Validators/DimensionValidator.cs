@@ -7,9 +7,9 @@ namespace DigitalLibrary.MasterData.Validators
     using FluentValidation;
 
     [ExcludeFromCodeCoverage]
-    public class MasterDataDimensionValidator : AbstractValidator<Dimension>
+    public class DimensionValidator : AbstractValidator<Dimension>
     {
-        public MasterDataDimensionValidator()
+        public DimensionValidator()
         {
             RuleSet(ValidatorRulesets.AddNewDimension, () =>
             {

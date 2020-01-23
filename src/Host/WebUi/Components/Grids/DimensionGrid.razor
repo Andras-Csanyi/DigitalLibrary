@@ -1,0 +1,100 @@
+@using DigitalLibrary.MasterData.DomainModel
+<BSTable>
+    <BSTableHead>
+        <BSTableRow>
+            <BSTableHeadCell>
+                <BSButton ButtonType="ButtonType.Button"
+                          Color="Color.Primary"
+                          @onclick="@(async () => await OpenNewDimensionModal().ConfigureAwait(false))">
+                    Add
+                </BSButton>
+            </BSTableHeadCell>
+        </BSTableRow>
+        <BSTableRow>
+            <BSTableHeadCell>Id</BSTableHeadCell>
+            <BSTableHeadCell>Name</BSTableHeadCell>
+            <BSTableHeadCell>Desc</BSTableHeadCell>
+            <BSTableHeadCell>IsActive</BSTableHeadCell>
+        </BSTableRow>
+    </BSTableHead>
+    <BSTableBody>
+        @{
+            foreach (Dimension dimension in _dimensions)
+            {
+                <BSTableRow>
+                    <BSTableCell>@dimension.Id</BSTableCell>
+                    <BSTableCell>@dimension.Name</BSTableCell>
+                    <BSTableCell>@dimension.Description</BSTableCell>
+                    <BSTableCell>@dimension.IsActive</BSTableCell>
+                    <BSTableCell>
+                        <BSButton ButtonType="ButtonType.Button"
+                                  Color="Color.Primary">
+                            Edit
+                        </BSButton>
+                        <BSButton ButtonType="ButtonType.Submit"
+                                  Color="Color.Danger">
+                            Delete
+                        </BSButton>
+                    </BSTableCell>
+                </BSTableRow>
+            }
+        }
+    </BSTableBody>
+    <BSTableFooter></BSTableFooter>
+</BSTable>
+
+<BSModal @ref="_newDimensionModal">
+    <BSForm Model="@_newDimension"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await AddDimensionAction().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_newDimension.Id">
+                    @_newDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="false"
+                         @bind-Value="@_newDimension.Name">
+                    @_newDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="false"
+                         @bind-Value="@_newDimension.Description">
+                    @_newDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="false"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_newDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>

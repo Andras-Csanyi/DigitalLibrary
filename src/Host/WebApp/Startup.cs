@@ -103,7 +103,7 @@ namespace WebApp
 
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
-            services.AddTransient<MasterDataDimensionValidator>();
+            services.AddTransient<DimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<DimensionStructureValidator>();

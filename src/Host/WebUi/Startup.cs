@@ -50,7 +50,7 @@ namespace DigitalLibrary.Ui.WebUi
 
             // validators
             services.AddTransient<DimensionStructureValidator>();
-            services.AddTransient<MasterDataDimensionValidator>();
+            services.AddTransient<DimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
