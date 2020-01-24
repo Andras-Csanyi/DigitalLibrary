@@ -40,6 +40,7 @@ namespace DigitalLibrary.MasterData.Validators
 
                 When(p => p.Name != null && p.Description != null, () =>
                 {
+                    RuleFor(p => p.Id).GreaterThan(0);
                     RuleFor(p => p.Name).NotEmpty().NotNull().NotEqual(" ");
                     RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.Description).NotEmpty().NotNull().NotEqual(" ");

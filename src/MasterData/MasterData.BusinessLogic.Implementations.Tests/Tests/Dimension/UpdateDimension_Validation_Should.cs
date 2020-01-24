@@ -43,9 +43,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.ModifyDimensionAsync_Validation),
+        [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
+            long id,
             string name,
             string desc,
             int isActive)
@@ -53,6 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             Dimension dimension = new Dimension
             {
+                Id = id,
                 Name = name,
                 Description = desc,
                 IsActive = isActive
