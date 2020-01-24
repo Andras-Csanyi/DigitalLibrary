@@ -55,13 +55,13 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task DeleteDimensionAsync(long dimensionId)
+        public async Task DeleteDimensionAsync(Dimension dimension)
         {
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
                              $"{MasterDataApi.Dimensions.V1.Delete}";
-                await _diLibHttpClient.Delete(dimensionId, url).ConfigureAwait(false);
+                await _diLibHttpClient.Delete(dimension, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {

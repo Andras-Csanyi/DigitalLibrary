@@ -121,5 +121,23 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpDelete]
+        [Route(MasterDataApi.Dimensions.V1.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> DeleteDimensionAsync(Dimension dimension)
+        {
+            try
+            {
+                await _masterDataBusinessLogic.DeleteDimensionAsync(dimension)
+                   .ConfigureAwait(false);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

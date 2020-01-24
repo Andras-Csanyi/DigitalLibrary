@@ -15,6 +15,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<Dimension> ModifyDimensionAsync(Dimension dimension);
 
-        Task DeleteDimensionAsync(long dimensionId);
+        Task DeleteDimensionAsync(Dimension dimension);
     }
 }

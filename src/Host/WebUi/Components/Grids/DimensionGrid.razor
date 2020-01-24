@@ -158,3 +158,58 @@
         </BSModalFooter>
     </BSForm>
 </BSModal>
+
+<BSModal @ref="_deleteDimensionModal">
+    <BSForm Model="@_deleteDimension">
+        <BSModalHeader @onclick="@(async () => await CancelDeleteDimensionHandler().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Id">
+                    @_deleteDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Name">
+                    @_deleteDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Description">
+                    @_deleteDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="true"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_deleteDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelDeleteDimensionHandler().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Danger"
+                      @onclick="@(async () => await DeleteDimensionHandler().ConfigureAwait(false))">
+                Delete
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
