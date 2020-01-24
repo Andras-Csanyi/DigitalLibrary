@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
@@ -10,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Update_DimensionStructureAsync_Should : TestBase
     {
         private const string TestInfo = nameof(Update_DimensionStructureAsync_Should);
