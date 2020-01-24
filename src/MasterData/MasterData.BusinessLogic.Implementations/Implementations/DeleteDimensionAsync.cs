@@ -5,31 +5,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Ctx;
 
+    using DomainModel;
+
+    using Exceptions;
+
     using Microsoft.EntityFrameworkCore.Storage;
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task DeleteDimensionAsync(long dimensionId)
+        public async Task DeleteDimensionAsync(Dimension dimension)
         {
-            using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+            try
             {
-                using (IDbContextTransaction transactionAsync = await ctx.Database.BeginTransactionAsync()
-                   .ConfigureAwait(false))
+                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    try
+                    Dimension toBeDeleted = await ctx.Dimensions.FindAsync(dimension.Id)
+                       .ConfigureAwait(false);
+                    if (toBeDeleted == null)
                     {
-                        // cases:
-                        // if there is no value connected to it
-                        // if there are values connected to it, and these values are not connected to other dimensions
-                        // if connected values connected to other dimensions
+                        string msg = $"There is no {nameof(Dimension)} " +
+                                     $"with id: {dimension}.";
+                        throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
+                    }
 
-                        await transactionAsync.CommitAsync().ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        await transactionAsync.RollbackAsync().ConfigureAwait(false);
-                    }
+                    ctx.Dimensions.Remove(toBeDeleted);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
                 }
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataBusinessLogicDeleteDimensionAsyncOperationException(e.Message, e);
             }
         }
     }

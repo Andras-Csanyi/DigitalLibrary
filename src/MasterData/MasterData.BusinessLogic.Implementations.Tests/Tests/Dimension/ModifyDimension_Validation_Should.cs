@@ -25,17 +25,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         {
         }
 
-        [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.ModifyDimensionAsync_InputValidation),
-            MemberType = typeof(MasterData_Dimension_TestData))]
-        public async Task ThrowException_WhenInputsAreNull(
-            long id,
-            Dimension dimension)
+        [Fact]
+        public async Task ThrowException_WhenInputsAreNull()
         {
             // Arrange
 
             // Act
-            Func<Task> action = async () => { await masterDataBusinessLogic.ModifyDimensionAsync(id, dimension); };
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.ModifyDimensionAsync(null)
+                   .ConfigureAwait(false);
+            };
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicModifyDimensionAsyncOperationException>()
@@ -46,7 +46,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(nameof(MasterData_Dimension_TestData.ModifyDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
-            long id,
             string name,
             string desc,
             int isActive)
@@ -62,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.ModifyDimensionAsync(id, dimension).ConfigureAwait(false);
+                await masterDataBusinessLogic.ModifyDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert

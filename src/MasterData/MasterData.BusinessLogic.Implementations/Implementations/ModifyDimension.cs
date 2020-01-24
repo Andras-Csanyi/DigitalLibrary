@@ -17,34 +17,35 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<Dimension> ModifyDimensionAsync(long dimensionId, Dimension modifiedDimension)
+        public async Task<Dimension> ModifyDimensionAsync(Dimension dimension)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
                 try
                 {
-                    if (dimensionId == 0 || modifiedDimension == null)
+                    if (dimension == null)
                     {
-                        string msg = $"Dimension id: {dimensionId} or modified dimension: {modifiedDimension} is null.";
+                        string msg = $"Dimension is null.";
                         throw new MasterDataBusinessLogicArgumentNullException(msg);
                     }
 
                     await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
-                            modifiedDimension,
-                            ruleSet: ValidatorRulesets.ModifyDimension)
+                            dimension,
+                            ruleSet: ValidatorRulesets.UpdateDimension)
                        .ConfigureAwait(false);
 
-                    Dimension toBeModified = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
+                    Dimension toBeModified = await ctx.Dimensions.FindAsync(dimension.Id)
+                       .ConfigureAwait(false);
 
                     if (toBeModified == null)
                     {
-                        string msg = $"No Dimension entity with id: {dimensionId}";
+                        string msg = $"No Dimension entity with id: {dimension.Id}";
                         throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
                     }
 
-                    toBeModified.Name = modifiedDimension.Name;
-                    toBeModified.Description = modifiedDimension.Description;
-                    toBeModified.IsActive = modifiedDimension.IsActive;
+                    toBeModified.Name = dimension.Name;
+                    toBeModified.Description = dimension.Description;
+                    toBeModified.IsActive = dimension.IsActive;
 
                     ctx.Entry(toBeModified).State = EntityState.Modified;
                     await ctx.SaveChangesAsync().ConfigureAwait(false);

@@ -23,29 +23,17 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             new object[] { 0, "name", "desc", 2 },
         };
 
-        public static IEnumerable<object[]> ModifyDimensionAsync_InputValidation = new List<object[]>
-        {
-            new object[]
-            {
-                0, new Dimension(),
-            },
-            new object[]
-            {
-                1, null
-            }
-        };
-
         public static IEnumerable<object[]> ModifyDimensionAsync_Validation = new List<object[]>
         {
-            new object[] { 1, null, "desc", 1 },
-            new object[] { 1, string.Empty, "desc", 1 },
-            new object[] { 1, "as", "desc", 1 },
+            new object[] { null, "desc", 1 },
+            new object[] { string.Empty, "desc", 1 },
+            new object[] { "as", "desc", 1 },
 
-            new object[] { 1, "name", null, 1 },
-            new object[] { 1, "name", string.Empty, 1 },
-            new object[] { 1, "name", "as", 1 },
+            new object[] { "name", null, 1 },
+            new object[] { "name", string.Empty, 1 },
+            new object[] { "name", "as", 1 },
 
-            new object[] { 1, "name", "desc", 2 },
+            new object[] { "name", "desc", 2 },
         };
     }
 }

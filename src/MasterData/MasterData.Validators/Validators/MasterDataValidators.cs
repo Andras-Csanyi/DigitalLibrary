@@ -3,7 +3,7 @@ namespace DigitalLibrary.MasterData.Validators
     public class MasterDataValidators : IMasterDataValidators
     {
         public MasterDataValidators(
-            MasterDataDimensionValidator dimensionValidator,
+            DimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator dimensionValueValidator,
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator)
@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.Validators
             DimensionStructureValidator = dimensionStructureValidator;
         }
 
-        public MasterDataDimensionValidator DimensionValidator { get; }
+        public DimensionValidator DimensionValidator { get; }
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 

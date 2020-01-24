@@ -46,6 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 dimval2, dimensionResult.Id).ConfigureAwait(false);
             Dimension mod = new Dimension
             {
+                Id = dimensionResult.Id,
                 Name = "modif",
                 Description = "desc modif",
                 IsActive = 1
@@ -53,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(dimensionResult.Id, mod)
+               .ModifyDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -90,6 +91,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             Dimension mod = new Dimension
             {
+                Id = dimensionResult.Id,
                 Name = "modif",
                 Description = "desc modif",
                 IsActive = 1
@@ -97,7 +99,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(dimensionResult.Id, mod)
+               .ModifyDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -131,6 +133,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             Dimension mod = new Dimension
             {
+                Id = dimensionResult.Id,
                 Name = "modif",
                 Description = "desc modif",
                 IsActive = 1
@@ -138,7 +141,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(dimensionResult.Id, mod)
+               .ModifyDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert

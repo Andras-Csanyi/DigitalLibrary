@@ -1,0 +1,215 @@
+@using DigitalLibrary.MasterData.DomainModel
+<BSTable IsDark="true" IsStriped="true" IsHovarable="true">
+    <BSTableHead>
+        <BSTableRow>
+            <BSTableHeadCell>
+                <BSButton ButtonType="ButtonType.Button"
+                          Color="Color.Primary"
+                          @onclick="@(async () => await OpenNewDimensionModalAsync().ConfigureAwait(false))">
+                    Add
+                </BSButton>
+            </BSTableHeadCell>
+        </BSTableRow>
+        <BSTableRow>
+            <BSTableHeadCell>Id</BSTableHeadCell>
+            <BSTableHeadCell>Name</BSTableHeadCell>
+            <BSTableHeadCell>Desc</BSTableHeadCell>
+            <BSTableHeadCell>IsActive</BSTableHeadCell>
+        </BSTableRow>
+    </BSTableHead>
+    <BSTableBody>
+        @{
+            foreach (Dimension dimension in _dimensions)
+            {
+                <BSTableRow>
+                    <BSTableCell>@dimension.Id</BSTableCell>
+                    <BSTableCell>@dimension.Name</BSTableCell>
+                    <BSTableCell>@dimension.Description</BSTableCell>
+                    <BSTableCell>@dimension.IsActive</BSTableCell>
+                    <BSTableCell>
+                        <BSButton ButtonType="ButtonType.Button"
+                                  Color="Color.Primary"
+                                  @onclick="@(async () => await EditDimensionActionAsync(dimension)
+                                                .ConfigureAwait(false))">
+                            Edit
+                        </BSButton>
+                        <BSButton ButtonType="ButtonType.Submit"
+                                  Color="Color.Danger"
+                                  @onclick="@(async () => await DeleteDimensionActionAsync(dimension)
+                                                .ConfigureAwait(false))">
+                            Delete
+                        </BSButton>
+                    </BSTableCell>
+                </BSTableRow>
+            }
+        }
+    </BSTableBody>
+    <BSTableFooter></BSTableFooter>
+</BSTable>
+
+<BSModal @ref="_newDimensionModal">
+    <BSForm Model="@_newDimension"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await AddDimensionHandlerAsync().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelNewDimensionActionAsync().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_newDimension.Id">
+                    @_newDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="false"
+                         @bind-Value="@_newDimension.Name">
+                    @_newDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="false"
+                         @bind-Value="@_newDimension.Description">
+                    @_newDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="false"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_newDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelNewDimensionActionAsync().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_editDimensionModal">
+    <BSForm Model="@_editedDimension"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await EditDimensionHandlerAsync().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelEditDimensionHandlerAsync().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_editedDimension.Id">
+                    @_editedDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="false"
+                         @bind-Value="@_editedDimension.Name">
+                    @_editedDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="false"
+                         @bind-Value="@_editedDimension.Description">
+                    @_editedDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="false"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_editedDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelEditDimensionHandlerAsync().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_deleteDimensionModal">
+    <BSForm Model="@_deleteDimension">
+        <BSModalHeader @onclick="@(async () => await CancelDeleteDimensionHandlerAsync().ConfigureAwait(false))">
+            <BSLabel>Adding new Dimension.</BSLabel>
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Id">
+                    @_deleteDimension.Id
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Name">
+                    @_deleteDimension.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         IsDisabled="true"
+                         @bind-Value="@_deleteDimension.Description">
+                    @_deleteDimension.Description
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         IsDisabled="true"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_deleteDimension.IsActive">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelDeleteDimensionHandlerAsync().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Danger"
+                      @onclick="@(async () => await DeleteDimensionHandlerAsync().ConfigureAwait(false))">
+                Delete
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>

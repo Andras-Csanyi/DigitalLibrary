@@ -7,8 +7,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public partial interface IMasterDataBusinessLogic
     {
-        Task<List<Dimension>> GetActiveDimensionsAsync();
+        Task<List<Dimension>> GetDimensionsAsync();
 
         Task<List<Dimension>> GetDimensionsWithoutStructureAsync();
+
+        Task<Dimension> AddDimensionAsync(Dimension dimension);
+
+        Task<Dimension> ModifyDimensionAsync(Dimension dimension);
+
+        Task DeleteDimensionAsync(Dimension dimension);
     }
 }

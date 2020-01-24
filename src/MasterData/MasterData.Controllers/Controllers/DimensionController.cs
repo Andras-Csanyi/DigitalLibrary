@@ -71,12 +71,11 @@ namespace DigitalLibrary.MasterData.Controllers
         [Route(MasterDataApi.Dimensions.V1.Modify)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(long dimensionId, Dimension dimension)
+        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(Dimension dimension)
         {
             try
             {
                 Dimension result = await _masterDataBusinessLogic.ModifyDimensionAsync(
-                        dimensionId,
                         dimension)
                    .ConfigureAwait(false);
                 return Ok(result);
@@ -95,7 +94,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<Dimension> result = await _masterDataBusinessLogic.GetActiveDimensionsAsync()
+                List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsAsync()
                    .ConfigureAwait(false);
                 return result;
             }
@@ -116,6 +115,24 @@ namespace DigitalLibrary.MasterData.Controllers
                 List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsWithoutStructureAsync()
                    .ConfigureAwait(false);
                 return result;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpDelete]
+        [Route(MasterDataApi.Dimensions.V1.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> DeleteDimensionAsync(Dimension dimension)
+        {
+            try
+            {
+                await _masterDataBusinessLogic.DeleteDimensionAsync(dimension)
+                   .ConfigureAwait(false);
+                return Ok();
             }
             catch (Exception e)
             {

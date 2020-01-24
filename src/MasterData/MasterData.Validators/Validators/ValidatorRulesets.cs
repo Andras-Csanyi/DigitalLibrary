@@ -15,13 +15,9 @@ namespace DigitalLibrary.MasterData.Validators
 
         public const string ModifyDimensionValue = "ModifyDimensionValue";
 
-        public const string ModifyDimension = "ModifyDimension";
+        public const string UpdateDimension = "UpdateDimension";
 
-        public const string Modify = "Modify";
-
-        public const string Delete = "Delete";
-
-        public const string Find = "Find";
+        public const string DeleteDimension = "DeleteDimension";
 
         public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
