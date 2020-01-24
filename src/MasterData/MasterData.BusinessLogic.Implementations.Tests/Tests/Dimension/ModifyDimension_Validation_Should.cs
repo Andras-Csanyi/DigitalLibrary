@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.ModifyDimensionAsync(null)
+                await masterDataBusinessLogic.UpdateDimensionAsync(null)
                    .ConfigureAwait(false);
             };
 
@@ -61,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.ModifyDimensionAsync(dimension).ConfigureAwait(false);
+                await masterDataBusinessLogic.UpdateDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert

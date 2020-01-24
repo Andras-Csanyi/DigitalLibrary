@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(mod)
+               .UpdateDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -99,7 +99,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(mod)
+               .UpdateDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert
@@ -141,7 +141,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Act
             Dimension result = await masterDataBusinessLogic
-               .ModifyDimensionAsync(mod)
+               .UpdateDimensionAsync(mod)
                .ConfigureAwait(false);
 
             // Assert

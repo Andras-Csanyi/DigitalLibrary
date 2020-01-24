@@ -75,7 +75,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.ModifyDimensionAsync(
+                Dimension result = await _masterDataBusinessLogic.UpdateDimensionAsync(
                         dimension)
                    .ConfigureAwait(false);
                 return Ok(result);

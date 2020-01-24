@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<Dimension> AddDimensionAsync(Dimension dimension);
 
-        Task<Dimension> ModifyDimensionAsync(Dimension dimension);
+        Task<Dimension> UpdateDimensionAsync(Dimension dimension);
 
         Task DeleteDimensionAsync(Dimension dimension);
     }
