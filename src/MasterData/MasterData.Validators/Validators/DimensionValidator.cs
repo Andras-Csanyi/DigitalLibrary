@@ -47,6 +47,8 @@ namespace DigitalLibrary.MasterData.Validators
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });
+
+            RuleSet(ValidatorRulesets.DeleteDimension, () => { RuleFor(p => p.Id).GreaterThan(0); });
         }
     }
 }
