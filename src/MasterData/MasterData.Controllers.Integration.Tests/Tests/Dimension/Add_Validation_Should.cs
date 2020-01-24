@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
     using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit;
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Add_Validation_Should : TestBase<Dimension>
     {
         public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
