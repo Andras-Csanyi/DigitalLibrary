@@ -1,8 +1,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException : Exception
     {
         public MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException()

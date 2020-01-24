@@ -10,8 +10,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 
     using Utils.IntegrationTestFactories.Factories;
 
-    using Validators.TestData;
-
     using WebApi.Client;
 
     using WebApp;
@@ -21,9 +19,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Update_Validation_Should : TestBase<Dimension>
+    public class Delete_Validation_Should : TestBase<Dimension>
     {
-        public Update_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+        public Delete_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
                                         ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -36,35 +34,26 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionAsync(null).ConfigureAwait(false);
+                await masterDataHttpClient.DeleteDimensionAsync(null).ConfigureAwait(false);
             };
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
-        [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
-            MemberType = typeof(MasterData_Dimension_TestData))]
-        public async Task ThrowException_WhenInputIsInvalid(
-            long id,
-            string name,
-            string desc,
-            int isActive)
+        [Fact]
+        public async Task ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = id,
-                Name = name,
-                Description = desc,
-                IsActive = isActive,
+                Id = 0
             };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
+                await masterDataHttpClient.DeleteDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert
