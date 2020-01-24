@@ -111,6 +111,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                    .ConfigureAwait(false);
                 await MasterDataHttpClient.UpdateDimensionAsync(_editedDimension).ConfigureAwait(false);
                 await PopulateDimensionsAsync().ConfigureAwait(false);
+                await HideEditDimensionModalAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -122,7 +123,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
         }
 
-        private async Task CancelEditDimensionAction()
+        private async Task CancelEditDimensionHandler()
         {
             _editedDimension = new Dimension();
             await HideEditDimensionModalAsync().ConfigureAwait(false);

@@ -107,7 +107,7 @@
     <BSForm Model="@_editedDimension"
             ValidateOnInit="true"
             OnValidSubmit="@(async () => await EditDimensionHandler().ConfigureAwait(false))">
-        <BSModalHeader @onclick="@(async () => await CancelEditDimensionAction().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelEditDimensionHandler().ConfigureAwait(false))">
             <BSLabel>Adding new Dimension.</BSLabel>
         </BSModalHeader>
         <BSModalBody>
@@ -148,7 +148,7 @@
         <BSModalFooter>
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Secondary"
-                      @onclick="@(async () => await CancelEditDimensionAction().ConfigureAwait(false))">
+                      @onclick="@(async () => await CancelEditDimensionHandler().ConfigureAwait(false))">
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Submit"
