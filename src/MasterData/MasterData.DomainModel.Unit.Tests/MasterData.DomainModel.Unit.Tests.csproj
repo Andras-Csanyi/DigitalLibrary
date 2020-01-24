@@ -3,8 +3,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
-        <AssemblyName>DigitalLibarary.MasterData.DomainModel.Tests</AssemblyName>
-        <RootNamespace>DigitalLibarary.MasterData.DomainModel.Tests</RootNamespace>
+        <AssemblyName>DigitalLibarary.MasterData.DomainModel.Unit.Tests</AssemblyName>
+        <RootNamespace>DigitalLibarary.MasterData.DomainModel.Unit.Tests</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
     <ItemGroup>

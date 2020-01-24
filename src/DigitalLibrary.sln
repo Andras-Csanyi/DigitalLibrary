@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Ctx", "MasterDat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.DomainModel", "MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj", "{C6D32FE4-F48B-4EC4-A803-57C964DBF4BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.DomainModel.Tests", "MasterData\MasterData.DomainModel.Tests\MasterData.DomainModel.Tests.csproj", "{05EE3D7B-CD88-418A-8B00-DF7CE1E063F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.DomainModel.Unit.Tests", "MasterData\MasterData.DomainModel.Unit.Tests\MasterData.DomainModel.Unit.Tests.csproj", "{05EE3D7B-CD88-418A-8B00-DF7CE1E063F3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Validators", "MasterData\MasterData.Validators\MasterData.Validators.csproj", "{C8A9FF9F-352E-4A98-8CCD-5138DACE0ED1}"
 EndProject
