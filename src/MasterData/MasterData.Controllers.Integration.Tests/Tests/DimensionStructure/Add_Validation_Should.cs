@@ -29,7 +29,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Fact]
+        [Fact]
         public async Task Throw_Exception_WhenInputIsNull()
         {
             // Arrange
@@ -51,8 +51,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             long id,
             string name,
             string desc,
-            int isActive,
-            long parentId)
+            int isActive)
         {
             // Arrange
             DimensionStructure dimensionStructure =
