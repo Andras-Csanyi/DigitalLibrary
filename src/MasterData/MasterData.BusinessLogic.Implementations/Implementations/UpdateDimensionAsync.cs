@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 }
                 catch (Exception e)
                 {
-                    throw new MasterDataBusinessLogicModifyDimensionAsyncOperationException(e.Message, e);
+                    throw new MasterDataBusinessLogicUpdateDimensionAsyncOperationException(e.Message, e);
                 }
             }
         }
