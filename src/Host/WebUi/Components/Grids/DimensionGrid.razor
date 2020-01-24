@@ -5,7 +5,7 @@
             <BSTableHeadCell>
                 <BSButton ButtonType="ButtonType.Button"
                           Color="Color.Primary"
-                          @onclick="@(async () => await OpenNewDimensionModal().ConfigureAwait(false))">
+                          @onclick="@(async () => await OpenNewDimensionModalAsync().ConfigureAwait(false))">
                     Add
                 </BSButton>
             </BSTableHeadCell>
@@ -29,13 +29,13 @@
                     <BSTableCell>
                         <BSButton ButtonType="ButtonType.Button"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await EditDimensionAction(dimension)
+                                  @onclick="@(async () => await EditDimensionActionAsync(dimension)
                                                 .ConfigureAwait(false))">
                             Edit
                         </BSButton>
                         <BSButton ButtonType="ButtonType.Submit"
                                   Color="Color.Danger"
-                                  @onclick="@(async () => await DeleteDimensionAction(dimension)
+                                  @onclick="@(async () => await DeleteDimensionActionAsync(dimension)
                                                 .ConfigureAwait(false))">
                             Delete
                         </BSButton>
@@ -50,8 +50,8 @@
 <BSModal @ref="_newDimensionModal">
     <BSForm Model="@_newDimension"
             ValidateOnInit="true"
-            OnValidSubmit="@(async () => await AddDimensionHandler().ConfigureAwait(false))">
-        <BSModalHeader @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
+            OnValidSubmit="@(async () => await AddDimensionHandlerAsync().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelNewDimensionActionAsync().ConfigureAwait(false))">
             <BSLabel>Adding new Dimension.</BSLabel>
         </BSModalHeader>
         <BSModalBody>
@@ -92,7 +92,7 @@
         <BSModalFooter>
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Secondary"
-                      @onclick="@(async () => await CancelNewDimensionAction().ConfigureAwait(false))">
+                      @onclick="@(async () => await CancelNewDimensionActionAsync().ConfigureAwait(false))">
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Submit"
@@ -106,8 +106,8 @@
 <BSModal @ref="_editDimensionModal">
     <BSForm Model="@_editedDimension"
             ValidateOnInit="true"
-            OnValidSubmit="@(async () => await EditDimensionHandler().ConfigureAwait(false))">
-        <BSModalHeader @onclick="@(async () => await CancelEditDimensionHandler().ConfigureAwait(false))">
+            OnValidSubmit="@(async () => await EditDimensionHandlerAsync().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelEditDimensionHandlerAsync().ConfigureAwait(false))">
             <BSLabel>Adding new Dimension.</BSLabel>
         </BSModalHeader>
         <BSModalBody>
@@ -148,7 +148,7 @@
         <BSModalFooter>
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Secondary"
-                      @onclick="@(async () => await CancelEditDimensionHandler().ConfigureAwait(false))">
+                      @onclick="@(async () => await CancelEditDimensionHandlerAsync().ConfigureAwait(false))">
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Submit"
@@ -161,7 +161,7 @@
 
 <BSModal @ref="_deleteDimensionModal">
     <BSForm Model="@_deleteDimension">
-        <BSModalHeader @onclick="@(async () => await CancelDeleteDimensionHandler().ConfigureAwait(false))">
+        <BSModalHeader @onclick="@(async () => await CancelDeleteDimensionHandlerAsync().ConfigureAwait(false))">
             <BSLabel>Adding new Dimension.</BSLabel>
         </BSModalHeader>
         <BSModalBody>
@@ -202,12 +202,12 @@
         <BSModalFooter>
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Secondary"
-                      @onclick="@(async () => await CancelDeleteDimensionHandler().ConfigureAwait(false))">
+                      @onclick="@(async () => await CancelDeleteDimensionHandlerAsync().ConfigureAwait(false))">
                 Cancel
             </BSButton>
             <BSButton ButtonType="ButtonType.Button"
                       Color="Color.Danger"
-                      @onclick="@(async () => await DeleteDimensionHandler().ConfigureAwait(false))">
+                      @onclick="@(async () => await DeleteDimensionHandlerAsync().ConfigureAwait(false))">
                 Delete
             </BSButton>
         </BSModalFooter>
