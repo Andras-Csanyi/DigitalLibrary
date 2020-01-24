@@ -4,7 +4,9 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+
 using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
+
 using Newtonsoft.Json;
 
 namespace DigitalLibrary.Utils.DiLibHttpClient
@@ -18,7 +20,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        public async Task<T> Post<T>(T payload, string url)
+        public async Task<T> PostAsync<T>(T payload, string url)
         {
             try
             {
@@ -32,7 +34,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 httpRequestMessage.Content = CreateStringContent(payload);
 
                 using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -54,7 +56,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        public async Task Delete<T>(T payload, string url)
+        public async Task DeleteAsync<T>(T payload, string url)
         {
             try
             {
@@ -68,7 +70,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 httpRequestMessage.Content = CreateStringContent(payload);
 
                 using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -77,7 +79,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     catch (Exception e)
                     {
                         string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -88,7 +90,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        public async Task<T> Get<T>(string url)
+        public async Task<T> GetAsync<T>(string url)
         {
             try
             {
@@ -100,20 +102,20 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 
                 using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
                         string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         T result = JsonToObject<T>(responseString);
                         return result;
                     }
                     catch (Exception e)
                     {
                         string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -124,7 +126,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        public async Task<T> Put<T>(T payload, string url)
+        public async Task<T> PutAsync<T>(T payload, string url)
         {
             try
             {
@@ -138,14 +140,14 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 httpRequestMessage.Content = CreateStringContent(payload);
 
                 using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                    .ConfigureAwait(false))
+                   .ConfigureAwait(false))
                 {
                     try
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
 
                         string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         T result = JsonToObject<T>(resultString);
 
                         return result;
@@ -153,7 +155,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     catch (Exception e)
                     {
                         string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                            .ConfigureAwait(false);
+                           .ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }

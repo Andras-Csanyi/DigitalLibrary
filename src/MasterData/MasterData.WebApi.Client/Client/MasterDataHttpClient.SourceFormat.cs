@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             {
                 string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
                              $"{MasterDataApi.SourceFormat.V1.Update}";
-                SourceFormat result = await _diLibHttpClient.Put(sourceFormat, url)
+                SourceFormat result = await _diLibHttpClient.PutAsync(sourceFormat, url)
                    .ConfigureAwait(false);
 
                 return result;
@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             {
                 string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
                              $"{MasterDataApi.SourceFormat.V1.GetAll}";
-                List<SourceFormat> result = await _diLibHttpClient.Get<List<SourceFormat>>(url)
+                List<SourceFormat> result = await _diLibHttpClient.GetAsync<List<SourceFormat>>(url)
                    .ConfigureAwait(false);
                 return result;
             }
@@ -49,7 +49,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             {
                 string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
                              $"{MasterDataApi.SourceFormat.V1.Delete}";
-                await _diLibHttpClient.Delete(sourceFormat, url).ConfigureAwait(false);
+                await _diLibHttpClient.DeleteAsync(sourceFormat, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -63,7 +63,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             {
                 string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
                              $"{MasterDataApi.SourceFormat.V1.Add}";
-                return await _diLibHttpClient.Post(sourceFormat, url).ConfigureAwait(false);
+                return await _diLibHttpClient.PostAsync(sourceFormat, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {

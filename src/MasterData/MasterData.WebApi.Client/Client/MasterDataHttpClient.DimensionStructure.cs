@@ -15,8 +15,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
-                DimensionStructure result = await _diLibHttpClient.Put(dimensionStructure, url)
+                             $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
+                DimensionStructure result = await _diLibHttpClient.PutAsync(dimensionStructure, url)
                    .ConfigureAwait(false);
 
                 return result;
@@ -32,8 +32,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
-                List<DimensionStructure> result = await _diLibHttpClient.Get<List<DimensionStructure>>(url)
+                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
+                List<DimensionStructure> result = await _diLibHttpClient.GetAsync<List<DimensionStructure>>(url)
                    .ConfigureAwait(false);
                 return result;
             }
@@ -48,8 +48,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure}";
-                await _diLibHttpClient.Delete(dimensionStructure, url).ConfigureAwait(false);
+                             $"{MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure}";
+                await _diLibHttpClient.DeleteAsync(dimensionStructure, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -62,8 +62,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                    $"{MasterDataApi.DimensionStructure.V1.AddDimensionStructure}";
-                return await _diLibHttpClient.Post(dimensionStructure, url).ConfigureAwait(false);
+                             $"{MasterDataApi.DimensionStructure.V1.AddDimensionStructure}";
+                return await _diLibHttpClient.PostAsync(dimensionStructure, url).ConfigureAwait(false);
             }
             catch (Exception e)
             {
