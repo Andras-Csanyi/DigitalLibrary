@@ -5,13 +5,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using BusinessLogic.Exceptions;
-
     using DomainModel;
 
     using FluentAssertions;
 
-    using Utils.Guards;
     using Utils.IntegrationTestFactories.Factories;
 
     using WebApi.Client;

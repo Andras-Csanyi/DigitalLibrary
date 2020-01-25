@@ -4,16 +4,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using BusinessLogic.Exceptions;
-
     using DomainModel;
 
     using FluentAssertions;
 
-    using FluentValidation;
-
-    using Utils.DiLibHttpClient.Exceptions;
-    using Utils.Guards;
     using Utils.IntegrationTestFactories.Factories;
 
     using WebApi.Client;
@@ -34,22 +28,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.DeleteSourceFormatAsync(null)
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
-        }
-
-        [Fact]
         public async Task ThrowException_WhenInputIsInvalid()
         {
             // Arrange
@@ -62,6 +40,22 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.DeleteSourceFormatAsync(null)
                    .ConfigureAwait(false);
             };
 

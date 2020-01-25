@@ -1,7 +1,5 @@
 namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
-    using System;
-
     using DomainModel;
 
     using Microsoft.EntityFrameworkCore;

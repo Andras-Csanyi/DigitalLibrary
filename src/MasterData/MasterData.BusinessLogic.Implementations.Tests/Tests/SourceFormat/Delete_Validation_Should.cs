@@ -17,28 +17,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     public class Delete_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(Delete_Validation_Should);
-
         public Delete_Validation_Should() : base(TestInfo)
         {
         }
 
-        [Fact]
-        public async Task ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataBusinessLogic.DeleteSourceFormatAsync(null)
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException>()
-               .WithInnerException<GuardException>();
-        }
+        private const string TestInfo = nameof(Delete_Validation_Should);
 
         [Fact]
         public async Task ThrowException_WhenInputIsInvalid()
@@ -59,6 +42,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException>()
                .WithInnerException<ValidationException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.DeleteSourceFormatAsync(null)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException>()
+               .WithInnerException<GuardException>();
         }
     }
 }
