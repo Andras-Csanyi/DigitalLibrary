@@ -14,6 +14,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -24,11 +26,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             try
             {
-                if (dimensionValue == null || dimensionId == 0)
-                {
-                    string msg = $"{nameof(dimensionValue)} or {nameof(dimensionId)} is null";
-                    throw new MasterDataBusinessLogicArgumentNullException(msg);
-                }
+                Check.IsNotNull(dimensionValue);
+                Check.AreNotEqual(dimensionId, 0);
 
                 await _masterDataValidators.DimensionValueValidator.ValidateAndThrowAsync(
                         dimensionValue,
@@ -47,11 +46,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                .FindAsync(dimensionId)
                                .ConfigureAwait(true);
 
-                            if (dimension == null)
-                            {
-                                string msg = $"Dimension with Id {dimensionId} doesnt exists";
-                                throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
-                            }
+                            string msg = $"Dimension with Id {dimensionId} doesnt exists";
+                            Check.IsNotNull(dimension, msg);
 
                             // check whether value already exist
                             DimensionValue doesDimensionValueExists = await ctx.DimensionValues
@@ -133,11 +129,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             string dimensionValueValue,
             MasterDataContext ctx)
         {
-            if (dimensionValueValue == null || ctx == null)
-            {
-                string msg = $"{nameof(dimensionValueValue)} or {nameof(ctx)} is null";
-                throw new MasterDataBusinessLogicArgumentNullException(msg);
-            }
+            Check.IsNotNull(dimensionValueValue);
+            Check.IsNotNull(ctx);
 
             DimensionValue res = await ctx.DimensionValues
                .Include(i => i.DimensionDimensionValues)

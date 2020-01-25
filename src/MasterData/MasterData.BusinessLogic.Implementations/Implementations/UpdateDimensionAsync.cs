@@ -13,6 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -23,11 +25,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 try
                 {
-                    if (dimension == null)
-                    {
-                        string msg = $"Dimension is null.";
-                        throw new MasterDataBusinessLogicArgumentNullException(msg);
-                    }
+                    string msg = $"{nameof(dimension)} is null.";
+                    Check.IsNotNull(dimension, msg);
 
                     await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
                             dimension,
@@ -37,11 +36,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     Dimension toBeModified = await ctx.Dimensions.FindAsync(dimension.Id)
                        .ConfigureAwait(false);
 
-                    if (toBeModified == null)
-                    {
-                        string msg = $"No Dimension entity with id: {dimension.Id}";
-                        throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
-                    }
+                    string tobeModifiedErrorMessage = $"No Dimension entity with id: {dimension.Id}";
+                    Check.IsNotNull(toBeModified, tobeModifiedErrorMessage);
 
                     toBeModified.Name = dimension.Name;
                     toBeModified.Description = dimension.Description;

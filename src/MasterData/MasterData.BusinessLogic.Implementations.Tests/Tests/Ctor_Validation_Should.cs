@@ -8,6 +8,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -20,7 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public const string TestInfo = nameof(Ctor_Validation_Should);
 
         [Fact]
-        public async Task Throw_MasterDataBusinessLogicArgumentNullException_WhenCtorInputIsNull()
+        public async Task ThrowException_WhenCtorInputIsNull()
         {
             // Arrange
 
@@ -28,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             Func<Task> action = async () => { new MasterDataBusinessLogic(null, null); };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicArgumentNullException>();
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }

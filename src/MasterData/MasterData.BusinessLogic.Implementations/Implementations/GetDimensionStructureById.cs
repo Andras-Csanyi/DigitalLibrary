@@ -12,16 +12,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                if (dimensionStructureId == 0)
-                {
-                    throw new MasterDataBusinessLogicArgumentNullException();
-                }
+                Check.AreNotEqual(dimensionStructureId, 0);
 
                 DimensionStructure topLevel = await ctx.DimensionStructures
                    .Include(ii => ii.Dimension)

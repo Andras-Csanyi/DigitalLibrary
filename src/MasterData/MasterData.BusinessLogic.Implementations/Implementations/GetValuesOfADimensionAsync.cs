@@ -11,17 +11,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<Dimension> GetValuesOfADimensionAsync(long dimensionId)
         {
             try
             {
-                if (dimensionId == 0)
-                {
-                    throw new MasterDataBusinessLogicArgumentNullException(
-                        $"{nameof(dimensionId)} is null");
-                }
+                string msg = $"{nameof(dimensionId)} is null";
+                Check.AreNotEqual(dimensionId, 0, msg);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {

@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     public partial class MasterDataBusinessLogic
     {
         public async Task<Dimension> GetDimensionByIdAsync(long dimensionId)
@@ -19,10 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 try
                 {
-                    if (dimensionId == 0)
-                    {
-                        throw new MasterDataBusinessLogicArgumentNullException();
-                    }
+                    Check.AreNotEqual(dimensionId, 0);
 
                     Dimension result = await ctx.Dimensions
                        .Include(i => i.DimensionDimensionValues).ThenInclude(ti => ti.DimensionValue)

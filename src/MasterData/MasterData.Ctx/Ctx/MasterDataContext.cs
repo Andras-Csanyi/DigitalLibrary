@@ -8,6 +8,8 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     public class MasterDataContext : DbContext
     {
         public DbSet<Dimension> Dimensions { get; set; }
@@ -27,10 +29,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (modelBuilder == null)
-            {
-                throw new ArgumentNullException(nameof(modelBuilder));
-            }
+            Check.IsNotNull(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new DimensionConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionValueConfiguration());

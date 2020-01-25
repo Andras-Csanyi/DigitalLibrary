@@ -8,6 +8,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic : IMasterDataBusinessLogic
@@ -20,12 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             DbContextOptions<MasterDataContext> dbContextOptions,
             IMasterDataValidators masterDataValidators)
         {
-            if (dbContextOptions == null
-             || masterDataValidators == null)
-            {
-                throw new MasterDataBusinessLogicArgumentNullException(nameof(dbContextOptions));
-            }
-
+            Check.IsNotNull(dbContextOptions);
+            Check.IsNotNull(masterDataValidators);
             _dbContextOptions = dbContextOptions;
             _masterDataValidators = masterDataValidators;
         }

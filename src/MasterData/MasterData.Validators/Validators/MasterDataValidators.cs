@@ -1,5 +1,7 @@
 namespace DigitalLibrary.MasterData.Validators
 {
+    using Utils.Guards;
+
     public class MasterDataValidators : IMasterDataValidators
     {
         public MasterDataValidators(
@@ -8,13 +10,10 @@ namespace DigitalLibrary.MasterData.Validators
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator)
         {
-            if (dimensionValidator == null
-             || dimensionValueValidator == null
-             || sourceFormatValidator == null
-             || dimensionStructureValidator == null)
-            {
-                throw new MasterDataValidatorFacadeArgumentNullException();
-            }
+            Check.IsNotNull(dimensionValidator);
+            Check.IsNotNull(dimensionValueValidator);
+            Check.IsNotNull(sourceFormatValidator);
+            Check.IsNotNull(dimensionStructureValidator);
 
             DimensionValidator = dimensionValidator;
             DimensionValueValidator = dimensionValueValidator;

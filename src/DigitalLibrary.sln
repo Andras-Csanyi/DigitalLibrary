@@ -94,6 +94,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestFactories", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLibHttpClient", "Utils\DiLibHttpClient\DiLibHttpClient.csproj", "{40678222-A0D0-4445-82F5-73A8F8477FB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guards", "Utils\Guards\Guards.csproj", "{5A508965-ABCF-47A5-AA56-82307F39A222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,6 +242,10 @@ Global
 		{40678222-A0D0-4445-82F5-73A8F8477FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40678222-A0D0-4445-82F5-73A8F8477FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40678222-A0D0-4445-82F5-73A8F8477FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A508965-ABCF-47A5-AA56-82307F39A222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A508965-ABCF-47A5-AA56-82307F39A222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A508965-ABCF-47A5-AA56-82307F39A222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A508965-ABCF-47A5-AA56-82307F39A222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,6 +286,7 @@ Global
 		{1CD4D51E-35D1-4D5F-8D24-830A0833B706} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{18B9F36D-671C-475B-A984-7E36C0E08E9A} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 		{40678222-A0D0-4445-82F5-73A8F8477FB2} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
+		{5A508965-ABCF-47A5-AA56-82307F39A222} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {525FE7A8-2BB5-46C1-BDBA-37960809C286}

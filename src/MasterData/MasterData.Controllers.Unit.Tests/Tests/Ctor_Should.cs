@@ -6,10 +6,12 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class MasterDataControllers_DimensionStructure_Ctor_Should
+    public class Ctor_Should
     {
         [Fact]
         public void ThrowException_WhenInputIsNull()
@@ -20,7 +22,7 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
             Func<Task> action = async () => { new SourceFormatController(null); };
 
             // Assert
-            action.Should().ThrowExactly<ArgumentNullException>();
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }

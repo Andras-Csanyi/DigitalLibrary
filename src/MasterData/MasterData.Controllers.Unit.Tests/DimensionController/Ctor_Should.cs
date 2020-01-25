@@ -1,10 +1,12 @@
-namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
+namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using FluentAssertions;
+
+    using Utils.Guards;
 
     using Xunit;
 
@@ -17,10 +19,10 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new DimensionController(null); };
+            Func<Task> action = async () => { new Controllers.DimensionController(null); };
 
             // Assert
-            action.Should().ThrowExactly<ArgumentNullException>();
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }

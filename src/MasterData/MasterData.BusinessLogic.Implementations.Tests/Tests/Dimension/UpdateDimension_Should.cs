@@ -10,6 +10,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -76,7 +78,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchDimensionEntity>();
+               .WithInnerException<GuardException>();
         }
     }
 }

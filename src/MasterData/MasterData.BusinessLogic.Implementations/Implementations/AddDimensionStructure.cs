@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -21,10 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 try
                 {
-                    if (dimensionStructure == null)
-                    {
-                        throw new MasterDataBusinessLogicArgumentNullException();
-                    }
+                    Check.IsNotNull(dimensionStructure);
 
                     await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                             dimensionStructure,
