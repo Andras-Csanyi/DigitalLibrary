@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
+    using Utils.Guards;
+
     using Web.Api;
 
     [ApiController]
@@ -22,7 +24,8 @@ namespace DigitalLibrary.MasterData.Controllers
         public SourceFormatController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
         {
-            _masterDataBusinessLogic = masterDataBusinessLogic ?? throw new ArgumentNullException();
+            Check.IsNotNull(masterDataBusinessLogic);
+            _masterDataBusinessLogic = masterDataBusinessLogic;
         }
 
         [HttpGet]

@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -19,11 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             try
             {
-                if (sourceFormat == null)
-                {
-                    throw new MasterDataBusinessLogicArgumentNullException(nameof(sourceFormat));
-                }
-
+                Check.IsNotNull(sourceFormat);
                 await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                         sourceFormat,
                         ruleSet: ValidatorRulesets.DeleteSourceFormat)
@@ -33,11 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     SourceFormat result = await ctx.SourceFormats.FindAsync(sourceFormat.Id).ConfigureAwait(false);
 
-                    if (result == null)
-                    {
-                        string msg = $"Ther is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
-                        throw new MasterDataBusinessLogicNoSuchSourceFormatEntityException(msg);
-                    }
+                    string msg = $"Ther is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
+                    Check.IsNotNull(result, msg);
 
                     ctx.SourceFormats.Remove(result);
                     await ctx.SaveChangesAsync().ConfigureAwait(false);

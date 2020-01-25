@@ -16,6 +16,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -32,30 +34,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     try
                     {
-                        if (dimensionId == 0 || oldDimensionValue == null || newDimensionValue == null)
-                        {
-                            string msg = $"{nameof(dimensionId)} or {oldDimensionValue} is null";
-                            throw new MasterDataBusinessLogicArgumentNullException(msg);
-                        }
+                        string dimensionIdErrorMsg = $"{nameof(dimensionId)} is zero.";
+                        Check.AreNotEqual(dimensionId, 0, dimensionIdErrorMsg);
+
+                        string oldDimensionValueErrorMsg = $"{nameof(oldDimensionValue)} is null.";
+                        Check.IsNotNull(oldDimensionValue, oldDimensionValueErrorMsg);
+
+                        string newDimensionValueErrorMsg = $"{nameof(newDimensionValue)} is null.";
+                        Check.IsNotNull(newDimensionValue, newDimensionValueErrorMsg);
 
                         await _masterDataValidators.DimensionValueValidator
                            .ValidateAndThrowAsync(oldDimensionValue,
-                                ruleSet: ValidatorRulesets.ModifyDimensionValue);
+                                ruleSet: ValidatorRulesets.ModifyDimensionValue)
+                           .ConfigureAwait(false);
 
                         Dimension dim = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
-                        if (dim == null)
-                        {
-                            string noDimErrMsg = $"There is no dimension with id: {dimensionId}";
-                            throw new MasterDataBusinessLogicNoSuchDimensionEntity(noDimErrMsg);
-                        }
+                        string noDimErrMsg = $"There is no dimension with id: {dimensionId}";
+                        Check.IsNotNull(dim, noDimErrMsg);
 
                         DimensionValue dimVal = await ctx.DimensionValues.FindAsync(oldDimensionValue.Id)
                            .ConfigureAwait(false);
-                        if (dimVal == null)
-                        {
-                            string dimValErrMsg = $"There is no dimension value with id: {oldDimensionValue.Id}";
-                            throw new MasterDataBusinessLogicNoSuchDimensionValueEntity(dimValErrMsg);
-                        }
+                        string dimValErrMsg = $"There is no dimension value with id: {oldDimensionValue.Id}";
+                        Check.IsNotNull(dimVal, dimValErrMsg);
 
                         // count how many dimension - dimension value relation exists
                         List<DimensionDimensionValue> countOfDimensionDimensionValueRelation = await ctx

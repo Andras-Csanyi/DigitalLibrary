@@ -8,6 +8,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -33,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicGetDimensionValueAsyncOperationException>()
-               .WithInnerExceptionExactly<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerExceptionExactly<GuardException>();
         }
     }
 }

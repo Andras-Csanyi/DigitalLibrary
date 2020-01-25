@@ -12,6 +12,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using FluentValidation;
 
+    using Utils.Guards;
+
     using Validators.TestData;
 
     using Xunit;
@@ -67,7 +69,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+               .WithInnerException<GuardException>();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
+    using Utils.Guards;
+
     using Validators;
 
     public partial class MasterDataBusinessLogic
@@ -23,11 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 {
                     try
                     {
-                        if (sourceFormat == null)
-                        {
-                            throw new MasterDataBusinessLogicArgumentNullException();
-                        }
-
+                        Check.IsNotNull(sourceFormat);
                         await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                                 sourceFormat,
                                 ruleSet: ValidatorRulesets.AddSourceFormat)

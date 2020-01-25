@@ -15,6 +15,7 @@
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 </Project>

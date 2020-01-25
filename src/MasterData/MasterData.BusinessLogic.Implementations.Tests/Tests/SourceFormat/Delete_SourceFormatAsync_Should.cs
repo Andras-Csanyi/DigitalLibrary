@@ -11,6 +11,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -70,7 +72,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Assert
             action.Should()
                .ThrowExactly<MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntityException>();
+               .WithInnerException<GuardException>();
         }
     }
 }

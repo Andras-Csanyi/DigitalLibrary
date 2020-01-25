@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
         <ProjectReference Include="..\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj"/>
         <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
         <ProjectReference Include="..\MasterData.Ctx\MasterData.Ctx.csproj"/>

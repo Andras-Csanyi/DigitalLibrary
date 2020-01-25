@@ -7,6 +7,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
 
     using FluentAssertions;
 
+    using Utils.Guards;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -73,7 +75,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataValidatorFacadeArgumentNullException>();
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }
