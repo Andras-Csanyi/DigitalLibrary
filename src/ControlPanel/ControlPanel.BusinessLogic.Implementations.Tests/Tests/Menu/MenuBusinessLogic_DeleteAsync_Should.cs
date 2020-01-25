@@ -1,13 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
-using FluentAssertions;
-using Xunit;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using Exceptions.Menu;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
@@ -21,7 +24,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
 
             // Assert
             action.Should().ThrowExactly<MenuBusinessLogicDeleteAsyncOperationException>()
-                .WithInnerException<MenuNullInputException>();
+               .WithInnerException<MenuNullInputException>();
         }
 
         [Trait("Category", "Unit")]
@@ -42,7 +45,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
                 ModuleId = 1,
                 MenuRoute = "asd"
             };
-            DomainModel.Entities.Menu menuActiveResult = await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
+            DomainModel.Entities.Menu menuActiveResult =
+                await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
 
             DomainModel.Entities.Menu menuInactive = new DomainModel.Entities.Menu
             {
@@ -52,7 +56,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
                 ModuleId = 1,
                 MenuRoute = "asd"
             };
-            DomainModel.Entities.Menu menuInactiveResult = await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);
+            DomainModel.Entities.Menu menuInactiveResult =
+                await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);
 
             // Act
             await MenuBusinessLogic.DeleteAsync(menuInactiveResult).ConfigureAwait(false);

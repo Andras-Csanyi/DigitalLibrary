@@ -2,6 +2,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
@@ -12,6 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Delete_SourceFormatAsync_Should : TestBase
     {
         public Delete_SourceFormatAsync_Should() : base(TestInfo)

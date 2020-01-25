@@ -5,8 +5,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     using DomainModel;
 
-    using FluentAssertions;
-
     using Utils.IntegrationTestFactories.Factories;
 
     using WebApp;

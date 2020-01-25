@@ -3,8 +3,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
-        <AssemblyName>DigitalLibarary.MasterData.DomainModel.Tests</AssemblyName>
-        <RootNamespace>DigitalLibarary.MasterData.DomainModel.Tests</RootNamespace>
+        <AssemblyName>DigitalLibarary.MasterData.DomainModel.Unit.Tests</AssemblyName>
+        <RootNamespace>DigitalLibarary.MasterData.DomainModel.Unit.Tests</RootNamespace>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
     <ItemGroup>
@@ -12,6 +12,7 @@
         <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.10.0"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0"/>

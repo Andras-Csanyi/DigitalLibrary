@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
-
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using Exceptions;
+
     public class DiLibGridColumnProvider
     {
         public List<string> GetEntityPropertyNames<T>()
@@ -15,8 +16,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
             if (propertyInfos.Any())
             {
                 List<string> res = propertyInfos
-                    .Select(n => n.Name)
-                    .ToList();
+                   .Select(n => n.Name)
+                   .ToList();
                 return res;
             }
 

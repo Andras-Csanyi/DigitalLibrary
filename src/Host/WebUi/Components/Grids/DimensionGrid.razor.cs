@@ -17,6 +17,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
     public partial class DimensionGrid
     {
+        private Dimension _deleteDimension = new Dimension();
+
+        private BSModal _deleteDimensionModal;
+
+        private List<Dimension> _dimensions = new List<Dimension>();
+
+        private BSModal _editDimensionModal;
+
+        private Dimension _editedDimension = new Dimension();
+
+        private Dimension _newDimension = new Dimension();
+
+        private BSModal _newDimensionModal;
+
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
@@ -25,20 +39,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         [Inject]
         public IJSRuntime JsRuntime { get; set; }
-
-        private List<Dimension> _dimensions = new List<Dimension>();
-
-        private BSModal _newDimensionModal;
-
-        private BSModal _editDimensionModal;
-
-        private BSModal _deleteDimensionModal;
-
-        private Dimension _newDimension = new Dimension();
-
-        private Dimension _editedDimension = new Dimension();
-
-        private Dimension _deleteDimension = new Dimension();
 
         protected override async Task OnInitializedAsync()
         {

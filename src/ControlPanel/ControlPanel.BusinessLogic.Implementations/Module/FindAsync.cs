@@ -1,16 +1,15 @@
-using System;
-using System.Threading.Tasks;
-
-using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-
-using FluentValidation;
-
-using Microsoft.EntityFrameworkCore;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using Ctx;
+    using System;
+    using System.Threading.Tasks;
+
     using Ctx.Ctx;
+
+    using Exceptions.Module;
+
+    using FluentValidation;
+
+    using Microsoft.EntityFrameworkCore;
 
     public partial class ModuleBusinessLogic
     {

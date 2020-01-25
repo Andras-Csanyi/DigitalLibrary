@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
-using FluentAssertions;
-using FluentValidation;
-using Xunit;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using Exceptions.Menu;
+
+    using FluentAssertions;
+
+    using FluentValidation;
+
+    using Xunit;
+
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
@@ -43,7 +47,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
 
             // Assert
             action.Should().ThrowExactly<MenuBusinessLogicAddAsyncOperationException>()
-                .WithInnerException<MenuNullInputException>();
+               .WithInnerException<MenuNullInputException>();
         }
 
         [Trait("Category", "Unit")]
@@ -72,7 +76,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
 
             // Assert
             action.Should().ThrowExactly<MenuBusinessLogicAddAsyncOperationException>()
-                .WithInnerException<ValidationException>();
+               .WithInnerException<ValidationException>();
         }
 
         [Trait("Category", "Unit")]

@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class ModuleControllerArgumentNullException : Exception
     {
         public ModuleControllerArgumentNullException()

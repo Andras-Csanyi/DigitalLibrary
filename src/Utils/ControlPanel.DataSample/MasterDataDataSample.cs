@@ -1,7 +1,6 @@
-using System;
-
 namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
+    using System;
     using System.Collections.Generic;
 
     using MasterData.Ctx;

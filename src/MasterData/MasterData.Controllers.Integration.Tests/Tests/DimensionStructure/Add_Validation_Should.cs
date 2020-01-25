@@ -10,8 +10,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     using Utils.IntegrationTestFactories.Factories;
 
-    using Validators.TestData;
-
     using WebApi.Client;
 
     using WebApp;
@@ -29,21 +27,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Fact]
-        public async Task Throw_Exception_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
-        }
-
         // [Theory]
         // [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
         //     MemberType = typeof(MasterData_DimensionStructure_TestData))]
@@ -51,8 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             long id,
             string name,
             string desc,
-            int isActive,
-            long parentId)
+            int isActive)
         {
             // Arrange
             DimensionStructure dimensionStructure =
@@ -68,6 +50,21 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task Throw_Exception_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert

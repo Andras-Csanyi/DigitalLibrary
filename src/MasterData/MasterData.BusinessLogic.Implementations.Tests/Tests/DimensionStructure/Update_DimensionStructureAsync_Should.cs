@@ -1,22 +1,22 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
 
     using FluentAssertions;
 
-    using Validators.TestData;
-
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Update_DimensionStructureAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(Update_DimensionStructureAsync_Should);
-
         public Update_DimensionStructureAsync_Should() : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(Update_DimensionStructureAsync_Should);
 
         [Fact]
         public async Task Update()

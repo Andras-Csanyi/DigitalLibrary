@@ -1,21 +1,21 @@
-using System;
-
-using BlazorStrap;
-
-using DigitalLibrary.Utils.DiLibHttpClient;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace DigitalLibrary.Ui.WebUi
 {
+    using System;
+
+    using BlazorStrap;
+
     using ControlPanel.WebApi.Client.Menu;
 
     using MasterData.Validators;
     using MasterData.WebApi.Client;
+
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
+    using Utils.DiLibHttpClient;
 
     public class Startup
     {

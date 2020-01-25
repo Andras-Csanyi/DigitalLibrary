@@ -1,9 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using DomainModel.Entities;
+
     public interface IMenuBusinessLogic
     {
         Task<Menu> AddAsync(Menu newMenu);

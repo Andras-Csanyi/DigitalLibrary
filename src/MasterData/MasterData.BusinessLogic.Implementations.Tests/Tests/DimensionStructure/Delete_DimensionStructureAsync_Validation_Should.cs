@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using Exceptions;
@@ -9,6 +10,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Delete_DimensionStructureAsync_Validation_Should : TestBase
     {
         public Delete_DimensionStructureAsync_Validation_Should() : base(TestInfo)

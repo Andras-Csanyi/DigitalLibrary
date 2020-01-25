@@ -68,12 +68,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionDimensionValue res1 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == firstDimensionValueResult.Id);
+                  && p.DimensionValueId == firstDimensionValueResult.Id);
             res1.Should().NotBeNull();
 
             DimensionDimensionValue res2 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == secondDimensionValueResult.Id);
+                  && p.DimensionValueId == secondDimensionValueResult.Id);
             res2.Should().NotBeNull();
         }
 

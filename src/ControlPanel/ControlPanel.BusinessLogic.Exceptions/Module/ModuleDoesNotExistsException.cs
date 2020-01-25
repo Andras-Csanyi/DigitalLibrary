@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class ModuleDoesNotExistsException : Exception
     {
         public ModuleDoesNotExistsException()

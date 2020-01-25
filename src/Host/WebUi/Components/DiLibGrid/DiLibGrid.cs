@@ -1,15 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
-using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers;
-using Newtonsoft.Json;
-
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using Exceptions;
+
+    using Newtonsoft.Json;
+
+    using Providers;
+
     public class DiLibGrid<T>
     {
         private readonly DiLibGridColumnProvider _columnProvider;
@@ -59,7 +62,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         {
             List<string> entityProperties = _columnProvider.GetEntityPropertyNames<T>();
             List<string> entityPropertiesToBeDisplayed = _columnProvider
-                .ColumnsToBeDisplayed(entityProperties, ColumnsNotToBeDisplayed);
+               .ColumnsToBeDisplayed(entityProperties, ColumnsNotToBeDisplayed);
             List<string> addEditButton = _columnProvider.AddEditButtonIfNeeded(
                 entityPropertiesToBeDisplayed, RowEditButton);
             List<string> addDeleteButton = _columnProvider.AddDeleteButtonIfNeeded(
@@ -75,7 +78,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                 GetAllAsyncMethodInfo.HttpMethod,
                 GetAllAsyncMethodInfo.Url);
             HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             httpResponseMessage.EnsureSuccessStatusCode();
             string stringResult = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             List<T> result = JsonConvert.DeserializeObject<List<T>>(stringResult);
@@ -93,7 +96,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
             {
                 case HttpOperationsEnum.GetAll:
                     if (GetAllAsyncMethodInfo.HttpMethod == null
-                        || GetAllAsyncMethodInfo.Url == null)
+                     || GetAllAsyncMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(GetAllAsyncMethodInfo.HttpMethod)} is null, or " +
                                      $"{nameof(GetAllAsyncMethodInfo.Url)} is null";
@@ -104,7 +107,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 
                 case HttpOperationsEnum.Add:
                     if (AddNewItemMethodInfo.HttpMethod == null
-                        || AddNewItemMethodInfo.Url == null)
+                     || AddNewItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(AddNewItemMethodInfo.HttpMethod)} is null, or " +
                                      $"{nameof(AddNewItemMethodInfo.Url)} is null!";
@@ -115,7 +118,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 
                 case HttpOperationsEnum.Delete:
                     if (DeleteItemMethodInfo.HttpMethod == null
-                        || DeleteItemMethodInfo.Url == null)
+                     || DeleteItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(DeleteItemMethodInfo.HttpMethod)} is null, or " +
                                      $"{nameof(DeleteItemMethodInfo.Url)} is null!";
@@ -126,7 +129,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 
                 case HttpOperationsEnum.Modify:
                     if (UpdateItemMethodInfo.HttpMethod == null
-                        || UpdateItemMethodInfo.Url == null)
+                     || UpdateItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(UpdateItemMethodInfo.HttpMethod)} is null, or " +
                                      $"{nameof(UpdateItemMethodInfo.Url)} is null!";
@@ -148,7 +151,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
             StringContent stringContent = new StringContent(jsonContent, Encoding.Unicode);
             httpRequestMessage.Content = stringContent;
             HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             httpResponseMessage.EnsureSuccessStatusCode();
         }
 
@@ -163,7 +166,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
             StringContent stringContent = new StringContent(jsonContent, Encoding.Unicode);
             httpRequestMessage.Content = stringContent;
             HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             httpResponseMessage.EnsureSuccessStatusCode();
         }
 
@@ -176,7 +179,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                 DeleteItemMethodInfo.Url);
             httpRequestMessage.Content = new StringContent(id.ToString(), Encoding.Unicode);
             HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage)
-                .ConfigureAwait(false);
+               .ConfigureAwait(false);
             httpResponseMessage.EnsureSuccessStatusCode();
         }
 
@@ -205,8 +208,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         public async Task<List<PropertyInfo>> GetPropertiesToBeDisplayed()
         {
             List<PropertyInfo> result = await _genericObjectPropertiesProvider
-                .GetPropertyInfos<T>(Columns)
-                .ConfigureAwait(false);
+               .GetPropertyInfos<T>(Columns)
+               .ConfigureAwait(false);
             return result;
         }
 

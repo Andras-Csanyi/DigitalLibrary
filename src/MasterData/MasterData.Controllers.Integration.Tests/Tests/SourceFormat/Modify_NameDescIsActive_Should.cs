@@ -9,8 +9,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     using Utils.IntegrationTestFactories.Factories;
 
-    using Validators.TestData;
-
     using WebApp;
 
     using Xunit;

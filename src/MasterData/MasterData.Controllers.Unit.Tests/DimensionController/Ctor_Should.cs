@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class MasterDataControllers_DimensionController_Ctor_Should
+    public class Ctor_Should
     {
         [Fact]
         public void ThrowException_WhenInputIsNull()

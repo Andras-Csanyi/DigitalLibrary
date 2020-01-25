@@ -1,7 +1,5 @@
 namespace DigitalLibrary.MasterData.DomainModel
 {
-    using System.Collections.Generic;
-
     public class SourceFormat
     {
         public long Id { get; set; }

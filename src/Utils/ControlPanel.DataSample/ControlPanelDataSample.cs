@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-
-using DigitalLibrary.ControlPanel.DomainModel.Entities;
-
-namespace DigitalLibrary.Utils.ControlPanel.DataSample
+﻿namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
-    using DigitalLibrary.ControlPanel.Ctx;
+    using System;
+    using System.Linq;
+
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     public static class ControlPanelDataSample
     {

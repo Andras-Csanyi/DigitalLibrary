@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Fact]
+        [Fact]
         public async Task Record_NewEntity()
         {
             // Arrange

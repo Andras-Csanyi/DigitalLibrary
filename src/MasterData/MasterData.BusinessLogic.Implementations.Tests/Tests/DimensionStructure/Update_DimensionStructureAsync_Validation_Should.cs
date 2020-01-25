@@ -10,8 +10,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
-    using FluentValidation;
-
     using Validators.TestData;
 
     using Xunit;
@@ -19,27 +17,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [ExcludeFromCodeCoverage]
     public class Update_DimensionStructureAsync_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(Update_DimensionStructureAsync_Validation_Should);
-
         public Update_DimensionStructureAsync_Validation_Should() : base(TestInfo)
         {
         }
 
-        [Fact]
-        public async Task ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataBusinessLogic.UpdateDimensionStructureAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-               .WithInnerException<ArgumentNullException>();
-        }
+        private const string TestInfo = nameof(Update_DimensionStructureAsync_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
@@ -69,6 +51,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateDimensionStructureAsync(null).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+               .WithInnerException<ArgumentNullException>();
         }
     }
 }

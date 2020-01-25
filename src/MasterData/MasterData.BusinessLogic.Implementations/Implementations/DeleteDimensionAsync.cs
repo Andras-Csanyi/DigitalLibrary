@@ -9,7 +9,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Exceptions;
 
-    using Microsoft.EntityFrameworkCore.Storage;
+    using FluentValidation;
+
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
@@ -17,6 +19,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             try
             {
+                if (dimension == null)
+                {
+                    throw new MasterDataBusinessLogicArgumentNullException(nameof(dimension));
+                }
+
+                await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
+                        dimension,
+                        ruleSet: ValidatorRulesets.DeleteDimension)
+                   .ConfigureAwait(false);
+
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     Dimension toBeDeleted = await ctx.Dimensions.FindAsync(dimension.Id)
