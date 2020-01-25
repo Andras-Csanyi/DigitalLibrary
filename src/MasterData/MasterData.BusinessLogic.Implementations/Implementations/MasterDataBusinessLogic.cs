@@ -2,8 +2,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using Ctx;
 
-    using Exceptions;
-
     using Interfaces;
 
     using Microsoft.EntityFrameworkCore;

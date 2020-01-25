@@ -12,21 +12,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using FluentValidation;
 
+    using Utils.Guards;
+
     using Validators.TestData;
 
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_SourceFormatAsync_Validation_Should : TestBase
+    public class Add_Validation_Should : TestBase
     {
-        public Update_SourceFormatAsync_Validation_Should() : base(TestInfo)
+        public Add_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_SourceFormatAsync_Validation_Should);
+        private const string TestInfo = nameof(Add_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
+        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
             long id,
@@ -35,22 +37,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             int isActive)
         {
             // Arrange
-            SourceFormat sourceFormat = new SourceFormat()
+            SourceFormat dimensionStructure = new SourceFormat
             {
                 Id = id,
                 Name = name,
                 Desc = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateSourceFormatAsync(sourceFormat).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
                .WithInnerException<ValidationException>();
         }
 
@@ -62,12 +64,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateSourceFormatAsync(null).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
+               .WithInnerException<GuardException>();
         }
     }
 }

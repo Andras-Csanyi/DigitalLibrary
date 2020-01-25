@@ -1,7 +1,5 @@
 ﻿namespace DigitalLibrary.MasterData.Ctx
 {
-    using System;
-
     using Configurations;
 
     using DomainModel;

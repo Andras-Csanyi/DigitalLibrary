@@ -15,13 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_SourceFormatAsync_Should : TestBase
+    public class Update_NameDescIsActive_Should : TestBase
     {
-        public Update_SourceFormatAsync_Should() : base(TestInfo)
+        public Update_NameDescIsActive_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_SourceFormatAsync_Should);
+        private const string TestInfo = nameof(Update_NameDescIsActive_Should);
 
         [Theory]
         [MemberData(
@@ -85,6 +85,41 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>()
                .WithInnerException<MasterDataBusinessLogicNoSuchSourceFormatEntityException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenUniqueConstraintIsViolated()
+        {
+            // Arrange
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Name = "asdasd",
+                Desc = "asdasd",
+                IsActive = 1,
+            };
+            SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+
+            SourceFormat sourceFormat2 = new SourceFormat
+            {
+                Name = "asdasdqqqqq",
+                Desc = "asdasdqqqqq",
+                IsActive = 1,
+            };
+            SourceFormat sourceFormat2Result = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat2)
+               .ConfigureAwait(false);
+
+            sourceFormat2Result.Name = sourceFormat.Name;
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateSourceFormatAsync(sourceFormat2Result)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException>();
         }
     }
 }

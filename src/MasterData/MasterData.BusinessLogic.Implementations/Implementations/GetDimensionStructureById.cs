@@ -8,8 +8,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using DomainModel;
 
-    using Exceptions;
-
     using Microsoft.EntityFrameworkCore;
 
     using Utils.Guards;

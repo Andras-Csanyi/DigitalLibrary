@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     using Utils.IntegrationTestFactories.Factories;
 
+    using WebApi.Client;
+
     using WebApp;
 
     using Xunit;
@@ -17,16 +20,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Get_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Delete_Should : TestBase<SourceFormat>
     {
-        public Get_SourceFormat_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Delete_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
         [Fact]
-        public async Task Return_All()
+        public async Task DeleteTheItem()
         {
             // Arrange
             SourceFormat first = new SourceFormat
@@ -48,15 +51,36 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             SourceFormat secondResult = await masterDataHttpClient
                .AddSourceFormatAsync(second)
                .ConfigureAwait(false);
-
-            // Act
-            List<SourceFormat> result = await masterDataHttpClient
+            List<SourceFormat> origRes = await masterDataHttpClient
                .GetSourceFormatsAsync()
                .ConfigureAwait(false);
+            int origResCount = origRes.Count;
+
+            // Act
+            await masterDataHttpClient.DeleteSourceFormatAsync(secondResult).ConfigureAwait(false);
 
             // Assert
-            result.Should().NotBeNull();
-            result.Count.Should().Be(2);
+            List<SourceFormat> res = await masterDataHttpClient
+               .GetSourceFormatsAsync()
+               .ConfigureAwait(false);
+            res.Count.Should().Be(origResCount - 1);
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenEntityDoesntExist()
+        {
+            // Arrange
+            SourceFormat sourceFormat = new SourceFormat { Id = 100 };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

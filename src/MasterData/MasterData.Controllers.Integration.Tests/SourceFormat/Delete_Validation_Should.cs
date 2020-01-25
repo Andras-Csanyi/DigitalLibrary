@@ -8,7 +8,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     using FluentAssertions;
 
-    using Utils.DiLibHttpClient.Exceptions;
     using Utils.IntegrationTestFactories.Factories;
 
     using WebApi.Client;
@@ -20,15 +19,35 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Delete_SourceFormat_Validation_Should : TestBase<DimensionStructure>
+    public class Delete_Validation_Should : TestBase<SourceFormat>
     {
-        public Delete_SourceFormat_Validation_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Delete_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
-        // [Fact]
+        [Fact]
+        public async Task ThrowException_WhenInputIsInvalid()
+        {
+            // Arrange
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Id = 0
+            };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
         public async Task ThrowException_WhenInputIsNull()
         {
             // Arrange
@@ -41,8 +60,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>()
-               .WithInnerException<DiLibHttpClientDeleteException>();
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

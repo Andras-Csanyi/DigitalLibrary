@@ -4,8 +4,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using Exceptions;
-
     using FluentAssertions;
 
     using Utils.Guards;

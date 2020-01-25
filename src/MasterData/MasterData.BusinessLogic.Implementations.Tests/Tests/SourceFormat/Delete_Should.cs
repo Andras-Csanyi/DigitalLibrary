@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using DomainModel;
@@ -16,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Delete_SourceFormatAsync_Should : TestBase
+    public class Delete_Should : TestBase
     {
-        public Delete_SourceFormatAsync_Should() : base(TestInfo)
+        public Delete_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Delete_SourceFormatAsync_Should);
+        private const string TestInfo = nameof(Delete_Should);
 
         [Fact]
         public async Task Delete()
@@ -54,6 +55,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ConfigureAwait(false);
 
             result.Count.Should().Be(1);
+            result.Where(p => p.Name == first.Name).ToList().Count.Should().Be(1);
+            result.Where(p => p.Name == second.Name).ToList().Count.Should().Be(0);
         }
 
         [Fact]

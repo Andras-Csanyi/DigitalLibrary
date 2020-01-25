@@ -9,9 +9,9 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 
     using Xunit;
 
-    public class DimensionShould
+    public class Dimension_Should
     {
-        public DimensionShould()
+        public Dimension_Should()
         {
         }
 

@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
+namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -6,29 +6,30 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using DomainModel;
 
-    using Exceptions;
-
     using FluentAssertions;
 
-    using FluentValidation;
-
-    using Utils.Guards;
+    using Utils.IntegrationTestFactories.Factories;
 
     using Validators.TestData;
 
+    using WebApi.Client;
+
+    using WebApp;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
-    public class Add_SourceFormatAsync_Validation_Should : TestBase
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    public class Add_Validation_Should : TestBase<SourceFormat>
     {
-        public Add_SourceFormatAsync_Validation_Should() : base(TestInfo)
+        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
+                                     ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
-        private const string TestInfo = nameof(Add_SourceFormatAsync_Validation_Should);
-
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddTopDimensionStructure_Validation_TestData),
+        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
             long id,
@@ -48,12 +49,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
+                await masterDataHttpClient.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
-               .WithInnerException<ValidationException>();
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
         [Fact]
@@ -64,12 +64,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddSourceFormatAsync(null).ConfigureAwait(false);
+                await masterDataHttpClient.AddSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

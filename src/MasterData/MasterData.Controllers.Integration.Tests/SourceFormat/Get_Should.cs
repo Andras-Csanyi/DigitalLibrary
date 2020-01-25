@@ -17,16 +17,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Delete_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Get_Should : TestBase<SourceFormat>
     {
-        public Delete_SourceFormat_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Get_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
         [Fact]
-        public async Task DeleteTheItem()
+        public async Task Return_All()
         {
             // Arrange
             SourceFormat first = new SourceFormat
@@ -48,19 +48,15 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             SourceFormat secondResult = await masterDataHttpClient
                .AddSourceFormatAsync(second)
                .ConfigureAwait(false);
-            List<SourceFormat> origRes = await masterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false);
-            int origResCount = origRes.Count;
 
             // Act
-            await masterDataHttpClient.DeleteSourceFormatAsync(secondResult).ConfigureAwait(false);
-
-            // Assert
-            List<SourceFormat> res = await masterDataHttpClient
+            List<SourceFormat> result = await masterDataHttpClient
                .GetSourceFormatsAsync()
                .ConfigureAwait(false);
-            res.Count.Should().Be(origResCount - 1);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.Count.Should().Be(2);
         }
     }
 }
