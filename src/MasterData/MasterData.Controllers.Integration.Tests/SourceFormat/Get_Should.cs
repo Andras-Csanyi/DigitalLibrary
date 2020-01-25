@@ -17,10 +17,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Get_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Get_Should : TestBase<SourceFormat>
     {
-        public Get_SourceFormat_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Get_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }

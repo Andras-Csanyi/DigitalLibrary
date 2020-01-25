@@ -1,14 +1,20 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
+    using BusinessLogic.Exceptions;
 
     using DomainModel;
 
     using FluentAssertions;
 
+    using Utils.Guards;
     using Utils.IntegrationTestFactories.Factories;
+
+    using WebApi.Client;
 
     using WebApp;
 
@@ -17,10 +23,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Delete_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Delete_Should : TestBase<SourceFormat>
     {
-        public Delete_SourceFormat_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Delete_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
@@ -61,6 +67,23 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                .GetSourceFormatsAsync()
                .ConfigureAwait(false);
             res.Count.Should().Be(origResCount - 1);
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenEntityDoesntExist()
+        {
+            // Arrange
+            SourceFormat sourceFormat = new SourceFormat { Id = 100 };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

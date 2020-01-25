@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
@@ -9,6 +10,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     using Utils.IntegrationTestFactories.Factories;
 
+    using WebApi.Client;
+
     using WebApp;
 
     using Xunit;
@@ -16,16 +19,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_SourceFormat_Should : TestBase<DimensionStructure>
+    public class Add_Should : TestBase<SourceFormat>
     {
-        public Add_SourceFormat_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Add_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }
 
-        // [Fact]
+        [Fact]
         public async Task Add()
         {
             // Arrange
@@ -46,6 +49,30 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             res.Name.Should().Be(orig.Name);
             res.Desc.Should().Be(orig.Desc);
             res.IsActive.Should().Be(orig.IsActive);
+        }
+
+        [Fact]
+        public async Task ThrowsException_WhenUniqueNameConstraintViolated()
+        {
+            // Arrange
+            SourceFormat orig = new SourceFormat
+            {
+                Name = "nameqqqqq",
+                Desc = "desc",
+                IsActive = 1
+            };
+
+            SourceFormat res = await masterDataHttpClient.AddSourceFormatAsync(orig)
+               .ConfigureAwait(false);
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.AddSourceFormatAsync(orig).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

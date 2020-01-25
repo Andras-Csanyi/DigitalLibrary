@@ -8,7 +8,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     [ExcludeFromCodeCoverage]
     public static class MasterData_DimensionStructure_TestData
     {
-        public static IEnumerable<object[]> AddTopDimensionStructure_Validation_TestData = new List<object[]>
+        public static IEnumerable<object[]> AddSourceFormat_Validation_TestData = new List<object[]>
         {
             new object[] { 1, "name", "desc", 1 },
 

@@ -16,10 +16,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
+    public class Update_NameDescIsActive_Should : TestBase<SourceFormat>
     {
-        public Modify_NameDescIsActive_Should(
-            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+        public Update_NameDescIsActive_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
