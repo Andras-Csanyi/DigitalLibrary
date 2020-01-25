@@ -1,14 +1,11 @@
-using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
-using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
-using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-using DigitalLibrary.Utils.ControlPanel.DataSample;
-
 namespace WebApp
 {
     using System;
 
+    using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
+    using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
+    using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
     using DigitalLibrary.ControlPanel.Controllers;
-    using DigitalLibrary.ControlPanel.Ctx;
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using DigitalLibrary.ControlPanel.Validators;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
@@ -16,6 +13,7 @@ namespace WebApp
     using DigitalLibrary.MasterData.Controllers;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.Utils.ControlPanel.DataSample;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

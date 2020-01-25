@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
-
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
+    using System.Threading.Tasks;
+
     public interface IDiLibHttpClient
     {
         Task<T> PostAsync<T>(T payload, string url);

@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class MenuGetAllActiveAsyncOperationException : Exception
     {
         public MenuGetAllActiveAsyncOperationException()

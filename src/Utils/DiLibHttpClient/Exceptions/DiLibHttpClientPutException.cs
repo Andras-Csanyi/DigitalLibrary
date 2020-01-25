@@ -1,8 +1,8 @@
-using System;
-using System.Runtime.Serialization;
-
 namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     public class DiLibHttpClientPutException : Exception
     {
         public DiLibHttpClientPutException()

@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using MasterData.Ctx;
     using MasterData.DomainModel;
 

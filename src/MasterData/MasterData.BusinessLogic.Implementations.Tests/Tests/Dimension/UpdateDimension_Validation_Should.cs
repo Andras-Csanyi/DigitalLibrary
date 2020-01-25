@@ -19,28 +19,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [ExcludeFromCodeCoverage]
     public class UpdateDimension_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(UpdateDimension_Validation_Should);
-
         public UpdateDimension_Validation_Should() : base(TestInfo)
         {
         }
 
-        [Fact]
-        public async Task ThrowException_WhenInputsAreNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataBusinessLogic.UpdateDimensionAsync(null)
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
-               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
-        }
+        private const string TestInfo = nameof(UpdateDimension_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
@@ -69,6 +52,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
                .WithInnerException<ValidationException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputsAreNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateDimensionAsync(null)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+               .WithInnerException<MasterDataBusinessLogicArgumentNullException>();
         }
     }
 }

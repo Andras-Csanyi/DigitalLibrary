@@ -10,8 +10,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     using Utils.IntegrationTestFactories.Factories;
 
-    using Validators.TestData;
-
     using WebApi.Client;
 
     using WebApp;
@@ -27,21 +25,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
-        }
-
-        [Fact]
-        public async Task Throw_Exception_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
         // [Theory]
@@ -67,6 +50,21 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task Throw_Exception_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert

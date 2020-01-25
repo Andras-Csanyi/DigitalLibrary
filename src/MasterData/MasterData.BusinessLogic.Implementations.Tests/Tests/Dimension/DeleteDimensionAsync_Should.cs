@@ -17,11 +17,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [ExcludeFromCodeCoverage]
     public class DeleteDimensionAsync_Should : TestBase
     {
-        protected const string TestInfo = nameof(DeleteDimensionAsync_Should);
-
         public DeleteDimensionAsync_Should() : base(TestInfo)
         {
         }
+
+        protected const string TestInfo = nameof(DeleteDimensionAsync_Should);
 
         [Fact]
         public async Task Delete_TheItem()

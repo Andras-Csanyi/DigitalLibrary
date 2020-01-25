@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace DigitalLibrary.Ui.WebUi
 {
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -13,16 +13,16 @@ namespace DigitalLibrary.Ui.WebUi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
+               .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
                 })
-                .ConfigureWebHostDefaults(webBuilder =>
+               .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel(kestrel => { })
-                        .UseUrls("http://localhost:5201")
-                        .UseStartup<Startup>();
+                       .UseUrls("http://localhost:5201")
+                       .UseStartup<Startup>();
                 });
     }
 }

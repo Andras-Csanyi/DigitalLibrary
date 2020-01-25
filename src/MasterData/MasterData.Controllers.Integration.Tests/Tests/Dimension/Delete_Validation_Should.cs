@@ -27,21 +27,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.DeleteDimensionAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
-        }
-
-        [Fact]
         public async Task ThrowException_WhenInputIsInvalid()
         {
             // Arrange
@@ -54,6 +39,21 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.DeleteDimensionAsync(dimension).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.DeleteDimensionAsync(null).ConfigureAwait(false);
             };
 
             // Assert

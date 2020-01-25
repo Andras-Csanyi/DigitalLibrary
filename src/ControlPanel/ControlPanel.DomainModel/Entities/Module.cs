@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-
 namespace DigitalLibrary.ControlPanel.DomainModel.Entities
 {
+    using System.Collections.Generic;
+
     public class Module
     {
         public long Id { get; set; }

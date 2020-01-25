@@ -1,41 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using BlazorStrap;
-
-using FluentValidation.Results;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
 
     using FluentValidation;
+    using FluentValidation.Results;
+
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.JSInterop;
 
     public partial class DimensionStructuresGrid
     {
         private BSModal _addNewModalWindow;
 
-        private BSModal _editModalWindow;
+        private DimensionStructure _deleteDimensionStructure = new DimensionStructure();
 
         private BSModal _deleteModalWindow;
 
-        private DimensionStructure _editedDimensionStructure = new DimensionStructure();
+        private List<Dimension> _dimensions = new List<Dimension>();
 
         private List<DimensionStructure> _dimensionStructures = new List<DimensionStructure>();
 
-        private DimensionStructure _deleteDimensionStructure = new DimensionStructure();
+        private DimensionStructure _editedDimensionStructure = new DimensionStructure();
+
+        private BSModal _editModalWindow;
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure();
 
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
-
-        private List<Dimension> _dimensions = new List<Dimension>();
 
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }

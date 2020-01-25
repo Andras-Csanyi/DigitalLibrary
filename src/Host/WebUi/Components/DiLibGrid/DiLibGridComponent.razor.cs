@@ -1,12 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BlazorStrap;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using BlazorStrap;
+
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.JSInterop;
+
     public partial class DiLibGridComponent<TData>
     {
         public BSModal AddNewActionButton;

@@ -1,21 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading.Tasks;
-
-using BlazorStrap;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
-using Newtonsoft.Json;
-
 namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Web.Api;
+
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.JSInterop;
+
+    using Newtonsoft.Json;
 
     public partial class ExactGrid
     {

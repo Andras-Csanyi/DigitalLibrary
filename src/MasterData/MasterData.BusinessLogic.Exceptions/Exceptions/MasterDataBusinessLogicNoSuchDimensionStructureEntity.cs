@@ -4,7 +4,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-
     [ExcludeFromCodeCoverage]
     public class MasterDataBusinessLogicNoSuchDimensionStructureEntity : Exception
     {

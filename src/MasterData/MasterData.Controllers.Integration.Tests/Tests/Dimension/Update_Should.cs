@@ -27,59 +27,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task Update_TheItem()
-        {
-            // Arrange
-            string name = "asdasd";
-            string desc = "asdasdasdasd";
-            int isActive = 0;
-
-            Dimension dimension = new Dimension
-            {
-                Name = "name",
-                Description = "desc",
-                IsActive = 1
-            };
-            Dimension dimensionResult = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
-
-            dimensionResult.Name = name;
-            dimensionResult.Description = desc;
-            dimensionResult.IsActive = isActive;
-
-            // Act
-            Dimension result = await masterDataHttpClient.UpdateDimensionAsync(dimensionResult)
-               .ConfigureAwait(false);
-
-            // Assert
-            result.Id.Should().Be(dimensionResult.Id);
-            result.Name.Should().Be(name);
-            result.Description.Should().Be(desc);
-            result.IsActive.Should().Be(isActive);
-        }
-
-        [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
-        {
-            // Arrange
-            Dimension dimension = new Dimension
-            {
-                Id = 100,
-                Name = "asdasd",
-                Description = "dedwedwe",
-                IsActive = 1
-            };
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
-        }
-
-        [Fact]
         public async Task ThrowException_WhenNameUniqueConstraintIsViolated()
         {
             // Arrange
@@ -116,6 +63,59 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 
             // Assert
             action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        {
+            // Arrange
+            Dimension dimension = new Dimension
+            {
+                Id = 100,
+                Name = "asdasd",
+                Description = "dedwedwe",
+                IsActive = 1
+            };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task Update_TheItem()
+        {
+            // Arrange
+            string name = "asdasd";
+            string desc = "asdasdasdasd";
+            int isActive = 0;
+
+            Dimension dimension = new Dimension
+            {
+                Name = "name",
+                Description = "desc",
+                IsActive = 1
+            };
+            Dimension dimensionResult = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+
+            dimensionResult.Name = name;
+            dimensionResult.Description = desc;
+            dimensionResult.IsActive = isActive;
+
+            // Act
+            Dimension result = await masterDataHttpClient.UpdateDimensionAsync(dimensionResult)
+               .ConfigureAwait(false);
+
+            // Assert
+            result.Id.Should().Be(dimensionResult.Id);
+            result.Name.Should().Be(name);
+            result.Description.Should().Be(desc);
+            result.IsActive.Should().Be(isActive);
         }
     }
 }

@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Net.Http;
-
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
+    using System.Collections.Generic;
+    using System.Net.Http;
+
     public class DiLibGridCrudMethodInfo
     {
         public string Url { get; set; }

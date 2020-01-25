@@ -1,13 +1,12 @@
-using System;
-
-using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-
-using Microsoft.EntityFrameworkCore;
-
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
-    using Ctx;
+    using System;
+
     using Ctx.Ctx;
+
+    using Interfaces.Interfaces;
+
+    using Microsoft.EntityFrameworkCore;
 
     using Validators;
 

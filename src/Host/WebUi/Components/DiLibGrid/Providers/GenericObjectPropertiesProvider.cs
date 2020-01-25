@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
-
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using Exceptions;
+
     public class GenericObjectPropertiesProvider
     {
         public async Task<string> GetPropertyValueOfGenericObject<T>(string propertyName, T o)
@@ -39,9 +40,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
         {
             Type type = typeof(T);
             List<PropertyInfo> propertyInfos = new List<PropertyInfo>(type.GetProperties()
-                .ToList()
-                .Where(n => columns.Contains(n.Name))
-                .ToList());
+               .ToList()
+               .Where(n => columns.Contains(n.Name))
+               .ToList());
             return propertyInfos;
         }
     }

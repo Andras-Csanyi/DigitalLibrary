@@ -12,18 +12,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentValidation;
 
-    using Validators.TestData;
-
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class DeleteDimensionAsync_Validation_Should : TestBase
     {
-        protected const string TestInfo = nameof(DeleteDimensionAsync_Validation_Should);
-
         public DeleteDimensionAsync_Validation_Should() : base(TestInfo)
         {
         }
+
+        protected const string TestInfo = nameof(DeleteDimensionAsync_Validation_Should);
 
         [Fact]
         public async Task ThrowException_WhenInputIsInvalid()

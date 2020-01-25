@@ -28,21 +28,6 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         {
         }
 
-        [Fact]
-        public async Task ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataHttpClient.AddDimensionAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataHttpClientException>();
-        }
-
         [Theory]
         [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
@@ -65,6 +50,21 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             Func<Task> action = async () =>
             {
                 await masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.AddDimensionAsync(null).ConfigureAwait(false);
             };
 
             // Assert
