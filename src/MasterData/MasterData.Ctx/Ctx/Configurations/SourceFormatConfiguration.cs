@@ -17,12 +17,12 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
-            builder.HasIndex(p => p.Name).IsUnique();
 
             builder.Property(p => p.Id).HasColumnName("id");
 
             builder.Property(p => p.Name).HasColumnName("name");
             builder.Property(p => p.Name).IsRequired();
+            builder.HasIndex(p => p.Name).IsUnique();
 
             builder.Property(p => p.Desc).HasColumnName("desc");
             builder.Property(p => p.Desc).IsRequired();
