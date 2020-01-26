@@ -26,39 +26,36 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Fact]
+        [Fact]
         public async Task Return_All()
         {
             // Arrange
-            DimensionStructure dimensionStructure1 =
-                new DimensionStructure
-                {
-                    Name = "list1",
-                    Desc = "list1",
-                    IsActive = 1,
-                };
+            DimensionStructure dimensionStructure1 = new DimensionStructure
+            {
+                Name = "list1",
+                Desc = "list1",
+                IsActive = 1,
+            };
             DimensionStructure dimensionStructure1Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure1)
                .ConfigureAwait(false);
 
-            DimensionStructure dimensionStructure2 =
-                new DimensionStructure
-                {
-                    Name = "list2",
-                    Desc = "list2",
-                    IsActive = 1,
-                };
+            DimensionStructure dimensionStructure2 = new DimensionStructure
+            {
+                Name = "list2",
+                Desc = "list2",
+                IsActive = 1,
+            };
             DimensionStructure dimensionStructure2Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure2)
                .ConfigureAwait(false);
 
-            DimensionStructure dimensionStructure3 =
-                new DimensionStructure
-                {
-                    Name = "list3",
-                    Desc = "list3",
-                    IsActive = 1,
-                };
+            DimensionStructure dimensionStructure3 = new DimensionStructure
+            {
+                Name = "list3",
+                Desc = "list3",
+                IsActive = 0,
+            };
             DimensionStructure dimensionStructure3Result = await masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure3)
                .ConfigureAwait(false);

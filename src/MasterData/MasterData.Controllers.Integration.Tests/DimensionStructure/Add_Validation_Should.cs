@@ -10,6 +10,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
 
     using Utils.IntegrationTestFactories.Factories;
 
+    using Validators.TestData;
+
     using WebApi.Client;
 
     using WebApp;
@@ -27,9 +29,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Theory]
-        // [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
-        //     MemberType = typeof(MasterData_DimensionStructure_TestData))]
+        [Theory]
+        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
+            MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task Throw_Exception_WhenInputIsInvalid(
             long id,
             string name,
@@ -37,14 +39,13 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             int isActive)
         {
             // Arrange
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Id = id,
-                    Name = name,
-                    Desc = desc,
-                    IsActive = isActive,
-                };
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Id = id,
+                Name = name,
+                Desc = desc,
+                IsActive = isActive,
+            };
 
             // Act
             Func<Task> action = async () =>

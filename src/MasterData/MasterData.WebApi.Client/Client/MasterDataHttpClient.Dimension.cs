@@ -85,7 +85,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure)
+        public async Task<DimensionStructure> UpdateDimensionStructureAsync(
+            DimensionStructure updatedDimensionStructure)
         {
             try
             {
