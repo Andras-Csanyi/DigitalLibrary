@@ -1,22 +1,27 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
 
+    using Exceptions;
+
     using FluentAssertions;
+
+    using Utils.Guards;
 
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_DimensionStructureAsync_Should : TestBase
+    public class Update_Should : TestBase
     {
-        public Update_DimensionStructureAsync_Should() : base(TestInfo)
+        public Update_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_DimensionStructureAsync_Should);
+        private const string TestInfo = nameof(Update_Should);
 
         [Fact]
         public async Task Update()
@@ -48,6 +53,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             updatedResult.Name.Should().Be(updateName);
             updatedResult.Desc.Should().Be(updateDesc);
             updatedResult.IsActive.Should().Be(updateIsActive);
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        {
+            // Arrange
+            DimensionStructure orig = new DimensionStructure
+            {
+                Id = 100,
+                Name = "name",
+                Desc = "desc",
+                IsActive = 1,
+            };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateDimensionStructureAsync(orig).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>()
+               .WithInnerException<GuardException>();
         }
     }
 }

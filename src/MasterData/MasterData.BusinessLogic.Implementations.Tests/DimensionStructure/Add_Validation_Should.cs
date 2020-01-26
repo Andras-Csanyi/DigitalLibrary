@@ -19,13 +19,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Add_DimensionStructure_Validation_Should : TestBase
+    public class Add_Validation_Should : TestBase
     {
-        public Add_DimensionStructure_Validation_Should() : base(TestInfo)
+        public Add_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Add_DimensionStructure_Validation_Should);
+        private const string TestInfo = nameof(Add_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
@@ -37,14 +37,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             int isActive)
         {
             // Arrange
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Id = id,
-                    Name = name,
-                    Desc = desc,
-                    IsActive = isActive
-                };
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Id = id,
+                Name = name,
+                Desc = desc,
+                IsActive = isActive
+            };
 
             // Act
             Func<Task> action = async () =>

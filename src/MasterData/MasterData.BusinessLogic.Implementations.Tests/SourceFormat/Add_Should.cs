@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         public async Task ThrowExpection_WhenNameUniqueConstraintIsViolated()
         {
             // Arrange
-            SourceFormat dimensionStructure = new SourceFormat
+            SourceFormat sourceFormat = new SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
@@ -33,17 +33,39 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             };
 
             SourceFormat result = await masterDataBusinessLogic.AddSourceFormatAsync(
-                dimensionStructure).ConfigureAwait(false);
-
+                sourceFormat).ConfigureAwait(false);
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat).ConfigureAwait(false);
             };
 
-            // Arrange
+            // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>();
+        }
+
+        [Fact]
+        public async Task Add_TheItem()
+        {
+            // Arrange
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Name = "name",
+                Desc = "desc",
+                IsActive = 1,
+            };
+
+            // Act
+            SourceFormat result = await masterDataBusinessLogic.AddSourceFormatAsync(
+                sourceFormat).ConfigureAwait(false);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.Id.Should().BeGreaterThan(0);
+            result.Name.Should().Be(sourceFormat.Name);
+            result.Desc.Should().Be(sourceFormat.Desc);
+            result.IsActive.Should().Be(sourceFormat.IsActive);
         }
     }
 }

@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_DimensionStructureAsync_Validation_Should : TestBase
+    public class Update_Validation_Should : TestBase
     {
-        public Update_DimensionStructureAsync_Validation_Should() : base(TestInfo)
+        public Update_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_DimensionStructureAsync_Validation_Should);
+        private const string TestInfo = nameof(Update_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
@@ -52,7 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>();
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>()
                .WithInnerException<GuardException>();
         }
     }
