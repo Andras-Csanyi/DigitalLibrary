@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using FluentAssertions;
 
     using Utils.IntegrationTestFactories.Factories;
+
+    using WebApi.Client;
 
     using WebApp;
 
@@ -28,23 +31,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         public async Task Record_NewEntity()
         {
             // Arrange
-            DimensionStructure topDimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "top",
-                    Desc = "top desc",
-                    IsActive = 1,
-                };
-            DimensionStructure topDimensionStructureResult = await masterDataHttpClient
-               .AddDimensionStructureAsync(topDimensionStructure).ConfigureAwait(false);
-
-            DimensionStructure dimensionStructure =
-                new DimensionStructure
-                {
-                    Name = "dim",
-                    Desc = "dim",
-                    IsActive = 1,
-                };
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Name = "dim",
+                Desc = "dim",
+                IsActive = 1,
+            };
 
             // Act
             DimensionStructure result = await masterDataHttpClient
@@ -57,6 +49,33 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             result.Name.Should().Be(dimensionStructure.Name);
             result.Desc.Should().Be(dimensionStructure.Desc);
             result.IsActive.Should().Be(dimensionStructure.IsActive);
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenUniqueNameConstraintViolated()
+        {
+            // Arrange
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Name = "dim22",
+                Desc = "dim22",
+                IsActive = 1,
+            };
+
+            DimensionStructure result = await masterDataHttpClient
+               .AddDimensionStructureAsync(dimensionStructure)
+               .ConfigureAwait(false);
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient
+                   .AddDimensionStructureAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
     }
 }

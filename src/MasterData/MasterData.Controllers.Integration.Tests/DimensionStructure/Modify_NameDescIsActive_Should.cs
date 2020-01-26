@@ -1,11 +1,16 @@
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
 
+    using FluentAssertions;
+
     using Utils.IntegrationTestFactories.Factories;
+
+    using WebApi.Client;
 
     using WebApp;
 
@@ -21,9 +26,58 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        // [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        [Fact]
+        public async Task ThrowException_WhenThereIsNoSuchEntity()
         {
+            // Arrange
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Id = 400
+            };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataHttpClient.UpdateDimensionStructureAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataHttpClientException>();
+        }
+
+        [Fact]
+        public async Task Update_TheItem()
+        {
+            // Arrange
+            string name = "name";
+            string desc = "desc";
+            int isActive = 0;
+
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Name = "asdasdasd",
+                Desc = "dedede",
+                IsActive = 1,
+            };
+            DimensionStructure dimensionStructureResult = await masterDataHttpClient.AddDimensionStructureAsync(
+                    dimensionStructure)
+               .ConfigureAwait(false);
+
+            dimensionStructureResult.Name = name;
+            dimensionStructureResult.Desc = desc;
+            dimensionStructureResult.IsActive = isActive;
+
+            // Act
+            DimensionStructure result = await masterDataHttpClient.UpdateDimensionStructureAsync(
+                    dimensionStructureResult)
+               .ConfigureAwait(false);
+
+            // Assert
+            result.Id.Should().Be(dimensionStructureResult.Id);
+            result.Name.Should().Be(name);
+            result.Desc.Should().Be(desc);
+            result.IsActive.Should().Be(isActive);
         }
     }
 }

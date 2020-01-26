@@ -43,8 +43,6 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
 
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
-
-                    MasterDataSeed.Seed(db);
                 }
             });
         }

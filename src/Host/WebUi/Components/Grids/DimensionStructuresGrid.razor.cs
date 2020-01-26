@@ -147,7 +147,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                         _editedDimensionStructure,
                         ruleSet: ValidatorRulesets.UpdateSourceFormat)
                    .ConfigureAwait(false);
-                await MasterDataHttpClient.UpdateDimensionStructure(_editedDimensionStructure)
+                await MasterDataHttpClient.UpdateDimensionStructureAsync(_editedDimensionStructure)
                    .ConfigureAwait(false);
                 await PopulateDimensionStructures().ConfigureAwait(false);
                 _editModalWindow.Hide();

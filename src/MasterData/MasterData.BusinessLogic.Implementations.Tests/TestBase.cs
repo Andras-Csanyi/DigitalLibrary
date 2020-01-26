@@ -10,6 +10,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
+    using Utils.Guards;
+
     using Validators;
 
     [ExcludeFromCodeCoverage]
@@ -22,10 +24,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         public TestBase(string TestInfo)
         {
-            if (string.IsNullOrEmpty(TestInfo) || string.IsNullOrWhiteSpace(TestInfo))
-            {
-                throw new ArgumentNullException($"{TestInfo} cannot be null, empty or whitespace!");
-            }
+            string msg = $"{TestInfo} cannot be null, empty or whitespace!";
+            Check.NotNullOrEmptyOrWhitespace(TestInfo, msg);
 
             DbContextOptions<MasterDataContext> _dbContextOptions =
                 new DbContextOptionsBuilder<MasterDataContext>()

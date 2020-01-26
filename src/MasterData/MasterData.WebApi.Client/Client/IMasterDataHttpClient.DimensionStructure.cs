@@ -15,6 +15,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
         Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
 
-        Task<DimensionStructure> UpdateDimensionStructure(DimensionStructure updatedDimensionStructure);
+        Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure updatedDimensionStructure);
     }
 }

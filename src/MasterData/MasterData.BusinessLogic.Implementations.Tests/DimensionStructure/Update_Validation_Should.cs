@@ -32,8 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             long id,
             string name,
             string desc,
-            int isActive,
-            long parentDimensionStructureId)
+            int isActive)
         {
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure

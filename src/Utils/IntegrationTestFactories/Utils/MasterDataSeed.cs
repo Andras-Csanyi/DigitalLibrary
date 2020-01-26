@@ -18,19 +18,6 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 
         public static void Seed(MasterDataContext db)
         {
-            AddTopDimensionStructures(db);
-        }
-
-        private static void AddTopDimensionStructures(MasterDataContext db)
-        {
-            DimensionStructure topDimensionStructure = new DimensionStructure
-            {
-                Name = "top dimension structure",
-                Desc = "description",
-                IsActive = 1
-            };
-            db.DimensionStructures.Add(topDimensionStructure);
-            db.SaveChanges();
         }
     }
 }
