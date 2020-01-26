@@ -10,13 +10,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Add_Should : TestBase
+    public class Add_DimensionStructure_Should : TestBase
     {
-        public Add_Should() : base(TestInfo)
+        public Add_DimensionStructure_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Add_Should);
+        private const string TestInfo = nameof(Add_DimensionStructure_Should);
 
         [Fact]
         public async Task Add_DimensionStructure()

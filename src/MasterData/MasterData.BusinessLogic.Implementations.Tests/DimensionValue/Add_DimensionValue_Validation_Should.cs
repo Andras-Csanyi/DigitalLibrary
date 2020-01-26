@@ -13,11 +13,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class AddDimensionValue_Validation_Should : TestBase
+    public class Add_DimensionValue_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(AddDimensionValue_Validation_Should);
+        private const string TestInfo = nameof(Add_DimensionValue_Validation_Should);
 
-        public AddDimensionValue_Validation_Should() : base(TestInfo)
+        public Add_DimensionValue_Validation_Should() : base(TestInfo)
         {
         }
 

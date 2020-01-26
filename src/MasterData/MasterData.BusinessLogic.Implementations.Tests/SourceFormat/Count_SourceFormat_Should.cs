@@ -10,13 +10,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Count_Should : TestBase
+    public class Count_SourceFormat_Should : TestBase
     {
-        public Count_Should() : base(TestInfo)
+        public Count_SourceFormat_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Count_Should);
+        private const string TestInfo = nameof(Count_SourceFormat_Should);
 
         [Fact]
         public async Task ReturnsAll()

@@ -13,13 +13,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetValuesOfADimensionAsync_Validation_Should : TestBase
+    public class GetValuesOfA_DimensionAsync_Validation_Should : TestBase
     {
-        public GetValuesOfADimensionAsync_Validation_Should() : base(TestInfo)
+        public GetValuesOfA_DimensionAsync_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(GetValuesOfADimensionAsync_Validation_Should);
+        private const string TestInfo = nameof(GetValuesOfA_DimensionAsync_Validation_Should);
 
         [Fact]
         public async Task ThrowException_WhenInputIsNull()

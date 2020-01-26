@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Delete_Should : TestBase
+    public class Delete_SourceFormat_Should : TestBase
     {
-        public Delete_Should() : base(TestInfo)
+        public Delete_SourceFormat_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Delete_Should);
+        private const string TestInfo = nameof(Delete_SourceFormat_Should);
 
         [Fact]
         public async Task Delete()

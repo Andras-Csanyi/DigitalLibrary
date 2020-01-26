@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Delete_Should : TestBase
+    public class Get_DimensionStructure_Should : TestBase
     {
-        public Delete_Should() : base(TestInfo)
+        private const string TestInfo = nameof(Get_DimensionStructure_Should);
+
+        public Get_DimensionStructure_Should() : base(TestInfo)
         {
         }
-
-        private const string TestInfo = nameof(Delete_Should);
 
         [Fact]
         public async Task Delete_AnItem()
@@ -43,43 +43,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Desc = "desc2",
-                IsActive = 1
+                IsActive = 0
             };
             DimensionStructure dimensionStructure2Result = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure2)
                .ConfigureAwait(false);
 
             // Act
-            await masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure2Result)
-               .ConfigureAwait(false);
-
-            // Assert
             List<DimensionStructure> result = await masterDataBusinessLogic.GetDimensionStructuresAsync()
                .ConfigureAwait(false);
-            result.Count.Should().Be(1);
-            result.Where(p => p.Name == dimensionStructure.Name).ToList().Count.Should().Be(1);
-            result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0);
-        }
-
-        [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchDimensionStructure()
-        {
-            // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Id = 1000
-            };
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
-                   .ConfigureAwait(false);
-            };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            result.Should().NotBeNull();
+            result.Count.Should().BeGreaterThan(0);
+            result.Where(p => p.Name == dimensionStructure.Name).ToList().Count.Should().Be(1);
+            result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(1);
         }
     }
 }

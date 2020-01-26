@@ -19,13 +19,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class ModifyDimensionValue_Validation_Should : TestBase
+    public class Update_DimensionValue_Validation_Should : TestBase
     {
-        public ModifyDimensionValue_Validation_Should() : base(TestInfo)
+        public Update_DimensionValue_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(ModifyDimensionValue_Validation_Should);
+        private const string TestInfo = nameof(Update_DimensionValue_Validation_Should);
 
         [Theory]
         [MemberData(

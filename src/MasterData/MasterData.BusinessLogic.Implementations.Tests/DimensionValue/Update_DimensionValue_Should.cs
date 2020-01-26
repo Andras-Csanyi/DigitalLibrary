@@ -16,13 +16,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class ModifyDimensionValue_Should : TestBase
+    public class Update_DimensionValue_Should : TestBase
     {
-        public ModifyDimensionValue_Should() : base(TestInfo)
+        public Update_DimensionValue_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(ModifyDimensionValue_Should);
+        private const string TestInfo = nameof(Update_DimensionValue_Should);
 
         [Fact]
         public async Task CreateANewDimensionValueForDimension_IfTheModifiedDimensionValueHasMultipleConnections()

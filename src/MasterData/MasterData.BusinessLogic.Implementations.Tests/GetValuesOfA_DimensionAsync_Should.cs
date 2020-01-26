@@ -11,13 +11,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetValuesOfADimensionAsync_Should : TestBase
+    public class GetValuesOfA_DimensionAsync_Should : TestBase
     {
-        public GetValuesOfADimensionAsync_Should() : base(TestInfo)
+        public GetValuesOfA_DimensionAsync_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(GetValuesOfADimensionAsync_Should);
+        private const string TestInfo = nameof(GetValuesOfA_DimensionAsync_Should);
 
         [Fact]
         public async Task Return_DimensionWithASingleDimensionValue()

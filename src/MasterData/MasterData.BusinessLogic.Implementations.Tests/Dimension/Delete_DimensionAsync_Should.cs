@@ -15,13 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class DeleteDimensionAsync_Should : TestBase
+    public class Delete_DimensionAsync_Should : TestBase
     {
-        public DeleteDimensionAsync_Should() : base(TestInfo)
+        public Delete_DimensionAsync_Should() : base(TestInfo)
         {
         }
 
-        protected const string TestInfo = nameof(DeleteDimensionAsync_Should);
+        protected const string TestInfo = nameof(Delete_DimensionAsync_Should);
 
         [Fact]
         public async Task Delete_TheItem()

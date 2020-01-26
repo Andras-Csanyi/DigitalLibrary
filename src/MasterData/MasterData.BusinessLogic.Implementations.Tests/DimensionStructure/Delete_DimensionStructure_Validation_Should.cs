@@ -15,13 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Delete_Validation_Should : TestBase
+    public class Delete_DimensionStructure_Validation_Should : TestBase
     {
-        public Delete_Validation_Should() : base(TestInfo)
+        public Delete_DimensionStructure_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Delete_Validation_Should);
+        private const string TestInfo = nameof(Delete_DimensionStructure_Validation_Should);
 
         [Fact]
         public async Task ThrowException_WhenInputIsNull()

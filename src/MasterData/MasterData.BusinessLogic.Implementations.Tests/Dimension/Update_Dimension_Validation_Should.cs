@@ -19,19 +19,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class AddDimensionAsync_Validation_Should : TestBase
+    public class Update_Dimension_Validation_Should : TestBase
     {
-        public AddDimensionAsync_Validation_Should() : base(TestInfo)
+        public Update_Dimension_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(AddDimensionAsync_Validation_Should);
+        private const string TestInfo = nameof(Update_Dimension_Validation_Should);
 
         [Theory]
-        [MemberData(
-            nameof(MasterData_Dimension_TestData.AddDimensionAsync_Validation),
+        [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
-        public async Task Throw_MasterDataBUsinessLogicAddDimensionAsyncOperationException_WhenInputIsInvalid(
+        public async Task ThrowException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -49,27 +48,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddDimensionAsync(dimension).ConfigureAwait(false);
+                await masterDataBusinessLogic.UpdateDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
                .WithInnerException<ValidationException>();
         }
 
         [Fact]
-        public async Task Throw_MasterDataBusinessLogicArgumentNullException()
+        public async Task ThrowException_WhenInputsAreNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddDimensionAsync(null).ConfigureAwait(false);
+                await masterDataBusinessLogic.UpdateDimensionAsync(null)
+                   .ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
                .WithInnerException<GuardException>();
         }
     }

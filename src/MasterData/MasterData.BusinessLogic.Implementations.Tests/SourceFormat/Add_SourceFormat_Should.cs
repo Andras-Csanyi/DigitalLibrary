@@ -13,13 +13,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Add_Should : TestBase
+    public class Add_SourceFormat_Should : TestBase
     {
-        public Add_Should() : base(TestInfo)
+        public Add_SourceFormat_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Add_Should);
+        private const string TestInfo = nameof(Add_SourceFormat_Should);
 
         [Fact]
         public async Task ThrowExpection_WhenNameUniqueConstraintIsViolated()

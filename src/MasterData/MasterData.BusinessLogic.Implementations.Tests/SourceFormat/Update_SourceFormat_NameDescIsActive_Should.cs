@@ -15,13 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_NameDescIsActive_Should : TestBase
+    public class Update_SourceFormat_NameDescIsActive_Should : TestBase
     {
-        public Update_NameDescIsActive_Should() : base(TestInfo)
+        public Update_SourceFormat_NameDescIsActive_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_NameDescIsActive_Should);
+        private const string TestInfo = nameof(Update_SourceFormat_NameDescIsActive_Should);
 
         [Theory]
         [MemberData(

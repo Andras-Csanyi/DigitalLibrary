@@ -10,6 +10,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
+    using FluentValidation;
+
     using Utils.Guards;
 
     using Validators.TestData;
@@ -17,16 +19,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_Validation_Should : TestBase
+    public class Add_DimensionStructure_Validation_Should : TestBase
     {
-        public Update_Validation_Should() : base(TestInfo)
+        public Add_DimensionStructure_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_Validation_Should);
+        private const string TestInfo = nameof(Add_DimensionStructure_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
+        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public async Task ThrowException_WhenInputIsInvalid(
             long id,
@@ -40,18 +42,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Id = id,
                 Name = name,
                 Desc = desc,
-                IsActive = isActive,
+                IsActive = isActive
             };
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateDimensionStructureAsync(dimensionStructure)
-                   .ConfigureAwait(false);
+                await masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
+               .WithInnerException<ValidationException>();
         }
 
         [Fact]
@@ -62,11 +64,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.UpdateDimensionStructureAsync(null).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>()
+            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
                .WithInnerException<GuardException>();
         }
     }

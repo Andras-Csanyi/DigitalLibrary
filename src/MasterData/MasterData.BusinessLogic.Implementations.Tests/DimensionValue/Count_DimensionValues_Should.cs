@@ -1,8 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionValue
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using DomainModel;
@@ -12,16 +10,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class GetDimensionValues_Should : TestBase
+    public class Count_DimensionValues_Should : TestBase
     {
-        public GetDimensionValues_Should() : base(TestInfo)
+        public Count_DimensionValues_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(GetDimensionValues_Should);
+        private const string TestInfo = nameof(Count_DimensionValues_Should);
 
         [Fact]
-        public async Task ReturnAllDimensionValues_WhenASingleDimensionValueIsInTheSystem()
+        public async Task ReturnDimensionValuesCount_WhenASingleDimensionValueIsInTheSystem()
         {
             // Arrange
             Dimension dimension = new Dimension
@@ -45,16 +43,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     dimensionResult.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result =
-                await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            long result = await masterDataBusinessLogic.CountDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
-            result.Count.Should().Be(1);
-            result.ElementAt(0).DimensionDimensionValues.Should().BeNull();
+            result.Should().Be(1);
         }
 
         [Fact]
-        public async Task ReturnAllDimensionValues_WhenMultipleDimensionsHaveMultipleDimensionValues()
+        public async Task ReturnDimensionValuesCount_WhenMultipleDimensionsHaveMultipleDimensionValues()
         {
             // Arrange
             Dimension dimension1 = new Dimension
@@ -119,15 +115,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     dimension2Result.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result =
-                await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            long result = await masterDataBusinessLogic.CountDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
-            result.Count.Should().Be(4);
+            result.Should().Be(4);
         }
 
         [Fact]
-        public async Task ReturnAllDimensionValues_WhenMultipleDimensionValuesAreInTheSystem()
+        public async Task ReturnDimensionValuesCount_WhenMultipleDimensionValuesAreInTheSystem()
         {
             // Arrange
             Dimension dimension = new Dimension
@@ -161,11 +156,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                     dimensionResult.Id).ConfigureAwait(false);
 
             // Act
-            List<DimensionValue> result =
-                await masterDataBusinessLogic.GetDimensionValuesAsync().ConfigureAwait(false);
+            long result = await masterDataBusinessLogic.CountDimensionValuesAsync().ConfigureAwait(false);
 
             // Assert
-            result.Count.Should().Be(2);
+            result.Should().Be(2);
         }
     }
 }

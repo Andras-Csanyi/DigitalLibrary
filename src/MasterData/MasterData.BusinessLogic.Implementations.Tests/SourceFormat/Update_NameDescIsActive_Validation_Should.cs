@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Update_Validation_Should : TestBase
+    public class Update_SourceFormat_Validation_Should : TestBase
     {
-        public Update_Validation_Should() : base(TestInfo)
+        public Update_SourceFormat_Validation_Should() : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(Update_Validation_Should);
+        private const string TestInfo = nameof(Update_SourceFormat_Validation_Should);
 
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
