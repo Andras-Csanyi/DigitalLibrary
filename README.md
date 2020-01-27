@@ -13,3 +13,17 @@ solution are the following:
  
  It will be a long journey and you can find the experience of developing this project in 
  my [blog](https://sayusiando.com), and further information about the product can be found [here](src/Doc/index.md).
+ 
+ # Try it out
+  ### There is no installer!
+  
+   - Install [.Net Core SDK](https://dotnet.microsoft.com/download) on your machine
+   - clone the repository
+   - `cd src/Host/WebApp`
+   - `dotnet run` to have the REST Api running
+   - open another command line and navigate to `src/Host/WebUI` and
+   - `dotnet run`
+   - open a browser and navigate to `http://localhost:5000`
+   
+  In case of you'd like to see the code I suggest to use [Rider](https://www.jetbrains.com/rider/), but
+  VS Code or Visual Studio will be fine too.
