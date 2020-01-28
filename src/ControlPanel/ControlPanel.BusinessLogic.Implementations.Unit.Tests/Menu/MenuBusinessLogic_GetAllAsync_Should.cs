@@ -8,7 +8,6 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     using Xunit;
 
-    [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
         private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);

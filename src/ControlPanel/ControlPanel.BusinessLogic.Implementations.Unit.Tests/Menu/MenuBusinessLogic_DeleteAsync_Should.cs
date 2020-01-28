@@ -11,7 +11,6 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     using Xunit;
 
-    [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
         private const string TestInfo = nameof(MenuBusinessLogic_DeleteAsync_Should);
