@@ -11,6 +11,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Menu
 
     public class AddAsync_Should : TestBase
     {
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_ArgumentNullException_WhenInputIsNull()
         {

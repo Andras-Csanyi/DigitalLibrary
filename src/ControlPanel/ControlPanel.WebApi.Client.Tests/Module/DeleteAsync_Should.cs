@@ -11,6 +11,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 
     public class DeleteAsync_Should : TestBase
     {
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_ArgumentNullException_WhenInputIsNull()
         {
