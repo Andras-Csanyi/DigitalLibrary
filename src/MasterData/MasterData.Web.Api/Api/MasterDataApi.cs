@@ -20,6 +20,8 @@
                 public const string Delete = "v1/Delete";
 
                 public const string GetAll = "v1/GetAll";
+
+                public const string GetById = "v1/GetById";
             }
         }
 
