@@ -1,0 +1,17 @@
+@using DigitalLibrary.MasterData.DomainModel
+<div>
+    <BSBasicInput InputType="InputType.Select"
+                  @bind-Value="@_selectedSourceFormatId">
+        @{
+            foreach (SourceFormat sourceFormat in _sourceFormats)
+            {
+                <option value="@sourceFormat.Id">
+                    @sourceFormat.Name
+                </option>
+            }
+        }
+    </BSBasicInput>
+    <CascadingValue Name="_selectedSourceFormatId" Value=@_selectedSourceFormatId>
+        <DocumentDisplay></DocumentDisplay>
+    </CascadingValue>
+</div>
