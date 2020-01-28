@@ -9,6 +9,8 @@
 
     using Exceptions;
 
+    using Guards;
+
     using Newtonsoft.Json;
 
     public class DiLibHttpClient : IDiLibHttpClient
@@ -24,10 +26,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Post, url);
@@ -60,10 +60,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Post, url);
@@ -96,10 +94,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Delete, url);
@@ -130,10 +126,7 @@
         {
             try
             {
-                if (string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 
@@ -166,10 +159,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Put, url);
