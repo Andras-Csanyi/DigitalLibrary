@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 {
     using System;
     using System.Threading.Tasks;
@@ -11,6 +11,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 
     public class FindAsync_Should : TestBase
     {
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_ArgumentNullException_WhenInputIsNull()
         {

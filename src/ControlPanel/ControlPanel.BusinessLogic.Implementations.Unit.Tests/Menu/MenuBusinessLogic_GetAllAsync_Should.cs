@@ -1,34 +1,24 @@
-namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.Menu
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
-    using System;
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
-
-    using Exceptions.Menu;
 
     using FluentAssertions;
 
     using Xunit;
 
-    [Collection(nameof(AssemblyName.GetAssemblyName))]
-    public class MenuBusinessLogic_DeleteAsync_Should : TestBase
+    public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
-        [Trait("Category", "Unit")]
-        public async Task Throw_DeleteAsyncOperationException_WhenInputIsNull()
+        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
+
+        public MenuBusinessLogic_GetAllAsync_Should() : base(TestInfo)
         {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () => { await MenuBusinessLogic.DeleteAsync(null).ConfigureAwait(false); };
-
-            // Assert
-            action.Should().ThrowExactly<MenuBusinessLogicDeleteAsyncOperationException>()
-               .WithInnerException<MenuNullInputException>();
         }
 
+        [Fact]
         [Trait("Category", "Unit")]
-        public async Task Delete_AnItem()
+        public async Task Return_AllItems()
         {
             // Arrange
             DomainModel.Entities.Module module = new DomainModel.Entities.Module
@@ -60,11 +50,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Tests.
                 await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);
 
             // Act
-            await MenuBusinessLogic.DeleteAsync(menuInactiveResult).ConfigureAwait(false);
             List<DomainModel.Entities.Menu> result = await MenuBusinessLogic.GetAllAsync().ConfigureAwait(false);
 
             // Assert
-            result.Count.Should().Be(1);
+            result.Count.Should().Be(2);
         }
     }
 }

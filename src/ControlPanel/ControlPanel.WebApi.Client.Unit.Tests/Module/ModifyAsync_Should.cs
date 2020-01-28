@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 {
     using System;
     using System.Threading.Tasks;
@@ -9,8 +9,9 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 
     using Xunit;
 
-    public class DeleteAsync_Should : TestBase
+    public class ModifyAsync_Should : TestBase
     {
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_ArgumentNullException_WhenInputIsNull()
         {
@@ -20,12 +21,11 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                   .DeleteModuleAsync(null).ConfigureAwait
-                        (false);
+                   .ModifyModuleAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<ControlPanelWebApiClientDeleteModuleAsyncOperationException>();
+            action.Should().ThrowExactly<ControlPanelWebApiClientModifyModuleAsyncOperationException>();
         }
     }
 }

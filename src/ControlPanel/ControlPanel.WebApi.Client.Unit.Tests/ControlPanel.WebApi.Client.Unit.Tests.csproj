@@ -6,9 +6,9 @@
 
         <IsPackable>false</IsPackable>
 
-        <AssemblyName>DigitalLibrary.ControlPanel.WebApi.Client.Tests</AssemblyName>
+        <AssemblyName>DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests</AssemblyName>
 
-        <RootNamespace>DigitalLibrary.ControlPanel.WebApi.Client.Tests</RootNamespace>
+        <RootNamespace>DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests</RootNamespace>
 
         <LangVersion>default</LangVersion>
     </PropertyGroup>

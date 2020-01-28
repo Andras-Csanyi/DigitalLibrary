@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
 {
     using System.Net.Http;
 
