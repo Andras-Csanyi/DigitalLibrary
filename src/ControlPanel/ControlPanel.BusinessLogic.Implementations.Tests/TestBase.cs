@@ -5,26 +5,38 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests
     using Implementations.Menu;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
 
     using Module;
+
+    using Utils.Guards;
 
     using Validators;
 
     public class TestBase
     {
+        public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
+           .Create(builder => { builder.AddDebug(); });
+
         protected MenuBusinessLogic MenuBusinessLogic;
 
         protected ModuleBusinessLogic ModuleBusinessLogic;
 
-        public TestBase()
+        public TestBase(string TestInfo)
         {
-            string fileName = "Data Source=test.db";
+            string msg = $"{nameof(TestInfo)} cannot be empty.";
+            Check.NotNullOrEmptyOrWhitespace(TestInfo);
+
+            string fileName = $"Data Source={TestInfo}.sqlite";
 
             MenuValidator menuValidator = new MenuValidator();
             ModuleValidator moduleValidator = new ModuleValidator();
 
             DbContextOptions<ControlPanelContext> dbContext = new DbContextOptionsBuilder<ControlPanelContext>()
                .UseSqlite(fileName)
+               .UseLoggerFactory(LoggerFactory)
+               .EnableDetailedErrors()
+               .EnableSensitiveDataLogging()
                .Options;
 
             MenuBusinessLogic = new MenuBusinessLogic(menuValidator, dbContext);

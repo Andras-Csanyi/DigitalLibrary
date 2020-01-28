@@ -14,6 +14,13 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
+        private const string TestInfo = nameof(MenuBusinessLogic_DeleteAsync_Should);
+
+        public MenuBusinessLogic_DeleteAsync_Should() : base(TestInfo)
+        {
+        }
+
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_DeleteAsyncOperationException_WhenInputIsNull()
         {
@@ -27,6 +34,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
                .WithInnerException<MenuNullInputException>();
         }
 
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Delete_AnItem()
         {

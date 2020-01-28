@@ -11,6 +11,13 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
+        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
+
+        public MenuBusinessLogic_GetAllAsync_Should() : base(TestInfo)
+        {
+        }
+
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Return_AllItems()
         {

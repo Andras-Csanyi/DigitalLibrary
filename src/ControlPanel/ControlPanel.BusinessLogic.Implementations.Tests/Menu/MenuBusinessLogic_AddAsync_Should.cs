@@ -16,6 +16,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
     [Collection(nameof(AssemblyName.GetAssemblyName))]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
+        private const string TestInfo = nameof(MenuBusinessLogic_AddAsync_Should);
+
+        public MenuBusinessLogic_AddAsync_Should() : base(TestInfo)
+        {
+        }
+
         public static IEnumerable<object[]> ThrowValidationExceptionWhenInputIsInvalid = new List<object[]>
         {
             new object[] { 1, "asd", "asd", 0, 1, "asd" },
@@ -37,6 +43,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
             new object[] { 0, "asd", "asd", 0, 1, " " },
         };
 
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Throw_NullInputException_WhenInputIsNull()
         {
@@ -51,6 +58,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
         }
 
         [Trait("Category", "Unit")]
+        [Theory]
         [MemberData(nameof(ThrowValidationExceptionWhenInputIsInvalid))]
         public async Task Throw_ValidationException_WhenInputIsInvalid(
             int id,
@@ -79,6 +87,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
                .WithInnerException<ValidationException>();
         }
 
+        [Fact]
         [Trait("Category", "Unit")]
         public async Task Add_Menu()
         {
