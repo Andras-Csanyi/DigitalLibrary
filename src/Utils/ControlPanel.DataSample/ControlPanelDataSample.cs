@@ -131,6 +131,17 @@
                 };
                 ctx.Menus.Add(dimensionStructure);
                 ctx.SaveChanges();
+
+                Menu documentBuilder = new Menu
+                {
+                    Name = "Document builder",
+                    Description = "Document builder",
+                    IsActive = 1,
+                    MenuRoute = "documentbuilder",
+                    ModuleId = masterDataModule.Id
+                };
+                ctx.Menus.Add(documentBuilder);
+                ctx.SaveChanges();
             }
             else
             {
