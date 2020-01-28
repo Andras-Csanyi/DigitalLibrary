@@ -6,6 +6,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     {
         Task<T> PostAsync<T>(T payload, string url);
 
+        Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url);
+
         Task DeleteAsync<T>(T payload, string url);
 
         Task<T> GetAsync<T>(string url);

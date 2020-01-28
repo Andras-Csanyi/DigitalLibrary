@@ -20,6 +20,42 @@
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
+        public async Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url)
+        {
+            try
+            {
+                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
+                {
+                    throw new ArgumentNullException();
+                }
+
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                    HttpMethod.Post, url);
+                httpRequestMessage.Content = CreateStringContent(payload);
+
+                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+                   .ConfigureAwait(false))
+                {
+                    try
+                    {
+                        httpResponseMessage.EnsureSuccessStatusCode();
+                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        ReturnType result = JsonToObject<ReturnType>(content);
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DiLibHttpClientPostException(e.Message, e);
+            }
+        }
+
         public async Task<T> PostAsync<T>(T payload, string url)
         {
             try
