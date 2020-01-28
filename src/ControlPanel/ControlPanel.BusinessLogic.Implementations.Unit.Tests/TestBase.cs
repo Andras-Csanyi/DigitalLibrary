@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
 {
     using Ctx.Ctx;
 

@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Tests.Menu
+namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
     using System;
     using System.Collections.Generic;
