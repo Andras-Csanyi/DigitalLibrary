@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Menu
 {
     using System;
     using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 
     using Xunit;
 
-    public class AddAsync_Should : TestBase
+    public class ModifyAsync_Should : TestBase
     {
         [Fact]
         [Trait("Category", "Unit")]
@@ -20,12 +20,11 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
             // Act
             Func<Task> action = async () =>
             {
-                await ControlPanelWebApiClient.AddModuleAsync(null)
-                   .ConfigureAwait(false);
+                await ControlPanelWebApiClient.ModifyMenuAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<ControlPanelWebApiClientAddModuleAsyncOperationException>();
+            action.Should().ThrowExactly<ControlPanelWebApiClientModifyMenuAsyncOperationException>();
         }
     }
 }

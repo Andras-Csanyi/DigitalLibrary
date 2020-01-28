@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Menu
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 {
     using System;
     using System.Threading.Tasks;
@@ -20,11 +20,12 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Menu
             // Act
             Func<Task> action = async () =>
             {
-                await ControlPanelWebApiClient.ModifyMenuAsync(null).ConfigureAwait(false);
+                await ControlPanelWebApiClient
+                   .ModifyModuleAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<ControlPanelWebApiClientModifyMenuAsyncOperationException>();
+            action.Should().ThrowExactly<ControlPanelWebApiClientModifyModuleAsyncOperationException>();
         }
     }
 }

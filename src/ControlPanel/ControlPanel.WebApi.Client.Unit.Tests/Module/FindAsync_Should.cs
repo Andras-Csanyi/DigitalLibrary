@@ -1,4 +1,4 @@
-namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 {
     using System;
     using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
 
     using Xunit;
 
-    public class DeleteAsync_Should : TestBase
+    public class FindAsync_Should : TestBase
     {
         [Fact]
         [Trait("Category", "Unit")]
@@ -20,13 +20,11 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Tests.Module
             // Act
             Func<Task> action = async () =>
             {
-                await ControlPanelWebApiClient
-                   .DeleteModuleAsync(null).ConfigureAwait
-                        (false);
+                await ControlPanelWebApiClient.FindModuleAsync(null).ConfigureAwait(false);
             };
 
             // Assert
-            action.Should().ThrowExactly<ControlPanelWebApiClientDeleteModuleAsyncOperationException>();
+            action.Should().ThrowExactly<ControlPanelWebApiClientFindModuleAsyncOperationException>();
         }
     }
 }

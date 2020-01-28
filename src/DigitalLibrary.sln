@@ -64,7 +64,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.WebApi.Api", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.BusinessLogic.Implementations.Unit.Tests", "ControlPanel\ControlPanel.BusinessLogic.Implementations.Unit.Tests\ControlPanel.BusinessLogic.Implementations.Unit.Tests.csproj", "{5E199771-72AE-480A-A099-47C2DC932906}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.WebApi.Client.Tests", "ControlPanel\ControlPanel.WebApi.Client.Tests\ControlPanel.WebApi.Client.Tests.csproj", "{8FB4905A-2E5D-41C2-A46E-1865F4A9E3E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPanel.WebApi.Client.Unit.Tests", "ControlPanel\ControlPanel.WebApi.Client.Unit.Tests\ControlPanel.WebApi.Client.Unit.Tests.csproj", "{8FB4905A-2E5D-41C2-A46E-1865F4A9E3E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Controllers.Integration.Tests", "MasterData\MasterData.Controllers.Integration.Tests\MasterData.Controllers.Integration.Tests.csproj", "{6985F649-9C8F-4DC2-9293-61372C5F6116}"
 EndProject
