@@ -57,6 +57,20 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        public async Task<SourceFormat> GetSourceFormatById(long sourceFormatId)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
+                             $"{MasterDataApi.SourceFormat.V1.GetById}";
+                return await _diLibHttpClient.PostAsync<SourceFormat, long>(sourceFormatId, url).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
         public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
