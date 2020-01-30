@@ -1,8 +1,7 @@
 @using DigitalLibrary.MasterData.DomainModel
 <div>
     <BSBasicInput InputType="InputType.Select"
-                  @bind-Value="@_selectedSourceFormatId"
-                  @onclick="@(async () => await NotifyDocumentDisplay(_selectedSourceFormatId).ConfigureAwait(false))">
+                  @bind-Value="@_selectedSourceFormatId">
         @{
             foreach (SourceFormat sourceFormat in _sourceFormats)
             {
@@ -12,5 +11,10 @@
             }
         }
     </BSBasicInput>
+    <BSButton ButtonType="ButtonType.Button"
+              Color="Color.Primary"
+              @onclick="@(async () => await NotifyDocumentDisplay().ConfigureAwait(false))">
+        Load SourceFormat
+    </BSButton>
     <DocumentDisplay></DocumentDisplay>
 </div>

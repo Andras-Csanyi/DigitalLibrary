@@ -25,17 +25,29 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         protected override async Task OnInitializedAsync()
         {
+            await PopulateSourceFormats().ConfigureAwait(false);
+            await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
+        }
+
+        private async Task AddNulloAsFirstElemToSourceFormatList()
+        {
+            SourceFormat nullo = new SourceFormat
+            {
+                Id = 0,
+                Name = "--Select One--",
+            };
+            _sourceFormats.Insert(0, nullo);
+        }
+
+        private async Task PopulateSourceFormats()
+        {
             _sourceFormats = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
         }
 
-        private async Task DrawDocumentStructureAsync()
+        private async Task NotifyDocumentDisplay()
         {
-        }
-
-        private async Task NotifyDocumentDisplay(long selectedSourceFormatId)
-        {
-            Console.WriteLine($"selected format id: {selectedSourceFormatId}");
-            await DocumentBuilderDocumentDisplayNotifier.Update(selectedSourceFormatId).ConfigureAwait(false);
+            Console.WriteLine($"selected format id: {_selectedSourceFormatId}");
+            await DocumentBuilderDocumentDisplayNotifier.Update(_selectedSourceFormatId).ConfigureAwait(false);
         }
     }
 }
