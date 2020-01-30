@@ -1,14 +1,17 @@
 <div>
     @{
-        if (_selectedSourceFormat.Id != 0)
+        if (_selectedSourceFormat != null)
         {
-            @_selectedSourceFormat.Name<br/>
-            @_selectedSourceFormat.Id
-        }
-        else
-        {
-            <div>Counter: @_counter</div>
-            <div>Nothing...</div>
+            if (_selectedSourceFormat.Id != 0)
+            {
+                @_selectedSourceFormat.Name<br/>
+                @_selectedSourceFormat.Id
+            }
+            else
+            {
+                <div>Counter: @_counter</div>
+                <div>Nothing...</div>
+            }
         }
     }
 

@@ -5,26 +5,19 @@ namespace DigitalLibrary.Ui.WebUi.Notifiers
 
     public class DocumentBuilderDocumentDisplayNotifier
     {
-        public long SelectedSourceFormatId { get; private set; }
-
-        public event Action OnChange;
+        public event Func<long, Task> Notify;
 
         public async Task Update(long sourceFormatId)
         {
-            SelectedSourceFormatId = sourceFormatId;
-            Console.WriteLine($"{nameof(SelectedSourceFormatId)}: {SelectedSourceFormatId}");
-            await NotifyStateChanged().ConfigureAwait(false);
-        }
-
-        private async Task NotifyStateChanged()
-        {
-            if (OnChange == null)
+            Console.WriteLine($"{nameof(sourceFormatId)}: {sourceFormatId}");
+            if (Notify != null)
             {
-                Console.WriteLine("OnChange is null");
+                Console.WriteLine("Notified...");
+                await Notify.Invoke(sourceFormatId).ConfigureAwait(false);
             }
             else
             {
-                OnChange.Invoke();
+                Console.WriteLine($"{nameof(Notify)} is null.");
             }
         }
     }

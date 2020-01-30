@@ -51,7 +51,7 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
 
             // Notifiers
-            services.AddTransient<DocumentBuilderDocumentDisplayNotifier>();
+            services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
 
             // validators
             services.AddTransient<DimensionStructureValidator>();

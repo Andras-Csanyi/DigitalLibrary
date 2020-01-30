@@ -26,22 +26,38 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         protected override async Task OnInitializedAsync()
         {
-            DocumentBuilderDocumentDisplayNotifier.OnChange += StateHasChanged;
-            _selectedSourceFormatId = DocumentBuilderDocumentDisplayNotifier.SelectedSourceFormatId;
-            Console.WriteLine($"doc display: {_selectedSourceFormatId}");
+            DocumentBuilderDocumentDisplayNotifier.Notify += OnNotify;
+            Console.WriteLine($"doc display oninit...: {_selectedSourceFormatId}");
 
-            if (_selectedSourceFormatId != 0)
-            {
-                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(_selectedSourceFormatId)
-                   .ConfigureAwait(false);
-            }
 
             _counter += 1;
         }
 
+        public async Task PopulateSourceFormatToBeDisplayed(long sourceFormatId)
+        {
+            if (sourceFormatId != 0)
+            {
+                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(sourceFormatId)
+                   .ConfigureAwait(false);
+            }
+        }
+
+        public async Task OnNotify(long selectedSourceFormatId)
+        {
+            Console.WriteLine($"OnNotify in DocDisplay: {selectedSourceFormatId}");
+            await SetSelectedSourceFormatId(selectedSourceFormatId).ConfigureAwait(false);
+            await PopulateSourceFormatToBeDisplayed(selectedSourceFormatId).ConfigureAwait(false);
+            await InvokeAsync(() => { StateHasChanged(); });
+        }
+
+        private async Task SetSelectedSourceFormatId(long selectedSourceFormatId)
+        {
+            _selectedSourceFormatId = selectedSourceFormatId;
+        }
+
         public void Dispose()
         {
-            DocumentBuilderDocumentDisplayNotifier.OnChange -= StateHasChanged;
+            DocumentBuilderDocumentDisplayNotifier.Notify -= OnNotify;
         }
     }
 }
