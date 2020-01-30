@@ -19,9 +19,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_Should : TestBase<SourceFormat>
+    public class Add_SourceFormat_Should : TestBase<SourceFormat>
     {
-        public Add_Should(
+        public Add_SourceFormat_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)

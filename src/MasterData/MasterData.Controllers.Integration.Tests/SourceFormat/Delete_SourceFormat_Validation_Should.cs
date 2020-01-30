@@ -19,9 +19,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Delete_Validation_Should : TestBase<SourceFormat>
+    public class Delete_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
-        public Delete_Validation_Should(
+        public Delete_SourceFormat_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {

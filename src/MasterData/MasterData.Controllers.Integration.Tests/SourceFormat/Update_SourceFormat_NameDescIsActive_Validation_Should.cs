@@ -21,9 +21,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Update_NameDescIsActive_Validation_Should : TestBase<SourceFormat>
+    public class Update_SourceFormat_NameDescIsActive_Validation_Should : TestBase<SourceFormat>
     {
-        public Update_NameDescIsActive_Validation_Should(
+        public Update_SourceFormat_NameDescIsActive_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {

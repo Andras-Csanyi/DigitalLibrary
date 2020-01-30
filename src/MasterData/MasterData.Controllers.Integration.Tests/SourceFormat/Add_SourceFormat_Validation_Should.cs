@@ -21,10 +21,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
     [ExcludeFromCodeCoverage]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    public class Add_Validation_Should : TestBase<SourceFormat>
+    public class Add_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
-        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-                                     ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Add_SourceFormat_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
+                                                  ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
         {
         }
 
