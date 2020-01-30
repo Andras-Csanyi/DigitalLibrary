@@ -15,6 +15,8 @@ namespace DigitalLibrary.Ui.WebUi
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+    using Notifiers;
+
     using Utils.DiLibHttpClient;
 
     public class Startup
@@ -47,6 +49,9 @@ namespace DigitalLibrary.Ui.WebUi
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
+
+            // Notifiers
+            services.AddTransient<DocumentBuilderDocumentDisplayNotifier>();
 
             // validators
             services.AddTransient<DimensionStructureValidator>();

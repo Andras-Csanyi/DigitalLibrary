@@ -1,5 +1,6 @@
 namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 {
+    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -7,18 +8,40 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
     using Microsoft.AspNetCore.Components;
 
-    public partial class DocumentDisplay
+    using Notifiers;
+
+    public partial class DocumentDisplay : IDisposable
     {
-        [CascadingParameter(Name = "_selectedSourceFormatId")]
-        public long _selectedSourceFormatId { get; set; }
+        private long _selectedSourceFormatId { get; set; }
 
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
-        private SourceFormat selectedSourceFormat = new SourceFormat();
+        [Inject]
+        public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
+
+        private SourceFormat _selectedSourceFormat = new SourceFormat();
+
+        private int _counter = 0;
 
         protected override async Task OnInitializedAsync()
         {
+            DocumentBuilderDocumentDisplayNotifier.OnChange += StateHasChanged;
+            _selectedSourceFormatId = DocumentBuilderDocumentDisplayNotifier.SelectedSourceFormatId;
+            Console.WriteLine($"doc display: {_selectedSourceFormatId}");
+
+            if (_selectedSourceFormatId != 0)
+            {
+                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(_selectedSourceFormatId)
+                   .ConfigureAwait(false);
+            }
+
+            _counter += 1;
+        }
+
+        public void Dispose()
+        {
+            DocumentBuilderDocumentDisplayNotifier.OnChange -= StateHasChanged;
         }
     }
 }
