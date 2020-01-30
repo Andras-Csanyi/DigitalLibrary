@@ -22,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync())
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -34,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                         await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                                 sourceFormat,
-                                ValidatorRulesets.UpdateSourceFormat)
+                                SourceFormatValidatorRulesets.Update)
                            .ConfigureAwait(false);
 
                         SourceFormat toBeModified = await ctx.SourceFormats

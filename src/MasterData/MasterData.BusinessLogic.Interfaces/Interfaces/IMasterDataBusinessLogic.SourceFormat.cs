@@ -17,6 +17,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task DeleteSourceFormatAsync(SourceFormat secondResult);
 
-        Task<SourceFormat> GetSourceFormatByIdAsync(long sourceFormatId);
+        Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat);
     }
 }

@@ -37,7 +37,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         {
             if (sourceFormatId != 0)
             {
-                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(sourceFormatId)
+                SourceFormat query = new SourceFormat { Id = sourceFormatId };
+                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(query)
                    .ConfigureAwait(false);
             }
         }

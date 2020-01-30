@@ -69,11 +69,11 @@ namespace DigitalLibrary.MasterData.Controllers
         [Route(MasterDataApi.SourceFormat.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(long sourceFormatId)
+        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
         {
             try
             {
-                SourceFormat result = await _masterDataBusinessLogic.GetSourceFormatByIdAsync(sourceFormatId)
+                SourceFormat result = await _masterDataBusinessLogic.GetSourceFormatByIdAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

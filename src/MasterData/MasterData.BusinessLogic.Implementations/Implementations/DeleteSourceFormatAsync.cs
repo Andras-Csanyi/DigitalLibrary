@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 Check.IsNotNull(sourceFormat);
                 await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                         sourceFormat,
-                        ruleSet: ValidatorRulesets.DeleteSourceFormat)
+                        ruleSet: SourceFormatValidatorRulesets.Delete)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

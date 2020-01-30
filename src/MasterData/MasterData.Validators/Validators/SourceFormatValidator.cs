@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public SourceFormatValidator()
         {
-            RuleSet(ValidatorRulesets.AddNewDimensionStructure, () =>
+            RuleSet(SourceFormatValidatorRulesets.Add, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -30,27 +30,27 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.AddSourceFormat, () =>
-            {
-                When(w => w.Name == null || w.Desc == null, () =>
-                {
-                    RuleFor(e => e.Name).NotNull();
-                    RuleFor(e => e.Desc).NotNull();
-                });
+            // RuleSet(SourceFormatValidatorRulesets.AddSourceFormat, () =>
+            // {
+            //     When(w => w.Name == null || w.Desc == null, () =>
+            //     {
+            //         RuleFor(e => e.Name).NotNull();
+            //         RuleFor(e => e.Desc).NotNull();
+            //     });
+            //
+            //     When(w => w.Name != null && w.Desc != null, () =>
+            //     {
+            //         RuleFor(p => p.Id).Equal(0);
+            //         // RuleFor(p => p.ParentDimensionStructureId).Equal(0);
+            //         RuleFor(p => p.Name).NotEmpty().NotEqual(" ");
+            //         RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
+            //         RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
+            //         RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
+            //         RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
+            //     });
+            // });
 
-                When(w => w.Name != null && w.Desc != null, () =>
-                {
-                    RuleFor(p => p.Id).Equal(0);
-                    // RuleFor(p => p.ParentDimensionStructureId).Equal(0);
-                    RuleFor(p => p.Name).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
-                    RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
-                    RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
-                });
-            });
-
-            RuleSet(ValidatorRulesets.UpdateSourceFormat, () =>
+            RuleSet(SourceFormatValidatorRulesets.Update, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -69,7 +69,8 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.DeleteSourceFormat, () => { RuleFor(p => p.Id).NotEqual(0); });
+            RuleSet(SourceFormatValidatorRulesets.Delete, () => { RuleFor(p => p.Id).NotEqual(0); });
+            RuleSet(SourceFormatValidatorRulesets.GetById, () => { RuleFor(p => p.Id).GreaterThan(0); });
         }
     }
 }

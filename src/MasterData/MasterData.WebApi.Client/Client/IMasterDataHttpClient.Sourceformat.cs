@@ -15,6 +15,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
         Task DeleteSourceFormatAsync(SourceFormat sourceFormat);
 
-        Task<SourceFormat> GetSourceFormatById(long sourceFormatId);
+        Task<SourceFormat> GetSourceFormatById(SourceFormat sourceFormat);
     }
 }

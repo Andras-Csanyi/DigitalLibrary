@@ -10,19 +10,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Exceptions;
 
+    using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<SourceFormat> GetSourceFormatByIdAsync(long sourceFormatId)
+        public async Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
         {
             try
             {
+                await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
+                        sourceFormat,
+                        SourceFormatValidatorRulesets.GetById)
+                   .ConfigureAwait(false);
+
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat result = await ctx.SourceFormats
                        .Include(p => p.RootDimensionStructure)
-                       .FirstOrDefaultAsync(id => id.Id == sourceFormatId)
+                       .FirstOrDefaultAsync(id => id.Id == sourceFormat.Id)
                        .ConfigureAwait(false);
                     return result;
                 }
