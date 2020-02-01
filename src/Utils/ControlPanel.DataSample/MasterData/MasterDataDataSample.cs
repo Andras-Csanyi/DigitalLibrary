@@ -1,10 +1,10 @@
-namespace DigitalLibrary.Utils.ControlPanel.DataSample
+namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System;
     using System.Collections.Generic;
 
-    using MasterData.Ctx;
-    using MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
 
     public static class MasterDataDataSample
     {

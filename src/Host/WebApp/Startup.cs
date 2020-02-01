@@ -14,6 +14,7 @@ namespace WebApp
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.ControlPanel.DataSample;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
