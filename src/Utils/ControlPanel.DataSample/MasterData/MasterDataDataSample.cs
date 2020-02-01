@@ -6,11 +6,12 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
 
-    public static class MasterDataDataSample
+    public static partial class MasterDataDataSample
     {
         public static void Populate(MasterDataContext ctx)
         {
             PopulateSourceFormats(ctx);
+            PopulateSourceFormatBusinessPartner(ctx);
             PopulateBusinessPartnerDimensionStructure(ctx);
             PopulateNutritionIntakeDimensionStructure(ctx);
             PopulateRssContentDimensionStructure(ctx);

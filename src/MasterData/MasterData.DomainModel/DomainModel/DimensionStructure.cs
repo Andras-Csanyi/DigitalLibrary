@@ -14,7 +14,9 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public ICollection<SourceFormat> SourceFormats { get; set; }
 
-        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
+        public IEnumerable<DimensionStructureDimensionStructure> ChildDimensionStructures { get; set; }
+
+        public IEnumerable<DimensionStructureDimensionStructure> ParentDimensionStructures { get; set; }
 
         public long? DimensionId { get; set; }
 
