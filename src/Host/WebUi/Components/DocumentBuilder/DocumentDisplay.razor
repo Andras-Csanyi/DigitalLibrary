@@ -1,18 +1,103 @@
+@using DigitalLibrary.MasterData.DomainModel
 <div>
     @{
         if (_selectedSourceFormat != null)
         {
-            if (_selectedSourceFormat.Id != 0)
-            {
-                @_selectedSourceFormat.Name<br/>
-                @_selectedSourceFormat.Id
-            }
-            else
-            {
-                <div>Counter: @_counter</div>
-                <div>Nothing...</div>
-            }
+            <BSCard>
+                <BSCard CardType="CardType.Body">
+                    <BSCard CardType="CardType.Title">@_selectedSourceFormat.Name</BSCard>
+                    <BSCard CardType="CardType.Subtitle">@_selectedSourceFormat.Desc</BSCard>
+                    @{
+                        if (_selectedSourceFormat.RootDimensionStructure != null)
+                        {
+                            <BSCard CardType="CardType.Body">
+                                @{
+                                    DimensionStructure rootDimensionStructure = _selectedSourceFormat.
+                                        RootDimensionStructure;
+                                }
+                                <BSCard CardType="CardType.Title">
+                                    <div class="float-left">
+                                        <strong>Root Dimension Structure: </strong>
+                                        @rootDimensionStructure.Name
+                                    </div>
+                                    <div class="float-right">
+                                        <BSButton ButtonType="ButtonType.Button"
+                                                  Color="Color.Primary"
+                                                  @onclick="@(async () => await SelectRootDimensionStructure()
+                                                                .ConfigureAwait(false))">
+                                            Change
+                                        </BSButton>
+                                    </div>
+                                </BSCard>
+                                <BSCard CardType="CardType.Subtitle">@rootDimensionStructure.Desc</BSCard>
+                            </BSCard>
+                        }
+                        else
+                        {
+                            <BSCard CardType="CardType.Title">
+                                <div class="float-left">
+                                    <strong>Root Dimension Structure: &nbsp;</strong>
+                                    -- not selected yet --
+                                </div>
+                                <div class="float-right">
+                                    <BSButton ButtonType="ButtonType.Button"
+                                              Color="Color.Primary"
+                                              @onclick="@(async () => await SelectRootDimensionStructure()
+                                                            .ConfigureAwait(false))">
+                                        Select
+                                    </BSButton>
+                                </div>
+                            </BSCard>
+                        }
+                    }
+                </BSCard>
+            </BSCard>
         }
     }
-
 </div>
+
+<BSModal @ref="_rootDimensionStructureListModal" IsCentered="true" Size="Size.Large">
+    <BSModalHeader OnClick="@(async () => await CancelRootDimensionStructureSelectAsync().ConfigureAwait(false))">
+        Selet a root Dimension Structure for the SourceFormat.
+    </BSModalHeader>
+    <BSModalBody>
+        <BSTable>
+            <BSTableHead>
+                <BSTableHeadCell>Id</BSTableHeadCell>
+                <BSTableHeadCell>Name</BSTableHeadCell>
+                <BSTableHeadCell>Desc</BSTableHeadCell>
+                <BSTableHeadCell></BSTableHeadCell>
+            </BSTableHead>
+            <BSTableBody>
+                @{
+                    if (_rootDimensionStructureList != null)
+                    {
+                        foreach (DimensionStructure dimensionStructure in _rootDimensionStructureList)
+                        {
+                            <BSTableRow>
+                                <BSTableCell>
+                                    @dimensionStructure.Id
+                                </BSTableCell>
+                                <BSTableCell>
+                                    @dimensionStructure.Name
+                                </BSTableCell>
+                                <BSTableCell>
+                                    @dimensionStructure.Desc</BSTableCell>
+                                <BSTableCell>
+                                    <BSButton ButtonType="ButtonType.Button"
+                                              Color="Color.Primary"
+                                              @onclick="@(async () => await SelectRootDimensionStructureHandler(
+                                                            dimensionStructure.Id)
+                                                            .ConfigureAwait(false))">
+                                        Select
+                                    </BSButton>
+                                </BSTableCell>
+                            </BSTableRow>
+                        }
+                    }
+                }
+            </BSTableBody>
+        </BSTable>
+    </BSModalBody>
+    <BSModalFooter></BSModalFooter>
+</BSModal>

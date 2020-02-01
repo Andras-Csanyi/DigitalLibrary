@@ -1,7 +1,10 @@
 namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
@@ -20,17 +23,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         [Inject]
         public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
 
-        private SourceFormat _selectedSourceFormat = new SourceFormat();
+        private SourceFormat _selectedSourceFormat;
 
-        private int _counter = 0;
+        private BSModal _rootDimensionStructureListModal;
+
+        private List<DimensionStructure> _rootDimensionStructureList = new List<DimensionStructure>();
 
         protected override async Task OnInitializedAsync()
         {
             DocumentBuilderDocumentDisplayNotifier.Notify += OnNotify;
-            Console.WriteLine($"doc display oninit...: {_selectedSourceFormatId}");
-
-
-            _counter += 1;
         }
 
         public async Task PopulateSourceFormatToBeDisplayed(long sourceFormatId)
@@ -45,7 +46,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         public async Task OnNotify(long selectedSourceFormatId)
         {
-            Console.WriteLine($"OnNotify in DocDisplay: {selectedSourceFormatId}");
             await SetSelectedSourceFormatId(selectedSourceFormatId).ConfigureAwait(false);
             await PopulateSourceFormatToBeDisplayed(selectedSourceFormatId).ConfigureAwait(false);
             await InvokeAsync(() => { StateHasChanged(); });
@@ -59,6 +59,37 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         public void Dispose()
         {
             DocumentBuilderDocumentDisplayNotifier.Notify -= OnNotify;
+        }
+
+        private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()
+        {
+            _rootDimensionStructureList = await MasterDataHttpClient.GetDimensionStructuresAsync()
+               .ConfigureAwait(false);
+        }
+
+        private async Task OpenRootDimensionStructureSelectingModalAsync()
+        {
+            _rootDimensionStructureListModal.Show();
+        }
+
+        private async Task CloseSelectingRootDimensionStructureModalAsync()
+        {
+            _rootDimensionStructureListModal.Hide();
+        }
+
+        private async Task SelectRootDimensionStructure()
+        {
+            await PopulateDimensionStructuresListForSelectingRootDimensionStructure().ConfigureAwait(false);
+            await OpenRootDimensionStructureSelectingModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task SelectRootDimensionStructureHandler(long selectedDimensionStructureId)
+        {
+        }
+
+        private async Task CancelRootDimensionStructureSelectAsync()
+        {
+            await CloseSelectingRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
     }
 }
