@@ -99,5 +99,39 @@
             </BSTableBody>
         </BSTable>
     </BSModalBody>
-    <BSModalFooter></BSModalFooter>
+    <BSModalFooter>
+        @{
+            if (_rootDimensionStructureListRaw.Count > pageSize)
+            {
+                <div>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowFirstPagePagerAction().ConfigureAwait(false))">
+                        First
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageBackOnePagePagerAction().ConfigureAwait(false))">
+                        &larr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageForwardOnePagePagerAction().ConfigureAwait(false))">
+                        &rarr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowLastPagePagerAction().ConfigureAwait(false))">
+                        Last
+                    </BSButton>
+                </div>
+            }
+        }
+
+
+    </BSModalFooter>
 </BSModal>

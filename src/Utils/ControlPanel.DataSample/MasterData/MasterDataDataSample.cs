@@ -15,6 +15,26 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             PopulateNutritionIntakeDimensionStructure(ctx);
             PopulateRssContentDimensionStructure(ctx);
             PopulateDimensionsWithoutStructure(ctx);
+            PopulateDimensionStructures(ctx);
+        }
+
+        private static void PopulateDimensionStructures(MasterDataContext ctx)
+        {
+            int amount = 30;
+            List<DimensionStructure> dimensionStructures = new List<DimensionStructure>();
+            for (int i = 0; i < amount; i++)
+            {
+                DimensionStructure dimensionStructure = new DimensionStructure
+                {
+                    Name = $"Dimension Structure {i}",
+                    Desc = $"Dimension Structure Description {i}",
+                    IsActive = 1,
+                };
+                dimensionStructures.Add(dimensionStructure);
+            }
+
+            ctx.DimensionStructures.AddRange(dimensionStructures);
+            ctx.SaveChanges();
         }
 
         private static void PopulateBlankSourceFormats(MasterDataContext ctx)

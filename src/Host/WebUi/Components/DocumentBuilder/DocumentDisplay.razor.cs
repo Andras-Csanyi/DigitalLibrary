@@ -2,6 +2,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BlazorStrap;
@@ -17,6 +18,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
     {
         private long _selectedSourceFormatId { get; set; }
 
+        private int pageSize = 10;
+
+        private int actualPage = 0;
+
+        private int maxPage = 0;
+
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
@@ -28,6 +35,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         private BSModal _rootDimensionStructureListModal;
 
         private List<DimensionStructure> _rootDimensionStructureList = new List<DimensionStructure>();
+
+        private List<DimensionStructure> _rootDimensionStructureListRaw = new List<DimensionStructure>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -63,8 +72,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()
         {
-            _rootDimensionStructureList = await MasterDataHttpClient.GetDimensionStructuresAsync()
+            _rootDimensionStructureListRaw = await MasterDataHttpClient.GetDimensionStructuresAsync()
                .ConfigureAwait(false);
+            maxPage = _rootDimensionStructureListRaw.Count / pageSize;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PopulateDisplayedRootDimensionStructureListPagerAction()
+        {
+            int skip = pageSize * actualPage;
+            _rootDimensionStructureList = _rootDimensionStructureListRaw
+               .OrderBy(p => p.Id)
+               .Skip(skip)
+               .Take(pageSize)
+               .ToList();
         }
 
         private async Task OpenRootDimensionStructureSelectingModalAsync()
@@ -90,6 +111,38 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         private async Task CancelRootDimensionStructureSelectAsync()
         {
             await CloseSelectingRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task ShowFirstPagePagerAction()
+        {
+            actualPage = 0;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task ShowLastPagePagerAction()
+        {
+            actualPage = maxPage;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PageBackOnePagePagerAction()
+        {
+            if (actualPage >= 1)
+            {
+                actualPage -= 1;
+            }
+
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PageForwardOnePagePagerAction()
+        {
+            if (actualPage <= maxPage)
+            {
+                actualPage += 1;
+            }
+
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
         }
     }
 }
