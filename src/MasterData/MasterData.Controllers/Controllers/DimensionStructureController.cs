@@ -1,3 +1,5 @@
+using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+
 namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
@@ -94,6 +96,46 @@ namespace DigitalLibrary.MasterData.Controllers
                 List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
                    .ConfigureAwait(false);
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetDimensionStructuresByIdsAsync(
+            DimensionStructureIds dimensionStructureIds)
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresByIdsAsync(
+                        dimensionStructureIds)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructureById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
+            DimensionStructure dimensionStructure)
+        {
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(
+                        dimensionStructure)
+                   .ConfigureAwait(false);
+                return result;
             }
             catch (Exception e)
             {

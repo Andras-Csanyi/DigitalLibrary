@@ -30,6 +30,7 @@
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
+        <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.Controllers\MasterData.Controllers.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj" />

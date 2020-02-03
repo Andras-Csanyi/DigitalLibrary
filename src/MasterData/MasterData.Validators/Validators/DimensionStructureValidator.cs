@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public DimensionStructureValidator()
         {
-            RuleSet(ValidatorRulesets.AddNewDimensionStructure, () =>
+            RuleSet(DimensionStructureValidatorRulesets.Add, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.UpdateDimensionStructure, () =>
+            RuleSet(DimensionStructureValidatorRulesets.Update, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -49,7 +49,8 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(ValidatorRulesets.DeleteDimensionStructure, () => { RuleFor(p => p.Id).NotEqual(0); });
+            RuleSet(DimensionStructureValidatorRulesets.Delete, () => { RuleFor(p => p.Id).NotEqual(0); });
+            RuleSet(DimensionStructureValidatorRulesets.GetById, () => { RuleFor(p => p.Id).NotEqual(0); });
         }
     }
 }

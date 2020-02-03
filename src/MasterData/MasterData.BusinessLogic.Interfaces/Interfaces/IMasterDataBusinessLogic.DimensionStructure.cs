@@ -1,3 +1,5 @@
+using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Collections.Generic;
@@ -14,6 +16,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(DimensionStructureIds dimensionStructureIds);
+
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
 
         Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 

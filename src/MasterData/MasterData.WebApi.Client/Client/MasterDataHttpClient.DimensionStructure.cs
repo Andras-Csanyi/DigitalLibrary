@@ -1,3 +1,5 @@
+using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using System;
@@ -34,6 +36,39 @@ namespace DigitalLibrary.MasterData.WebApi.Client
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
                              $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
                 List<DimensionStructure> result = await _diLibHttpClient.GetAsync<List<DimensionStructure>>(url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureIds ids)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds}";
+                List<DimensionStructure> result = await _diLibHttpClient
+                   .PostAsync<List<DimensionStructure>, DimensionStructureIds>(ids, url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructure dimensionStructure)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructureById}";
+                DimensionStructure result = await _diLibHttpClient.PostAsync(dimensionStructure, url)
                    .ConfigureAwait(false);
                 return result;
             }

@@ -27,12 +27,12 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.ParentDimensionStructureId).IsRequired();
 
             builder.HasOne(child => child.ChildDimensionStructure)
-               .WithMany(children => children.ChildDimensionStructures)
+               .WithMany(children => children.ChildDimensionStructureDimensionStructures)
                .HasForeignKey(p => p.ChildDimensionStructureId)
                .IsRequired(false);
 
             builder.HasOne(parent => parent.ParentDimensionStructure)
-               .WithMany(parents => parents.ParentDimensionStructures)
+               .WithMany(parents => parents.ParentDimensionStructureDimensionStructures)
                .HasForeignKey(key => key.ParentDimensionStructureId)
                .IsRequired(false);
         }

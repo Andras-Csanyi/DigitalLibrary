@@ -1,3 +1,5 @@
+using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using System.Collections.Generic;
@@ -7,9 +9,11 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     public partial interface IMasterDataHttpClient
     {
-        Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure);
-
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureIds ids);
+
+        Task<DimensionStructure> GetDimensionStructureById(DimensionStructure dimensionStructure);
 
         Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
 

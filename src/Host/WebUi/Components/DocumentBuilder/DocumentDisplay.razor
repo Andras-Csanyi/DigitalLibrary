@@ -6,7 +6,7 @@
             <BSCard>
                 <BSCard CardType="CardType.Body">
                     <BSCard CardType="CardType.Title">@_selectedSourceFormat.Name</BSCard>
-                    <BSCard CardType="CardType.Subtitle">@_selectedSourceFormat.Desc</BSCard>
+                    @* <BSCard CardType="CardType.Subtitle">@_selectedSourceFormat.Desc</BSCard> *@
                     @{
                         if (_selectedSourceFormat.RootDimensionStructure != null)
                         {
@@ -28,8 +28,10 @@
                                             Change
                                         </BSButton>
                                     </div>
+                                    <DimensionStructureTreeDisplay RootDimensionStructure="@rootDimensionStructure">
+                                    </DimensionStructureTreeDisplay>
                                 </BSCard>
-                                <BSCard CardType="CardType.Subtitle">@rootDimensionStructure.Desc</BSCard>
+                                @* <BSCard CardType="CardType.Subtitle">@rootDimensionStructure.Desc</BSCard> *@
                             </BSCard>
                         }
                         else

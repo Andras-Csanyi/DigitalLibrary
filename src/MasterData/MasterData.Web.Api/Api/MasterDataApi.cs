@@ -93,19 +93,17 @@
 
                 public const string GetSourceFormats = "GetTopDimensionStructures";
 
-                public const string DeleteSourceFormatAsync = "DeleteTopDimensionStructure";
-
                 public const string UpdateDimensionStructure = "UpdateDimensionStructure";
-
-                public const string UpdateSourceFormat = "UpdateTopDimensionStructure";
-
-                public const string AddSourceFormat = "AddTopDimensionStructure";
 
                 public const string AddDimensionStructure = "AddDimensionStructure";
 
                 public const string GetDimensionStructures = "GetDimensionStructures";
 
                 public const string DeleteDimensionStructure = "DeleteDimensionStructure";
+
+                public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
+
+                public const string GetDimensionStructureById = "GetDimensionStructureById";
             }
         }
     }

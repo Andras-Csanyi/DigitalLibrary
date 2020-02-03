@@ -23,12 +23,16 @@ namespace WebApp
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     using Newtonsoft.Json;
 
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
+
+        public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
+           .Create(builder => { builder.AddDebug(); });
 
         public IConfiguration Configuration { get; }
 
@@ -96,6 +100,7 @@ namespace WebApp
             services.AddDbContext<MasterDataContext>(options =>
             {
                 options.UseSqlite("Data Source=master_data_test_db.sqlite");
+                options.UseLoggerFactory(LoggerFactory);
                 options.EnableSensitiveDataLogging();
             });
             // }

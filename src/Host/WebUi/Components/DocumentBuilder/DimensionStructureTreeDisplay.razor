@@ -1,0 +1,11 @@
+@using DigitalLibrary.MasterData.DomainModel
+@{
+    if (_dimensionStructures.Any())
+    {
+        foreach (DimensionStructure dimensionStructure in _dimensionStructures)
+        {
+            <DimensionStructureTreeItem DimensionStructure="@dimensionStructure">
+            </DimensionStructureTreeItem>
+        }
+    }
+}
