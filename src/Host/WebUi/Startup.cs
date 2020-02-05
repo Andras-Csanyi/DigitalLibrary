@@ -17,6 +17,8 @@ namespace DigitalLibrary.Ui.WebUi
 
     using Notifiers;
 
+    using Services;
+
     using Utils.DiLibHttpClient;
 
     public class Startup
@@ -49,6 +51,9 @@ namespace DigitalLibrary.Ui.WebUi
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
+
+            // Services
+            services.AddSingleton<SourceFormatBuilderService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
