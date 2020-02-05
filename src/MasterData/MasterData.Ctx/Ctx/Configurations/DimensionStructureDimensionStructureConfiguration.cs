@@ -26,14 +26,17 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.ParentDimensionStructureId).HasColumnName("parent_dimensionstructure_id");
             builder.Property(p => p.ParentDimensionStructureId).IsRequired();
 
+            // from DimensionStructure point of view we need the entities which are children
+            // on this entity level these relations marked as parent, this is the reason of 
+            // including parentid in the relation
             builder.HasOne(child => child.ChildDimensionStructure)
                .WithMany(children => children.ChildDimensionStructureDimensionStructures)
-               .HasForeignKey(p => p.ChildDimensionStructureId)
+               .HasForeignKey(p => p.ParentDimensionStructureId)
                .IsRequired(false);
 
             builder.HasOne(parent => parent.ParentDimensionStructure)
                .WithMany(parents => parents.ParentDimensionStructureDimensionStructures)
-               .HasForeignKey(key => key.ParentDimensionStructureId)
+               .HasForeignKey(key => key.ChildDimensionStructureId)
                .IsRequired(false);
         }
     }

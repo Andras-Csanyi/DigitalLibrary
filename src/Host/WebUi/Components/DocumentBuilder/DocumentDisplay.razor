@@ -10,29 +10,9 @@
                     @{
                         if (_selectedSourceFormat.RootDimensionStructure != null)
                         {
-                            <BSCard CardType="CardType.Body">
-                                @{
-                                    DimensionStructure rootDimensionStructure = _selectedSourceFormat.
-                                        RootDimensionStructure;
-                                }
-                                <BSCard CardType="CardType.Title">
-                                    <div class="float-left">
-                                        <strong>Root Dimension Structure: </strong>
-                                        @rootDimensionStructure.Name
-                                    </div>
-                                    <div class="float-right">
-                                        <BSButton ButtonType="ButtonType.Button"
-                                                  Color="Color.Primary"
-                                                  @onclick="@(async () => await SelectRootDimensionStructure()
-                                                                .ConfigureAwait(false))">
-                                            Change
-                                        </BSButton>
-                                    </div>
-                                    <DimensionStructureTreeDisplay RootDimensionStructure="@rootDimensionStructure">
-                                    </DimensionStructureTreeDisplay>
-                                </BSCard>
-                                @* <BSCard CardType="CardType.Subtitle">@rootDimensionStructure.Desc</BSCard> *@
-                            </BSCard>
+                            <DimensionStructureTree
+                                DimensionStructureId="@_selectedSourceFormat.RootDimensionStructure.Id">
+                            </DimensionStructureTree>
                         }
                         else
                         {
