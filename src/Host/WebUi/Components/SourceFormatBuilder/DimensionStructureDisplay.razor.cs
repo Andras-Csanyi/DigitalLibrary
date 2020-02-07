@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
+namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
     using Notifiers;
 
-    public partial class DocumentDisplay : IDisposable
+    using Services;
+
+    public partial class DimensionStructureDisplay : IDisposable
     {
         private long _selectedSourceFormatId { get; set; }
 
@@ -25,10 +27,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         private int maxPage = 0;
 
         [Inject]
-        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
+        public IDimensionStructureDisplayComponentService DimensionStructureDisplayComponentService { get; set; }
 
         [Inject]
         public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
+
+        [Inject]
+        public SourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
         private SourceFormat _selectedSourceFormat;
 
@@ -47,9 +52,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
         {
             if (sourceFormatId != 0)
             {
-                SourceFormat query = new SourceFormat { Id = sourceFormatId };
-                _selectedSourceFormat = await MasterDataHttpClient.GetSourceFormatById(query)
-                   .ConfigureAwait(false);
+                await SourceFormatBuilderService.Init(sourceFormatId).ConfigureAwait(false);
+                _selectedSourceFormat = SourceFormatBuilderService.SourceFormat;
             }
         }
 
@@ -72,7 +76,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()
         {
-            _rootDimensionStructureListRaw = await MasterDataHttpClient.GetDimensionStructuresAsync()
+            _rootDimensionStructureListRaw = await DimensionStructureDisplayComponentService
+               .GetDimensionStructuresAsync()
                .ConfigureAwait(false);
             maxPage = _rootDimensionStructureListRaw.Count / pageSize;
             await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);

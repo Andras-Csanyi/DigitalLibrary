@@ -134,10 +134,10 @@
 
                 Menu documentBuilder = new Menu
                 {
-                    Name = "Document builder",
-                    Description = "Document builder",
+                    Name = "SourceFormat Builder",
+                    Description = "SourceFormat Builder",
                     IsActive = 1,
-                    MenuRoute = "documentbuilder",
+                    MenuRoute = "sourceformatbuilder",
                     ModuleId = masterDataModule.Id
                 };
                 ctx.Menus.Add(documentBuilder);

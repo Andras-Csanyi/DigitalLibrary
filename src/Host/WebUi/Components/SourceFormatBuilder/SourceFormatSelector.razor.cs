@@ -1,23 +1,23 @@
-namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
+namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.WebApi.Client;
 
     using Microsoft.AspNetCore.Components;
 
     using Notifiers;
 
-    public partial class DocumentBuilder
+    using Services;
+
+    public partial class SourceFormatSelector
     {
         [Inject]
-        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
+        public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
 
         [Inject]
-        public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
+        public ISourceFormatSelectorComponentService SourceFormatSelectorComponentService { get; set; }
 
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
@@ -41,12 +41,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
 
         private async Task PopulateSourceFormats()
         {
-            _sourceFormats = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
+            _sourceFormats = await SourceFormatSelectorComponentService.GetSourceFormatsAsync().ConfigureAwait(false);
         }
 
         private async Task NotifyDocumentDisplay()
         {
-            Console.WriteLine($"selected format id: {_selectedSourceFormatId}");
             await DocumentBuilderDocumentDisplayNotifier.Update(_selectedSourceFormatId).ConfigureAwait(false);
         }
     }

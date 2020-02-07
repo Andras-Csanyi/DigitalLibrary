@@ -4,6 +4,8 @@ namespace DigitalLibrary.Ui.WebUi
 
     using BlazorStrap;
 
+    using Components.SourceFormatBuilder;
+
     using ControlPanel.WebApi.Client.Menu;
 
     using MasterData.Validators;
@@ -54,6 +56,11 @@ namespace DigitalLibrary.Ui.WebUi
 
             // Services
             services.AddSingleton<SourceFormatBuilderService>();
+            services
+               .AddSingleton<ISourceFormatSelectorComponentService, SourceFormatSelectorComponentComponentService>();
+            services
+               .AddSingleton<IDimensionStructureDisplayComponentService,
+                    DimensionStructureDisplayComponentComponentService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();

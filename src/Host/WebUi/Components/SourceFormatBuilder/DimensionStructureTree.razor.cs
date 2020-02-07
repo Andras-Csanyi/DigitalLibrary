@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Ui.WebUi.Components.DocumentBuilder
+namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System.Threading.Tasks;
 

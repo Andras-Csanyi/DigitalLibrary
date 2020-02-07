@@ -12,7 +12,6 @@ namespace DigitalLibrary.Ui.WebUi.Notifiers
             Console.WriteLine($"{nameof(sourceFormatId)}: {sourceFormatId}");
             if (Notify != null)
             {
-                Console.WriteLine("Notified...");
                 await Notify.Invoke(sourceFormatId).ConfigureAwait(false);
             }
             else
