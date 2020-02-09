@@ -83,6 +83,26 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormat.V1.GetByIdWithFullDimensionStructureTree)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SourceFormat>> GetByIdWithFullDimensionStructureTree(
+            SourceFormat querySourceFormat)
+        {
+            try
+            {
+                SourceFormat result = await _masterDataBusinessLogic
+                   .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(querySourceFormat)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
         [HttpPut]
         [Route(MasterDataApi.SourceFormat.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]

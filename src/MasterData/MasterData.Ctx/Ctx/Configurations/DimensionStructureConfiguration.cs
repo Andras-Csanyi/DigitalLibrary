@@ -33,6 +33,11 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.HasOne(p => p.Dimension)
                .WithMany(p => p.DimensionStructure)
                .IsRequired(false);
+
+            builder.HasMany(p => p.DimensionStructureDimensionStructures)
+               .WithOne(one => one.DimensionStructure)
+               .HasForeignKey(k => k.DimensionStructureId)
+               .IsRequired(false);
         }
     }
 }

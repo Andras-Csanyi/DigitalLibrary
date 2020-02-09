@@ -56,11 +56,11 @@ namespace DigitalLibrary.Ui.WebUi
 
             // Services
             services.AddSingleton<SourceFormatBuilderService>();
-            services
-               .AddSingleton<ISourceFormatSelectorComponentService, SourceFormatSelectorComponentComponentService>();
-            services
-               .AddSingleton<IDimensionStructureDisplayComponentService,
-                    DimensionStructureDisplayComponentComponentService>();
+            services.AddSingleton<ISourceFormatSelectorComponentService,
+                SourceFormatSelectorComponentComponentService>();
+            services.AddSingleton<IDimensionStructureDisplayComponentService,
+                DimensionStructureDisplayComponentComponentService>();
+            services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();

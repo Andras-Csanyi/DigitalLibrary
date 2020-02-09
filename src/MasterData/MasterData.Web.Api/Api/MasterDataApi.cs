@@ -22,6 +22,8 @@
                 public const string GetAll = "v1/GetAll";
 
                 public const string GetById = "v1/GetById";
+
+                public const string GetByIdWithFullDimensionStructureTree = "v1/GetByIdWithDimensionStructureTree";
             }
         }
 

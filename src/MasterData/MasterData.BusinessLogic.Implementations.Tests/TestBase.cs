@@ -41,11 +41,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 new MasterDataDimensionValueValidator();
             SourceFormatValidator sourceFormatValidator = new SourceFormatValidator();
             DimensionStructureValidator dimensionStructureValidator = new DimensionStructureValidator();
+            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator =
+                new DimensionStructureDimensionStructureValidator();
             MasterDataValidators masterDataValidators = new MasterDataValidators(
                 dimensionValidator,
                 masterDataDimensionValueValidator,
                 sourceFormatValidator,
-                dimensionStructureValidator);
+                dimensionStructureValidator,
+                dimensionStructureDimensionStructureValidator);
 
             masterDataBusinessLogic = new MasterDataBusinessLogic(
                 _dbContextOptions,

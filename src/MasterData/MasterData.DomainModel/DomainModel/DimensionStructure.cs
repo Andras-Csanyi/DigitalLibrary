@@ -14,22 +14,17 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public ICollection<SourceFormat> SourceFormats { get; set; }
 
-        public IEnumerable<DimensionStructureDimensionStructure> ChildDimensionStructureDimensionStructures
-        {
-            get;
-            set;
-        }
-
-        public IEnumerable<DimensionStructureDimensionStructure> ParentDimensionStructureDimensionStructures
-        {
-            get;
-            set;
-        }
+        public IEnumerable<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
 
         public long? DimensionId { get; set; }
 
         public Dimension Dimension { get; set; }
 
         public int SortOrder { get; set; }
+
+        /// <summary>
+        /// WARNING!!! It is used only when SourceFormat is built.
+        /// </summary>
+        public IEnumerable<DimensionStructure> ChildDimensionStructures { get; set; }
     }
 }

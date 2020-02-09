@@ -20,6 +20,14 @@ namespace DigitalLibrary.Utils.Guards
             }
         }
 
+        public static void AreNotEqual(long? value, long comparedTo, string message = null)
+        {
+            if (value == comparedTo)
+            {
+                ThrowGuardException(message);
+            }
+        }
+
         public static void AreNotEqual(int value, int comparedTo, string message = null)
         {
             if (value == comparedTo)

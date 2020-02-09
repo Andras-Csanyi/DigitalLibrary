@@ -8,7 +8,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
     using Utils.Guards;
 
-    public class SourceFormatBuilderService
+    public class SourceFormatBuilderService : ISourceFormatBuilderService
     {
         private IMasterDataHttpClient _masterDataHttpClient;
 
@@ -36,7 +36,20 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
             Check.AreNotEqual(sourceFormatId, 0);
             SourceFormat querySourceFormat = new SourceFormat { Id = sourceFormatId };
-            _sourceFormat = await _masterDataHttpClient.GetSourceFormatById(querySourceFormat).ConfigureAwait(false);
+            _sourceFormat = await _masterDataHttpClient.GetSourceFormatWithFullDimensionStructureTreeAsync(
+                    querySourceFormat)
+               .ConfigureAwait(false);
         }
+
+        public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
+        {
+        }
+    }
+
+    public interface ISourceFormatBuilderService
+    {
+        Task Init(long sourceFormatId);
+
+        Task DeleteDocumentStructureFromTreeAsync(long documentStructureId);
     }
 }

@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Ctx;
@@ -52,12 +53,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         toBeModified.Name = sourceFormat.Name;
                         toBeModified.Desc = sourceFormat.Desc;
                         toBeModified.IsActive = sourceFormat.IsActive;
+                        toBeModified.RootDimensionStructureId = sourceFormat.RootDimensionStructureId;
 
                         ctx.Entry(toBeModified).State = EntityState.Modified;
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
                         await transaction.CommitAsync().ConfigureAwait(false);
 
-                        return toBeModified;
+                        SourceFormat result = await ctx.SourceFormats
+                           .Include(i => i.RootDimensionStructure)
+                           .Where(id => id.Id == toBeModified.Id)
+                           .FirstOrDefaultAsync()
+                           .ConfigureAwait(false);
+
+                        return result;
                     }
                     catch (Exception e)
                     {

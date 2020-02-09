@@ -29,7 +29,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     List<DimensionStructure> result = await ctx.DimensionStructures
-                       .Include(p => p.ChildDimensionStructureDimensionStructures)
                        .Where(p => dimensionStructureIds.Ids.Contains(p.Id))
                        .ToListAsync()
                        .ConfigureAwait(false);

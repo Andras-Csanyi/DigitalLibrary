@@ -12,44 +12,44 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
         private static void PopulateSourceFormatBusinessPartner(MasterDataContext ctx)
         {
             // structure - hierarchy
-            SourceFormat businessPartner = new SourceFormat
+            SourceFormat businessPartnerSourceFormat = new SourceFormat
             {
                 Name = "Hungarian Business Partner Source Format",
                 Desc = "Source format for being able to record Business Partners from Hungary",
                 IsActive = 1,
             };
-            ctx.SourceFormats.Add(businessPartner);
+            ctx.SourceFormats.Add(businessPartnerSourceFormat);
             ctx.SaveChanges();
 
-            DimensionStructure businessPartnerRootDimensionStructure = new DimensionStructure
+            DimensionStructure hungarianBusinessPartnerRootDimensionStructure = new DimensionStructure
             {
                 Name = "Hungarian Business Partner",
                 Desc = "Root Dimension Structure for Hungarian Business Partner Dimension Structure",
                 IsActive = 1,
             };
-            ctx.DimensionStructures.Add(businessPartnerRootDimensionStructure);
+            ctx.DimensionStructures.Add(hungarianBusinessPartnerRootDimensionStructure);
             ctx.SaveChanges();
 
-            businessPartner.RootDimensionStructureId = businessPartnerRootDimensionStructure.Id;
-            ctx.Entry(businessPartner).State = EntityState.Modified;
+            businessPartnerSourceFormat.RootDimensionStructureId = hungarianBusinessPartnerRootDimensionStructure.Id;
+            ctx.Entry(businessPartnerSourceFormat).State = EntityState.Modified;
             ctx.SaveChanges();
 
-            DimensionStructure businessPartnerNameDimensionStructure = new DimensionStructure
+            DimensionStructure hungarianBusinessPartnerNameDimensionStructure = new DimensionStructure
             {
                 Name = "Business Partner Name Dimension Structure",
                 Desc = "Name of the business partner, a.k.a. legal entity",
                 IsActive = 1,
             };
-            ctx.DimensionStructures.Add(businessPartnerNameDimensionStructure);
+            ctx.DimensionStructures.Add(hungarianBusinessPartnerNameDimensionStructure);
             ctx.SaveChanges();
 
-            DimensionStructureDimensionStructure businessPartner_businessPartnerName =
+            DimensionStructureDimensionStructure hungarianBusinessPartner_hungarianBusinessPartnerName =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = businessPartnerRootDimensionStructure.Id,
-                    ChildDimensionStructureId = businessPartnerNameDimensionStructure.Id,
+                    DimensionStructureId = hungarianBusinessPartnerRootDimensionStructure.Id,
+                    ChildDimensionStructureId = hungarianBusinessPartnerNameDimensionStructure.Id,
                 };
-            ctx.DimensionStructureDimensionStructures.Add(businessPartner_businessPartnerName);
+            ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartner_hungarianBusinessPartnerName);
             ctx.SaveChanges();
 
             DimensionStructure hungarianLegalEntityName = new DimensionStructure
@@ -61,13 +61,13 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             ctx.DimensionStructures.Add(hungarianLegalEntityName);
             ctx.SaveChanges();
 
-            DimensionStructureDimensionStructure businessPartner_hungarianLegalEntityName =
+            DimensionStructureDimensionStructure hungarianBusinessPartner_hungarianLegalEntityName =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = businessPartnerRootDimensionStructure.Id,
+                    DimensionStructureId = hungarianBusinessPartnerRootDimensionStructure.Id,
                     ChildDimensionStructureId = hungarianLegalEntityName.Id,
                 };
-            ctx.DimensionStructureDimensionStructures.Add(businessPartner_hungarianLegalEntityName);
+            ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartner_hungarianLegalEntityName);
             ctx.SaveChanges();
 
             DimensionStructure hungarianLegalEntityFormat = new DimensionStructure
@@ -82,8 +82,8 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianBusinessPartner_hungarianLegalEntityFormat =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = businessPartnerRootDimensionStructure.Id,
-                    ChildDimensionStructureId = hungarianLegalEntityFormat.Id
+                    DimensionStructureId = hungarianBusinessPartnerRootDimensionStructure.Id,
+                    ChildDimensionStructureId = hungarianLegalEntityFormat.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartner_hungarianLegalEntityFormat);
             ctx.SaveChanges();
@@ -100,7 +100,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure businessPartner_hungarianAddressDimensionStructure =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = businessPartnerRootDimensionStructure.Id,
+                    DimensionStructureId = hungarianBusinessPartnerRootDimensionStructure.Id,
                     ChildDimensionStructureId = hungarianBusinessPartnerAddress.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(businessPartner_hungarianAddressDimensionStructure);
@@ -118,7 +118,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianBusinessPartnerAddress_hungarianTown =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianBusinessPartnerAddress.Id,
+                    DimensionStructureId = hungarianBusinessPartnerAddress.Id,
                     ChildDimensionStructureId = hungarianTown.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartnerAddress_hungarianTown);
@@ -136,7 +136,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianBusinessPartnerAddress_hungarianPoBox =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianBusinessPartnerAddress.Id,
+                    DimensionStructureId = hungarianBusinessPartnerAddress.Id,
                     ChildDimensionStructureId = hungarianPoBoxNumber.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartnerAddress_hungarianPoBox);
@@ -155,7 +155,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianBusinessPartner_hungarianPublicSpace =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianBusinessPartnerAddress.Id,
+                    DimensionStructureId = hungarianBusinessPartnerAddress.Id,
                     ChildDimensionStructureId = hungarianPublicSpace.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianBusinessPartner_hungarianPublicSpace);
@@ -173,7 +173,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianPublicSpace_hungarianPublicSpaceName =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianPublicSpace.Id,
+                    DimensionStructureId = hungarianPublicSpace.Id,
                     ChildDimensionStructureId = hungarianPublicSpaceName.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianPublicSpace_hungarianPublicSpaceName);
@@ -191,7 +191,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianPublicSpace_hungarianPublicSpaceNumber =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianPublicSpace.Id,
+                    DimensionStructureId = hungarianPublicSpace.Id,
                     ChildDimensionStructureId = hungarianPublicSpaceNumber.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianPublicSpace_hungarianPublicSpaceNumber);
@@ -209,7 +209,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             DimensionStructureDimensionStructure hungarianPublicSpace_hungarianPublicspaceRegistrationNumber =
                 new DimensionStructureDimensionStructure
                 {
-                    ParentDimensionStructureId = hungarianPublicSpace.Id,
+                    DimensionStructureId = hungarianPublicSpace.Id,
                     ChildDimensionStructureId = hungarianPublicSpaceRegistrationNumber.Id,
                 };
             ctx.DimensionStructureDimensionStructures.Add(hungarianPublicSpace_hungarianPublicspaceRegistrationNumber);

@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     DimensionStructure result = await ctx.DimensionStructures
-                       .Include(p => p.ChildDimensionStructureDimensionStructures)
+                       .Include(p => p.DimensionStructureDimensionStructures)
                        .FirstOrDefaultAsync(k => k.Id == dimensionStructure.Id)
                        .ConfigureAwait(false);
                     return result;

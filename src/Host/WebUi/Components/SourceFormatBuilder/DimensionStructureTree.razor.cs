@@ -7,13 +7,18 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     using Microsoft.AspNetCore.Components;
 
+    using Services;
+
     public partial class DimensionStructureTree
     {
         [Parameter]
         public long DimensionStructureId { get; set; }
 
         [Inject]
-        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
+        public IDimensionStructureTreeComponentService DimensionStructureTreeComponentService { get; set; }
+
+        [Inject]
+        public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
         private DimensionStructure _dimensionStructure = new DimensionStructure();
 
@@ -23,7 +28,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 Id = DimensionStructureId,
             };
-            _dimensionStructure = await MasterDataHttpClient.GetDimensionStructureById(queryDimensionStructure)
+            _dimensionStructure = await DimensionStructureTreeComponentService
+               .GetDimensionStructureById(queryDimensionStructure)
+               .ConfigureAwait(false);
+        }
+
+        public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
+        {
+            await SourceFormatBuilderService.DeleteDocumentStructureFromTreeAsync(documentStructureId)
                .ConfigureAwait(false);
         }
     }

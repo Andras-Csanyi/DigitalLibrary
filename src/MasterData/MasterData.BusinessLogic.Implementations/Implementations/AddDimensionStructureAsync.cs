@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                     await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                             dimensionStructure,
-                            ValidatorRulesets.AddNewDimensionStructure)
+                            DimensionStructureValidatorRulesets.Add)
                        .ConfigureAwait(false);
 
                     DimensionStructure newDimensionStructure = new DimensionStructure

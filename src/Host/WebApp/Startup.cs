@@ -106,11 +106,14 @@ namespace WebApp
             // }
 
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
+
+            // Validators
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
             services.AddTransient<DimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<DimensionStructureValidator>();
+            services.AddTransient<DimensionStructureDimensionStructureValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 

@@ -2,7 +2,12 @@
 <ul>
     <li>
         @_dimensionStructure.Name
-        <BSButton Size="Size.Small">Delete</BSButton>
+        <BSButton Size="Size.Small"
+                  Color="Color.Danger"
+                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(_dimensionStructure.Id)
+                                .ConfigureAwait(false))">
+            Delete
+        </BSButton>
         <BSButton Size="Size.Small">Update</BSButton>
         <BSButton Size="Size.Small">Add</BSButton>
         <BSButton Size="Size.Small">Add New Dimension Structure</BSButton>
@@ -11,11 +16,11 @@
         <BSButton Size="Size.Small">Delete Dimension</BSButton>
     </li>
     @{
-        if (_dimensionStructure.ChildDimensionStructureDimensionStructures != null)
+        if (_dimensionStructure.DimensionStructureDimensionStructures != null)
         {
-            if (_dimensionStructure.ChildDimensionStructureDimensionStructures.Any())
+            if (_dimensionStructure.DimensionStructureDimensionStructures.Any())
             {
-                foreach (DimensionStructureDimensionStructure structure in _dimensionStructure.ChildDimensionStructureDimensionStructures)
+                foreach (DimensionStructureDimensionStructure structure in _dimensionStructure.DimensionStructureDimensionStructures)
                 {
                     <DimensionStructureTree DimensionStructureId="@structure.ChildDimensionStructureId">
                     </DimensionStructureTree>

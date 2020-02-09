@@ -73,6 +73,23 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        public async Task<SourceFormat> GetSourceFormatWithFullDimensionStructureTreeAsync(
+            SourceFormat querySourceFormat)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/" +
+                             $"{MasterDataApi.SourceFormat.V1.GetByIdWithFullDimensionStructureTree}";
+                SourceFormat result = await _diLibHttpClient.PostAsync(querySourceFormat, url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
         public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
