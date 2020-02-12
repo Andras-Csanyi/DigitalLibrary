@@ -1,16 +1,16 @@
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
-    using System;
-
     using Utils.DiLibHttpClient;
+    using Utils.Guards;
 
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
         private readonly IDiLibHttpClient _diLibHttpClient;
 
-        public MasterDataHttpClient(IDiLibHttpClient dilibHttpClient)
+        public MasterDataHttpClient(IDiLibHttpClient client)
         {
-            _diLibHttpClient = dilibHttpClient ?? throw new ArgumentNullException();
+            Check.IsNotNull(client);
+            _diLibHttpClient = client;
         }
     }
 }
