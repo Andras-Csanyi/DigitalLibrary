@@ -44,6 +44,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
         }
+
+        public async Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public interface ISourceFormatBuilderService
@@ -52,6 +57,6 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         Task DeleteDocumentStructureFromTreeAsync(long documentStructureId);
 
-        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(in long dimensionStructureId);
+        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId);
     }
 }

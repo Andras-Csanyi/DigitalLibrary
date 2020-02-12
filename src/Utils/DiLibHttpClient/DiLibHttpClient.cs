@@ -159,6 +159,40 @@
             }
         }
 
+        public async Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url)
+        {
+            try
+            {
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
+
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                    HttpMethod.Post, url);
+                httpRequestMessage.Content = CreateStringContent(payload);
+
+                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+                   .ConfigureAwait(false))
+                {
+                    try
+                    {
+                        httpResponseMessage.EnsureSuccessStatusCode();
+                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        ReturnType result = JsonToObject<ReturnType>(content);
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DiLibHttpClientPostException(e.Message, e);
+            }
+        }
+
         private StringContent CreateStringContent<T>(T payload)
         {
             string payloadString = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
