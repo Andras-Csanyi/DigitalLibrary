@@ -8,7 +8,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     using Web.Api;
 
-    public partial class MasterDataHttpClient : IMasterDataHttpClient
+    public partial class MasterDataHttpClient
     {
         public async Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
