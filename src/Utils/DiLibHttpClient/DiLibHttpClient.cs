@@ -20,7 +20,7 @@
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        public async Task<T> PostAsync<T>(T payload, string url)
+        public async Task<T> PostAsync<T>(T payload, string url) where T : class
         {
             try
             {
@@ -56,7 +56,7 @@
             }
         }
 
-        public async Task DeleteAsync<T>(T payload, string url)
+        public async Task DeleteAsync<T>(T payload, string url) where T : class
         {
             try
             {
@@ -126,7 +126,7 @@
             }
         }
 
-        public async Task<T> PutAsync<T>(T payload, string url)
+        public async Task<T> PutAsync<T>(T payload, string url) where T : class
         {
             try
             {

@@ -4,11 +4,10 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
 
-    using Web.Api;
-
-    public partial class MasterDataHttpClient : IMasterDataHttpClient
+    public partial class MasterDataHttpClient
     {
         public async Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat)
         {
