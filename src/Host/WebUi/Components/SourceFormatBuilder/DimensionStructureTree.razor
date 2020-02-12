@@ -16,13 +16,13 @@
         <BSButton Size="Size.Small">Delete Dimension</BSButton>
     </li>
     @{
-        if (_dimensionStructure.DimensionStructureDimensionStructures != null)
+        if (_dimensionStructure.ChildDimensionStructures != null)
         {
-            if (_dimensionStructure.DimensionStructureDimensionStructures.Any())
+            if (_dimensionStructure.ChildDimensionStructures.Any())
             {
-                foreach (DimensionStructureDimensionStructure structure in _dimensionStructure.DimensionStructureDimensionStructures)
+                foreach (DimensionStructure dimensionStructure in _dimensionStructure.ChildDimensionStructures)
                 {
-                    <DimensionStructureTree DimensionStructureId="@structure.ChildDimensionStructureId">
+                    <DimensionStructureTree DimensionStructureId="@dimensionStructure.Id">
                     </DimensionStructureTree>
                 }
             }

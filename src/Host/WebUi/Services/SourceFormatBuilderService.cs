@@ -51,5 +51,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task Init(long sourceFormatId);
 
         Task DeleteDocumentStructureFromTreeAsync(long documentStructureId);
+
+        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(in long dimensionStructureId);
     }
 }

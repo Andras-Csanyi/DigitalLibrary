@@ -24,12 +24,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         protected override async Task OnInitializedAsync()
         {
-            DimensionStructure queryDimensionStructure = new DimensionStructure
-            {
-                Id = DimensionStructureId,
-            };
-            _dimensionStructure = await DimensionStructureTreeComponentService
-               .GetDimensionStructureById(queryDimensionStructure)
+            _dimensionStructure = await SourceFormatBuilderService
+               .GetDimensionStructureFromTreeByIdAsync(DimensionStructureId)
                .ConfigureAwait(false);
         }
 
