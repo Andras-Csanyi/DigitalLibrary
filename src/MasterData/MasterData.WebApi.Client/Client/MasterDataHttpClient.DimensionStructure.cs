@@ -26,6 +26,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
             try
@@ -42,6 +43,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
@@ -56,6 +58,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
