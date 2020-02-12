@@ -4,12 +4,12 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
 
-    using Web.Api;
-
-    public partial class MasterDataHttpClient : IMasterDataHttpClient
+    public partial class MasterDataHttpClient
     {
+        /// <inheritdoc/>
         public async Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
@@ -27,6 +27,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
         {
             try
@@ -43,6 +44,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeleteSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
@@ -90,6 +92,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             try

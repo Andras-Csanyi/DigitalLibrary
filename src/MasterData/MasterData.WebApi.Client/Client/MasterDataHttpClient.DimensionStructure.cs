@@ -6,11 +6,10 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
 
-    using Web.Api;
-
-    public partial class MasterDataHttpClient : IMasterDataHttpClient
+    public partial class MasterDataHttpClient
     {
         public async Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
@@ -29,6 +28,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
             try
@@ -78,6 +78,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
@@ -92,6 +93,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        /// <inheritdoc/>
         public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
