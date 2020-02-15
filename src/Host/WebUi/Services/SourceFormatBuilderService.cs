@@ -67,6 +67,14 @@ namespace DigitalLibrary.Ui.WebUi.Services
             _sourceFormat.RootDimensionStructure = dimensionStructure;
         }
 
+        public async Task AddDimensionStructureAsync(
+            long parentDimensionStructureId,
+            DimensionStructure dimensionStructure)
+        {
+            Check.AreNotEqual(parentDimensionStructureId, 0);
+            Check.IsNotNull(dimensionStructure);
+        }
+
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
             throw new NotImplementedException();
@@ -110,5 +118,9 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         SourceFormat SourceFormat { get; }
+
+        Task AddDimensionStructureAsync(
+            long parentDimensionStructureId,
+            DimensionStructure dimensionStructure);
     }
 }
