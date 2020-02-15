@@ -1,6 +1,7 @@
 namespace WebUI.Test.SourceFormatBuilderService
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Ui.WebUi.Services;
@@ -10,6 +11,7 @@ namespace WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Ctor_Validation_Should : TestBase
     {
         [Fact]
@@ -18,7 +20,7 @@ namespace WebUI.Test.SourceFormatBuilderService
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new SourceFormatBuilderService(_masterDataWebApiClientMock.Object); };
+            Func<Task> action = async () => { new SourceFormatBuilderService(null); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();

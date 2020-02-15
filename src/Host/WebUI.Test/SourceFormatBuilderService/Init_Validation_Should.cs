@@ -1,6 +1,7 @@
 namespace WebUI.Test.SourceFormatBuilderService
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Ui.WebUi.Services;
@@ -10,6 +11,7 @@ namespace WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class Init_Validation_Should : TestBase
     {
         [Fact]
