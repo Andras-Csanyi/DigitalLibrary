@@ -1,4 +1,4 @@
-namespace WebUI.Test.SourceFormatBuilder
+namespace WebUI.Test.SourceFormatBuilderService
 {
     using DigitalLibrary.MasterData.WebApi.Client;
 

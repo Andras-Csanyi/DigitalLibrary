@@ -1,15 +1,12 @@
-namespace WebUI.Test.SourceFormatBuilder
+namespace WebUI.Test.SourceFormatBuilderService
 {
     using System;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.Guards;
 
     using FluentAssertions;
-
-    using Moq;
 
     using Xunit;
 
