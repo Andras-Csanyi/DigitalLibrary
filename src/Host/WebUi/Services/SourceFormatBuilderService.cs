@@ -14,6 +14,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         public SourceFormatBuilderService(IMasterDataHttpClient masterDataHttpClient)
         {
+            Check.IsNotNull(masterDataHttpClient);
             _masterDataHttpClient = masterDataHttpClient;
         }
 
