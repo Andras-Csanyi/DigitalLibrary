@@ -30,7 +30,7 @@ namespace WebUI.Test.SourceFormatBuilderService
             // Act
             Func<Task> action = async () =>
             {
-                await sourceFormatBuilderService.Init(100).ConfigureAwait(false);
+                await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
                 await sourceFormatBuilderService.AddDimensionStructureRootAsync(null).ConfigureAwait(false);
             };
 

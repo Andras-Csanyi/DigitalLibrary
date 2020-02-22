@@ -21,7 +21,7 @@ namespace WebUI.Test.SourceFormatBuilderService
             ISourceFormatBuilderService builder = new SourceFormatBuilderService(_masterDataWebApiClientMock.Object);
 
             // Act
-            Func<Task> action = async () => { await builder.Init(0).ConfigureAwait(false); };
+            Func<Task> action = async () => { await builder.OnUpdate(0).ConfigureAwait(false); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();

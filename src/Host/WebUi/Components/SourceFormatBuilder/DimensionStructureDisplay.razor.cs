@@ -30,10 +30,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         public IDimensionStructureDisplayComponentService DimensionStructureDisplayComponentService { get; set; }
 
         [Inject]
-        public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
-
-        [Inject]
-        public SourceFormatBuilderService SourceFormatBuilderService { get; set; }
+        public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
         private SourceFormat _selectedSourceFormat;
 
@@ -45,22 +42,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         protected override async Task OnInitializedAsync()
         {
-            DocumentBuilderDocumentDisplayNotifier.Notify += OnNotify;
+            SourceFormatBuilderService.Notify += OnNotify;
         }
 
-        public async Task PopulateSourceFormatToBeDisplayed(long sourceFormatId)
-        {
-            if (sourceFormatId != 0)
-            {
-                await SourceFormatBuilderService.Init(sourceFormatId).ConfigureAwait(false);
-                _selectedSourceFormat = SourceFormatBuilderService.SourceFormat;
-            }
-        }
+        // public async Task PopulateSourceFormatToBeDisplayed(long sourceFormatId)
+        // {
+        //     if (sourceFormatId != 0)
+        //     {
+        //         await SourceFormatBuilderService.OnUpdate(sourceFormatId).ConfigureAwait(false);
+        //         _selectedSourceFormat = SourceFormatBuilderService.SourceFormat;
+        //     }
+        // }
 
-        public async Task OnNotify(long selectedSourceFormatId)
+        public async Task OnNotify()
         {
-            await SetSelectedSourceFormatId(selectedSourceFormatId).ConfigureAwait(false);
-            await PopulateSourceFormatToBeDisplayed(selectedSourceFormatId).ConfigureAwait(false);
+            // await SetSelectedSourceFormatId(selectedSourceFormatId).ConfigureAwait(false);
+            // await PopulateSourceFormatToBeDisplayed(selectedSourceFormatId).ConfigureAwait(false);
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
@@ -71,7 +68,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public void Dispose()
         {
-            DocumentBuilderDocumentDisplayNotifier.Notify -= OnNotify;
+            SourceFormatBuilderService.Notify -= OnNotify;
         }
 
         private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()

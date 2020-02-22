@@ -35,13 +35,15 @@ namespace DigitalLibrary.Ui.WebUi.Services
             }
         }
 
-        public async Task Init(long sourceFormatId)
+        public async Task OnUpdate(long sourceFormatId)
         {
             Check.AreNotEqual(sourceFormatId, 0);
             SourceFormat querySourceFormat = new SourceFormat { Id = sourceFormatId };
             _sourceFormat = await _masterDataHttpClient.GetSourceFormatWithFullDimensionStructureTreeAsync(
                     querySourceFormat)
                .ConfigureAwait(false);
+            Console.WriteLine("called " + _sourceFormat);
+            await Update().ConfigureAwait(false);
         }
 
         public async Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure)
@@ -107,7 +109,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
     public interface ISourceFormatBuilderService
     {
-        Task Init(long sourceFormatId);
+        Task OnUpdate(long sourceFormatId);
 
         Task DeleteDocumentStructureFromTreeAsync(long documentStructureId);
 
@@ -118,6 +120,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         SourceFormat SourceFormat { get; }
+
+        event Func<Task> Notify;
 
         Task AddDimensionStructureAsync(
             long parentDimensionStructureId,

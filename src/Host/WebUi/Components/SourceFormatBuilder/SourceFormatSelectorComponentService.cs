@@ -9,13 +9,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     using Utils.Guards;
 
-    public class SourceFormatSelectorComponentComponentService : ISourceFormatSelectorComponentService
+    public class SourceFormatSelectorComponentService : ISourceFormatSelectorComponentService
     {
         private readonly IMasterDataHttpClient _masterDataHttpClient;
 
         private readonly IMasterDataValidators _masterDataValidators;
 
-        public SourceFormatSelectorComponentComponentService(
+        public SourceFormatSelectorComponentService(
             IMasterDataHttpClient masterDataHttpClient,
             IMasterDataValidators masterDataValidators)
         {

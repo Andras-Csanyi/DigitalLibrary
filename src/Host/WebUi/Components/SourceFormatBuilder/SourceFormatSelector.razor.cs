@@ -14,7 +14,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     public partial class SourceFormatSelector
     {
         [Inject]
-        public DocumentBuilderDocumentDisplayNotifier DocumentBuilderDocumentDisplayNotifier { get; set; }
+        public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
         [Inject]
         public ISourceFormatSelectorComponentService SourceFormatSelectorComponentService { get; set; }
@@ -46,7 +46,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task NotifyDocumentDisplay()
         {
-            await DocumentBuilderDocumentDisplayNotifier.Update(_selectedSourceFormatId).ConfigureAwait(false);
+            await SourceFormatBuilderService.OnUpdate(_selectedSourceFormatId).ConfigureAwait(false);
         }
     }
 }

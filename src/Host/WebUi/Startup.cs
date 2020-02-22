@@ -55,12 +55,12 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
 
             // Services
-            services.AddSingleton<SourceFormatBuilderService>();
             services.AddSingleton<ISourceFormatSelectorComponentService,
-                SourceFormatSelectorComponentComponentService>();
+                SourceFormatSelectorComponentService>();
             services.AddSingleton<IDimensionStructureDisplayComponentService,
                 DimensionStructureDisplayComponentComponentService>();
             services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();
+            services.AddSingleton<ISourceFormatBuilderService, SourceFormatBuilderService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
@@ -71,6 +71,7 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
+            services.AddTransient<DimensionStructureDimensionStructureValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
