@@ -1,6 +1,9 @@
 namespace DigitalLibrary.Ui.WebUi.Services
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using MasterData.DomainModel;
@@ -79,7 +82,53 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
-            throw new NotImplementedException();
+            Check.AreNotEqual(documentStructureId, 0);
+
+            await RemoveItemFromTreeAsync(documentStructureId).ConfigureAwait(false);
+
+            await Update().ConfigureAwait(false);
+        }
+
+        private async Task RemoveItemFromTreeAsync(long documentStructureId)
+        {
+            Check.AreNotEqual(documentStructureId, 0);
+            if (_sourceFormat.RootDimensionStructure.Id == documentStructureId)
+            {
+                _sourceFormat.RootDimensionStructure = null;
+                _sourceFormat.RootDimensionStructureId = 0;
+            }
+            else
+            {
+                if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                {
+                    await RemoveItemRecursivelyAsync(_sourceFormat.RootDimensionStructure, documentStructureId)
+                       .ConfigureAwait(false);
+                }
+            }
+        }
+
+        private async Task RemoveItemRecursivelyAsync(
+            DimensionStructure dimensionStructure,
+            long documentStructureId)
+        {
+            Check.IsNotNull(dimensionStructure);
+
+            if (dimensionStructure.ChildDimensionStructures.Any())
+            {
+                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
+                {
+                    if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == documentStructureId)
+                    {
+                        dimensionStructure.ChildDimensionStructures.Remove(i);
+                        break;
+                    }
+
+                    await RemoveItemRecursivelyAsync(
+                            dimensionStructure.ChildDimensionStructures.ElementAt(i),
+                            documentStructureId)
+                       .ConfigureAwait(false);
+                }
+            }
         }
 
         public async Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId)

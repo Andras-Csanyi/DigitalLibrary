@@ -15,13 +15,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Parameter]
         public DimensionStructure DimensionStructureParameter { get; set; }
 
+        [Inject]
+        public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
         }
 
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
-            throw new NotImplementedException();
+            await SourceFormatBuilderService.DeleteDocumentStructureFromTreeAsync(documentStructureId)
+               .ConfigureAwait(false);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public ICollection<SourceFormat> SourceFormats { get; set; }
 
-        public IEnumerable<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
+        public ICollection<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
 
         public long? DimensionId { get; set; }
 
@@ -25,6 +25,6 @@ namespace DigitalLibrary.MasterData.DomainModel
         /// <summary>
         /// WARNING!!! It is used only when SourceFormat is built.
         /// </summary>
-        public IEnumerable<DimensionStructure> ChildDimensionStructures { get; set; }
+        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
     }
 }

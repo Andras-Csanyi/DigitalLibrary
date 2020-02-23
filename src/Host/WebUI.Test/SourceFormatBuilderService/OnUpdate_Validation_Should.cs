@@ -12,7 +12,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    public class Init_Validation_Should : TestBase
+    public class OnUpdate_Validation_Should : TestBase
     {
         [Fact]
         public async Task ThrowException_WhenInputIsInvalid()
