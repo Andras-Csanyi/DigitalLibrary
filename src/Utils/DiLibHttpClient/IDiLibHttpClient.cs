@@ -5,7 +5,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     public interface IDiLibHttpClient
     {
         /// <summary>
-        /// Posts payload to given url, where http method is POST.
+        ///     Posts payload to given url, where http method is POST.
         /// </summary>
         /// <param name="payload">Object to be posted</param>
         /// <param name="url">The url where to the object will be posted</param>
@@ -14,7 +14,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         Task<T> PostAsync<T>(T payload, string url) where T : class;
 
         /// <summary>
-        /// It sends the payload to url using DELETE http verb.
+        ///     It sends the payload to url using DELETE http verb.
         /// </summary>
         /// <param name="payload">The object which will be sent via DELETE http verb.</param>
         /// <param name="url">The url which will be hit by DELETE http verb.</param>
@@ -23,7 +23,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         Task DeleteAsync<T>(T payload, string url) where T : class;
 
         /// <summary>
-        /// It calls url via GET http verb.
+        ///     It calls url via GET http verb.
         /// </summary>
         /// <param name="url">The url will be hit by GET verb.</param>
         /// <typeparam name="T">Type of the return object.</typeparam>
@@ -31,7 +31,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         Task<T> GetAsync<T>(string url);
 
         /// <summary>
-        /// Payload will be sent to url via PUT http verb.
+        ///     Payload will be sent to url via PUT http verb.
         /// </summary>
         /// <param name="payload">Payload object.</param>
         /// <param name="url">The url where to payload will be sent.</param>

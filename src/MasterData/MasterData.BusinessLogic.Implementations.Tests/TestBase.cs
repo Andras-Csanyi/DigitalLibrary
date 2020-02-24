@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using Ctx;

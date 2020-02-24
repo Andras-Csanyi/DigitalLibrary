@@ -10,16 +10,18 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         }
 
         protected ControlPanelWebApiClientAddMenuAsyncOperationException(SerializationInfo info,
-                                                                         StreamingContext context) : base(info, context)
+                                                                         StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ControlPanelWebApiClientAddMenuAsyncOperationException(string message) : base(message)
+        public ControlPanelWebApiClientAddMenuAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public ControlPanelWebApiClientAddMenuAsyncOperationException(string message, Exception innerException) : base(
-            message, innerException)
+        public ControlPanelWebApiClientAddMenuAsyncOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

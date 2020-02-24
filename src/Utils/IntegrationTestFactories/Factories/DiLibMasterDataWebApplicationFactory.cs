@@ -12,8 +12,6 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
-    using Utils;
-
     [ExcludeFromCodeCoverage]
     public class DiLibMasterDataWebApplicationFactory<TStartup, TTestedEntity> : WebApplicationFactory<TStartup>
         where TStartup : class

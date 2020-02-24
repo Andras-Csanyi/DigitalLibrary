@@ -1,13 +1,13 @@
 ﻿namespace DigitalLibrary.Utils.Guards
 {
     /// <summary>
-    /// Checking different things, mostly inputs.
+    ///     Checking different things, mostly inputs.
     /// </summary>
     public static class Check
     {
         /// <summary>
-        /// Checks whether toBeChecked is null or not. If message is set
-        /// then Exception message will contains the message.
+        ///     Checks whether toBeChecked is null or not. If message is set
+        ///     then Exception message will contains the message.
         /// </summary>
         /// <param name="toBeChecked">Object will be checked</param>
         /// <param name="message">If exception is thrown this message will be added.</param>
@@ -21,8 +21,8 @@
         }
 
         /// <summary>
-        /// Compares two objects and throws exception when they are equal.
-        /// Equality is the default.
+        ///     Compares two objects and throws exception when they are equal.
+        ///     Equality is the default.
         /// </summary>
         /// <param name="value">Value will be compared.</param>
         /// <param name="comparedTo">Value will be compared to this.</param>
@@ -36,8 +36,8 @@
         }
 
         /// <summary>
-        /// Compares two objects and throws exception when they are equal.
-        /// Equality is the default.
+        ///     Compares two objects and throws exception when they are equal.
+        ///     Equality is the default.
         /// </summary>
         /// <param name="value">Value will be compared.</param>
         /// <param name="comparedTo">Value will be compared to this.</param>

@@ -10,17 +10,18 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         }
 
         protected ControlPanelWebApiClientDeleteMenuAsyncOperationException(SerializationInfo info,
-                                                                            StreamingContext context) : base(info,
-            context)
+                                                                            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ControlPanelWebApiClientDeleteMenuAsyncOperationException(string message) : base(message)
+        public ControlPanelWebApiClientDeleteMenuAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public ControlPanelWebApiClientDeleteMenuAsyncOperationException(string message, Exception innerException) :
-            base(message, innerException)
+        public ControlPanelWebApiClientDeleteMenuAsyncOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

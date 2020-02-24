@@ -9,15 +9,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
         {
         }
 
-        protected ModuleDeleteOperationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ModuleDeleteOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ModuleDeleteOperationException(string message) : base(message)
+        public ModuleDeleteOperationException(string message)
+            : base(message)
         {
         }
 
-        public ModuleDeleteOperationException(string message, Exception innerException) : base(message, innerException)
+        public ModuleDeleteOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }
