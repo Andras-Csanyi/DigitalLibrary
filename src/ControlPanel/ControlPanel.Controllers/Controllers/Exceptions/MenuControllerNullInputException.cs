@@ -9,17 +9,18 @@ namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
         {
         }
 
-        protected MenuControllerNullInputException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected MenuControllerNullInputException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuControllerNullInputException(string? message) : base(message)
+        public MenuControllerNullInputException(string? message)
+            : base(message)
         {
         }
 
-        public MenuControllerNullInputException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public MenuControllerNullInputException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

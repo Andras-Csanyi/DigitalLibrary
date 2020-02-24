@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     if (toBeDeleted == null)
                     {
                         string msg = $"There is no {nameof(Dimension)} " +
-                                     $"with id: {dimension}.";
+                            $"with id: {dimension}.";
                         throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
                     }
 

@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     public partial class MasterDataHttpClient
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
         {
             try
@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteSourceFormatAsync(SourceFormat sourceFormat)
         {
             try

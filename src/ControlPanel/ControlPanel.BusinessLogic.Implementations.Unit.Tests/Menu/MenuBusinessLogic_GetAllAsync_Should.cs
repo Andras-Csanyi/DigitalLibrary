@@ -1,7 +1,6 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
     using System.Collections.Generic;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     using FluentAssertions;
@@ -10,11 +9,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
-
-        public MenuBusinessLogic_GetAllAsync_Should() : base(TestInfo)
+        public MenuBusinessLogic_GetAllAsync_Should()
+            : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
 
         [Fact]
         [Trait("Category", "Unit")]

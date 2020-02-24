@@ -6,35 +6,19 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Web.Api;
+    using DomainModel;
+
+    using Web.Api;
 
     public partial class MasterDataHttpClient
     {
-        public async Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure)
-        {
-            try
-            {
-                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
-                DimensionStructure result = await _diLibHttpClient.PutAsync(dimensionStructure, url)
-                   .ConfigureAwait(false);
-
-                return result;
-            }
-            catch (Exception e)
-            {
-                throw new MasterDataHttpClientException(e.Message, e);
-            }
-        }
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
+                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
                 List<DimensionStructure> result = await _diLibHttpClient.GetAsync<List<DimensionStructure>>(url)
                    .ConfigureAwait(false);
                 return result;
@@ -78,13 +62,13 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure}";
+                    $"{MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure}";
                 await _diLibHttpClient.DeleteAsync(dimensionStructure, url).ConfigureAwait(false);
             }
             catch (Exception e)
@@ -93,14 +77,31 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.AddDimensionStructure}";
+                    $"{MasterDataApi.DimensionStructure.V1.AddDimensionStructure}";
                 return await _diLibHttpClient.PostAsync(dimensionStructure, url).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                    $"{MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure}";
+                DimensionStructure result = await _diLibHttpClient.PutAsync(dimensionStructure, url)
+                   .ConfigureAwait(false);
+
+                return result;
             }
             catch (Exception e)
             {

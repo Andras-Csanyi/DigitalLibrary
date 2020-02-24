@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -8,22 +7,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using DomainModel;
 
-    using Exceptions;
-
     using FluentAssertions;
-
-    using Utils.Guards;
 
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class Get_DimensionStructure_Should : TestBase
     {
-        private const string TestInfo = nameof(Get_DimensionStructure_Should);
-
         public Get_DimensionStructure_Should() : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(Get_DimensionStructure_Should);
 
         [Fact]
         public async Task Delete_AnItem()
