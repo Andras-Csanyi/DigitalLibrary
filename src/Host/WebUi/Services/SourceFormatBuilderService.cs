@@ -45,7 +45,6 @@ namespace DigitalLibrary.Ui.WebUi.Services
             _sourceFormat = await _masterDataHttpClient.GetSourceFormatWithFullDimensionStructureTreeAsync(
                     querySourceFormat)
                .ConfigureAwait(false);
-            Console.WriteLine("called " + _sourceFormat);
             await Update().ConfigureAwait(false);
         }
 
@@ -113,20 +112,25 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
             Check.IsNotNull(dimensionStructure);
 
-            if (dimensionStructure.ChildDimensionStructures.Any())
+            if (dimensionStructure.ChildDimensionStructures != null)
             {
-                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
+                if (dimensionStructure.ChildDimensionStructures.Any())
                 {
-                    if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == documentStructureId)
+                    for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
                     {
-                        dimensionStructure.ChildDimensionStructures.Remove(i);
-                        break;
-                    }
+                        if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == documentStructureId)
+                        {
+                            dimensionStructure.ChildDimensionStructures.Remove(
+                                dimensionStructure.ChildDimensionStructures.ElementAt(i)
+                            );
+                            break;
+                        }
 
-                    await RemoveItemRecursivelyAsync(
-                            dimensionStructure.ChildDimensionStructures.ElementAt(i),
-                            documentStructureId)
-                       .ConfigureAwait(false);
+                        await RemoveItemRecursivelyAsync(
+                                dimensionStructure.ChildDimensionStructures.ElementAt(i),
+                                documentStructureId)
+                           .ConfigureAwait(false);
+                    }
                 }
             }
         }
