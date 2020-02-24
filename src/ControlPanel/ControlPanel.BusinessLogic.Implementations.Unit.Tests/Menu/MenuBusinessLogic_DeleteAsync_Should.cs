@@ -2,7 +2,6 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     using Exceptions.Menu;
@@ -13,25 +12,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(MenuBusinessLogic_DeleteAsync_Should);
-
         public MenuBusinessLogic_DeleteAsync_Should() : base(TestInfo)
         {
         }
 
-        [Fact]
-        [Trait("Category", "Unit")]
-        public async Task Throw_DeleteAsyncOperationException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () => { await MenuBusinessLogic.DeleteAsync(null).ConfigureAwait(false); };
-
-            // Assert
-            action.Should().ThrowExactly<MenuBusinessLogicDeleteAsyncOperationException>()
-               .WithInnerException<MenuNullInputException>();
-        }
+        private const string TestInfo = nameof(MenuBusinessLogic_DeleteAsync_Should);
 
         [Fact]
         [Trait("Category", "Unit")]
@@ -72,6 +57,20 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
             // Assert
             result.Count.Should().Be(1);
+        }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public async Task Throw_DeleteAsyncOperationException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () => { await MenuBusinessLogic.DeleteAsync(null).ConfigureAwait(false); };
+
+            // Assert
+            action.Should().ThrowExactly<MenuBusinessLogicDeleteAsyncOperationException>()
+               .WithInnerException<MenuNullInputException>();
         }
     }
 }

@@ -2,7 +2,6 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     using Exceptions.Menu;
@@ -15,11 +14,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(MenuBusinessLogic_AddAsync_Should);
-
-        public MenuBusinessLogic_AddAsync_Should() : base(TestInfo)
+        public MenuBusinessLogic_AddAsync_Should()
+            : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(MenuBusinessLogic_AddAsync_Should);
 
         public static IEnumerable<object[]> ThrowValidationExceptionWhenInputIsInvalid = new List<object[]>
         {
@@ -41,20 +41,6 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
             new object[] { 0, "asd", "asd", 0, 1, string.Empty },
             new object[] { 0, "asd", "asd", 0, 1, " " },
         };
-
-        [Fact]
-        [Trait("Category", "Unit")]
-        public async Task Throw_NullInputException_WhenInputIsNull()
-        {
-            // Arrange
-
-            // Act
-            Func<Task> action = async () => { await MenuBusinessLogic.AddAsync(null).ConfigureAwait(false); };
-
-            // Assert
-            action.Should().ThrowExactly<MenuBusinessLogicAddAsyncOperationException>()
-               .WithInnerException<MenuNullInputException>();
-        }
 
         [Trait("Category", "Unit")]
         [Theory]
@@ -119,6 +105,20 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
             menuResult.IsActive.Should().Be(menu.IsActive);
             menuResult.ModuleId.Should().Be(menu.ModuleId);
             menuResult.MenuRoute.Should().Be(menu.MenuRoute);
+        }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public async Task Throw_NullInputException_WhenInputIsNull()
+        {
+            // Arrange
+
+            // Act
+            Func<Task> action = async () => { await MenuBusinessLogic.AddAsync(null).ConfigureAwait(false); };
+
+            // Assert
+            action.Should().ThrowExactly<MenuBusinessLogicAddAsyncOperationException>()
+               .WithInnerException<MenuNullInputException>();
         }
     }
 }

@@ -24,6 +24,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(Update_DimensionStructure_Should);
 
         [Fact]
+        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        {
+            // Arrange
+            DimensionStructure orig = new DimensionStructure
+            {
+                Id = 100,
+                Name = "name",
+                Desc = "desc",
+                IsActive = 1,
+            };
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await masterDataBusinessLogic.UpdateDimensionStructureAsync(orig).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>()
+               .WithInnerException<GuardException>();
+        }
+
+        [Fact]
         public async Task Update()
         {
             // Arrange
@@ -53,29 +76,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             updatedResult.Name.Should().Be(updateName);
             updatedResult.Desc.Should().Be(updateDesc);
             updatedResult.IsActive.Should().Be(updateIsActive);
-        }
-
-        [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
-        {
-            // Arrange
-            DimensionStructure orig = new DimensionStructure
-            {
-                Id = 100,
-                Name = "name",
-                Desc = "desc",
-                IsActive = 1,
-            };
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await masterDataBusinessLogic.UpdateDimensionStructureAsync(orig).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
         }
     }
 }
