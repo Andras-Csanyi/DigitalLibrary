@@ -9,17 +9,18 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         {
         }
 
-        protected ControlPanelWebApiClientArgumentNullException(SerializationInfo info, StreamingContext context) :
-            base(info, context)
+        protected ControlPanelWebApiClientArgumentNullException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ControlPanelWebApiClientArgumentNullException(string message) : base(message)
+        public ControlPanelWebApiClientArgumentNullException(string message)
+            : base(message)
         {
         }
 
-        public ControlPanelWebApiClientArgumentNullException(string message, Exception innerException) : base(
-            message, innerException)
+        public ControlPanelWebApiClientArgumentNullException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

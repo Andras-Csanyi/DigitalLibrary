@@ -9,15 +9,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
         {
         }
 
-        protected ModuleNullInputException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ModuleNullInputException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ModuleNullInputException(string message) : base(message)
+        public ModuleNullInputException(string message)
+            : base(message)
         {
         }
 
-        public ModuleNullInputException(string message, Exception innerException) : base(message, innerException)
+        public ModuleNullInputException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

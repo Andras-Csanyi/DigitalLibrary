@@ -61,7 +61,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = desc,
                 ModuleId = moduleId,
                 IsActive = isActive,
-                MenuRoute = menuRoute
+                MenuRoute = menuRoute,
             };
 
             // Act
@@ -82,7 +82,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Name = "asd",
                 Description = "desc",
                 IsActive = 1,
-                ModuleRoute = "asd"
+                ModuleRoute = "asd",
             };
             DomainModel.Entities.Module moduleResult = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
 

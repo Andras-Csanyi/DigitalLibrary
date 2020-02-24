@@ -9,15 +9,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
         {
         }
 
-        protected ModuleDoesNotExistsException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ModuleDoesNotExistsException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ModuleDoesNotExistsException(string message) : base(message)
+        public ModuleDoesNotExistsException(string message)
+            : base(message)
         {
         }
 
-        public ModuleDoesNotExistsException(string message, Exception innerException) : base(message, innerException)
+        public ModuleDoesNotExistsException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

@@ -9,17 +9,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
         {
         }
 
-        protected ModuleFindAsyncOperationException(SerializationInfo info, StreamingContext context) : base(info,
-            context)
+        protected ModuleFindAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public ModuleFindAsyncOperationException(string message) : base(message)
+        public ModuleFindAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public ModuleFindAsyncOperationException(string message, Exception innerException) : base(message,
-            innerException)
+        public ModuleFindAsyncOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

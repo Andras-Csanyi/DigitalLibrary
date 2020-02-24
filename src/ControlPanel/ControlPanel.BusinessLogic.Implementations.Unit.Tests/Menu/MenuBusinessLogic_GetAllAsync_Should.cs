@@ -9,7 +9,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
-        public MenuBusinessLogic_GetAllAsync_Should() : base(TestInfo)
+        public MenuBusinessLogic_GetAllAsync_Should()
+            : base(TestInfo)
         {
         }
 

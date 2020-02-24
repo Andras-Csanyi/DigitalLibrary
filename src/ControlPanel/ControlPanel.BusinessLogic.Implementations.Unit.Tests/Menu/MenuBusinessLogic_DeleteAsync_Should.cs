@@ -12,7 +12,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
-        public MenuBusinessLogic_DeleteAsync_Should() : base(TestInfo)
+        public MenuBusinessLogic_DeleteAsync_Should()
+            : base(TestInfo)
         {
         }
 

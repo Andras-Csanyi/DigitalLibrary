@@ -10,17 +10,19 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         }
 
         protected ControlPanelWebApiClientFindModuleAsyncOperationException(SerializationInfo? info,
-                                                                            StreamingContext context) : base(info,
-            context)
+                                                                            StreamingContext context)
+            : base(info,
+                context)
         {
         }
 
-        public ControlPanelWebApiClientFindModuleAsyncOperationException(string? message) : base(message)
+        public ControlPanelWebApiClientFindModuleAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
-        public ControlPanelWebApiClientFindModuleAsyncOperationException(string? message, Exception? innerException) :
-            base(message, innerException)
+        public ControlPanelWebApiClientFindModuleAsyncOperationException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }
