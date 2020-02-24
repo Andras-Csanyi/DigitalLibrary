@@ -42,6 +42,21 @@
         /// <param name="value">Value will be compared.</param>
         /// <param name="comparedTo">Value will be compared to this.</param>
         /// <param name="message">Message added to exception thrown.</param>
+        public static void AreNotEqual(long? value, long comparedTo, string message = null)
+        {
+            if (value == comparedTo)
+            {
+                ThrowGuardException(message);
+            }
+        }
+
+        /// <summary>
+        ///     Compares two objects and throws exception when they are equal.
+        ///     Equality is the default.
+        /// </summary>
+        /// <param name="value">Value will be compared.</param>
+        /// <param name="comparedTo">Value will be compared to this.</param>
+        /// <param name="message">Message added to exception thrown.</param>
         public static void AreNotEqual(int value, int comparedTo, string message = null)
         {
             if (value == comparedTo)
