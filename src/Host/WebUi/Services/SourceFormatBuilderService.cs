@@ -95,9 +95,50 @@ namespace DigitalLibrary.Ui.WebUi.Services
             Check.AreNotEqual(dimensionStructureId, 0);
             Check.AreNotEqual(parentDimensionStructureId, 0);
 
+            DimensionStructure dimensionStructureToBeAdded = await GetDimensionStructureByIdAsync(
+                dimensionStructureId).ConfigureAwait(false);
+
             if (_sourceFormat.RootDimensionStructureId == parentDimensionStructureId)
             {
-                _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add();
+                _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(dimensionStructureToBeAdded);
+            }
+            else
+            {
+                if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                {
+                    await IterateThroughTheTreeForAdding(
+                        dimensionStructureToBeAdded,
+                        _sourceFormat.RootDimensionStructure.ChildDimensionStructures,
+                        parentDimensionStructureId).ConfigureAwait(false);
+                }
+            }
+        }
+
+        private async Task IterateThroughTheTreeForAdding(
+            DimensionStructure dimensionStructureToBeAdded,
+            ICollection<DimensionStructure> dimensionStructures,
+            long parentDimensionStructureId)
+        {
+            Check.IsNotNull(dimensionStructureToBeAdded);
+            Check.AreNotEqual(parentDimensionStructureId, 0);
+
+            if (dimensionStructures.Any())
+            {
+                foreach (DimensionStructure dimensionStructure in dimensionStructures)
+                {
+                    if (dimensionStructure.Id == parentDimensionStructureId)
+                    {
+                        dimensionStructure.ChildDimensionStructures.Add(dimensionStructureToBeAdded);
+                    }
+                    else
+                    {
+                        await IterateThroughTheTreeForAdding(
+                                dimensionStructureToBeAdded,
+                                dimensionStructure.ChildDimensionStructures,
+                                parentDimensionStructureId)
+                           .ConfigureAwait(false);
+                    }
+                }
             }
         }
 
