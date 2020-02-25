@@ -6,7 +6,13 @@
             <li>
                 @DimensionStructureParameter.Name
                 <BSButton Size="Size.Small">Update</BSButton>
-                <BSButton Size="Size.Small">Add</BSButton>
+                <BSButton Size="Size.Small"
+                          Color="Color.Primary"
+                          @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
+                                        ParentDimensionStructureIdParameter)
+                                        .ConfigureAwait(false))">
+                    Add
+                </BSButton>
                 <BSButton Size="Size.Small">Add New Dimension Structure</BSButton>
                 <BSButton Size="Size.Small">Add Dimension</BSButton>
                 <BSButton Size="Size.Small">Modify Dimension</BSButton>
@@ -24,7 +30,8 @@
                     {
                         foreach (DimensionStructure dimensionStructure in DimensionStructureParameter.ChildDimensionStructures)
                         {
-                            <DimensionStructureTree DimensionStructureParameter="@dimensionStructure">
+                            <DimensionStructureTree DimensionStructureParameter="@dimensionStructure"
+                                                    ParentDimensionStructureIdParameter="@ParentDimensionStructureIdParameter">
                             </DimensionStructureTree>
                         }
                     }

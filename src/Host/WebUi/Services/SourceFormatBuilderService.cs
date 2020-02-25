@@ -79,6 +79,28 @@ namespace DigitalLibrary.Ui.WebUi.Services
             Check.IsNotNull(dimensionStructure);
         }
 
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId)
+        {
+            Check.AreNotEqual(dimensionStructureId, 0);
+            DimensionStructure query = new DimensionStructure { Id = dimensionStructureId };
+            DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureById(query)
+               .ConfigureAwait(false);
+            return result;
+        }
+
+        public async Task AddDocumentStructureToTreeAsync(
+            long dimensionStructureId,
+            long parentDimensionStructureId)
+        {
+            Check.AreNotEqual(dimensionStructureId, 0);
+            Check.AreNotEqual(parentDimensionStructureId, 0);
+
+            if (_sourceFormat.RootDimensionStructureId == parentDimensionStructureId)
+            {
+                _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add();
+            }
+        }
+
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
             Check.AreNotEqual(documentStructureId, 0);
@@ -179,5 +201,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task AddDimensionStructureAsync(
             long parentDimensionStructureId,
             DimensionStructure dimensionStructure);
+
+        Task AddDocumentStructureToTreeAsync(
+            long documentStructureId,
+            long parentDimensionStructureId);
+
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
     }
 }

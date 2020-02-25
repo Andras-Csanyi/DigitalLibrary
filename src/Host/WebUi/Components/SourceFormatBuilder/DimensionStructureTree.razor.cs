@@ -15,6 +15,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Parameter]
         public DimensionStructure DimensionStructureParameter { get; set; }
 
+        [Parameter]
+        public long ParentDimensionStructureIdParameter { get; set; }
+
         [Inject]
         public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
@@ -25,6 +28,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
             await SourceFormatBuilderService.DeleteDocumentStructureFromTreeAsync(documentStructureId)
+               .ConfigureAwait(false);
+        }
+
+        public async Task AddDocumentStructureToTreeAsync(
+            long documentStructureId,
+            long parentDimensionStructureId)
+        {
+            await SourceFormatBuilderService.AddDocumentStructureToTreeAsync(
+                    documentStructureId,
+                    parentDimensionStructureId)
                .ConfigureAwait(false);
         }
     }
