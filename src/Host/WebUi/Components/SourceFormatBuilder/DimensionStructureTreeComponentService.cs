@@ -27,7 +27,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructure queryDimensionStructure)
         {
-            return await _masterDataHttpClient.GetDimensionStructureById(queryDimensionStructure)
+            return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryDimensionStructure)
                .ConfigureAwait(false);
         }
     }

@@ -83,7 +83,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
             Check.AreNotEqual(dimensionStructureId, 0);
             DimensionStructure query = new DimensionStructure { Id = dimensionStructureId };
-            DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureById(query)
+            DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);
             return result;
         }

@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureIds ids);
 
-        Task<DimensionStructure> GetDimensionStructureById(DimensionStructure dimensionStructure);
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
         ///     Deletes a DimensionStructure

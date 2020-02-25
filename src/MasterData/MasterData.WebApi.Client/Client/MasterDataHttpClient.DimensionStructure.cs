@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds}";
+                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds}";
                 List<DimensionStructure> result = await _diLibHttpClient
                    .PostAsync<List<DimensionStructure>, DimensionStructureIds>(ids, url)
                    .ConfigureAwait(false);
@@ -46,12 +46,12 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure)
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                             $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructureById}";
+                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructureById}";
                 DimensionStructure result = await _diLibHttpClient.PostAsync(dimensionStructure, url)
                    .ConfigureAwait(false);
                 return result;
