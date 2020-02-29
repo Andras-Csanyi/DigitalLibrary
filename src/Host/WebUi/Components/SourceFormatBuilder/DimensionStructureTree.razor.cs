@@ -3,6 +3,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System;
     using System.Threading.Tasks;
 
+    using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
 
@@ -21,14 +23,28 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
+        private BSModal _deleteDocumentStructureBsModalWindow;
+
+        private long DocumentStructureToBeDeletedFromTree = 0;
+
         protected override async Task OnInitializedAsync()
         {
         }
 
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
-            await SourceFormatBuilderService.DeleteDocumentStructureFromTreeAsync(documentStructureId)
-               .ConfigureAwait(false);
+            DocumentStructureToBeDeletedFromTree = documentStructureId;
+            await OpenDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task OpenDeleteDocumentStructureFromTreeConfirmModalAsync()
+        {
+            _deleteDocumentStructureBsModalWindow.Show();
+        }
+
+        private async Task CloseDeleteDocumentStructureFromTreeConfirmModalAsync()
+        {
+            _deleteDocumentStructureBsModalWindow.Hide();
         }
 
         public async Task AddDocumentStructureToTreeAsync(
@@ -39,6 +55,35 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     documentStructureId,
                     parentDimensionStructureId)
                .ConfigureAwait(false);
+        }
+
+        private async Task DeleteDocumentStructureConfirmedAsync()
+        {
+            try
+            {
+                if (DocumentStructureToBeDeletedFromTree == 0)
+                {
+                    string msg = $"{nameof(DocumentStructureToBeDeletedFromTree)} is " +
+                        $"{DocumentStructureToBeDeletedFromTree}";
+                    throw new ArgumentNullException(msg);
+                }
+
+                await SourceFormatBuilderService
+                   .DeleteDocumentStructureFromTreeAsync(DocumentStructureToBeDeletedFromTree)
+                   .ConfigureAwait(false);
+                DocumentStructureToBeDeletedFromTree = 0;
+                await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error happened while delete...", e);
+            }
+        }
+
+        private async Task CancelDeleteDocumentStructureConfirmedAsync()
+        {
+            DocumentStructureToBeDeletedFromTree = 0;
+            await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
         }
     }
 }

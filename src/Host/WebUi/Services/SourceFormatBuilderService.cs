@@ -35,6 +35,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             if (Notify != null)
             {
                 await Notify.Invoke().ConfigureAwait(false);
+                Console.WriteLine($"{nameof(SourceFormatBuilderService)}.{nameof(Update)}");
             }
         }
 
@@ -55,6 +56,14 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
             _sourceFormat.RootDimensionStructure = null;
             _sourceFormat.RootDimensionStructureId = null;
+        }
+
+        public async Task AddDimensionStructureRootAsync(long dimensionStructureId)
+        {
+            Check.AreNotEqual(dimensionStructureId, 0);
+            DimensionStructure result = await GetDimensionStructureByIdAsync(dimensionStructureId)
+               .ConfigureAwait(false);
+            await AddDimensionStructureRootAsync(result).ConfigureAwait(false);
             await Update().ConfigureAwait(false);
         }
 
@@ -147,7 +156,6 @@ namespace DigitalLibrary.Ui.WebUi.Services
             Check.AreNotEqual(documentStructureId, 0);
 
             await RemoveItemFromTreeAsync(documentStructureId).ConfigureAwait(false);
-
             await Update().ConfigureAwait(false);
         }
 
@@ -235,6 +243,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
+        Task AddDimensionStructureRootAsync(long dimensionStructureId);
+
         SourceFormat SourceFormat { get; }
 
         event Func<Task> Notify;
@@ -248,5 +258,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             long parentDimensionStructureId);
 
         Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
+
+        Task Update();
     }
 }

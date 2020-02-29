@@ -37,7 +37,17 @@
         }
         else
         {
-            <BSCard>No source format selected.</BSCard>
+            <BSCard>
+                <BSCard CardType="CardType.Title">RootDimension</BSCard>
+                <BSCard CardType="CardType.Body">
+                    <BSButton Size="Size.Small"
+                              ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              @onclick="@(async () => await SelectRootDimensionStructure().ConfigureAwait(false))">
+                        Add RootDimensionStructure
+                    </BSButton>
+                </BSCard>
+            </BSCard>
         }
     }
 </div>

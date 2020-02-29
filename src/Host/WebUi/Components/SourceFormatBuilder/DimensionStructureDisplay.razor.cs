@@ -45,19 +45,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             SourceFormatBuilderService.Notify += OnNotify;
         }
 
-        // public async Task PopulateSourceFormatToBeDisplayed(long sourceFormatId)
-        // {
-        //     if (sourceFormatId != 0)
-        //     {
-        //         await SourceFormatBuilderService.OnUpdate(sourceFormatId).ConfigureAwait(false);
-        //         _selectedSourceFormat = SourceFormatBuilderService.SourceFormat;
-        //     }
-        // }
-
-        public async Task OnNotify()
+        private async Task OnNotify()
         {
-            // await SetSelectedSourceFormatId(selectedSourceFormatId).ConfigureAwait(false);
-            // await PopulateSourceFormatToBeDisplayed(selectedSourceFormatId).ConfigureAwait(false);
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
@@ -108,6 +97,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task SelectRootDimensionStructureHandler(long selectedDimensionStructureId)
         {
+            await SourceFormatBuilderService.AddDimensionStructureRootAsync(selectedDimensionStructureId)
+               .ConfigureAwait(false);
+            await CloseSelectingRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
 
         private async Task CancelRootDimensionStructureSelectAsync()

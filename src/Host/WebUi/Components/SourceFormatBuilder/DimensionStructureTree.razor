@@ -11,10 +11,8 @@
                           @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
                                         ParentDimensionStructureIdParameter)
                                         .ConfigureAwait(false))">
-                    Add
+                    Add New Dimension Structure
                 </BSButton>
-                <BSButton Size="Size.Small">Add New Dimension Structure</BSButton>
-                <BSButton Size="Size.Small">Add Dimension</BSButton>
                 <BSButton Size="Size.Small">Modify Dimension</BSButton>
                 <BSButton Size="Size.Small"
                           Color="Color.Danger"
@@ -44,3 +42,26 @@
         <div>DimensionStructureParameter is null</div>
     }
 }
+
+<BSModal @ref="_deleteDocumentStructureBsModalWindow">
+    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
+                                 .ConfigureAwait(false))">
+        <label>Are You Sure?</label>
+    </BSModalHeader>
+    <BSModalBody>
+        <label>Dimension Structure Name:</label>
+        @DimensionStructureParameter.Name
+    </BSModalBody>
+    <BSModalFooter>
+        <BSButton Size="Size.Small"
+                  Color="Color.Secondary"
+                  @onclick="@(async () => await CancelDeleteDocumentStructureConfirmedAsync().ConfigureAwait(false))">
+            Cancel
+        </BSButton>
+        <BSButton Size="Size.Small"
+                  Color="Color.Danger"
+                  @onclick="@(async () => await DeleteDocumentStructureConfirmedAsync().ConfigureAwait(false))">
+            Delete
+        </BSButton>
+    </BSModalFooter>
+</BSModal>
