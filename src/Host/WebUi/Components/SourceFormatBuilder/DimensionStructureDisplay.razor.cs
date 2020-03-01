@@ -40,9 +40,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private List<DimensionStructure> _rootDimensionStructureListRaw = new List<DimensionStructure>();
 
+        private BSModal _addNewRootDimensionStructureForm;
+
+        private DimensionStructure _newRootDimensionStructure = new DimensionStructure();
+
+        private List<Dimension> _dimensions = new List<Dimension>();
+
         protected override async Task OnInitializedAsync()
         {
             SourceFormatBuilderService.Notify += OnNotify;
+            _dimensions = await DimensionStructureDisplayComponentService.GetAllDimensions()
+               .ConfigureAwait(false);
         }
 
         private async Task OnNotify()
@@ -137,6 +145,46 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
 
             await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        public async Task AddNewRootDimensionStructureAsync()
+        {
+            if (_newRootDimensionStructure == null)
+            {
+                _newRootDimensionStructure = new DimensionStructure();
+            }
+
+            await OpenAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task SaveNewRootDimensionStructureHandlerAsync()
+        {
+            try
+            {
+                DimensionStructureDisplayComponentService.SaveNewRootDimensionStructureAsync(
+                        _newRootDimensionStructure)
+                   .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private async Task OpenAddNewRootDimensionStructureModalAsync()
+        {
+            _addNewRootDimensionStructureForm.Show();
+        }
+
+        private async Task CloseAddNewRootDimensionStructureModalAsync()
+        {
+            _addNewRootDimensionStructureForm.Hide();
+        }
+
+        private async Task CancelAddNewRootDimensionStructureAsync()
+        {
+            _newRootDimensionStructure = new DimensionStructure();
+            await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
     }
 }

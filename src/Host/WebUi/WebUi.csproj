@@ -36,6 +36,7 @@
         <_ContentIncludedByDefault Remove="Shared\Components\ExactGrid\ExactGrid.razor" />
         <_ContentIncludedByDefault Remove="Shared\Components\Grids\TopDimensionStructuresGrid.razor" />
         <_ContentIncludedByDefault Remove="Shared\Components\MasterData\DimensionStructure.razor" />
+        <_ContentIncludedByDefault Remove="Components\Forms\AddRootDimensionStructureForm.razor"/>
     </ItemGroup>
 
 </Project>

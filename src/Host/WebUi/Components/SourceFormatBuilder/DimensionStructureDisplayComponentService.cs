@@ -1,11 +1,14 @@
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
+
+    using FluentValidation;
 
     using Utils.Guards;
 
@@ -30,10 +33,28 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
         }
+
+        public async Task<List<Dimension>> GetAllDimensions()
+        {
+            return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+        }
+
+        public async Task SaveNewRootDimensionStructureAsync(DimensionStructure dimensionStructure)
+        {
+            await _masterDataValidators.DimensionStructureValidator
+               .ValidateAndThrowAsync(dimensionStructure)
+               .ConfigureAwait(false);
+            await _masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure)
+               .ConfigureAwait(false);
+        }
     }
 
     public interface IDimensionStructureDisplayComponentService
     {
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<Dimension>> GetAllDimensions();
+
+        Task SaveNewRootDimensionStructureAsync(DimensionStructure dimensionStructure);
     }
 }
