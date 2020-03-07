@@ -1,6 +1,7 @@
 namespace WebUI.Test.SourceFormatBuilderService
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Ui.WebUi.Services;
@@ -10,7 +11,8 @@ namespace WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
-    public class ReplaceDimensionStructureInTheTree_Validation_Should : TestBase
+    [ExcludeFromCodeCoverage]
+    public class ReplaceDimensionStructureInTheTreeAsync_Validation_Should : TestBase
     {
         [Theory]
         [InlineData(0, 1)]
