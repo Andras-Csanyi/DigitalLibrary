@@ -102,6 +102,14 @@
                                         @dimensionStructure.Desc</BSTableCell>
                                     <BSTableCell>
                                     </BSTableCell>
+                                    <BSTableCell>
+                                        <BSButton Size="Size.Small"
+                                                  Color="Color.Secondary"
+                                                  IsDisabled="true"
+                                                  ButtonType="ButtonType.Button">
+                                            Select
+                                        </BSButton>
+                                    </BSTableCell>
                                 </BSTableRow>
                             }
                             else
@@ -116,6 +124,16 @@
                                     <BSTableCell>
                                         @dimensionStructure.Desc</BSTableCell>
                                     <BSTableCell>
+                                    </BSTableCell>
+                                    <BSTableCell>
+                                        <BSButton Size="Size.Small"
+                                                  Color="Color.Secondary"
+                                                  ButtonType="ButtonType.Button"
+                                                  @onclick="@(async () => await SelectDimensionStructureForTree(
+                                                                dimensionStructure.Id)
+                                                                .ConfigureAwait(false))">
+                                            Select
+                                        </BSButton>
                                     </BSTableCell>
                                 </BSTableRow>
                             }

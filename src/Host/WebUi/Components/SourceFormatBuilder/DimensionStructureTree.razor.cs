@@ -122,5 +122,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _selectedForEditDimensionStructureId = 0;
             await HideUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
         }
+
+        private async Task SelectDimensionStructureForTree(long dimensionStructureId)
+        {
+            Check.AreNotEqual(dimensionStructureId, 0);
+            await SourceFormatBuilderService.ReplaceDimensionStructureInTheTree(
+                    _selectedForEditDimensionStructureId,
+                    dimensionStructureId)
+               .ConfigureAwait(false);
+        }
     }
 }

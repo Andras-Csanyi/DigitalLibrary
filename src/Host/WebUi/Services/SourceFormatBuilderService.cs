@@ -39,6 +39,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
             }
         }
 
+        public async Task ReplaceDimensionStructureInTheTree(long oldDimensionStructureId, long newDimensionStructureId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task OnUpdate(long sourceFormatId)
         {
             Check.AreNotEqual(sourceFormatId, 0);
@@ -260,5 +265,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
 
         Task Update();
+
+        Task ReplaceDimensionStructureInTheTree(long oldDimensionStructureId, long newDimensionStructureId);
     }
 }
