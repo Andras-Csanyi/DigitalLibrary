@@ -40,18 +40,26 @@
             <BSCard>
                 <BSCard CardType="CardType.Title">RootDimension</BSCard>
                 <BSCard CardType="CardType.Body">
-                    <BSButton Size="Size.Small"
-                              ButtonType="ButtonType.Button"
-                              Color="Color.Primary"
-                              @onclick="@(async () => await SelectRootDimensionStructure().ConfigureAwait(false))">
-                        Add Existing RootDimensionStructure
-                    </BSButton>
-                    <BSButton Size="Size.Small"
-                              ButtonType="ButtonType.Button"
-                              Color="Color.Primary"
-                              @onclick="@(async () => await AddNewRootDimensionStructureAsync().ConfigureAwait(false))">
-                        Add New RootDimensionStructure
-                    </BSButton>
+
+                    @{
+                        if (SourceFormatBuilderService.SourceFormat != null)
+                        {
+                            <BSButton Size="Size.Small"
+                                      ButtonType="ButtonType.Button"
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await SelectRootDimensionStructure().ConfigureAwait(false))">
+                                Add Existing RootDimensionStructure
+                            </BSButton>
+                            <BSButton Size="Size.Small"
+                                      ButtonType="ButtonType.Button"
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await AddNewRootDimensionStructureAsync().ConfigureAwait(false))">
+                                Add New RootDimensionStructure
+                            </BSButton>
+                        }
+
+                    }
+
                 </BSCard>
             </BSCard>
         }
