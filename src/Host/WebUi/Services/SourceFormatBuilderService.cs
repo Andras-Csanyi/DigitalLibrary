@@ -45,6 +45,64 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
             Check.AreNotEqual(oldDimensionStructureId, 0);
             Check.AreNotEqual(newDimensionStructureId, 0);
+
+            if (SourceFormat.RootDimensionStructureId == oldDimensionStructureId)
+            {
+                await ReplaceRootDimensionStructureAsync(newDimensionStructureId).ConfigureAwait(false);
+            }
+
+            if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+            {
+                await IterateThroughTheTreeForReplacing(
+                        oldDimensionStructureId,
+                        newDimensionStructureId,
+                        SourceFormat.RootDimensionStructure)
+                   .ConfigureAwait(false);
+                await Update().ConfigureAwait(false);
+            }
+        }
+
+        private async Task IterateThroughTheTreeForReplacing(
+            long oldDimensionStructureId,
+            long newDimensionStructureId,
+            DimensionStructure dimensionStructure)
+        {
+            Check.AreNotEqual(oldDimensionStructureId, 0);
+            Check.AreNotEqual(newDimensionStructureId, 0);
+            Check.IsNotNull(dimensionStructure);
+
+            if (dimensionStructure.ChildDimensionStructures.Any())
+            {
+                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count - 1; i++)
+                {
+                    if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == oldDimensionStructureId)
+                    {
+                        DimensionStructure newDimensionStructure =
+                            await GetDimensionStructureByIdAsync(newDimensionStructureId)
+                               .ConfigureAwait(false);
+                        dimensionStructure.ChildDimensionStructures.Remove(
+                            dimensionStructure.ChildDimensionStructures.ElementAt(i));
+                        dimensionStructure.ChildDimensionStructures.Add(newDimensionStructure);
+                        break;
+                    }
+
+                    if (dimensionStructure.ChildDimensionStructures.Any())
+                    {
+                        await IterateThroughTheTreeForReplacing(
+                                oldDimensionStructureId,
+                                newDimensionStructureId,
+                                dimensionStructure)
+                           .ConfigureAwait(false);
+                    }
+                }
+            }
+        }
+
+        private async Task ReplaceRootDimensionStructureAsync(long newRootDimensionStructureId)
+        {
+            Check.AreNotEqual(newRootDimensionStructureId, 0);
+            SourceFormat.RootDimensionStructureId = newRootDimensionStructureId;
+            await Update().ConfigureAwait(false);
         }
 
         public async Task OnUpdate(long sourceFormatId)
