@@ -1,5 +1,6 @@
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -30,10 +31,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryDimensionStructure)
                .ConfigureAwait(false);
         }
+
+        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
+        {
+            return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+        }
     }
 
     public interface IDimensionStructureTreeComponentService
     {
         Task<DimensionStructure> GetDimensionStructureById(DimensionStructure queryDimensionStructure);
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
     }
 }

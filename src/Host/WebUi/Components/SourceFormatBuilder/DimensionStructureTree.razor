@@ -4,21 +4,25 @@
     {
         <ul>
             <li>
-                @DimensionStructureParameter.Name
-                <BSButton Size="Size.Small">Update</BSButton>
+                <strong>@DimensionStructureParameter.Name</strong>
                 <BSButton Size="Size.Small"
                           Color="Color.Primary"
-                          @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
-                                        ParentDimensionStructureIdParameter)
+                          @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id)
                                         .ConfigureAwait(false))">
-                    Add New Dimension Structure
+                    Update Node
                 </BSButton>
-                <BSButton Size="Size.Small">Modify Dimension</BSButton>
                 <BSButton Size="Size.Small"
                           Color="Color.Danger"
                           @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
                                         .ConfigureAwait(false))">
                     Delete Dimension
+                </BSButton>
+                <BSButton Size="Size.Small"
+                          Color="Color.Primary"
+                          @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
+                                        ParentDimensionStructureIdParameter)
+                                        .ConfigureAwait(false))">
+                    Insert New Child Dimension Structure
                 </BSButton>
             </li>
             @{
@@ -64,4 +68,62 @@
             Delete
         </BSButton>
     </BSModalFooter>
+</BSModal>
+
+<BSModal @ref="_updateDocumentStructureInTheTreeModalWindow">
+    <BSModalHeader @onclick="@(async () => await CancelDocumentStructureUpdateInTreeModalWindowAsync()
+                                 .ConfigureAwait(false))">
+        Update Dimension Structure in Tree
+    </BSModalHeader>
+    <BSModalBody>
+        <BSTable>
+            <BSTableHead>
+                <BSTableHeadCell>Id</BSTableHeadCell>
+                <BSTableHeadCell>Name</BSTableHeadCell>
+                <BSTableHeadCell>Desc</BSTableHeadCell>
+                <BSTableHeadCell></BSTableHeadCell>
+            </BSTableHead>
+            <BSTableBody>
+                @{
+                    if (_dimensionStructures != null)
+                    {
+                        foreach (DimensionStructure dimensionStructure in _dimensionStructures)
+                        {
+                            if (_selectedForEditDimensionStructureId == dimensionStructure.Id)
+                            {
+                                <BSTableRow Color="Color.Primary">
+                                    <BSTableCell>
+                                        @dimensionStructure.Id
+                                    </BSTableCell>
+                                    <BSTableCell>
+                                        @dimensionStructure.Name
+                                    </BSTableCell>
+                                    <BSTableCell>
+                                        @dimensionStructure.Desc</BSTableCell>
+                                    <BSTableCell>
+                                    </BSTableCell>
+                                </BSTableRow>
+                            }
+                            else
+                            {
+                                <BSTableRow>
+                                    <BSTableCell>
+                                        @dimensionStructure.Id
+                                    </BSTableCell>
+                                    <BSTableCell>
+                                        @dimensionStructure.Name
+                                    </BSTableCell>
+                                    <BSTableCell>
+                                        @dimensionStructure.Desc</BSTableCell>
+                                    <BSTableCell>
+                                    </BSTableCell>
+                                </BSTableRow>
+                            }
+                        }
+                    }
+                }
+            </BSTableBody>
+        </BSTable>
+    </BSModalBody>
+    <BSModalFooter></BSModalFooter>
 </BSModal>
