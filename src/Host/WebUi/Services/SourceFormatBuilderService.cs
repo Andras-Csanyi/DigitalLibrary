@@ -266,6 +266,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         Task Update();
 
-        Task ReplaceDimensionStructureInTheTree(long oldDimensionStructureId, long newDimensionStructureId);
+        Task ReplaceDimensionStructureInTheTree(
+            long oldDimensionStructureId,
+            long newDimensionStructureId);
     }
 }
