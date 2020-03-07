@@ -32,7 +32,7 @@ namespace WebUI.Test.SourceFormatBuilderService
             };
 
             // Assert
-            action.Should().ThrowExactlyAsync<GuardException>();
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }

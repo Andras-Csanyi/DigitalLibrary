@@ -15,6 +15,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
     {
         private IMasterDataHttpClient _masterDataHttpClient;
 
+        private bool foundDuringDimensionStructureReplaceInTheTree = false;
+
         public SourceFormatBuilderService(IMasterDataHttpClient masterDataHttpClient)
         {
             Check.IsNotNull(masterDataHttpClient);
@@ -51,14 +53,27 @@ namespace DigitalLibrary.Ui.WebUi.Services
                 await ReplaceRootDimensionStructureAsync(newDimensionStructureId).ConfigureAwait(false);
             }
 
-            if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+            if (SourceFormat?.RootDimensionStructure?.ChildDimensionStructures != null)
             {
-                await IterateThroughTheTreeForReplacing(
-                        oldDimensionStructureId,
-                        newDimensionStructureId,
-                        SourceFormat.RootDimensionStructure)
-                   .ConfigureAwait(false);
-                await Update().ConfigureAwait(false);
+                if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                {
+                    foundDuringDimensionStructureReplaceInTheTree = false;
+
+                    await IterateThroughTheTreeForReplacing(
+                            oldDimensionStructureId,
+                            newDimensionStructureId,
+                            SourceFormat.RootDimensionStructure)
+                       .ConfigureAwait(false);
+
+                    if (foundDuringDimensionStructureReplaceInTheTree == false)
+                    {
+                        string msg = $"There is no DocumentStructure with id {oldDimensionStructureId} " +
+                            $"in the tree.";
+                        throw new SourceFormatBuilderServiceException(msg);
+                    }
+
+                    await Update().ConfigureAwait(false);
+                }
             }
         }
 
@@ -73,8 +88,13 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
             if (dimensionStructure.ChildDimensionStructures.Any())
             {
-                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count - 1; i++)
+                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
                 {
+                    if (foundDuringDimensionStructureReplaceInTheTree)
+                    {
+                        break;
+                    }
+
                     if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == oldDimensionStructureId)
                     {
                         DimensionStructure newDimensionStructure =
@@ -83,15 +103,14 @@ namespace DigitalLibrary.Ui.WebUi.Services
                         dimensionStructure.ChildDimensionStructures.Remove(
                             dimensionStructure.ChildDimensionStructures.ElementAt(i));
                         dimensionStructure.ChildDimensionStructures.Add(newDimensionStructure);
-                        break;
+                        foundDuringDimensionStructureReplaceInTheTree = true;
                     }
-
-                    if (dimensionStructure.ChildDimensionStructures.Any())
+                    else
                     {
                         await IterateThroughTheTreeForReplacing(
                                 oldDimensionStructureId,
                                 newDimensionStructureId,
-                                dimensionStructure)
+                                dimensionStructure.ChildDimensionStructures.ElementAt(i))
                            .ConfigureAwait(false);
                     }
                 }
@@ -102,6 +121,10 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
             Check.AreNotEqual(newRootDimensionStructureId, 0);
             SourceFormat.RootDimensionStructureId = newRootDimensionStructureId;
+            DimensionStructure newRootDimensionStructure =
+                await GetDimensionStructureByIdAsync(newRootDimensionStructureId)
+                   .ConfigureAwait(false);
+            SourceFormat.RootDimensionStructure = newRootDimensionStructure;
             await Update().ConfigureAwait(false);
         }
 
