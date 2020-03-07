@@ -39,9 +39,12 @@ namespace DigitalLibrary.Ui.WebUi.Services
             }
         }
 
-        public async Task ReplaceDimensionStructureInTheTree(long oldDimensionStructureId, long newDimensionStructureId)
+        public async Task ReplaceDimensionStructureInTheTree(
+            long oldDimensionStructureId,
+            long newDimensionStructureId)
         {
-            throw new NotImplementedException();
+            Check.AreNotEqual(oldDimensionStructureId, 0);
+            Check.AreNotEqual(newDimensionStructureId, 0);
         }
 
         public async Task OnUpdate(long sourceFormatId)
