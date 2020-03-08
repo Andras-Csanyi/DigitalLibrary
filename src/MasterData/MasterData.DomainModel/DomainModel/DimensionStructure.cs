@@ -4,6 +4,11 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     public class DimensionStructure
     {
+        public DimensionStructure()
+        {
+            ChildDimensionStructures = new List<DimensionStructure>();
+        }
+
         public long Id { get; set; }
 
         public string Name { get; set; }

@@ -62,6 +62,26 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructure dimensionStructure,
+            bool childDimensionStructuresAreIncluded)
+        {
+            try
+            {
+                if (childDimensionStructuresAreIncluded == false)
+                {
+                    return await GetDimensionStructureByIdAsync(dimensionStructure).ConfigureAwait(false);
+                }
+                else
+                {
+                }
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
         /// <inheritdoc />
         public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
