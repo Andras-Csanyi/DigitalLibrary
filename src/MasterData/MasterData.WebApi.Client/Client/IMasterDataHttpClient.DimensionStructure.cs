@@ -1,4 +1,4 @@
-using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         /// </returns>
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
 
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureIds ids);
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureQueryObject queryObject);
 
         /// <summary>
         /// Returns the DimensionStructure having the id.

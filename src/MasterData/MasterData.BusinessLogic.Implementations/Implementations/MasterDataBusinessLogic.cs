@@ -1,5 +1,3 @@
-using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System.Collections.Generic;

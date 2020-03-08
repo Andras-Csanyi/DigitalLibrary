@@ -1,4 +1,4 @@
-using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
@@ -17,7 +17,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
 
-        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(DimensionStructureIds dimensionStructureIds);
+        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
 
         Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
 

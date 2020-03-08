@@ -1,4 +1,4 @@
-using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
@@ -20,16 +20,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     public partial class MasterDataBusinessLogic
     {
         public async Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
-            DimensionStructureIds dimensionStructureIds)
+            DimensionStructureQueryObject dimensionStructureQueryObject)
         {
             try
             {
-                Check.IsNotNull(dimensionStructureIds);
+                Check.IsNotNull(dimensionStructureQueryObject);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     List<DimensionStructure> result = await ctx.DimensionStructures
-                       .Where(p => dimensionStructureIds.Ids.Contains(p.Id))
+                       .Where(p => dimensionStructureQueryObject.Ids.Contains(p.Id))
                        .ToListAsync()
                        .ConfigureAwait(false);
                     return result;

@@ -1,4 +1,4 @@
-using DimensionStructureIds = MasterData.BusinessLogic.ViewModels.DimensionStructureIds;
+using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
@@ -29,14 +29,15 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureIds ids)
+        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync(
+            DimensionStructureQueryObject queryObject)
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
                     $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds}";
                 List<DimensionStructure> result = await _diLibHttpClient
-                   .PostAsync<List<DimensionStructure>, DimensionStructureIds>(ids, url)
+                   .PostAsync<List<DimensionStructure>, DimensionStructureQueryObject>(queryObject, url)
                    .ConfigureAwait(false);
                 return result;
             }
