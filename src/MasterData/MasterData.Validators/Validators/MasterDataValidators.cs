@@ -9,19 +9,22 @@ namespace DigitalLibrary.MasterData.Validators
             MasterDataDimensionValueValidator dimensionValueValidator,
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator,
-            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator)
+            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator,
+            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator)
         {
             Check.IsNotNull(dimensionValidator);
             Check.IsNotNull(dimensionValueValidator);
             Check.IsNotNull(sourceFormatValidator);
             Check.IsNotNull(dimensionStructureValidator);
             Check.IsNotNull(dimensionStructureDimensionStructureValidator);
+            Check.IsNotNull(dimensionStructureQueryObjectValidator);
 
             DimensionValidator = dimensionValidator;
             DimensionValueValidator = dimensionValueValidator;
             SourceFormatValidator = sourceFormatValidator;
             DimensionStructureValidator = dimensionStructureValidator;
             DimensionStructureDimensionStructureValidator = dimensionStructureDimensionStructureValidator;
+            DimensionStructureQueryObjectValidator = dimensionStructureQueryObjectValidator;
         }
 
         public DimensionValidator DimensionValidator { get; }
@@ -33,5 +36,7 @@ namespace DigitalLibrary.MasterData.Validators
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
         public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
+
+        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
     }
 }

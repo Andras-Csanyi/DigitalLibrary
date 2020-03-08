@@ -11,5 +11,7 @@ namespace DigitalLibrary.MasterData.Validators
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
         public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
+
+        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
     }
 }

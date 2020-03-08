@@ -6,5 +6,10 @@ namespace DigitalLibrary.MasterData.Validators
 
     public class DimensionStructureQueryObjectValidator : AbstractValidator<DimensionStructureQueryObject>
     {
+        public DimensionStructureQueryObjectValidator()
+        {
+            RuleSet(DimensionStructureQueryObjectValidatorRulesets.GetDimensionStructureByIdOperation,
+                () => { RuleFor(r => r.GetDimensionsStructuredById).NotEqual(0); });
+        }
     }
 }

@@ -133,7 +133,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(
-                        dimensionStructure)
+                        dimensionStructureQueryObject)
                    .ConfigureAwait(false);
                 return result;
             }
