@@ -1,4 +1,4 @@
-using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
@@ -47,35 +47,17 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
         {
             try
             {
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
                     $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructureById}";
-                DimensionStructure result = await _diLibHttpClient.PostAsync(dimensionStructure, url)
+                DimensionStructure result = await _diLibHttpClient
+                   .PostAsync<DimensionStructure, DimensionStructureQueryObject>(dimensionStructureQueryObject, url)
                    .ConfigureAwait(false);
                 return result;
-            }
-            catch (Exception e)
-            {
-                throw new MasterDataHttpClientException(e.Message, e);
-            }
-        }
-
-        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructure dimensionStructure,
-            bool childDimensionStructuresAreIncluded)
-        {
-            try
-            {
-                if (childDimensionStructuresAreIncluded == false)
-                {
-                    return await GetDimensionStructureByIdAsync(dimensionStructure).ConfigureAwait(false);
-                }
-                else
-                {
-                }
             }
             catch (Exception e)
             {

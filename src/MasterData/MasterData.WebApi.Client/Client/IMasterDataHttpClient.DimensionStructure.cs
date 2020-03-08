@@ -1,4 +1,4 @@
-using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
@@ -30,30 +30,13 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         ///
         /// It does not return with its ChildDimensionStructures.
         /// </summary>
-        /// <param name="dimensionStructure">Query object</param>
+        /// <param name="dimensionStructureQueryObject">Query object</param>
         /// <returns>
         ///     <para>Returns with DimensionStructure object</para>
         ///     <para>Throws Exception if object doesn't exist.</para>
         /// </returns>
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
-
-        /// <summary>
-        /// Returns the DimensionStructure having the id.
-        /// When <param name="childDimensionStructuresAreIncluded">true</param> child DimensionStructures
-        /// will be included too.
-        ///
-        /// The method expects a DimensionStructure object where the Id defines the desired object.
-        /// No other properties of the object will be validated.
-        /// </summary>
-        /// <param name="dimensionStructure">Query Object</param>
-        /// <param name="childDimensionStructuresAreIncluded">With child objects or without them.</param>
-        /// <returns>
-        ///    <para>Returns with DimensionStructure object</para>
-        ///    <para>Throws Exception</para>
-        /// </returns>
         Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructure dimensionStructure,
-            bool childDimensionStructuresAreIncluded);
+            DimensionStructureQueryObject dimensionStructureQueryObject);
 
         /// <summary>
         ///     Deletes a DimensionStructure

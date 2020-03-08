@@ -1,4 +1,4 @@
-using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {

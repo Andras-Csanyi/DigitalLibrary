@@ -1,4 +1,4 @@
-using DimensionStructureQueryObject = MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
 
 namespace DigitalLibrary.MasterData.Controllers
 {
@@ -128,7 +128,7 @@ namespace DigitalLibrary.MasterData.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
-            DimensionStructure dimensionStructure)
+            DimensionStructureQueryObject dimensionStructureQueryObject)
         {
             try
             {

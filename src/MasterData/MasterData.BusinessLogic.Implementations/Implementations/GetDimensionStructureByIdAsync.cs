@@ -1,3 +1,5 @@
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
@@ -18,7 +20,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
         {
             try
             {

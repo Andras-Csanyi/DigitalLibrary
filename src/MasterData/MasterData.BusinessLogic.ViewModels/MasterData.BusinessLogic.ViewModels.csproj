@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.ViewModels</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.ViewModels</RootNamespace>
     </PropertyGroup>
 
 </Project>
