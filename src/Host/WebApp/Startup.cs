@@ -114,6 +114,7 @@ namespace WebApp
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<DimensionStructureValidator>();
             services.AddTransient<DimensionStructureDimensionStructureValidator>();
+            services.AddTransient<DimensionStructureQueryObjectValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 

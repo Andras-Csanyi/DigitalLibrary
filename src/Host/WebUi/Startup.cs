@@ -72,6 +72,7 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
             services.AddTransient<DimensionStructureDimensionStructureValidator>();
+            services.AddTransient<DimensionStructureQueryObjectValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
