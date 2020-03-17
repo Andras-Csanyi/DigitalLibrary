@@ -6,6 +6,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.Guards;
@@ -50,7 +51,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
             _masterDataWebApiClientMock
-               .Setup(d => d.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(str => str.Id == 200)))
+               .Setup(d => d.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(str => str.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -158,8 +160,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 Desc = "replacex - desc",
             };
             _masterDataWebApiClientMock
-               .Setup(s => s.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(
-                    d => d.Id == 200)))
+               .Setup(s => s.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(d => d.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(replacedDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -225,7 +227,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
             _masterDataWebApiClientMock
-               .Setup(d => d.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(str => str.Id == 200)))
+               .Setup(d => d.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(str => str.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -352,7 +355,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
             _masterDataWebApiClientMock
-               .Setup(d => d.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(str => str.Id == 200)))
+               .Setup(d => d.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(str => str.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -482,8 +486,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 Desc = "replacex - desc",
             };
             _masterDataWebApiClientMock
-               .Setup(s => s.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(
-                    d => d.Id == 200)))
+               .Setup(s => s.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(d => d.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(replacedDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -592,7 +596,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = newRootChildDimensionStructuresList,
             };
             _masterDataWebApiClientMock
-               .Setup(d => d.GetDimensionStructureByIdAsync(It.Is<DimensionStructure>(str => str.Id == 200)))
+               .Setup(d => d.GetDimensionStructureByIdAsync(
+                    It.Is<DimensionStructureQueryObject>(str => str.GetDimensionsStructuredById == 200)))
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(

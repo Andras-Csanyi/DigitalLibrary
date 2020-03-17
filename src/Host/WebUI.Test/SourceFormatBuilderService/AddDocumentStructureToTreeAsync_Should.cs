@@ -4,6 +4,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Ui.WebUi.Services;
 
@@ -45,7 +46,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                 Name = "name",
                 Desc = "desc",
             };
-            _masterDataWebApiClientMock.Setup(m => m.GetDimensionStructureByIdAsync(It.IsAny<DimensionStructure>()))
+            _masterDataWebApiClientMock.Setup(m => m.GetDimensionStructureByIdAsync(
+                    It.IsAny<DimensionStructureQueryObject>()))
                .ReturnsAsync(addedDimensionStructure);
 
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
@@ -104,9 +106,7 @@ namespace WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
             _masterDataWebApiClientMock
-               .Setup(m => m.GetDimensionStructureByIdAsync(
-                    It.IsAny<DimensionStructure>()
-                ))
+               .Setup(m => m.GetDimensionStructureByIdAsync(It.IsAny<DimensionStructureQueryObject>()))
                .ReturnsAsync(addedToRoot);
 
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
