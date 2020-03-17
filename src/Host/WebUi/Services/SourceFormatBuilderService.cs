@@ -6,6 +6,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
     using System.Linq;
     using System.Threading.Tasks;
 
+    using MasterData.BusinessLogic.ViewModels;
     using MasterData.DomainModel;
     using MasterData.WebApi.Client;
 
@@ -180,7 +181,10 @@ namespace DigitalLibrary.Ui.WebUi.Services
         public async Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId)
         {
             Check.AreNotEqual(dimensionStructureId, 0);
-            DimensionStructure query = new DimensionStructure { Id = dimensionStructureId };
+            DimensionStructureQueryObject query = new DimensionStructureQueryObject
+            {
+                GetDimensionsStructuredById = dimensionStructureId,
+            };
             DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);
             return result;

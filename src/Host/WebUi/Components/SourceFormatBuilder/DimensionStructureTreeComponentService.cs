@@ -3,6 +3,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
@@ -26,9 +27,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _masterDataValidators = masterDataValidators;
         }
 
-        public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructure queryDimensionStructure)
+        public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructureQueryObject queryObject)
         {
-            return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryDimensionStructure)
+            Check.IsNotNull(queryObject);
+
+            return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryObject)
                .ConfigureAwait(false);
         }
 
@@ -40,7 +43,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     public interface IDimensionStructureTreeComponentService
     {
-        Task<DimensionStructure> GetDimensionStructureById(DimensionStructure queryDimensionStructure);
+        Task<DimensionStructure> GetDimensionStructureById(DimensionStructureQueryObject queryObject);
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
     }
