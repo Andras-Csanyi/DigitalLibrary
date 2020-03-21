@@ -1,7 +1,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
+    using Exceptions;
 
     using FluentAssertions;
 
@@ -9,9 +12,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class GetDimensionStructureByIdAsync_Validation_Should : TestBase
     {
-        public GetDimensionStructureByIdAsync_Validation_Should(string TestInfo) : base(TestInfo)
+        private const string TestInfo = nameof(GetDimensionStructureByIdAsync_Validation_Should);
+
+        public GetDimensionStructureByIdAsync_Validation_Should() : base(TestInfo)
         {
         }
 
@@ -28,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             };
 
             // Assert
-            action.Should().ThrowExactly<GuardException>();
+            action.Should().ThrowExactly<MasterDataBusinessLogicGetDimensionStructureByIdAsyncOperationException>();
         }
     }
 }
