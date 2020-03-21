@@ -52,6 +52,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             if (SourceFormat.RootDimensionStructureId == oldDimensionStructureId)
             {
                 await ReplaceRootDimensionStructureAsync(newDimensionStructureId).ConfigureAwait(false);
+                return;
             }
 
             if (SourceFormat?.RootDimensionStructure?.ChildDimensionStructures != null)
@@ -69,7 +70,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
                     if (foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {oldDimensionStructureId} " +
-                            $"in the tree.";
+                                     $"in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
 
