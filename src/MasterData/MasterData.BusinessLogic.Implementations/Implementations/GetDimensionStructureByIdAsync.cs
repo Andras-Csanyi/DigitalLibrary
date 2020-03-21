@@ -37,9 +37,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                 if (dimensionStructureQueryObject.IncludeChildrenWhenGetDimensionStructureById)
                 {
-                    return await GetDimensionStructureByIdWithChildrenAsync(
+                    DimensionStructure withTree = await GetDimensionStructureByIdWithChildrenAsync(
                             dimensionStructureQueryObject.GetDimensionsStructuredById)
                        .ConfigureAwait(false);
+
+                    return withTree;
                 }
 
                 return await GetDimensionStructureByIdWithoutChildrenAsync(
@@ -55,45 +57,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         private async Task<DimensionStructure> GetDimensionStructureByIdWithChildrenAsync(
             long dimensionsStructureId)
         {
-            Check.AreNotEqual(dimensionsStructureId, 0);
-
-            using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+            try
             {
-                DimensionStructure dimensionStructureWithChildren = await ctx.DimensionStructures
-                   .Include(i => i.ChildDimensionStructures)
-                   .FirstOrDefaultAsync(id => id.Id == dimensionsStructureId)
-                   .ConfigureAwait(false);
+                Check.AreNotEqual(dimensionsStructureId, 0);
 
-                DimensionStructure dimensionStructure = await ctx.DimensionStructures
-                   .FindAsync(dimensionsStructureId)
-                   .ConfigureAwait(false);
-
-                if (dimensionStructureWithChildren.ChildDimensionStructures.Any())
+                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    foreach (DimensionStructure dimStructure in dimensionStructure.ChildDimensionStructures)
-                    {
-                        DimensionStructure dimStructureWithChildren = await GetChildDimensionStructures(
-                                dimStructure.Id)
-                           .ConfigureAwait(false);
-                        dimensionStructure.ChildDimensionStructures.Add(dimensionStructureWithChildren);
-                    }
+                    DimensionStructure dimensionStructure = await ctx.DimensionStructures
+                       .FindAsync(dimensionsStructureId)
+                       .ConfigureAwait(false);
+
+                    dimensionStructure.ChildDimensionStructures = await GetDimensionStructureTreeAsync(
+                            dimensionsStructureId,
+                            ctx)
+                       .ConfigureAwait(false);
+
+                    return dimensionStructure;
                 }
-
-                return dimensionStructure;
             }
-        }
-
-        private async Task<DimensionStructure> GetChildDimensionStructures(long dimStructureId)
-        {
-            Check.AreNotEqual(dimStructureId, 0);
-
-            using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+            catch (Exception e)
             {
+                string msg = $"Error happened while querying Dimensionstructure and its " +
+                             $"DimensionStructure tree";
+                throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
             }
-
-            return null;
         }
-
 
         private async Task<DimensionStructure> GetDimensionStructureByIdWithoutChildrenAsync(
             long dimensionStructureId)

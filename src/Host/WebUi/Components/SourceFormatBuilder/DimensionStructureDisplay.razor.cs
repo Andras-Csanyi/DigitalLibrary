@@ -161,7 +161,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             try
             {
-                DimensionStructureDisplayComponentService.SaveNewRootDimensionStructureAsync(
+                await DimensionStructureDisplayComponentService.SaveNewRootDimensionStructureAsync(
                         _newRootDimensionStructure)
                    .ConfigureAwait(false);
             }
