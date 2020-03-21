@@ -11,6 +11,8 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
     [ExcludeFromCodeCoverage]
     public static partial class MasterDataDataSample
     {
+        private const int AmountOfSourceFormat_BusinessPartner = 1;
+
         public const string HungarianBusinessPartnerRootDimensionStructureName = "Hungarian Business Partner";
 
         public const string HungarianBusinessPartnerNameDimensionStructureName =

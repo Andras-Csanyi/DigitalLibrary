@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
+    using Utils.ControlPanel.DataSample.MasterData;
     using Utils.Guards;
 
     using Xunit;
@@ -29,6 +30,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         public async Task Delete_AnItem()
         {
             // Arrange
+            List<DimensionStructure> initList = await masterDataBusinessLogic.GetDimensionStructuresAsync()
+               .ConfigureAwait(false);
             DimensionStructure dimensionStructure = new DimensionStructure
             {
                 Name = "name",
@@ -56,7 +59,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Assert
             List<DimensionStructure> result = await masterDataBusinessLogic.GetDimensionStructuresAsync()
                .ConfigureAwait(false);
-            result.Count.Should().Be(1);
+            result.Count.Should().Be(initList.Count + 1);
             result.Where(p => p.Name == dimensionStructure.Name).ToList().Count.Should().Be(1);
             result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0);
         }

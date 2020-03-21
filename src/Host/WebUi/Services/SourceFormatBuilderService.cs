@@ -185,6 +185,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             DimensionStructureQueryObject query = new DimensionStructureQueryObject
             {
                 GetDimensionsStructuredById = dimensionStructureId,
+                IncludeChildrenWhenGetDimensionStructureById = true,
             };
             DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);

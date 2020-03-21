@@ -8,6 +8,21 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
     public static partial class MasterDataDataSample
     {
+        public const int SourceFormatAmount = 10;
+
+        public const int DimensionStructureAmount = 30;
+
+        public static int GetSourceFormatAmount()
+        {
+            return SourceFormatAmount
+                 + AmountOfSourceFormat_BusinessPartner;
+        }
+
+        public static int GetDimensionStructureAmount()
+        {
+            return DimensionStructureAmount;
+        }
+
         public static void Populate(MasterDataContext ctx)
         {
             PopulateBlankSourceFormats(ctx);
@@ -20,9 +35,8 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
         private static void PopulateDimensionStructures(MasterDataContext ctx)
         {
-            int amount = 30;
             List<DimensionStructure> dimensionStructures = new List<DimensionStructure>();
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < DimensionStructureAmount; i++)
             {
                 DimensionStructure dimensionStructure = new DimensionStructure
                 {
@@ -39,9 +53,8 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
         private static void PopulateBlankSourceFormats(MasterDataContext ctx)
         {
-            int amout = 10;
             List<SourceFormat> sourceFormats = new List<SourceFormat>();
-            for (int i = 0; i < amout; i++)
+            for (int i = 0; i < SourceFormatAmount; i++)
             {
                 SourceFormat sourceFormat = new SourceFormat
                 {

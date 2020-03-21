@@ -70,12 +70,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionDimensionValue res1 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == firstDimensionValueResult.Id);
+                  && p.DimensionValueId == firstDimensionValueResult.Id);
             res1.Should().NotBeNull();
 
             DimensionDimensionValue res2 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == secondDimensionValueResult.Id);
+                  && p.DimensionValueId == secondDimensionValueResult.Id);
             res2.Should().NotBeNull();
         }
 
@@ -156,8 +156,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             secondDimensionValueResult.Id.Should().NotBe(0);
             secondDimensionValueResult.Value.Should().Be(secondDimensionValue.Value);
             secondDimensionValueResult.DimensionDimensionValues.Count.Should().Be(1);
-            secondDimensionValueResult.DimensionDimensionValues.FirstOrDefault(
-                p => p.Id == secondDimensionResult.Id).Should().NotBeNull();
+            secondDimensionValueResult
+               .DimensionDimensionValues.FirstOrDefault(p => p.DimensionId == secondDimensionResult.Id)
+               .Should()
+               .NotBeNull();
         }
 
         [Fact]
