@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
+    using Utils.ControlPanel.DataSample.MasterData;
     using Utils.Guards;
 
     using Validators;
@@ -61,6 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
+                MasterDataDataSample.Populate(ctx);
             }
         }
     }

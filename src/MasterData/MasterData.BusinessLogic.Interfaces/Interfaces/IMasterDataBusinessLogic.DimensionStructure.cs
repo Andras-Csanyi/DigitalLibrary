@@ -23,6 +23,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> GetDimensionStructureByIdAsync(
             DimensionStructureQueryObject dimensionStructureQueryObject);
 
+        Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
+
         Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 
         Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);

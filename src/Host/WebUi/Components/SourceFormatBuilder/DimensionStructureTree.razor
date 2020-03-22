@@ -2,28 +2,47 @@
 @{
     if (DimensionStructureParameter != null)
     {
-        <ul>
+        <ul style="list-style: none;">
             <li>
-                <strong>@DimensionStructureParameter.Name</strong>
-                <BSButton Size="Size.Small"
-                          Color="Color.Primary"
-                          @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id)
-                                        .ConfigureAwait(false))">
-                    Update Node
-                </BSButton>
-                <BSButton Size="Size.Small"
-                          Color="Color.Danger"
-                          @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
-                                        .ConfigureAwait(false))">
-                    Delete Dimension
-                </BSButton>
-                <BSButton Size="Size.Small"
-                          Color="Color.Primary"
-                          @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
-                                        ParentDimensionStructureIdParameter)
-                                        .ConfigureAwait(false))">
-                    Insert New Child Dimension Structure
-                </BSButton>
+                <BSCard CardType="CardType.Card">
+                    <BSCard CardType="CardType.Title">
+                        <strong>@DimensionStructureParameter.Name</strong>
+                    </BSCard>
+                    <BSCard CardType="CardType.Subtitle">
+                        <BSButton Size="Size.Small"
+                                  Color="Color.Primary"
+                                  @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id)
+                                                .ConfigureAwait(false))">
+                            Update Node
+                        </BSButton>
+                        <BSButton Size="Size.Small"
+                                  Color="Color.Danger"
+                                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
+                                                .ConfigureAwait(false))">
+                            Delete Dimension Structure
+                        </BSButton>
+                        <BSButton Size="Size.Small"
+                                  Color="Color.Primary"
+                                  @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
+                                                ParentDimensionStructureIdParameter)
+                                                .ConfigureAwait(false))">
+                            Insert New Child Dimension Structure
+                        </BSButton>
+                    </BSCard>
+                    <BSCard CardType="CardType.Text">
+                        @{
+                            if (DimensionStructureParameter.Dimension != null)
+                            {
+                                @DimensionStructureParameter.Dimension.Name
+                            }
+                            else
+                            {
+                                <div>No Dimension is attached.</div>
+                            }
+                        }
+                    </BSCard>
+                </BSCard>
+
             </li>
             @{
                 if (DimensionStructureParameter.ChildDimensionStructures != null)
@@ -127,7 +146,7 @@
                                     </BSTableCell>
                                     <BSTableCell>
                                         <BSButton Size="Size.Small"
-                                                  Color="Color.Secondary"
+                                                  Color="Color.Primary"
                                                   ButtonType="ButtonType.Button"
                                                   @onclick="@(async () => await SelectDimensionStructureForTree(
                                                                 dimensionStructure.Id)
@@ -143,5 +162,38 @@
             </BSTableBody>
         </BSTable>
     </BSModalBody>
-    <BSModalFooter></BSModalFooter>
+    <BSModalFooter>
+        @{
+            if (_amountOfDimensionStructures > _updateDimensionStructureModalListPageSize)
+            {
+                <div>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowFirstPagePagerAction().ConfigureAwait(false))">
+                        First
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageBackOnePagePagerAction().ConfigureAwait(false))">
+                        &larr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageForwardOnePagePagerAction().ConfigureAwait(false))">
+                        &rarr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowLastPagePagerAction().ConfigureAwait(false))">
+                        Last
+                    </BSButton>
+                </div>
+            }
+        }
+
+    </BSModalFooter>
 </BSModal>

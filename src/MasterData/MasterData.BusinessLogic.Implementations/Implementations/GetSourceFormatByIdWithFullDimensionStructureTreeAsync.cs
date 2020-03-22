@@ -48,6 +48,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             }
         }
 
+        /// <summary>
+        /// Returns tree of DimensionStructure below the given DimensionStructure defined by Id.
+        /// </summary>
+        /// <param name="dimensionStructureId">The top level DimensionStructure of tree</param>
+        /// <param name="ctx">MasterDataContext instance</param>
+        /// <returns>Tree of DimensionStructure</returns>
+        /// <exception cref="MasterDataBusinessLogicGetSourceFormatByIdWithDimensionStructureTreeAsyncOperationException"></exception>
         private async Task<List<DimensionStructure>> GetDimensionStructureTreeAsync(
             long? dimensionStructureId,
             MasterDataContext ctx)
@@ -71,6 +78,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     foreach (DimensionStructureDimensionStructure dimensionStructureDimensionStructure in result)
                     {
                         DimensionStructure dimensionStructure = await ctx.DimensionStructures
+                           .Include(i => i.Dimension)
                            .Where(p => p.Id == dimensionStructureDimensionStructure.ChildDimensionStructureId)
                            .AsNoTracking()
                            .FirstOrDefaultAsync()

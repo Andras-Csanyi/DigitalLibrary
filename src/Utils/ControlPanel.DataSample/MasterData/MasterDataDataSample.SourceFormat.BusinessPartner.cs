@@ -1,14 +1,25 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
 
     using Microsoft.EntityFrameworkCore;
 
+    [ExcludeFromCodeCoverage]
     public static partial class MasterDataDataSample
     {
+        private const int AmountOfSourceFormat_BusinessPartner = 1;
+
+        public const string HungarianBusinessPartnerRootDimensionStructureName = "Hungarian Business Partner";
+
+        public const string HungarianBusinessPartnerNameDimensionStructureName =
+            "Business Partner Name Dimension Structure";
+
+        public const string HungarianBusinessPartnerAddressName = "Hungarian Address Dimension Structure";
+
         private static void PopulateSourceFormatBusinessPartner(MasterDataContext ctx)
         {
             // structure - hierarchy
@@ -23,7 +34,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
             DimensionStructure hungarianBusinessPartnerRootDimensionStructure = new DimensionStructure
             {
-                Name = "Hungarian Business Partner",
+                Name = HungarianBusinessPartnerRootDimensionStructureName,
                 Desc = "Root Dimension Structure for Hungarian Business Partner Dimension Structure",
                 IsActive = 1,
             };
@@ -36,7 +47,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
             DimensionStructure hungarianBusinessPartnerNameDimensionStructure = new DimensionStructure
             {
-                Name = "Business Partner Name Dimension Structure",
+                Name = HungarianBusinessPartnerNameDimensionStructureName,
                 Desc = "Name of the business partner, a.k.a. legal entity",
                 IsActive = 1,
             };
@@ -90,7 +101,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 
             DimensionStructure hungarianBusinessPartnerAddress = new DimensionStructure
             {
-                Name = "Hungarian Address Dimension Structure",
+                Name = HungarianBusinessPartnerAddressName,
                 Desc = "Hungarian Address Dimension Structure",
                 IsActive = 1,
             };

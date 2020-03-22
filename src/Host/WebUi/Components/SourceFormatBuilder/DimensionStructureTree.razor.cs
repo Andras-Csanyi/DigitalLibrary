@@ -2,6 +2,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BlazorStrap;
@@ -34,6 +35,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private long _documentStructureToBeDeletedFromTree = 0;
 
         private long _selectedForEditDimensionStructureId = 0;
+
+        private int _updateDimensionStructureModalListPageSize = 10;
+
+        private int actualPage = 0;
+
+        private int maxPage = 0;
+
+        private int _amountOfDimensionStructures = 0;
 
         private BSModal _updateDocumentStructureInTheTreeModalWindow;
 
@@ -103,8 +112,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.AreNotEqual(dimensionStructureId, 0);
             _dimensionStructures = await DimensionStructureTreeComponentService.GetDimensionStructuresAsync()
                .ConfigureAwait(false);
+            _amountOfDimensionStructures = _dimensionStructures.Count;
             _selectedForEditDimensionStructureId = dimensionStructureId;
+            await CountAmountOfDimensionStructures().ConfigureAwait(false);
+            await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
             await ShowUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
+        }
+
+        private async Task CountAmountOfDimensionStructures()
+        {
+            maxPage = _amountOfDimensionStructures / _updateDimensionStructureModalListPageSize;
         }
 
         private async Task ShowUpdateDocumentStructureInTreeModalWindowAsync()
@@ -130,6 +147,53 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     _selectedForEditDimensionStructureId,
                     dimensionStructureId)
                .ConfigureAwait(false);
+            await HideUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
+        }
+
+        private async Task PopulateUpdateDimensionStructureNodesList()
+        {
+            int skip = actualPage * _updateDimensionStructureModalListPageSize;
+
+            List<DimensionStructure> list = await DimensionStructureTreeComponentService.GetDimensionStructuresAsync()
+               .ConfigureAwait(false);
+
+            _dimensionStructures = list
+               .Skip(skip)
+               .Take(_updateDimensionStructureModalListPageSize)
+               .ToList();
+        }
+
+        private async Task ShowFirstPagePagerAction()
+        {
+            actualPage = 0;
+            await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
+        }
+
+        private async Task PageBackOnePagePagerAction()
+        {
+            if (actualPage >= 1)
+            {
+                actualPage -= 1;
+            }
+
+            await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
+        }
+
+        private async Task PageForwardOnePagePagerAction()
+        {
+            if (actualPage < maxPage)
+            {
+                actualPage += 1;
+            }
+
+            await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
+        }
+
+        private async Task ShowLastPagePagerAction()
+        {
+            actualPage = maxPage;
+
+            await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
         }
     }
 }

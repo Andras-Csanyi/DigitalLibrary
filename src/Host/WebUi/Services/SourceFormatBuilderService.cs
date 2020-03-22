@@ -52,6 +52,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
             if (SourceFormat.RootDimensionStructureId == oldDimensionStructureId)
             {
                 await ReplaceRootDimensionStructureAsync(newDimensionStructureId).ConfigureAwait(false);
+                await Update().ConfigureAwait(false);
+                return;
             }
 
             if (SourceFormat?.RootDimensionStructure?.ChildDimensionStructures != null)
@@ -69,13 +71,15 @@ namespace DigitalLibrary.Ui.WebUi.Services
                     if (foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {oldDimensionStructureId} " +
-                            $"in the tree.";
+                                     $"in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
 
                     await Update().ConfigureAwait(false);
                 }
             }
+
+            await Update().ConfigureAwait(false);
         }
 
         private async Task IterateThroughTheTreeForReplacing(
@@ -184,6 +188,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             DimensionStructureQueryObject query = new DimensionStructureQueryObject
             {
                 GetDimensionsStructuredById = dimensionStructureId,
+                IncludeChildrenWhenGetDimensionStructureById = true,
             };
             DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);

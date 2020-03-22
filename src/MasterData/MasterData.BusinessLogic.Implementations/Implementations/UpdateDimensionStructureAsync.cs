@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                 await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                         dimensionStructure,
-                        ruleSet: ValidatorRulesets.UpdateDimensionStructure)
+                        ruleSet: DimensionStructureValidatorRulesets.Update)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {typeof(DimensionStructure)} " +
-                        $"entity with id: {dimensionStructure.Id}";
+                                 $"entity with id: {dimensionStructure.Id}";
                     Check.IsNotNull(toBeModified, msg);
 
                     toBeModified.Name = dimensionStructure.Name;
