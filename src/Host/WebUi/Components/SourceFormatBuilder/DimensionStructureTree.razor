@@ -30,7 +30,16 @@
                         </BSButton>
                     </BSCard>
                     <BSCard CardType="CardType.Text">
-                        Dimension data
+                        @{
+                            if (DimensionStructureParameter.Dimension != null)
+                            {
+                                @DimensionStructureParameter.Dimension.Name
+                            }
+                            else
+                            {
+                                <div>No Dimension is attached.</div>
+                            }
+                        }
                     </BSCard>
                 </BSCard>
 

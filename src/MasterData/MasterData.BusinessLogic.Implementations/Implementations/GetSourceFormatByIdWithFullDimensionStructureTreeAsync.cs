@@ -78,6 +78,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     foreach (DimensionStructureDimensionStructure dimensionStructureDimensionStructure in result)
                     {
                         DimensionStructure dimensionStructure = await ctx.DimensionStructures
+                           .Include(i => i.Dimension)
                            .Where(p => p.Id == dimensionStructureDimensionStructure.ChildDimensionStructureId)
                            .AsNoTracking()
                            .FirstOrDefaultAsync()
