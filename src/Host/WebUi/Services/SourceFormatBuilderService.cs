@@ -52,6 +52,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             if (SourceFormat.RootDimensionStructureId == oldDimensionStructureId)
             {
                 await ReplaceRootDimensionStructureAsync(newDimensionStructureId).ConfigureAwait(false);
+                await Update().ConfigureAwait(false);
                 return;
             }
 
@@ -77,6 +78,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
                     await Update().ConfigureAwait(false);
                 }
             }
+
+            await Update().ConfigureAwait(false);
         }
 
         private async Task IterateThroughTheTreeForReplacing(
