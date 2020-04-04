@@ -6,7 +6,12 @@
             <li>
                 <BSCard CardType="CardType.Card">
                     <BSCard CardType="CardType.Title">
-                        <strong>@DimensionStructureParameter.Name</strong>
+                        <ul style="list-style: none;">
+                            <li>
+                                <strong>@DimensionStructureParameter.Name</strong>
+                            </li>
+                            <li>@DimensionStructureParameter.Desc</li>
+                        </ul>
                     </BSCard>
                     <BSCard CardType="CardType.Subtitle">
                         <BSButton Size="Size.Small"
