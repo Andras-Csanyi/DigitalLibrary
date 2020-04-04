@@ -45,11 +45,21 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             ctx.Entry(businessPartnerSourceFormat).State = EntityState.Modified;
             ctx.SaveChanges();
 
+            Dimension hungarianBusinessPartnerNameDimension = new Dimension
+            {
+                Name = "Hungarian Business Partner Name",
+                Description = "This is the name of the legal entity, which is not equal to the place name",
+                IsActive = 1,
+            };
+            ctx.Dimensions.Add(hungarianBusinessPartnerNameDimension);
+            ctx.SaveChanges();
+
             DimensionStructure hungarianBusinessPartnerNameDimensionStructure = new DimensionStructure
             {
                 Name = HungarianBusinessPartnerNameDimensionStructureName,
                 Desc = "Name of the business partner, a.k.a. legal entity",
                 IsActive = 1,
+                DimensionId = hungarianBusinessPartnerNameDimension.Id,
             };
             ctx.DimensionStructures.Add(hungarianBusinessPartnerNameDimensionStructure);
             ctx.SaveChanges();

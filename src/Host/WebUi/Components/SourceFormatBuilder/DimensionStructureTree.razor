@@ -34,7 +34,12 @@
                         @{
                             if (DimensionStructureParameter.Dimension != null)
                             {
-                                @DimensionStructureParameter.Dimension.Name
+                                <ul style="list-style: none">
+                                    <li>
+                                        <strong>@DimensionStructureParameter.Dimension.Name</strong>
+                                    </li>
+                                    <li>@DimensionStructureParameter.Dimension.Description</li>
+                                </ul>
                             }
                             else
                             {
