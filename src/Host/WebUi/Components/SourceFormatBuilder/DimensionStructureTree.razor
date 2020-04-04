@@ -11,21 +11,17 @@
                     <BSCard CardType="CardType.Subtitle">
                         <BSButton Size="Size.Small"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id)
-                                                .ConfigureAwait(false))">
+                                  @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
                             Update Node
                         </BSButton>
                         <BSButton Size="Size.Small"
                                   Color="Color.Danger"
-                                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
-                                                .ConfigureAwait(false))">
-                            Delete Dimension Structure
+                                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
+                            Remove Dimension Structure from Tree
                         </BSButton>
                         <BSButton Size="Size.Small"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id,
-                                                ParentDimensionStructureIdParameter)
-                                                .ConfigureAwait(false))">
+                                  @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id, ParentDimensionStructureIdParameter).ConfigureAwait(false))">
                             Insert New Child Dimension Structure
                         </BSButton>
                     </BSCard>
@@ -67,8 +63,7 @@
 }
 
 <BSModal @ref="_deleteDocumentStructureBsModalWindow">
-    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id)
-                                 .ConfigureAwait(false))">
+    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
         <label>Are You Sure?</label>
     </BSModalHeader>
     <BSModalBody>
@@ -90,8 +85,7 @@
 </BSModal>
 
 <BSModal @ref="_updateDocumentStructureInTheTreeModalWindow">
-    <BSModalHeader @onclick="@(async () => await CancelDocumentStructureUpdateInTreeModalWindowAsync()
-                                 .ConfigureAwait(false))">
+    <BSModalHeader @onclick="@(async () => await CancelDocumentStructureUpdateInTreeModalWindowAsync().ConfigureAwait(false))">
         Update Dimension Structure in Tree
     </BSModalHeader>
     <BSModalBody>
@@ -118,7 +112,8 @@
                                         @dimensionStructure.Name
                                     </BSTableCell>
                                     <BSTableCell>
-                                        @dimensionStructure.Desc</BSTableCell>
+                                        @dimensionStructure.Desc
+                                    </BSTableCell>
                                     <BSTableCell>
                                     </BSTableCell>
                                     <BSTableCell>
@@ -141,16 +136,15 @@
                                         @dimensionStructure.Name
                                     </BSTableCell>
                                     <BSTableCell>
-                                        @dimensionStructure.Desc</BSTableCell>
+                                        @dimensionStructure.Desc
+                                    </BSTableCell>
                                     <BSTableCell>
                                     </BSTableCell>
                                     <BSTableCell>
                                         <BSButton Size="Size.Small"
                                                   Color="Color.Primary"
                                                   ButtonType="ButtonType.Button"
-                                                  @onclick="@(async () => await SelectDimensionStructureForTree(
-                                                                dimensionStructure.Id)
-                                                                .ConfigureAwait(false))">
+                                                  @onclick="@(async () => await SelectDimensionStructureForTree(dimensionStructure.Id).ConfigureAwait(false))">
                                             Select
                                         </BSButton>
                                     </BSTableCell>
