@@ -224,5 +224,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             _editSourceFormatDetailsModal.Hide();
         }
+
+        private async Task CancelSourceFormatOperation()
+        {
+        }
+
+        private async Task SaveSourceFormatOperation()
+        {
+        }
     }
 }

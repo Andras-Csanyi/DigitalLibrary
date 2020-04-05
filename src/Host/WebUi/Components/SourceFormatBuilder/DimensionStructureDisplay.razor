@@ -93,6 +93,22 @@
                 }
             }
         }
+        <BSCard CardType="CardType.Body">
+            <BSCard CardType="CardType.Text">
+                <BSButton Size="Size.Small"
+                          ButtonType="ButtonType.Button"
+                          Color="Color.Secondary"
+                          @onclick="@(async () => await CancelSourceFormatOperation().ConfigureAwait(false))">
+                    Cancel
+                </BSButton>
+                <BSButton Size="Size.Small"
+                          ButtonType="ButtonType.Button"
+                          Color="Color.Primary"
+                          @onclick="@(async () => await SaveSourceFormatOperation().ConfigureAwait(false))">
+                    Save
+                </BSButton>
+            </BSCard>
+        </BSCard>
     </BSCard>
 </div>
 
