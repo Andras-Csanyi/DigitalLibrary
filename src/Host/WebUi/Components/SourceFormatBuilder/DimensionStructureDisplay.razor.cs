@@ -46,6 +46,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private List<Dimension> _dimensions = new List<Dimension>();
 
+        private BSModal _editSourceFormatDetailsModal;
+
+        private SourceFormat _newSourceFormatDetails = new SourceFormat();
+
+
         protected override async Task OnInitializedAsync()
         {
             SourceFormatBuilderService.Notify += OnNotify;
@@ -185,6 +190,36 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             _newRootDimensionStructure = new DimensionStructure();
             await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task EditSourceFormatDetails()
+        {
+            if (_newSourceFormatDetails == null)
+            {
+                _newSourceFormatDetails = new SourceFormat();
+            }
+
+            await OpenSourceFormatDetailsEditModal().ConfigureAwait(false);
+        }
+
+        private async Task CancelEditSourceFormatDetails()
+        {
+            _newSourceFormatDetails = new SourceFormat();
+            await CloseSourceFormatDetailsEditModal().ConfigureAwait(false);
+        }
+
+        private async Task SaveSourceFormatDetailsAsync()
+        {
+        }
+
+        private async Task OpenSourceFormatDetailsEditModal()
+        {
+            _editSourceFormatDetailsModal.Show();
+        }
+
+        private async Task CloseSourceFormatDetailsEditModal()
+        {
+            _editSourceFormatDetailsModal.Hide();
         }
     }
 }

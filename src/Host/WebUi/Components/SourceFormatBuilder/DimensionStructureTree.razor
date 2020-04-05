@@ -4,7 +4,7 @@
     {
         <ul style="list-style: none;">
             <li>
-                <BSCard CardType="CardType.Card">
+                <BSCard CardType="CardType.Body">
                     <BSCard CardType="CardType.Title">
                         <ul style="list-style: none;">
                             <li>
@@ -13,7 +13,7 @@
                             <li>@DimensionStructureParameter.Desc</li>
                         </ul>
                     </BSCard>
-                    <BSCard CardType="CardType.Subtitle">
+                    <BSCard CardType="CardType.Text">
                         <BSButton Size="Size.Small"
                                   Color="Color.Primary"
                                   @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
