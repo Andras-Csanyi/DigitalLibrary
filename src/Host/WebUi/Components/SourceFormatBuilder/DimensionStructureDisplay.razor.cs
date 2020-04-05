@@ -199,6 +199,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _newSourceFormatDetails = new SourceFormat();
             }
 
+            _newSourceFormatDetails.Name = SourceFormatBuilderService.SourceFormat.Name;
+            _newSourceFormatDetails.Desc = SourceFormatBuilderService.SourceFormat.Desc;
+
             await OpenSourceFormatDetailsEditModal().ConfigureAwait(false);
         }
 

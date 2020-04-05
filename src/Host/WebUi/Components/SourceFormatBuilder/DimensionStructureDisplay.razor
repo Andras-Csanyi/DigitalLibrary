@@ -269,14 +269,14 @@
             <BSFormGroup>
                 <BSLabel>Name</BSLabel>
                 <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                              Value="String.Empty">
+                              @bind-Value="@_newSourceFormatDetails.Name">
                     @SourceFormatBuilderService?.SourceFormat?.Name
                 </BSBasicInput>
             </BSFormGroup>
             <BSFormGroup>
                 <BSLabel>Description</BSLabel>
                 <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                              Value="String.Empty">
+                              @bind-Value="@_newSourceFormatDetails.Desc">
                     @SourceFormatBuilderService?.SourceFormat?.Desc
                 </BSBasicInput>
             </BSFormGroup>
