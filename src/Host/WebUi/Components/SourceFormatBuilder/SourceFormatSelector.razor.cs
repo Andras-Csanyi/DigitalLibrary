@@ -29,12 +29,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private SourceFormat _newSourceFormat = new SourceFormat();
 
-        private bool _isInputListDisabled = false;
-
-        private bool _isNewSourceFormatButtonDisabled = false;
-
-        private bool _isloadSourceFormatsButtonDisabled = false;
-
         protected override async Task OnInitializedAsync()
         {
             await PopulateSourceFormats().ConfigureAwait(false);
@@ -91,9 +85,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             SourceFormatBuilderService.SourceFormat = _newSourceFormat;
             await SourceFormatBuilderService.Update().ConfigureAwait(false);
-            _isInputListDisabled = true;
-            _isNewSourceFormatButtonDisabled = true;
-            _isloadSourceFormatsButtonDisabled = true;
+            SourceFormatBuilderService.IsSourceFormatDropDownlistDisabled = true;
+            SourceFormatBuilderService.IsNewSourceFormatButtonDisabled = true;
+            SourceFormatBuilderService.IsLoadSourceFormatsButtonDisabled = true;
             await CloseAddNewSourceFormatModal().ConfigureAwait(false);
         }
     }

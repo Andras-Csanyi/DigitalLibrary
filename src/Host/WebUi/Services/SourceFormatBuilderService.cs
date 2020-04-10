@@ -24,6 +24,14 @@ namespace DigitalLibrary.Ui.WebUi.Services
             _masterDataHttpClient = masterDataHttpClient;
         }
 
+        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
+
+        public bool IsSourceFormatSaveButtonDisabled { get; set; }
+
+        public bool IsSourceFormatCancelButtonDisabled { get; set; }
+
+        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+
         public event Func<Task> Notify;
 
         private SourceFormat _sourceFormat;
@@ -33,6 +41,10 @@ namespace DigitalLibrary.Ui.WebUi.Services
             get => _sourceFormat;
             set => _sourceFormat = value;
         }
+
+        public bool IsSourceFormatDropDownlistDisabled { get; set; }
+
+        public bool IsNewSourceFormatButtonDisabled { get; set; }
 
         public async Task Update()
         {
@@ -345,6 +357,18 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task AddDimensionStructureRootAsync(long dimensionStructureId);
 
         SourceFormat SourceFormat { get; set; }
+
+        bool IsSourceFormatDropDownlistDisabled { get; set; }
+
+        bool IsNewSourceFormatButtonDisabled { get; set; }
+
+        bool IsLoadSourceFormatsButtonDisabled { get; set; }
+
+        bool IsSourceFormatSaveButtonDisabled { get; set; }
+
+        bool IsSourceFormatCancelButtonDisabled { get; set; }
+
+        bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
 
         event Func<Task> Notify;
 

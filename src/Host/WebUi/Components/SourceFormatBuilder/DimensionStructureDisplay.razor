@@ -10,6 +10,7 @@
                         Details
                         <BSButton ButtonType="ButtonType.Button"
                                   Color="Color.Primary"
+                                  IsDisabled="@SourceFormatBuilderService.IsEditSourceFormatDetailsButtonDisabled"
                                   @onclick="@(async () => await EditSourceFormatDetails().ConfigureAwait(false))">
                             Edit
                         </BSButton>
@@ -98,12 +99,14 @@
                 <BSButton Size="Size.Small"
                           ButtonType="ButtonType.Button"
                           Color="Color.Secondary"
+                          IsDisabled="@SourceFormatBuilderService.IsSourceFormatCancelButtonDisabled"
                           @onclick="@(async () => await CancelSourceFormatOperation().ConfigureAwait(false))">
                     Cancel
                 </BSButton>
                 <BSButton Size="Size.Small"
                           ButtonType="ButtonType.Button"
                           Color="Color.Primary"
+                          IsDisabled="@SourceFormatBuilderService.IsSourceFormatSaveButtonDisabled"
                           @onclick="@(async () => await SaveSourceFormatOperation().ConfigureAwait(false))">
                     Save
                 </BSButton>

@@ -1,7 +1,7 @@
 @using DigitalLibrary.MasterData.DomainModel
 <div>
     <BSBasicInput InputType="BlazorStrap.InputType.Select"
-                  IsDisabled="@_isInputListDisabled"
+                  IsDisabled="@SourceFormatBuilderService.IsSourceFormatDropDownlistDisabled"
                   @bind-Value="@_selectedSourceFormatId">
         @{
             foreach (SourceFormat sourceFormat in _sourceFormats)
@@ -14,13 +14,13 @@
     </BSBasicInput>
     <BSButton ButtonType="ButtonType.Button"
               Color="Color.Primary"
-              IsDisabled="@_isloadSourceFormatsButtonDisabled"
+              IsDisabled="@SourceFormatBuilderService.IsLoadSourceFormatsButtonDisabled"
               @onclick="@(async () => await NotifyDocumentDisplay().ConfigureAwait(false))">
         Load SourceFormat
     </BSButton>
     <BSButton ButtonType="ButtonType.Button"
               Color="Color.Primary"
-              IsDisabled="@_isNewSourceFormatButtonDisabled"
+              IsDisabled="@SourceFormatBuilderService.IsNewSourceFormatButtonDisabled"
               @onclick="@(async () => await AddNewSourceFormatAsync().ConfigureAwait(false))">
         New SourceFormat
     </BSButton>

@@ -227,6 +227,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task CancelSourceFormatOperation()
         {
+            SourceFormatBuilderService.SourceFormat = new SourceFormat();
         }
 
         private async Task SaveSourceFormatOperation()
