@@ -3,6 +3,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
 
     using Microsoft.AspNetCore.Components;
@@ -22,6 +24,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         private long _selectedSourceFormatId;
+
+        private BSModal _addNewSourceFormatModal;
+
+        private SourceFormat _newSourceFormat = new SourceFormat();
+
+        private bool _isInputListDisabled = false;
+
+        private bool _isNewSourceFormatButtonDisabled = false;
+
+        private bool _isloadSourceFormatsButtonDisabled = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,6 +59,42 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task NotifyDocumentDisplay()
         {
             await SourceFormatBuilderService.OnUpdate(_selectedSourceFormatId).ConfigureAwait(false);
+        }
+
+        private async Task OpenAddNewSourceFormatModal()
+        {
+            _addNewSourceFormatModal.Show();
+        }
+
+        private async Task CloseAddNewSourceFormatModal()
+        {
+            _addNewSourceFormatModal.Hide();
+        }
+
+        private async Task AddNewSourceFormatAsync()
+        {
+            if (_newSourceFormat == null)
+            {
+                _newSourceFormat = new SourceFormat();
+            }
+
+            await OpenAddNewSourceFormatModal().ConfigureAwait(false);
+        }
+
+        private async Task CancelAddNewSourceFormatAsync()
+        {
+            _newSourceFormat = new SourceFormat();
+            await CloseAddNewSourceFormatModal().ConfigureAwait(false);
+        }
+
+        private async Task SaveNewSourceFormatAsync()
+        {
+            SourceFormatBuilderService.SourceFormat = _newSourceFormat;
+            await SourceFormatBuilderService.Update().ConfigureAwait(false);
+            _isInputListDisabled = true;
+            _isNewSourceFormatButtonDisabled = true;
+            _isloadSourceFormatsButtonDisabled = true;
+            await CloseAddNewSourceFormatModal().ConfigureAwait(false);
         }
     }
 }

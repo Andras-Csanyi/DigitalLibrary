@@ -1,6 +1,7 @@
 @using DigitalLibrary.MasterData.DomainModel
 <div>
-    <BSBasicInput InputType="InputType.Select"
+    <BSBasicInput InputType="BlazorStrap.InputType.Select"
+                  IsDisabled="@_isInputListDisabled"
                   @bind-Value="@_selectedSourceFormatId">
         @{
             foreach (SourceFormat sourceFormat in _sourceFormats)
@@ -13,12 +14,50 @@
     </BSBasicInput>
     <BSButton ButtonType="ButtonType.Button"
               Color="Color.Primary"
+              IsDisabled="@_isloadSourceFormatsButtonDisabled"
               @onclick="@(async () => await NotifyDocumentDisplay().ConfigureAwait(false))">
         Load SourceFormat
     </BSButton>
     <BSButton ButtonType="ButtonType.Button"
-              Color="Color.Secondary">
+              Color="Color.Primary"
+              IsDisabled="@_isNewSourceFormatButtonDisabled"
+              @onclick="@(async () => await AddNewSourceFormatAsync().ConfigureAwait(false))">
         New SourceFormat
     </BSButton>
     <DimensionStructureDisplay></DimensionStructureDisplay>
 </div>
+
+<BSModal @ref="_addNewSourceFormatModal">
+    <BSModalHeader OnClick="@(async () => await CancelAddNewSourceFormatAsync().ConfigureAwait(false))">
+        Add New Source Format
+    </BSModalHeader>
+    <BSForm Model="@_newSourceFormat"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await SaveNewSourceFormatAsync().ConfigureAwait(false))">
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.Text"
+                         @bind-Value="@_newSourceFormat.Name">
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.TextArea"
+                         @bind-Value="@_newSourceFormat.Desc">
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      @onclick="@(async () => await CancelAddNewSourceFormatAsync().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
