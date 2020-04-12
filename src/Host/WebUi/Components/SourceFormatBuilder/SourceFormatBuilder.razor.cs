@@ -8,6 +8,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+
+    using FluentValidation;
 
     using Microsoft.AspNetCore.Components;
 
@@ -246,14 +249,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             try
             {
-                await SourceFormatBuilderService.SaveNewRootDimensionStructureAsync(
-                        _newRootDimensionStructure)
+                await SourceFormatBuilderService.MasterDataValidators.DimensionStructureValidator
+                   .ValidateAndThrowAsync(
+                        _newRootDimensionStructure,
+                        ruleSet: DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
+
+                SourceFormatBuilderService.SourceFormat.RootDimensionStructure = _newRootDimensionStructure;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                string msg = $"{nameof(SaveNewRootDimensionStructureHandlerAsync)}";
+                Console.WriteLine(msg);
             }
+
+            await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
 
         private async Task OpenAddNewRootDimensionStructureModalAsync()
@@ -263,6 +273,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task CloseAddNewRootDimensionStructureModalAsync()
         {
+            _newRootDimensionStructure = new DimensionStructure();
             _addNewRootDimensionStructureForm.Hide();
         }
 

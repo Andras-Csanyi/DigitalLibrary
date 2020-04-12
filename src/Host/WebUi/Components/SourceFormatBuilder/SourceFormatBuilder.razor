@@ -126,41 +126,6 @@
 
 </div>
 
-<BSModal @ref="_addNewSourceFormatModal">
-    <BSModalHeader OnClick="@(async () => await CancelAddNewSourceFormatAsync().ConfigureAwait(false))">
-        Add New Source Format
-    </BSModalHeader>
-    <BSForm Model="@_newSourceFormat"
-            ValidateOnInit="true"
-            OnValidSubmit="@(async () => await SaveNewSourceFormatAsync().ConfigureAwait(false))">
-        <BSModalBody>
-            <BSFormGroup>
-                <BSFormLabel>Name</BSFormLabel>
-                <BSInput InputType="BlazorStrap.InputType.Text"
-                         @bind-Value="@_newSourceFormat.Name">
-                </BSInput>
-            </BSFormGroup>
-            <BSFormGroup>
-                <BSFormLabel>Description</BSFormLabel>
-                <BSInput InputType="BlazorStrap.InputType.TextArea"
-                         @bind-Value="@_newSourceFormat.Desc">
-                </BSInput>
-            </BSFormGroup>
-        </BSModalBody>
-        <BSModalFooter>
-            <BSButton ButtonType="ButtonType.Button"
-                      Color="Color.Secondary"
-                      @onclick="@(async () => await CancelAddNewSourceFormatAsync().ConfigureAwait(false))">
-                Cancel
-            </BSButton>
-            <BSButton ButtonType="ButtonType.Submit"
-                      Color="Color.Primary">
-                Save
-            </BSButton>
-        </BSModalFooter>
-    </BSForm>
-</BSModal>
-
 <BSModal @ref="_addNewRootDimensionStructureForm">
     <BSForm Model="@_newRootDimensionStructure"
             ValidateOnInit="true"
@@ -169,12 +134,12 @@
         @* <ValidationSummary/> *@
         <BSModalHeader
             @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))">
-            Adding new Dimension Structure
+            Add new Root Dimension Structure
         </BSModalHeader>
         <BSModalBody>
             <BSFormGroup>
                 <BSFormLabel>Id</BSFormLabel>
-                <BSBasicInput InputType="InputType.Text"
+                <BSBasicInput InputType="BlazorStrap.InputType.Text"
                               IsDisabled="true"
                               @bind-Value="@_newRootDimensionStructure.Id">
                     @_newRootDimensionStructure.Id
@@ -182,35 +147,21 @@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Name</BSFormLabel>
-                <BSInput InputType="InputType.Text"
+                <BSInput InputType="BlazorStrap.InputType.Text"
                          @bind-Value="@_newRootDimensionStructure.Name">
                     @_newRootDimensionStructure.Name
                 </BSInput>
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Description</BSFormLabel>
-                <BSInput InputType="InputType.TextArea"
+                <BSInput InputType="BlazorStrap.InputType.TextArea"
                          @bind-Value="@_newRootDimensionStructure.Desc">
                     @_newRootDimensionStructure.Desc
                 </BSInput>
             </BSFormGroup>
             <BSFormGroup>
-                <BSFormLabel>Parent Dimension Structure</BSFormLabel>
-                @*                 <BSInput InputType="InputType.Select" *@
-                @*                          @bind-Value="@_newDimensionStructure.ParentDimensionStructureId"> *@
-                @*                     @{ *@
-                @*                         foreach (DimensionStructure topDimensionStructure in _topDimensionStructures) *@
-                @*                         { *@
-                @*                             <option value="@topDimensionStructure.Id"> *@
-                @*                                 @topDimensionStructure.Name *@
-                @*                             </option> *@
-                @*                         } *@
-                @*                     } *@
-                @*                 </BSInput> *@
-            </BSFormGroup>
-            <BSFormGroup>
                 <BSFormLabel>Dimension</BSFormLabel>
-                <BSInput InputType="InputType.Select"
+                <BSInput InputType="BlazorStrap.InputType.Select"
                          @bind-Value="@_newRootDimensionStructure.DimensionId">
                     @{
                         foreach (Dimension dimension in _dimensions)
@@ -224,7 +175,7 @@
             </BSFormGroup>
             <BSFormGroup>
                 <BSFormLabel>Is Active?</BSFormLabel>
-                <BSInput InputType="InputType.Range"
+                <BSInput InputType="BlazorStrap.InputType.Range"
                          min="0"
                          max="1"
                          @bind-Value="@_newRootDimensionStructure.IsActive">
@@ -233,12 +184,12 @@
             </BSFormGroup>
         </BSModalBody>
         <BSModalFooter>
-            <BSButton ButtonType="ButtonType.Button"
+            <BSButton ButtonType="BlazorStrap.ButtonType.Button"
                       @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))"
                       Color="Color.Secondary">
                 Cancel
             </BSButton>
-            <BSButton ButtonType="ButtonType.Submit"
+            <BSButton ButtonType="BlazorStrap.ButtonType.Submit"
                       Color="Color.Primary">
                 Save
             </BSButton>

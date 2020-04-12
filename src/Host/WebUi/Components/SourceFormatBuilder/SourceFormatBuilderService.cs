@@ -29,7 +29,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
             Check.IsNotNull(masterDataValidators);
 
             _masterDataHttpClient = masterDataHttpClient;
-            _masterDataValidators = masterDataValidators;
+            MasterDataValidators = masterDataValidators;
         }
 
         public bool IsLoadSourceFormatsButtonDisabled { get; set; } = false;
@@ -44,7 +44,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         private SourceFormat _sourceFormat = new SourceFormat();
 
-        private IMasterDataValidators _masterDataValidators;
+        public IMasterDataValidators MasterDataValidators { get; }
 
         public SourceFormat SourceFormat
         {
@@ -116,7 +116,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         public async Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure)
         {
-            await _masterDataValidators.DimensionStructureValidator
+            await MasterDataValidators.DimensionStructureValidator
                .ValidateAndThrowAsync(newRootDimensionStructure)
                .ConfigureAwait(false);
             await _masterDataHttpClient.AddDimensionStructureAsync(newRootDimensionStructure)
@@ -298,15 +298,12 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
         {
-            Check.AreNotEqual(documentStructureId, 0);
-
             await RemoveItemFromTreeAsync(documentStructureId).ConfigureAwait(false);
             await Update().ConfigureAwait(false);
         }
 
         private async Task RemoveItemFromTreeAsync(long documentStructureId)
         {
-            Check.AreNotEqual(documentStructureId, 0);
             if (_sourceFormat.RootDimensionStructure.Id == documentStructureId)
             {
                 _sourceFormat.RootDimensionStructure = null;
@@ -403,6 +400,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
         bool IsSourceFormatCancelButtonDisabled { get; set; }
 
         bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+
+        IMasterDataValidators MasterDataValidators { get; }
 
         event Func<Task> Notify;
 
