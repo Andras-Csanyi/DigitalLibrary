@@ -61,6 +61,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             await PopulateSourceFormats().ConfigureAwait(false);
             await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
             SourceFormatBuilderService.Notify += OnNotify;
+            await PopulateDimensionsListAsync().ConfigureAwait(false);
+            await AddNulloAsFirstElemToDimensionListAsync().ConfigureAwait(false);
+        }
+
+        private async Task AddNulloAsFirstElemToDimensionListAsync()
+        {
+            Dimension nullo = new Dimension
+            {
+                Id = 0,
+                Name = "--Select One--",
+            };
+            _dimensions.Insert(0, nullo);
+        }
+
+        private async Task PopulateDimensionsListAsync()
+        {
             _dimensions = await SourceFormatBuilderService.GetAllDimensions()
                .ConfigureAwait(false);
         }
@@ -74,6 +90,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             };
             _sourceFormats.Insert(0, nullo);
         }
+
 
         private async Task PopulateSourceFormats()
         {
