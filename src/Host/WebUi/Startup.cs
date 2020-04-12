@@ -55,8 +55,6 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
 
             // Services
-            services.AddSingleton<ISourceFormatSelectorComponentService,
-                SourceFormatSelectorComponentService>();
             services.AddSingleton<IDimensionStructureDisplayComponentService,
                 DimensionStructureDisplayComponentComponentService>();
             services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();

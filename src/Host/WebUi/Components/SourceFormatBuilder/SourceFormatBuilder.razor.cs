@@ -16,9 +16,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
-        [Inject]
-        public ISourceFormatSelectorComponentService SourceFormatSelectorComponentService { get; set; }
-
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         private long _selectedSourceFormatId;
@@ -51,7 +48,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task PopulateSourceFormats()
         {
-            _sourceFormats = await SourceFormatSelectorComponentService.GetSourceFormatsAsync().ConfigureAwait(false);
+            _sourceFormats = await SourceFormatBuilderService.GetSourceFormatsAsync().ConfigureAwait(false);
         }
 
         private async Task NotifyDocumentDisplay()

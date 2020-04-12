@@ -94,6 +94,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
             await Update().ConfigureAwait(false);
         }
 
+        public async Task<List<SourceFormat>> GetSourceFormatsAsync()
+        {
+            return await _masterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
+        }
+
         private async Task IterateThroughTheTreeForReplacing(
             long oldDimensionStructureId,
             long newDimensionStructureId,
@@ -387,5 +392,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
         Task ReplaceDimensionStructureInTheTree(
             long oldDimensionStructureId,
             long newDimensionStructureId);
+
+        Task<List<SourceFormat>> GetSourceFormatsAsync();
     }
 }
