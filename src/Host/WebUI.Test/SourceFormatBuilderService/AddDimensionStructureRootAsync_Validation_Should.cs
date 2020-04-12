@@ -25,7 +25,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
                .ReturnsAsync(_sourceFormatWithoutRootDimensionStructure);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
 
             // Act
             Func<Task> action = async () =>

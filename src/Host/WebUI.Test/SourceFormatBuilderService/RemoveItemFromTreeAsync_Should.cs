@@ -24,7 +24,8 @@ namespace WebUI.Test.SourceFormatBuilderService
         {
             // Arrange
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
 
             // Act
             Func<Task> action = async () =>
@@ -71,7 +72,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(testData);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -130,7 +132,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(testData);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -215,7 +218,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(testData);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -319,7 +323,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(testData);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act

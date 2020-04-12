@@ -6,8 +6,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
     using System.Linq;
     using System.Threading.Tasks;
 
+    using FluentValidation;
+
     using MasterData.BusinessLogic.ViewModels;
     using MasterData.DomainModel;
+    using MasterData.Validators;
     using MasterData.WebApi.Client;
 
     using Utils.Guards;
@@ -18,23 +21,30 @@ namespace DigitalLibrary.Ui.WebUi.Services
 
         private bool foundDuringDimensionStructureReplaceInTheTree = false;
 
-        public SourceFormatBuilderService(IMasterDataHttpClient masterDataHttpClient)
+        public SourceFormatBuilderService(
+            IMasterDataHttpClient masterDataHttpClient,
+            IMasterDataValidators masterDataValidators)
         {
             Check.IsNotNull(masterDataHttpClient);
+            Check.IsNotNull(masterDataValidators);
+
             _masterDataHttpClient = masterDataHttpClient;
+            _masterDataValidators = masterDataValidators;
         }
 
-        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
+        public bool IsLoadSourceFormatsButtonDisabled { get; set; } = false;
 
-        public bool IsSourceFormatSaveButtonDisabled { get; set; }
+        public bool IsSourceFormatSaveButtonDisabled { get; set; } = false;
 
-        public bool IsSourceFormatCancelButtonDisabled { get; set; }
+        public bool IsSourceFormatCancelButtonDisabled { get; set; } = false;
 
-        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; } = false;
 
         public event Func<Task> Notify;
 
-        private SourceFormat _sourceFormat;
+        private SourceFormat _sourceFormat = new SourceFormat();
+
+        private IMasterDataValidators _masterDataValidators;
 
         public SourceFormat SourceFormat
         {
@@ -42,9 +52,9 @@ namespace DigitalLibrary.Ui.WebUi.Services
             set => _sourceFormat = value;
         }
 
-        public bool IsSourceFormatDropDownlistDisabled { get; set; }
+        public bool IsSourceFormatDropDownlistDisabled { get; set; } = false;
 
-        public bool IsNewSourceFormatButtonDisabled { get; set; }
+        public bool IsNewSourceFormatButtonDisabled { get; set; } = false;
 
         public async Task Update()
         {
@@ -97,6 +107,25 @@ namespace DigitalLibrary.Ui.WebUi.Services
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
         {
             return await _masterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
+        }
+
+        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
+        {
+            return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+        }
+
+        public async Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure)
+        {
+            await _masterDataValidators.DimensionStructureValidator
+               .ValidateAndThrowAsync(newRootDimensionStructure)
+               .ConfigureAwait(false);
+            await _masterDataHttpClient.AddDimensionStructureAsync(newRootDimensionStructure)
+               .ConfigureAwait(false);
+        }
+
+        public async Task<List<Dimension>> GetAllDimensions()
+        {
+            return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
         }
 
         private async Task IterateThroughTheTreeForReplacing(
@@ -394,5 +423,11 @@ namespace DigitalLibrary.Ui.WebUi.Services
             long newDimensionStructureId);
 
         Task<List<SourceFormat>> GetSourceFormatsAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
+
+        Task<List<Dimension>> GetAllDimensions();
     }
 }

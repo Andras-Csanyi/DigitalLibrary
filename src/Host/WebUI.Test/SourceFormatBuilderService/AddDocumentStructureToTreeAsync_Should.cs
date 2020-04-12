@@ -51,7 +51,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(addedDimensionStructure);
 
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -110,7 +111,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(addedToRoot);
 
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Adding to root level

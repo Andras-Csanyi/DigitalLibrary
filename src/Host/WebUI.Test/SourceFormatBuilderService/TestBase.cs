@@ -3,6 +3,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
 
     using Moq;
@@ -11,6 +12,8 @@ namespace WebUI.Test.SourceFormatBuilderService
     public class TestBase
     {
         protected Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
+
+        protected Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
 
         protected SourceFormat _sourceFormatWithoutRootDimensionStructure = new SourceFormat
         {

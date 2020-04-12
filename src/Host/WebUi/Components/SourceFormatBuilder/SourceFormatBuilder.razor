@@ -18,13 +18,112 @@
               @onclick="@(async () => await NotifyDocumentDisplay().ConfigureAwait(false))">
         Load SourceFormat
     </BSButton>
-    <BSButton ButtonType="ButtonType.Button"
-              Color="Color.Primary"
-              IsDisabled="@SourceFormatBuilderService.IsNewSourceFormatButtonDisabled"
-              @onclick="@(async () => await AddNewSourceFormatAsync().ConfigureAwait(false))">
-        New SourceFormat
-    </BSButton>
-    <DimensionStructureDisplay></DimensionStructureDisplay>
+
+
+    <BSCard CardType="CardType.Header" HeadingSize="HeadingSize.H3">Source Format</BSCard>
+    @{
+        <BSCard CardType="CardType.Body">
+            <BSCard CardType="CardType.Title">
+                Details
+            </BSCard>
+            <BSCard CardType="CardType.Text">
+                <BSBasicForm>
+                    <BSFormGroup>
+                        <BSLabel>Name</BSLabel>
+                        <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                                      Value="@SourceFormatBuilderService.SourceFormat.Name">
+
+                        </BSBasicInput>
+                    </BSFormGroup>
+                    <BSFormGroup>
+                        <BSLabel>Description</BSLabel>
+                        <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                                      Value="@SourceFormatBuilderService.SourceFormat.Desc">
+                        </BSBasicInput>
+                    </BSFormGroup>
+                </BSBasicForm>
+            </BSCard>
+        </BSCard>
+
+        <BSCard CardType="CardType.Header" HeadingSize="HeadingSize.H4">Dimension structures</BSCard>
+        <BSCard CardType="CardType.Body">
+            @{
+                if (SourceFormatBuilderService?.SourceFormat?.RootDimensionStructure != null)
+                {
+                    <BSCard CardType="CardType.Body">
+                        @{
+                            if (SourceFormatBuilderService.SourceFormat.RootDimensionStructure != null)
+                            {
+                                <DimensionStructureTree
+                                    DimensionStructureParameter="@SourceFormatBuilderService.SourceFormat.RootDimensionStructure">
+                                </DimensionStructureTree>
+                            }
+                            else
+                            {
+                                <BSCard CardType="CardType.Title">
+                                    <div class="float-left">
+                                        <strong>Root Dimension Structure: &nbsp;</strong>
+                                        -- not selected yet --
+                                    </div>
+                                    <div class="float-right">
+                                        <BSButton ButtonType="ButtonType.Button"
+                                                  Color="Color.Primary"
+                                                  @onclick="@(async () => await SelectRootDimensionStructure().ConfigureAwait(false))">
+                                            Select
+                                        </BSButton>
+                                    </div>
+                                </BSCard>
+                            }
+                        }
+                    </BSCard>
+                }
+                else
+                {
+                    <BSCard CardType="CardType.Body">
+                        <BSCard CardType="CardType.Title">Root Dimension Structure</BSCard>
+
+                        @{
+                            if (SourceFormatBuilderService.SourceFormat != null)
+                            {
+                                <BSButton Size="Size.Small"
+                                          ButtonType="ButtonType.Button"
+                                          Color="Color.Primary"
+                                          @onclick="@(async () => await SelectRootDimensionStructure().ConfigureAwait(false))">
+                                    Add Existing RootDimensionStructure
+                                </BSButton>
+                                <BSButton Size="Size.Small"
+                                          ButtonType="ButtonType.Button"
+                                          Color="Color.Primary"
+                                          @onclick="@(async () => await AddNewRootDimensionStructureAsync().ConfigureAwait(false))">
+                                    Add New RootDimensionStructure
+                                </BSButton>
+                            }
+                        }
+
+                    </BSCard>
+                }
+            }
+        </BSCard>
+    }
+    <BSCard CardType="CardType.Body">
+        <BSCard CardType="CardType.Text">
+            <BSButton Size="Size.Small"
+                      ButtonType="ButtonType.Button"
+                      Color="Color.Secondary"
+                      IsDisabled="@SourceFormatBuilderService.IsSourceFormatCancelButtonDisabled"
+                      @onclick="@(async () => await CancelSourceFormatOperation().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton Size="Size.Small"
+                      ButtonType="ButtonType.Button"
+                      Color="Color.Primary"
+                      IsDisabled="@SourceFormatBuilderService.IsSourceFormatSaveButtonDisabled"
+                      @onclick="@(async () => await SaveSourceFormatOperation().ConfigureAwait(false))">
+                Save
+            </BSButton>
+        </BSCard>
+    </BSCard>
+
 </div>
 
 <BSModal @ref="_addNewSourceFormatModal">
@@ -56,6 +155,207 @@
             </BSButton>
             <BSButton ButtonType="ButtonType.Submit"
                       Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_addNewRootDimensionStructureForm">
+    <BSForm Model="@_newRootDimensionStructure"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await SaveNewRootDimensionStructureHandlerAsync().ConfigureAwait(false))">
+        @* <DataAnnotationsValidator/> *@
+        @* <ValidationSummary/> *@
+        <BSModalHeader
+            @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))">
+            Adding new Dimension Structure
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput InputType="InputType.Text"
+                              IsDisabled="true"
+                              @bind-Value="@_newRootDimensionStructure.Id">
+                    @_newRootDimensionStructure.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="InputType.Text"
+                         @bind-Value="@_newRootDimensionStructure.Name">
+                    @_newRootDimensionStructure.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="InputType.TextArea"
+                         @bind-Value="@_newRootDimensionStructure.Desc">
+                    @_newRootDimensionStructure.Desc
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Parent Dimension Structure</BSFormLabel>
+                @*                 <BSInput InputType="InputType.Select" *@
+                @*                          @bind-Value="@_newDimensionStructure.ParentDimensionStructureId"> *@
+                @*                     @{ *@
+                @*                         foreach (DimensionStructure topDimensionStructure in _topDimensionStructures) *@
+                @*                         { *@
+                @*                             <option value="@topDimensionStructure.Id"> *@
+                @*                                 @topDimensionStructure.Name *@
+                @*                             </option> *@
+                @*                         } *@
+                @*                     } *@
+                @*                 </BSInput> *@
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Dimension</BSFormLabel>
+                <BSInput InputType="InputType.Select"
+                         @bind-Value="@_newRootDimensionStructure.DimensionId">
+                    @{
+                        foreach (Dimension dimension in _dimensions)
+                        {
+                            <option value="@dimension.Id">
+                                @dimension.Name
+                            </option>
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="InputType.Range"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_newRootDimensionStructure.IsActive">
+                    @_newRootDimensionStructure.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Button"
+                      @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
+</BSModal>
+
+<BSModal @ref="_rootDimensionStructureListModal" IsCentered="true" Size="Size.Large">
+    <BSModalHeader OnClick="@(async () => await CancelRootDimensionStructureSelectAsync().ConfigureAwait(false))">
+        Selet a root Dimension Structure for the SourceFormat.
+    </BSModalHeader>
+    <BSModalBody>
+        <BSTable>
+            <BSTableHead>
+                <BSTableHeadCell>Id</BSTableHeadCell>
+                <BSTableHeadCell>Name</BSTableHeadCell>
+                <BSTableHeadCell>Desc</BSTableHeadCell>
+                <BSTableHeadCell></BSTableHeadCell>
+            </BSTableHead>
+            <BSTableBody>
+                @{
+                    if (_rootDimensionStructureList != null)
+                    {
+                        foreach (DimensionStructure dimensionStructure in _rootDimensionStructureList)
+                        {
+                            <BSTableRow>
+                                <BSTableCell>
+                                    @dimensionStructure.Id
+                                </BSTableCell>
+                                <BSTableCell>
+                                    @dimensionStructure.Name
+                                </BSTableCell>
+                                <BSTableCell>
+                                    @dimensionStructure.Desc
+                                </BSTableCell>
+                                <BSTableCell>
+                                    <BSButton ButtonType="ButtonType.Button"
+                                              Color="Color.Primary"
+                                              @onclick="@(async () => await SelectRootDimensionStructureHandler(dimensionStructure.Id).ConfigureAwait(false))">
+                                        Select
+                                    </BSButton>
+                                </BSTableCell>
+                            </BSTableRow>
+                        }
+                    }
+                }
+            </BSTableBody>
+        </BSTable>
+    </BSModalBody>
+    <BSModalFooter>
+        @{
+            if (_rootDimensionStructureListRaw.Count > pageSize)
+            {
+                <div>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowFirstPagePagerAction().ConfigureAwait(false))">
+                        First
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageBackOnePagePagerAction().ConfigureAwait(false))">
+                        &larr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await PageForwardOnePagePagerAction().ConfigureAwait(false))">
+                        &rarr;
+                    </BSButton>
+                    <BSButton ButtonType="ButtonType.Button"
+                              Color="Color.Primary"
+                              Size="Size.Small"
+                              @onclick="@(async () => await ShowLastPagePagerAction().ConfigureAwait(false))">
+                        Last
+                    </BSButton>
+                </div>
+            }
+        }
+    </BSModalFooter>
+</BSModal>
+
+<BSModal @ref="_editSourceFormatDetailsModal" IsCentered="true" Size="Size.Large">
+    <BSForm Model="@_newSourceFormatDetails"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await SaveSourceFormatDetailsAsync().ConfigureAwait(false))">
+        <BSModalHeader OnClick="@(async () => await CancelEditSourceFormatDetails().ConfigureAwait(false))">
+            Edit Source Format details
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSLabel>Name</BSLabel>
+                <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                              @bind-Value="@_newSourceFormatDetails.Name">
+                    @SourceFormatBuilderService?.SourceFormat?.Name
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSLabel>Description</BSLabel>
+                <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                              @bind-Value="@_newSourceFormatDetails.Desc">
+                    @SourceFormatBuilderService?.SourceFormat?.Desc
+                </BSBasicInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Secondary"
+                      Size="Size.Small"
+                      @onclick="@(async () => await CancelEditSourceFormatDetails().ConfigureAwait(false))">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="ButtonType.Submit"
+                      Color="Color.Primary"
+                      Size="Size.Small">
                 Save
             </BSButton>
         </BSModalFooter>

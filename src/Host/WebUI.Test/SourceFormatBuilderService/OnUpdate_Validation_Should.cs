@@ -18,7 +18,9 @@ namespace WebUI.Test.SourceFormatBuilderService
         public async Task ThrowException_WhenInputIsInvalid()
         {
             // Arrange
-            ISourceFormatBuilderService builder = new SourceFormatBuilderService(_masterDataWebApiClientMock.Object);
+            ISourceFormatBuilderService builder = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
 
             // Act
             Func<Task> action = async () => { await builder.OnUpdate(0).ConfigureAwait(false); };

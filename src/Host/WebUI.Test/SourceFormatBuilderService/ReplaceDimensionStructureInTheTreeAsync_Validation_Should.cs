@@ -22,7 +22,8 @@ namespace WebUI.Test.SourceFormatBuilderService
         {
             // Arrange
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
 
             // Act
             Func<Task> action = async () =>

@@ -25,7 +25,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
                .ReturnsAsync(_sourceFormat);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -46,7 +47,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
                .ReturnsAsync(_sourceFormat);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
             DimensionStructure dimensionStructure = new DimensionStructure();
             // Act

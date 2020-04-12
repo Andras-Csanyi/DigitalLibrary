@@ -1,6 +1,8 @@
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BlazorStrap;
@@ -18,8 +20,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
-        private long _selectedSourceFormatId;
-
         private BSModal _addNewSourceFormatModal;
 
         private SourceFormat _newSourceFormat = new SourceFormat();
@@ -30,10 +30,39 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private bool _isNewSourceFormatButtonDisabled;
 
+        private long _selectedSourceFormatId { get; set; }
+
+        private int pageSize = 10;
+
+        private int actualPage = 0;
+
+        private int maxPage = 0;
+
+        private SourceFormat _selectedSourceFormat;
+
+        private BSModal _rootDimensionStructureListModal;
+
+        private List<DimensionStructure> _rootDimensionStructureList = new List<DimensionStructure>();
+
+        private List<DimensionStructure> _rootDimensionStructureListRaw = new List<DimensionStructure>();
+
+        private BSModal _addNewRootDimensionStructureForm;
+
+        private DimensionStructure _newRootDimensionStructure = new DimensionStructure();
+
+        private List<Dimension> _dimensions = new List<Dimension>();
+
+        private BSModal _editSourceFormatDetailsModal;
+
+        private SourceFormat _newSourceFormatDetails = new SourceFormat();
+
         protected override async Task OnInitializedAsync()
         {
             await PopulateSourceFormats().ConfigureAwait(false);
             await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
+            SourceFormatBuilderService.Notify += OnNotify;
+            _dimensions = await SourceFormatBuilderService.GetAllDimensions()
+               .ConfigureAwait(false);
         }
 
         private async Task AddNulloAsFirstElemToSourceFormatList()
@@ -90,6 +119,182 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             SourceFormatBuilderService.IsNewSourceFormatButtonDisabled = true;
             SourceFormatBuilderService.IsLoadSourceFormatsButtonDisabled = true;
             await CloseAddNewSourceFormatModal().ConfigureAwait(false);
+        }
+
+        private async Task OnNotify()
+        {
+            await InvokeAsync(() => { StateHasChanged(); });
+        }
+
+        private async Task SetSelectedSourceFormatId(long selectedSourceFormatId)
+        {
+            _selectedSourceFormatId = selectedSourceFormatId;
+        }
+
+        public void Dispose()
+        {
+            SourceFormatBuilderService.Notify -= OnNotify;
+        }
+
+        private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()
+        {
+            _rootDimensionStructureListRaw = await SourceFormatBuilderService
+               .GetDimensionStructuresAsync()
+               .ConfigureAwait(false);
+            maxPage = _rootDimensionStructureListRaw.Count / pageSize;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PopulateDisplayedRootDimensionStructureListPagerAction()
+        {
+            int skip = pageSize * actualPage;
+            _rootDimensionStructureList = _rootDimensionStructureListRaw
+               .OrderBy(p => p.Id)
+               .Skip(skip)
+               .Take(pageSize)
+               .ToList();
+        }
+
+        private async Task OpenRootDimensionStructureSelectingModalAsync()
+        {
+            _rootDimensionStructureListModal.Show();
+        }
+
+        private async Task CloseSelectingRootDimensionStructureModalAsync()
+        {
+            _rootDimensionStructureListModal.Hide();
+        }
+
+        private async Task SelectRootDimensionStructure()
+        {
+            await PopulateDimensionStructuresListForSelectingRootDimensionStructure().ConfigureAwait(false);
+            await OpenRootDimensionStructureSelectingModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task SelectRootDimensionStructureHandler(long selectedDimensionStructureId)
+        {
+            await SourceFormatBuilderService.AddDimensionStructureRootAsync(selectedDimensionStructureId)
+               .ConfigureAwait(false);
+            await CloseSelectingRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task CancelRootDimensionStructureSelectAsync()
+        {
+            await CloseSelectingRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task ShowFirstPagePagerAction()
+        {
+            actualPage = 0;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task ShowLastPagePagerAction()
+        {
+            actualPage = maxPage;
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PageBackOnePagePagerAction()
+        {
+            if (actualPage >= 1)
+            {
+                actualPage -= 1;
+            }
+
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        private async Task PageForwardOnePagePagerAction()
+        {
+            if (actualPage <= maxPage)
+            {
+                actualPage += 1;
+            }
+
+            await PopulateDisplayedRootDimensionStructureListPagerAction().ConfigureAwait(false);
+        }
+
+        public async Task AddNewRootDimensionStructureAsync()
+        {
+            if (_newRootDimensionStructure == null)
+            {
+                _newRootDimensionStructure = new DimensionStructure();
+            }
+
+            await OpenAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task SaveNewRootDimensionStructureHandlerAsync()
+        {
+            try
+            {
+                await SourceFormatBuilderService.SaveNewRootDimensionStructureAsync(
+                        _newRootDimensionStructure)
+                   .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private async Task OpenAddNewRootDimensionStructureModalAsync()
+        {
+            _addNewRootDimensionStructureForm.Show();
+        }
+
+        private async Task CloseAddNewRootDimensionStructureModalAsync()
+        {
+            _addNewRootDimensionStructureForm.Hide();
+        }
+
+        private async Task CancelAddNewRootDimensionStructureAsync()
+        {
+            _newRootDimensionStructure = new DimensionStructure();
+            await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task EditSourceFormatDetails()
+        {
+            if (_newSourceFormatDetails == null)
+            {
+                _newSourceFormatDetails = new SourceFormat();
+            }
+
+            _newSourceFormatDetails.Name = SourceFormatBuilderService.SourceFormat.Name;
+            _newSourceFormatDetails.Desc = SourceFormatBuilderService.SourceFormat.Desc;
+
+            await OpenSourceFormatDetailsEditModal().ConfigureAwait(false);
+        }
+
+        private async Task CancelEditSourceFormatDetails()
+        {
+            _newSourceFormatDetails = new SourceFormat();
+            await CloseSourceFormatDetailsEditModal().ConfigureAwait(false);
+        }
+
+        private async Task SaveSourceFormatDetailsAsync()
+        {
+        }
+
+        private async Task OpenSourceFormatDetailsEditModal()
+        {
+            _editSourceFormatDetailsModal.Show();
+        }
+
+        private async Task CloseSourceFormatDetailsEditModal()
+        {
+            _editSourceFormatDetailsModal.Hide();
+        }
+
+        private async Task CancelSourceFormatOperation()
+        {
+            SourceFormatBuilderService.SourceFormat = new SourceFormat();
+        }
+
+        private async Task SaveSourceFormatOperation()
+        {
         }
     }
 }

@@ -56,7 +56,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -165,7 +166,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(replacedDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(1).ConfigureAwait(false);
 
             // Act
@@ -232,7 +234,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -360,7 +363,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -491,7 +495,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(replacedDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(1).ConfigureAwait(false);
 
             // Act
@@ -601,7 +606,8 @@ namespace WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(newRootDimensionStructure);
 
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object);
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
