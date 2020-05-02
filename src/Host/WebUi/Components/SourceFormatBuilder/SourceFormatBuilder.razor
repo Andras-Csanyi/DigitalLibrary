@@ -31,14 +31,15 @@
                     <BSFormGroup>
                         <BSLabel>Name</BSLabel>
                         <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                                      Value="@SourceFormatBuilderService.SourceFormat.Name">
-
+                                      @bind-Value="SourceFormatBuilderService.SourceFormat.Name">
+                            @SourceFormatBuilderService.SourceFormat.Name
                         </BSBasicInput>
                     </BSFormGroup>
                     <BSFormGroup>
                         <BSLabel>Description</BSLabel>
                         <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                                      Value="@SourceFormatBuilderService.SourceFormat.Desc">
+                                      @bind-Value="SourceFormatBuilderService.SourceFormat.Desc">
+                            @SourceFormatBuilderService.SourceFormat.Desc
                         </BSBasicInput>
                     </BSFormGroup>
                 </BSBasicForm>
