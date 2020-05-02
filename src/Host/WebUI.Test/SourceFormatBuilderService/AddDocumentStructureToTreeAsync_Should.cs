@@ -6,6 +6,7 @@ namespace WebUI.Test.SourceFormatBuilderService
 
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Ui.WebUi.Services;
 
     using FluentAssertions;

@@ -1,17 +1,18 @@
-namespace DigitalLibrary.Ui.WebUi.Services
+namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+
     using FluentValidation;
 
-    using MasterData.BusinessLogic.ViewModels;
-    using MasterData.DomainModel;
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
+    using Services;
 
     using Utils.Guards;
 

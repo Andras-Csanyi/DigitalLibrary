@@ -4,6 +4,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.Guards;
 
