@@ -93,6 +93,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                    .ConfigureAwait(false);
                 _documentStructureToBeDeletedFromTree = 0;
                 await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
+                await SourceFormatBuilderNotifierService.UpdateSourceFormatBuilder().ConfigureAwait(false);
             }
             catch (Exception e)
             {

@@ -73,14 +73,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.AreNotEqual(UpdateNodeOldNodeId, 0);
             Check.AreNotEqual(UpdateNodeNewNodeId, 0);
 
-            Console.WriteLine($"Name: {SourceFormat.RootDimensionStructure.Name} - " +
-                              $"Id: {SourceFormat.RootDimensionStructure.Id}");
-
             if (SourceFormat.RootDimensionStructureId == UpdateNodeOldNodeId)
             {
                 await ReplaceRootDimensionStructureAsync(UpdateNodeNewNodeId).ConfigureAwait(false);
-                Console.WriteLine($"root dimension: {SourceFormat.RootDimensionStructure.Name}");
-
                 return;
             }
 
@@ -104,8 +99,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     }
                 }
             }
-
-            Console.WriteLine(SourceFormat.RootDimensionStructure.Name);
         }
 
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
