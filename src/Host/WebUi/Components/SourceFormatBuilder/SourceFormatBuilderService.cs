@@ -47,6 +47,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public IMasterDataValidators MasterDataValidators { get; }
 
+        public long LoadedSourceFormatId { get; set; }
+
         public SourceFormat SourceFormat
         {
             get => _sourceFormat;
@@ -403,6 +405,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
 
         IMasterDataValidators MasterDataValidators { get; }
+
+        long LoadedSourceFormatId { get; set; }
 
         event Func<Task> Notify;
 

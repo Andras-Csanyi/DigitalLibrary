@@ -33,8 +33,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private bool _isNewSourceFormatButtonDisabled;
 
-        private long _selectedSourceFormatId { get; set; }
-
         private int pageSize = 10;
 
         private int actualPage = 0;
@@ -102,7 +100,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task NotifyDocumentDisplay()
         {
-            await SourceFormatBuilderService.OnUpdate(_selectedSourceFormatId).ConfigureAwait(false);
+            await SourceFormatBuilderService.OnUpdate(SourceFormatBuilderService.LoadedSourceFormatId)
+               .ConfigureAwait(false);
         }
 
         private async Task OpenAddNewSourceFormatModal()
@@ -144,11 +143,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task OnNotify()
         {
             await InvokeAsync(() => { StateHasChanged(); });
-        }
-
-        private async Task SetSelectedSourceFormatId(long selectedSourceFormatId)
-        {
-            _selectedSourceFormatId = selectedSourceFormatId;
         }
 
         public void Dispose()
@@ -319,6 +313,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task CancelSourceFormatOperation()
         {
             SourceFormatBuilderService.SourceFormat = new SourceFormat();
+            SourceFormatBuilderService.LoadedSourceFormatId = 0;
         }
 
         private async Task SaveSourceFormatOperation()

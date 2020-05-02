@@ -2,7 +2,7 @@
 <div>
     <BSBasicInput InputType="BlazorStrap.InputType.Select"
                   IsDisabled="@SourceFormatBuilderService.IsSourceFormatDropDownlistDisabled"
-                  @bind-Value="@_selectedSourceFormatId">
+                  @bind-Value="@SourceFormatBuilderService.LoadedSourceFormatId">
         @{
             foreach (SourceFormat sourceFormat in _sourceFormats)
             {
