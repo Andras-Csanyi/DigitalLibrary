@@ -60,9 +60,11 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.UpdateNodeOldNodeId = 101;
+            builderService.UpdateNodeNewNodeId = 200;
 
             // Act
-            await builderService.ReplaceDimensionStructureInTheTree(101, 200).ConfigureAwait(false);
+            await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();
@@ -171,10 +173,12 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(1).ConfigureAwait(false);
 
+            builderService.UpdateNodeOldNodeId = 3003;
+            builderService.UpdateNodeNewNodeId = 200;
             // Act
             Func<Task> action = async () =>
             {
-                await builderService.ReplaceDimensionStructureInTheTree(3003, 200).ConfigureAwait(false);
+                await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
             };
 
             // Assert
@@ -238,9 +242,11 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.UpdateNodeOldNodeId = 1002;
+            builderService.UpdateNodeNewNodeId = 200;
 
             // Act
-            await builderService.ReplaceDimensionStructureInTheTree(1002, 200).ConfigureAwait(false);
+            await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();
@@ -367,9 +373,11 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.UpdateNodeOldNodeId = 2002;
+            builderService.UpdateNodeNewNodeId = 200;
 
             // Act
-            await builderService.ReplaceDimensionStructureInTheTree(2002, 200).ConfigureAwait(false);
+            await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();
@@ -499,9 +507,11 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(1).ConfigureAwait(false);
+            builderService.UpdateNodeOldNodeId = 3002;
+            builderService.UpdateNodeNewNodeId = 200;
 
             // Act
-            await builderService.ReplaceDimensionStructureInTheTree(3002, 200).ConfigureAwait(false);
+            await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.Should().NotBeNull();
@@ -610,9 +620,11 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.UpdateNodeOldNodeId = 101;
+            builderService.UpdateNodeNewNodeId = 200;
 
             // Act
-            await builderService.ReplaceDimensionStructureInTheTree(101, 200).ConfigureAwait(false);
+            await builderService.ReplaceDimensionStructureInTheTree().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();

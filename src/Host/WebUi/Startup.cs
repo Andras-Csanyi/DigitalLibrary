@@ -60,6 +60,7 @@ namespace DigitalLibrary.Ui.WebUi
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
+            services.AddSingleton<SourceFormatBuilderNotifierService>();
 
             // validators
             services.AddTransient<DimensionStructureValidator>();

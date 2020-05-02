@@ -21,6 +21,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
 
+        [Inject]
+        public SourceFormatBuilderNotifierService SourceFormatBuilderNotifierService { get; set; }
+
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         private BSModal _addNewSourceFormatModal;
@@ -59,9 +62,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         protected override async Task OnInitializedAsync()
         {
+            SourceFormatBuilderNotifierService.Notify += OnNotify;
+
             await PopulateSourceFormats().ConfigureAwait(false);
             await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
-            SourceFormatBuilderService.Notify += OnNotify;
             await PopulateDimensionsListAsync().ConfigureAwait(false);
             await AddNulloAsFirstElemToDimensionListAsync().ConfigureAwait(false);
         }
@@ -133,7 +137,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task SaveNewSourceFormatAsync()
         {
             SourceFormatBuilderService.SourceFormat = _newSourceFormat;
-            await SourceFormatBuilderService.Update().ConfigureAwait(false);
+            await SourceFormatBuilderService.UpdateSourceFormatBuilder().ConfigureAwait(false);
             SourceFormatBuilderService.IsSourceFormatDropDownlistDisabled = true;
             SourceFormatBuilderService.IsNewSourceFormatButtonDisabled = true;
             SourceFormatBuilderService.IsLoadSourceFormatsButtonDisabled = true;
@@ -147,7 +151,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public void Dispose()
         {
-            SourceFormatBuilderService.Notify -= OnNotify;
+            SourceFormatBuilderNotifierService.Notify -= OnNotify;
         }
 
         private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()

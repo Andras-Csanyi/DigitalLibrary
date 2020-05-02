@@ -26,10 +26,13 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
 
+            builderService.UpdateNodeOldNodeId = 0;
+            builderService.UpdateNodeNewNodeId = 0;
+
             // Act
             Func<Task> action = async () =>
             {
-                await builderService.ReplaceDimensionStructureInTheTree(oldValue, newValue)
+                await builderService.ReplaceDimensionStructureInTheTree()
                    .ConfigureAwait(false);
             };
 
