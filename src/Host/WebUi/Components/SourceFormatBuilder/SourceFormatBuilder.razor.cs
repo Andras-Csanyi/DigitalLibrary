@@ -154,7 +154,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             SourceFormatBuilderNotifierService.Notify -= OnNotify;
         }
 
-        private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructure()
+        private async Task PopulateDimensionStructuresListForSelectingRootDimensionStructureAsync()
         {
             _rootDimensionStructureListRaw = await SourceFormatBuilderService
                .GetDimensionStructuresAsync()
@@ -183,9 +183,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _rootDimensionStructureListModal.Hide();
         }
 
-        private async Task SelectRootDimensionStructure()
+        private async Task SelectRootDimensionStructureAsync()
         {
-            await PopulateDimensionStructuresListForSelectingRootDimensionStructure().ConfigureAwait(false);
+            await PopulateDimensionStructuresListForSelectingRootDimensionStructureAsync().ConfigureAwait(false);
             await OpenRootDimensionStructureSelectingModalAsync().ConfigureAwait(false);
         }
 

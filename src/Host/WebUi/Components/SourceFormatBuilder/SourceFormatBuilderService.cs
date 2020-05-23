@@ -41,9 +41,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public bool IsEditSourceFormatDetailsButtonDisabled { get; set; } = false;
 
-        public long UpdateNodeOldNodeId { get; set; }
+        public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
 
-        public long UpdateNodeNewNodeId { get; set; }
+        public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
 
         public event Func<Task> Notify;
 
@@ -70,12 +70,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task ReplaceDimensionStructureInTheTree()
         {
-            Check.AreNotEqual(UpdateNodeOldNodeId, 0);
-            Check.AreNotEqual(UpdateNodeNewNodeId, 0);
+            Check.IsNotNull(UpdateNodeOldDimensionStructure);
+            Check.IsNotNull(UpdateNodeNewDimensionStructure);
 
-            if (SourceFormat.RootDimensionStructureId == UpdateNodeOldNodeId)
+            if (SourceFormat.RootDimensionStructure == UpdateNodeOldDimensionStructure)
             {
-                await ReplaceRootDimensionStructureAsync(UpdateNodeNewNodeId).ConfigureAwait(false);
+                await ReplaceRootDimensionStructureAsync(UpdateNodeNewDimensionStructure).ConfigureAwait(false);
                 return;
             }
 
@@ -86,14 +86,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     foundDuringDimensionStructureReplaceInTheTree = false;
 
                     await IterateThroughTheTreeForReplacing(
-                            UpdateNodeOldNodeId,
-                            UpdateNodeNewNodeId,
+                            UpdateNodeOldDimensionStructure,
+                            UpdateNodeNewDimensionStructure,
                             SourceFormat.RootDimensionStructure)
                        .ConfigureAwait(false);
 
                     if (foundDuringDimensionStructureReplaceInTheTree == false)
                     {
-                        string msg = $"There is no DocumentStructure with id {UpdateNodeOldNodeId} " +
+                        string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
                                      $"in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
@@ -127,58 +127,58 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task SetDefaultStateForReplacementOfDimensionStructureInTree()
         {
-            UpdateNodeNewNodeId = 0;
-            UpdateNodeOldNodeId = 0;
+            UpdateNodeNewDimensionStructure = null;
+            UpdateNodeOldDimensionStructure = null;
         }
 
         private async Task IterateThroughTheTreeForReplacing(
-            long oldDimensionStructureId,
-            long newDimensionStructureId,
-            DimensionStructure dimensionStructure)
+            DimensionStructure oldDimensionStructure,
+            DimensionStructure newDimensionStructure,
+            DimensionStructure dimensionStructureTree)
         {
-            Check.AreNotEqual(oldDimensionStructureId, 0);
-            Check.AreNotEqual(newDimensionStructureId, 0);
-            Check.IsNotNull(dimensionStructure);
+            Check.IsNotNull(oldDimensionStructure);
+            Check.IsNotNull(newDimensionStructure);
+            Check.IsNotNull(dimensionStructureTree);
 
-            if (dimensionStructure.ChildDimensionStructures.Any())
+            if (dimensionStructureTree.ChildDimensionStructures.Any())
             {
-                for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
+                for (int i = 0; i < dimensionStructureTree.ChildDimensionStructures.Count; i++)
                 {
                     if (foundDuringDimensionStructureReplaceInTheTree)
                     {
                         break;
                     }
 
-                    if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == oldDimensionStructureId)
+                    if (dimensionStructureTree.ChildDimensionStructures.ElementAt(i).Guid == oldDimensionStructure.Guid)
                     {
-                        DimensionStructure newDimensionStructure =
-                            await GetDimensionStructureByIdAsync(newDimensionStructureId)
+                        DimensionStructure newDimensionStructureFromServer =
+                            await GetDimensionStructureByIdAsync(newDimensionStructure.Id)
                                .ConfigureAwait(false);
-                        dimensionStructure.ChildDimensionStructures.Remove(
-                            dimensionStructure.ChildDimensionStructures.ElementAt(i));
-                        dimensionStructure.ChildDimensionStructures.Add(newDimensionStructure);
+                        dimensionStructureTree.ChildDimensionStructures.Remove(
+                            dimensionStructureTree.ChildDimensionStructures.ElementAt(i));
+                        dimensionStructureTree.ChildDimensionStructures.Add(newDimensionStructureFromServer);
                         foundDuringDimensionStructureReplaceInTheTree = true;
                     }
                     else
                     {
                         await IterateThroughTheTreeForReplacing(
-                                oldDimensionStructureId,
-                                newDimensionStructureId,
-                                dimensionStructure.ChildDimensionStructures.ElementAt(i))
+                                oldDimensionStructure,
+                                newDimensionStructure,
+                                dimensionStructureTree.ChildDimensionStructures.ElementAt(i))
                            .ConfigureAwait(false);
                     }
                 }
             }
         }
 
-        private async Task ReplaceRootDimensionStructureAsync(long newRootDimensionStructureId)
+        private async Task ReplaceRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure)
         {
-            Check.AreNotEqual(newRootDimensionStructureId, 0);
-            SourceFormat.RootDimensionStructureId = newRootDimensionStructureId;
-            DimensionStructure newRootDimensionStructure =
-                await GetDimensionStructureByIdAsync(newRootDimensionStructureId)
+            Check.IsNotNull(newRootDimensionStructure);
+            SourceFormat.RootDimensionStructureId = newRootDimensionStructure.Id;
+            DimensionStructure newRootDimensionStructureFromServer =
+                await GetDimensionStructureByIdAsync(newRootDimensionStructure.Id)
                    .ConfigureAwait(false);
-            SourceFormat.RootDimensionStructure = newRootDimensionStructure;
+            SourceFormat.RootDimensionStructure = newRootDimensionStructureFromServer;
         }
 
         public async Task OnUpdate(long sourceFormatId)
@@ -404,9 +404,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         long LoadedSourceFormatId { get; set; }
 
-        long UpdateNodeOldNodeId { get; set; }
+        DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
 
-        long UpdateNodeNewNodeId { get; set; }
+        DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
 
         Task AddDimensionStructureAsync(
             long parentDimensionStructureId,

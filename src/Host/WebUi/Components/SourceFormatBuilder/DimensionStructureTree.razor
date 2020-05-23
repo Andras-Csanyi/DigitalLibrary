@@ -16,7 +16,7 @@
                     <BSCard CardType="CardType.Text">
                         <BSButton Size="Size.Small"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
+                                  @onclick="@(async () => await UpdateDocumentStructureInTheTreeAsync(DimensionStructureParameter).ConfigureAwait(false))">
                             Update Node
                         </BSButton>
                         <BSButton Size="Size.Small"
@@ -112,7 +112,7 @@
                     {
                         foreach (DimensionStructure dimensionStructure in _dimensionStructures)
                         {
-                            if (SourceFormatBuilderService.UpdateNodeOldNodeId == dimensionStructure.Id)
+                            if (SourceFormatBuilderService.UpdateNodeOldDimensionStructure == dimensionStructure)
                             {
                                 <BSTableRow Color="Color.Primary">
                                     <BSTableCell>
@@ -154,7 +154,7 @@
                                         <BSButton Size="Size.Small"
                                                   Color="Color.Primary"
                                                   ButtonType="ButtonType.Button"
-                                                  @onclick="@(async () => await SelectDimensionStructureForTree(dimensionStructure.Id).ConfigureAwait(false))">
+                                                  @onclick="@(async () => await UpdateDimensionStructureInTreeAsync(dimensionStructure).ConfigureAwait(false))">
                                             Select
                                         </BSButton>
                                     </BSTableCell>

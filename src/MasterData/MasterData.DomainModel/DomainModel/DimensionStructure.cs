@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.DomainModel
 {
+    using System;
     using System.Collections.Generic;
 
     public class DimensionStructure
@@ -10,6 +11,8 @@ namespace DigitalLibrary.MasterData.DomainModel
         }
 
         public long Id { get; set; }
+
+        public Guid Guid { get; set; }
 
         public string Name { get; set; }
 

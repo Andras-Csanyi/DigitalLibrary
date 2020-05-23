@@ -49,6 +49,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         protected override async Task OnInitializedAsync()
         {
+            if (DimensionStructureParameter.Guid == Guid.Empty)
+            {
+                DimensionStructureParameter.Guid = Guid.NewGuid();
+            }
         }
 
         public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
@@ -107,13 +111,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
         }
 
-        private async Task UpdateDocumentStructureInTheTreeAsync(long dimensionStructureId)
+        private async Task UpdateDocumentStructureInTheTreeAsync(DimensionStructure dimensionStructure)
         {
-            Check.AreNotEqual(dimensionStructureId, 0);
+            Check.IsNotNull(dimensionStructure);
             _dimensionStructures = await DimensionStructureTreeComponentService.GetDimensionStructuresAsync()
                .ConfigureAwait(false);
             _amountOfDimensionStructures = _dimensionStructures.Count;
-            SourceFormatBuilderService.UpdateNodeOldNodeId = dimensionStructureId;
+            SourceFormatBuilderService.UpdateNodeOldDimensionStructure = dimensionStructure;
             await CountAmountOfDimensionStructures().ConfigureAwait(false);
             await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
             await ShowUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
@@ -136,14 +140,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task CancelDocumentStructureUpdateInTreeModalWindowAsync()
         {
-            SourceFormatBuilderService.UpdateNodeOldNodeId = 0;
+            SourceFormatBuilderService.UpdateNodeOldDimensionStructure = null;
             await HideUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
         }
 
-        private async Task SelectDimensionStructureForTree(long dimensionStructureId)
+        private async Task UpdateDimensionStructureInTreeAsync(DimensionStructure dimensionStructure)
         {
-            Check.AreNotEqual(dimensionStructureId, 0);
-            SourceFormatBuilderService.UpdateNodeNewNodeId = dimensionStructureId;
+            Check.IsNotNull(dimensionStructure);
+            SourceFormatBuilderService.UpdateNodeNewDimensionStructure = dimensionStructure;
             await SourceFormatBuilderService.ReplaceDimensionStructureInTheTree()
                .ConfigureAwait(false);
             await SourceFormatBuilderService.SetDefaultStateForReplacementOfDimensionStructureInTree()
