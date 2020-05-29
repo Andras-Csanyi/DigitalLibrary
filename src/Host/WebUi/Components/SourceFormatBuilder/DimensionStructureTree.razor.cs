@@ -36,7 +36,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
-        private BSModal _deleteDocumentStructureBsModalWindow;
+        private BSModal _confirmDeleteDocumentStructureBsModalWindow;
 
         private DimensionStructure _documentStructureToBeDeletedFromTree;
 
@@ -75,12 +75,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task OpenDeleteDocumentStructureFromTreeConfirmModalAsync()
         {
-            _deleteDocumentStructureBsModalWindow.Show();
+            _confirmDeleteDocumentStructureBsModalWindow.Show();
         }
 
         private async Task CloseDeleteDocumentStructureFromTreeConfirmModalAsync()
         {
-            _deleteDocumentStructureBsModalWindow.Hide();
+            _confirmDeleteDocumentStructureBsModalWindow.Hide();
         }
 
         public async Task AddDocumentStructureToTreeAsync()

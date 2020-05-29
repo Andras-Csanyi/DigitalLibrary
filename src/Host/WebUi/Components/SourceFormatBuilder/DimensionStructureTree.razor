@@ -77,8 +77,8 @@
     }
 }
 
-<BSModal @ref="_deleteDocumentStructureBsModalWindow">
-    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter).ConfigureAwait(false))">
+<BSModal @ref="_confirmDeleteDocumentStructureBsModalWindow">
+    <BSModalHeader @onclick="@(async () => await CancelDeleteDocumentStructureConfirmedAsync().ConfigureAwait(false))">
         <label>Are You Sure?</label>
     </BSModalHeader>
     <BSModalBody>

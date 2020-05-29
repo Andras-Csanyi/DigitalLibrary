@@ -383,7 +383,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task RemoveItemFromTreeAsync()
         {
             Check.IsNotNull(DimensionStructureToBeDeletedFromTree);
-            if (_sourceFormat.RootDimensionStructure.Id == DimensionStructureToBeDeletedFromTree.Id)
+            if (_sourceFormat.RootDimensionStructure.Guid == DimensionStructureToBeDeletedFromTree.Guid)
             {
                 _sourceFormat.RootDimensionStructure = null;
                 _sourceFormat.RootDimensionStructureId = 0;
@@ -393,7 +393,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
                     await RemoveItemRecursivelyAsync(_sourceFormat.RootDimensionStructure,
-                            DimensionStructureToBeDeletedFromTree.Id)
+                            DimensionStructureToBeDeletedFromTree.Guid)
                        .ConfigureAwait(false);
                 }
             }
@@ -401,7 +401,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task RemoveItemRecursivelyAsync(
             DimensionStructure dimensionStructure,
-            long documentStructureId)
+            Guid documentStructureGuid)
         {
             Check.IsNotNull(dimensionStructure);
 
@@ -411,7 +411,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 {
                     for (int i = 0; i < dimensionStructure.ChildDimensionStructures.Count; i++)
                     {
-                        if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Id == documentStructureId)
+                        if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Guid == documentStructureGuid)
                         {
                             dimensionStructure.ChildDimensionStructures.Remove(
                                 dimensionStructure.ChildDimensionStructures.ElementAt(i)
@@ -421,7 +421,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
                         await RemoveItemRecursivelyAsync(
                                 dimensionStructure.ChildDimensionStructures.ElementAt(i),
-                                documentStructureId)
+                                documentStructureGuid)
                            .ConfigureAwait(false);
                     }
                 }
