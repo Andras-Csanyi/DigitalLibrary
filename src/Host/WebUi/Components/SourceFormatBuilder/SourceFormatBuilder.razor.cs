@@ -252,6 +252,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         _newRootDimensionStructure,
                         ruleSet: DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
+                _newRootDimensionStructure.Guid = Guid.NewGuid();
 
                 SourceFormatBuilderService.SourceFormat.RootDimensionStructure = _newRootDimensionStructure;
             }

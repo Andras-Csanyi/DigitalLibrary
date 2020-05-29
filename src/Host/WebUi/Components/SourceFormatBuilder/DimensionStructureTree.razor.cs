@@ -14,13 +14,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     using Microsoft.AspNetCore.Components;
 
+    using Utils.DiLibHttpClient;
+
     public partial class DimensionStructureTree
     {
         [Parameter]
         public DimensionStructure DimensionStructureParameter { get; set; }
 
         [Parameter]
-        public long ParentDimensionStructureIdParameter { get; set; }
+        public Guid ParentDimensionStructureGuidParameter { get; set; }
 
         [Inject]
         public ISourceFormatBuilderService SourceFormatBuilderService { get; set; }
@@ -31,9 +33,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public SourceFormatBuilderNotifierService SourceFormatBuilderNotifierService { get; set; }
 
+        [Inject]
+        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
+
         private BSModal _deleteDocumentStructureBsModalWindow;
 
-        private long _documentStructureToBeDeletedFromTree = 0;
+        private DimensionStructure _documentStructureToBeDeletedFromTree;
 
         private int _updateDimensionStructureModalListPageSize = 10;
 
@@ -47,6 +52,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private List<DimensionStructure> _dimensionStructures = new List<DimensionStructure>();
 
+        private BSModal _addOrUpdateDimensionStructureForm;
+
+        private DimensionStructure _newDimensionStructure = new DimensionStructure { Guid = Guid.NewGuid() };
+
+        private IEnumerable<Dimension> _dimensions = new List<Dimension>();
+
         protected override async Task OnInitializedAsync()
         {
             if (DimensionStructureParameter.Guid == Guid.Empty)
@@ -55,9 +66,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
-        public async Task DeleteDocumentStructureFromTreeAsync(long documentStructureId)
+        public async Task DeleteDocumentStructureFromTreeAsync(DimensionStructure documentStructure)
         {
-            _documentStructureToBeDeletedFromTree = documentStructureId;
+            Check.IsNotNull(documentStructure);
+            SourceFormatBuilderService.DimensionStructureToBeDeletedFromTree = documentStructure;
             await OpenDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
         }
 
@@ -71,31 +83,31 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _deleteDocumentStructureBsModalWindow.Hide();
         }
 
-        public async Task AddDocumentStructureToTreeAsync(
-            long documentStructureId,
-            long parentDimensionStructureId)
+        public async Task AddDocumentStructureToTreeAsync()
         {
-            await SourceFormatBuilderService.AddDocumentStructureToTreeAsync(
-                    documentStructureId,
-                    parentDimensionStructureId)
+            await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
+
+            List<Dimension> _dimensions = await MasterDataHttpClient.GetDimensionsAsync()
                .ConfigureAwait(false);
+        }
+
+        private async Task OpenNewDimensionStructureFormModalAsync()
+        {
+            _addOrUpdateDimensionStructureForm.Show();
+        }
+
+        private async Task CloseNewDimensionStructureToTheTreeModalAsync()
+        {
+            _addOrUpdateDimensionStructureForm.Hide();
         }
 
         private async Task DeleteDocumentStructureConfirmedAsync()
         {
             try
             {
-                if (_documentStructureToBeDeletedFromTree == 0)
-                {
-                    string msg = $"{nameof(_documentStructureToBeDeletedFromTree)} is " +
-                                 $"{_documentStructureToBeDeletedFromTree}";
-                    throw new ArgumentNullException(msg);
-                }
-
-                await SourceFormatBuilderService
-                   .DeleteDocumentStructureFromTreeAsync(_documentStructureToBeDeletedFromTree)
+                await SourceFormatBuilderService.DeleteDocumentStructureFromTreeAsync()
                    .ConfigureAwait(false);
-                _documentStructureToBeDeletedFromTree = 0;
+                SourceFormatBuilderService.DimensionStructureToBeDeletedFromTree = null;
                 await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
                 await SourceFormatBuilderNotifierService.UpdateSourceFormatBuilder().ConfigureAwait(false);
             }
@@ -107,7 +119,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task CancelDeleteDocumentStructureConfirmedAsync()
         {
-            _documentStructureToBeDeletedFromTree = 0;
+            SourceFormatBuilderService.DimensionStructureToBeDeletedFromTree = null;
             await CloseDeleteDocumentStructureFromTreeConfirmModalAsync().ConfigureAwait(false);
         }
 
@@ -200,6 +212,36 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             actualPage = maxPage;
 
             await PopulateUpdateDimensionStructureNodesList().ConfigureAwait(false);
+        }
+
+        private async Task UpdateOrAddDimensionStructureHandlerAsync()
+        {
+            try
+            {
+                await SourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+                        _newDimensionStructure,
+                        DimensionStructureParameter.Guid)
+                   .ConfigureAwait(false);
+                _newDimensionStructure = new DimensionStructure { Guid = Guid.NewGuid() };
+                await CloseNewDimensionStructureToTheTreeModalAsync().ConfigureAwait(false);
+                await SourceFormatBuilderNotifierService.UpdateSourceFormatBuilder().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception: {e.StackTrace} --- {e.Message}");
+            }
+        }
+
+        private async Task CancelAddNewRootDimensionStructureAsync()
+        {
+            _newDimensionStructure = new DimensionStructure { Guid = Guid.NewGuid() };
+            await CloseNewDimensionStructureToTheTreeModalAsync().ConfigureAwait(false);
+        }
+
+        private async Task EditDocumentStructureInTheTreeAsync(DimensionStructure dimensionStructureParameter)
+        {
+            _newDimensionStructure = dimensionStructureParameter;
+            await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
         }
     }
 }

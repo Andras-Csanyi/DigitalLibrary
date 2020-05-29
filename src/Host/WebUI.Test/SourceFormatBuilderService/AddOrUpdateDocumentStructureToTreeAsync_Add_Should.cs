@@ -15,7 +15,7 @@ namespace WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
-    public class AddDocumentStructureToTreeAsync_Should : TestBase
+    public class AddOrUpdateDocumentStructureToTreeAsync_Add_Should : TestBase
     {
         [Fact]
         public async Task AddItem_ToRootDimension()
@@ -57,7 +57,7 @@ namespace WebUI.Test.SourceFormatBuilderService
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.AddDocumentStructureToTreeAsync(200, 101).ConfigureAwait(false);
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(200, 101).ConfigureAwait(false);
 
             // Assert
             sourceFormatBuilderService.SourceFormat.Should().NotBeNull();
@@ -117,10 +117,10 @@ namespace WebUI.Test.SourceFormatBuilderService
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Adding to root level
-            await sourceFormatBuilderService.AddDocumentStructureToTreeAsync(200, 101).ConfigureAwait(false);
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(200, 101).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.AddDocumentStructureToTreeAsync(201, 200).ConfigureAwait(false);
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(201, 200).ConfigureAwait(false);
 
             // Assert
             sourceFormatBuilderService.SourceFormat.Should().NotBeNull();

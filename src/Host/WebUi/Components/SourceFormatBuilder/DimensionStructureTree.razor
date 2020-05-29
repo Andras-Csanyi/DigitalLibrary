@@ -20,13 +20,18 @@
                             Update Node
                         </BSButton>
                         <BSButton Size="Size.Small"
+                                  Color="Color.Primary"
+                                  @onclick="@(async () => await EditDocumentStructureInTheTreeAsync(DimensionStructureParameter).ConfigureAwait(false))">
+                            Edit Node
+                        </BSButton>
+                        <BSButton Size="Size.Small"
                                   Color="Color.Danger"
-                                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
+                                  @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter).ConfigureAwait(false))">
                             Remove Dimension Structure from Tree
                         </BSButton>
                         <BSButton Size="Size.Small"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await AddDocumentStructureToTreeAsync(DimensionStructureParameter.Id, ParentDimensionStructureIdParameter).ConfigureAwait(false))">
+                                  @onclick="@(async () => await AddDocumentStructureToTreeAsync().ConfigureAwait(false))">
                             Insert New Child Dimension Structure
                         </BSButton>
                     </BSCard>
@@ -58,7 +63,7 @@
                         foreach (DimensionStructure dimensionStructure in DimensionStructureParameter.ChildDimensionStructures)
                         {
                             <DimensionStructureTree DimensionStructureParameter="@dimensionStructure"
-                                                    ParentDimensionStructureIdParameter="@ParentDimensionStructureIdParameter">
+                                                    ParentDimensionStructureGuidParameter="@DimensionStructureParameter.Guid">
                             </DimensionStructureTree>
                         }
                     }
@@ -73,7 +78,7 @@
 }
 
 <BSModal @ref="_deleteDocumentStructureBsModalWindow">
-    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter.Id).ConfigureAwait(false))">
+    <BSModalHeader @onclick="@(async () => await DeleteDocumentStructureFromTreeAsync(DimensionStructureParameter).ConfigureAwait(false))">
         <label>Are You Sure?</label>
     </BSModalHeader>
     <BSModalBody>
@@ -200,4 +205,75 @@
         }
 
     </BSModalFooter>
+</BSModal>
+
+<BSModal @ref="_addOrUpdateDimensionStructureForm">
+    <BSForm Model="@_newDimensionStructure"
+            ValidateOnInit="true"
+            OnValidSubmit="@(async () => await UpdateOrAddDimensionStructureHandlerAsync().ConfigureAwait(false))">
+        @* <DataAnnotationsValidator/> *@
+        @* <ValidationSummary/> *@
+        <BSModalHeader
+            @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))">
+            Edit Dimension Structure
+        </BSModalHeader>
+        <BSModalBody>
+            <BSFormGroup>
+                <BSFormLabel>Id</BSFormLabel>
+                <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                              IsDisabled="true"
+                              @bind-Value="@_newDimensionStructure.Id">
+                    @_newDimensionStructure.Id
+                </BSBasicInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Name</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.Text"
+                         @bind-Value="@_newDimensionStructure.Name">
+                    @_newDimensionStructure.Name
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Description</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.TextArea"
+                         @bind-Value="@_newDimensionStructure.Desc">
+                    @_newDimensionStructure.Desc
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Dimension</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.Select"
+                         @bind-Value="@_newDimensionStructure.DimensionId">
+                    @{
+                        foreach (Dimension dimension in _dimensions)
+                        {
+                            <option value="@dimension.Id">
+                                @dimension.Name
+                            </option>
+                        }
+                    }
+                </BSInput>
+            </BSFormGroup>
+            <BSFormGroup>
+                <BSFormLabel>Is Active?</BSFormLabel>
+                <BSInput InputType="BlazorStrap.InputType.Range"
+                         min="0"
+                         max="1"
+                         @bind-Value="@_newDimensionStructure.IsActive">
+                    @_newDimensionStructure.IsActive
+                </BSInput>
+            </BSFormGroup>
+        </BSModalBody>
+        <BSModalFooter>
+            <BSButton ButtonType="BlazorStrap.ButtonType.Button"
+                      @onclick="@(async () => await CancelAddNewRootDimensionStructureAsync().ConfigureAwait(false))"
+                      Color="Color.Secondary">
+                Cancel
+            </BSButton>
+            <BSButton ButtonType="BlazorStrap.ButtonType.Submit"
+                      Color="Color.Primary">
+                Save
+            </BSButton>
+        </BSModalFooter>
+    </BSForm>
 </BSModal>
