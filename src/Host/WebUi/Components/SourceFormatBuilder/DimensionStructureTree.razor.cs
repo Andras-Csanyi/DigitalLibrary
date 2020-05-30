@@ -65,7 +65,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 DimensionStructureParameter.Guid = Guid.NewGuid();
             }
 
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
         }
 
 
@@ -88,7 +89,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task AddDocumentStructureToTreeAsync()
         {
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
             await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
         }
 
@@ -222,6 +224,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 Dimension dimension = _dimensions.FirstOrDefault(p => p.Id == _newDimensionStructure.DimensionId);
                 _newDimensionStructure.Dimension = dimension;
 
+                await SourceFormatBuilderService.AddDimensionToTheAlreadyUsedDimensionsListAsync(dimension)
+                   .ConfigureAwait(false);
+
                 await SourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
                         _newDimensionStructure,
                         DimensionStructureParameter.Guid)
@@ -245,6 +250,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task EditDocumentStructureInTheTreeAsync(DimensionStructure dimensionStructureParameter)
         {
             _newDimensionStructure = dimensionStructureParameter;
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
             await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
         }
     }

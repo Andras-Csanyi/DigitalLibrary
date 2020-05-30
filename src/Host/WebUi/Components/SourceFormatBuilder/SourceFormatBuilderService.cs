@@ -133,9 +133,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
         }
 
-        public async Task<List<Dimension>> GetAvailableDimensionsAsync()
+        public async Task<List<Dimension>> GetAvailableDimensionsWithNulloAsync()
         {
             await PopulateAvailableDimensions().ConfigureAwait(false);
+            Dimension nullo = new Dimension
+            {
+                Name = "-- Select-One --",
+            };
+            _availableDimensions.Insert(0, nullo);
             return _availableDimensions;
         }
 
@@ -153,7 +158,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task PopulateAvailableDimensions()
         {
             _dimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
-            _availableDimensions = _dimensions.Except(_alreadyUsedDimensions).ToList();
+
+            _dimensions = await RemoveAlreadyUsedDimensionsFromDimensionList(_dimensions, _availableDimensions)
+               .ConfigureAwait(false);
+
+            _availableDimensions = _dimensions;
+        }
+
+        private async Task<List<Dimension>> RemoveAlreadyUsedDimensionsFromDimensionList(
+            List<Dimension> dimensions,
+            List<Dimension> availableDimensions)
+        {
+            if (dimensions.Any() || availableDimensions.Any())
+            {
+            }
+
+            return dimensions;
         }
 
         public async Task SetDefaultStateForReplacementOfDimensionStructureInTree()
@@ -540,7 +560,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         Task SetDefaultStateForReplacementOfDimensionStructureInTree();
 
-        Task<List<Dimension>> GetAvailableDimensionsAsync();
+        Task<List<Dimension>> GetAvailableDimensionsWithNulloAsync();
 
         Task AddDimensionToTheAlreadyUsedDimensionsListAsync(Dimension selectedDimension);
 

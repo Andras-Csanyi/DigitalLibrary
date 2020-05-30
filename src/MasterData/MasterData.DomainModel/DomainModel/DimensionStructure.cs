@@ -1,9 +1,11 @@
+using IHasId = MasterData.DomainModel.Interfaces.IHasId;
+
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using System;
     using System.Collections.Generic;
 
-    public class DimensionStructure
+    public class DimensionStructure : IHasId
     {
         public DimensionStructure()
         {

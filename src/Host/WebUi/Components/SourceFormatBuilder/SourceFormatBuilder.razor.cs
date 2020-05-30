@@ -66,7 +66,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
             await PopulateSourceFormatsAsync().ConfigureAwait(false);
             await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
         }
 
         private async Task AddNulloAsFirstElemToSourceFormatList()
@@ -222,7 +223,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _newRootDimensionStructure = new DimensionStructure();
             }
 
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
             await OpenAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
 
