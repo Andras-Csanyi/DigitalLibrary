@@ -65,6 +65,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public bool IsNewSourceFormatButtonDisabled { get; set; } = false;
 
+        private List<Dimension> _dimensions = new List<Dimension>();
+
+        private List<Dimension> _alreadyUsedDimensions = new List<Dimension>();
+
+        private List<Dimension> _availableDimensions = new List<Dimension>();
+
         public async Task UpdateSourceFormatBuilder()
         {
             throw new NotImplementedException();
@@ -122,9 +128,32 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                .ConfigureAwait(false);
         }
 
-        public async Task<List<Dimension>> GetAllDimensions()
+        public async Task<List<Dimension>> GetAllDimensionsFromServer()
         {
             return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+        }
+
+        public async Task<List<Dimension>> GetAvailableDimensionsAsync()
+        {
+            await PopulateAvailableDimensions().ConfigureAwait(false);
+            return _availableDimensions;
+        }
+
+        public async Task AddDimensionToTheAlreadyUsedDimensionsListAsync(Dimension selectedDimension)
+        {
+            Check.IsNotNull(selectedDimension);
+            _alreadyUsedDimensions.Add(selectedDimension);
+        }
+
+        public async Task CleanAlreadyUsedDimensionsListAsync()
+        {
+            _alreadyUsedDimensions.Clear();
+        }
+
+        private async Task PopulateAvailableDimensions()
+        {
+            _dimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
+            _availableDimensions = _dimensions.Except(_alreadyUsedDimensions).ToList();
         }
 
         public async Task SetDefaultStateForReplacementOfDimensionStructureInTree()
@@ -256,6 +285,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _sourceFormat.RootDimensionStructure.Name = dimensionStructure.Name;
                 _sourceFormat.RootDimensionStructure.Desc = dimensionStructure.Desc;
                 _sourceFormat.RootDimensionStructure.DimensionId = dimensionStructure.DimensionId;
+                _sourceFormat.RootDimensionStructure.Dimension = dimensionStructure.Dimension;
                 _sourceFormat.RootDimensionStructure.IsActive = dimensionStructure.IsActive;
                 return;
             }
@@ -291,8 +321,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                        .ConfigureAwait(false);
                 }
             }
-
-            Console.WriteLine($"returned");
         }
 
         private async Task IterateThroughTheTreeForUpdating(DimensionStructure dimensionStructure,
@@ -309,12 +337,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         childDimensionStructure.Name = dimensionStructure.Name;
                         childDimensionStructure.Desc = dimensionStructure.Desc;
                         childDimensionStructure.DimensionId = dimensionStructure.DimensionId;
+                        childDimensionStructure.Dimension = dimensionStructure.Dimension;
                         childDimensionStructure.IsActive = dimensionStructure.IsActive;
-                        Console.WriteLine($"return");
                         return;
                     }
 
-                    Console.WriteLine($"iterate");
                     await IterateThroughTheTreeForUpdating(dimensionStructure,
                             childDimensionStructure.ChildDimensionStructures)
                        .ConfigureAwait(false);
@@ -335,12 +362,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     {
                         return true;
                     }
-                    else
-                    {
-                        await FindDimensionStructureInTreeAsync(dimensionStructure,
-                                structure.ChildDimensionStructures)
-                           .ConfigureAwait(false);
-                    }
+
+                    await FindDimensionStructureInTreeAsync(dimensionStructure,
+                            structure.ChildDimensionStructures)
+                       .ConfigureAwait(false);
                 }
             }
 
@@ -511,8 +536,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
 
-        Task<List<Dimension>> GetAllDimensions();
+        Task<List<Dimension>> GetAllDimensionsFromServer();
 
         Task SetDefaultStateForReplacementOfDimensionStructureInTree();
+
+        Task<List<Dimension>> GetAvailableDimensionsAsync();
+
+        Task AddDimensionToTheAlreadyUsedDimensionsListAsync(Dimension selectedDimension);
+
+        Task CleanAlreadyUsedDimensionsListAsync();
     }
 }

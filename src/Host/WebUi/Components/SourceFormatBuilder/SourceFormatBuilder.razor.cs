@@ -54,36 +54,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private DimensionStructure _newRootDimensionStructure = new DimensionStructure();
 
-        private List<Dimension> _dimensions = new List<Dimension>();
-
         private BSModal _editSourceFormatDetailsModal;
 
         private SourceFormat _newSourceFormatDetails = new SourceFormat();
+
+        private List<Dimension> _dimensions = new List<Dimension>();
 
         protected override async Task OnInitializedAsync()
         {
             SourceFormatBuilderNotifierService.Notify += OnNotify;
 
-            await PopulateSourceFormats().ConfigureAwait(false);
+            await PopulateSourceFormatsAsync().ConfigureAwait(false);
             await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
-            await PopulateDimensionsListAsync().ConfigureAwait(false);
-            await AddNulloAsFirstElemToDimensionListAsync().ConfigureAwait(false);
-        }
-
-        private async Task AddNulloAsFirstElemToDimensionListAsync()
-        {
-            Dimension nullo = new Dimension
-            {
-                Id = 0,
-                Name = "--Select One--",
-            };
-            _dimensions.Insert(0, nullo);
-        }
-
-        private async Task PopulateDimensionsListAsync()
-        {
-            _dimensions = await SourceFormatBuilderService.GetAllDimensions()
-               .ConfigureAwait(false);
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
         }
 
         private async Task AddNulloAsFirstElemToSourceFormatList()
@@ -96,8 +79,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _sourceFormats.Insert(0, nullo);
         }
 
-
-        private async Task PopulateSourceFormats()
+        private async Task PopulateSourceFormatsAsync()
         {
             _sourceFormats = await SourceFormatBuilderService.GetSourceFormatsAsync().ConfigureAwait(false);
         }
@@ -240,6 +222,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _newRootDimensionStructure = new DimensionStructure();
             }
 
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
             await OpenAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
 
@@ -255,6 +238,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _newRootDimensionStructure.Guid = Guid.NewGuid();
 
                 SourceFormatBuilderService.SourceFormat.RootDimensionStructure = _newRootDimensionStructure;
+                SourceFormatBuilderService.SourceFormat.RootDimensionStructure.DimensionId =
+                    _newRootDimensionStructure.DimensionId;
+
+                Dimension selectedDimension = _dimensions
+                   .FirstOrDefault(p => p.Id == _newRootDimensionStructure.DimensionId);
+                await SourceFormatBuilderService.AddDimensionToTheAlreadyUsedDimensionsListAsync(selectedDimension)
+                   .ConfigureAwait(false);
+
+                SourceFormatBuilderService.SourceFormat.RootDimensionStructure.Dimension = selectedDimension;
             }
             catch (Exception e)
             {

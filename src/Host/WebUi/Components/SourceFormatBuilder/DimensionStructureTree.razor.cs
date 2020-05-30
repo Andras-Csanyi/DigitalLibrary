@@ -56,7 +56,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private DimensionStructure _newDimensionStructure = new DimensionStructure { Guid = Guid.NewGuid() };
 
-        private IEnumerable<Dimension> _dimensions = new List<Dimension>();
+        private List<Dimension> _dimensions = new List<Dimension>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -64,7 +64,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 DimensionStructureParameter.Guid = Guid.NewGuid();
             }
+
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
         }
+
 
         public async Task DeleteDocumentStructureFromTreeAsync(DimensionStructure documentStructure)
         {
@@ -85,10 +88,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task AddDocumentStructureToTreeAsync()
         {
+            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsAsync().ConfigureAwait(false);
             await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
-
-            List<Dimension> _dimensions = await MasterDataHttpClient.GetDimensionsAsync()
-               .ConfigureAwait(false);
         }
 
         private async Task OpenNewDimensionStructureFormModalAsync()
@@ -218,6 +219,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             try
             {
+                Dimension dimension = _dimensions.FirstOrDefault(p => p.Id == _newDimensionStructure.DimensionId);
+                _newDimensionStructure.Dimension = dimension;
+
                 await SourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
                         _newDimensionStructure,
                         DimensionStructureParameter.Guid)
