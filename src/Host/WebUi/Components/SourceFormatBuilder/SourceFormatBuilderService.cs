@@ -9,12 +9,79 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
 
-    using Services;
+    public interface ISourceFormatBuilderService
+    {
+        Task OnUpdate(long sourceFormatId);
 
-    using Utils.Guards;
+        Task DeleteDocumentStructureFromTreeAsync();
+
+        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId);
+
+        Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
+
+        Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
+
+        Task AddDimensionStructureRootAsync(long dimensionStructureId);
+
+        SourceFormat SourceFormat { get; set; }
+
+        bool IsSourceFormatDropDownlistDisabled { get; set; }
+
+        bool IsNewSourceFormatButtonDisabled { get; set; }
+
+        bool IsLoadSourceFormatsButtonDisabled { get; set; }
+
+        bool IsSourceFormatSaveButtonDisabled { get; set; }
+
+        bool IsSourceFormatCancelButtonDisabled { get; set; }
+
+        bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+
+        IMasterDataValidators MasterDataValidators { get; }
+
+        long LoadedSourceFormatId { get; set; }
+
+        DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
+
+        DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
+
+        DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
+
+        Task AddDimensionStructureAsync(
+            long parentDimensionStructureId,
+            DimensionStructure dimensionStructure);
+
+        Task AddOrUpdateDocumentStructureToTreeAsync(
+            DimensionStructure dimensionStructure,
+            Guid parentDimensionStructureGuid);
+
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
+
+        Task UpdateSourceFormatBuilder();
+
+        Task ReplaceDimensionStructureInTheTree();
+
+        Task<List<SourceFormat>> GetSourceFormatsAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
+
+        Task<List<Dimension>> GetAllDimensionsFromServer();
+
+        Task SetDefaultStateForReplacementOfDimensionStructureInTree();
+
+        Task<List<Dimension>> GetDimensionsWithNulloAsync();
+
+        Task<bool> FindDimensionStructureInTreeAsync(
+            DimensionStructure dimensionStructure,
+            ICollection<DimensionStructure> dimensionStructures);
+    }
 
     public class SourceFormatBuilderService : ISourceFormatBuilderService
     {
@@ -70,6 +137,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private List<Dimension> _alreadyUsedDimensions = new List<Dimension>();
 
         private List<Dimension> _availableDimensions = new List<Dimension>();
+
+        private IDomainEntityHelperService _domainEntityHelperService;
+
+        private IDimensionDomainEntityHelperService _dimensionDomainEntityHelperService;
 
         public async Task UpdateSourceFormatBuilder()
         {
@@ -133,47 +204,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
         }
 
-        public async Task<List<Dimension>> GetAvailableDimensionsWithNulloAsync()
+        public async Task<List<Dimension>> GetDimensionsWithNulloAsync()
         {
-            await PopulateAvailableDimensions().ConfigureAwait(false);
-            Dimension nullo = new Dimension
-            {
-                Name = "-- Select-One --",
-            };
-            _availableDimensions.Insert(0, nullo);
-            return _availableDimensions;
-        }
-
-        public async Task AddDimensionToTheAlreadyUsedDimensionsListAsync(Dimension selectedDimension)
-        {
-            Check.IsNotNull(selectedDimension);
-            _alreadyUsedDimensions.Add(selectedDimension);
-        }
-
-        public async Task CleanAlreadyUsedDimensionsListAsync()
-        {
-            _alreadyUsedDimensions.Clear();
-        }
-
-        private async Task PopulateAvailableDimensions()
-        {
-            _dimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
-
-            _dimensions = await RemoveAlreadyUsedDimensionsFromDimensionList(_dimensions, _availableDimensions)
+            List<Dimension> availableDimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
+            List<Dimension> availableDimensionsWithNullo = await _domainEntityHelperService
+               .AddNulloToListAsFirstItem(availableDimensions)
                .ConfigureAwait(false);
-
-            _availableDimensions = _dimensions;
-        }
-
-        private async Task<List<Dimension>> RemoveAlreadyUsedDimensionsFromDimensionList(
-            List<Dimension> dimensions,
-            List<Dimension> availableDimensions)
-        {
-            if (dimensions.Any() || availableDimensions.Any())
-            {
-            }
-
-            return dimensions;
+            return availableDimensionsWithNullo;
         }
 
         public async Task SetDefaultStateForReplacementOfDimensionStructureInTree()
@@ -343,8 +380,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
-        private async Task IterateThroughTheTreeForUpdating(DimensionStructure dimensionStructure,
-                                                            ICollection<DimensionStructure> childDimensionStructures)
+        private async Task IterateThroughTheTreeForUpdating(
+            DimensionStructure dimensionStructure,
+            ICollection<DimensionStructure> childDimensionStructures)
         {
             Check.IsNotNull(dimensionStructure);
 
@@ -362,15 +400,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         return;
                     }
 
-                    await IterateThroughTheTreeForUpdating(dimensionStructure,
+                    await IterateThroughTheTreeForUpdating(
+                            dimensionStructure,
                             childDimensionStructure.ChildDimensionStructures)
                        .ConfigureAwait(false);
                 }
             }
         }
 
-        private async Task<bool> FindDimensionStructureInTreeAsync(DimensionStructure dimensionStructure,
-                                                                   ICollection<DimensionStructure> dimensionStructures)
+        public async Task<bool> FindDimensionStructureInTreeAsync(
+            DimensionStructure dimensionStructure,
+            ICollection<DimensionStructure> dimensionStructures)
         {
             Check.IsNotNull(dimensionStructure);
 
@@ -383,9 +423,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         return true;
                     }
 
-                    await FindDimensionStructureInTreeAsync(dimensionStructure,
-                            structure.ChildDimensionStructures)
-                       .ConfigureAwait(false);
+                    if (structure.ChildDimensionStructures.Any())
+                    {
+                        await FindDimensionStructureInTreeAsync(
+                                dimensionStructure,
+                                structure.ChildDimensionStructures)
+                           .ConfigureAwait(false);
+                    }
                 }
             }
 
@@ -496,74 +540,5 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             throw new NotImplementedException();
         }
-    }
-
-    public interface ISourceFormatBuilderService
-    {
-        Task OnUpdate(long sourceFormatId);
-
-        Task DeleteDocumentStructureFromTreeAsync();
-
-        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId);
-
-        Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
-
-        Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
-
-        Task AddDimensionStructureRootAsync(long dimensionStructureId);
-
-        SourceFormat SourceFormat { get; set; }
-
-        bool IsSourceFormatDropDownlistDisabled { get; set; }
-
-        bool IsNewSourceFormatButtonDisabled { get; set; }
-
-        bool IsLoadSourceFormatsButtonDisabled { get; set; }
-
-        bool IsSourceFormatSaveButtonDisabled { get; set; }
-
-        bool IsSourceFormatCancelButtonDisabled { get; set; }
-
-        bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
-
-        IMasterDataValidators MasterDataValidators { get; }
-
-        long LoadedSourceFormatId { get; set; }
-
-        DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
-
-        DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
-
-        DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
-
-        Task AddDimensionStructureAsync(
-            long parentDimensionStructureId,
-            DimensionStructure dimensionStructure);
-
-        Task AddOrUpdateDocumentStructureToTreeAsync(
-            DimensionStructure dimensionStructure,
-            Guid parentDimensionStructureGuid);
-
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
-
-        Task UpdateSourceFormatBuilder();
-
-        Task ReplaceDimensionStructureInTheTree();
-
-        Task<List<SourceFormat>> GetSourceFormatsAsync();
-
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
-
-        Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
-
-        Task<List<Dimension>> GetAllDimensionsFromServer();
-
-        Task SetDefaultStateForReplacementOfDimensionStructureInTree();
-
-        Task<List<Dimension>> GetAvailableDimensionsWithNulloAsync();
-
-        Task AddDimensionToTheAlreadyUsedDimensionsListAsync(Dimension selectedDimension);
-
-        Task CleanAlreadyUsedDimensionsListAsync();
     }
 }

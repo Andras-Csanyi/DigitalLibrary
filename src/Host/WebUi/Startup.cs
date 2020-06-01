@@ -57,6 +57,8 @@ namespace DigitalLibrary.Ui.WebUi
             // Services
             services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();
             services.AddSingleton<ISourceFormatBuilderService, SourceFormatBuilderService>();
+            services.AddSingleton<IDimensionDomainEntityHelperService, DimensionDomainEntityHelperService>();
+            services.AddSingleton<IDomainEntityHelperService, DomainEntityHelperService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();

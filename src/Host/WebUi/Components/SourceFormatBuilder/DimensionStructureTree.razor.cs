@@ -14,7 +14,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     using Microsoft.AspNetCore.Components;
 
-    using Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.DiLibHttpClient;
 
     public partial class DimensionStructureTree
     {
@@ -65,7 +65,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 DimensionStructureParameter.Guid = Guid.NewGuid();
             }
 
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+            _dimensions = await SourceFormatBuilderService.GetDimensionsWithNulloAsync()
                .ConfigureAwait(false);
         }
 
@@ -89,7 +89,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task AddDocumentStructureToTreeAsync()
         {
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+            _dimensions = await SourceFormatBuilderService.GetDimensionsWithNulloAsync()
                .ConfigureAwait(false);
             await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
         }
@@ -224,9 +224,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 Dimension dimension = _dimensions.FirstOrDefault(p => p.Id == _newDimensionStructure.DimensionId);
                 _newDimensionStructure.Dimension = dimension;
 
-                await SourceFormatBuilderService.AddDimensionToTheAlreadyUsedDimensionsListAsync(dimension)
-                   .ConfigureAwait(false);
-
                 await SourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
                         _newDimensionStructure,
                         DimensionStructureParameter.Guid)
@@ -250,7 +247,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task EditDocumentStructureInTheTreeAsync(DimensionStructure dimensionStructureParameter)
         {
             _newDimensionStructure = dimensionStructureParameter;
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+            _dimensions = await SourceFormatBuilderService.GetDimensionsWithNulloAsync()
                .ConfigureAwait(false);
             await OpenNewDimensionStructureFormModalAsync().ConfigureAwait(false);
         }

@@ -24,6 +24,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         [Inject]
         public SourceFormatBuilderNotifierService SourceFormatBuilderNotifierService { get; set; }
 
+        [Inject]
+        public IDomainEntityHelperService DomainEntityHelperService { get; set; }
+
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         private BSModal _addNewSourceFormatModal;
@@ -65,19 +68,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             SourceFormatBuilderNotifierService.Notify += OnNotify;
 
             await PopulateSourceFormatsAsync().ConfigureAwait(false);
-            await AddNulloAsFirstElemToSourceFormatList().ConfigureAwait(false);
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+            await DomainEntityHelperService.AddNulloToListAsFirstItem(_sourceFormats)
                .ConfigureAwait(false);
-        }
-
-        private async Task AddNulloAsFirstElemToSourceFormatList()
-        {
-            SourceFormat nullo = new SourceFormat
-            {
-                Id = 0,
-                Name = "--Select One--",
-            };
-            _sourceFormats.Insert(0, nullo);
+            _dimensions = await SourceFormatBuilderService.GetDimensionsWithNulloAsync()
+               .ConfigureAwait(false);
         }
 
         private async Task PopulateSourceFormatsAsync()
@@ -223,7 +217,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 _newRootDimensionStructure = new DimensionStructure();
             }
 
-            _dimensions = await SourceFormatBuilderService.GetAvailableDimensionsWithNulloAsync()
+            _dimensions = await SourceFormatBuilderService.GetDimensionsWithNulloAsync()
                .ConfigureAwait(false);
             await OpenAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
@@ -245,8 +239,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
                 Dimension selectedDimension = _dimensions
                    .FirstOrDefault(p => p.Id == _newRootDimensionStructure.DimensionId);
-                await SourceFormatBuilderService.AddDimensionToTheAlreadyUsedDimensionsListAsync(selectedDimension)
-                   .ConfigureAwait(false);
 
                 SourceFormatBuilderService.SourceFormat.RootDimensionStructure.Dimension = selectedDimension;
             }

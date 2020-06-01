@@ -1,4 +1,4 @@
-namespace MasterData.DomainModel.Interfaces
+namespace DigitalLibrary.MasterData.DomainModel.Interfaces
 {
     public interface IHasId
     {

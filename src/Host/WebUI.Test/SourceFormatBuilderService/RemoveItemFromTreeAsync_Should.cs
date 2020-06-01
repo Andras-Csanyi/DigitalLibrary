@@ -27,11 +27,13 @@ namespace WebUI.Test.SourceFormatBuilderService
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
+            builderService.DimensionStructureToBeDeletedFromTree = null;
 
             // Act
             Func<Task> action = async () =>
             {
-                await builderService.DeleteDocumentStructureFromTreeAsync(0).ConfigureAwait(false);
+                await builderService.DeleteDocumentStructureFromTreeAsync()
+                   .ConfigureAwait(false);
             };
 
             // Assert
@@ -76,9 +78,10 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelFirst;
 
             // Act
-            await builderService.DeleteDocumentStructureFromTreeAsync(101).ConfigureAwait(false);
+            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.Should().NotBeNull();
@@ -136,9 +139,10 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelFirst;
 
             // Act
-            await builderService.DeleteDocumentStructureFromTreeAsync(101).ConfigureAwait(false);
+            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.Should().NotBeNull();
@@ -222,9 +226,10 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelThird;
 
             // Act
-            await builderService.DeleteDocumentStructureFromTreeAsync(103).ConfigureAwait(false);
+            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.Should().NotBeNull();
@@ -327,9 +332,10 @@ namespace WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelFirst_secondLevelSecond;
 
             // Act
-            await builderService.DeleteDocumentStructureFromTreeAsync(1202).ConfigureAwait(false);
+            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
 
             // Assert
             builderService.SourceFormat.Should().NotBeNull();
