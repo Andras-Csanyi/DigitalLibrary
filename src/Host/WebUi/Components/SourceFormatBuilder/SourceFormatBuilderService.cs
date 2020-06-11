@@ -87,7 +87,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     {
         private IMasterDataHttpClient _masterDataHttpClient;
 
-        private bool foundDuringDimensionStructureReplaceInTheTree = false;
+        private bool _foundDuringDimensionStructureReplaceInTheTree;
 
         public SourceFormatBuilderService(
             IMasterDataHttpClient masterDataHttpClient,
@@ -162,7 +162,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
-                    foundDuringDimensionStructureReplaceInTheTree = false;
+                    _foundDuringDimensionStructureReplaceInTheTree = false;
 
                     await IterateThroughTheTreeForReplacing(
                             UpdateNodeOldDimensionStructure,
@@ -170,7 +170,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                             SourceFormat.RootDimensionStructure)
                        .ConfigureAwait(false);
 
-                    if (foundDuringDimensionStructureReplaceInTheTree == false)
+                    if (_foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
                                      $"in the tree.";
@@ -232,7 +232,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 for (int i = 0; i < dimensionStructureTree.ChildDimensionStructures.Count; i++)
                 {
-                    if (foundDuringDimensionStructureReplaceInTheTree)
+                    if (_foundDuringDimensionStructureReplaceInTheTree)
                     {
                         break;
                     }
@@ -245,7 +245,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         dimensionStructureTree.ChildDimensionStructures.Remove(
                             dimensionStructureTree.ChildDimensionStructures.ElementAt(i));
                         dimensionStructureTree.ChildDimensionStructures.Add(newDimensionStructureFromServer);
-                        foundDuringDimensionStructureReplaceInTheTree = true;
+                        _foundDuringDimensionStructureReplaceInTheTree = true;
                     }
                     else
                     {

@@ -21,7 +21,7 @@ namespace WebUI.Test.SourceFormatBuilderService
     public class RemoveItemFromTreeAsync_Should : TestBase
     {
         [Fact]
-        public async Task RemoveRootDimensionStructure()
+        public async Task ThrowException_WhenNoDimensionToBeDeletedSetup()
         {
             // Arrange
             ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
@@ -38,6 +38,21 @@ namespace WebUI.Test.SourceFormatBuilderService
 
             // Assert
             action.Should().ThrowExactly<GuardException>();
+        }
+
+        [Fact]
+        public async Task Remove_RootDimensionStructure()
+        {
+            // Arrange
+            DimensionStructure rootDimensionStructure = new DimensionStructure
+            {
+                Id = 100,
+                Guid = Guid.NewGuid(),
+                Name = "name",
+                Desc = "Desc",
+                ChildDimensionStructures = new List<DimensionStructure>(),
+            };
+            SourceFormat
         }
 
         [Fact]
