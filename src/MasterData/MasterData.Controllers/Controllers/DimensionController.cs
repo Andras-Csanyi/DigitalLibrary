@@ -138,5 +138,23 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpPost]
+        [Route(MasterDataApi.Dimensions.V1.GetDimensionById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Dimension>> GetDimensionById(long dimensionId)
+        {
+            try
+            {
+                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

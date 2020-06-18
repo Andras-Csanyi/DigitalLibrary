@@ -81,6 +81,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         Task<bool> FindDimensionStructureInTreeAsync(
             DimensionStructure dimensionStructure,
             ICollection<DimensionStructure> dimensionStructures);
+
+        Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
     }
 
     public class SourceFormatBuilderService : ISourceFormatBuilderService
@@ -141,6 +143,52 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private IDomainEntityHelperService _domainEntityHelperService;
 
         private IDimensionDomainEntityHelperService _dimensionDomainEntityHelperService;
+
+        private async Task<List<Dimension>> GetDimensions()
+        {
+            return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Saves the new RootDimensionStructure for DocumentStructure. Saving means it setups the properties
+        /// of the service accordingly.
+        /// </summary>
+        /// <param name="newRootDimensionStructure">The new RootDimensionStructure</param>
+        /// <returns>Task</returns>
+        /// <exception cref="SourceFormatBuilderServiceException">General exception wrapping other exception.</exception>
+        public async Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure)
+        {
+            try
+            {
+                Check.IsNotNull(newRootDimensionStructure);
+
+                await MasterDataValidators.DimensionStructureValidator
+                   .ValidateAndThrowAsync(
+                        newRootDimensionStructure,
+                        ruleSet: DimensionStructureValidatorRulesets.Add)
+                   .ConfigureAwait(false);
+                newRootDimensionStructure.Guid = Guid.NewGuid();
+
+                SourceFormat.RootDimensionStructure = newRootDimensionStructure;
+
+                if (newRootDimensionStructure.DimensionId != null)
+                {
+                    SourceFormat.RootDimensionStructure.DimensionId =
+                        newRootDimensionStructure.DimensionId;
+
+                    long id = newRootDimensionStructure.DimensionId ?? default(int);
+                    Dimension selectedDimension = await _masterDataHttpClient.GetDimensionByIdAsync(id)
+                       .ConfigureAwait(false);
+
+                    SourceFormat.RootDimensionStructure.Dimension = selectedDimension;
+                }
+            }
+            catch (Exception e)
+            {
+                string msg = $"Something went wrong during saving {newRootDimensionStructure.Name}";
+                throw new SourceFormatBuilderServiceException(msg, e);
+            }
+        }
 
         public async Task UpdateSourceFormatBuilder()
         {

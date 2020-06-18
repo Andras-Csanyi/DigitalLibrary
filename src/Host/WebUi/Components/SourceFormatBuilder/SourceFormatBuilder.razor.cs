@@ -226,29 +226,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             try
             {
-                await SourceFormatBuilderService.MasterDataValidators.DimensionStructureValidator
-                   .ValidateAndThrowAsync(
-                        _newRootDimensionStructure,
-                        ruleSet: DimensionStructureValidatorRulesets.Add)
+                await SourceFormatBuilderService.SaveNewRootDimensionStructureAsync(
+                        _newRootDimensionStructure)
                    .ConfigureAwait(false);
-                _newRootDimensionStructure.Guid = Guid.NewGuid();
 
-                SourceFormatBuilderService.SourceFormat.RootDimensionStructure = _newRootDimensionStructure;
-                SourceFormatBuilderService.SourceFormat.RootDimensionStructure.DimensionId =
-                    _newRootDimensionStructure.DimensionId;
-
-                Dimension selectedDimension = _dimensions
-                   .FirstOrDefault(p => p.Id == _newRootDimensionStructure.DimensionId);
-
-                SourceFormatBuilderService.SourceFormat.RootDimensionStructure.Dimension = selectedDimension;
+                await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
                 string msg = $"{nameof(SaveNewRootDimensionStructureHandlerAsync)}";
                 Console.WriteLine(msg);
             }
-
-            await CloseAddNewRootDimensionStructureModalAsync().ConfigureAwait(false);
         }
 
         private async Task OpenAddNewRootDimensionStructureModalAsync()
