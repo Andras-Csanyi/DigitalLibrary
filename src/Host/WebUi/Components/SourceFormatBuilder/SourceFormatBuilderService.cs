@@ -156,7 +156,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// <param name="newRootDimensionStructure">The new RootDimensionStructure</param>
         /// <returns>Task</returns>
         /// <exception cref="SourceFormatBuilderServiceException">General exception wrapping other exception.</exception>
-        public async Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure)
+        public async Task SaveNewRootDimensionStructureHandlerAsync(
+            DimensionStructure newRootDimensionStructure)
         {
             try
             {

@@ -1,6 +1,9 @@
 namespace WebUI.Test.SourceFormatBuilderService
 {
+    using System;
     using System.Threading.Tasks;
+
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
 
     using Xunit;
 
@@ -9,6 +12,18 @@ namespace WebUI.Test.SourceFormatBuilderService
         [Fact]
         public async Task ThrowException_WhenInputIsNull()
         {
+            // Arrange
+            SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object);
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await sourceFormatBuilderService.SaveNewRootDimensionStructureHandlerAsync(
+                        null)
+                   .ConfigureAwait(false);
+            };
         }
 
         [Fact]
