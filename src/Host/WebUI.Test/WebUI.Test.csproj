@@ -4,18 +4,30 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>DigitalLibrary.Ui.WebUI.Test</AssemblyName>
+
+        <RootNamespace>DigitalLibrary.Ui.WebUI.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1"/>
-        <PackageReference Include="Moq" Version="4.14.1"/>
+        <PackageReference Include="Moq" Version="4.14.3"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1"/>
-        <PackageReference Include="coverlet.collector" Version="1.2.1"/>
+        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="1.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\MasterData\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
         <ProjectReference Include="..\WebUi\WebUi.csproj"/>
     </ItemGroup>

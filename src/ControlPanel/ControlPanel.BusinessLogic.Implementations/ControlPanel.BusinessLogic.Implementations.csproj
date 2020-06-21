@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>

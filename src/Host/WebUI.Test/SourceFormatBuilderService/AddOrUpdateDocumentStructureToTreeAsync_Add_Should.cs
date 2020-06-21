@@ -1,18 +1,6 @@
-namespace WebUI.Test.SourceFormatBuilderService
+namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-
-    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
-    using DigitalLibrary.Ui.WebUi.Services;
-
-    using FluentAssertions;
-
-    using Moq;
 
     using Xunit;
 

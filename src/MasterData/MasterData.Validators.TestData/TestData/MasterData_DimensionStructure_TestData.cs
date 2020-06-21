@@ -3,7 +3,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     [ExcludeFromCodeCoverage]
     public static class MasterData_DimensionStructure_TestData

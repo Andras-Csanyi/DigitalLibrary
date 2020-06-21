@@ -1,21 +1,6 @@
-namespace WebUI.Test.SourceFormatBuilderService
+namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Services;
-    using DigitalLibrary.Utils.DiLibHttpClient;
-    using DigitalLibrary.Utils.Guards;
-
-    using FluentAssertions;
-
-    using Moq;
-
-    using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class Ctor_Validation_Should : TestBase
