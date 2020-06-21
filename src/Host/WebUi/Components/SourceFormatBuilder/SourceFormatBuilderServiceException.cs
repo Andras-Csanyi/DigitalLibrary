@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Ui.WebUi.Services
+namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -11,8 +11,8 @@ namespace DigitalLibrary.Ui.WebUi.Services
         {
         }
 
-        protected SourceFormatBuilderServiceException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected SourceFormatBuilderServiceException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 

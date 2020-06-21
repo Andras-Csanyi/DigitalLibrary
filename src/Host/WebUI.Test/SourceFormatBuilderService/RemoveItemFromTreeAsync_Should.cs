@@ -52,7 +52,6 @@ namespace WebUI.Test.SourceFormatBuilderService
                 Desc = "Desc",
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
-            SourceFormat
         }
 
         [Fact]

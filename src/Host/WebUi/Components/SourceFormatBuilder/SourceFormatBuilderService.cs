@@ -9,12 +9,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
-
-    using Services;
-
-    using Utils.Guards;
 
     public interface ISourceFormatBuilderService
     {
@@ -368,6 +366,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         newRootDimensionStructure,
                         ruleSet: DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
+                // ReSharper disable once CA1062
                 newRootDimensionStructure.Guid = Guid.NewGuid();
 
                 SourceFormat.RootDimensionStructure = newRootDimensionStructure;
@@ -386,7 +385,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
             catch (Exception e)
             {
-                string msg = $"Something went wrong during saving {newRootDimensionStructure.Name}";
+                string msg = string.Empty;
+                if (newRootDimensionStructure != null)
+                {
+                    if (string.IsNullOrEmpty(newRootDimensionStructure.Name))
+                    {
+                        msg = $"Something went wrong during saving " +
+                              $"{newRootDimensionStructure.Name}";
+                    }
+                }
+                else
+                {
+                    msg = "Null input";
+                }
+
                 throw new SourceFormatBuilderServiceException(msg, e);
             }
         }

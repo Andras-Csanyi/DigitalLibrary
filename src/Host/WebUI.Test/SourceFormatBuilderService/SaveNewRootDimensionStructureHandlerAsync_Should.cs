@@ -4,6 +4,10 @@ namespace WebUI.Test.SourceFormatBuilderService
     using System.Threading.Tasks;
 
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
+
+    using FluentAssertions;
 
     using Xunit;
 
@@ -24,6 +28,9 @@ namespace WebUI.Test.SourceFormatBuilderService
                         null)
                    .ConfigureAwait(false);
             };
+
+            // Assert
+            action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
         }
 
         [Fact]
