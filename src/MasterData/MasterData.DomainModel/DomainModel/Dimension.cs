@@ -9,6 +9,10 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     public class Dimension : IHasId, IHasName
     {
+        public Dimension()
+        {
+        }
+
         public long Id { get; set; }
 
         public int IsActive { get; set; }

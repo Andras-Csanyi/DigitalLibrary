@@ -15,6 +15,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+
+    // ReSharper disable once CA1707
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
     {
         [Fact]

@@ -34,7 +34,10 @@ namespace DigitalLibrary.Ui.WebUi.Services
             {
                 Name = "-- Select-One --",
             };
+
+            // ReSharper disable once CA1062
             list.Insert(0, nullo);
+
             return list;
         }
     }
