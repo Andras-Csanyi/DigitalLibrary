@@ -367,6 +367,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         ruleSet: DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
 
+                if (newRootDimensionStructure.Dimension != null)
+                {
+                    await MasterDataValidators.DimensionValidator.ValidateAndThrowAsync(
+                            newRootDimensionStructure.Dimension,
+                            ruleSet: ValidatorRulesets.UpdateDimension)
+                       .ConfigureAwait(false);
+                }
+
                 // ReSharper disable once CA1062
                 newRootDimensionStructure.Guid = Guid.NewGuid();
 
