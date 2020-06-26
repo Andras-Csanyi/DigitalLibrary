@@ -366,6 +366,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         newRootDimensionStructure,
                         ruleSet: DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
+
                 // ReSharper disable once CA1062
                 newRootDimensionStructure.Guid = Guid.NewGuid();
 
@@ -373,8 +374,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
                 if (newRootDimensionStructure.DimensionId != null)
                 {
-                    SourceFormat.RootDimensionStructure.DimensionId =
-                        newRootDimensionStructure.DimensionId;
+                    SourceFormat.RootDimensionStructure.DimensionId = newRootDimensionStructure.DimensionId;
 
                     long id = newRootDimensionStructure.DimensionId ?? default(int);
                     Dimension selectedDimension = await _masterDataHttpClient.GetDimensionByIdAsync(id)
