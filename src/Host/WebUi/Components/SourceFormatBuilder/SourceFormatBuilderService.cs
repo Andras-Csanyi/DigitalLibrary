@@ -105,13 +105,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public SourceFormatBuilderService(
             IMasterDataHttpClient masterDataHttpClient,
-            IMasterDataValidators masterDataValidators)
+            IMasterDataValidators masterDataValidators,
+            IDomainEntityHelperService domainEntityHelperService)
         {
             Check.IsNotNull(masterDataHttpClient);
             Check.IsNotNull(masterDataValidators);
+            Check.IsNotNull(domainEntityHelperService);
 
             _masterDataHttpClient = masterDataHttpClient;
             MasterDataValidators = masterDataValidators;
+            _domainEntityHelperService = domainEntityHelperService;
         }
 
         public async Task AddDimensionStructureAsync(
@@ -268,11 +271,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         public async Task<List<Dimension>> GetDimensionsWithNulloAsync()
         {
-            List<Dimension> availableDimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
-            List<Dimension> availableDimensionsWithNullo = await _domainEntityHelperService
-               .AddNulloToListAsFirstItem(availableDimensions)
-               .ConfigureAwait(false);
-            return availableDimensionsWithNullo;
+            try
+            {
+                List<Dimension> availableDimensions = await GetAllDimensionsFromServer().ConfigureAwait(false);
+                List<Dimension> availableDimensionsWithNullo = await _domainEntityHelperService
+                   .AddNulloToListAsFirstItem(availableDimensions)
+                   .ConfigureAwait(false);
+                return availableDimensionsWithNullo;
+            }
+            catch (Exception e)
+            {
+                string msg = "source format builder";
+                throw new SourceFormatBuilderServiceException(msg, e);
+            }
         }
 
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
