@@ -13,6 +13,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <returns>HttpResponseMessage with Status 200 and content where type is T.</returns>
         Task<T> PostAsync<T>(T payload, string url) where T : class;
 
+        Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url);
+
         /// <summary>
         ///     It sends the payload to url using DELETE http verb.
         /// </summary>

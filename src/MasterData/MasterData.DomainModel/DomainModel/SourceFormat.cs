@@ -1,6 +1,11 @@
+using IHasId = DigitalLibrary.MasterData.DomainModel.Interfaces.IHasId;
+using IHasName = DigitalLibrary.MasterData.DomainModel.Interfaces.IHasName;
+
 namespace DigitalLibrary.MasterData.DomainModel
 {
-    public class SourceFormat
+    using Interfaces;
+
+    public class SourceFormat : IHasId, IHasName
     {
         public long Id { get; set; }
 

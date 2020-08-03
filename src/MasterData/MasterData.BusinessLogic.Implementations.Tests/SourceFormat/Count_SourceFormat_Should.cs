@@ -7,6 +7,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using FluentAssertions;
 
+    using Utils.ControlPanel.DataSample.MasterData;
+
     using Xunit;
 
     [ExcludeFromCodeCoverage]
@@ -45,8 +47,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Act
             long count = await masterDataBusinessLogic.CountSourceFormatsAsync().ConfigureAwait(false);
 
-            // Arrange
-            count.Should().Be(2);
+            // Act
+            int expectedAmount = MasterDataDataSample.GetSourceFormatAmount() + 2;
+            count.Should().Be(expectedAmount);
         }
 
         [Fact]
@@ -59,7 +62,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ConfigureAwait(false);
 
             // Assert
-            count.Should().Be(0);
+            int expectedAmount = MasterDataDataSample.GetSourceFormatAmount();
+            count.Should().Be(expectedAmount);
         }
     }
 }

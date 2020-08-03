@@ -4,6 +4,8 @@ namespace DigitalLibrary.Ui.WebUi
 
     using BlazorStrap;
 
+    using Components.SourceFormatBuilder;
+
     using ControlPanel.WebApi.Client.Menu;
 
     using MasterData.Validators;
@@ -14,6 +16,10 @@ namespace DigitalLibrary.Ui.WebUi
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using Notifiers;
+
+    using Services;
 
     using Utils.DiLibHttpClient;
 
@@ -48,12 +54,24 @@ namespace DigitalLibrary.Ui.WebUi
             });
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
 
+            // Services
+            services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();
+            services.AddSingleton<ISourceFormatBuilderService, SourceFormatBuilderService>();
+            services.AddSingleton<IDimensionDomainEntityHelperService, DimensionDomainEntityHelperService>();
+            services.AddSingleton<IDomainEntityHelperService, DomainEntityHelperService>();
+
+            // Notifiers
+            services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
+            services.AddSingleton<SourceFormatBuilderNotifierService>();
+
             // validators
             services.AddTransient<DimensionStructureValidator>();
             services.AddTransient<DimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
+            services.AddTransient<DimensionStructureDimensionStructureValidator>();
+            services.AddTransient<DimensionStructureQueryObjectValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

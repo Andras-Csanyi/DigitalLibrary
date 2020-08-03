@@ -16,5 +16,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         Task DeleteDimensionAsync(Dimension dimension);
 
         Task<Dimension> UpdateDimensionAsync(Dimension dimension);
+
+        Task<Dimension> GetDimensionByIdAsync(long id);
     }
 }

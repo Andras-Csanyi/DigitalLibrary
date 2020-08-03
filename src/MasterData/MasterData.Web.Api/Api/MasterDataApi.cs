@@ -20,6 +20,10 @@
                 public const string Delete = "v1/Delete";
 
                 public const string GetAll = "v1/GetAll";
+
+                public const string GetById = "v1/GetById";
+
+                public const string GetByIdWithFullDimensionStructureTree = "v1/GetByIdWithDimensionStructureTree";
             }
         }
 
@@ -91,19 +95,17 @@
 
                 public const string GetSourceFormats = "GetTopDimensionStructures";
 
-                public const string DeleteSourceFormatAsync = "DeleteTopDimensionStructure";
-
                 public const string UpdateDimensionStructure = "UpdateDimensionStructure";
-
-                public const string UpdateSourceFormat = "UpdateTopDimensionStructure";
-
-                public const string AddSourceFormat = "AddTopDimensionStructure";
 
                 public const string AddDimensionStructure = "AddDimensionStructure";
 
                 public const string GetDimensionStructures = "GetDimensionStructures";
 
                 public const string DeleteDimensionStructure = "DeleteDimensionStructure";
+
+                public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
+
+                public const string GetDimensionStructureById = "GetDimensionStructureById";
             }
         }
     }

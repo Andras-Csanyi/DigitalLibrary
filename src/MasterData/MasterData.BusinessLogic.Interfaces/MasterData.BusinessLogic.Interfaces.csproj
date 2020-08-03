@@ -16,6 +16,7 @@
 
 
     <ItemGroup>
+        <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 

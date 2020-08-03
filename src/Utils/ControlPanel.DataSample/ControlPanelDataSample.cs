@@ -131,6 +131,17 @@
                 };
                 ctx.Menus.Add(dimensionStructure);
                 ctx.SaveChanges();
+
+                Menu documentBuilder = new Menu
+                {
+                    Name = "SourceFormat Builder",
+                    Description = "SourceFormat Builder",
+                    IsActive = 1,
+                    MenuRoute = "sourceformatbuilder",
+                    ModuleId = masterDataModule.Id
+                };
+                ctx.Menus.Add(documentBuilder);
+                ctx.SaveChanges();
             }
             else
             {

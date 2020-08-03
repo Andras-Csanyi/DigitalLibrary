@@ -16,5 +16,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
 
         Task DeleteSourceFormatAsync(SourceFormat secondResult);
+
+        Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat);
+
+        Task<SourceFormat> GetSourceFormatByIdWithFullDimensionStructureTreeAsync(SourceFormat querySourceFormat);
     }
 }

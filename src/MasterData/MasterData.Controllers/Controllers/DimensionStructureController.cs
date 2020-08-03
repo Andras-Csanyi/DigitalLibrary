@@ -1,3 +1,5 @@
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+
 namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
@@ -94,6 +96,46 @@ namespace DigitalLibrary.MasterData.Controllers
                 List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
                    .ConfigureAwait(false);
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetDimensionStructuresByIdsAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresByIdsAsync(
+                        dimensionStructureQueryObject)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructureById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
+        {
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(
+                        dimensionStructureQueryObject)
+                   .ConfigureAwait(false);
+                return result;
             }
             catch (Exception e)
             {

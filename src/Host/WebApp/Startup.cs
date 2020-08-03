@@ -14,6 +14,7 @@ namespace WebApp
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.ControlPanel.DataSample;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -22,12 +23,16 @@ namespace WebApp
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     using Newtonsoft.Json;
 
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
+
+        public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
+           .Create(builder => { builder.AddDebug(); });
 
         public IConfiguration Configuration { get; }
 
@@ -95,16 +100,21 @@ namespace WebApp
             services.AddDbContext<MasterDataContext>(options =>
             {
                 options.UseSqlite("Data Source=master_data_test_db.sqlite");
+                options.UseLoggerFactory(LoggerFactory);
                 options.EnableSensitiveDataLogging();
             });
             // }
 
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
+
+            // Validators
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
             services.AddTransient<DimensionValidator>();
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<DimensionStructureValidator>();
+            services.AddTransient<DimensionStructureDimensionStructureValidator>();
+            services.AddTransient<DimensionStructureQueryObjectValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 

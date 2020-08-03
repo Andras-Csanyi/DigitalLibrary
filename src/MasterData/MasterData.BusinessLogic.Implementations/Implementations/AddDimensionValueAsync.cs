@@ -60,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                 DimensionDimensionValue doesDimensionDimensionValueRelationExist = await ctx
                                    .DimensionDimensionValues
                                    .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
-                                     && p.DimensionValueId == doesDimensionValueExists.Id)
+                                                          && p.DimensionValueId == doesDimensionValueExists.Id)
                                    .ConfigureAwait(false);
 
                                 // if doesnt exists create one
@@ -74,6 +74,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                     await ctx.DimensionDimensionValues.AddAsync(dimensionDimensionValue)
                                        .ConfigureAwait(false);
                                     await ctx.SaveChangesAsync().ConfigureAwait(false);
+                                    await transaction.CommitAsync().ConfigureAwait(false);
                                     return doesDimensionValueExists;
                                 }
 

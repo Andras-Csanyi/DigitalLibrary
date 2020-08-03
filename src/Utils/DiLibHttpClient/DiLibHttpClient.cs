@@ -9,6 +9,8 @@
 
     using Exceptions;
 
+    using Guards;
+
     using Newtonsoft.Json;
 
     public class DiLibHttpClient : IDiLibHttpClient
@@ -24,10 +26,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Post, url);
@@ -60,10 +60,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Delete, url);
@@ -94,10 +92,7 @@
         {
             try
             {
-                if (string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 
@@ -130,10 +125,8 @@
         {
             try
             {
-                if (payload == null || string.IsNullOrEmpty(url) || string.IsNullOrWhiteSpace(url))
-                {
-                    throw new ArgumentNullException();
-                }
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
 
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                     HttpMethod.Put, url);
@@ -163,6 +156,40 @@
             catch (Exception e)
             {
                 throw new DiLibHttpClientPutException(e.Message, e);
+            }
+        }
+
+        public async Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url)
+        {
+            try
+            {
+                Check.IsNotNull(payload);
+                Check.NotNullOrEmptyOrWhitespace(url);
+
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                    HttpMethod.Post, url);
+                httpRequestMessage.Content = CreateStringContent(payload);
+
+                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+                   .ConfigureAwait(false))
+                {
+                    try
+                    {
+                        httpResponseMessage.EnsureSuccessStatusCode();
+                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        ReturnType result = JsonToObject<ReturnType>(content);
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DiLibHttpClientPostException(e.Message, e);
             }
         }
 

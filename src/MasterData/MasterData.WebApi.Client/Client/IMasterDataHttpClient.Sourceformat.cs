@@ -45,5 +45,9 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         ///     <para>If error happens returns 400 Bad Request and exception details.</para>
         /// </returns>
         Task DeleteSourceFormatAsync(SourceFormat sourceFormat);
+
+        Task<SourceFormat> GetSourceFormatById(SourceFormat sourceFormat);
+
+        Task<SourceFormat> GetSourceFormatWithFullDimensionStructureTreeAsync(SourceFormat querySourceFormat);
     }
 }

@@ -1,3 +1,5 @@
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Collections.Generic;
@@ -14,6 +16,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
+
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
+
+        Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
 
         Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 

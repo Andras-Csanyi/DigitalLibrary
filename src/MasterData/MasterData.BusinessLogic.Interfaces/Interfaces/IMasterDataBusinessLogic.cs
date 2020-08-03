@@ -27,8 +27,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             long dimensionStructureId,
             Dimension dimensionToBeInserted,
             int sortOrder);
-
-
-        Task<DimensionStructure> GetDimensionStructureById(long dimensionStructureId);
     }
 }

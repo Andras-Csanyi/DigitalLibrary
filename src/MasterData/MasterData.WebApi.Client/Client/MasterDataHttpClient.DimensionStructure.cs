@@ -1,3 +1,5 @@
+using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
+
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using System;
@@ -18,6 +20,42 @@ namespace DigitalLibrary.MasterData.WebApi.Client
                 string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
                     $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructures}";
                 List<DimensionStructure> result = await _diLibHttpClient.GetAsync<List<DimensionStructure>>(url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<List<DimensionStructure>> GetDimensionStructuresAsync(
+            DimensionStructureQueryObject queryObject)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds}";
+                List<DimensionStructure> result = await _diLibHttpClient
+                   .PostAsync<List<DimensionStructure>, DimensionStructureQueryObject>(queryObject, url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+                    $"{MasterDataApi.DimensionStructure.V1.GetDimensionStructureById}";
+                DimensionStructure result = await _diLibHttpClient
+                   .PostAsync<DimensionStructure, DimensionStructureQueryObject>(dimensionStructureQueryObject, url)
                    .ConfigureAwait(false);
                 return result;
             }

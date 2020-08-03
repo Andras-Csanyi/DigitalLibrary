@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Ctx;
@@ -22,7 +23,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync())
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -34,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                         await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
                                 sourceFormat,
-                                ValidatorRulesets.UpdateSourceFormat)
+                                SourceFormatValidatorRulesets.Update)
                            .ConfigureAwait(false);
 
                         SourceFormat toBeModified = await ctx.SourceFormats
@@ -51,12 +53,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         toBeModified.Name = sourceFormat.Name;
                         toBeModified.Desc = sourceFormat.Desc;
                         toBeModified.IsActive = sourceFormat.IsActive;
+                        toBeModified.RootDimensionStructureId = sourceFormat.RootDimensionStructureId;
 
                         ctx.Entry(toBeModified).State = EntityState.Modified;
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
                         await transaction.CommitAsync().ConfigureAwait(false);
 
-                        return toBeModified;
+                        SourceFormat result = await ctx.SourceFormats
+                           .Include(i => i.RootDimensionStructure)
+                           .Where(id => id.Id == toBeModified.Id)
+                           .FirstOrDefaultAsync()
+                           .ConfigureAwait(false);
+
+                        return result;
                     }
                     catch (Exception e)
                     {

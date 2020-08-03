@@ -20,6 +20,8 @@
 
         public DbSet<SourceFormat> SourceFormats { get; set; }
 
+        public DbSet<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
+
         public MasterDataContext(DbContextOptions<MasterDataContext> options) : base(options)
         {
         }
@@ -34,6 +36,7 @@
             modelBuilder.ApplyConfiguration(new DimensionDimensionValueConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionStructureConfiguration());
             modelBuilder.ApplyConfiguration(new SourceFormatConfiguration());
+            modelBuilder.ApplyConfiguration(new DimensionStructureDimensionStructureConfiguration());
         }
     }
 }

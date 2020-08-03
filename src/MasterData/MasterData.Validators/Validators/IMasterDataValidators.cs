@@ -9,5 +9,9 @@ namespace DigitalLibrary.MasterData.Validators
         public SourceFormatValidator SourceFormatValidator { get; }
 
         public DimensionStructureValidator DimensionStructureValidator { get; }
+
+        public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
+
+        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
     }
 }

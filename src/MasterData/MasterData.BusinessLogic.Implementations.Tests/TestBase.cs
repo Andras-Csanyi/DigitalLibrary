@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
+    using Utils.ControlPanel.DataSample.MasterData;
     using Utils.Guards;
 
     using Validators;
@@ -40,11 +41,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 new MasterDataDimensionValueValidator();
             SourceFormatValidator sourceFormatValidator = new SourceFormatValidator();
             DimensionStructureValidator dimensionStructureValidator = new DimensionStructureValidator();
+            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator =
+                new DimensionStructureDimensionStructureValidator();
+            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator =
+                new DimensionStructureQueryObjectValidator();
+
             MasterDataValidators masterDataValidators = new MasterDataValidators(
                 dimensionValidator,
                 masterDataDimensionValueValidator,
                 sourceFormatValidator,
-                dimensionStructureValidator);
+                dimensionStructureValidator,
+                dimensionStructureDimensionStructureValidator,
+                dimensionStructureQueryObjectValidator);
 
             masterDataBusinessLogic = new MasterDataBusinessLogic(
                 _dbContextOptions,
@@ -54,6 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
+                MasterDataDataSample.Populate(ctx);
             }
         }
     }

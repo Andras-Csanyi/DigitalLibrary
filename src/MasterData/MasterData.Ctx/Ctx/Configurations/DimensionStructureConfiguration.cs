@@ -15,6 +15,8 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Id).HasColumnName("id");
 
+            builder.Ignore(p => p.Guid);
+
             builder.Property(p => p.Name).HasColumnName("name");
             builder.Property(p => p.Name).IsRequired();
             builder.HasIndex(p => p.Name).IsUnique();
@@ -32,6 +34,11 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.HasOne(p => p.Dimension)
                .WithMany(p => p.DimensionStructure)
+               .IsRequired(false);
+
+            builder.HasMany(p => p.DimensionStructureDimensionStructures)
+               .WithOne(one => one.DimensionStructure)
+               .HasForeignKey(k => k.DimensionStructureId)
                .IsRequired(false);
         }
     }

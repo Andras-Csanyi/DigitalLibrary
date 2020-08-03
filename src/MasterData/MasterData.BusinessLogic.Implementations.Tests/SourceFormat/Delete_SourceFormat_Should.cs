@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using FluentAssertions;
 
+    using Utils.ControlPanel.DataSample.MasterData;
     using Utils.Guards;
 
     using Xunit;
@@ -54,7 +55,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             List<SourceFormat> result = await masterDataBusinessLogic.GetSourceFormatsAsync()
                .ConfigureAwait(false);
 
-            result.Count.Should().Be(1);
+            int expectedAmount = MasterDataDataSample.GetSourceFormatAmount() + 1;
+            result.Count.Should().Be(expectedAmount);
             result.Where(p => p.Name == first.Name).ToList().Count.Should().Be(1);
             result.Where(p => p.Name == second.Name).ToList().Count.Should().Be(0);
         }

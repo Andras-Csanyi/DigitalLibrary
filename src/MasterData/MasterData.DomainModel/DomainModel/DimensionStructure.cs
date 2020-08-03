@@ -1,10 +1,22 @@
+using IHasId = DigitalLibrary.MasterData.DomainModel.Interfaces.IHasId;
+
 namespace DigitalLibrary.MasterData.DomainModel
 {
+    using System;
     using System.Collections.Generic;
 
-    public class DimensionStructure
+    using Interfaces;
+
+    public class DimensionStructure : IHasId
     {
+        public DimensionStructure()
+        {
+            ChildDimensionStructures = new List<DimensionStructure>();
+        }
+
         public long Id { get; set; }
+
+        public Guid Guid { get; set; }
 
         public string Name { get; set; }
 
@@ -14,12 +26,17 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public ICollection<SourceFormat> SourceFormats { get; set; }
 
-        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
+        public ICollection<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
 
         public long? DimensionId { get; set; }
 
         public Dimension Dimension { get; set; }
 
         public int SortOrder { get; set; }
+
+        /// <summary>
+        /// WARNING!!! It is used only when SourceFormat is built.
+        /// </summary>
+        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
     }
 }
