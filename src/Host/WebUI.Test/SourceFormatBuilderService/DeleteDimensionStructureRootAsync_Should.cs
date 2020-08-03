@@ -25,7 +25,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(_sourceFormat);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object);
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
             DimensionStructure dimensionStructure = new DimensionStructure
             {
                 Name = "Something root",

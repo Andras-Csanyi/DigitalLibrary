@@ -28,7 +28,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(_sourceFormatWithoutRootDimensionStructure);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object);
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
 
             // Act
             Func<Task> action = async () =>

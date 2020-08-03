@@ -8,12 +8,17 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     using Moq;
 
+    using WebUi.Services;
+
     [ExcludeFromCodeCoverage]
     public class TestBase
     {
         protected Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
 
         protected Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
+
+        protected Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
+            new Mock<IDomainEntityHelperService>();
 
         protected SourceFormat _sourceFormatWithoutRootDimensionStructure = new SourceFormat
         {

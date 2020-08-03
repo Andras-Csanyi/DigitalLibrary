@@ -28,7 +28,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(_sourceFormat);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object);
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
@@ -50,7 +51,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ReturnsAsync(_sourceFormat);
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object);
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
             DimensionStructure dimensionStructure = new DimensionStructure();
             // Act

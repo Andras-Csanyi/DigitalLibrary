@@ -21,7 +21,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Arrange
             ISourceFormatBuilderService builder = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object);
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
 
             // Act
             Func<Task> action = async () => { await builder.OnUpdate(0).ConfigureAwait(false); };
