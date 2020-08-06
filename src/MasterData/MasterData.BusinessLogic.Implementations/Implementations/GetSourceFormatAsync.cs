@@ -21,6 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 try
                 {
                     List<SourceFormat> result = await ctx.SourceFormats
+                       .AsNoTracking()
                        .ToListAsync()
                        .ConfigureAwait(false);
 

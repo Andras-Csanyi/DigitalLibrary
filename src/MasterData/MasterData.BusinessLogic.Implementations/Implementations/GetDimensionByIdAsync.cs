@@ -24,6 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     Check.AreNotEqual(dimensionId, 0);
 
                     Dimension result = await ctx.Dimensions
+                       .AsNoTracking()
                        .Include(i => i.DimensionDimensionValues).ThenInclude(ti => ti.DimensionValue)
                        .FirstOrDefaultAsync(p => p.Id == dimensionId)
                        .ConfigureAwait(false);

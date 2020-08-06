@@ -91,6 +91,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
                 DimensionStructure result = await ctx.DimensionStructures
+                   .AsNoTracking()
                    .Include(p => p.DimensionStructureDimensionStructures)
                    .FirstOrDefaultAsync(k => k.Id == dimensionStructureId)
                    .ConfigureAwait(false);

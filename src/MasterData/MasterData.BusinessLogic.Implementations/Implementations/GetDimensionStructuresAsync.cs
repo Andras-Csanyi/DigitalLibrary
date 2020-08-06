@@ -21,6 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     return await ctx.DimensionStructures
+                       .AsNoTracking()
                        .Include(i => i.Dimension)
                        .Include(ii => ii.SourceFormats)
                        .ToListAsync()

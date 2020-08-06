@@ -29,6 +29,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     List<DimensionStructure> result = await ctx.DimensionStructures
+                       .AsNoTracking()
                        .Where(p => dimensionStructureQueryObject.Ids.Contains(p.Id))
                        .ToListAsync()
                        .ConfigureAwait(false);
