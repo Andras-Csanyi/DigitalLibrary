@@ -19,12 +19,12 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.6"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.6"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2">
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -35,19 +35,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj" />
-        <ProjectReference Include="..\..\Utils\DiLibHttpClient\DiLibHttpClient.csproj" />
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
-        <ProjectReference Include="..\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj" />
-        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
-        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
-        <ProjectReference Include="..\MasterData.Controllers\MasterData.Controllers.csproj" />
-        <ProjectReference Include="..\MasterData.Ctx\MasterData.Ctx.csproj" />
-        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj" />
-        <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj" />
-        <ProjectReference Include="..\MasterData.Validators\MasterData.Validators.csproj" />
-        <ProjectReference Include="..\MasterData.Web.Api\MasterData.Web.Api.csproj" />
-        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
+        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterData.DataSample\MasterData.DataSample.csproj"/>
+        <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
 
 </Project>

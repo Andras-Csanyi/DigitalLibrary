@@ -20,7 +20,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             {
                 try
                 {
-                    List<DimensionValue> result = await ctx.DimensionValues.ToListAsync();
+                    List<DimensionValue> result = await ctx.DimensionValues
+                       .AsNoTracking()
+                       .ToListAsync()
+                       .ConfigureAwait(false);
 
                     return result;
                 }

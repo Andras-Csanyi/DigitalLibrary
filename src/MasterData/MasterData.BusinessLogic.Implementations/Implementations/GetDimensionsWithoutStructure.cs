@@ -24,8 +24,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     return await ctx.Dimensions
+                       .AsNoTracking()
                        .Where(n => n.DimensionStructure.Count == 0)
-                       .ToListAsync();
+                       .ToListAsync()
+                       .ConfigureAwait(false);
                 }
             }
             catch (Exception e)

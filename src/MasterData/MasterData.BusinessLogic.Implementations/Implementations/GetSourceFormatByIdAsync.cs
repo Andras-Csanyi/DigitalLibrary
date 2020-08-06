@@ -30,6 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat result = await ctx.SourceFormats
+                       .AsNoTracking()
                        .Include(p => p.RootDimensionStructure)
                        .FirstOrDefaultAsync(id => id.Id == sourceFormat.Id)
                        .ConfigureAwait(false);

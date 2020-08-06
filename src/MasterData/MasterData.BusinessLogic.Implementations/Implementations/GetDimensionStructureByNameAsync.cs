@@ -25,6 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     DimensionStructure result = await ctx.DimensionStructures
+                       .AsNoTracking()
                        .Where(q => q.Name == name)
                        .FirstOrDefaultAsync()
                        .ConfigureAwait(false);
