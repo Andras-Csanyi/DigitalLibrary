@@ -15,6 +15,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class AddDimensionStructureRootAsync_Should : TestBase
     {
         [Fact]
@@ -42,7 +43,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
         }
 
-        [Fact(Skip = "tmp")]
+        [Fact]
         public async Task AddDimensionStructureToRoot()
         {
             // Arrange
@@ -66,7 +67,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
             // Assert
             sourceFormatBuilderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();
-            sourceFormatBuilderService.SourceFormat.RootDimensionStructureId.Should().BeNull();
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructureId.Should().NotBeNull();
         }
     }
 }

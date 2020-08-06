@@ -1,5 +1,7 @@
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
+    #region
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,82 +11,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Services;
-    using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
 
-    public interface ISourceFormatBuilderService
-    {
-        DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
+    using Services;
 
-        bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+    using Utils.Guards;
 
-        bool IsLoadSourceFormatsButtonDisabled { get; set; }
+    #endregion
 
-        bool IsNewSourceFormatButtonDisabled { get; set; }
-
-        bool IsSourceFormatCancelButtonDisabled { get; set; }
-
-        bool IsSourceFormatDropDownlistDisabled { get; set; }
-
-        bool IsSourceFormatSaveButtonDisabled { get; set; }
-
-        long LoadedSourceFormatId { get; set; }
-
-        IMasterDataValidators MasterDataValidators { get; }
-
-        SourceFormat SourceFormat { get; set; }
-
-        DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
-
-        DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
-
-        Task AddDimensionStructureAsync(
-            long parentDimensionStructureId,
-            DimensionStructure dimensionStructure);
-
-        Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
-
-        Task AddDimensionStructureRootAsync(long dimensionStructureId);
-
-        Task AddOrUpdateDocumentStructureToTreeAsync(
-            DimensionStructure dimensionStructure,
-            Guid parentDimensionStructureGuid);
-
-        Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
-
-        Task DeleteDocumentStructureFromTreeAsync();
-
-        Task<bool> FindDimensionStructureInTreeAsync(
-            DimensionStructure dimensionStructure,
-            ICollection<DimensionStructure> dimensionStructures);
-
-        Task<List<Dimension>> GetAllDimensionsFromServer();
-
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId);
-
-        Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId);
-
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
-
-        Task<List<Dimension>> GetDimensionsWithNulloAsync();
-
-        Task<List<SourceFormat>> GetSourceFormatsAsync();
-
-        Task OnUpdate(long sourceFormatId);
-
-        Task ReplaceDimensionStructureInTheTree();
-
-        Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
-
-        Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
-
-        Task SetDefaultStateForReplacementOfDimensionStructureInTree();
-
-        Task UpdateSourceFormatBuilder();
-    }
-
+    /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService
     {
         private List<Dimension> _alreadyUsedDimensions = new List<Dimension>();
@@ -101,7 +37,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private IMasterDataHttpClient _masterDataHttpClient;
 
+        public SourceFormat SourceFormat
+        {
+            get => _sourceFormat;
+            set => _sourceFormat = value;
+        }
+
         private SourceFormat _sourceFormat = new SourceFormat();
+
 
         public SourceFormatBuilderService(
             IMasterDataHttpClient masterDataHttpClient,
@@ -125,6 +68,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.IsNotNull(dimensionStructure);
         }
 
+        /// <inheritdoc/>
         public async Task AddDimensionStructureRootAsync(long dimensionStructureId)
         {
             Check.AreNotEqual(dimensionStructureId, 0);
@@ -133,6 +77,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             await AddDimensionStructureRootAsync(result).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public async Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure)
         {
             Check.IsNotNull(dimensionStructure);
@@ -426,12 +371,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             UpdateNodeNewDimensionStructure = null;
             UpdateNodeOldDimensionStructure = null;
-        }
-
-        public SourceFormat SourceFormat
-        {
-            get => _sourceFormat;
-            set => _sourceFormat = value;
         }
 
         public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
