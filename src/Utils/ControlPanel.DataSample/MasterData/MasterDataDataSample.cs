@@ -60,7 +60,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
                 {
                     Name = $"Source Format Name - {i}",
                     Desc = $"Source Format Description - {i}",
-                    IsActive = 1
+                    IsActive = 1,
                 };
                 sourceFormats.Add(sourceFormat);
             }

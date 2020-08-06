@@ -15,7 +15,8 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Id).HasColumnName("id");
 
-            builder.Ignore(p => p.Guid);
+            builder.Property(p => p.Guid).HasColumnName("guid");
+            builder.Property(p => p.Guid).ValueGeneratedOnAdd();
 
             builder.Property(p => p.Name).HasColumnName("name");
             builder.Property(p => p.Name).IsRequired();

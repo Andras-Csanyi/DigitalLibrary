@@ -20,13 +20,13 @@ namespace DigitalLibrary.Ui.WebUi.Services
         /// <typeparam name="T">Type in the list</typeparam>
         /// <returns>The same list where the first item is the nullo</returns>
         Task<List<T>> AddNulloToListAsFirstItem<T>(List<T> list)
-            where T : IHasName, new();
+            where T : IHaveName, new();
     }
 
     public class DomainEntityHelperService : IDomainEntityHelperService
     {
         public async Task<List<T>> AddNulloToListAsFirstItem<T>(List<T> list)
-            where T : IHasName, new()
+            where T : IHaveName, new()
         {
             Check.IsNotNull(list);
 

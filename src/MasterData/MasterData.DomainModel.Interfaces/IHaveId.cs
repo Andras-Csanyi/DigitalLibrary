@@ -1,6 +1,6 @@
 namespace DigitalLibrary.MasterData.DomainModel.Interfaces
 {
-    public interface IHasId
+    public interface IHaveId
     {
         public long Id { get; set; }
     }

@@ -1,5 +1,3 @@
-using IHasId = DigitalLibrary.MasterData.DomainModel.Interfaces.IHasId;
-
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using System;
@@ -7,11 +5,12 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     using Interfaces;
 
-    public class DimensionStructure : IHasId
+    public class DimensionStructure : IHaveId, IHaveGuidId
     {
         public DimensionStructure()
         {
             ChildDimensionStructures = new List<DimensionStructure>();
+            Guid = Guid.NewGuid();
         }
 
         public long Id { get; set; }

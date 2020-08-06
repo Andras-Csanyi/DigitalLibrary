@@ -1,10 +1,8 @@
-using IHasId = DigitalLibrary.MasterData.DomainModel.Interfaces.IHasId;
-
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using Interfaces;
 
-    public class DimensionStructureDimensionStructure : IHasId
+    public class DimensionStructureDimensionStructure : IHaveId
     {
         public long Id { get; set; }
 
