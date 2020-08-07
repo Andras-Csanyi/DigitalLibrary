@@ -16,6 +16,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "SA1600")]
+    [SuppressMessage("ReSharper", "SA1404")]
     public class AddDimensionStructureRootAsync_Should : TestBase
     {
         [Fact]

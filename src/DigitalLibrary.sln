@@ -21,7 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		SolutionItems\.editorconfig = SolutionItems\.editorconfig
 		..\.gitignore = ..\.gitignore
-		SolutionItems\GlobalSuppressions.cs = SolutionItems\GlobalSuppressions.cs
 		SolutionItems\stylecop.json = SolutionItems\stylecop.json
 		SolutionItems\stylecop.ruleset = SolutionItems\stylecop.ruleset
 		SolutionItems\xunit.runner.json = SolutionItems\xunit.runner.json
