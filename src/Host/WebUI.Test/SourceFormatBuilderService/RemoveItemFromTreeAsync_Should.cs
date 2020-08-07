@@ -22,27 +22,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     public class RemoveItemFromTreeAsync_Should : TestBase
     {
         [Fact]
-        public async Task ThrowException_WhenNoDimensionToBeDeletedSetup()
-        {
-            // Arrange
-            ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
-                _domainEntityHelperServiceMock.Object);
-            builderService.DimensionStructureToBeDeletedFromTree = null;
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await builderService.DeleteDocumentStructureFromTreeAsync()
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<GuardException>();
-        }
-
-        [Fact]
         public async Task Remove_RootDimensionStructure()
         {
             // Arrange
@@ -54,61 +33,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 Desc = "Desc",
                 ChildDimensionStructures = new List<DimensionStructure>(),
             };
-        }
-
-        [Fact(Skip = "tmp")]
-        public async Task RemoveItem_WhenOnlyASingleItemIsOnTheFirstLevel()
-        {
-            // Arrange
-            DimensionStructure firstLevelFirst = new DimensionStructure
-            {
-                Id = 101,
-                Name = "one oh one",
-                Desc = "one oh one",
-            };
-            List<DimensionStructure> childDimensionStructures = new List<DimensionStructure>
-            {
-                firstLevelFirst,
-            };
-            DimensionStructure rootDimensionStructure = new DimensionStructure
-            {
-                Id = 100,
-                Name = "root",
-                Desc = "root",
-                ChildDimensionStructures = childDimensionStructures,
-            };
-            SourceFormat testData = new SourceFormat
-            {
-                Id = 100,
-                Name = "test",
-                Desc = "test desc",
-                RootDimensionStructureId = 100,
-                RootDimensionStructure = rootDimensionStructure,
-            };
-
-            _masterDataWebApiClientMock
-               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
-               .ReturnsAsync(testData);
-
-            ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
-                _domainEntityHelperServiceMock.Object);
-            await builderService.OnUpdate(100).ConfigureAwait(false);
-            builderService.DimensionStructureToBeDeletedFromTree = firstLevelFirst;
-
-            // Act
-            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
-
-            // Assert
-            builderService.SourceFormat.Should().NotBeNull();
-            builderService.SourceFormat.Id.Should().Be(testData.Id);
-            builderService.SourceFormat.Name.Should().Be(testData.Name);
-            builderService.SourceFormat.Desc.Should().Be(testData.Desc);
-
-            builderService.SourceFormat.RootDimensionStructure.Id.Should().Be(rootDimensionStructure.Id);
-
-            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(0);
         }
 
         [Fact(Skip = "tmp")]
@@ -176,49 +100,18 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         [Fact(Skip = "tmp")]
-        public async Task RemoveItemWithItsChildren_WhenMultipleItemsOnTheFirstLevel_AndOneOfThemHasChild()
+        public async Task RemoveItem_WhenOnlyASingleItemIsOnTheFirstLevel()
         {
             // Arrange
-            DimensionStructure secondLevelFirst = new DimensionStructure
-            {
-                Id = 201,
-                Name = "two oh one",
-                Desc = "two oh one",
-            };
-            DimensionStructure secondLevelSecond = new DimensionStructure
-            {
-                Id = 202,
-                Name = "two oh two",
-                Desc = "two oh two",
-            };
-            DimensionStructure firstLevelThird = new DimensionStructure
-            {
-                Id = 103,
-                Name = "one of three",
-                Desc = "one oh three",
-                ChildDimensionStructures = new List<DimensionStructure>
-                {
-                    secondLevelFirst,
-                    secondLevelSecond
-                },
-            };
             DimensionStructure firstLevelFirst = new DimensionStructure
             {
                 Id = 101,
                 Name = "one oh one",
                 Desc = "one oh one",
             };
-            DimensionStructure firstLevelSecond = new DimensionStructure
-            {
-                Id = 102,
-                Name = "two oh two",
-                Desc = "two oh two",
-            };
             List<DimensionStructure> childDimensionStructures = new List<DimensionStructure>
             {
                 firstLevelFirst,
-                firstLevelSecond,
-                firstLevelThird,
             };
             DimensionStructure rootDimensionStructure = new DimensionStructure
             {
@@ -245,7 +138,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 _masterDataValidatorsMock.Object,
                 _domainEntityHelperServiceMock.Object);
             await builderService.OnUpdate(100).ConfigureAwait(false);
-            builderService.DimensionStructureToBeDeletedFromTree = firstLevelThird;
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelFirst;
 
             // Act
             await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
@@ -258,11 +151,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
             builderService.SourceFormat.RootDimensionStructure.Id.Should().Be(rootDimensionStructure.Id);
 
-            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(2);
-            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
-               .Where(p => p.Id == firstLevelFirst.Id).ToList().Count.Should().Be(1);
-            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
-               .Where(p => p.Id == firstLevelSecond.Id).ToList().Count.Should().Be(1);
+            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(0);
         }
 
         [Fact(Skip = "tmp")]
@@ -393,6 +282,117 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures
                .Where(q => q.Id == secondLevelSecond.Id).ToList().Count.Should().Be(1);
+        }
+
+        [Fact(Skip = "tmp")]
+        public async Task RemoveItemWithItsChildren_WhenMultipleItemsOnTheFirstLevel_AndOneOfThemHasChild()
+        {
+            // Arrange
+            DimensionStructure secondLevelFirst = new DimensionStructure
+            {
+                Id = 201,
+                Name = "two oh one",
+                Desc = "two oh one",
+            };
+            DimensionStructure secondLevelSecond = new DimensionStructure
+            {
+                Id = 202,
+                Name = "two oh two",
+                Desc = "two oh two",
+            };
+            DimensionStructure firstLevelThird = new DimensionStructure
+            {
+                Id = 103,
+                Name = "one of three",
+                Desc = "one oh three",
+                ChildDimensionStructures = new List<DimensionStructure>
+                {
+                    secondLevelFirst,
+                    secondLevelSecond
+                },
+            };
+            DimensionStructure firstLevelFirst = new DimensionStructure
+            {
+                Id = 101,
+                Name = "one oh one",
+                Desc = "one oh one",
+            };
+            DimensionStructure firstLevelSecond = new DimensionStructure
+            {
+                Id = 102,
+                Name = "two oh two",
+                Desc = "two oh two",
+            };
+            List<DimensionStructure> childDimensionStructures = new List<DimensionStructure>
+            {
+                firstLevelFirst,
+                firstLevelSecond,
+                firstLevelThird,
+            };
+            DimensionStructure rootDimensionStructure = new DimensionStructure
+            {
+                Id = 100,
+                Name = "root",
+                Desc = "root",
+                ChildDimensionStructures = childDimensionStructures,
+            };
+            SourceFormat testData = new SourceFormat
+            {
+                Id = 100,
+                Name = "test",
+                Desc = "test desc",
+                RootDimensionStructureId = 100,
+                RootDimensionStructure = rootDimensionStructure,
+            };
+
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(testData);
+
+            ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            await builderService.OnUpdate(100).ConfigureAwait(false);
+            builderService.DimensionStructureToBeDeletedFromTree = firstLevelThird;
+
+            // Act
+            await builderService.DeleteDocumentStructureFromTreeAsync().ConfigureAwait(false);
+
+            // Assert
+            builderService.SourceFormat.Should().NotBeNull();
+            builderService.SourceFormat.Id.Should().Be(testData.Id);
+            builderService.SourceFormat.Name.Should().Be(testData.Name);
+            builderService.SourceFormat.Desc.Should().Be(testData.Desc);
+
+            builderService.SourceFormat.RootDimensionStructure.Id.Should().Be(rootDimensionStructure.Id);
+
+            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(2);
+            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
+               .Where(p => p.Id == firstLevelFirst.Id).ToList().Count.Should().Be(1);
+            builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
+               .Where(p => p.Id == firstLevelSecond.Id).ToList().Count.Should().Be(1);
+        }
+
+        [Fact]
+        public async Task ThrowException_WhenNoDimensionToBeDeletedSetup()
+        {
+            // Arrange
+            ISourceFormatBuilderService builderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            builderService.DimensionStructureToBeDeletedFromTree = null;
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await builderService.DeleteDocumentStructureFromTreeAsync()
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<GuardException>();
         }
     }
 }

@@ -2,9 +2,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using MasterData.DomainModel;
+    using MasterData.Validators;
+    using MasterData.WebApi.Client;
 
     using Moq;
 
@@ -13,20 +13,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [ExcludeFromCodeCoverage]
     public class TestBase
     {
-        protected Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
-
-        protected Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
-
         protected Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
             new Mock<IDomainEntityHelperService>();
 
-        protected SourceFormat _sourceFormatWithoutRootDimensionStructure = new SourceFormat
-        {
-            Id = 100,
-            Name = "Test Source Format",
-            Desc = "Test Source Format Description",
-            IsActive = 1,
-        };
+        protected Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
+
+        protected Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
 
         protected SourceFormat _sourceFormat = new SourceFormat
         {
@@ -36,6 +28,14 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             IsActive = 1,
             RootDimensionStructure = new DimensionStructure(),
             RootDimensionStructureId = 100,
+        };
+
+        protected SourceFormat _sourceFormatWithoutRootDimensionStructure = new SourceFormat
+        {
+            Id = 100,
+            Name = "Test Source Format",
+            Desc = "Test Source Format Description",
+            IsActive = 1,
         };
 
         protected MasterDataValidators GetMasterDataValidators()

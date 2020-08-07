@@ -6,19 +6,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     public class AddOrUpdateDocumentStructureToTreeAsync_Add_Should : TestBase
     {
-        [Fact]
-        public async Task AddItem_ToRootDimension()
-        {
-        }
-
-        [Fact]
-        public async Task AddItemTo_FirstLevel_EmptyLengthList()
-        {
-        }
-
         /// <summary>
-        /// Until this: https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        /// is not solved this part of the testing is suspended
+        ///     Until this:
+        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
+        ///     is not solved this part of the testing is suspended
         /// </summary>
         /// <returns></returns>
         public async Task AddItemTo_FirstLevel_ListHasMultipleItems()
@@ -26,8 +17,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         /// <summary>
-        /// Until this: https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        /// is not solved this part of the testing is suspended
+        ///     Until this:
+        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
+        ///     is not solved this part of the testing is suspended
         /// </summary>
         /// <returns></returns>
         public async Task AddItemTo_SecondLevel_EmptyList()
@@ -35,8 +27,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         /// <summary>
-        /// Until this: https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        /// is not solved this part of the testing is suspended
+        ///     Until this:
+        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
+        ///     is not solved this part of the testing is suspended
         /// </summary>
         /// <returns></returns>
         public async Task AddItemTo_SecondLevel_LastHasMultipleItems()
@@ -44,11 +37,22 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         /// <summary>
-        /// Until this: https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        /// is not solved this part of the testing is suspended
+        ///     Until this:
+        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
+        ///     is not solved this part of the testing is suspended
         /// </summary>
         /// <returns></returns>
         public async Task AddItemTo_WhenAnItemIsAdded()
+        {
+        }
+
+        [Fact]
+        public async Task AddItem_ToRootDimension()
+        {
+        }
+
+        [Fact]
+        public async Task AddItemTo_FirstLevel_EmptyLengthList()
         {
         }
     }

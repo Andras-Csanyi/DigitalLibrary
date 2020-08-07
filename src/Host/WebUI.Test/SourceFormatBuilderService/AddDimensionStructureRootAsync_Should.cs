@@ -16,33 +16,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "SA1600")]
+    [SuppressMessage("ReSharper", "SA1404")]
     public class AddDimensionStructureRootAsync_Should : TestBase
     {
-        [Fact]
-        public async Task ThrowException_SourceFormatHasRootDimensionStructure()
-        {
-            // Arrange
-            _masterDataWebApiClientMock
-               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
-               .ReturnsAsync(_sourceFormat);
-            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
-                _domainEntityHelperServiceMock.Object);
-            DimensionStructure dimensionStructure = new DimensionStructure();
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
-                await sourceFormatBuilderService.AddDimensionStructureRootAsync(
-                    dimensionStructure).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
-        }
-
         [Fact]
         public async Task AddDimensionStructureToRoot()
         {
@@ -68,6 +46,31 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Assert
             sourceFormatBuilderService.SourceFormat.RootDimensionStructure.Should().NotBeNull();
             sourceFormatBuilderService.SourceFormat.RootDimensionStructureId.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task ThrowException_SourceFormatHasRootDimensionStructure()
+        {
+            // Arrange
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(_sourceFormat);
+            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            DimensionStructure dimensionStructure = new DimensionStructure();
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
+                await sourceFormatBuilderService.AddDimensionStructureRootAsync(
+                    dimensionStructure).ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
         }
     }
 }
