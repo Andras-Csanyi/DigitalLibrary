@@ -14,6 +14,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "SA1600")]
+    [SuppressMessage("ReSharper", "SA1404")]
     public class DeleteDimensionStructureRootAsync_Should : TestBase
     {
         [Fact]

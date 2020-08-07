@@ -17,6 +17,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "SA1600")]
+    [SuppressMessage("ReSharper", "SA1404")]
     public class DeleteDimensionStructureRootAsync_Validation_Should : TestBase
     {
         [Fact]
@@ -48,7 +52,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             action.Should().ThrowExactly<GuardException>();
         }
 
-        [Fact(Skip = "tmp")]
+        [Fact]
         public async Task ThrowException_WhenSourceFormatIsNull()
         {
             // Arrange
@@ -56,6 +60,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object,
                 _domainEntityHelperServiceMock.Object);
+            sourceFormatBuilderService.SourceFormat = null;
             DimensionStructure dimensionStructure = new DimensionStructure
             {
                 Name = "Something root",
