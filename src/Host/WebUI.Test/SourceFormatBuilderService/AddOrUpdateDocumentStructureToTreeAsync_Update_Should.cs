@@ -7,11 +7,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     public class AddOrUpdateDocumentStructureToTreeAsync_Update_Should : TestBase
     {
         [Fact]
-        public async Task UpdateItem_RootDimension()
-        {
-        }
-
-        [Fact]
         public async Task ReturnSilently_IfthereIsNoItemToUpdate()
         {
         }
@@ -28,6 +23,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
         [Fact]
         public async Task UpdateItem_AtThirdLevel()
+        {
+        }
+
+        [Fact]
+        public async Task UpdateItem_RootDimension()
         {
         }
     }
