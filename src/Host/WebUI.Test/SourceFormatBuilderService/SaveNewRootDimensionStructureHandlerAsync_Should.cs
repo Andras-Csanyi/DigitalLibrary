@@ -15,8 +15,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-
-    // ReSharper disable once CA1707
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
     {
         [Theory(Skip = "tmp")]
@@ -28,7 +28,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        public async Task ThrowException_WhenDimensionStructure_InputIsInvalid(
+        [SuppressMessage("ReSharper", "TooManyArguments")]
+        public void ThrowException_WhenDimensionStructure_InputIsInvalid(
             long id,
             string name,
             string desc,
@@ -69,7 +70,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        public async Task ThrowException_WhenDimension_InputIsInvalid(
+        [SuppressMessage("ReSharper", "TooManyArguments")]
+        public void ThrowException_WhenDimension_InputIsInvalid(
             long id,
             string name,
             string desc,
@@ -188,7 +190,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(

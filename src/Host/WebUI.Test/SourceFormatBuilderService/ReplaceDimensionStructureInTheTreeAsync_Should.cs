@@ -6,35 +6,37 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class ReplaceDimensionStructureInTheTreeAsync_Should : TestBase
     {
         [Fact]
-        public async Task ReplaceDimensionStructure_AtFirstLevel()
+        public void ReplaceDimensionStructure_AtFirstLevel()
         {
         }
 
         [Fact]
-        public async Task ReplaceDimensionStructure_AtSecondLevel()
+        public void ReplaceDimensionStructure_AtSecondLevel()
         {
         }
 
         [Fact]
-        public async Task ReplaceDimensionStructure_AtThirdLevel()
+        public void ReplaceDimensionStructure_AtThirdLevel()
         {
         }
 
         [Fact]
-        public async Task ReplaceRootDimension()
+        public void ReplaceRootDimension()
         {
         }
 
         [Fact]
-        public async Task ReplaceRootDimensionStructure_AndIncludeAllChildDimensionsOfTheAddedOne()
+        public void ReplaceRootDimensionStructure_AndIncludeAllChildDimensionsOfTheAddedOne()
         {
         }
 
         [Fact]
-        public async Task ThrowException_WhenDimensionStructureIs_NotInTheTree()
+        public void ThrowException_WhenDimensionStructureIs_NotInTheTree()
         {
         }
     }
