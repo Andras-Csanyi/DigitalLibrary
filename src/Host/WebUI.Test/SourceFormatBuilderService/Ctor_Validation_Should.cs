@@ -20,6 +20,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA2000")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Ctor_Validation_Should : TestBase
     {
         public static IEnumerable<object[]> ThrowExceptionWhenInputIsNull => new List<object[]>
@@ -54,7 +57,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
         [Theory]
         [MemberData(nameof(ThrowExceptionWhenInputIsNull))]
-        public async Task ThrowException_WhenInputIsNull(
+        [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
+        [SuppressMessage("ReSharper", "CA1806")]
+        public void ThrowException_WhenInputIsNull(
             IMasterDataHttpClient masterDataHttpClient,
             IMasterDataValidators masterDataValidators,
             IDomainEntityHelperService domainEntityHelperService)
@@ -62,7 +67,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Arrange
 
             // Act
-            Func<Task> action = async () =>
+            Action action = () =>
             {
                 // ReSharper disable once CA1806
                 new SourceFormatBuilderService(masterDataHttpClient, masterDataValidators,

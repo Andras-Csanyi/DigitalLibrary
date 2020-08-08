@@ -13,10 +13,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class OnUpdate_Validation_Should : TestBase
     {
         [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        public void ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             ISourceFormatBuilderService builder = new SourceFormatBuilderService(

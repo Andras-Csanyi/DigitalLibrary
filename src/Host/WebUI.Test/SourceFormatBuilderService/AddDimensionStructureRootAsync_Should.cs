@@ -49,7 +49,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         [Fact]
-        public async Task ThrowException_SourceFormatHasRootDimensionStructure()
+        public void ThrowException_SourceFormatHasRootDimensionStructure()
         {
             // Arrange
             _masterDataWebApiClientMock

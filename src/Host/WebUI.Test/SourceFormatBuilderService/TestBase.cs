@@ -11,16 +11,18 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using WebUi.Services;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1051")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestBase
     {
-        protected Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
+        protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
             new Mock<IDomainEntityHelperService>();
 
-        protected Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
+        protected readonly Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
 
-        protected Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
+        protected readonly Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
 
-        protected SourceFormat _sourceFormat = new SourceFormat
+        protected readonly SourceFormat _sourceFormat = new SourceFormat
         {
             Id = 100,
             Name = "Test Source Format",
