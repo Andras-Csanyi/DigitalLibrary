@@ -99,6 +99,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.IsNotNull(dimensionStructure);
             Check.AreNotEqual(parentDimensionStructureGuid, Guid.Empty);
 
+            // ReSharper disable once CA1062
             if (dimensionStructure.Guid == _sourceFormat.RootDimensionStructure.Guid)
             {
                 _sourceFormat.RootDimensionStructure.Name = dimensionStructure.Name;
