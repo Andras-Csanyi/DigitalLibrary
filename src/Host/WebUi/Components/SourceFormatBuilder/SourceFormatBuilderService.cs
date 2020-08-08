@@ -37,12 +37,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private IMasterDataHttpClient _masterDataHttpClient;
 
-        public SourceFormat SourceFormat
-        {
-            get => _sourceFormat;
-            set => _sourceFormat = value;
-        }
-
         private SourceFormat _sourceFormat = new SourceFormat();
 
 
@@ -68,7 +62,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.IsNotNull(dimensionStructure);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task AddDimensionStructureRootAsync(long dimensionStructureId)
         {
             Check.AreNotEqual(dimensionStructureId, 0);
@@ -77,7 +71,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             await AddDimensionStructureRootAsync(result).ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure)
         {
             Check.IsNotNull(dimensionStructure);
@@ -92,6 +86,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _sourceFormat.RootDimensionStructureId = dimensionStructure.Id;
         }
 
+
+        /// <inheritdoc />
         public async Task AddOrUpdateDocumentStructureToTreeAsync(
             DimensionStructure dimensionStructure,
             Guid parentDimensionStructureGuid)
@@ -372,6 +368,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             UpdateNodeNewDimensionStructure = null;
             UpdateNodeOldDimensionStructure = null;
+        }
+
+        public SourceFormat SourceFormat
+        {
+            get => _sourceFormat;
+            set => _sourceFormat = value;
         }
 
         public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }

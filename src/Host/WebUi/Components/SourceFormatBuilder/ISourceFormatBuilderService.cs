@@ -28,7 +28,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         IMasterDataValidators MasterDataValidators { get; }
 
         /// <summary>
-        /// The SourceFormat data structure which is going to be built.
+        ///     The SourceFormat data structure which is going to be built.
         /// </summary>
         SourceFormat SourceFormat { get; set; }
 
@@ -41,24 +41,24 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             DimensionStructure dimensionStructure);
 
         /// <summary>
-        /// Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
-        /// ass root DimensionStructure.
+        ///     Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
+        ///     ass root DimensionStructure.
         /// </summary>
         /// <param name="dimensionStructureId">The id of the selected DimensionStructure.</param>
         /// <returns>Task.</returns>
         Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
-        /// Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
-        /// ass root DimensionStructure by Id.
+        ///     Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
+        ///     ass root DimensionStructure by Id.
         /// </summary>
         /// <param name="dimensionStructureId">The id of the selected DimensionStructure.</param>
         /// <returns>Task.</returns>
         Task AddDimensionStructureRootAsync(long dimensionStructureId);
 
         /// <summary>
-        /// Adds or updates <see cref="DimensionStructure">DocumentStructure</see> in the DimensionStructure node.
-        /// The node going to be replaced is marked by the Guid.
+        ///     Adds or updates <see cref="DimensionStructure">DocumentStructure</see> in the DimensionStructure node.
+        ///     The node going to be replaced is marked by the Guid.
         /// </summary>
         /// <param name="dimensionStructure">New DimensionStructure.</param>
         /// <param name="parentDimensionStructureGuid">Guid value of the node going to be replaced.</param>
