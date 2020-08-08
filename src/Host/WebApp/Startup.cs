@@ -29,10 +29,10 @@ namespace WebApp
 
     public class Startup
     {
-        private readonly IWebHostEnvironment _env;
-
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
            .Create(builder => { builder.AddDebug(); });
+
+        private readonly IWebHostEnvironment _env;
 
         public IConfiguration Configuration { get; }
 
@@ -42,6 +42,23 @@ namespace WebApp
         {
             Configuration = configuration;
             _env = env;
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -138,23 +155,6 @@ namespace WebApp
                     // teamManagerContext.Database.EnsureCreated();
                 }
             }
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            // app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

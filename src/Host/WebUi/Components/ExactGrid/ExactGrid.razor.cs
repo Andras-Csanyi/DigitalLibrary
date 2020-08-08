@@ -35,10 +35,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
         [Inject]
         public IJSRuntime JsRuntime { get; set; }
 
-        public async Task ShowEditModal(DimensionStructure dimensionStructure)
+        private async Task<List<string>> GetColumnNames()
         {
-            _editedItem = dimensionStructure;
-            EditModalWindow.Show();
+            Type dimensionStructuretype = typeof(DimensionStructure);
+            List<string> columnNames = new List<PropertyInfo>(dimensionStructuretype.GetProperties())
+               .Select(n => n.Name)
+               .ToList();
+            return columnNames;
         }
 
         public async Task HandleValidSubmit()
@@ -52,7 +55,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             Columns = await GetColumnNames().ConfigureAwait(false);
             _httpClient = HttpClientFactory.CreateClient("httpClient");
             string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
+                         $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get, url);
             HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
@@ -62,13 +65,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             _dimensionStructures = JsonConvert.DeserializeObject<List<DimensionStructure>>(resultString);
         }
 
-        private async Task<List<string>> GetColumnNames()
+        public async Task ShowEditModal(DimensionStructure dimensionStructure)
         {
-            Type dimensionStructuretype = typeof(DimensionStructure);
-            List<string> columnNames = new List<PropertyInfo>(dimensionStructuretype.GetProperties())
-               .Select(n => n.Name)
-               .ToList();
-            return columnNames;
+            _editedItem = dimensionStructure;
+            EditModalWindow.Show();
         }
     }
 }

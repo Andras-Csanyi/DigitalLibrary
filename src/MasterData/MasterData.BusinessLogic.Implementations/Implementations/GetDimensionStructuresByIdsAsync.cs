@@ -1,5 +1,3 @@
-using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
@@ -16,6 +14,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using Microsoft.EntityFrameworkCore;
 
     using Utils.Guards;
+
+    using ViewModels;
 
     public partial class MasterDataBusinessLogic
     {

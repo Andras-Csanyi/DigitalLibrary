@@ -12,7 +12,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
-    using Utils.ControlPanel.DataSample.MasterData;
     using Utils.Guards;
 
     using Xunit;

@@ -4,10 +4,10 @@ namespace DigitalLibrary.ControlPanel.Validators
     {
         public const string AddNew = "AddNew";
 
-        public const string Modify = "Modify";
-
         public const string Delete = "Delete";
 
         public const string Find = "Find";
+
+        public const string Modify = "Modify";
     }
 }

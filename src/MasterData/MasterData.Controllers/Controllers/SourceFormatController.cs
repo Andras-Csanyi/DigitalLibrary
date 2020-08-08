@@ -28,24 +28,6 @@ namespace DigitalLibrary.MasterData.Controllers
             _masterDataBusinessLogic = masterDataBusinessLogic;
         }
 
-        [HttpGet]
-        [Route(MasterDataApi.SourceFormat.V1.GetAll)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<SourceFormat>>> GetSourceFormatsAsync()
-        {
-            try
-            {
-                List<SourceFormat> result = await _masterDataBusinessLogic.GetSourceFormatsAsync()
-                   .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -65,17 +47,16 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpPost]
-        [Route(MasterDataApi.SourceFormat.V1.GetById)]
+        [HttpDelete]
+        [Route(MasterDataApi.SourceFormat.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
+        public async Task<ActionResult> DeleteSourceFormatAsync(SourceFormat sourceFormat)
         {
             try
             {
-                SourceFormat result = await _masterDataBusinessLogic.GetSourceFormatByIdAsync(sourceFormat)
-                   .ConfigureAwait(false);
-                return Ok(result);
+                await _masterDataBusinessLogic.DeleteSourceFormatAsync(sourceFormat).ConfigureAwait(false);
+                return Ok();
             }
             catch (Exception e)
             {
@@ -103,6 +84,42 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormat.V1.GetById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
+        {
+            try
+            {
+                SourceFormat result = await _masterDataBusinessLogic.GetSourceFormatByIdAsync(sourceFormat)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet]
+        [Route(MasterDataApi.SourceFormat.V1.GetAll)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<SourceFormat>>> GetSourceFormatsAsync()
+        {
+            try
+            {
+                List<SourceFormat> result = await _masterDataBusinessLogic.GetSourceFormatsAsync()
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
         [HttpPut]
         [Route(MasterDataApi.SourceFormat.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -116,23 +133,6 @@ namespace DigitalLibrary.MasterData.Controllers
                    .UpdateSourceFormatAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpDelete]
-        [Route(MasterDataApi.SourceFormat.V1.Delete)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> DeleteSourceFormatAsync(SourceFormat sourceFormat)
-        {
-            try
-            {
-                await _masterDataBusinessLogic.DeleteSourceFormatAsync(sourceFormat).ConfigureAwait(false);
-                return Ok();
             }
             catch (Exception e)
             {

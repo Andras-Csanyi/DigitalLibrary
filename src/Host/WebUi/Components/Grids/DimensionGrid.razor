@@ -29,14 +29,12 @@
                     <BSTableCell>
                         <BSButton ButtonType="ButtonType.Button"
                                   Color="Color.Primary"
-                                  @onclick="@(async () => await EditDimensionActionAsync(dimension)
-                                                .ConfigureAwait(false))">
+                                  @onclick="@(async () => await EditDimensionActionAsync(dimension).ConfigureAwait(false))">
                             Edit
                         </BSButton>
                         <BSButton ButtonType="ButtonType.Submit"
                                   Color="Color.Danger"
-                                  @onclick="@(async () => await DeleteDimensionActionAsync(dimension)
-                                                .ConfigureAwait(false))">
+                                  @onclick="@(async () => await DeleteDimensionActionAsync(dimension).ConfigureAwait(false))">
                             Delete
                         </BSButton>
                     </BSTableCell>

@@ -8,60 +8,6 @@
 
     public static class ControlPanelDataSample
     {
-        public static void Populate(ControlPanelContext ctx)
-        {
-            AddModules(ctx);
-            AddMenusToModules(ctx);
-        }
-
-        private static void AddModules(ControlPanelContext ctx)
-        {
-            Module teamManager = new Module
-            {
-                Name = "Team Manager",
-                Description = "Module for managing teams",
-                ModuleRoute = "teammanager",
-                IsActive = 1
-            };
-            ctx.Modules.Add(teamManager);
-            ctx.SaveChanges();
-
-            Module moneyTracker = new Module
-            {
-                Name = "Money Tracker",
-                Description = "Module for tracking money",
-                ModuleRoute = "money_tracker",
-                IsActive = 1
-            };
-            ctx.Modules.Add(moneyTracker);
-            ctx.SaveChanges();
-
-            Module masterData = new Module
-            {
-                Name = "Master Data",
-                Description = "Module for managing Master Data",
-                ModuleRoute = "masterdata",
-                IsActive = 1
-            };
-            ctx.Modules.Add(masterData);
-            ctx.SaveChanges();
-
-            Module controlPanelModule = new Module
-            {
-                Name = "Control Panel",
-                Description = "Control Panel Module",
-                ModuleRoute = "controlpanel",
-                IsActive = 1
-            };
-            ctx.Modules.Add(controlPanelModule);
-            ctx.SaveChanges();
-        }
-
-        private static void AddMenusToModules(ControlPanelContext ctx)
-        {
-            AddMenusToControlPanel(ctx);
-        }
-
         private static void AddMenusToControlPanel(ControlPanelContext ctx)
         {
             Module controlPanel = ctx.Modules.FirstOrDefault(d => d.Name.Equals("Control Panel"));
@@ -147,6 +93,60 @@
             {
                 throw new NullReferenceException("There is no master data entity!");
             }
+        }
+
+        private static void AddMenusToModules(ControlPanelContext ctx)
+        {
+            AddMenusToControlPanel(ctx);
+        }
+
+        private static void AddModules(ControlPanelContext ctx)
+        {
+            Module teamManager = new Module
+            {
+                Name = "Team Manager",
+                Description = "Module for managing teams",
+                ModuleRoute = "teammanager",
+                IsActive = 1
+            };
+            ctx.Modules.Add(teamManager);
+            ctx.SaveChanges();
+
+            Module moneyTracker = new Module
+            {
+                Name = "Money Tracker",
+                Description = "Module for tracking money",
+                ModuleRoute = "money_tracker",
+                IsActive = 1
+            };
+            ctx.Modules.Add(moneyTracker);
+            ctx.SaveChanges();
+
+            Module masterData = new Module
+            {
+                Name = "Master Data",
+                Description = "Module for managing Master Data",
+                ModuleRoute = "masterdata",
+                IsActive = 1
+            };
+            ctx.Modules.Add(masterData);
+            ctx.SaveChanges();
+
+            Module controlPanelModule = new Module
+            {
+                Name = "Control Panel",
+                Description = "Control Panel Module",
+                ModuleRoute = "controlpanel",
+                IsActive = 1
+            };
+            ctx.Modules.Add(controlPanelModule);
+            ctx.SaveChanges();
+        }
+
+        public static void Populate(ControlPanelContext ctx)
+        {
+            AddModules(ctx);
+            AddMenusToModules(ctx);
         }
     }
 }

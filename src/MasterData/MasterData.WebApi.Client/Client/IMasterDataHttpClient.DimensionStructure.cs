@@ -1,42 +1,23 @@
-using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
-
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using BusinessLogic.ViewModels;
+
     using DomainModel;
 
     public partial interface IMasterDataHttpClient
     {
-        Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure);
-
         /// <summary>
-        ///     Returns list of DimensionStructures.
+        ///     Adds a new dimension structure.
         /// </summary>
+        /// <param name="dimensionStructure">The dimension structure should be added.</param>
         /// <returns>
-        ///     <para>Returns list of dimension values.</para>
-        ///     <para>If error happens then returns 400 with exception details.</para>
+        ///     <para>Returns OK 200 with the created Dimension Structure object.</para>
+        ///     <para>If error happens returns 400 Bad request with exception details.</para>
         /// </returns>
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
-
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureQueryObject queryObject);
-
-        /// <summary>
-        /// Returns the DimensionStructure having the id.
-        ///
-        /// It expects a DimensionStructure object as input, where the ID represents
-        /// the query. No other values in the object will be validated.
-        ///
-        /// It does not return with its ChildDimensionStructures.
-        /// </summary>
-        /// <param name="dimensionStructureQueryObject">Query object</param>
-        /// <returns>
-        ///     <para>Returns with DimensionStructure object</para>
-        ///     <para>Throws Exception if object doesn't exist.</para>
-        /// </returns>
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject);
+        Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
         ///     Deletes a DimensionStructure
@@ -49,14 +30,31 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
-        ///     Adds a new dimension structure.
+        ///     Returns the DimensionStructure having the id.
+        ///     It expects a DimensionStructure object as input, where the ID represents
+        ///     the query. No other values in the object will be validated.
+        ///     It does not return with its ChildDimensionStructures.
         /// </summary>
-        /// <param name="dimensionStructure">The dimension structure should be added.</param>
+        /// <param name="dimensionStructureQueryObject">Query object</param>
         /// <returns>
-        ///     <para>Returns OK 200 with the created Dimension Structure object.</para>
-        ///     <para>If error happens returns 400 Bad request with exception details.</para>
+        ///     <para>Returns with DimensionStructure object</para>
+        ///     <para>Throws Exception if object doesn't exist.</para>
         /// </returns>
-        Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
+
+        /// <summary>
+        ///     Returns list of DimensionStructures.
+        /// </summary>
+        /// <returns>
+        ///     <para>Returns list of dimension values.</para>
+        ///     <para>If error happens then returns 400 with exception details.</para>
+        /// </returns>
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync(DimensionStructureQueryObject queryObject);
+
+        Task<DimensionStructure> ModifyDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
         ///     Updates a dimension structure object.

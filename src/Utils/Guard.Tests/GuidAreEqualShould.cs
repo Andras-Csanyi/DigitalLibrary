@@ -8,10 +8,23 @@ namespace Guard.Tests
     using FluentAssertions;
 
     using Xunit;
-    using Xunit.Sdk;
 
     public class GuidAreEqualShould
     {
+        [Fact]
+        public void NotThrowException_WhenValuesArentEqual()
+        {
+            // Arrange
+            Guid value = Guid.NewGuid();
+            Guid comparedTo = Guid.NewGuid();
+
+            // Act
+            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
+
+            // Assert
+            action.Should().NotThrow();
+        }
+
         [Fact]
         public void ThrowException_WhenAreEqual()
         {
@@ -40,20 +53,6 @@ namespace Guard.Tests
             // Assert
             action.Should().ThrowExactly<GuardException>()
                .WithMessage(message);
-        }
-
-        [Fact]
-        public void NotThrowException_WhenValuesArentEqual()
-        {
-            // Arrange
-            Guid value = Guid.NewGuid();
-            Guid comparedTo = Guid.NewGuid();
-
-            // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
-
-            // Assert
-            action.Should().NotThrow();
         }
     }
 }

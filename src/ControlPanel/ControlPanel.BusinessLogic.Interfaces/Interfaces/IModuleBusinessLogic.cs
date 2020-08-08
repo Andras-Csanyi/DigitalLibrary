@@ -11,12 +11,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces
 
         Task DeleteAsync(Module toBeDelete);
 
-        Task<Module> ModifyAsync(Module modify);
-
         Task<Module> FindAsync(Module module);
+
+        Task<List<Module>> GetAllActiveAsync();
 
         Task<List<Module>> GetAllAsync();
 
-        Task<List<Module>> GetAllActiveAsync();
+        Task<Module> ModifyAsync(Module modify);
     }
 }

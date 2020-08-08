@@ -1,6 +1,5 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -13,12 +12,12 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
     {
         private const int AmountOfSourceFormat_BusinessPartner = 1;
 
-        public const string HungarianBusinessPartnerRootDimensionStructureName = "Hungarian Business Partner";
+        public const string HungarianBusinessPartnerAddressName = "Hungarian Address Dimension Structure";
 
         public const string HungarianBusinessPartnerNameDimensionStructureName =
             "Business Partner Name Dimension Structure";
 
-        public const string HungarianBusinessPartnerAddressName = "Hungarian Address Dimension Structure";
+        public const string HungarianBusinessPartnerRootDimensionStructureName = "Hungarian Business Partner";
 
         private static void PopulateSourceFormatBusinessPartner(MasterDataContext ctx)
         {

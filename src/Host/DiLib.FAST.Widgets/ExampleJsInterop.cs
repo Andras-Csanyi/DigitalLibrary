@@ -1,9 +1,9 @@
-using Microsoft.JSInterop;
-
-using System.Threading.Tasks;
-
 namespace DiLib.FAST.Widgets
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.JSInterop;
+
     public class ExampleJsInterop
     {
         public static ValueTask<string> Prompt(IJSRuntime jsRuntime, string message)

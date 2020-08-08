@@ -7,13 +7,13 @@ namespace FAST.Components.Components.TreeView
 
     public partial class BfTreeView
     {
+        private BfTreeItem _selected;
+
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter(CaptureUnmatchedValues = true)]
         public Dictionary<string, object> UnknownParameters { get; set; }
-
-        private BfTreeItem _selected;
 
         public async Task Select(BfTreeItem item)
         {

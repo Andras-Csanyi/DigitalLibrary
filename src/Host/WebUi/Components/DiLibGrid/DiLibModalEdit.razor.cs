@@ -20,11 +20,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         [CascadingParameter]
         public DiLibGridComponent<T> DiLibGridComponent { get; set; }
 
+        [Inject]
+        public IJSRuntime JsRuntime { get; set; }
+
         [Parameter]
         public T TData { get; set; }
 
-        [Inject]
-        public IJSRuntime JsRuntime { get; set; }
+        private string BindBuilder(T variableName, string propertyName)
+        {
+            return $"{nameof(_editedItem)}.{propertyName}";
+        }
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,11 +42,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         {
             JsRuntime.InvokeAsync<T>("console.log", _editedItem);
             DiLibGridComponent.EditActionButton.Hide();
-        }
-
-        private string BindBuilder(T variableName, string propertyName)
-        {
-            return $"{nameof(_editedItem)}.{propertyName}";
         }
     }
 }

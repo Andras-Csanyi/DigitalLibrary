@@ -3,18 +3,18 @@ namespace DigitalLibrary.Ui.WebUi.Services
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel.Interfaces;
+    using MasterData.DomainModel.Interfaces;
 
     using Utils.Guards;
 
     /// <summary>
-    /// Helper service for manipulating domain models.
+    ///     Helper service for manipulating domain models.
     /// </summary>
     public interface IDomainEntityHelperService
     {
         /// <summary>
-        /// Adds a nullo object for the list as first item.
-        /// The role of a nullo object is displaying "-- Select-One --" in the drop down, for example.
+        ///     Adds a nullo object for the list as first item.
+        ///     The role of a nullo object is displaying "-- Select-One --" in the drop down, for example.
         /// </summary>
         /// <param name="list">The list where to the nullo will be added.</param>
         /// <typeparam name="T">Type in the list</typeparam>

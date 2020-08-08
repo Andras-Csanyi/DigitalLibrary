@@ -27,42 +27,6 @@ namespace DigitalLibrary.ControlPanel.Controllers
             ModuleBusinessLogic = moduleBusinessLogic;
         }
 
-        [HttpGet]
-        [Route(ControlPanelWebApi.Module.GetAll)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Produces(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult<List<Module>>> GetAllAsync()
-        {
-            try
-            {
-                List<Module> result = await ModuleBusinessLogic.GetAllAsync().ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpGet]
-        [Route(ControlPanelWebApi.Module.GetAllActive)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Produces(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult<List<Module>>> GetAllActiveAsync()
-        {
-            try
-            {
-                List<Module> result = await ModuleBusinessLogic.GetAllActiveAsync().ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
         [HttpPost]
         [Route(ControlPanelWebApi.Module.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -80,6 +44,30 @@ namespace DigitalLibrary.ControlPanel.Controllers
 
                 Module result = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpDelete]
+        [Route(ControlPanelWebApi.Module.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Produces(MediaTypeNames.Application.Json)]
+        public async Task<ActionResult> DeleteAsync(Module module)
+        {
+            try
+            {
+                if (module == null)
+                {
+                    string msg = $"Null argument: {nameof(ModuleController)}{nameof(DeleteAsync)}";
+                    throw new ModuleControllerArgumentNullException(msg);
+                }
+
+                await ModuleBusinessLogic.DeleteAsync(module).ConfigureAwait(false);
+                return Ok();
             }
             catch (Exception e)
             {
@@ -111,23 +99,35 @@ namespace DigitalLibrary.ControlPanel.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route(ControlPanelWebApi.Module.Delete)]
+        [HttpGet]
+        [Route(ControlPanelWebApi.Module.GetAllActive)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Produces(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult> DeleteAsync(Module module)
+        public async Task<ActionResult<List<Module>>> GetAllActiveAsync()
         {
             try
             {
-                if (module == null)
-                {
-                    string msg = $"Null argument: {nameof(ModuleController)}{nameof(DeleteAsync)}";
-                    throw new ModuleControllerArgumentNullException(msg);
-                }
+                List<Module> result = await ModuleBusinessLogic.GetAllActiveAsync().ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
 
-                await ModuleBusinessLogic.DeleteAsync(module).ConfigureAwait(false);
-                return Ok();
+        [HttpGet]
+        [Route(ControlPanelWebApi.Module.GetAll)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Produces(MediaTypeNames.Application.Json)]
+        public async Task<ActionResult<List<Module>>> GetAllAsync()
+        {
+            try
+            {
+                List<Module> result = await ModuleBusinessLogic.GetAllAsync().ConfigureAwait(false);
+                return Ok(result);
             }
             catch (Exception e)
             {

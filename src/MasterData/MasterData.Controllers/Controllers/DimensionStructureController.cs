@@ -1,5 +1,3 @@
-using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
-
 namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
@@ -7,6 +5,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using System.Threading.Tasks;
 
     using BusinessLogic.Interfaces;
+    using BusinessLogic.ViewModels;
 
     using DomainModel;
 
@@ -49,25 +48,6 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpPut]
-        [Route(MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> Update(DimensionStructure dimensionStructure)
-        {
-            try
-            {
-                DimensionStructure result = await _masterDataBusinessLogic
-                   .UpdateDimensionStructureAsync(dimensionStructure)
-                   .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
         [HttpDelete]
         [Route(MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -78,6 +58,26 @@ namespace DigitalLibrary.MasterData.Controllers
             {
                 await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
                 return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructureById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject)
+        {
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(
+                        dimensionStructureQueryObject)
+                   .ConfigureAwait(false);
+                return result;
             }
             catch (Exception e)
             {
@@ -123,19 +123,18 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructureById)]
+        [HttpPut]
+        [Route(MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject)
+        public async Task<ActionResult<DimensionStructure>> Update(DimensionStructure dimensionStructure)
         {
             try
             {
-                DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(
-                        dimensionStructureQueryObject)
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .UpdateDimensionStructureAsync(dimensionStructure)
                    .ConfigureAwait(false);
-                return result;
+                return Ok(result);
             }
             catch (Exception e)
             {

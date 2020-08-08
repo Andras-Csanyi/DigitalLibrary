@@ -27,16 +27,16 @@ namespace DigitalLibrary.MasterData.Validators
             DimensionStructureQueryObjectValidator = dimensionStructureQueryObjectValidator;
         }
 
+        public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
+
+        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
+
+        public DimensionStructureValidator DimensionStructureValidator { get; }
+
         public DimensionValidator DimensionValidator { get; }
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         public SourceFormatValidator SourceFormatValidator { get; }
-
-        public DimensionStructureValidator DimensionStructureValidator { get; }
-
-        public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
-
-        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
     }
 }

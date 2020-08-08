@@ -7,22 +7,22 @@ namespace FAST.Components.Components.TreeView
 
     public partial class BfTreeItem
     {
-        [Parameter]
-        public bool Expanded { get; set; }
-
-        [Parameter]
-        public bool Selected { get; set; } = false;
+        private string _slot = "item";
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        private string _slot = "item";
-
-        [Parameter(CaptureUnmatchedValues = true)]
-        public Dictionary<string, object> UnknownParameters { get; set; }
+        [Parameter]
+        public bool Expanded { get; set; }
 
         [CascadingParameter]
         protected BfTreeView ParentTreeView { get; set; }
+
+        [Parameter]
+        public bool Selected { get; set; } = false;
+
+        [Parameter(CaptureUnmatchedValues = true)]
+        public Dictionary<string, object> UnknownParameters { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

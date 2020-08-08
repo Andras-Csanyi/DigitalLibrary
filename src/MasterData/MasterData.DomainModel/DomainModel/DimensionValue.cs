@@ -6,10 +6,10 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     public class DimensionValue : IHaveId
     {
-        public long Id { get; set; }
+        public ICollection<DimensionDimensionValue> DimensionDimensionValues { get; set; }
 
         public string Value { get; set; }
 
-        public ICollection<DimensionDimensionValue> DimensionDimensionValues { get; set; }
+        public long Id { get; set; }
     }
 }

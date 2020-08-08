@@ -8,18 +8,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using FluentAssertions;
 
-    using Utils.Guards;
-
     using Xunit;
 
     [ExcludeFromCodeCoverage]
     public class GetDimensionStructureByIdAsync_Validation_Should : TestBase
     {
-        private const string TestInfo = nameof(GetDimensionStructureByIdAsync_Validation_Should);
-
         public GetDimensionStructureByIdAsync_Validation_Should() : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(GetDimensionStructureByIdAsync_Validation_Should);
 
         [Fact]
         public async Task ThrowException_WhenInputIsNull()

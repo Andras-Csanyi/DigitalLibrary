@@ -31,6 +31,22 @@ namespace FAST.Components.Tests.Components.BfTreeItem
         }
 
         [Fact]
+        public async Task RenderChildContent()
+        {
+            // Arrange
+            IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
+                p => p.AddChildContent<BfTreeItem>(
+                    pa => { pa.AddChildContent<BfTreeItem>(); }));
+
+            // Assert
+            cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem)
+               .ToMarkup()
+               .Contains(BfComponentApis.BfTreeItem.Html.BfTreeItem)
+               .Should()
+               .BeTrue();
+        }
+
+        [Fact]
         public async Task Splat_Attribute()
         {
             // Arrange
@@ -74,22 +90,6 @@ namespace FAST.Components.Tests.Components.BfTreeItem
                .Value
                .Should()
                .Be("value2");
-        }
-
-        [Fact]
-        public async Task RenderChildContent()
-        {
-            // Arrange
-            IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
-                p => p.AddChildContent<BfTreeItem>(
-                    pa => { pa.AddChildContent<BfTreeItem>(); }));
-
-            // Assert
-            cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem)
-               .ToMarkup()
-               .Contains(BfComponentApis.BfTreeItem.Html.BfTreeItem)
-               .Should()
-               .BeTrue();
         }
     }
 }

@@ -9,20 +9,24 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
 
     public class DiLibGridColumnProvider
     {
-        public List<string> GetEntityPropertyNames<T>()
+        public List<string> AddDeleteButtonIfNeeded(List<string> entityProperties, bool rowDeleteButton)
         {
-            Type type = typeof(T);
-            List<PropertyInfo> propertyInfos = new List<PropertyInfo>(type.GetProperties());
-            if (propertyInfos.Any())
+            if (rowDeleteButton)
             {
-                List<string> res = propertyInfos
-                   .Select(n => n.Name)
-                   .ToList();
-                return res;
+                entityProperties.Add(RowCommandButtonConstants.DeleteRowCommandButton);
             }
 
-            string msg = $"{nameof(T)} doesn't have any property!";
-            throw new DiLibGridColumnProviderNoPropertiesOfTTypeException(msg);
+            return entityProperties;
+        }
+
+        public List<string> AddEditButtonIfNeeded(List<string> entityProperties, bool rowEditButton)
+        {
+            if (rowEditButton)
+            {
+                entityProperties.Add(RowCommandButtonConstants.EditRowCommandButton);
+            }
+
+            return entityProperties;
         }
 
         public List<string> ColumnsToBeDisplayed(List<string> entityProperties, List<string> columnsNotToBeDisplayed)
@@ -45,24 +49,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
             throw new DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(msg);
         }
 
-        public List<string> AddEditButtonIfNeeded(List<string> entityProperties, bool rowEditButton)
+        public List<string> GetEntityPropertyNames<T>()
         {
-            if (rowEditButton)
+            Type type = typeof(T);
+            List<PropertyInfo> propertyInfos = new List<PropertyInfo>(type.GetProperties());
+            if (propertyInfos.Any())
             {
-                entityProperties.Add(RowCommandButtonConstants.EditRowCommandButton);
+                List<string> res = propertyInfos
+                   .Select(n => n.Name)
+                   .ToList();
+                return res;
             }
 
-            return entityProperties;
-        }
-
-        public List<string> AddDeleteButtonIfNeeded(List<string> entityProperties, bool rowDeleteButton)
-        {
-            if (rowDeleteButton)
-            {
-                entityProperties.Add(RowCommandButtonConstants.DeleteRowCommandButton);
-            }
-
-            return entityProperties;
+            string msg = $"{nameof(T)} doesn't have any property!";
+            throw new DiLibGridColumnProviderNoPropertiesOfTTypeException(msg);
         }
     }
 }
