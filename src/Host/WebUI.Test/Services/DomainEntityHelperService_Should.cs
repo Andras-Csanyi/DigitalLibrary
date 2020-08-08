@@ -1,6 +1,7 @@
 namespace DigitalLibrary.Ui.WebUI.Test.Services
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using FluentAssertions;
@@ -11,10 +12,14 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [ExcludeFromCodeCoverage]
     public class DomainEntityHelperService_Should
     {
         [Fact]
-        public async Task Asd()
+        // ReSharper disable once IdentifierTypo
+        public async Task AddNullo_ToTheList()
         {
             IDomainEntityHelperService service = new DomainEntityHelperService();
 
