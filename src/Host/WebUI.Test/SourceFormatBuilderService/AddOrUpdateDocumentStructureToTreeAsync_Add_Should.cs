@@ -1,5 +1,6 @@
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -13,46 +14,146 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
+    [ExcludeFromCodeCoverage]
     public class AddOrUpdateDocumentStructureToTreeAsync_Add_Should : TestBase
     {
-        /// <summary>
-        ///     Until this:
-        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        ///     is not solved this part of the testing is suspended
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddItemTo_FirstLevel_ListHasMultipleItems()
+        [Fact]
+        public async Task AddItemTo_FirstLevel_WhenListIsEmpty()
         {
+            DimensionStructure toRootFirst = new DimensionStructure
+            {
+                Name = "toRootFirst name",
+                Desc = "toRootFirst desc"
+            };
+
+            DimensionStructure toRootSecond = new DimensionStructure
+            {
+                Name = "toRootSecond name",
+                Desc = "toRootSecond desc"
+            };
+
+            _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootFirst);
+            _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootSecond);
+
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(_sourceFormat);
+
+            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
+
+            DimensionStructure toFirstLevel = new DimensionStructure
+            {
+                Name = "toFirstLevel name",
+                Desc = "toFirstLevel desc"
+            };
+
+            // Act
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+                    toFirstLevel,
+                    toRootFirst.Guid)
+               .ConfigureAwait(false);
+
+            // Assert
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
+               .Count
+               .Should().Be(2);
+
+            DimensionStructure toFirstResult = sourceFormatBuilderService.SourceFormat
+               .RootDimensionStructure
+               .ChildDimensionStructures
+               .FirstOrDefault(p => p.Guid == toRootFirst.Guid);
+
+            toFirstResult.ChildDimensionStructures.Count
+               .Should().Be(1);
+
+            DimensionStructure res = toFirstResult
+               .ChildDimensionStructures
+               .FirstOrDefault(p => p.Guid == toFirstLevel.Guid);
+            res.Should().NotBeNull();
+            res.Name.Should().Be(toFirstLevel.Name);
+            res.Desc.Should().Be(toFirstLevel.Desc);
         }
 
-        /// <summary>
-        ///     Until this:
-        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        ///     is not solved this part of the testing is suspended
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddItemTo_SecondLevel_EmptyList()
+        [Fact]
+        public async Task AddItemTo_FirstLevel_WhenListHasMultipleItems()
         {
-        }
+            DimensionStructure toRootFirst = new DimensionStructure
+            {
+                Name = "toRootFirst name",
+                Desc = "toRootFirst desc"
+            };
 
-        /// <summary>
-        ///     Until this:
-        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        ///     is not solved this part of the testing is suspended
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddItemTo_SecondLevel_LastHasMultipleItems()
-        {
-        }
+            DimensionStructure firstLevelFirst = new DimensionStructure
+            {
+                Name = "namefirstLevelFirst",
+                Desc = "descfirstLevelFirst"
+            };
 
-        /// <summary>
-        ///     Until this:
-        ///     https://stackoverflow.com/questions/60441646/how-to-setup-moq-for-the-same-method-where-return-value-depends-on-input
-        ///     is not solved this part of the testing is suspended
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddItemTo_WhenAnItemIsAdded()
-        {
+            DimensionStructure firstLevelSecond = new DimensionStructure
+            {
+                Name = "namefirstLevelSecond",
+                Desc = "descfirstLevelSecond"
+            };
+            toRootFirst.ChildDimensionStructures.Add(firstLevelFirst);
+            toRootFirst.ChildDimensionStructures.Add(firstLevelSecond);
+
+            DimensionStructure toRootSecond = new DimensionStructure
+            {
+                Name = "toRootSecond name",
+                Desc = "toRootSecond desc"
+            };
+
+            _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootFirst);
+            _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootSecond);
+
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(_sourceFormat);
+
+            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
+
+            DimensionStructure toFirstLevel = new DimensionStructure
+            {
+                Name = "toFirstLevel name",
+                Desc = "toFirstLevel desc"
+            };
+
+            // Act
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+                    toFirstLevel,
+                    toRootFirst.Guid)
+               .ConfigureAwait(false);
+
+            // Assert
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
+               .Count
+               .Should().Be(2);
+
+            DimensionStructure toFirstResult = sourceFormatBuilderService.SourceFormat
+               .RootDimensionStructure
+               .ChildDimensionStructures
+               .FirstOrDefault(p => p.Guid == toRootFirst.Guid);
+
+            toFirstResult.ChildDimensionStructures.Count
+               .Should().Be(3);
+
+            DimensionStructure res = toFirstResult
+               .ChildDimensionStructures
+               .FirstOrDefault(p => p.Guid == toFirstLevel.Guid);
+            res.Should().NotBeNull();
+            res.Name.Should().Be(toFirstLevel.Name);
+            res.Desc.Should().Be(toFirstLevel.Desc);
         }
 
         [Fact]
@@ -143,7 +244,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ChildDimensionStructures
                .FirstOrDefault(p => p.Guid == newOne.Guid);
             res.Should().NotBeNull();
-            // ReSharper disable once PossibleNullReferenceException
             res.Name.Should().Be(newOne.Name);
             res.Desc.Should().Be(newOne.Desc);
         }
