@@ -37,38 +37,30 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         private List<SourceFormat> _sourceFormats = new List<SourceFormat>();
 
         [Inject]
+        public IJSRuntime JsRuntime { get; set; }
+
+        [Inject]
         public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
         [Inject]
         public IMasterDataValidators MasterDataValidators { get; set; }
 
-        [Inject]
-        public IJSRuntime JsRuntime { get; set; }
-
-        protected override async Task OnInitializedAsync()
+        private async Task CancelAddNewHandler()
         {
-            try
-            {
-                await PopulateDimensionStructures().ConfigureAwait(false);
-                await PopulateTopDimensionStructures().ConfigureAwait(false);
-                await PopulateDimensions().ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        private async Task OpenDeleteWindowAction(DimensionStructure dimensionStructure)
-        {
-            _deleteDimensionStructure = dimensionStructure;
-            _deleteModalWindow.Show();
+            _addNewModalWindow.Hide();
+            _newDimensionStructure = new DimensionStructure();
         }
 
         private async Task CancelDeleteHandler()
         {
             _deleteDimensionStructure = null;
             _deleteModalWindow.Hide();
+        }
+
+        public async Task CancelEditHandler()
+        {
+            _editedDimensionStructure = new DimensionStructure();
+            _editModalWindow.Hide();
         }
 
         private async Task DeleteHandler()
@@ -90,15 +82,18 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             }
         }
 
-        private async Task OpenEditWindowAction(DimensionStructure dimensionStructure)
+        protected override async Task OnInitializedAsync()
         {
-            _editedDimensionStructure = dimensionStructure;
-            _editModalWindow.Show();
-        }
-
-        private async Task PopulateDimensionStructures()
-        {
-            _dimensionStructures = await MasterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+            try
+            {
+                await PopulateDimensionStructures().ConfigureAwait(false);
+                await PopulateTopDimensionStructures().ConfigureAwait(false);
+                await PopulateDimensions().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private async Task OpenAddWindowAction()
@@ -111,10 +106,39 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             _addNewModalWindow.Show();
         }
 
-        private async Task CancelAddNewHandler()
+        private async Task OpenDeleteWindowAction(DimensionStructure dimensionStructure)
         {
-            _addNewModalWindow.Hide();
-            _newDimensionStructure = new DimensionStructure();
+            _deleteDimensionStructure = dimensionStructure;
+            _deleteModalWindow.Show();
+        }
+
+        private async Task OpenEditWindowAction(DimensionStructure dimensionStructure)
+        {
+            _editedDimensionStructure = dimensionStructure;
+            _editModalWindow.Show();
+        }
+
+        private async Task PopulateDimensions()
+        {
+            _dimensions = new List<Dimension>();
+            _dimensions.Add(new Dimension { Name = "-- Select One --" });
+            List<Dimension> result = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+            _dimensions.AddRange(result);
+        }
+
+        private async Task PopulateDimensionStructures()
+        {
+            _dimensionStructures = await MasterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+        }
+
+        private async Task PopulateTopDimensionStructures()
+        {
+            _sourceFormats = new List<SourceFormat>();
+            _sourceFormats.Add(new SourceFormat { Name = "-- Select One --" });
+            List<SourceFormat> result = await MasterDataHttpClient
+               .GetSourceFormatsAsync()
+               .ConfigureAwait(false);
+            _sourceFormats.AddRange(result);
         }
 
         private async Task SaveDimensionStructureHandler()
@@ -157,30 +181,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             {
                 Console.WriteLine(e);
             }
-        }
-
-        public async Task CancelEditHandler()
-        {
-            _editedDimensionStructure = new DimensionStructure();
-            _editModalWindow.Hide();
-        }
-
-        private async Task PopulateDimensions()
-        {
-            _dimensions = new List<Dimension>();
-            _dimensions.Add(new Dimension { Name = "-- Select One --" });
-            List<Dimension> result = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
-            _dimensions.AddRange(result);
-        }
-
-        private async Task PopulateTopDimensionStructures()
-        {
-            _sourceFormats = new List<SourceFormat>();
-            _sourceFormats.Add(new SourceFormat { Name = "-- Select One --" });
-            List<SourceFormat> result = await MasterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false);
-            _sourceFormats.AddRange(result);
         }
     }
 }

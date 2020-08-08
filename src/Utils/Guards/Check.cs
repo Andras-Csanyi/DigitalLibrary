@@ -8,21 +8,6 @@
     public static class Check
     {
         /// <summary>
-        ///     Checks whether toBeChecked is null or not. If message is set
-        ///     then Exception message will contains the message.
-        /// </summary>
-        /// <param name="toBeChecked">Object will be checked</param>
-        /// <param name="message">If exception is thrown this message will be added.</param>
-        /// <typeparam name="T">Type of toBeCompared/</typeparam>
-        public static void IsNotNull<T>(T toBeChecked, string message = null)
-        {
-            if (toBeChecked == null)
-            {
-                ThrowGuardException(message);
-            }
-        }
-
-        /// <summary>
         ///     Compares two objects and throws exception when they are equal.
         ///     Equality is the default.
         /// </summary>
@@ -82,6 +67,29 @@
             }
         }
 
+        /// <summary>
+        ///     Checks whether toBeChecked is null or not. If message is set
+        ///     then Exception message will contains the message.
+        /// </summary>
+        /// <param name="toBeChecked">Object will be checked</param>
+        /// <param name="message">If exception is thrown this message will be added.</param>
+        /// <typeparam name="T">Type of toBeCompared/</typeparam>
+        public static void IsNotNull<T>(T toBeChecked, string message = null)
+        {
+            if (toBeChecked == null)
+            {
+                ThrowGuardException(message);
+            }
+        }
+
+        public static void NotNullOrEmptyOrWhitespace(string toBeChecked, string message = null)
+        {
+            if (string.IsNullOrEmpty(toBeChecked) || string.IsNullOrWhiteSpace(toBeChecked))
+            {
+                ThrowGuardException(message);
+            }
+        }
+
         private static void ThrowGuardException(string message)
         {
             string msg;
@@ -95,14 +103,6 @@
             }
 
             throw new GuardException(msg);
-        }
-
-        public static void NotNullOrEmptyOrWhitespace(string toBeChecked, string message = null)
-        {
-            if (string.IsNullOrEmpty(toBeChecked) || string.IsNullOrWhiteSpace(toBeChecked))
-            {
-                ThrowGuardException(message);
-            }
         }
     }
 }

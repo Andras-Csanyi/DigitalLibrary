@@ -13,11 +13,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [ExcludeFromCodeCoverage]
     public class Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should : TestBase
     {
-        private const string TestInfo = nameof(Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should);
-
         public Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should() : base(TestInfo)
         {
         }
+
+        private const string TestInfo = nameof(Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should);
 
         [Fact]
         public async Task Return_SourceFormat_WithRootDimensionStructure()

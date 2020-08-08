@@ -28,7 +28,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         IMasterDataValidators MasterDataValidators { get; }
 
         /// <summary>
-        /// The SourceFormat data structure which is going to be built.
+        ///     The SourceFormat data structure which is going to be built.
         /// </summary>
         SourceFormat SourceFormat { get; set; }
 
@@ -41,16 +41,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             DimensionStructure dimensionStructure);
 
         /// <summary>
-        /// Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
-        /// ass root DimensionStructure.
+        ///     Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
+        ///     ass root DimensionStructure.
         /// </summary>
         /// <param name="dimensionStructureId">The id of the selected DimensionStructure.</param>
         /// <returns>Task.</returns>
         Task AddDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
-        /// Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
-        /// ass root DimensionStructure by Id.
+        ///     Adds <see cref="DimensionStructure">DimensionStructure</see> to <see cref="SourceFormat">SourceFormat</see>
+        ///     ass root DimensionStructure by Id.
         /// </summary>
         /// <param name="dimensionStructureId">The id of the selected DimensionStructure.</param>
         /// <returns>Task.</returns>

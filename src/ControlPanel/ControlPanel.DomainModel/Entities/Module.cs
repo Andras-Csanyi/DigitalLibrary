@@ -4,18 +4,18 @@ namespace DigitalLibrary.ControlPanel.DomainModel.Entities
 
     public class Module
     {
-        public long Id { get; set; }
-
-        public string Name { get; set; }
-
         public string Description { get; set; }
 
-        public string ModuleRoute { get; set; }
+        public string IconName { get; set; }
+
+        public long Id { get; set; }
 
         public int IsActive { get; set; }
 
         public ICollection<Menu> Menus { get; set; } = new List<Menu>();
 
-        public string IconName { get; set; }
+        public string ModuleRoute { get; set; }
+
+        public string Name { get; set; }
     }
 }

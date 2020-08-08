@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                            .ConfigureAwait(false);
 
                         string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                            $"with id: {dimensionStructure}.";
+                                     $"with id: {dimensionStructure}.";
                         Check.IsNotNull(toBeDeleted, msg);
 
                         ctx.Entry(toBeDeleted).State = EntityState.Deleted;

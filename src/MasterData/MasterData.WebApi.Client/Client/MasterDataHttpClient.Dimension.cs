@@ -10,13 +10,13 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
     public partial class MasterDataHttpClient
     {
-        public async Task<List<Dimension>> GetDimensionsAsync()
+        public async Task<Dimension> AddDimensionAsync(Dimension dimension)
         {
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                             $"{MasterDataApi.Dimensions.V1.GetAllActive}";
-                List<Dimension> result = await _diLibHttpClient.GetAsync<List<Dimension>>(url).ConfigureAwait(false);
+                             $"{MasterDataApi.Dimensions.V1.AddNew}";
+                Dimension result = await _diLibHttpClient.PostAsync(dimension, url).ConfigureAwait(false);
                 return result;
             }
             catch (Exception e)
@@ -25,13 +25,44 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task<Dimension> AddDimensionAsync(Dimension dimension)
+        public async Task DeleteDimensionAsync(Dimension dimension)
         {
             try
             {
                 string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                             $"{MasterDataApi.Dimensions.V1.AddNew}";
-                Dimension result = await _diLibHttpClient.PostAsync(dimension, url).ConfigureAwait(false);
+                             $"{MasterDataApi.Dimensions.V1.Delete}";
+                await _diLibHttpClient.DeleteAsync(dimension, url).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                throw new MasterDataHttpClientException(e.Message, e);
+            }
+        }
+
+        public async Task<Dimension> GetDimensionByIdAsync(long id)
+        {
+            try
+            {
+                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
+                             $"{MasterDataApi.Dimensions.V1.GetDimensionById}";
+                Dimension result = await _diLibHttpClient.PostAsync<Dimension, long>(id, url)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<List<Dimension>> GetDimensionsAsync()
+        {
+            try
+            {
+                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
+                             $"{MasterDataApi.Dimensions.V1.GetAllActive}";
+                List<Dimension> result = await _diLibHttpClient.GetAsync<List<Dimension>>(url).ConfigureAwait(false);
                 return result;
             }
             catch (Exception e)
@@ -55,20 +86,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             }
         }
 
-        public async Task DeleteDimensionAsync(Dimension dimension)
-        {
-            try
-            {
-                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                             $"{MasterDataApi.Dimensions.V1.Delete}";
-                await _diLibHttpClient.DeleteAsync(dimension, url).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new MasterDataHttpClientException(e.Message, e);
-            }
-        }
-
         public async Task<Dimension> UpdateDimensionAsync(Dimension dimension)
         {
             try
@@ -82,23 +99,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             catch (Exception e)
             {
                 throw new MasterDataHttpClientException(e.Message, e);
-            }
-        }
-
-        public async Task<Dimension> GetDimensionByIdAsync(long id)
-        {
-            try
-            {
-                string url = $"{MasterDataApi.Dimensions.V1.DimensionRouteBase}/" +
-                             $"{MasterDataApi.Dimensions.V1.GetDimensionById}";
-                Dimension result = await _diLibHttpClient.PostAsync<Dimension, long>(id, url)
-                   .ConfigureAwait(false);
-                return result;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
             }
         }
 

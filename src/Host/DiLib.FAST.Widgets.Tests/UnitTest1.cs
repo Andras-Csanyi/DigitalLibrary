@@ -1,9 +1,7 @@
-using System;
-
-using Xunit;
-
 namespace DiLib.FAST.Widgets.Tests
 {
+    using Xunit;
+
     public class UnitTest1
     {
         [Fact]

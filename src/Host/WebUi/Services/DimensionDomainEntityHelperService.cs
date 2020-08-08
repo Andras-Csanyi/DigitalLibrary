@@ -4,17 +4,16 @@ namespace DigitalLibrary.Ui.WebUi.Services
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
+    using MasterData.DomainModel;
 
     /// <summary>
-    /// Helper service for manipulating Dimension domain entities and lists.
+    ///     Helper service for manipulating Dimension domain entities and lists.
     /// </summary>
     public interface IDimensionDomainEntityHelperService
     {
         /// <summary>
-        /// Creates a new list where the original list element except the listed elements
-        /// in the Except list will be listed.
+        ///     Creates a new list where the original list element except the listed elements
+        ///     in the Except list will be listed.
         /// </summary>
         /// <param name="originalList">The original list</param>
         /// <param name="exceptList">Except list</param>
@@ -27,7 +26,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
     /// <inheritdoc />
     public class DimensionDomainEntityHelperService : IDimensionDomainEntityHelperService
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<List<Dimension>> CreateNewListExceptAnotherList(
             List<Dimension> originalList,
             List<Dimension> exceptList)

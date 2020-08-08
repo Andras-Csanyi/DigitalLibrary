@@ -7,24 +7,24 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public const string AddNewDimension = "AddNewDimension";
 
-        public const string AddNewDimensionValue = "AddNewDimensionValue";
-
         public const string AddNewDimensionStructure = "AddNewDimensionStructure";
 
+        public const string AddNewDimensionValue = "AddNewDimensionValue";
+
         public const string AddSourceFormat = "AddNewTopDimensionStructure";
+
+        public const string DeleteDimension = "DeleteDimension";
+
+        public const string DeleteDimensionStructure = "DeleteDimensionStructure";
+
+        public const string DeleteSourceFormat = "DeleteSourceFormat";
 
         public const string ModifyDimensionValue = "ModifyDimensionValue";
 
         public const string UpdateDimension = "UpdateDimension";
 
-        public const string DeleteDimension = "DeleteDimension";
-
         public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
         public const string UpdateSourceFormat = "ModifyDimensionStructure";
-
-        public const string DeleteDimensionStructure = "DeleteDimensionStructure";
-
-        public const string DeleteSourceFormat = "DeleteSourceFormat";
     }
 }

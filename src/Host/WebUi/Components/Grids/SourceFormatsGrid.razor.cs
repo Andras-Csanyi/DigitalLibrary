@@ -29,51 +29,27 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         private List<SourceFormat> Data;
 
         [Inject]
-        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
-
-        [Inject]
         public IJSRuntime JsRuntime { get; set; }
 
+        [Inject]
+        public IMasterDataHttpClient MasterDataHttpClient { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        private async Task CancelAddHandler()
         {
-            try
-            {
-                Data = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            _newItem = new SourceFormat();
+            _addNewModal.Hide();
         }
 
-        private async Task ShowEditModal(SourceFormat sourceFormat)
+        private async Task CancelDeleteHandler()
         {
-            _editedItem = sourceFormat;
-            _editModal.Show();
-        }
-
-        private async Task ShowDeleteModal(SourceFormat sourceFormat)
-        {
-            _deleteItem = sourceFormat;
-            _deleteModal.Show();
-        }
-
-        private async Task ShowAddNewModal()
-        {
-            _addNewModal.Show();
+            _deleteItem = new SourceFormat();
+            _deleteModal.Hide();
         }
 
         private async Task CancelEditHandler()
         {
             _editedItem = new SourceFormat();
             _editModal.Hide();
-        }
-
-        private async Task CancelAddHandler()
-        {
-            _newItem = new SourceFormat();
-            _addNewModal.Hide();
         }
 
         private async Task DeleteHandler()
@@ -87,25 +63,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             _deleteModal.Hide();
         }
 
-        private async Task CancelDeleteHandler()
+        private void GetAllData()
         {
-            _deleteItem = new SourceFormat();
-            _deleteModal.Hide();
+            Task<List<SourceFormat>> getTask = Task.Run(async () => await MasterDataHttpClient
+               .GetSourceFormatsAsync()
+               .ConfigureAwait(false));
+            Data = getTask.GetAwaiter().GetResult();
         }
 
-        private void OnValidEditSubmit()
+
+        protected override async Task OnInitializedAsync()
         {
             try
             {
-                Task<SourceFormat> modifyTask = Task.Run(async () => await MasterDataHttpClient
-                   .UpdateSourceFormatAsync(_editedItem)
-                   .ConfigureAwait(false));
-                modifyTask.GetAwaiter().GetResult();
-                MasterDataHttpClient.UpdateSourceFormatAsync(_editedItem);
-                GetAllData();
-                StateHasChanged();
-                _editedItem = new SourceFormat();
-                _editModal.Hide();
+                Data = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -132,12 +103,41 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
             }
         }
 
-        private void GetAllData()
+        private void OnValidEditSubmit()
         {
-            Task<List<SourceFormat>> getTask = Task.Run(async () => await MasterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false));
-            Data = getTask.GetAwaiter().GetResult();
+            try
+            {
+                Task<SourceFormat> modifyTask = Task.Run(async () => await MasterDataHttpClient
+                   .UpdateSourceFormatAsync(_editedItem)
+                   .ConfigureAwait(false));
+                modifyTask.GetAwaiter().GetResult();
+                MasterDataHttpClient.UpdateSourceFormatAsync(_editedItem);
+                GetAllData();
+                StateHasChanged();
+                _editedItem = new SourceFormat();
+                _editModal.Hide();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private async Task ShowAddNewModal()
+        {
+            _addNewModal.Show();
+        }
+
+        private async Task ShowDeleteModal(SourceFormat sourceFormat)
+        {
+            _deleteItem = sourceFormat;
+            _deleteModal.Show();
+        }
+
+        private async Task ShowEditModal(SourceFormat sourceFormat)
+        {
+            _editedItem = sourceFormat;
+            _editModal.Show();
         }
     }
 }

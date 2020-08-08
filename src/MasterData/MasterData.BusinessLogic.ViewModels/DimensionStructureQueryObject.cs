@@ -4,9 +4,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.ViewModels
 
     public class DimensionStructureQueryObject
     {
-        public List<long> Ids { get; set; }
-
         public long GetDimensionsStructuredById { get; set; }
+
+        public List<long> Ids { get; set; }
 
         public bool IncludeChildrenWhenGetDimensionStructureById { get; set; }
     }

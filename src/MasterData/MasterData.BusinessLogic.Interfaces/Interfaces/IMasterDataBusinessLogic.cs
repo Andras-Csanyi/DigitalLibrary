@@ -9,19 +9,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     {
         Task<DimensionValue> AddDimensionValueAsync(DimensionValue dimensionValue, long dimensionId);
 
+        Task<long> CountDimensionValuesAsync();
+
+
+        Task<Dimension> GetDimensionByIdAsync(long dimensionId);
+
+        Task<List<DimensionValue>> GetDimensionValuesAsync();
+
         Task<Dimension> GetValuesOfADimensionAsync(long dimensionId);
 
         Task<DimensionValue> ModifyDimensionValueAsync(
             long dimensionId,
             DimensionValue oldDimensionValue,
             DimensionValue newDimensionvalue);
-
-        Task<List<DimensionValue>> GetDimensionValuesAsync();
-
-        Task<long> CountDimensionValuesAsync();
-
-
-        Task<Dimension> GetDimensionByIdAsync(long dimensionId);
 
         Task<DimensionStructure> ReorderDimensionsInDimensionStructureAsync(
             long dimensionStructureId,

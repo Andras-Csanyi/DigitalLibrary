@@ -1,5 +1,3 @@
-using DimensionStructureQueryObject = DigitalLibrary.MasterData.BusinessLogic.ViewModels.DimensionStructureQueryObject;
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Collections.Generic;
@@ -7,34 +5,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     using DomainModel;
 
+    using ViewModels;
+
     public partial interface IMasterDataBusinessLogic
     {
-        Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
-
-        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject);
-
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject);
-
-        Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
-
-        Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
-
-        Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);
-
-        Task<DimensionStructure> AddDimensionStructureToSourceformatAsync(
-            long dimensionStructureId,
-            long sourceFormatId);
-
-        Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
-
         Task<DimensionStructure> AddChildDimensionStructureAsync(
             long childDimensionStructureId,
             long parentDimensionId);
@@ -43,6 +17,32 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             DimensionStructure childDimensionStructure,
             long parentDimensionId);
 
+        Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
+
+        Task<DimensionStructure> AddDimensionStructureToSourceformatAsync(
+            long dimensionStructureId,
+            long sourceFormatId);
+
+        Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
+
+        Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
+
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
+
+        Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
+
+        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
+
+        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
+            DimensionStructureQueryObject dimensionStructureQueryObject);
+
         Task RemoveChildDimensionStructureAsync(long removedDimensionStructure, long parentDimensionStructure);
+
+        Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);
+
+        Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
+
+        Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
     }
 }

@@ -48,36 +48,17 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpPost]
-        [Route(MasterDataApi.Dimensions.V1.GetDimensionById)]
+        [HttpDelete]
+        [Route(MasterDataApi.Dimensions.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dimension>> GetDimensionByIdAsync(long dimensionId)
+        public async Task<ActionResult> DeleteDimensionAsync(Dimension dimension)
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                await _masterDataBusinessLogic.DeleteDimensionAsync(dimension)
                    .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpPut]
-        [Route(MasterDataApi.Dimensions.V1.Modify)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(Dimension dimension)
-        {
-            try
-            {
-                Dimension result = await _masterDataBusinessLogic.UpdateDimensionAsync(
-                        dimension)
-                   .ConfigureAwait(false);
-                return Ok(result);
+                return Ok();
             }
             catch (Exception e)
             {
@@ -103,6 +84,42 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        [HttpPost]
+        [Route(MasterDataApi.Dimensions.V1.GetDimensionById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Dimension>> GetDimensionById(long dimensionId)
+        {
+            try
+            {
+                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                   .ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.Dimensions.V1.GetDimensionById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Dimension>> GetDimensionByIdAsync(long dimensionId)
+        {
+            try
+            {
+                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
         [HttpGet]
         [Route(MasterDataApi.Dimensions.V1.GetDimensionsWithoutStructure)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -121,35 +138,18 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route(MasterDataApi.Dimensions.V1.Delete)]
+        [HttpPut]
+        [Route(MasterDataApi.Dimensions.V1.Modify)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> DeleteDimensionAsync(Dimension dimension)
+        public async Task<ActionResult<Dimension>> ModifyDimensionAsync(Dimension dimension)
         {
             try
             {
-                await _masterDataBusinessLogic.DeleteDimensionAsync(dimension)
+                Dimension result = await _masterDataBusinessLogic.UpdateDimensionAsync(
+                        dimension)
                    .ConfigureAwait(false);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpPost]
-        [Route(MasterDataApi.Dimensions.V1.GetDimensionById)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Dimension>> GetDimensionById(long dimensionId)
-        {
-            try
-            {
-                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
-                   .ConfigureAwait(false);
-                return result;
+                return Ok(result);
             }
             catch (Exception e)
             {

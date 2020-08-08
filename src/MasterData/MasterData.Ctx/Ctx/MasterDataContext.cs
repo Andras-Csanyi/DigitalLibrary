@@ -10,17 +10,17 @@
 
     public class MasterDataContext : DbContext
     {
+        public DbSet<DimensionDimensionValue> DimensionDimensionValues { get; set; }
+
         public DbSet<Dimension> Dimensions { get; set; }
 
-        public DbSet<DimensionValue> DimensionValues { get; set; }
-
-        public DbSet<DimensionDimensionValue> DimensionDimensionValues { get; set; }
+        public DbSet<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
 
         public DbSet<DimensionStructure> DimensionStructures { get; set; }
 
-        public DbSet<SourceFormat> SourceFormats { get; set; }
+        public DbSet<DimensionValue> DimensionValues { get; set; }
 
-        public DbSet<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
+        public DbSet<SourceFormat> SourceFormats { get; set; }
 
         public MasterDataContext(DbContextOptions<MasterDataContext> options) : base(options)
         {
