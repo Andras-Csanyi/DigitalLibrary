@@ -56,6 +56,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// <returns>Task.</returns>
         Task AddDimensionStructureRootAsync(long dimensionStructureId);
 
+        /// <summary>
+        ///     Adds or updates <see cref="DimensionStructure">DocumentStructure</see> in the DimensionStructure node.
+        ///     The node going to be replaced is marked by the Guid.
+        /// </summary>
+        /// <param name="dimensionStructure">New DimensionStructure.</param>
+        /// <param name="parentDimensionStructureGuid">Guid value of the node going to be replaced.</param>
+        /// <returns></returns>
         Task AddOrUpdateDocumentStructureToTreeAsync(
             DimensionStructure dimensionStructure,
             Guid parentDimensionStructureGuid);

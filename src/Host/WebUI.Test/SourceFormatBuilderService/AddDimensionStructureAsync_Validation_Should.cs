@@ -24,7 +24,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     public class AddDimensionStructureAsync_Validation_Should : TestBase
     {
         [Fact]
-        public async Task ThrowException_When_DimensionStructureParamIsNull()
+        public async Task ThrowException_When_ParentIdIsNull()
         {
             // Arrange
             _masterDataWebApiClientMock
@@ -48,7 +48,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         [Fact]
-        public async Task ThrowException_When_ParentIdIsZero()
+        public async Task ThrowException_When_DimensionStructureParamIsNull()
         {
             // Arrange
             _masterDataWebApiClientMock
