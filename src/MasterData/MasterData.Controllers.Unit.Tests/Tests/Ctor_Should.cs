@@ -11,6 +11,10 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1806")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class Ctor_Should
     {
         [Fact]
@@ -19,7 +23,7 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new SourceFormatController(null); };
+            Action action = () => { new SourceFormatController(null); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();

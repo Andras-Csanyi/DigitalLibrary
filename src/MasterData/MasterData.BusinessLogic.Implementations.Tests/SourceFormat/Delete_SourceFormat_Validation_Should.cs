@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DomainModel;
@@ -15,6 +16,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Delete_SourceFormat_Validation_Should : TestBase
     {
         public Delete_SourceFormat_Validation_Should() : base(TestInfo)
@@ -24,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         private const string TestInfo = nameof(Delete_SourceFormat_Validation_Should);
 
         [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        public void ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
@@ -45,7 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 

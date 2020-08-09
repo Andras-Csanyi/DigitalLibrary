@@ -2,6 +2,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using Exceptions.Menu;
@@ -12,6 +13,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA2211")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
+    [ExcludeFromCodeCoverage]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
         public MenuBusinessLogic_AddAsync_Should()
@@ -45,7 +51,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
         [Trait("Category", "Unit")]
         [Theory]
         [MemberData(nameof(ThrowValidationExceptionWhenInputIsInvalid))]
-        public async Task Throw_ValidationException_WhenInputIsInvalid(
+        public void Throw_ValidationException_WhenInputIsInvalid(
             int id,
             string name,
             string desc,
@@ -109,7 +115,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
         [Fact]
         [Trait("Category", "Unit")]
-        public async Task Throw_NullInputException_WhenInputIsNull()
+        public void Throw_NullInputException_WhenInputIsNull()
         {
             // Arrange
 

@@ -11,21 +11,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1806")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class Ctor_Validation_Should : TestBase
     {
         public Ctor_Validation_Should() : base(TestInfo)
         {
         }
 
-        public const string TestInfo = nameof(Ctor_Validation_Should);
+        private const string TestInfo = nameof(Ctor_Validation_Should);
 
         [Fact]
-        public async Task ThrowException_WhenCtorInputIsNull()
+        public void ThrowException_WhenCtorInputIsNull()
         {
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new MasterDataBusinessLogic(null, null); };
+            Action action = () => { new MasterDataBusinessLogic(null, null); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();

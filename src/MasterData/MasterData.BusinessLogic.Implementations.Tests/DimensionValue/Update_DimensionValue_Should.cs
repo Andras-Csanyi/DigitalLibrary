@@ -16,6 +16,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Update_DimensionValue_Should : TestBase
     {
         public Update_DimensionValue_Should() : base(TestInfo)
@@ -24,8 +27,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
         private const string TestInfo = nameof(Update_DimensionValue_Should);
 
-        [Fact]
-        public async Task CreateANewDimensionValueForDimension_IfTheModifiedDimensionValueHasMultipleConnections()
+        [Fact(Skip = "not implemented yet")]
+        public void CreateANewDimensionValueForDimension_IfTheModifiedDimensionValueHasMultipleConnections()
         {
         }
 
@@ -79,7 +82,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchDimension()
+        public void ThrowException_WhenThereIsNoSuchDimension()
         {
             // Arrange
             DimensionValue oldDimensionValue = new DimensionValue

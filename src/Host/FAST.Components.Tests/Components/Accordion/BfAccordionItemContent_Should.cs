@@ -18,7 +18,7 @@ namespace FAST.Components.Tests.Components.Accordion
     public class BfAccordionItemContent_Should : TestContext
     {
         [Fact]
-        public async Task SplatUnknownParameters()
+        public void SplatUnknownParameters()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
@@ -39,7 +39,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task WrapContent()
+        public void WrapContent()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(

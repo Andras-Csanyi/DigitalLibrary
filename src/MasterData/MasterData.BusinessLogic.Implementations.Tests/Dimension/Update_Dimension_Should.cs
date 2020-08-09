@@ -15,6 +15,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Update_Dimension_Should : TestBase
     {
         public Update_Dimension_Should() : base(TestInfo)
@@ -57,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange
             Dimension dimension = new Dimension

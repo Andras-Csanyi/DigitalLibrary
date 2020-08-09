@@ -15,6 +15,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Update_SourceFormat_NameDescIsActive_Should : TestBase
     {
         public Update_SourceFormat_NameDescIsActive_Should() : base(TestInfo)
@@ -64,7 +67,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchSourceFormat()
+        public void ThrowException_WhenThereIsNoSuchSourceFormat()
         {
             // Arrange
             SourceFormat sourceFormat = new SourceFormat

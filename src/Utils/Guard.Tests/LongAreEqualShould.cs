@@ -1,6 +1,7 @@
 namespace Guard.Tests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Utils.Guards;
@@ -9,6 +10,9 @@ namespace Guard.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class LongAreEqualShould
     {
         [Fact]
@@ -19,7 +23,7 @@ namespace Guard.Tests
             long comparedTo = 99;
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo); };
 
             // Assert
             action.Should().NotThrow();
@@ -33,7 +37,7 @@ namespace Guard.Tests
             long comparedTo = 100;
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();
@@ -48,7 +52,7 @@ namespace Guard.Tests
             string message = "message";
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo, message); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo, message); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>()

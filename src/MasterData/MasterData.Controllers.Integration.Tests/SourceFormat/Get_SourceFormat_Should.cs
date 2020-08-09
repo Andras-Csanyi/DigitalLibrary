@@ -16,7 +16,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Get_SourceFormat_Should : TestBase<SourceFormat>
     {
         public Get_SourceFormat_Should(
@@ -35,7 +38,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Desc = "second",
                 IsActive = 1,
             };
-            SourceFormat firstResult = await masterDataHttpClient
+            SourceFormat firstResult = await _masterDataHttpClient
                .AddSourceFormatAsync(first)
                .ConfigureAwait(false);
 
@@ -45,12 +48,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Desc = "second",
                 IsActive = 0
             };
-            SourceFormat secondResult = await masterDataHttpClient
+            SourceFormat secondResult = await _masterDataHttpClient
                .AddSourceFormatAsync(second)
                .ConfigureAwait(false);
 
             // Act
-            List<SourceFormat> result = await masterDataHttpClient
+            List<SourceFormat> result = await _masterDataHttpClient
                .GetSourceFormatsAsync()
                .ConfigureAwait(false);
 

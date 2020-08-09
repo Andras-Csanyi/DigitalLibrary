@@ -19,7 +19,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
     public class BfTreeItem_ExpandedCollapsed_Should : TestContext
     {
         [Fact]
-        public async Task BeClosedByDefault()
+        public void BeClosedByDefault()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
@@ -33,7 +33,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
         }
 
         [Fact]
-        public async Task BeClosedWhenConfiguredSo()
+        public void BeClosedWhenConfiguredSo()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
@@ -48,7 +48,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
         }
 
         [Fact]
-        public async Task BeOpenWhenConfiguredSo()
+        public void BeOpenWhenConfiguredSo()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(

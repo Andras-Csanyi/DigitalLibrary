@@ -1,12 +1,17 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using FluentAssertions;
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
         public MenuBusinessLogic_GetAllAsync_Should()

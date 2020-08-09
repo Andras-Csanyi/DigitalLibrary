@@ -18,6 +18,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Delete_SourceFormat_Should : TestBase
     {
         public Delete_SourceFormat_Should() : base(TestInfo)
@@ -62,7 +65,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Fact]
-        public async Task ThrowException_WhenEntityDoesntExist()
+        public void ThrowException_WhenEntityDoesntExist()
         {
             // Arrange
             SourceFormat sourceFormat = new SourceFormat { Id = 100 };

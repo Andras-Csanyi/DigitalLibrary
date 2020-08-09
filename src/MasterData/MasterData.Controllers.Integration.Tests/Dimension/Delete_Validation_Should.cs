@@ -18,6 +18,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Delete_Validation_Should : TestBase<Dimension>
     {
@@ -27,7 +29,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        public void ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             Dimension dimension = new Dimension
@@ -38,7 +40,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteDimensionAsync(dimension).ConfigureAwait(false);
+                await _masterDataHttpClient.DeleteDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert
@@ -46,14 +48,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteDimensionAsync(null).ConfigureAwait(false);
+                await _masterDataHttpClient.DeleteDimensionAsync(null).ConfigureAwait(false);
             };
 
             // Assert

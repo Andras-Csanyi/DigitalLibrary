@@ -1,5 +1,6 @@
 namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -8,10 +9,13 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class SourceFormat_Should
     {
         [Fact]
-        public async Task PropertiesNotModifiedByGetSet()
+        public void PropertiesNotModifiedByGetSet()
         {
             // Arrange
             long id = 100;

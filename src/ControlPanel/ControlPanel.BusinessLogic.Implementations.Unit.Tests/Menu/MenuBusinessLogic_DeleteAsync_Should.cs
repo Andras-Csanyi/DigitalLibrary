@@ -2,6 +2,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using Exceptions.Menu;
@@ -10,6 +11,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
         public MenuBusinessLogic_DeleteAsync_Should()
@@ -62,7 +67,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
         [Fact]
         [Trait("Category", "Unit")]
-        public async Task Throw_DeleteAsyncOperationException_WhenInputIsNull()
+        public void Throw_DeleteAsyncOperationException_WhenInputIsNull()
         {
             // Arrange
 

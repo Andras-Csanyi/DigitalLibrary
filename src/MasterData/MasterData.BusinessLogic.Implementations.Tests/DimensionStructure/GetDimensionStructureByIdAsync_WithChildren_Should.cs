@@ -14,6 +14,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class GetDimensionStructureByIdAsync_WithChildren_Should : TestBase
     {
         public GetDimensionStructureByIdAsync_WithChildren_Should() : base(TestInfo)
@@ -23,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(GetDimensionStructureByIdAsync_WithChildren_Should);
 
         [Fact]
-        public async Task Return_WithChildre_WhenItIsNotRootDimensonStructure()
+        public async Task Return_WithChildren_WhenItIsNotRootDimensionStructure()
         {
             // Arrange
             DimensionStructure dimensionStructureForId = await masterDataBusinessLogic.GetDimensionStructureByNameAsync(

@@ -15,6 +15,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Delete_DimensionStructure_Validation_Should : TestBase
     {
         public Delete_DimensionStructure_Validation_Should() : base(TestInfo)
@@ -24,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(Delete_DimensionStructure_Validation_Should);
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
@@ -41,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchDimensionStructure()
+        public void ThrowException_WhenThereIsNoSuchDimensionStructure()
         {
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure

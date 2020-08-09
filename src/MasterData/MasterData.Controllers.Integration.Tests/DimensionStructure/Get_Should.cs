@@ -17,7 +17,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Get_Should : TestBase<DimensionStructure>
     {
         public Get_Should(
@@ -36,7 +39,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 Desc = "list1",
                 IsActive = 1,
             };
-            DimensionStructure dimensionStructure1Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure1Result = await _masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure1)
                .ConfigureAwait(false);
 
@@ -46,7 +49,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 Desc = "list2",
                 IsActive = 1,
             };
-            DimensionStructure dimensionStructure2Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure2Result = await _masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure2)
                .ConfigureAwait(false);
 
@@ -56,12 +59,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 Desc = "list3",
                 IsActive = 0,
             };
-            DimensionStructure dimensionStructure3Result = await masterDataHttpClient
+            DimensionStructure dimensionStructure3Result = await _masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure3)
                .ConfigureAwait(false);
 
             // Act
-            List<DimensionStructure> dimensionStructures = await masterDataHttpClient
+            List<DimensionStructure> dimensionStructures = await _masterDataHttpClient
                .GetDimensionStructuresAsync()
                .ConfigureAwait(false);
 

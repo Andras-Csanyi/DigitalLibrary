@@ -18,7 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Add_Should : TestBase<DimensionStructure>
     {
         public Add_Should(
@@ -39,7 +42,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             };
 
             // Act
-            DimensionStructure result = await masterDataHttpClient
+            DimensionStructure result = await _masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure)
                .ConfigureAwait(false);
 
@@ -62,14 +65,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 IsActive = 1,
             };
 
-            DimensionStructure result = await masterDataHttpClient
+            DimensionStructure result = await _masterDataHttpClient
                .AddDimensionStructureAsync(dimensionStructure)
                .ConfigureAwait(false);
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient
+                await _masterDataHttpClient
                    .AddDimensionStructureAsync(dimensionStructure)
                    .ConfigureAwait(false);
             };

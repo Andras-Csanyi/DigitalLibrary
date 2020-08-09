@@ -15,7 +15,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class GetById_SourceFormat_Should : TestBase<SourceFormat>
     {
         public GetById_SourceFormat_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
@@ -33,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Desc = "desc",
                 IsActive = 1
             };
-            SourceFormat sourceFormat1Result = await masterDataHttpClient.AddSourceFormatAsync(sourceFormat1)
+            SourceFormat sourceFormat1Result = await _masterDataHttpClient.AddSourceFormatAsync(sourceFormat1)
                .ConfigureAwait(false);
 
             SourceFormat sourceFormat2 = new SourceFormat
@@ -42,7 +45,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Desc = "desc2",
                 IsActive = 1
             };
-            SourceFormat sourceFormat2Result = await masterDataHttpClient.AddSourceFormatAsync(sourceFormat2)
+            SourceFormat sourceFormat2Result = await _masterDataHttpClient.AddSourceFormatAsync(sourceFormat2)
                .ConfigureAwait(false);
 
             SourceFormat query = new SourceFormat
@@ -50,7 +53,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Id = sourceFormat2Result.Id,
             };
             // Act
-            SourceFormat result = await masterDataHttpClient.GetSourceFormatById(query)
+            SourceFormat result = await _masterDataHttpClient.GetSourceFormatById(query)
                .ConfigureAwait(false);
 
             // Result

@@ -17,7 +17,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
     public class BfTreeItem_Should : TestContext
     {
         [Fact]
-        public async Task Render_FastTreeItem_Tag()
+        public void Render_FastTreeItem_Tag()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
@@ -31,7 +31,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
         }
 
         [Fact]
-        public async Task RenderChildContent()
+        public void RenderChildContent()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
@@ -47,7 +47,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
         }
 
         [Fact]
-        public async Task Splat_Attribute()
+        public void Splat_Attribute()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
@@ -65,7 +65,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
         }
 
         [Fact]
-        public async Task Splat_Attributes()
+        public void Splat_Attributes()
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(

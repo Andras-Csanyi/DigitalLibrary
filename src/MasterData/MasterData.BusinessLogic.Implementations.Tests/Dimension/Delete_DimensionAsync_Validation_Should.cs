@@ -17,16 +17,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Delete_DimensionAsync_Validation_Should : TestBase
     {
         public Delete_DimensionAsync_Validation_Should() : base(TestInfo)
         {
         }
 
-        protected const string TestInfo = nameof(Delete_DimensionAsync_Validation_Should);
+        private const string TestInfo = nameof(Delete_DimensionAsync_Validation_Should);
 
         [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        public void ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             Dimension dimension = new Dimension
@@ -46,7 +48,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Act
             Func<Task> action = async () =>

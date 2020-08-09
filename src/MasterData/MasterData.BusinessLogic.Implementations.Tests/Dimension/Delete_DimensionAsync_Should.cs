@@ -15,13 +15,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Delete_DimensionAsync_Should : TestBase
     {
         public Delete_DimensionAsync_Should() : base(TestInfo)
         {
         }
 
-        protected const string TestInfo = nameof(Delete_DimensionAsync_Should);
+        private const string TestInfo = nameof(Delete_DimensionAsync_Should);
 
         [Fact]
         public async Task Delete_TheItem()
@@ -55,7 +57,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoEntity()
+        public void ThrowException_WhenThereIsNoEntity()
         {
             // Arrange
             Dimension dimension = new Dimension
