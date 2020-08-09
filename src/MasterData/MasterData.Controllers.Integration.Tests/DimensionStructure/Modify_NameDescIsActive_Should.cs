@@ -18,6 +18,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
     {
@@ -27,7 +29,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
@@ -38,7 +40,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateDimensionStructureAsync(dimensionStructure)
+                await _masterDataHttpClient.UpdateDimensionStructureAsync(dimensionStructure)
                    .ConfigureAwait(false);
             };
 
@@ -60,7 +62,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
                 Desc = "dedede",
                 IsActive = 1,
             };
-            DimensionStructure dimensionStructureResult = await masterDataHttpClient.AddDimensionStructureAsync(
+            DimensionStructure dimensionStructureResult = await _masterDataHttpClient.AddDimensionStructureAsync(
                     dimensionStructure)
                .ConfigureAwait(false);
 
@@ -69,7 +71,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             dimensionStructureResult.IsActive = isActive;
 
             // Act
-            DimensionStructure result = await masterDataHttpClient.UpdateDimensionStructureAsync(
+            DimensionStructure result = await _masterDataHttpClient.UpdateDimensionStructureAsync(
                     dimensionStructureResult)
                .ConfigureAwait(false);
 

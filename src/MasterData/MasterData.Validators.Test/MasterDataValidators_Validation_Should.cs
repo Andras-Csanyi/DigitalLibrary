@@ -3,7 +3,6 @@ namespace DigitalLibrary.MasterData.Validators.Test
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
 
     using FluentAssertions;
 
@@ -12,6 +11,12 @@ namespace DigitalLibrary.MasterData.Validators.Test
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA2211")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
+    [SuppressMessage("ReSharper", "CA1806")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class MasterDataValidators_Validation_Should
     {
         public static IEnumerable<object[]> ValidatorCtorInput = new List<object[]>
@@ -94,7 +99,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
             // Arrange
 
             // Act
-            Func<Task> action = async () =>
+            Action action = () =>
             {
                 new MasterDataValidators(
                     dimensionValidator,

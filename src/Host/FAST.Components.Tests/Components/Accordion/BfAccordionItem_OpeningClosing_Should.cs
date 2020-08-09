@@ -18,7 +18,7 @@ namespace FAST.Components.Tests.Components.Accordion
     public class BfAccordionItem_OpeningClosing_Should : TestContext
     {
         [Fact]
-        public async Task Change_ExpandedCollapsedState()
+        public void Change_ExpandedCollapsedState()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(

@@ -6,6 +6,9 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using DomainModel;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA2211")]
     public static class MasterData_DimensionStructure_TestData
     {
         public static IEnumerable<object[]> AddDimensionStructure_Validation_NullObjects = new List<object[]>

@@ -19,6 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Update_DimensionValue_Validation_Should : TestBase
     {
         public Update_DimensionValue_Validation_Should() : base(TestInfo)
@@ -31,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_DimensionValue_TestData.DimensionValue_Modify_TestData),
             MemberType = typeof(MasterData_DimensionValue_TestData))]
-        public async Task ThrowException_WhenInputIsNull(
+        public void ThrowException_WhenInputIsNull(
             long id,
             DimensionValue oldDimensionValue,
             DimensionValue newDimensionValue)
@@ -53,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenOldDimensionValue_HasZeroId()
+        public void ThrowException_WhenOldDimensionValue_HasZeroId()
         {
             // Arrange
             DimensionValue old = new DimensionValue();

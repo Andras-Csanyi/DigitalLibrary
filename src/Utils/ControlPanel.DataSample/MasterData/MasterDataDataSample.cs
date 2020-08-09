@@ -19,17 +19,20 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
         public static int GetSourceFormatAmount()
         {
             return SourceFormatAmount
-                 + AmountOfSourceFormat_BusinessPartner;
+                 + AmountOfSourceFormatBusinessPartner;
         }
 
         public static void Populate(MasterDataContext ctx)
         {
-            PopulateBlankSourceFormats(ctx);
-            PopulateSourceFormatBusinessPartner(ctx);
-            PopulateNutritionIntakeDimensionStructure(ctx);
-            PopulateRssContentDimensionStructure(ctx);
-            PopulateDimensionsWithoutStructure(ctx);
-            PopulateDimensionStructures(ctx);
+            if (ctx != null)
+            {
+                PopulateBlankSourceFormats(ctx);
+                PopulateSourceFormatBusinessPartner(ctx);
+                PopulateNutritionIntakeDimensionStructure(ctx);
+                PopulateRssContentDimensionStructure(ctx);
+                PopulateDimensionsWithoutStructure(ctx);
+                PopulateDimensionStructures(ctx);
+            }
         }
 
         private static void PopulateBlankSourceFormats(MasterDataContext ctx)

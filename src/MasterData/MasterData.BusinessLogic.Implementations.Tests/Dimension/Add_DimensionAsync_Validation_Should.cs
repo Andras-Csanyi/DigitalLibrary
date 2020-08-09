@@ -19,6 +19,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
     public class Add_DimensionAsync_Validation_Should : TestBase
     {
         public Add_DimensionAsync_Validation_Should() : base(TestInfo)
@@ -31,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_Dimension_TestData.AddDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
-        public async Task Throw_MasterDataBUsinessLogicAddDimensionAsyncOperationException_WhenInputIsInvalid(
+        public void Throw_MasterDataBUsinessLogicAddDimensionAsyncOperationException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -58,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task Throw_MasterDataBusinessLogicArgumentNullException()
+        public void Throw_MasterDataBusinessLogicArgumentNullException()
         {
             // Arrange
 

@@ -15,6 +15,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Update_DimensionStructure_Should : TestBase
     {
         public Update_DimensionStructure_Should() : base(TestInfo)
@@ -24,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(Update_DimensionStructure_Should);
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange
             DimensionStructure orig = new DimensionStructure

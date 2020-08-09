@@ -18,7 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Update_Should : TestBase<Dimension>
     {
         public Update_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
@@ -40,7 +43,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = desc,
                 IsActive = isActive
             };
-            Dimension origResult = await masterDataHttpClient.AddDimensionAsync(orig)
+            Dimension origResult = await _masterDataHttpClient.AddDimensionAsync(orig)
                .ConfigureAwait(false);
 
             Dimension dimension = new Dimension
@@ -49,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+            Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 
             dimensionResult.Name = name;
             dimensionResult.Description = desc;
@@ -58,7 +61,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateDimensionAsync(dimensionResult).ConfigureAwait(false);
+                await _masterDataHttpClient.UpdateDimensionAsync(dimensionResult).ConfigureAwait(false);
             };
 
             // Assert
@@ -66,7 +69,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchEntity()
+        public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange
             Dimension dimension = new Dimension
@@ -80,7 +83,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
+                await _masterDataHttpClient.UpdateDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert
@@ -101,14 +104,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = "desc",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+            Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 
             dimensionResult.Name = name;
             dimensionResult.Description = desc;
             dimensionResult.IsActive = isActive;
 
             // Act
-            Dimension result = await masterDataHttpClient.UpdateDimensionAsync(dimensionResult)
+            Dimension result = await _masterDataHttpClient.UpdateDimensionAsync(dimensionResult)
                .ConfigureAwait(false);
 
             // Assert

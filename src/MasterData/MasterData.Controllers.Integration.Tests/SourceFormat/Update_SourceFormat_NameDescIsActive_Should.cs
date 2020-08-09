@@ -15,6 +15,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Update_SourceFormat_NameDescIsActive_Should : TestBase<SourceFormat>
     {
@@ -24,6 +26,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
+        [Fact]
         public async Task Update_NameDescIsActive()
         {
             // Arrange
@@ -37,7 +40,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Desc = "orig",
                 IsActive = 1
             };
-            SourceFormat origResult = await masterDataHttpClient
+            SourceFormat origResult = await _masterDataHttpClient
                .AddSourceFormatAsync(orig)
                .ConfigureAwait(false);
 
@@ -46,7 +49,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             origResult.IsActive = isActive;
 
             // Act
-            SourceFormat result = await masterDataHttpClient
+            SourceFormat result = await _masterDataHttpClient
                .UpdateSourceFormatAsync(origResult)
                .ConfigureAwait(false);
 

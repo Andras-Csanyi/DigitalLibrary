@@ -17,24 +17,28 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "NotAccessedField.Global")]
+    [SuppressMessage("ReSharper", "CA1051")]
     public class TestBase<TTestedEntity> : IClassFixture<DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity>>
         where TTestedEntity : class
     {
         protected readonly WebApplicationFactory<Startup> _host;
 
-        protected readonly IMasterDataHttpClient masterDataHttpClient;
+        protected readonly IMasterDataHttpClient _masterDataHttpClient;
 
-        protected readonly ITestOutputHelper TestOutputHelper;
+        protected readonly ITestOutputHelper _testOutputHelper;
 
-        public TestBase(DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
-                        ITestOutputHelper testOutputHelper)
+        protected TestBase(DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
+                           ITestOutputHelper testOutputHelper)
         {
             _host = host ?? throw new ArgumentNullException(nameof(host));
-            TestOutputHelper = testOutputHelper;
+            _testOutputHelper = testOutputHelper;
 
             HttpClient httpClient = _host.CreateClient();
             DiLibHttpClient diLibHttpClient = new DiLibHttpClient(httpClient);
-            masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
+            _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
+    [SuppressMessage("ReSharper", "CA1303")]
+    [SuppressMessage("ReSharper", "CA1307")]
     public static class ControlPanelDataSample
     {
         private static void AddMenusToControlPanel(ControlPanelContext ctx)
@@ -145,8 +148,11 @@
 
         public static void Populate(ControlPanelContext ctx)
         {
-            AddModules(ctx);
-            AddMenusToModules(ctx);
+            if (ctx != null)
+            {
+                AddModules(ctx);
+                AddMenusToModules(ctx);
+            }
         }
     }
 }

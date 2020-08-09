@@ -16,9 +16,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Add_DimensionValue_Should : TestBase
     {
-        public Add_DimensionValue_Should() : base("bla22")
+        public Add_DimensionValue_Should() : base(TestInfo)
         {
         }
 
@@ -209,7 +212,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Fact]
-        public async Task ThrowException_WhenThereIsNoSuchDimension()
+        public void ThrowException_WhenThereIsNoSuchDimension()
         {
             // Arrange
             long dimensionId = 100;

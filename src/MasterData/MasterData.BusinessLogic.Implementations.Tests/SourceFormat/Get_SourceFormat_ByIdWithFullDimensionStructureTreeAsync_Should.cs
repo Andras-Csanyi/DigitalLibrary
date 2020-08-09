@@ -11,6 +11,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should : TestBase
     {
         public Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should() : base(TestInfo)
@@ -134,7 +138,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             result.Desc.Should().Be(sourceFormatResult.Desc);
             result.RootDimensionStructureId.Should().Be(sourceFormatResult.RootDimensionStructureId);
             result.RootDimensionStructure.ChildDimensionStructures.Should().NotBeNull();
-            result.RootDimensionStructure.ChildDimensionStructures.Count().Should().Be(2);
+            result.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(2);
         }
 
         [Fact]
@@ -302,7 +306,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             result.Desc.Should().Be(sourceFormatResult.Desc);
             result.RootDimensionStructureId.Should().Be(sourceFormatResult.RootDimensionStructureId);
             result.RootDimensionStructure.ChildDimensionStructures.Should().NotBeNull();
-            result.RootDimensionStructure.ChildDimensionStructures.Count().Should().Be(2);
+            result.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(2);
             //first level
             result.RootDimensionStructure.ChildDimensionStructures.Where(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)
@@ -320,12 +324,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ChildDimensionStructures.Should().NotBeNull();
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)
-               .ChildDimensionStructures.Count()
+               .ChildDimensionStructures.Count
                .Should().Be(2);
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)
                .ChildDimensionStructures
-               .Count()
+               .Count
                .Should().Be(2);
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)
@@ -347,7 +351,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ChildDimensionStructures.Should().NotBeNull();
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelSecond.Name)
-               .ChildDimensionStructures.Count()
+               .ChildDimensionStructures.Count
                .Should().Be(2);
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelSecond.Name)

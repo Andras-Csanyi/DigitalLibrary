@@ -18,7 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Add_SourceFormat_Should : TestBase<SourceFormat>
     {
         public Add_SourceFormat_Should(
@@ -29,7 +32,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task Add()
+        public async Task Add_AnItem()
         {
             // Arrange
             SourceFormat orig = new SourceFormat
@@ -40,7 +43,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             };
 
             // Act
-            SourceFormat res = await masterDataHttpClient
+            SourceFormat res = await _masterDataHttpClient
                .AddSourceFormatAsync(orig)
                .ConfigureAwait(false);
 
@@ -62,13 +65,13 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 IsActive = 1
             };
 
-            SourceFormat res = await masterDataHttpClient.AddSourceFormatAsync(orig)
+            SourceFormat res = await _masterDataHttpClient.AddSourceFormatAsync(orig)
                .ConfigureAwait(false);
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddSourceFormatAsync(orig).ConfigureAwait(false);
+                await _masterDataHttpClient.AddSourceFormatAsync(orig).ConfigureAwait(false);
             };
 
             // Assert

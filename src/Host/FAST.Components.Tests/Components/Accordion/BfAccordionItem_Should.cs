@@ -18,7 +18,7 @@ namespace FAST.Components.Tests.Components.Accordion
     public class BfAccordionItem_Should : TestContext
     {
         [Fact]
-        public async Task BeClosed_ByDefault()
+        public void BeClosed_ByDefault()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
@@ -30,7 +30,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task BeOpened_WhenConfiguredSo()
+        public void BeOpened_WhenConfiguredSo()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
@@ -45,7 +45,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task Splat_UnknownParameters()
+        public void Splat_UnknownParameters()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(

@@ -10,6 +10,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Count_DimensionValues_Should : TestBase
     {
         public Count_DimensionValues_Should() : base(TestInfo)

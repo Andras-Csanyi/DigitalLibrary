@@ -10,6 +10,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Add_DimensionStructure_Should : TestBase
     {
         public Add_DimensionStructure_Should() : base(TestInfo)

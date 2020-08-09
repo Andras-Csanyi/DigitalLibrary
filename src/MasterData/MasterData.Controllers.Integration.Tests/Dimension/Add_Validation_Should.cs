@@ -20,7 +20,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
     public class Add_Validation_Should : TestBase<Dimension>
     {
         public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
@@ -31,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         [Theory]
         [MemberData(nameof(MasterData_Dimension_TestData.AddDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
-        public async Task ThrowException_WhenInputIsInvalid(
+        public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -49,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+                await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert
@@ -57,14 +60,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionAsync(null).ConfigureAwait(false);
+                await _masterDataHttpClient.AddDimensionAsync(null).ConfigureAwait(false);
             };
 
             // Assert

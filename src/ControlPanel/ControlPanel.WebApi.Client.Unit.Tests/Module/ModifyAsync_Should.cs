@@ -1,6 +1,7 @@
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using Client.Menu.Exceptions;
@@ -9,11 +10,14 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [ExcludeFromCodeCoverage]
     public class ModifyAsync_Should : TestBase
     {
         [Fact]
         [Trait("Category", "Unit")]
-        public async Task Throw_ArgumentNullException_WhenInputIsNull()
+        public void Throw_ArgumentNullException_WhenInputIsNull()
         {
             // Arrange
 

@@ -18,7 +18,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Add_Should : TestBase<Dimension>
     {
         public Add_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
@@ -38,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             };
 
             // Act
-            Dimension result = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+            Dimension result = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();
@@ -58,12 +61,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = "ThrowException_WhenNameUniqueIndexViolated",
                 IsActive = 1
             };
-            Dimension dimensionResult = await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+            Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
+                await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
             };
 
             // Assert

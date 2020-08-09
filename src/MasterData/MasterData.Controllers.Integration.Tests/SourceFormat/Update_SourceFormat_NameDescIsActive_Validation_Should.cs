@@ -20,7 +20,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
     public class Update_SourceFormat_NameDescIsActive_Validation_Should : TestBase<SourceFormat>
     {
         public Update_SourceFormat_NameDescIsActive_Validation_Should(
@@ -32,7 +35,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task ThrowException_WhenInputIsInvalid(
+        public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -50,7 +53,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateSourceFormatAsync(sourceFormat).ConfigureAwait(false);
+                await _masterDataHttpClient.UpdateSourceFormatAsync(sourceFormat).ConfigureAwait(false);
             };
 
             // Assert
@@ -58,14 +61,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.UpdateSourceFormatAsync(null).ConfigureAwait(false);
+                await _masterDataHttpClient.UpdateSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert

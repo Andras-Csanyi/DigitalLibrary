@@ -18,6 +18,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Delete_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
@@ -28,7 +30,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsInvalid()
+        public void ThrowException_WhenInputIsInvalid()
         {
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
@@ -39,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
+                await _masterDataHttpClient.DeleteSourceFormatAsync(sourceFormat)
                    .ConfigureAwait(false);
             };
 
@@ -48,14 +50,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.DeleteSourceFormatAsync(null)
+                await _masterDataHttpClient.DeleteSourceFormatAsync(null)
                    .ConfigureAwait(false);
             };
 

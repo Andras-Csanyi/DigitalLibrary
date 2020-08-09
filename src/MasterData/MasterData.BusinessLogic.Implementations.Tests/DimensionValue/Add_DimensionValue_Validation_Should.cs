@@ -13,6 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class Add_DimensionValue_Validation_Should : TestBase
     {
         private const string TestInfo = nameof(Add_DimensionValue_Validation_Should);
@@ -24,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [Theory]
         [InlineData(0, 0)]
         [InlineData(100, 100)]
-        public async Task Throw_MasterDataBusinessLogicAddDimensionValueOperationException_WhenInputIsNull(
+        public void Throw_MasterDataBusinessLogicAddDimensionValueOperationException_WhenInputIsNull(
             long dimensionId,
             long dimensionValueId)
         {

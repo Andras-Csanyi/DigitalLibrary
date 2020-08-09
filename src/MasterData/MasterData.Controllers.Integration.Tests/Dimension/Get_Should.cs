@@ -17,7 +17,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Get_Should : TestBase<Dimension>
     {
         public Get_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
@@ -35,7 +38,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = "asdad",
                 IsActive = 1
             };
-            Dimension dimension1Result = await masterDataHttpClient.AddDimensionAsync(dimension1)
+            Dimension dimension1Result = await _masterDataHttpClient.AddDimensionAsync(dimension1)
                .ConfigureAwait(false);
 
             Dimension dimension2 = new Dimension
@@ -44,11 +47,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Description = "qweqwe",
                 IsActive = 0
             };
-            Dimension dimension2Result = await masterDataHttpClient.AddDimensionAsync(dimension2)
+            Dimension dimension2Result = await _masterDataHttpClient.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
 
             // Act
-            List<Dimension> result = await masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+            List<Dimension> result = await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
 
             // Assert
             result.Should().NotBeNull();

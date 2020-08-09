@@ -1,6 +1,6 @@
 namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
-    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
 
@@ -8,10 +8,13 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class DimensionStructure_Should
     {
         [Fact]
-        public async Task Properties_ShouldNotBeChangedBySetterAndGetter()
+        public void Properties_ShouldNotBeChangedBySetterAndGetter()
         {
             // Arrange
             long id = 100;

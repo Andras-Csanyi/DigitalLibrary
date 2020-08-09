@@ -11,6 +11,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class GetValuesOfA_DimensionAsync_Should : TestBase
     {
         public GetValuesOfA_DimensionAsync_Should() : base(TestInfo)

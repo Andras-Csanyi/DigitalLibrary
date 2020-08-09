@@ -20,7 +20,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
     public class Add_Validation_Should : TestBase<DimensionStructure>
     {
         public Add_Validation_Should(
@@ -32,7 +35,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.AddDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task Throw_Exception_WhenInputIsInvalid(
+        public void Throw_Exception_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -50,7 +53,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
+                await _masterDataHttpClient.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
@@ -58,14 +61,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         }
 
         [Fact]
-        public async Task Throw_Exception_WhenInputIsNull()
+        public void Throw_Exception_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
+                await _masterDataHttpClient.AddDimensionStructureAsync(null).ConfigureAwait(false);
             };
 
             // Assert

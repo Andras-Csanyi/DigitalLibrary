@@ -8,9 +8,10 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
     using Microsoft.EntityFrameworkCore;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static partial class MasterDataDataSample
     {
-        private const int AmountOfSourceFormat_BusinessPartner = 1;
+        private const int AmountOfSourceFormatBusinessPartner = 1;
 
         public const string HungarianBusinessPartnerAddressName = "Hungarian Address Dimension Structure";
 

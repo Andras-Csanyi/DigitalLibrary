@@ -2,7 +2,6 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
 
     using FluentAssertions;
 
@@ -11,6 +10,10 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1806")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
     public class Ctor_Should
     {
         [Fact]
@@ -19,7 +22,7 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
             // Arrange
 
             // Act
-            Func<Task> action = async () => { new Controllers.DimensionController(null); };
+            Action action = () => { new Controllers.DimensionController(null); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();

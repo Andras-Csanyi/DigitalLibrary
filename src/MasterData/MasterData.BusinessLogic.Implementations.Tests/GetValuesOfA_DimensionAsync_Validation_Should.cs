@@ -13,6 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class GetValuesOfA_DimensionAsync_Validation_Should : TestBase
     {
         public GetValuesOfA_DimensionAsync_Validation_Should() : base(TestInfo)
@@ -22,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         private const string TestInfo = nameof(GetValuesOfA_DimensionAsync_Validation_Should);
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 

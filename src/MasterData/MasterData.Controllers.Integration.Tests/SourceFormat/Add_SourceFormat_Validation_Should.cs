@@ -20,7 +20,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
+    [SuppressMessage("ReSharper", "TooManyArguments")]
     public class Add_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
         public Add_SourceFormat_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
@@ -31,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         [Theory]
         [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public async Task ThrowException_WhenInputIsInvalid(
+        public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -49,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
+                await _masterDataHttpClient.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
             };
 
             // Assert
@@ -57,14 +60,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         }
 
         [Fact]
-        public async Task ThrowException_WhenInputIsNull()
+        public void ThrowException_WhenInputIsNull()
         {
             // Arrange
 
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataHttpClient.AddSourceFormatAsync(null).ConfigureAwait(false);
+                await _masterDataHttpClient.AddSourceFormatAsync(null).ConfigureAwait(false);
             };
 
             // Assert

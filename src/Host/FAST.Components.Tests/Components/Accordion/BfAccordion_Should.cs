@@ -19,7 +19,7 @@ namespace FAST.Components.Tests.Components.Accordion
     public class BfAccordion_Should : TestContext
     {
         [Fact]
-        public async Task Have_ExpandMode_Attribute_SetToMulti_ByDefault()
+        public void Have_ExpandMode_Attribute_SetToMulti_ByDefault()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>();
@@ -33,7 +33,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task Have_ExpandMode_Attribute_SetToMulti_WhenConfiguredSo()
+        public void Have_ExpandMode_Attribute_SetToMulti_WhenConfiguredSo()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
@@ -48,7 +48,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task Have_ExpandMode_Attribute_SetToSingle_WhenConfiguredSo()
+        public void Have_ExpandMode_Attribute_SetToSingle_WhenConfiguredSo()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
@@ -63,7 +63,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task HaveNoCssClasses()
+        public void HaveNoCssClasses()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>();
@@ -76,7 +76,7 @@ namespace FAST.Components.Tests.Components.Accordion
         }
 
         [Fact]
-        public async Task SplatUnknownParameters()
+        public void SplatUnknownParameters()
         {
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(

@@ -1,14 +1,18 @@
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
     using Client.Menu;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1051")]
     public class TestBase
     {
-        protected IControlPanelWebClient ControlPanelWebApiClient;
+        protected readonly IControlPanelWebClient ControlPanelWebApiClient;
 
-        public TestBase()
+        [SuppressMessage("ReSharper", "CA2000")]
+        protected TestBase()
         {
             HttpClient client = new HttpClient();
             ControlPanelWebApiClient = new ControlPanelWebClient(client);

@@ -15,6 +15,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Validators;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1051")]
     public class TestBase
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
@@ -22,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected IMasterDataBusinessLogic masterDataBusinessLogic;
 
-        public TestBase(string TestInfo)
+        protected TestBase(string TestInfo)
         {
             string msg = $"{TestInfo} cannot be null, empty or whitespace!";
             Check.NotNullOrEmptyOrWhitespace(TestInfo, msg);

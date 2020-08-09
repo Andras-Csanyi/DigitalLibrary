@@ -1,7 +1,7 @@
 namespace Guard.Tests
 {
     using System;
-    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.Utils.Guards;
 
@@ -9,6 +9,9 @@ namespace Guard.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707")]
     public class GuidAreEqualShould
     {
         [Fact]
@@ -19,7 +22,7 @@ namespace Guard.Tests
             Guid comparedTo = Guid.NewGuid();
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo); };
 
             // Assert
             action.Should().NotThrow();
@@ -33,7 +36,7 @@ namespace Guard.Tests
             Guid comparedTo = Guid.Empty;
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>();
@@ -48,7 +51,7 @@ namespace Guard.Tests
             string message = "message";
 
             // Act
-            Func<Task> action = async () => { Check.AreNotEqual(value, comparedTo, message); };
+            Action action = () => { Check.AreNotEqual(value, comparedTo, message); };
 
             // Assert
             action.Should().ThrowExactly<GuardException>()
