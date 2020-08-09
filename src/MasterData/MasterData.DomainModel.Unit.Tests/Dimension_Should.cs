@@ -2,7 +2,6 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
 

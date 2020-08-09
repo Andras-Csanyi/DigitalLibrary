@@ -2,7 +2,6 @@ namespace Guard.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.Utils.Guards;
 

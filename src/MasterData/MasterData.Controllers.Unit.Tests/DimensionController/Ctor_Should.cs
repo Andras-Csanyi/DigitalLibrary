@@ -2,7 +2,6 @@ namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
 
     using FluentAssertions;
 
