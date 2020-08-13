@@ -6,4 +6,8 @@
         <RootNamespace>DigitalLibrary.Utils.Guards</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+    </ItemGroup>
+
 </Project>
