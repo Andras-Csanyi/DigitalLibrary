@@ -1,3 +1,7 @@
+# Digital Library project
+# https://github.com/SayusiAndo/DigitalLibrary
+# Licensed under MIT License
+
 Feature: Digital Library - MasterData - REST Api - Dimensions - AddNewDimension
 
   As a MasterData manager

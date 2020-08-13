@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
 {
     using System;
     using System.Collections.Generic;

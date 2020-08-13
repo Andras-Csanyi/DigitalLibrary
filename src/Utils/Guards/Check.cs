@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.Utils.Guards
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.Utils.Guards
 {
     using System;
 

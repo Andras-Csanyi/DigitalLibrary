@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace FAST.Components.Tests.Components.BfTreeItem
 {
     using System.Diagnostics.CodeAnalysis;

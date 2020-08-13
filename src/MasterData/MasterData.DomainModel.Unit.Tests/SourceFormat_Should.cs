@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
     using System.Diagnostics.CodeAnalysis;

@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.Utils.ControlPanel.DataSample
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.Utils.ControlPanel.DataSample
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
