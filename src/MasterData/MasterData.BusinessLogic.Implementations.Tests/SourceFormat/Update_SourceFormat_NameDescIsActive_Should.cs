@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
     using System;

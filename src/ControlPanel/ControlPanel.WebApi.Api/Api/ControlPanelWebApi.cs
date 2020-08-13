@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.ControlPanel.WebApi.Api
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.ControlPanel.WebApi.Api
 {
     public struct ControlPanelWebApi
     {

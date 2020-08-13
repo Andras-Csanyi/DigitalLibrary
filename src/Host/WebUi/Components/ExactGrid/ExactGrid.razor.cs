@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 {
     using System;
@@ -55,7 +59,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             Columns = await GetColumnNames().ConfigureAwait(false);
             _httpClient = HttpClientFactory.CreateClient("httpClient");
             string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                         $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
+                $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get, url);
             HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)

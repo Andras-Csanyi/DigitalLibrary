@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.Utils.DiLibHttpClient
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.Utils.DiLibHttpClient
 {
     using System;
     using System.Net.Http;

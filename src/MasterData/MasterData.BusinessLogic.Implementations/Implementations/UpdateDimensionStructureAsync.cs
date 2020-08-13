@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
@@ -37,7 +41,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {typeof(DimensionStructure)} " +
-                                 $"entity with id: {dimensionStructure.Id}";
+                        $"entity with id: {dimensionStructure.Id}";
                     Check.IsNotNull(toBeModified, msg);
 
                     toBeModified.Name = dimensionStructure.Name;

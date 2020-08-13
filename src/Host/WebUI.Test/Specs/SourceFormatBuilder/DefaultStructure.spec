@@ -1,3 +1,7 @@
+# Digital Library project
+# https://github.com/SayusiAndo/DigitalLibrary
+# Licensed under MIT License
+
 Feature: Source Format builder page default state
 
   Scenario: Displayed Controls

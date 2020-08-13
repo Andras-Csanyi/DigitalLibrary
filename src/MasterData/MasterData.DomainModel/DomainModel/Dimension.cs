@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.MasterData.DomainModel
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.MasterData.DomainModel
 {
     using System.Collections.Generic;
 

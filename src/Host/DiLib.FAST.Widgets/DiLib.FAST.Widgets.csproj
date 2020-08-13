@@ -12,4 +12,11 @@
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
     </ItemGroup>
 
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="wwwroot\background.png"/>
+        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\styles.css"/>
+    </ItemGroup>
+
 </Project>
