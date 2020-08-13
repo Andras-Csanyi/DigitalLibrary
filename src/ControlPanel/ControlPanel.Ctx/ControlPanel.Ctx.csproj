@@ -10,8 +10,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7"/>
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
 
