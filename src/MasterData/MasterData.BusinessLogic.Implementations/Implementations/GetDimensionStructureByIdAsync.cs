@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
@@ -76,7 +80,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             catch (Exception e)
             {
                 string msg = $"Error happened while querying Dimensionstructure and its " +
-                             $"DimensionStructure tree";
+                    $"DimensionStructure tree";
                 throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
             }
         }

@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.MasterData.Controllers.Unit.Tests.DimensionController
 {
     using System;

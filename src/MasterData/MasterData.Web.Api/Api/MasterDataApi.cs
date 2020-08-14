@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.MasterData.Web.Api
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.MasterData.Web.Api
 {
     /// <summary>
     ///     Digital Library MasterData api endpoint

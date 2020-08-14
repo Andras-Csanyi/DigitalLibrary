@@ -1,7 +1,9 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
-    #region
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -17,8 +19,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using Services;
 
     using Utils.Guards;
-
-    #endregion
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService
@@ -284,7 +284,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (_foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
-                                     $"in the tree.";
+                            $"in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
                 }
@@ -352,7 +352,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (string.IsNullOrEmpty(newRootDimensionStructure.Name))
                     {
                         msg = $"Something went wrong during saving " +
-                              $"{newRootDimensionStructure.Name}";
+                            $"{newRootDimensionStructure.Name}";
                     }
                 }
                 else

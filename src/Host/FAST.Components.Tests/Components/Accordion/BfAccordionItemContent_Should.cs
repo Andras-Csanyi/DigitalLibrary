@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace FAST.Components.Tests.Components.Accordion
 {
     using System.Diagnostics.CodeAnalysis;
@@ -31,8 +35,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             IAttr attr = cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                                  $"{FastHtmlElements.FastAccordionItem}>" +
-                                  $"div")
+                    $"{FastHtmlElements.FastAccordionItem}>" +
+                    $"div")
                .Attributes
                .GetNamedItem("custom");
             attr.Value.Should().Be("value");
@@ -52,8 +56,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                     $"{FastHtmlElements.FastAccordionItem}>" +
-                     $"div")
+                    $"{FastHtmlElements.FastAccordionItem}>" +
+                    $"div")
                .InnerHtml
                .Contains("content")
                .Should()

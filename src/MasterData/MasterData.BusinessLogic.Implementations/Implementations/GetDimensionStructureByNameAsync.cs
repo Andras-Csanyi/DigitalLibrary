@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
@@ -36,7 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             catch (Exception e)
             {
                 string msg = $"Error happened while executing " +
-                             $"{nameof(GetDimensionStructureByNameAsync)}";
+                    $"{nameof(GetDimensionStructureByNameAsync)}";
                 throw new MasterDataBusinessLogicDatabaseOperationException();
             }
         }

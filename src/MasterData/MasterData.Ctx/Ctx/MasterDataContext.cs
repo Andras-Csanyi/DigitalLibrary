@@ -1,4 +1,8 @@
-﻿namespace DigitalLibrary.MasterData.Ctx
+﻿// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
+namespace DigitalLibrary.MasterData.Ctx
 {
     using Configurations;
 

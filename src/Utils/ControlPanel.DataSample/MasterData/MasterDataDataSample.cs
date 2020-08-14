@@ -1,3 +1,7 @@
+// Digital Library project
+// https://github.com/SayusiAndo/DigitalLibrary
+// Licensed under MIT License
+
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Collections.Generic;
@@ -19,7 +23,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
         public static int GetSourceFormatAmount()
         {
             return SourceFormatAmount
-                 + AmountOfSourceFormatBusinessPartner;
+              + AmountOfSourceFormatBusinessPartner;
         }
 
         public static void Populate(MasterDataContext ctx)

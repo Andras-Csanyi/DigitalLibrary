@@ -1,3 +1,7 @@
+# Digital Library project
+# https://github.com/SayusiAndo/DigitalLibrary
+# Licensed under MIT License
+
 Feature: Digital Library - Masterdata - Country - IsActive validation
 
   In order to being able to keep the data clean
