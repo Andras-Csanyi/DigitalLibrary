@@ -197,7 +197,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             DimensionStructureQueryObject query = new DimensionStructureQueryObject
             {
                 GetDimensionsStructuredById = dimensionStructureId,
-                IncludeChildrenWhenGetDimensionStructureById = true
+                IncludeChildrenWhenGetDimensionStructureById = true,
             };
             DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);
@@ -301,7 +301,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (_foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
-                            "in the tree.";
+                                     "in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
                 }
@@ -370,7 +370,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (string.IsNullOrEmpty(newRootDimensionStructure.Name))
                     {
                         msg = "Something went wrong during saving " +
-                            $"{newRootDimensionStructure.Name}";
+                              $"{newRootDimensionStructure.Name}";
                     }
                 }
                 else
@@ -436,7 +436,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 foreach (DimensionStructure dimensionStructure in dimensionStructures)
                 {
                     if (dimensionStructure.Guid == parentDimensionStructureGuid)
+                    {
                         dimensionStructure.ChildDimensionStructures.Add(dimensionStructureToBeAdded);
+                    }
                     else
                     {
                         await IterateThroughTheTreeForAdding(
