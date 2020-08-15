@@ -726,13 +726,14 @@
     <Rule Id="CA1309" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-    <Rule Id="SA1305" Action="Warning" />
-    <Rule Id="SA1412" Action="Warning" />
-    <Rule Id="SA1609" Action="Warning" />
-    <Rule Id="SA1639" Action="Warning" />
-    <Rule Id="SX1101" Action="Warning" />
-    <Rule Id="SX1309" Action="Warning" />
-    <Rule Id="SX1309S" Action="Warning" />
+      <Rule Id="SA1101" Action="Hidden"/> <!-- .this -->
+      <Rule Id="SA1305" Action="Warning"/>
+      <Rule Id="SA1412" Action="Warning"/>
+      <Rule Id="SA1609" Action="Warning"/>
+      <Rule Id="SA1639" Action="Warning"/>
+      <Rule Id="SX1101" Action="Warning"/>
+      <Rule Id="SX1309" Action="Warning"/>
+      <Rule Id="SX1309S" Action="Warning"/>
   </Rules>
   <Rules AnalyzerId="xunit.analyzers" RuleNamespace="xunit.analyzers">
     <Rule Id="xUnit1015" Action="Warning" />

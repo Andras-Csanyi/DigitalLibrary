@@ -113,8 +113,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST.Components.Tests", "Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLib.FAST.Widgets.Tests", "Host\DiLib.FAST.Widgets.Tests\DiLib.FAST.Widgets.Tests.csproj", "{435334E1-47EC-4B68-B84D-51EA5C7D7225}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rulesets", "rulesets", "{FF0DACAC-AE6A-4AAA-922E-0FDA8F34D641}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
