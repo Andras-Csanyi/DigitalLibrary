@@ -14,16 +14,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridTTypeDoesntHavePropertiesException(SerializationInfo? info, StreamingContext context) : base(
+        protected DiLibGridTTypeDoesntHavePropertiesException(SerializationInfo? info, StreamingContext context)
+            : base(
             info, context)
         {
         }
 
-        public DiLibGridTTypeDoesntHavePropertiesException(string? message) : base(message)
+        public DiLibGridTTypeDoesntHavePropertiesException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridTTypeDoesntHavePropertiesException(string? message, Exception? innerException) : base(message,
+        public DiLibGridTTypeDoesntHavePropertiesException(string? message, Exception? innerException)
+            : base(message,
             innerException)
         {
         }

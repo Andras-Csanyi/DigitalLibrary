@@ -22,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Get_DimensionValues_Should : TestBase
     {
-        public Get_DimensionValues_Should() : base(TestInfo)
+        public Get_DimensionValues_Should()
+            : base(TestInfo)
         {
         }
 

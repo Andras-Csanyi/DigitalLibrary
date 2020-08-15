@@ -25,7 +25,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Update_SourceFormat_NameDescIsActive_Should : TestBase
     {
-        public Update_SourceFormat_NameDescIsActive_Should() : base(TestInfo)
+        public Update_SourceFormat_NameDescIsActive_Should()
+            : base(TestInfo)
         {
         }
 

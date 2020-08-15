@@ -24,7 +24,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GetDimensionStructureByIdAsync_WithChildren_Should : TestBase
     {
-        public GetDimensionStructureByIdAsync_WithChildren_Should() : base(TestInfo)
+        public GetDimensionStructureByIdAsync_WithChildren_Should()
+            : base(TestInfo)
         {
         }
 

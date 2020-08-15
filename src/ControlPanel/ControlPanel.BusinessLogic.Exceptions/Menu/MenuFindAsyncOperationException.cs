@@ -14,16 +14,19 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuFindAsyncOperationException(SerializationInfo info, StreamingContext context) : base(info,
+        protected MenuFindAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(info,
             context)
         {
         }
 
-        public MenuFindAsyncOperationException(string message) : base(message)
+        public MenuFindAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuFindAsyncOperationException(string message, Exception innerException) : base(message, innerException)
+        public MenuFindAsyncOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

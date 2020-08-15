@@ -32,7 +32,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     public class Add_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
         public Add_SourceFormat_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-                                                  ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+                                                  ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

@@ -25,7 +25,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     {
         private const string TestInfo = nameof(Add_DimensionValue_Validation_Should);
 
-        public Add_DimensionValue_Validation_Should() : base(TestInfo)
+        public Add_DimensionValue_Validation_Should()
+            : base(TestInfo)
         {
         }
 

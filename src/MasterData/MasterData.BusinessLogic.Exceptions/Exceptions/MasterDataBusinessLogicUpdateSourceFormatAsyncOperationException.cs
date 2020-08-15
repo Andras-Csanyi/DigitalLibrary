@@ -18,18 +18,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         protected MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException(string? message) :
-            base(message)
+        public MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
         public MasterDataBusinessLogicUpdateSourceFormatAsyncOperationException(
             string? message,
-            Exception? innerException) : base(message, innerException)
+            Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

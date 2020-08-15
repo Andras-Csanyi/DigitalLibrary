@@ -22,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Count_SourceFormat_Should : TestBase
     {
-        public Count_SourceFormat_Should() : base(TestInfo)
+        public Count_SourceFormat_Should()
+            : base(TestInfo)
         {
         }
 

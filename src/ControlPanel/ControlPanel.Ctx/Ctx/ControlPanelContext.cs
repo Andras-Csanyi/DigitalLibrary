@@ -21,7 +21,8 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx
         {
         }
 
-        public ControlPanelContext(DbContextOptions<ControlPanelContext> options) : base(options)
+        public ControlPanelContext(DbContextOptions<ControlPanelContext> options)
+            : base(options)
         {
         }
 

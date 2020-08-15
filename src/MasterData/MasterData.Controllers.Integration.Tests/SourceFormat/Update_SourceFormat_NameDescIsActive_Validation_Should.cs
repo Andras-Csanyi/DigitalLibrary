@@ -33,7 +33,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     {
         public Update_SourceFormat_NameDescIsActive_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

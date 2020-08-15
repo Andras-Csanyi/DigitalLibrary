@@ -14,15 +14,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuNoSuchMenuException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected MenuNoSuchMenuException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuNoSuchMenuException(string message) : base(message)
+        public MenuNoSuchMenuException(string message)
+            : base(message)
         {
         }
 
-        public MenuNoSuchMenuException(string message, Exception innerException) : base(message, innerException)
+        public MenuNoSuchMenuException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

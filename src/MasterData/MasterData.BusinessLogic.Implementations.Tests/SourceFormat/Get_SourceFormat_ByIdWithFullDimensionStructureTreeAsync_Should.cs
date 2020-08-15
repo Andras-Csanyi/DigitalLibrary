@@ -21,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should : TestBase
     {
-        public Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should() : base(TestInfo)
+        public Get_SourceFormat_ByIdWithFullDimensionStructureTreeAsync_Should()
+            : base(TestInfo)
         {
         }
 

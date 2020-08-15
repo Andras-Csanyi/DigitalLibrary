@@ -27,7 +27,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Update_DimensionStructure_Validation_Should : TestBase
     {
-        public Update_DimensionStructure_Validation_Should() : base(TestInfo)
+        public Update_DimensionStructure_Validation_Should()
+            : base(TestInfo)
         {
         }
 

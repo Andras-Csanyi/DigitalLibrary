@@ -14,15 +14,18 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         {
         }
 
-        protected MasterDataHttpClientException(SerializationInfo? info, StreamingContext context) : base(info, context)
+        protected MasterDataHttpClientException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataHttpClientException(string? message) : base(message)
+        public MasterDataHttpClientException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataHttpClientException(string? message, Exception? innerException) : base(message, innerException)
+        public MasterDataHttpClientException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

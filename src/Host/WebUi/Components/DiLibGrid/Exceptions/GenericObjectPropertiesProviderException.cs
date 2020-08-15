@@ -14,16 +14,19 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected GenericObjectPropertiesProviderException(SerializationInfo? info, StreamingContext context) : base(
+        protected GenericObjectPropertiesProviderException(SerializationInfo? info, StreamingContext context)
+            : base(
             info, context)
         {
         }
 
-        public GenericObjectPropertiesProviderException(string? message) : base(message)
+        public GenericObjectPropertiesProviderException(string? message)
+            : base(message)
         {
         }
 
-        public GenericObjectPropertiesProviderException(string? message, Exception? innerException) : base(message,
+        public GenericObjectPropertiesProviderException(string? message, Exception? innerException)
+            : base(message,
             innerException)
         {
         }

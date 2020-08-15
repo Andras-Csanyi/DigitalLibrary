@@ -27,7 +27,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     public class GetById_SourceFormat_Should : TestBase<SourceFormat>
     {
         public GetById_SourceFormat_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-                                           ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+                                           ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

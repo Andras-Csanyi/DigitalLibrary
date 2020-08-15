@@ -30,7 +30,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     public class Add_Should : TestBase<Dimension>
     {
         public Add_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                          ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+                          ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

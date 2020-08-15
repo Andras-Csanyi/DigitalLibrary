@@ -32,7 +32,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     public class Modify_Validation_Should : TestBase<DimensionStructure>
     {
         public Modify_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-                                        ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+                                        ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

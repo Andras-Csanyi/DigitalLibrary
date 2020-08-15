@@ -16,16 +16,18 @@ namespace DigitalLibrary.MasterData.Validators
         {
         }
 
-        protected MasterDataValidatorFacadeArgumentNullException(SerializationInfo? info, StreamingContext context) :
-            base(info, context)
+        protected MasterDataValidatorFacadeArgumentNullException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataValidatorFacadeArgumentNullException(string? message) : base(message)
+        public MasterDataValidatorFacadeArgumentNullException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataValidatorFacadeArgumentNullException(string? message, Exception? innerException) : base(
+        public MasterDataValidatorFacadeArgumentNullException(string? message, Exception? innerException)
+            : base(
             message, innerException)
         {
         }

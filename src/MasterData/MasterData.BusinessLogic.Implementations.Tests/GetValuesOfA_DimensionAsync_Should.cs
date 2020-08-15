@@ -21,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GetValuesOfA_DimensionAsync_Should : TestBase
     {
-        public GetValuesOfA_DimensionAsync_Should() : base(TestInfo)
+        public GetValuesOfA_DimensionAsync_Should()
+            : base(TestInfo)
         {
         }
 

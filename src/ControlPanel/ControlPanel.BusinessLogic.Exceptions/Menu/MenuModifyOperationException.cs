@@ -14,15 +14,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuModifyOperationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected MenuModifyOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuModifyOperationException(string message) : base(message)
+        public MenuModifyOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuModifyOperationException(string message, Exception innerException) : base(message, innerException)
+        public MenuModifyOperationException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

@@ -30,7 +30,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     public class Delete_Validation_Should : TestBase<Dimension>
     {
         public Delete_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                                        ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+                                        ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

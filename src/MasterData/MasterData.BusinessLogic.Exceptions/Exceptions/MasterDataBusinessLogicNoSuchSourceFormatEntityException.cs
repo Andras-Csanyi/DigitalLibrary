@@ -18,16 +18,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         protected MasterDataBusinessLogicNoSuchSourceFormatEntityException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message) : base(message)
+        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message, Exception? innerException) :
-            base(
+        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message, Exception? innerException)
+            : base(
                 message, innerException)
         {
         }

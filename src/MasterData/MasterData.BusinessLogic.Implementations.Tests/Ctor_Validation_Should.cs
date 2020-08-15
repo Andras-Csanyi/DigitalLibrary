@@ -20,7 +20,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Ctor_Validation_Should : TestBase
     {
-        public Ctor_Validation_Should() : base(TestInfo)
+        public Ctor_Validation_Should()
+            : base(TestInfo)
         {
         }
 

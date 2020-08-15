@@ -25,7 +25,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Delete_DimensionAsync_Should : TestBase
     {
-        public Delete_DimensionAsync_Should() : base(TestInfo)
+        public Delete_DimensionAsync_Should()
+            : base(TestInfo)
         {
         }
 

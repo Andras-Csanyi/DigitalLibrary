@@ -30,7 +30,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     {
         public Get_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
