@@ -42,7 +42,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             RootDimensionStructureId = 100,
         };
 
-        protected SourceFormat _sourceFormatDataOnFirstLevel = new SourceFormat
+        protected SourceFormat _sourceFormatDataOnTheFirstLevel = new SourceFormat
         {
             Id = 100,
             Name = "Test Source Format",
@@ -60,6 +60,51 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                         Id = 101,
                         Name = "first level first",
                         Desc = "first level first description",
+                    },
+                    new DimensionStructure
+                    {
+                        Id = 102,
+                        Name = "first level second",
+                        Desc = "first level second desc",
+                    },
+                },
+            },
+            RootDimensionStructureId = 100,
+        };
+
+        protected SourceFormat _sourceFormatDataOnTheSecondLevel = new SourceFormat
+        {
+            Id = 100,
+            Name = "Test Source Format",
+            Desc = "Test Source Format Description",
+            IsActive = 1,
+            RootDimensionStructure = new DimensionStructure
+            {
+                Id = 100,
+                Name = "first level",
+                Desc = "first level description",
+                ChildDimensionStructures = new List<DimensionStructure>
+                {
+                    new DimensionStructure
+                    {
+                        Id = 101,
+                        Name = "first level first",
+                        Desc = "first level first description",
+                        ChildDimensionStructures = new List<DimensionStructure>
+                        {
+                            new DimensionStructure
+                            {
+                                Id = 201,
+                                Name = "second level first",
+                                Desc = "second level first description",
+                            },
+                            new DimensionStructure
+                            {
+                                Id = 202,
+                                Name = "second level second",
+                                Desc = "second level second description",
+                            },
+                        },
                     },
                     new DimensionStructure
                     {

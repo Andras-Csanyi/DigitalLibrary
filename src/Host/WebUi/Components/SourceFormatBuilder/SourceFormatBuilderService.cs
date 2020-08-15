@@ -37,6 +37,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private bool _foundDuringDimensionStructureReplaceInTheTree;
 
+        /// <summary>
+        /// This field is used when we are executing either adding or replacing operation
+        /// against a node in the <see cref="DocumentStructure"/> tree.
+        /// This marks that we found the target in the tree.
+        /// </summary>
+        private bool _documentStructureIsFoundInTheTree;
+
 
         public SourceFormatBuilderService(
             IMasterDataHttpClient masterDataHttpClient,
@@ -105,15 +112,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 return;
             }
 
-            bool isFound = await FindDimensionStructureInTreeAsync(
+            await FindDimensionStructureInTreeAsync(
                 toBereplacedDimensionStructureGuid,
                 SourceFormat.RootDimensionStructure.ChildDimensionStructures).ConfigureAwait(false);
 
-            if (isFound)
+            if (_documentStructureIsFoundInTheTree)
             {
                 if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
-                    await IterateThroughTheTreeForUpdating(
+                    await IterateThroughTheTreeAndReplace(
                             dimensionStructure,
                             toBereplacedDimensionStructureGuid,
                             SourceFormat.RootDimensionStructure.ChildDimensionStructures)
@@ -164,8 +171,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// </summary>
         /// <param name="targetGuid">The looked for Guid.</param>
         /// <param name="dimensionStructures">Tree of DimensionStructures.</param>
-        /// <returns>Boolean</returns>
-        private async Task<bool> FindDimensionStructureInTreeAsync(
+        private async Task FindDimensionStructureInTreeAsync(
             Guid targetGuid,
             ICollection<DimensionStructure> dimensionStructures)
         {
@@ -177,7 +183,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 {
                     if (structure.Guid == targetGuid)
                     {
-                        return true;
+                        _documentStructureIsFoundInTheTree = true;
+                        break;
                     }
 
                     if (structure.ChildDimensionStructures.Any())
@@ -189,8 +196,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     }
                 }
             }
-
-            return false;
         }
 
         /// <inheritdoc />
@@ -497,7 +502,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
-        private async Task IterateThroughTheTreeForUpdating(
+        private async Task IterateThroughTheTreeAndReplace(
             DimensionStructure dimensionStructure,
             Guid toBeReplacedDimensionStructureGuid,
             ICollection<DimensionStructure> childDimensionStructures)
@@ -507,19 +512,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
             if (childDimensionStructures.Any())
             {
-                DimensionStructure target = childDimensionStructures
-                   .First(d => d.Guid == toBeReplacedDimensionStructureGuid);
-
-                if (target != null)
-                {
-                    childDimensionStructures.Remove(target);
-                    childDimensionStructures.Add(dimensionStructure);
-                    return;
-                }
-
                 foreach (DimensionStructure childDimensionStructure in childDimensionStructures)
                 {
-                    await IterateThroughTheTreeForUpdating(
+                    if (childDimensionStructure.Guid == toBeReplacedDimensionStructureGuid)
+                    {
+                        childDimensionStructures.Remove(childDimensionStructure);
+                        childDimensionStructures.Add(dimensionStructure);
+                        return;
+                    }
+
+                    await IterateThroughTheTreeAndReplace(
                             dimensionStructure,
                             toBeReplacedDimensionStructureGuid,
                             childDimensionStructure.ChildDimensionStructures)

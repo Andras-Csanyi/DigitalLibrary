@@ -44,7 +44,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Arrange
             _masterDataWebApiClientMock
                .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
-               .ReturnsAsync(_sourceFormatDataOnFirstLevel);
+               .ReturnsAsync(_sourceFormatDataOnTheFirstLevel);
 
             DimensionStructure newOne = new DimensionStructure
             {
@@ -64,7 +64,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
-            DimensionStructure toBeReplaced = _sourceFormatDataOnFirstLevel.RootDimensionStructure
+            DimensionStructure toBeReplaced = _sourceFormatDataOnTheFirstLevel.RootDimensionStructure
                .ChildDimensionStructures
                .ElementAt(0);
 
@@ -96,8 +96,70 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         }
 
         [Fact]
-        public void UpdateItem_AtSecondLevel()
+        public async Task UpdateItem_AtSecondLevel()
         {
+            // Arrange
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(_sourceFormatDataOnTheSecondLevel);
+
+            DimensionStructure newOne = new DimensionStructure
+            {
+                Id = 103,
+                Name = "new one",
+                Desc = "new one desc",
+            };
+
+            _masterDataWebApiClientMock
+               .Setup(m => m.GetDimensionStructureByIdAsync(It.IsAny<DimensionStructureQueryObject>()))
+               .ReturnsAsync(newOne);
+
+            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+
+            await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
+
+            DimensionStructure firstLevelNode = _sourceFormatDataOnTheSecondLevel.RootDimensionStructure
+               .ChildDimensionStructures
+               .ElementAt(0);
+
+            DimensionStructure toBeReplaced = firstLevelNode
+               .ChildDimensionStructures
+               .ElementAt(1);
+
+            // Act
+            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+                    newOne,
+                    toBeReplaced.Guid)
+               .ConfigureAwait(false);
+
+            // Assert
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure
+               .ChildDimensionStructures
+               .First(g => g.Guid == firstLevelNode.Guid)
+               .ChildDimensionStructures
+               .Where(r => r.Guid == newOne.Guid)
+               .ToList()
+               .Count
+               .Should().Be(1);
+
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure
+               .ChildDimensionStructures
+               .First(g => g.Guid == firstLevelNode.Guid)
+               .ChildDimensionStructures
+               .Where(g => g.Guid == toBeReplaced.Guid)
+               .ToList()
+               .Count
+               .Should().Be(0);
+
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure
+               .ChildDimensionStructures
+               .First(g => g.Guid == firstLevelNode.Guid)
+               .ChildDimensionStructures
+               .Count
+               .Should().Be(2);
         }
 
         [Fact]
