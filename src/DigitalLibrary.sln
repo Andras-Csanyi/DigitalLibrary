@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		SolutionItems\stylecop.json = SolutionItems\stylecop.json
 		SolutionItems\xunit.runner.json = SolutionItems\xunit.runner.json
 		..\README.md = ..\README.md
+		SolutionItems\stylecop.ruleset = SolutionItems\stylecop.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DC7A8EB3-8974-4E8E-B8D6-96A9E7B65098}"

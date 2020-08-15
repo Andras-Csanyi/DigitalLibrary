@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet 
-        Name="DigitalLibraryProject" 
-        Description="DigitalLibrary Project rulesets." 
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet
+        Name="DigitalLibraryProject"
+        Description="DigitalLibrary Project rulesets."
         ToolsVersion="16.0">
-    
+
     <Rules AnalyzerId="xunit.analyzers" RuleNamespace="xunit.analyzers">
         <Rule Id="xUnit1015" Action="Warning"/>
     </Rules>
-    
+
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
         <Rule Id="SA1101" Action="None"/>
     </Rules>
-    
+
 </RuleSet>
