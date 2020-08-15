@@ -22,7 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		SolutionItems\.editorconfig = SolutionItems\.editorconfig
 		..\.gitignore = ..\.gitignore
 		SolutionItems\stylecop.json = SolutionItems\stylecop.json
-		SolutionItems\stylecop.ruleset = SolutionItems\stylecop.ruleset
 		SolutionItems\xunit.runner.json = SolutionItems\xunit.runner.json
 		..\README.md = ..\README.md
 	EndProjectSection
@@ -112,6 +111,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST.Components.Tests", "Host\FAST.Components.Tests\FAST.Components.Tests.csproj", "{26BABB9A-5C6F-4B0D-A2B0-AAC33149ECF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLib.FAST.Widgets.Tests", "Host\DiLib.FAST.Widgets.Tests\DiLib.FAST.Widgets.Tests.csproj", "{435334E1-47EC-4B68-B84D-51EA5C7D7225}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rulesets", "rulesets", "{FF0DACAC-AE6A-4AAA-922E-0FDA8F34D641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
