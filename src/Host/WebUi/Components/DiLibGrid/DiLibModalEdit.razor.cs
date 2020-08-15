@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibModalEdit.razor.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {

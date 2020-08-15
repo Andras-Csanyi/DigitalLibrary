@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataValidators_Validation_Should.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Validators.Test
 {

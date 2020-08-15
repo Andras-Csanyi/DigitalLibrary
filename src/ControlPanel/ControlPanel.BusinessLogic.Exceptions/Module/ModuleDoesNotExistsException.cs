@@ -1,7 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
+// <copyright file="ModuleDoesNotExistsException.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
-// Licensed under MIT License
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 {

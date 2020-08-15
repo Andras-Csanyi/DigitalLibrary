@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="BfAccordionItemContent_Should.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FAST.Components.Tests.Components.Accordion
 {

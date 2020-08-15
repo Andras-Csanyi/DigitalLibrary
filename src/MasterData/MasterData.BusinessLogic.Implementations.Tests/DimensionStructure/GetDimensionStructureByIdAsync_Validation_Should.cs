@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GetDimensionStructureByIdAsync_Validation_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.DimensionStructure
 {

@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="IDiLibHttpClient.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
