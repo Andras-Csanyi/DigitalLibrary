@@ -23,6 +23,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("Resharper", "CA2000", Justification = "Reviewed.")]
     public class Ctor_Validation_Should : TestBase
     {
         public static IEnumerable<object[]> ThrowExceptionWhenInputIsNull => new List<object[]>
