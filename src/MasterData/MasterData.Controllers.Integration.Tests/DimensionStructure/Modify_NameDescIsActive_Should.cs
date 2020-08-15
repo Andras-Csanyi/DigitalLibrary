@@ -1,34 +1,32 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="Modify_NameDescIsActive_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStructure
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
     {
-        public Modify_NameDescIsActive_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-                                              ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Modify_NameDescIsActive_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -38,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Id = 400
+                Id = 400,
             };
 
             // Act

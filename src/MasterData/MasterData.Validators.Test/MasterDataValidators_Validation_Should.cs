@@ -1,26 +1,24 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataValidators_Validation_Should.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Validators.Test
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
-    [SuppressMessage("ReSharper", "TooManyArguments")]
-    [SuppressMessage("ReSharper", "CA1806")]
-    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class MasterDataValidators_Validation_Should
     {
         public static IEnumerable<object[]> ValidatorCtorInput = new List<object[]>
@@ -32,7 +30,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 null,
                 null,
                 null,
-                null
+                null,
             },
             new object[]
             {
@@ -111,8 +109,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                     sourceFormatValidator,
                     dimensionStructureValidator,
                     dimensionStructureDimensionStructureValidator,
-                    dimensionStructureQueryObjectValidator
-                );
+                    dimensionStructureQueryObjectValidator);
             };
 
             // Assert

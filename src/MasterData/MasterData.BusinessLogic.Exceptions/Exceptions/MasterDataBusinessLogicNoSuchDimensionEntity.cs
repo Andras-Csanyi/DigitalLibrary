@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataBusinessLogicNoSuchDimensionEntity.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
@@ -15,17 +16,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicNoSuchDimensionEntity(SerializationInfo? info, StreamingContext context) :
-            base(info, context)
+        protected MasterDataBusinessLogicNoSuchDimensionEntity(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchDimensionEntity(string? message) : base(message)
+        public MasterDataBusinessLogicNoSuchDimensionEntity(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchDimensionEntity(string? message, Exception? innerException) : base(message,
-            innerException)
+        public MasterDataBusinessLogicNoSuchDimensionEntity(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

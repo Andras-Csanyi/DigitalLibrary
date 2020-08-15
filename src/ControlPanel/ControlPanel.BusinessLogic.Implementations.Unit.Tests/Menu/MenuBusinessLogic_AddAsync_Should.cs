@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuBusinessLogic_AddAsync_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
@@ -8,19 +9,15 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using Exceptions.Menu;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
     using FluentAssertions;
-
     using FluentValidation;
-
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
-    [SuppressMessage("ReSharper", "TooManyArguments")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
@@ -102,7 +99,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 ModuleId = moduleResult.Id,
                 IsActive = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
 
             // Act

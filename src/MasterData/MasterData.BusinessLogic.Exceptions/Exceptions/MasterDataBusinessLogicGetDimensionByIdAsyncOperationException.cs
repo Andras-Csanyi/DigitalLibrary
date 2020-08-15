@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataBusinessLogicGetDimensionByIdAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
@@ -15,19 +16,26 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(SerializationInfo? info,
-                                                                                 StreamingContext context) : base(info,
-            context)
+        protected MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(string? message,
-                                                                              Exception? innerException) : base(message,
-            innerException)
+        public MasterDataBusinessLogicGetDimensionByIdAsyncOperationException(
+            string? message,
+            Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

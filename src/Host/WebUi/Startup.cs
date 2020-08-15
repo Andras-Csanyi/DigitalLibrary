@@ -1,31 +1,24 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="Startup.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi
 {
     using System;
-
     using BlazorStrap;
-
-    using Components.SourceFormatBuilder;
-
-    using ControlPanel.WebApi.Client.Menu;
-
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
+    using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+    using DigitalLibrary.Ui.WebUi.Notifiers;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.DiLibHttpClient;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-
-    using Notifiers;
-
-    using Services;
-
-    using Utils.DiLibHttpClient;
 
     public class Startup
     {
@@ -46,6 +39,7 @@ namespace DigitalLibrary.Ui.WebUi
             else
             {
                 app.UseExceptionHandler("/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios,
                 // see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
@@ -74,6 +68,7 @@ namespace DigitalLibrary.Ui.WebUi
             {
                 config.BaseAddress = new Uri("http://localhost:5000");
             });
+
             // services.AddHttpClient<IMasterDataHttpClient, MasterDataHttpClient>(config =>
             // {
             //     config.BaseAddress = new Uri("http://localhost:5000");

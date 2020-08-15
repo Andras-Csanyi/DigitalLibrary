@@ -8,6 +8,7 @@
         <AssemblyName>DigitalLibrary.Ui.WebUI.Test</AssemblyName>
 
         <RootNamespace>DigitalLibrary.Ui.WebUI.Test</RootNamespace>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +16,7 @@
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0"/>
         <PackageReference Include="Moq" Version="4.14.5"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -31,6 +33,9 @@
         <ProjectReference Include="..\..\MasterData\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
         <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
         <ProjectReference Include="..\WebUi\WebUi.csproj"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 
 </Project>

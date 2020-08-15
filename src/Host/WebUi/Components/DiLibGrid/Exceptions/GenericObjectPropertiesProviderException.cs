@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GenericObjectPropertiesProviderException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -13,17 +14,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected GenericObjectPropertiesProviderException(SerializationInfo? info, StreamingContext context) : base(
-            info, context)
+        protected GenericObjectPropertiesProviderException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info, context)
         {
         }
 
-        public GenericObjectPropertiesProviderException(string? message) : base(message)
+        public GenericObjectPropertiesProviderException(string? message)
+            : base(message)
         {
         }
 
-        public GenericObjectPropertiesProviderException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public GenericObjectPropertiesProviderException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

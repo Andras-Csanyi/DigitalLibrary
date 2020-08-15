@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="ControlPanelWebApiClientFindMenuAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
 {
@@ -13,8 +14,9 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         {
         }
 
-        protected ControlPanelWebApiClientFindMenuAsyncOperationException(SerializationInfo info,
-                                                                          StreamingContext context)
+        protected ControlPanelWebApiClientFindMenuAsyncOperationException(
+            SerializationInfo info,
+            StreamingContext context)
             : base(info, context)
         {
         }

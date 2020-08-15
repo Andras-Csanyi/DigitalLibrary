@@ -1,8 +1,7 @@
+@using DigitalLibrary.MasterData.DomainModel
 @* Digital Library project *@
 @* https://github.com/SayusiAndo/DigitalLibrary *@
 @* Licensed under MIT License *@
-
-@using DigitalLibrary.MasterData.DomainModel
 <div>
     <BSBasicInput InputType="BlazorStrap.InputType.Select"
                   IsDisabled="@SourceFormatBuilderService.IsSourceFormatDropDownlistDisabled"
@@ -26,90 +25,90 @@
 
     <BSCard CardType="CardType.Header" HeadingSize="HeadingSize.H3">Source Format</BSCard>
     @{
-        <BSCard CardType="CardType.Body">
-            <BSCard CardType="CardType.Title">
-                Details
-            </BSCard>
-            <BSCard CardType="CardType.Text">
-                <BSBasicForm>
-                    <BSFormGroup>
-                        <BSLabel>Name</BSLabel>
-                        <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                                      @bind-Value="SourceFormatBuilderService.SourceFormat.Name">
-                            @SourceFormatBuilderService.SourceFormat.Name
-                        </BSBasicInput>
-                    </BSFormGroup>
-                    <BSFormGroup>
-                        <BSLabel>Description</BSLabel>
-                        <BSBasicInput InputType="BlazorStrap.InputType.Text"
-                                      @bind-Value="SourceFormatBuilderService.SourceFormat.Desc">
-                            @SourceFormatBuilderService.SourceFormat.Desc
-                        </BSBasicInput>
-                    </BSFormGroup>
-                </BSBasicForm>
-            </BSCard>
+    <BSCard CardType="CardType.Body">
+        <BSCard CardType="CardType.Title">
+            Details
         </BSCard>
+        <BSCard CardType="CardType.Text">
+            <BSBasicForm>
+                <BSFormGroup>
+                    <BSLabel>Name</BSLabel>
+                    <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                                  @bind-Value="SourceFormatBuilderService.SourceFormat.Name">
+                        @SourceFormatBuilderService.SourceFormat.Name
+                    </BSBasicInput>
+                </BSFormGroup>
+                <BSFormGroup>
+                    <BSLabel>Description</BSLabel>
+                    <BSBasicInput InputType="BlazorStrap.InputType.Text"
+                                  @bind-Value="SourceFormatBuilderService.SourceFormat.Desc">
+                        @SourceFormatBuilderService.SourceFormat.Desc
+                    </BSBasicInput>
+                </BSFormGroup>
+            </BSBasicForm>
+        </BSCard>
+    </BSCard>
 
-        <BSCard CardType="CardType.Header" HeadingSize="HeadingSize.H4">Dimension structures</BSCard>
-        <BSCard CardType="CardType.Body">
-            @{
-                if (SourceFormatBuilderService?.SourceFormat?.RootDimensionStructure != null)
-                {
-                    <BSCard CardType="CardType.Body">
-                        @{
-                            if (SourceFormatBuilderService.SourceFormat.RootDimensionStructure != null)
-                            {
-                                <DimensionStructureTree
-                                    DimensionStructureParameter="@SourceFormatBuilderService.SourceFormat.RootDimensionStructure"
-                                    ParentDimensionStructureGuidParameter="@SourceFormatBuilderService.SourceFormat.RootDimensionStructure.Guid">
-                                </DimensionStructureTree>
-                            }
-                            else
-                            {
-                                <BSCard CardType="CardType.Title">
-                                    <div class="float-left">
-                                        <strong>Root Dimension Structure: &nbsp;</strong>
-                                        -- not selected yet --
-                                    </div>
-                                    <div class="float-right">
-                                        <BSButton ButtonType="ButtonType.Button"
-                                                  Color="Color.Primary"
-                                                  @onclick="@(async () => await SelectRootDimensionStructureAsync().ConfigureAwait(false))">
-                                            Select
-                                        </BSButton>
-                                    </div>
-                                </BSCard>
-                            }
+    <BSCard CardType="CardType.Header" HeadingSize="HeadingSize.H4">Dimension structures</BSCard>
+    <BSCard CardType="CardType.Body">
+        @{
+            if (SourceFormatBuilderService?.SourceFormat?.RootDimensionStructure != null)
+            {
+                <BSCard CardType="CardType.Body">
+                    @{
+                        if (SourceFormatBuilderService.SourceFormat.RootDimensionStructure != null)
+                        {
+                            <DimensionStructureTree
+                                DimensionStructureParameter="@SourceFormatBuilderService.SourceFormat.RootDimensionStructure"
+                                ParentDimensionStructureGuidParameter="@SourceFormatBuilderService.SourceFormat.RootDimensionStructure.Guid">
+                            </DimensionStructureTree>
                         }
-                    </BSCard>
-                }
-                else
-                {
-                    <BSCard CardType="CardType.Body">
-                        <BSCard CardType="CardType.Title">Root Dimension Structure</BSCard>
-
-                        @{
-                            if (SourceFormatBuilderService.SourceFormat != null)
-                            {
-                                <BSButton Size="Size.Small"
-                                          ButtonType="ButtonType.Button"
-                                          Color="Color.Primary"
-                                          @onclick="@(async () => await SelectRootDimensionStructureAsync().ConfigureAwait(false))">
-                                    Add Existing RootDimensionStructure
-                                </BSButton>
-                                <BSButton Size="Size.Small"
-                                          ButtonType="ButtonType.Button"
-                                          Color="Color.Primary"
-                                          @onclick="@(async () => await AddNewRootDimensionStructureAsync().ConfigureAwait(false))">
-                                    Add New RootDimensionStructure
-                                </BSButton>
-                            }
+                        else
+                        {
+                            <BSCard CardType="CardType.Title">
+                                <div class="float-left">
+                                    <strong>Root Dimension Structure: &nbsp;</strong>
+                                    -- not selected yet --
+                                </div>
+                                <div class="float-right">
+                                    <BSButton ButtonType="ButtonType.Button"
+                                              Color="Color.Primary"
+                                              @onclick="@(async () => await SelectRootDimensionStructureAsync().ConfigureAwait(false))">
+                                        Select
+                                    </BSButton>
+                                </div>
+                            </BSCard>
                         }
-
-                    </BSCard>
-                }
+                    }
+                </BSCard>
             }
-        </BSCard>
+            else
+            {
+                <BSCard CardType="CardType.Body">
+                    <BSCard CardType="CardType.Title">Root Dimension Structure</BSCard>
+
+                    @{
+                        if (SourceFormatBuilderService.SourceFormat != null)
+                        {
+                            <BSButton Size="Size.Small"
+                                      ButtonType="ButtonType.Button"
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await SelectRootDimensionStructureAsync().ConfigureAwait(false))">
+                                Add Existing RootDimensionStructure
+                            </BSButton>
+                            <BSButton Size="Size.Small"
+                                      ButtonType="ButtonType.Button"
+                                      Color="Color.Primary"
+                                      @onclick="@(async () => await AddNewRootDimensionStructureAsync().ConfigureAwait(false))">
+                                Add New RootDimensionStructure
+                            </BSButton>
+                        }
+                    }
+
+                </BSCard>
+            }
+        }
+    </BSCard>
     }
     <BSCard CardType="CardType.Body">
         <BSCard CardType="CardType.Text">

@@ -1,22 +1,18 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DeleteDimensionStructureAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Utils.Guards;
 
     public partial class MasterDataBusinessLogic
     {
@@ -24,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync())
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
                 {
                     try
                     {
@@ -46,7 +42,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     catch (Exception e)
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException(e.Message,
+                        throw new MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException(
+                            e.Message,
                             e);
                     }
                 }

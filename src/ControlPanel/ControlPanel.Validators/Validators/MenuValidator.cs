@@ -1,11 +1,11 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuValidator.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
-    using DomainModel.Entities;
-
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
     using FluentValidation;
 
     public class MenuValidator : AbstractValidator<Menu>

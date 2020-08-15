@@ -1,18 +1,18 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterData_DimensionStructure_TestData.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Validators.TestData
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
     public static class MasterData_DimensionStructure_TestData
     {
         public static IEnumerable<object[]> AddDimensionStructure_Validation_NullObjects = new List<object[]>
@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             new object[]
             {
                 1, null
-            }
+            },
         };
 
         public static IEnumerable<object[]> AddDimensionStructure_Validation_TestData = new List<object[]>

@@ -1,18 +1,15 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="FindAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
 
     public partial class ModuleBusinessLogic

@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuController.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.Controllers
 {
@@ -8,17 +9,12 @@ namespace DigitalLibrary.ControlPanel.Controllers
     using System.Collections.Generic;
     using System.Net.Mime;
     using System.Threading.Tasks;
-
-    using BusinessLogic.Interfaces.Interfaces;
-
-    using DomainModel.Entities;
-
-    using Exceptions;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
+    using DigitalLibrary.ControlPanel.Controllers.Exceptions;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
+    using DigitalLibrary.ControlPanel.WebApi.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-
-    using WebApi.Api;
 
     [ApiController]
     [Route(ControlPanelWebApi.Menu.Base)]

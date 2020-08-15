@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GetDimensionStructuresByIdsAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
@@ -8,18 +9,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.EntityFrameworkCore;
-
-    using Utils.Guards;
-
-    using ViewModels;
 
     public partial class MasterDataBusinessLogic
     {

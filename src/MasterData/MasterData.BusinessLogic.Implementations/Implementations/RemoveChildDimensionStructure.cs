@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="RemoveChildDimensionStructure.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
@@ -8,8 +9,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task RemoveChildDimensionStructureAsync(long removedDimensionStructure,
-                                                             long parentDimensionStructure)
+        public async Task RemoveChildDimensionStructureAsync(
+            long removedDimensionStructure,
+            long parentDimensionStructure)
         {
             throw new System.NotImplementedException();
         }

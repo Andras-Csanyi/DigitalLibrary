@@ -1,24 +1,20 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DimensionStructureController.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using BusinessLogic.Interfaces;
-    using BusinessLogic.ViewModels;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-
-    using Utils.Guards;
-
-    using Web.Api;
 
     [ApiController]
     [Route(MasterDataApi.DimensionStructure.V1.DimensionStructureBase)]

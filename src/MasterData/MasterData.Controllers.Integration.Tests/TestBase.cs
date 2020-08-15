@@ -1,30 +1,26 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="TestBase.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using Microsoft.AspNetCore.Mvc.Testing;
-
-    using Utils.DiLibHttpClient;
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "NotAccessedField.Global")]
-    [SuppressMessage("ReSharper", "CA1051")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class TestBase<TTestedEntity> : IClassFixture<DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity>>
         where TTestedEntity : class
     {
@@ -34,8 +30,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 
         protected readonly ITestOutputHelper _testOutputHelper;
 
-        protected TestBase(DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
-                           ITestOutputHelper testOutputHelper)
+        protected TestBase(
+            DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
+            ITestOutputHelper testOutputHelper)
         {
             _host = host ?? throw new ArgumentNullException(nameof(host));
             _testOutputHelper = testOutputHelper;

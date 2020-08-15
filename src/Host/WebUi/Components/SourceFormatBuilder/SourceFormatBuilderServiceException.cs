@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="SourceFormatBuilderServiceException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
@@ -20,12 +21,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
         }
 
-        public SourceFormatBuilderServiceException(string? message) : base(message)
+        public SourceFormatBuilderServiceException(string? message)
+            : base(message)
         {
         }
 
-        public SourceFormatBuilderServiceException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public SourceFormatBuilderServiceException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

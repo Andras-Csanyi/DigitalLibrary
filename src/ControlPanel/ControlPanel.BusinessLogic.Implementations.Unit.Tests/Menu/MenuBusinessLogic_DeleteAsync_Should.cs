@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuBusinessLogic_DeleteAsync_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.Menu
 {
@@ -8,17 +9,14 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using Exceptions.Menu;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
     using FluentAssertions;
-
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "UnusedVariable")]
+    [SuppressMessage("ReSharper", "UnusedVariable", Justification = "Reviewed.")]
     public class MenuBusinessLogic_DeleteAsync_Should : TestBase
     {
         public MenuBusinessLogic_DeleteAsync_Should()
@@ -35,7 +33,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
             // Arrange
             DomainModel.Entities.Module module = new DomainModel.Entities.Module
             {
-                Name = "asd", Description = "desc", IsActive = 1, ModuleRoute = "asd"
+                Name = "asd", Description = "desc", IsActive = 1, ModuleRoute = "asd",
             };
             DomainModel.Entities.Module moduleResult = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
 
@@ -45,7 +43,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 IsActive = 1,
                 ModuleId = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
             DomainModel.Entities.Menu menuActiveResult =
                 await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
@@ -56,7 +54,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 IsActive = 0,
                 ModuleId = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
             DomainModel.Entities.Menu menuInactiveResult =
                 await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);

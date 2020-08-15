@@ -1,11 +1,11 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="Startup.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace WebApp
 {
     using System;
-
     using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
     using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
     using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
@@ -19,7 +19,6 @@ namespace WebApp
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.ControlPanel.DataSample;
     using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -28,7 +27,6 @@ namespace WebApp
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-
     using Newtonsoft.Json;
 
     public class Startup
@@ -57,7 +55,6 @@ namespace WebApp
             }
 
             // app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -109,8 +106,8 @@ namespace WebApp
             {
                 options.UseSqlite("Data Source=control_panel_test_db.sqlite");
             });
-            // }
 
+            // }
             services.AddTransient<IMenuBusinessLogic, MenuBusinessLogic>();
             services.AddTransient<MenuValidator>();
             services.AddTransient<IModuleBusinessLogic, ModuleBusinessLogic>();
@@ -124,8 +121,8 @@ namespace WebApp
                 options.UseLoggerFactory(LoggerFactory);
                 options.EnableSensitiveDataLogging();
             });
-            // }
 
+            // }
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
 
             // Validators

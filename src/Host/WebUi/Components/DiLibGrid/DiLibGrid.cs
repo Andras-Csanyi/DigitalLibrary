@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGrid.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
@@ -10,12 +11,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
-
-    using Exceptions;
-
+    using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
+    using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers;
     using Newtonsoft.Json;
-
-    using Providers;
 
     public class DiLibGrid<T>
     {

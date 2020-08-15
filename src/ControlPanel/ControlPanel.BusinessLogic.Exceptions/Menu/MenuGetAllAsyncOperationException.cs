@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuGetAllAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
@@ -13,17 +14,22 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuGetAllAsyncOperationException(SerializationInfo info, StreamingContext context) : base(info,
-            context)
+        protected MenuGetAllAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public MenuGetAllAsyncOperationException(string message) : base(message)
+        public MenuGetAllAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuGetAllAsyncOperationException(string message, Exception innerException) : base(message,
-            innerException)
+        public MenuGetAllAsyncOperationException(string message, Exception innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

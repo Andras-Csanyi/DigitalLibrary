@@ -1,13 +1,12 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="ControlPanelContext.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 {
-    using Configurations;
-
-    using DomainModel.Entities;
-
+    using DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
     using Microsoft.EntityFrameworkCore;
 
     public class ControlPanelContext : DbContext
@@ -20,7 +19,8 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx
         {
         }
 
-        public ControlPanelContext(DbContextOptions<ControlPanelContext> options) : base(options)
+        public ControlPanelContext(DbContextOptions<ControlPanelContext> options)
+            : base(options)
         {
         }
 

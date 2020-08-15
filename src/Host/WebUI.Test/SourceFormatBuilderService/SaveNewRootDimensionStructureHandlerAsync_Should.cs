@@ -1,26 +1,23 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="SaveNewRootDimensionStructureHandlerAsync_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using FluentAssertions;
-
     using FluentValidation;
-
-    using MasterData.DomainModel;
-
-    using WebUi.Components.SourceFormatBuilder;
-
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
     {
         [Theory(Skip = "tmp")]
@@ -32,7 +29,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
         public void ThrowException_WhenDimensionStructure_InputIsInvalid(
             long id,
             string name,
@@ -74,7 +71,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "<Pending>")]
         public void ThrowException_WhenDimension_InputIsInvalid(
             long id,
             string name,

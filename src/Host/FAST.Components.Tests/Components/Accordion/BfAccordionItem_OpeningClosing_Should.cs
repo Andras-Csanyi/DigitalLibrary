@@ -1,24 +1,21 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="BfAccordionItem_OpeningClosing_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace FAST.Components.Tests.Components.Accordion
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
     using AngleSharp.Dom;
-
     using Bunit;
-
     using FAST.Components.Components.Accordion;
-
     using FluentAssertions;
-
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class BfAccordionItem_OpeningClosing_Should : TestContext
     {
         [Fact]

@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridTTypeDoesntHavePropertiesException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -13,17 +14,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridTTypeDoesntHavePropertiesException(SerializationInfo? info, StreamingContext context) : base(
-            info, context)
+        protected DiLibGridTTypeDoesntHavePropertiesException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info, context)
         {
         }
 
-        public DiLibGridTTypeDoesntHavePropertiesException(string? message) : base(message)
+        public DiLibGridTTypeDoesntHavePropertiesException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridTTypeDoesntHavePropertiesException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridTTypeDoesntHavePropertiesException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

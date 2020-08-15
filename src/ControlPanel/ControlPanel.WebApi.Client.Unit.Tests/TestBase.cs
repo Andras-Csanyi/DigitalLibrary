@@ -1,21 +1,22 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="TestBase.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-
-    using Client.Menu;
+    using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1051")]
+    [SuppressMessage("ReSharper", "CA1051", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         protected readonly IControlPanelWebClient ControlPanelWebApiClient;
 
-        [SuppressMessage("ReSharper", "CA2000")]
+        [SuppressMessage("ReSharper", "CA2000", Justification = "Reviewed.")]
         protected TestBase()
         {
             HttpClient client = new HttpClient();

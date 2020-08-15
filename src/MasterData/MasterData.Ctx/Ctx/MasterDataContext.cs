@@ -1,16 +1,14 @@
-﻿// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+﻿// <copyright file="MasterDataContext.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Ctx
 {
-    using Configurations;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.Ctx.Configurations;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.EntityFrameworkCore;
-
-    using Utils.Guards;
 
     public class MasterDataContext : DbContext
     {
@@ -26,7 +24,8 @@ namespace DigitalLibrary.MasterData.Ctx
 
         public DbSet<SourceFormat> SourceFormats { get; set; }
 
-        public MasterDataContext(DbContextOptions<MasterDataContext> options) : base(options)
+        public MasterDataContext(DbContextOptions<MasterDataContext> options)
+            : base(options)
         {
         }
 

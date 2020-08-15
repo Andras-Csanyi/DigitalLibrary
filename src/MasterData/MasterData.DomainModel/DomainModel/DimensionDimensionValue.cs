@@ -1,10 +1,11 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DimensionDimensionValue.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.DomainModel
 {
-    using Interfaces;
+    using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
     public class DimensionDimensionValue : IHaveId
     {

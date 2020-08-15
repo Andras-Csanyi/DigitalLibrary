@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibHttpClientDeleteException.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
 {
@@ -13,17 +13,22 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
         {
         }
 
-        protected DiLibHttpClientDeleteException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected DiLibHttpClientDeleteException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public DiLibHttpClientDeleteException(string? message) : base(message)
+        public DiLibHttpClientDeleteException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibHttpClientDeleteException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibHttpClientDeleteException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

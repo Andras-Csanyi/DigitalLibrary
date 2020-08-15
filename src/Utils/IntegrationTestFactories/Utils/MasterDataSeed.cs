@@ -1,12 +1,12 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataSeed.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using MasterData.Ctx;
+    using DigitalLibrary.MasterData.Ctx;
 
     [ExcludeFromCodeCoverage]
     public static class MasterDataSeed

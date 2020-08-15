@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GuardException.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.Utils.Guards
 {
@@ -13,15 +13,18 @@ namespace DigitalLibrary.Utils.Guards
         {
         }
 
-        protected GuardException(SerializationInfo? info, StreamingContext context) : base(info, context)
+        protected GuardException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public GuardException(string? message) : base(message)
+        public GuardException(string? message)
+            : base(message)
         {
         }
 
-        public GuardException(string? message, Exception? innerException) : base(message, innerException)
+        public GuardException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

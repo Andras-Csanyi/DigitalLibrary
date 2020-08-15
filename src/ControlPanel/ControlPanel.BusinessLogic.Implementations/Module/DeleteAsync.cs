@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DeleteAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
@@ -8,16 +9,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
-
-    using Validators;
 
     public partial class ModuleBusinessLogic
     {

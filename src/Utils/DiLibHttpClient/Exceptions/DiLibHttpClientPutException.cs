@@ -1,6 +1,6 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibHttpClientPutException.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
 {
@@ -13,15 +13,18 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
         {
         }
 
-        protected DiLibHttpClientPutException(SerializationInfo? info, StreamingContext context) : base(info, context)
+        protected DiLibHttpClientPutException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public DiLibHttpClientPutException(string? message) : base(message)
+        public DiLibHttpClientPutException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibHttpClientPutException(string? message, Exception? innerException) : base(message, innerException)
+        public DiLibHttpClientPutException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

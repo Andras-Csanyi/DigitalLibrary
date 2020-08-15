@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataBusinessLogicDatabaseOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
@@ -13,16 +14,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicDatabaseOperationException(SerializationInfo? info, StreamingContext context) :
-            base(info, context)
+        protected MasterDataBusinessLogicDatabaseOperationException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicDatabaseOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicDatabaseOperationException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicDatabaseOperationException(string? message, Exception? innerException) : base(
+        public MasterDataBusinessLogicDatabaseOperationException(string? message, Exception? innerException)
+            : base(
             message, innerException)
         {
         }

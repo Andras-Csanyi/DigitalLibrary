@@ -1,13 +1,13 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="IMenuBusinessLogic.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using DomainModel.Entities;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     public interface IMenuBusinessLogic
     {

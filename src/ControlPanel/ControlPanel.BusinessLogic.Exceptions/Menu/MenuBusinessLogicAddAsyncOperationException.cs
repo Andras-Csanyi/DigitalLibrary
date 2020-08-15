@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuBusinessLogicAddAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
@@ -13,17 +14,21 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuBusinessLogicAddAsyncOperationException(SerializationInfo info, StreamingContext context) : base(
+        protected MenuBusinessLogicAddAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(
             info, context)
         {
         }
 
-        public MenuBusinessLogicAddAsyncOperationException(string message) : base(message)
+        public MenuBusinessLogicAddAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuBusinessLogicAddAsyncOperationException(string message, Exception innerException) : base(message,
-            innerException)
+        public MenuBusinessLogicAddAsyncOperationException(string message, Exception innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

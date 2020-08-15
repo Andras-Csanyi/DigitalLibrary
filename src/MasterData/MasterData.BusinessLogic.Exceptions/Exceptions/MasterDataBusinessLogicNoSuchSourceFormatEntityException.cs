@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataBusinessLogicNoSuchSourceFormatEntityException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
@@ -17,16 +18,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         protected MasterDataBusinessLogicNoSuchSourceFormatEntityException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message) : base(message)
+        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message, Exception? innerException) :
-            base(
+        public MasterDataBusinessLogicNoSuchSourceFormatEntityException(string? message, Exception? innerException)
+            : base(
                 message, innerException)
         {
         }

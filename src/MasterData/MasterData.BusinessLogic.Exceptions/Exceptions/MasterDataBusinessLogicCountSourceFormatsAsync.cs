@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataBusinessLogicCountSourceFormatsAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 {
@@ -17,16 +18,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         protected MasterDataBusinessLogicCountSourceFormatsAsync(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicCountSourceFormatsAsync(string? message) : base(message)
+        public MasterDataBusinessLogicCountSourceFormatsAsync(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicCountSourceFormatsAsync(string? message, Exception? innerException) :
-            base(message, innerException)
+        public MasterDataBusinessLogicCountSourceFormatsAsync(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

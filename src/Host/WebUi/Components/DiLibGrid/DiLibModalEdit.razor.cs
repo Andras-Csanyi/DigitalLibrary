@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibModalEdit.razor.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
@@ -8,7 +9,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
 

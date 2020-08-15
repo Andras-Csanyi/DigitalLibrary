@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuNullInputException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
@@ -13,15 +14,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuNullInputException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected MenuNullInputException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuNullInputException(string message) : base(message)
+        public MenuNullInputException(string message)
+            : base(message)
         {
         }
 
-        public MenuNullInputException(string message, Exception innerException) : base(message, innerException)
+        public MenuNullInputException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }

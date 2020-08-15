@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuBusinessLogicDeleteAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
@@ -13,17 +14,20 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuBusinessLogicDeleteAsyncOperationException(SerializationInfo info, StreamingContext context) :
-            base(info, context)
+        protected MenuBusinessLogicDeleteAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuBusinessLogicDeleteAsyncOperationException(string message) : base(message)
+        public MenuBusinessLogicDeleteAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuBusinessLogicDeleteAsyncOperationException(string message, Exception innerException) : base(message,
-            innerException)
+        public MenuBusinessLogicDeleteAsyncOperationException(string message, Exception innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GetAllActiveAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
@@ -8,11 +9,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using Microsoft.EntityFrameworkCore;
 
     public partial class ModuleBusinessLogic

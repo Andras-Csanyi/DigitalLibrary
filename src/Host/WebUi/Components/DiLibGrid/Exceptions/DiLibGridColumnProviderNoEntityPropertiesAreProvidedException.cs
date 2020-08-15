@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridColumnProviderNoEntityPropertiesAreProvidedException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -15,11 +16,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 
         protected DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(string? message) : base(message)
+        public DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(string? message)
+            : base(message)
         {
         }
 

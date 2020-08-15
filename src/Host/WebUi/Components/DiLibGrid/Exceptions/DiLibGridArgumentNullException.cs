@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridArgumentNullException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -13,17 +14,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridArgumentNullException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected DiLibGridArgumentNullException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public DiLibGridArgumentNullException(string? message) : base(message)
+        public DiLibGridArgumentNullException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridArgumentNullException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridArgumentNullException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

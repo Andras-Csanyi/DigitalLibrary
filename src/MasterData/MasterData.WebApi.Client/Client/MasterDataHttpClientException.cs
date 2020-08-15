@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataHttpClientException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
@@ -13,15 +14,18 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         {
         }
 
-        protected MasterDataHttpClientException(SerializationInfo? info, StreamingContext context) : base(info, context)
+        protected MasterDataHttpClientException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataHttpClientException(string? message) : base(message)
+        public MasterDataHttpClientException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataHttpClientException(string? message, Exception? innerException) : base(message, innerException)
+        public MasterDataHttpClientException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

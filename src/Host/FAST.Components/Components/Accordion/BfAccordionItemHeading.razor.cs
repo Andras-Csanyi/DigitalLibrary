@@ -1,11 +1,11 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="BfAccordionItemHeading.razor.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace FAST.Components.Components.Accordion
 {
     using System.Collections.Generic;
-
     using Microsoft.AspNetCore.Components;
 
     /// <summary>

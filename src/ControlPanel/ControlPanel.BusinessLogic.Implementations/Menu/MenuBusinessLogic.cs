@@ -1,18 +1,15 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MenuBusinessLogic.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
     using System;
-
-    using Ctx.Ctx;
-
-    using Interfaces.Interfaces;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
     using Microsoft.EntityFrameworkCore;
-
-    using Validators;
 
     public partial class MenuBusinessLogic : IMenuBusinessLogic
     {

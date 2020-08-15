@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="Ctor_Validation_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
@@ -8,25 +9,20 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-    using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
-    using Utils.DiLibHttpClient;
-    using Utils.Guards;
-
-    using WebUi.Components.SourceFormatBuilder;
-    using WebUi.Services;
-
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA2000")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("Resharper", "CA2000", Justification = "Reviewed.")]
     public class Ctor_Validation_Should : TestBase
     {
         public static IEnumerable<object[]> ThrowExceptionWhenInputIsNull => new List<object[]>
@@ -43,7 +39,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureValidator(),
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
-                null
+                null,
             },
             new object[]
             {
@@ -56,13 +52,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
                 null,
-            }
+            },
         };
 
         [Theory]
         [MemberData(nameof(ThrowExceptionWhenInputIsNull))]
-        [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
-        [SuppressMessage("ReSharper", "CA1806")]
+        [SuppressMessage("ReSharper", "ObjectCreationAsStatement", Justification = "Reviewed.")]
+        [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
         public void ThrowException_WhenInputIsNull(
             IMasterDataHttpClient masterDataHttpClient,
             IMasterDataValidators masterDataValidators,

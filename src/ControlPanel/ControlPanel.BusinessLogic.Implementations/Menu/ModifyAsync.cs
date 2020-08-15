@@ -1,18 +1,15 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="ModifyAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Menu;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
 
     public partial class MenuBusinessLogic

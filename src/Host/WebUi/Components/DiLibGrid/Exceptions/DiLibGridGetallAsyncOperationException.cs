@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridGetallAsyncOperationException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -13,17 +14,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridGetallAsyncOperationException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected DiLibGridGetallAsyncOperationException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public DiLibGridGetallAsyncOperationException(string? message) : base(message)
+        public DiLibGridGetallAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridGetallAsyncOperationException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridGetallAsyncOperationException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

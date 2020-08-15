@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="GridModesEnum.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
@@ -12,6 +13,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 
         Delete,
 
-        Create
+        Create,
     }
 }

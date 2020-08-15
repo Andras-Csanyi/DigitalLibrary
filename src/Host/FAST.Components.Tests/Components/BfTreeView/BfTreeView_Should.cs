@@ -1,23 +1,21 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="BfTreeView_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace FAST.Components.Tests.Components.BfTreeView
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-
     using Bunit;
-
     using FAST.Components.Components;
     using FAST.Components.Components.TreeView;
-
     using FluentAssertions;
-
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class BfTreeView_Should : TestContext
     {
         [Fact]
@@ -36,8 +34,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
         {
             // Act
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
-                p => p.AddChildContent<BfTreeItem>()
-            );
+                p => p.AddChildContent<BfTreeItem>());
 
             // Assert
             cut.Find(BfComponentApis.BfTreeView.Html.BfTreeView)
@@ -69,8 +66,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
             // Act
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
                 ("custom", "value"),
-                ("custom2", "value2")
-            );
+                ("custom2", "value2"));
 
             // Assert
             cut.Find(BfComponentApis.BfTreeView.Html.BfTreeView)

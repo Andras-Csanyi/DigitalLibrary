@@ -1,15 +1,14 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibMasterDataWebApplicationFactory.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-
-    using MasterData.Ctx;
-
+    using DigitalLibrary.MasterData.Ctx;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.EntityFrameworkCore;

@@ -1,15 +1,14 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridComponent.razor.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using BlazorStrap;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
 
@@ -41,15 +40,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         public async Task CancelEditActionHandler()
         {
             await JsRuntime.InvokeAsync<string>("console.log", nameof(CancelEditActionHandler)).ConfigureAwait(false);
+
             // edit and save it...
-            DiLibGrid.ToBeEdited = default(TData);
+            DiLibGrid.ToBeEdited = default;
             EditActionButton.Hide();
         }
 
         public async Task DeleteActionHandler()
         {
             await JsRuntime.InvokeAsync<string>("console.log", nameof(DeleteActionHandler)).ConfigureAwait(false);
-            DiLibGrid.ToBeDelete = default(TData);
+            DiLibGrid.ToBeDelete = default;
+
             // delete it
             DeleteActionButton.Hide();
         }

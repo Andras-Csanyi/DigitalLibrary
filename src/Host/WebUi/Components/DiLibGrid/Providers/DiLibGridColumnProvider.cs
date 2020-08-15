@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridColumnProvider.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
 {
@@ -8,8 +9,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-
-    using Exceptions;
+    using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
 
     public class DiLibGridColumnProvider
     {

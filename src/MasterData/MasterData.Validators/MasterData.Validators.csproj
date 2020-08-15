@@ -10,6 +10,7 @@
         <PackageReference Include="FluentValidation" Version="9.1.1"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
         <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>

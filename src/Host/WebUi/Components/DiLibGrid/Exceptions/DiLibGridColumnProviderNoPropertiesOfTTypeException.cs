@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DiLibGridColumnProviderNoPropertiesOfTTypeException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 {
@@ -18,12 +19,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message) : base(message)
+        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message, Exception? innerException) : base(
-            message, innerException)
+        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message, Exception? innerException)
+            : base(
+                message, innerException)
         {
         }
     }

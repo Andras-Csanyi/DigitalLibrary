@@ -1,6 +1,7 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataValidatorFacadeArgumentNullException.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.Validators
 {
@@ -15,16 +16,18 @@ namespace DigitalLibrary.MasterData.Validators
         {
         }
 
-        protected MasterDataValidatorFacadeArgumentNullException(SerializationInfo? info, StreamingContext context) :
-            base(info, context)
+        protected MasterDataValidatorFacadeArgumentNullException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataValidatorFacadeArgumentNullException(string? message) : base(message)
+        public MasterDataValidatorFacadeArgumentNullException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataValidatorFacadeArgumentNullException(string? message, Exception? innerException) : base(
+        public MasterDataValidatorFacadeArgumentNullException(string? message, Exception? innerException)
+            : base(
             message, innerException)
         {
         }

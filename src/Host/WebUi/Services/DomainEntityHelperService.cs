@@ -1,15 +1,14 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="DomainEntityHelperService.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using MasterData.DomainModel.Interfaces;
-
-    using Utils.Guards;
+    using DigitalLibrary.MasterData.DomainModel.Interfaces;
+    using DigitalLibrary.Utils.Guards;
 
     /// <summary>
     ///     Helper service for manipulating domain models.

@@ -1,22 +1,18 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="AddAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators;
 
     public partial class ModuleBusinessLogic
     {
@@ -34,8 +30,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             throw new ModuleNullInputException(msg);
                         }
 
-                        await _moduleValidator.ValidateAndThrowAsync(module,
-                                ruleSet: ValidatorRulesets.AddNew)
+                        await _moduleValidator.ValidateAndThrowAsync(
+                            module,
+                            ruleSet: ValidatorRulesets.AddNew)
                            .ConfigureAwait(false);
 
                         await ctx.Modules.AddAsync(module).ConfigureAwait(false);

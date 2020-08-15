@@ -1,18 +1,16 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="SourceFormatsGrid.razor.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using BlazorStrap;
-
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
 

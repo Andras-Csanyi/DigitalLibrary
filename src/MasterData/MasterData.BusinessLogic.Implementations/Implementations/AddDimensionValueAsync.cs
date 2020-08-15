@@ -1,26 +1,20 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="AddDimensionValueAsync.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.Utils.Guards;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Utils.Guards;
-
-    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
@@ -73,7 +67,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                     DimensionDimensionValue dimensionDimensionValue = new DimensionDimensionValue
                                     {
                                         DimensionId = dimension.Id,
-                                        DimensionValueId = doesDimensionValueExists.Id
+                                        DimensionValueId = doesDimensionValueExists.Id,
                                     };
                                     await ctx.DimensionDimensionValues.AddAsync(dimensionDimensionValue)
                                        .ConfigureAwait(false);
@@ -94,7 +88,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             // create dimension value entry
                             DimensionValue newDimensionValue = new DimensionValue
                             {
-                                Value = dimensionValue.Value
+                                Value = dimensionValue.Value,
                             };
                             await ctx.DimensionValues.AddAsync(newDimensionValue)
                                .ConfigureAwait(false);
@@ -104,7 +98,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             DimensionDimensionValue newlyAddedDimensionValue = new DimensionDimensionValue
                             {
                                 DimensionId = dimension.Id,
-                                DimensionValueId = newDimensionValue.Id
+                                DimensionValueId = newDimensionValue.Id,
                             };
                             await ctx.DimensionDimensionValues.AddAsync(newlyAddedDimensionValue)
                                .ConfigureAwait(false);

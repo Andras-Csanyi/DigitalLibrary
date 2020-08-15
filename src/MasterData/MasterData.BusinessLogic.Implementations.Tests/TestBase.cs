@@ -1,27 +1,23 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="TestBase.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using Ctx;
-
-    using Interfaces;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
-    using Utils.ControlPanel.DataSample.MasterData;
-    using Utils.Guards;
-
-    using Validators;
-
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA1051")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
@@ -37,6 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             DbContextOptions<MasterDataContext> _dbContextOptions =
                 new DbContextOptionsBuilder<MasterDataContext>()
                    .UseSqlite($"Data Source = {TestInfo}.sqlite")
+
                     // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                    .UseLoggerFactory(LoggerFactory)
                    .EnableDetailedErrors()

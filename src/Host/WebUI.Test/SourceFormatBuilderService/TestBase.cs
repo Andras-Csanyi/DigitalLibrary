@@ -1,22 +1,21 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="TestBase.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using MasterData.DomainModel;
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Services;
     using Moq;
 
-    using WebUi.Services;
-
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1051")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
@@ -62,8 +61,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 sourceFormatValidator,
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
-                dimensionStructureQueryObjectValidator
-            );
+                dimensionStructureQueryObjectValidator);
             return validators;
         }
     }

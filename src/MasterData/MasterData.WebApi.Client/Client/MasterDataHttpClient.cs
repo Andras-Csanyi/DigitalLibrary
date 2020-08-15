@@ -1,11 +1,12 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
+// <copyright file="MasterDataHttpClient.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
+// </copyright>
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
-    using Utils.DiLibHttpClient;
-    using Utils.Guards;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.Guards;
 
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
