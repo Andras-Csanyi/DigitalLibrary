@@ -8,6 +8,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
 
@@ -65,19 +66,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         ///     The node going to be replaced is marked by the Guid.
         /// </summary>
         /// <param name="dimensionStructure">New DimensionStructure.</param>
-        /// <param name="parentDimensionStructureGuid">Guid value of the node going to be replaced.</param>
+        /// <param name="toBereplacedDimensionStructureGuid">Guid value of the node going to be replaced.</param>
         /// <returns></returns>
         Task AddOrUpdateDocumentStructureToTreeAsync(
             DimensionStructure dimensionStructure,
-            Guid parentDimensionStructureGuid);
+            Guid toBereplacedDimensionStructureGuid);
 
         Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         Task DeleteDocumentStructureFromTreeAsync();
-
-        Task<bool> FindDimensionStructureInTreeAsync(
-            DimensionStructure dimensionStructure,
-            ICollection<DimensionStructure> dimensionStructures);
 
         Task<List<Dimension>> GetAllDimensionsFromServer();
 

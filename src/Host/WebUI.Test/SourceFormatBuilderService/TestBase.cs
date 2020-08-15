@@ -5,12 +5,17 @@
 
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Services;
+
     using Moq;
+
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -18,6 +23,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
+        protected readonly ITestOutputHelper _outputHelper;
+
         protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
             new Mock<IDomainEntityHelperService>();
 
@@ -32,6 +39,36 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             Desc = "Test Source Format Description",
             IsActive = 1,
             RootDimensionStructure = new DimensionStructure(),
+            RootDimensionStructureId = 100,
+        };
+
+        protected SourceFormat _sourceFormatDataOnFirstLevel = new SourceFormat
+        {
+            Id = 100,
+            Name = "Test Source Format",
+            Desc = "Test Source Format Description",
+            IsActive = 1,
+            RootDimensionStructure = new DimensionStructure
+            {
+                Id = 100,
+                Name = "first level",
+                Desc = "first level description",
+                ChildDimensionStructures = new List<DimensionStructure>
+                {
+                    new DimensionStructure
+                    {
+                        Id = 101,
+                        Name = "first level first",
+                        Desc = "first level first description",
+                    },
+                    new DimensionStructure
+                    {
+                        Id = 102,
+                        Name = "first level second",
+                        Desc = "first level second desc",
+                    },
+                },
+            },
             RootDimensionStructureId = 100,
         };
 
@@ -63,6 +100,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator);
             return validators;
+        }
+
+        public TestBase(ITestOutputHelper testOutputHelper)
+        {
+            _outputHelper = testOutputHelper;
         }
     }
 }

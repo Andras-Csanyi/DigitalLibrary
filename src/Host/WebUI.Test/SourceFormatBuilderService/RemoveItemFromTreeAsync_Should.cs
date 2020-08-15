@@ -10,12 +10,17 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Utils.Guards;
+
     using FluentAssertions;
+
     using Moq;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -23,6 +28,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class RemoveItemFromTreeAsync_Should : TestBase
     {
+        public RemoveItemFromTreeAsync_Should(ITestOutputHelper outputHelper)
+            : base(outputHelper)
+        {
+        }
+
         // [Fact]
         // public async Task Remove_RootDimensionStructure()
         // {

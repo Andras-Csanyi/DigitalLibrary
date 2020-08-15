@@ -7,14 +7,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.Guards;
+
     using FluentValidation;
 
     /// <inheritdoc />
@@ -84,14 +87,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
 
         /// <inheritdoc />
+        [SuppressMessage("ReSharper", "CA1062", Justification = "Checked.")]
         public async Task AddOrUpdateDocumentStructureToTreeAsync(
             DimensionStructure dimensionStructure,
-            Guid parentDimensionStructureGuid)
+            Guid toBereplacedDimensionStructureGuid)
         {
             Check.IsNotNull(dimensionStructure);
-            Check.AreNotEqual(parentDimensionStructureGuid, Guid.Empty);
+            Check.AreNotEqual(toBereplacedDimensionStructureGuid, Guid.Empty);
 
-            // ReSharper disable once CA1062
             if (dimensionStructure.Guid == SourceFormat.RootDimensionStructure.Guid)
             {
                 SourceFormat.RootDimensionStructure.Name = dimensionStructure.Name;
@@ -103,7 +106,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
 
             bool isFound = await FindDimensionStructureInTreeAsync(
-                dimensionStructure,
+                toBereplacedDimensionStructureGuid,
                 SourceFormat.RootDimensionStructure.ChildDimensionStructures).ConfigureAwait(false);
 
             if (isFound)
@@ -112,13 +115,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 {
                     await IterateThroughTheTreeForUpdating(
                             dimensionStructure,
+                            toBereplacedDimensionStructureGuid,
                             SourceFormat.RootDimensionStructure.ChildDimensionStructures)
                        .ConfigureAwait(false);
                 }
             }
             else
             {
-                if (SourceFormat.RootDimensionStructure.Guid == parentDimensionStructureGuid)
+                if (SourceFormat.RootDimensionStructure.Guid == toBereplacedDimensionStructureGuid)
                 {
                     SourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(dimensionStructure);
                     return;
@@ -129,7 +133,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     await IterateThroughTheTreeForAdding(
                             dimensionStructure,
                             SourceFormat.RootDimensionStructure.ChildDimensionStructures,
-                            parentDimensionStructureGuid)
+                            toBereplacedDimensionStructureGuid)
                        .ConfigureAwait(false);
                 }
             }
@@ -154,23 +158,32 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// <inheritdoc />
         public DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
 
-        /// <inheritdoc />
-        public async Task<bool> FindDimensionStructureInTreeAsync(
-            DimensionStructure dimensionStructure,
+        /// <summary>
+        /// Returns true if the there is a <see cref="DimensionStructure"/> in the tree of
+        /// <see cref="SourceFormat"/>. It searches based on Guid.
+        /// </summary>
+        /// <param name="targetGuid">The looked for Guid.</param>
+        /// <param name="dimensionStructures">Tree of DimensionStructures.</param>
+        /// <returns>Boolean</returns>
+        private async Task<bool> FindDimensionStructureInTreeAsync(
+            Guid targetGuid,
             ICollection<DimensionStructure> dimensionStructures)
         {
-            Check.IsNotNull(dimensionStructure);
+            Check.IsNotNull(targetGuid);
 
             if (dimensionStructures.Any())
             {
                 foreach (DimensionStructure structure in dimensionStructures)
                 {
-                    if (structure.Guid == dimensionStructure.Guid) return true;
+                    if (structure.Guid == targetGuid)
+                    {
+                        return true;
+                    }
 
                     if (structure.ChildDimensionStructures.Any())
                     {
                         await FindDimensionStructureInTreeAsync(
-                                dimensionStructure,
+                                targetGuid,
                                 structure.ChildDimensionStructures)
                            .ConfigureAwait(false);
                     }
@@ -297,7 +310,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (_foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
-                            "in the tree.";
+                                     "in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
                 }
@@ -366,7 +379,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (string.IsNullOrEmpty(newRootDimensionStructure.Name))
                     {
                         msg = "Something went wrong during saving " +
-                            $"{newRootDimensionStructure.Name}";
+                              $"{newRootDimensionStructure.Name}";
                     }
                 }
                 else
@@ -486,26 +499,29 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task IterateThroughTheTreeForUpdating(
             DimensionStructure dimensionStructure,
+            Guid toBeReplacedDimensionStructureGuid,
             ICollection<DimensionStructure> childDimensionStructures)
         {
             Check.IsNotNull(dimensionStructure);
+            Check.AreNotEqual(toBeReplacedDimensionStructureGuid, Guid.Empty);
 
             if (childDimensionStructures.Any())
             {
+                DimensionStructure target = childDimensionStructures
+                   .First(d => d.Guid == toBeReplacedDimensionStructureGuid);
+
+                if (target != null)
+                {
+                    childDimensionStructures.Remove(target);
+                    childDimensionStructures.Add(dimensionStructure);
+                    return;
+                }
+
                 foreach (DimensionStructure childDimensionStructure in childDimensionStructures)
                 {
-                    if (childDimensionStructure.Guid == dimensionStructure.Guid)
-                    {
-                        childDimensionStructure.Name = dimensionStructure.Name;
-                        childDimensionStructure.Desc = dimensionStructure.Desc;
-                        childDimensionStructure.DimensionId = dimensionStructure.DimensionId;
-                        childDimensionStructure.Dimension = dimensionStructure.Dimension;
-                        childDimensionStructure.IsActive = dimensionStructure.IsActive;
-                        return;
-                    }
-
                     await IterateThroughTheTreeForUpdating(
                             dimensionStructure,
+                            toBeReplacedDimensionStructureGuid,
                             childDimensionStructure.ChildDimensionStructures)
                        .ConfigureAwait(false);
                 }

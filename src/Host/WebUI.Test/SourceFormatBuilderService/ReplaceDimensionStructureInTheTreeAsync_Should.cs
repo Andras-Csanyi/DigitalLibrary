@@ -6,7 +6,9 @@
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -14,6 +16,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class ReplaceDimensionStructureInTheTreeAsync_Should : TestBase
     {
+        public ReplaceDimensionStructureInTheTreeAsync_Should(ITestOutputHelper outputHelper)
+            : base(outputHelper)
+        {
+        }
+
         [Fact]
         public void ReplaceDimensionStructure_AtFirstLevel()
         {
