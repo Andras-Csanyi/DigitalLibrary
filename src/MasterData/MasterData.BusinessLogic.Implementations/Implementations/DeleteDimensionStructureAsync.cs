@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync())
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
                 {
                     try
                     {

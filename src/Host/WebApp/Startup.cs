@@ -55,7 +55,6 @@ namespace WebApp
             }
 
             // app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -109,7 +108,6 @@ namespace WebApp
             });
 
             // }
-
             services.AddTransient<IMenuBusinessLogic, MenuBusinessLogic>();
             services.AddTransient<MenuValidator>();
             services.AddTransient<IModuleBusinessLogic, ModuleBusinessLogic>();
@@ -125,7 +123,6 @@ namespace WebApp
             });
 
             // }
-
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
 
             // Validators

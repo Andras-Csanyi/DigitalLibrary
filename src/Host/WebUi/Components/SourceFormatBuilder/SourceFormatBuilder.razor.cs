@@ -170,7 +170,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task OnNotify()
         {
-            await InvokeAsync(() => { StateHasChanged(); });
+            await InvokeAsync(() => { StateHasChanged(); }).ConfigureAwait(false);
         }
 
         private async Task OpenAddNewRootDimensionStructureModalAsync()

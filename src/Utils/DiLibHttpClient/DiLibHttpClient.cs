@@ -111,7 +111,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -145,7 +145,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }

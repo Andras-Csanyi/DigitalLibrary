@@ -58,7 +58,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         protected override async Task OnInitializedAsync()
         {
             Data = await DiLibGrid.GetAllAsync().ConfigureAwait(false);
-            NewData = (TData) Activator.CreateInstance(typeof(TData));
+            NewData = (TData)Activator.CreateInstance(typeof(TData));
         }
 
         public async Task SaveNewActionHandler()

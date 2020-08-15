@@ -61,8 +61,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 sourceFormatValidator,
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
-                dimensionStructureQueryObjectValidator
-            );
+                dimensionStructureQueryObjectValidator);
             return validators;
         }
     }

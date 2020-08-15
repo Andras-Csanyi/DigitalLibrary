@@ -52,8 +52,7 @@ namespace FAST.Components.Tests.Components.Accordion
             // Arrange
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
                 p => p.AddChildContent<BfAccordionItem>(
-                    ppp => ppp.AddUnmatched("custom", "value")
-                ));
+                    ppp => ppp.AddUnmatched("custom", "value")));
 
             // Assert
             IAttr attr = cut.Find($"{FastHtmlElements.FastAccordion}>{FastHtmlElements.FastAccordionItem}")

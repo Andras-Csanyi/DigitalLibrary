@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>DigitalLibrary.Ui.WebUi</AssemblyName>
         <RootNamespace>DigitalLibrary.Ui.WebUi</RootNamespace>
+      <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>

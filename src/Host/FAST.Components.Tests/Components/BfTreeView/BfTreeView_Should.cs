@@ -35,8 +35,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
         {
             // Act
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
-                p => p.AddChildContent<BfTreeItem>()
-            );
+                p => p.AddChildContent<BfTreeItem>());
 
             // Assert
             cut.Find(BfComponentApis.BfTreeView.Html.BfTreeView)
@@ -68,8 +67,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
             // Act
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
                 ("custom", "value"),
-                ("custom2", "value2")
-            );
+                ("custom2", "value2"));
 
             // Assert
             cut.Find(BfComponentApis.BfTreeView.Html.BfTreeView)

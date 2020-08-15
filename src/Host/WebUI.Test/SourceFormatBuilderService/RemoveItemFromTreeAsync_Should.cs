@@ -36,7 +36,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         //         ChildDimensionStructures = new List<DimensionStructure>(),
         //     };
         // }
-
         [Fact(Skip = "tmp")]
         public async Task RemoveItem_WhenMultipleItemsOnTheFirstLevel()
         {

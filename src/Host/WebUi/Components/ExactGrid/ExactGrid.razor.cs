@@ -47,7 +47,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 
         public async Task HandleValidSubmit()
         {
-            await JsRuntime.InvokeAsync<string>("console.log", _editedItem);
+            await JsRuntime.InvokeAsync<string>("console.log", _editedItem).ConfigureAwait(false);
             EditModalWindow.Hide();
         }
 

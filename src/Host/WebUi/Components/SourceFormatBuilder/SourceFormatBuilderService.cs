@@ -534,8 +534,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Guid == documentStructureGuid)
                         {
                             dimensionStructure.ChildDimensionStructures.Remove(
-                                dimensionStructure.ChildDimensionStructures.ElementAt(i)
-                            );
+                                dimensionStructure.ChildDimensionStructures.ElementAt(i));
                             break;
                         }
 

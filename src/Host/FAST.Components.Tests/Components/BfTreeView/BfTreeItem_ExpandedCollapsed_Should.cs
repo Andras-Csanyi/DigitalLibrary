@@ -25,8 +25,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
-                p => p.AddChildContent<BfTreeItem>()
-            );
+                p => p.AddChildContent<BfTreeItem>());
 
             // Assert
             INamedNodeMap attrs = cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem).Attributes;
@@ -40,8 +39,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
                 p => p.AddChildContent<BfTreeItem>(
-                    pa => { pa.Add(b => b.Expanded, false); })
-            );
+                    pa => { pa.Add(b => b.Expanded, false); }));
 
             // Assert
             INamedNodeMap attrs = cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem).Attributes;
@@ -55,8 +53,7 @@ namespace FAST.Components.Tests.Components.BfTreeView
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
                 p => p.AddChildContent<BfTreeItem>(
-                    pa => { pa.Add(b => b.Expanded, true); })
-            );
+                    pa => { pa.Add(b => b.Expanded, true); }));
 
             // Assert
             INamedNodeMap attrs = cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem).Attributes;

@@ -52,7 +52,6 @@ namespace DigitalLibrary.MasterData.Validators
             //         RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
             //     });
             // });
-
             RuleSet(SourceFormatValidatorRulesets.Update, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>

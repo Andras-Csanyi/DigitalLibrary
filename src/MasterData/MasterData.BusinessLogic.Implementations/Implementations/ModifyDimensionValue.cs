@@ -94,7 +94,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             await transaction.CommitAsync().ConfigureAwait(false);
 
                             DimensionValue modifiedResult = await ctx.DimensionValues.FirstOrDefaultAsync(
-                                p => p.Id == modifiedButNewDimensionValue.Id);
+                                p => p.Id == modifiedButNewDimensionValue.Id).ConfigureAwait(false);
                             return modifiedResult;
                         }
 

@@ -109,8 +109,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                     sourceFormatValidator,
                     dimensionStructureValidator,
                     dimensionStructureDimensionStructureValidator,
-                    dimensionStructureQueryObjectValidator
-                );
+                    dimensionStructureQueryObjectValidator);
             };
 
             // Assert
