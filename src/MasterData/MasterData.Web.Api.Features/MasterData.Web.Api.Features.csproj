@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
         <AssemblyName>DigitalLibrary.MasterData.Web.Api.Features</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Features</RootNamespace>
