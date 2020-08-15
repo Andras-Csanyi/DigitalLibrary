@@ -10,8 +10,8 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
-    [SuppressMessage("ReSharper", "CA1303")]
-    [SuppressMessage("ReSharper", "CA1307")]
+    [SuppressMessage("ReSharper", "CA1303", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1307", Justification = "Reviewed.")]
     public static class ControlPanelDataSample
     {
         private static void AddMenusToControlPanel(ControlPanelContext ctx)

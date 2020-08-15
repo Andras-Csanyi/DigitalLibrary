@@ -29,7 +29,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
         public void ThrowException_WhenDimensionStructure_InputIsInvalid(
             long id,
             string name,
@@ -71,7 +71,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "<Pending>")]
         public void ThrowException_WhenDimension_InputIsInvalid(
             long id,
             string name,

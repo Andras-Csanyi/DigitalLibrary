@@ -57,8 +57,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
         [Theory]
         [MemberData(nameof(ThrowExceptionWhenInputIsNull))]
-        [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
-        [SuppressMessage("ReSharper", "CA1806")]
+        [SuppressMessage("ReSharper", "ObjectCreationAsStatement", Justification = "Reviewed.")]
+        [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
         public void ThrowException_WhenInputIsNull(
             IMasterDataHttpClient masterDataHttpClient,
             IMasterDataValidators masterDataValidators,

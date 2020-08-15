@@ -9,9 +9,9 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
     public static class MasterData_Dimension_TestData
     {
         public static IEnumerable<object[]> AddDimensionAsync_Validation = new List<object[]>

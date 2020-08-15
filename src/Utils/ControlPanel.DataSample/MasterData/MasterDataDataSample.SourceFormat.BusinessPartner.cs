@@ -10,7 +10,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
     using Microsoft.EntityFrameworkCore;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     public static partial class MasterDataDataSample
     {
         private const int AmountOfSourceFormatBusinessPartner = 1;
