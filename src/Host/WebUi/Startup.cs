@@ -1,5 +1,5 @@
-// <copyright file="Startup.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="Startup.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
 // </copyright>
 
 namespace DigitalLibrary.Ui.WebUi
