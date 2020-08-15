@@ -14,8 +14,9 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
         }
 
         protected DiLibHttpClientErrorDetailsException(SerializationInfo? info, StreamingContext context)
-            : base(info,
-            context)
+            : base(
+                info,
+                context)
         {
         }
 
@@ -25,8 +26,9 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
         }
 
         public DiLibHttpClientErrorDetailsException(string? message, Exception? innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

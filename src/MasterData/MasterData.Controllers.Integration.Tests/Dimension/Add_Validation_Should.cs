@@ -31,14 +31,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Add_Validation_Should : TestBase<Dimension>
     {
-        public Add_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                                     ITestOutputHelper testOutputHelper)
+        public Add_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.AddDimensionAsync_Validation),
+        [MemberData(
+            nameof(MasterData_Dimension_TestData.AddDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

@@ -31,14 +31,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Add_SourceFormat_Validation_Should : TestBase<SourceFormat>
     {
-        public Add_SourceFormat_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-                                                  ITestOutputHelper testOutputHelper)
+        public Add_SourceFormat_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

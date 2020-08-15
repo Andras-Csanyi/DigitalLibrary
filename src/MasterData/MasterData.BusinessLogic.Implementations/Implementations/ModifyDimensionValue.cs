@@ -49,8 +49,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         Check.IsNotNull(newDimensionValue, newDimensionValueErrorMsg);
 
                         await _masterDataValidators.DimensionValueValidator
-                           .ValidateAndThrowAsync(oldDimensionValue,
-                                ruleSet: ValidatorRulesets.ModifyDimensionValue)
+                           .ValidateAndThrowAsync(
+                               oldDimensionValue,
+                               ruleSet: ValidatorRulesets.ModifyDimensionValue)
                            .ConfigureAwait(false);
 
                         Dimension dim = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);

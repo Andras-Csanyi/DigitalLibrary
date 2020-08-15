@@ -29,8 +29,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Update_Should : TestBase<Dimension>
     {
-        public Update_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                             ITestOutputHelper testOutputHelper)
+        public Update_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }

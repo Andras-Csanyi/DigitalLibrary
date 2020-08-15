@@ -15,8 +15,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         }
 
         protected MenuGetAllAsyncOperationException(SerializationInfo info, StreamingContext context)
-            : base(info,
-            context)
+            : base(
+                info,
+                context)
         {
         }
 
@@ -26,8 +27,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         }
 
         public MenuGetAllAsyncOperationException(string message, Exception innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

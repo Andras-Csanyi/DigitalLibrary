@@ -47,7 +47,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     catch (Exception e)
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException(e.Message,
+                        throw new MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException(
+                            e.Message,
                             e);
                     }
                 }

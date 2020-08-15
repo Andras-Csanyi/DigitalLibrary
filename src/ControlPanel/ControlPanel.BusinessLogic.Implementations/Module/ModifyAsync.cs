@@ -58,8 +58,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         module.IsActive = modify.IsActive;
                         module.ModuleRoute = modify.ModuleRoute;
 
-                        await _moduleValidator.ValidateAndThrowAsync(module,
-                                ruleSet: ValidatorRulesets.Modify)
+                        await _moduleValidator.ValidateAndThrowAsync(
+                            module,
+                            ruleSet: ValidatorRulesets.Modify)
                            .ConfigureAwait(false);
 
                         ctx.Entry(module).State = EntityState.Modified;

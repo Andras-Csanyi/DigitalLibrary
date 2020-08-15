@@ -35,8 +35,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 
         protected readonly ITestOutputHelper _testOutputHelper;
 
-        protected TestBase(DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
-                           ITestOutputHelper testOutputHelper)
+        protected TestBase(
+            DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
+            ITestOutputHelper testOutputHelper)
         {
             _host = host ?? throw new ArgumentNullException(nameof(host));
             _testOutputHelper = testOutputHelper;

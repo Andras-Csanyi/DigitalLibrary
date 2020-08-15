@@ -31,8 +31,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Delete_Should : TestBase<Dimension>
     {
-        public Delete_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                             ITestOutputHelper testOutputHelper)
+        public Delete_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }

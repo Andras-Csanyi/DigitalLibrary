@@ -13,7 +13,8 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public DimensionStructureQueryObjectValidator()
         {
-            RuleSet(DimensionStructureQueryObjectValidatorRulesets.GetDimensionStructureByIdOperation,
+            RuleSet(
+                DimensionStructureQueryObjectValidatorRulesets.GetDimensionStructureByIdOperation,
                 () => { RuleFor(r => r.GetDimensionsStructuredById).NotEqual(0); });
         }
     }

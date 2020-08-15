@@ -16,10 +16,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicNoSuchDimensionDimensionValueEntity(SerializationInfo? info,
-                                                                             StreamingContext context)
-            : base(info,
-            context)
+        protected MasterDataBusinessLogicNoSuchDimensionDimensionValueEntity(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 

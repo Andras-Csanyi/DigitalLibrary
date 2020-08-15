@@ -35,8 +35,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             throw new ModuleNullInputException(msg);
                         }
 
-                        await _moduleValidator.ValidateAndThrowAsync(module,
-                                ruleSet: ValidatorRulesets.AddNew)
+                        await _moduleValidator.ValidateAndThrowAsync(
+                            module,
+                            ruleSet: ValidatorRulesets.AddNew)
                            .ConfigureAwait(false);
 
                         await ctx.Modules.AddAsync(module).ConfigureAwait(false);

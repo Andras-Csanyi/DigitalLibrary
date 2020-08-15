@@ -15,8 +15,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         }
 
         protected MenuFindAsyncOperationException(SerializationInfo info, StreamingContext context)
-            : base(info,
-            context)
+            : base(
+                info,
+                context)
         {
         }
 

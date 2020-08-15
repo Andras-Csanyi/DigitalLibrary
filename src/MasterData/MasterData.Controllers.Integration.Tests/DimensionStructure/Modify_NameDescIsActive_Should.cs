@@ -29,8 +29,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
     {
-        public Modify_NameDescIsActive_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-                                              ITestOutputHelper testOutputHelper)
+        public Modify_NameDescIsActive_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }

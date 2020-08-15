@@ -31,14 +31,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Modify_Validation_Should : TestBase<DimensionStructure>
     {
-        public Modify_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-                                        ITestOutputHelper testOutputHelper)
+        public Modify_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

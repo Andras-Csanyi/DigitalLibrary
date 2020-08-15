@@ -27,8 +27,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         }
 
         public MasterDataBusinessLogicArgumentNullException(string? message, Exception? innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

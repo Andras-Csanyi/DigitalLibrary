@@ -37,7 +37,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         private const string TestInfo = nameof(Add_SourceFormat_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

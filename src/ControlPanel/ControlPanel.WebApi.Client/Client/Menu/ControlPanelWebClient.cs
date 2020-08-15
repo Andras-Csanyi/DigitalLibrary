@@ -77,7 +77,8 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
                 }
 
                 string url = $"{ControlPanelWebApi.Module.Base}/{ControlPanelWebApi.Module.Add}";
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
+                HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Post,
                     url);
 
                 string json = JsonConvert.SerializeObject(module);
@@ -115,7 +116,8 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
                 }
 
                 string url = $"{ControlPanelWebApi.Menu.Base}/{ControlPanelWebApi.Menu.Delete}";
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete,
+                HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Delete,
                     url);
 
                 string json = JsonConvert.SerializeObject(menu);
@@ -213,7 +215,8 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
                 }
 
                 string url = $"{ControlPanelWebApi.Module.Base}/{ControlPanelWebApi.Module.Find}";
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,
+                HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Post,
                     url);
 
                 string json = JsonConvert.SerializeObject(module);

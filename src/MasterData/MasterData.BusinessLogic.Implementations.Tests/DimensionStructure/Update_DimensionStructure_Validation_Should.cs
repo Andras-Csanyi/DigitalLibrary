@@ -35,7 +35,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(Update_DimensionStructure_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

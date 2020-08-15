@@ -37,7 +37,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         private const string TestInfo = nameof(Update_Dimension_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
+        [MemberData(
+            nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

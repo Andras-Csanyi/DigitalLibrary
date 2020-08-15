@@ -28,8 +28,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Get_Should : TestBase<Dimension>
     {
-        public Get_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                          ITestOutputHelper testOutputHelper)
+        public Get_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
             : base(host, testOutputHelper)
         {
         }

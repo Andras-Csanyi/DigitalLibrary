@@ -15,8 +15,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         }
 
         protected DiLibGridGetallAsyncOperationException(SerializationInfo? info, StreamingContext context)
-            : base(info,
-            context)
+            : base(
+                info,
+                context)
         {
         }
 
@@ -26,8 +27,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         }
 
         public DiLibGridGetallAsyncOperationException(string? message, Exception? innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

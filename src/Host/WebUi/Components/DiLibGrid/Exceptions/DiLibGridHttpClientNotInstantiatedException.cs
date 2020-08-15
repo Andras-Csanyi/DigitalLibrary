@@ -26,8 +26,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         }
 
         public DiLibGridHttpClientNotInstantiatedException(string? message, Exception? innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

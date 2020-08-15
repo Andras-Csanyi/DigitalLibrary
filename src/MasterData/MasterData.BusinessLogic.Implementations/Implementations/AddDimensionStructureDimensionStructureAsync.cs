@@ -26,8 +26,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             try
             {
                 await _masterDataValidators.DimensionStructureDimensionStructureValidator
-                   .ValidateAndThrowAsync(dimensionStructureDimensionStructure,
-                        ruleSet: DimensionStructureDimensionStructureValidatorRulesets.Add)
+                   .ValidateAndThrowAsync(
+                       dimensionStructureDimensionStructure,
+                       ruleSet: DimensionStructureDimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

@@ -515,8 +515,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
-                    await RemoveItemRecursivelyAsync(_sourceFormat.RootDimensionStructure,
-                            DimensionStructureToBeDeletedFromTree.Guid)
+                    await RemoveItemRecursivelyAsync(
+                        _sourceFormat.RootDimensionStructure,
+                        DimensionStructureToBeDeletedFromTree.Guid)
                        .ConfigureAwait(false);
                 }
             }

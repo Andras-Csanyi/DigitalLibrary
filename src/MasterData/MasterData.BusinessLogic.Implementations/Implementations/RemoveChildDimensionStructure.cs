@@ -9,8 +9,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task RemoveChildDimensionStructureAsync(long removedDimensionStructure,
-                                                             long parentDimensionStructure)
+        public async Task RemoveChildDimensionStructureAsync(
+            long removedDimensionStructure,
+            long parentDimensionStructure)
         {
             throw new System.NotImplementedException();
         }

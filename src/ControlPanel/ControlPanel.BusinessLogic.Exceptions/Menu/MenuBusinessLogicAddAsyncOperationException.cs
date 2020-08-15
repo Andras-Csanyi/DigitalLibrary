@@ -26,8 +26,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         }
 
         public MenuBusinessLogicAddAsyncOperationException(string message, Exception innerException)
-            : base(message,
-            innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }
