@@ -729,6 +729,9 @@
       <Rule Id="SA1101" Action="Hidden"/> <!-- .this -->
       <Rule Id="SA1305" Action="Warning"/>
       <Rule Id="SA1412" Action="Warning"/>
+      <Rule Id="SA1600" Action="Warning"/> <!-- public elements doc -->
+      <Rule Id="SA1601" Action="Warning"/> <!-- partial elements doc -->
+      <Rule Id="SA1602" Action="Warning"/> <!-- enums doc -->
       <Rule Id="SA1609" Action="Warning"/>
       <Rule Id="SA1639" Action="Warning"/>
       <Rule Id="SX1101" Action="Warning"/>

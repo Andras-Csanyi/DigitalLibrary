@@ -1,7 +1,3 @@
-// Digital Library project
-// https://github.com/SayusiAndo/DigitalLibrary
-// Licensed under MIT License
-
 namespace DigitalLibrary.MasterData.BusinessLogic.ViewModels
 {
     using System.Collections.Generic;

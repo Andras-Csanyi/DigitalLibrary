@@ -1,5 +1,6 @@
 // Digital Library project
 // https://github.com/SayusiAndo/DigitalLibrary
+// Copyright (c) Andras Csanyi. All rights reserved.
 // Licensed under MIT License
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
