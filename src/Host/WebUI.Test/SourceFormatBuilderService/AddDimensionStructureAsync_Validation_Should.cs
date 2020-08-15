@@ -40,6 +40,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 _domainEntityHelperServiceMock.Object);
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
             DimensionStructure dimensionStructure = new DimensionStructure();
+
             // Act
             Func<Task> action = async () =>
             {

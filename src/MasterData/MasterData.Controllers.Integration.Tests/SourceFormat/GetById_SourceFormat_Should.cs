@@ -58,6 +58,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Id = sourceFormat2Result.Id,
             };
+
             // Act
             SourceFormat result = await _masterDataHttpClient.GetSourceFormatById(query)
                .ConfigureAwait(false);

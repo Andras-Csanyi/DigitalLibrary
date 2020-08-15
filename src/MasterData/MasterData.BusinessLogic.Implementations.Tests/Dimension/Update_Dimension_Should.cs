@@ -52,6 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             dimensionResult.Name = name;
             dimensionResult.Description = desc;
             dimensionResult.IsActive = isActive;
+
             // Act
             Dimension result = await masterDataBusinessLogic
                .UpdateDimensionAsync(dimensionResult)

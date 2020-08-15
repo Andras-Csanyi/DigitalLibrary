@@ -38,6 +38,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             DbContextOptions<MasterDataContext> _dbContextOptions =
                 new DbContextOptionsBuilder<MasterDataContext>()
                    .UseSqlite($"Data Source = {TestInfo}.sqlite")
+
                     // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                    .UseLoggerFactory(LoggerFactory)
                    .EnableDetailedErrors()

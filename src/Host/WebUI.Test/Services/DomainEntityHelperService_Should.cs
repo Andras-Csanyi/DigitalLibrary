@@ -24,6 +24,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
     public class DomainEntityHelperService_Should
     {
         [Fact]
+
         // ReSharper disable once IdentifierTypo
         public async Task AddNullo_ToTheList()
         {

@@ -312,6 +312,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             result.RootDimensionStructureId.Should().Be(sourceFormatResult.RootDimensionStructureId);
             result.RootDimensionStructure.ChildDimensionStructures.Should().NotBeNull();
             result.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(2);
+
             //first level
             result.RootDimensionStructure.ChildDimensionStructures.Where(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)
@@ -323,6 +324,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ToList()
                .Count
                .Should().Be(1);
+
             // second levels
             result.RootDimensionStructure.ChildDimensionStructures.FirstOrDefault(
                     p => p.Name == dimensionStructureFirstLevelOne.Name)

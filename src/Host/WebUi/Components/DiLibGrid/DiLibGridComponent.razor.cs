@@ -42,6 +42,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         public async Task CancelEditActionHandler()
         {
             await JsRuntime.InvokeAsync<string>("console.log", nameof(CancelEditActionHandler)).ConfigureAwait(false);
+
             // edit and save it...
             DiLibGrid.ToBeEdited = default(TData);
             EditActionButton.Hide();
@@ -51,6 +52,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
         {
             await JsRuntime.InvokeAsync<string>("console.log", nameof(DeleteActionHandler)).ConfigureAwait(false);
             DiLibGrid.ToBeDelete = default(TData);
+
             // delete it
             DeleteActionButton.Hide();
         }

@@ -65,6 +65,7 @@ namespace DigitalLibrary.MasterData.Validators
                 When(w => w.Name != null && w.Desc != null, () =>
                 {
                     RuleFor(p => p.Id).GreaterThan(0);
+
                     // RuleFor(p => p.ParentDimensionStructureId).Equal(0);
                     RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.Name).NotNull().NotEmpty().NotEqual(" ");

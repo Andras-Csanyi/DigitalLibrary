@@ -103,6 +103,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             builderService.SourceFormat.RootDimensionStructure.Id.Should().Be(rootDimensionStructure.Id);
 
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(1);
+
             // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault().Id.Should().Be(firstLevelSecond.Id);
@@ -276,6 +277,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelFirst.Id)
                .ChildDimensionStructures.Count.Should().Be(1);
+
             // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelFirst.Id)
@@ -286,11 +288,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures.Count.Should().Be(2);
+
             // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures
                .Where(q => q.Id == secondLevelFirst.Id).ToList().Count.Should().Be(1);
+
             // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)

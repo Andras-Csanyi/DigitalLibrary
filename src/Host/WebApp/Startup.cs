@@ -110,6 +110,7 @@ namespace WebApp
             {
                 options.UseSqlite("Data Source=control_panel_test_db.sqlite");
             });
+
             // }
 
             services.AddTransient<IMenuBusinessLogic, MenuBusinessLogic>();
@@ -125,6 +126,7 @@ namespace WebApp
                 options.UseLoggerFactory(LoggerFactory);
                 options.EnableSensitiveDataLogging();
             });
+
             // }
 
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
