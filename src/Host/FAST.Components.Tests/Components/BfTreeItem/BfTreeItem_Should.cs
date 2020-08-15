@@ -1,5 +1,6 @@
-// <copyright file="BfTreeItem_Should.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="BfTreeItem_Should.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
 // </copyright>
 
 namespace FAST.Components.Tests.Components.BfTreeItem

@@ -1,5 +1,6 @@
 // <copyright file="Startup.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
 // </copyright>
 
 namespace DigitalLibrary.Ui.WebUi

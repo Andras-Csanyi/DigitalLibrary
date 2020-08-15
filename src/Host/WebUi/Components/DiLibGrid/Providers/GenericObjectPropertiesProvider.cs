@@ -1,5 +1,6 @@
-// <copyright file="GenericObjectPropertiesProvider.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="GenericObjectPropertiesProvider.cs" company="Andras Csanyi">
+// Copyright (c) Andras Csanyi. All rights reserved.
+//  Licensed under MIT.
 // </copyright>
 
 namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
