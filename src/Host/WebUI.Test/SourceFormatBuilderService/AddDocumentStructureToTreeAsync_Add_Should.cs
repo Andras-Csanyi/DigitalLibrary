@@ -1,4 +1,4 @@
-// <copyright file="AddOrUpdateDocumentStructureToTreeAsync_Add_Should.cs" company="Andras Csanyi">
+// <copyright file="AddDocumentStructureToTreeAsync_Add_Should.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -19,13 +19,20 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
     using Xunit.Abstractions;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    /// <summary>
+    /// Integration tests for the scenario where new <see cref="DocumentStructure"/>s are added
+    /// to the <see cref="DocumentStructure"/> tree.
+    ///
+    /// The tests below covers the basic functionality.
+    /// </summary>
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class AddOrUpdateDocumentStructureToTreeAsync_Add_Should : TestBase
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable method names.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "More readable test method names.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Tests.")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Reviewed.")]
+    public class AddDocumentStructureToTreeAsync_Add_Should : TestBase
     {
-        public AddOrUpdateDocumentStructureToTreeAsync_Add_Should(ITestOutputHelper outputHelper)
+        public AddDocumentStructureToTreeAsync_Add_Should(ITestOutputHelper outputHelper)
             : base(outputHelper)
         {
         }
@@ -51,7 +58,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+            await sourceFormatBuilderService.AddOrReplaceDocumentStructureToTreeAsync(
                     newOne,
                     _sourceFormat.RootDimensionStructure.Guid)
                .ConfigureAwait(false);
@@ -102,7 +109,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+            await sourceFormatBuilderService.AddOrReplaceDocumentStructureToTreeAsync(
                     newOne,
                     _sourceFormat.RootDimensionStructure.Guid)
                .ConfigureAwait(false);
@@ -171,7 +178,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             };
 
             // Act
-            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+            await sourceFormatBuilderService.AddOrReplaceDocumentStructureToTreeAsync(
                     toFirstLevel,
                     toRootFirst.Guid)
                .ConfigureAwait(false);
@@ -232,7 +239,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             };
 
             // Act
-            await sourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+            await sourceFormatBuilderService.AddOrReplaceDocumentStructureToTreeAsync(
                     toFirstLevel,
                     toRootFirst.Guid)
                .ConfigureAwait(false);
