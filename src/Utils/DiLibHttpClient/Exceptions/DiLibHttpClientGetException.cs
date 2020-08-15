@@ -13,15 +13,18 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
         {
         }
 
-        protected DiLibHttpClientGetException(SerializationInfo? info, StreamingContext context) : base(info, context)
+        protected DiLibHttpClientGetException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public DiLibHttpClientGetException(string? message) : base(message)
+        public DiLibHttpClientGetException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibHttpClientGetException(string? message, Exception? innerException) : base(message, innerException)
+        public DiLibHttpClientGetException(string? message, Exception? innerException)
+            : base(message, innerException)
         {
         }
     }

@@ -14,16 +14,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicDatabaseOperationException(SerializationInfo? info, StreamingContext context) :
-            base(info, context)
+        protected MasterDataBusinessLogicDatabaseOperationException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicDatabaseOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicDatabaseOperationException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicDatabaseOperationException(string? message, Exception? innerException) : base(
+        public MasterDataBusinessLogicDatabaseOperationException(string? message, Exception? innerException)
+            : base(
             message, innerException)
         {
         }

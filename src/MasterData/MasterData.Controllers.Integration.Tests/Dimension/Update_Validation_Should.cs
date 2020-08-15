@@ -8,19 +8,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using Validators.TestData;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -31,13 +24,16 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Update_Validation_Should : TestBase<Dimension>
     {
-        public Update_Validation_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                                        ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Update_Validation_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
+        [MemberData(
+            nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

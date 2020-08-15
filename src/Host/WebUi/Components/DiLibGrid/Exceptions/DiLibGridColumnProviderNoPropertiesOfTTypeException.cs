@@ -19,11 +19,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message) : base(message)
+        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message, Exception? innerException) : base(
+        public DiLibGridColumnProviderNoPropertiesOfTTypeException(string? message, Exception? innerException)
+            : base(
             message, innerException)
         {
         }

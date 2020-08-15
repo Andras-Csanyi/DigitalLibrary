@@ -7,11 +7,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -20,7 +17,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Add_DimensionAsync_Should : TestBase
     {
-        public Add_DimensionAsync_Should() : base(TestInfo)
+        public Add_DimensionAsync_Should()
+            : base(TestInfo)
         {
         }
 
@@ -34,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act

@@ -9,15 +9,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -26,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Add_DimensionValue_Should : TestBase
     {
-        public Add_DimensionValue_Should() : base(TestInfo)
+        public Add_DimensionValue_Should()
+            : base(TestInfo)
         {
         }
 
@@ -40,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "Desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             Dimension dimensionResult = await masterDataBusinessLogic
@@ -49,7 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue firstDimensionValue = new DimensionValue
             {
-                Value = "first value"
+                Value = "first value",
             };
             DimensionValue firstDimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(
@@ -58,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue secondDimensionValue = new DimensionValue
             {
-                Value = "second value"
+                Value = "second value",
             };
 
             // Act
@@ -95,7 +91,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "Description",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
@@ -103,7 +99,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue secondDimensionValue = new DimensionValue
             {
-                Value = "value"
+                Value = "value",
             };
 
             // Act
@@ -126,7 +122,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "Description",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
@@ -135,7 +131,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "Second dimension",
                 Description = "Second dimension description",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension secondDimensionResult = await masterDataBusinessLogic.AddDimensionAsync(
                 secondDimension).ConfigureAwait(false);
@@ -143,7 +139,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             DimensionValue alreadyExistingDimensionValue =
                 new DimensionValue
                 {
-                    Value = "value"
+                    Value = "value",
                 };
             DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
@@ -151,7 +147,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue secondDimensionValue = new DimensionValue
             {
-                Value = "value"
+                Value = "value",
             };
 
             // Act
@@ -178,7 +174,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "Description",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension alreadyExistingDimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(
@@ -187,7 +183,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             DimensionValue alreadyExistingDimensionValue =
                 new DimensionValue
                 {
-                    Value = "value"
+                    Value = "value",
                 };
             DimensionValue alreadyExistingDimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
@@ -195,7 +191,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue secondDimensionValue = new DimensionValue
             {
-                Value = "value"
+                Value = "value",
             };
 
             // Act
@@ -223,7 +219,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             long dimensionId = 100;
             DimensionValue dimensionValue = new DimensionValue
             {
-                Value = "something string"
+                Value = "something string",
             };
 
             // Act

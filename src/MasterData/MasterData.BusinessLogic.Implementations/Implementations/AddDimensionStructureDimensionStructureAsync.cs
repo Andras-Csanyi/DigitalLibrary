@@ -7,16 +7,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
     using FluentValidation;
-
-    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
@@ -26,8 +21,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             try
             {
                 await _masterDataValidators.DimensionStructureDimensionStructureValidator
-                   .ValidateAndThrowAsync(dimensionStructureDimensionStructure,
-                        ruleSet: DimensionStructureDimensionStructureValidatorRulesets.Add)
+                   .ValidateAndThrowAsync(
+                       dimensionStructureDimensionStructure,
+                       ruleSet: DimensionStructureDimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

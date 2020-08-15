@@ -9,17 +9,12 @@ namespace DigitalLibrary.ControlPanel.Controllers
     using System.Collections.Generic;
     using System.Net.Mime;
     using System.Threading.Tasks;
-
-    using BusinessLogic.Interfaces.Interfaces;
-
-    using DomainModel.Entities;
-
-    using Exceptions;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
+    using DigitalLibrary.ControlPanel.Controllers.Exceptions;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
+    using DigitalLibrary.ControlPanel.WebApi.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-
-    using WebApi.Api;
 
     [ApiController]
     [Route(ControlPanelWebApi.Menu.Base)]

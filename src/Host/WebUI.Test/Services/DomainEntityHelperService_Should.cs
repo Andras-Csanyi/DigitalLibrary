@@ -8,13 +8,9 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Services;
     using FluentAssertions;
-
-    using MasterData.DomainModel;
-
-    using WebUi.Services;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -24,6 +20,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
     public class DomainEntityHelperService_Should
     {
         [Fact]
+
         // ReSharper disable once IdentifierTypo
         public async Task AddNullo_ToTheList()
         {
@@ -33,7 +30,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
             {
                 new Dimension(),
                 new Dimension(),
-                new Dimension()
+                new Dimension(),
             };
 
             List<Dimension> result = await service.AddNulloToListAsFirstItem(list)

@@ -8,19 +8,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
     using FluentValidation;
-
-    using Utils.Guards;
-
-    using Validators.TestData;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -29,14 +22,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Add_SourceFormat_Validation_Should : TestBase
     {
-        public Add_SourceFormat_Validation_Should() : base(TestInfo)
+        public Add_SourceFormat_Validation_Should()
+            : base(TestInfo)
         {
         }
 
         private const string TestInfo = nameof(Add_SourceFormat_Validation_Should);
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

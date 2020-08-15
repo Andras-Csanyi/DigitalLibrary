@@ -7,11 +7,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -20,7 +17,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Ctor_Validation_Should : TestBase
     {
-        public Ctor_Validation_Should() : base(TestInfo)
+        public Ctor_Validation_Should()
+            : base(TestInfo)
         {
         }
 

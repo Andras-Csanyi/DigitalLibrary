@@ -8,12 +8,9 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using BusinessLogic.ViewModels;
-
-    using DomainModel;
-
-    using Web.Api;
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
 
     public partial class MasterDataHttpClient
     {

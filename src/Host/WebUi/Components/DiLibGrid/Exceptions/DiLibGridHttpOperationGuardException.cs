@@ -14,17 +14,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridHttpOperationGuardException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected DiLibGridHttpOperationGuardException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public DiLibGridHttpOperationGuardException(string? message) : base(message)
+        public DiLibGridHttpOperationGuardException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridHttpOperationGuardException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridHttpOperationGuardException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

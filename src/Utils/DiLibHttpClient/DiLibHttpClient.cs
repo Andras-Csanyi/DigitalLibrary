@@ -10,11 +10,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Net.Mime;
     using System.Text;
     using System.Threading.Tasks;
-
-    using Exceptions;
-
-    using Guards;
-
+    using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
+    using DigitalLibrary.Utils.Guards;
     using Newtonsoft.Json;
 
     public class DiLibHttpClient : IDiLibHttpClient
@@ -114,7 +111,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -148,7 +145,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync();
+                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -201,7 +198,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         {
             string payloadString = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
             StringContent stringContent = new StringContent(payloadString, Encoding.UTF8);
             stringContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
@@ -212,7 +209,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         {
             T result = JsonConvert.DeserializeObject<T>(stringContent, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
             return result;
         }

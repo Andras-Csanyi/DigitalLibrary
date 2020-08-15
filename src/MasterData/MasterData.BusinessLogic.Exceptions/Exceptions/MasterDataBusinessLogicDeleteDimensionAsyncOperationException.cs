@@ -18,11 +18,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         protected MasterDataBusinessLogicDeleteDimensionAsyncOperationException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MasterDataBusinessLogicDeleteDimensionAsyncOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicDeleteDimensionAsyncOperationException(string? message)
+            : base(message)
         {
         }
 

@@ -14,8 +14,9 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         {
         }
 
-        protected ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(SerializationInfo? info,
-                                                                                     StreamingContext context)
+        protected ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(
+            SerializationInfo? info,
+            StreamingContext context)
             : base(info, context)
         {
         }
@@ -25,8 +26,9 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         {
         }
 
-        public ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(string? message,
-                                                                                  Exception? innerException)
+        public ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(
+            string? message,
+            Exception? innerException)
             : base(message, innerException)
         {
         }

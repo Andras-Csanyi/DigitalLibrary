@@ -9,6 +9,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.MasterData
     {
         Display,
 
-        Form
+        Form,
     }
 }

@@ -9,15 +9,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -30,7 +25,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     {
         public Get_Should(
             DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 

@@ -7,15 +7,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -26,8 +21,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class GetById_SourceFormat_Should : TestBase<SourceFormat>
     {
-        public GetById_SourceFormat_Should(DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-                                           ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public GetById_SourceFormat_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -39,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat sourceFormat1Result = await _masterDataHttpClient.AddSourceFormatAsync(sourceFormat1)
                .ConfigureAwait(false);
@@ -48,7 +45,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "name2",
                 Desc = "desc2",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat sourceFormat2Result = await _masterDataHttpClient.AddSourceFormatAsync(sourceFormat2)
                .ConfigureAwait(false);
@@ -57,6 +54,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Id = sourceFormat2Result.Id,
             };
+
             // Act
             SourceFormat result = await _masterDataHttpClient.GetSourceFormatById(query)
                .ConfigureAwait(false);

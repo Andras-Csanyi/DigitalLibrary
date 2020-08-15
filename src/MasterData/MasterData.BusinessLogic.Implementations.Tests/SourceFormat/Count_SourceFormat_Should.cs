@@ -7,13 +7,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
     using FluentAssertions;
-
-    using Utils.ControlPanel.DataSample.MasterData;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -22,7 +18,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Count_SourceFormat_Should : TestBase
     {
-        public Count_SourceFormat_Should() : base(TestInfo)
+        public Count_SourceFormat_Should()
+            : base(TestInfo)
         {
         }
 

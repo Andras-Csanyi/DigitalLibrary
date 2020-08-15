@@ -8,11 +8,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -21,7 +18,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GetDimensionStructureByIdAsync_Validation_Should : TestBase
     {
-        public GetDimensionStructureByIdAsync_Validation_Should() : base(TestInfo)
+        public GetDimensionStructureByIdAsync_Validation_Should()
+            : base(TestInfo)
         {
         }
 

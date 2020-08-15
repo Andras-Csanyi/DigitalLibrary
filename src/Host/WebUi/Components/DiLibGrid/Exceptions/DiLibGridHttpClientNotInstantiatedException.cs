@@ -14,17 +14,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridHttpClientNotInstantiatedException(SerializationInfo? info, StreamingContext context) : base(
+        protected DiLibGridHttpClientNotInstantiatedException(SerializationInfo? info, StreamingContext context)
+            : base(
             info, context)
         {
         }
 
-        public DiLibGridHttpClientNotInstantiatedException(string? message) : base(message)
+        public DiLibGridHttpClientNotInstantiatedException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridHttpClientNotInstantiatedException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridHttpClientNotInstantiatedException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

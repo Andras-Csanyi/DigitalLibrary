@@ -10,18 +10,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
     using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
-    using Utils.DiLibHttpClient;
-    using Utils.Guards;
-
-    using WebUi.Components.SourceFormatBuilder;
-    using WebUi.Services;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -44,7 +39,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureValidator(),
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
-                null
+                null,
             },
             new object[]
             {
@@ -57,13 +52,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
                 null,
-            }
+            },
         };
 
         [Theory]
         [MemberData(nameof(ThrowExceptionWhenInputIsNull))]
-        [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
-        [SuppressMessage("ReSharper", "CA1806")]
+        [SuppressMessage("ReSharper", "ObjectCreationAsStatement", Justification = "Reviewed.")]
+        [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
         public void ThrowException_WhenInputIsNull(
             IMasterDataHttpClient masterDataHttpClient,
             IMasterDataValidators masterDataValidators,

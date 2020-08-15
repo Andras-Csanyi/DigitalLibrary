@@ -9,11 +9,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using Exceptions.Menu;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -36,7 +33,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
             // Arrange
             DomainModel.Entities.Module module = new DomainModel.Entities.Module
             {
-                Name = "asd", Description = "desc", IsActive = 1, ModuleRoute = "asd"
+                Name = "asd", Description = "desc", IsActive = 1, ModuleRoute = "asd",
             };
             DomainModel.Entities.Module moduleResult = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
 
@@ -46,7 +43,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 IsActive = 1,
                 ModuleId = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
             DomainModel.Entities.Menu menuActiveResult =
                 await MenuBusinessLogic.AddAsync(menuActive).ConfigureAwait(false);
@@ -57,7 +54,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 IsActive = 0,
                 ModuleId = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
             DomainModel.Entities.Menu menuInactiveResult =
                 await MenuBusinessLogic.AddAsync(menuInactive).ConfigureAwait(false);

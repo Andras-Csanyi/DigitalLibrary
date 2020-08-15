@@ -7,14 +7,10 @@ namespace FAST.Components.Tests.Components.BfTreeItem
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
     using Bunit;
-
     using FAST.Components.Components;
     using FAST.Components.Components.TreeView;
-
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -28,8 +24,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
         {
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
-                p => p.AddChildContent<BfTreeItem>()
-            );
+                p => p.AddChildContent<BfTreeItem>());
 
             // Assert
             cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem)
@@ -59,8 +54,7 @@ namespace FAST.Components.Tests.Components.BfTreeItem
             // Arrange
             IRenderedComponent<BfTreeView> cut = RenderComponent<BfTreeView>(
                 p => p.AddChildContent<BfTreeItem>(
-                    pa => pa.AddUnmatched("custom", "value")
-                ));
+                    pa => pa.AddUnmatched("custom", "value")));
 
             // Assert
             cut.Find(BfComponentApis.BfTreeItem.Html.BfTreeItem)

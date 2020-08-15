@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -29,8 +23,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Add_Should : TestBase<Dimension>
     {
-        public Add_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                          ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Add_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -42,7 +38,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "Add_TheItem",
                 Description = "Add_TheItem",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act
@@ -64,7 +60,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "ThrowException_WhenNameUniqueIndexViolated",
                 Description = "ThrowException_WhenNameUniqueIndexViolated",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 

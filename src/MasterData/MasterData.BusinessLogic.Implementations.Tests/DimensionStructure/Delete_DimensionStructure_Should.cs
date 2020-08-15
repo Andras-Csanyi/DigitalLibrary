@@ -10,15 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -27,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Delete_DimensionStructure_Should : TestBase
     {
-        public Delete_DimensionStructure_Should() : base(TestInfo)
+        public Delete_DimensionStructure_Should()
+            : base(TestInfo)
         {
         }
 
@@ -43,7 +39,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure)
@@ -53,7 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Desc = "desc2",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructure2Result = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure2)
@@ -77,7 +73,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Id = 1000
+                Id = 1000,
             };
 
             // Act

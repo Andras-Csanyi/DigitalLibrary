@@ -16,18 +16,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         {
         }
 
-        protected MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(SerializationInfo? info,
-                                                                                     StreamingContext context) : base(
+        protected MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(
             info, context)
         {
         }
 
-        public MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(string? message) : base(message)
+        public MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
-        public MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(string? message,
-                                                                                  Exception? innerException) : base(
+        public MasterDataBusinessLogicCountDimensionValuesAsyncOperationException(
+            string? message,
+            Exception? innerException)
+            : base(
             message, innerException)
         {
         }

@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -31,7 +25,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     {
         public Delete_SourceFormat_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -41,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act

@@ -8,13 +8,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -25,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     {
         private const string TestInfo = nameof(Add_DimensionValue_Validation_Should);
 
-        public Add_DimensionValue_Validation_Should() : base(TestInfo)
+        public Add_DimensionValue_Validation_Should()
+            : base(TestInfo)
         {
         }
 
@@ -39,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             DimensionValue dimensionValue = new DimensionValue
             {
-                Id = dimensionValueId
+                Id = dimensionValueId,
             };
 
             // Act

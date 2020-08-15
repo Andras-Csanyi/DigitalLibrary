@@ -7,15 +7,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
     using FluentAssertions;
-
-    using Utils.ControlPanel.DataSample.MasterData;
-
-    using ViewModels;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -24,7 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GetDimensionStructureByIdAsync_WithChildren_Should : TestBase
     {
-        public GetDimensionStructureByIdAsync_WithChildren_Should() : base(TestInfo)
+        public GetDimensionStructureByIdAsync_WithChildren_Should()
+            : base(TestInfo)
         {
         }
 

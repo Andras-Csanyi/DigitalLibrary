@@ -6,14 +6,11 @@
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using MasterData.DomainModel;
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Services;
     using Moq;
-
-    using WebUi.Services;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -64,8 +61,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 sourceFormatValidator,
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
-                dimensionStructureQueryObjectValidator
-            );
+                dimensionStructureQueryObjectValidator);
             return validators;
         }
     }

@@ -5,14 +5,12 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
-
     using Microsoft.EntityFrameworkCore;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     public static partial class MasterDataDataSample
     {
         private const int AmountOfSourceFormatBusinessPartner = 1;
@@ -99,7 +97,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             {
                 Name = "Hungarian Legal Entity Format",
                 Desc = "Hungarian Legal Entity Format, mainly Kft., Bt., or etc.",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.DimensionStructures.Add(hungarianLegalEntityFormat);
             ctx.SaveChanges();

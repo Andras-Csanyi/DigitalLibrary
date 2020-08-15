@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -29,8 +23,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Update_Should : TestBase<Dimension>
     {
-        public Update_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Update_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -46,7 +42,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = name,
                 Description = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
             Dimension origResult = await _masterDataHttpClient.AddDimensionAsync(orig)
                .ConfigureAwait(false);
@@ -55,7 +51,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 
@@ -82,7 +78,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Id = 100,
                 Name = "asdasd",
                 Description = "dedwedwe",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act
@@ -107,7 +103,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 

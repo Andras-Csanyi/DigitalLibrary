@@ -9,7 +9,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System.Collections.Generic;
     using System.Reflection;
     using System.Threading.Tasks;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
 

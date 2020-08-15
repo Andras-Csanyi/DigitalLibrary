@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -29,8 +23,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Modify_NameDescIsActive_Should : TestBase<DimensionStructure>
     {
-        public Modify_NameDescIsActive_Should(DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
-                                              ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Modify_NameDescIsActive_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, DimensionStructure> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -40,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Id = 400
+                Id = 400,
             };
 
             // Act

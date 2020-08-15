@@ -11,15 +11,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
     using System.Net.Http;
     using System.Reflection;
     using System.Threading.Tasks;
-
     using BlazorStrap;
-
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Web.Api;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
-
     using Newtonsoft.Json;
 
     public partial class ExactGrid
@@ -51,7 +47,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 
         public async Task HandleValidSubmit()
         {
-            await JsRuntime.InvokeAsync<string>("console.log", _editedItem);
+            await JsRuntime.InvokeAsync<string>("console.log", _editedItem).ConfigureAwait(false);
             EditModalWindow.Hide();
         }
 

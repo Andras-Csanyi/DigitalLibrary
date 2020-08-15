@@ -7,15 +7,10 @@ namespace FAST.Components.Tests.Components.Accordion
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
     using AngleSharp.Dom;
-
     using Bunit;
-
     using FAST.Components.Components.Accordion;
-
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -31,10 +26,7 @@ namespace FAST.Components.Tests.Components.Accordion
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
                 p => p.AddChildContent<BfAccordionItem>(
                     pp => pp.AddChildContent<BfAccordionItemHeading>(
-                        ppp => { ppp.AddUnmatched("custom", "value"); }
-                    )
-                )
-            );
+                        ppp => { ppp.AddUnmatched("custom", "value"); })));
 
             // Assert
             IAttr attr = cut.Find($"{FastHtmlElements.FastAccordion}>" +
@@ -52,10 +44,7 @@ namespace FAST.Components.Tests.Components.Accordion
             IRenderedComponent<BfAccordion> cut = RenderComponent<BfAccordion>(
                 p => p.AddChildContent<BfAccordionItem>(
                     pp => pp.AddChildContent<BfAccordionItemHeading>(
-                        ppp => ppp.AddChildContent("content")
-                    )
-                )
-            );
+                        ppp => ppp.AddChildContent("content"))));
 
             // Assert
             cut.Find($"{FastHtmlElements.FastAccordion}>" +

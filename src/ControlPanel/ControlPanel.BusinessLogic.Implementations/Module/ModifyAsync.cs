@@ -9,17 +9,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators;
 
     public partial class ModuleBusinessLogic
     {
@@ -58,8 +53,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         module.IsActive = modify.IsActive;
                         module.ModuleRoute = modify.ModuleRoute;
 
-                        await _moduleValidator.ValidateAndThrowAsync(module,
-                                ruleSet: ValidatorRulesets.Modify)
+                        await _moduleValidator.ValidateAndThrowAsync(
+                            module,
+                            ruleSet: ValidatorRulesets.Modify)
                            .ConfigureAwait(false);
 
                         ctx.Entry(module).State = EntityState.Modified;
@@ -76,7 +72,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             {
                                 DomainModel.Entities.Menu toBeDeleted = new DomainModel.Entities.Menu
                                 {
-                                    Id = l
+                                    Id = l,
                                 };
                                 await _menuBusinessLogic.DeleteAsync(toBeDeleted).ConfigureAwait(false);
                             }

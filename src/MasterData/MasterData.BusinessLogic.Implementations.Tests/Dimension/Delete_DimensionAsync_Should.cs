@@ -10,13 +10,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -25,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Delete_DimensionAsync_Should : TestBase
     {
-        public Delete_DimensionAsync_Should() : base(TestInfo)
+        public Delete_DimensionAsync_Should()
+            : base(TestInfo)
         {
         }
 
@@ -39,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name1",
                 Description = "desc1",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension1Result = await masterDataBusinessLogic.AddDimensionAsync(dimension1)
                .ConfigureAwait(false);
@@ -48,7 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Description = "desc2",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);

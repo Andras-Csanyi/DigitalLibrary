@@ -7,8 +7,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -25,7 +24,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             new object[]
             {
                 1, null
-            }
+            },
         };
 
         public static IEnumerable<object[]> AddDimensionStructure_Validation_TestData = new List<object[]>

@@ -8,15 +8,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using FluentAssertions;
-
-    using MasterData.DomainModel;
-
     using Moq;
-
-    using WebUi.Components.SourceFormatBuilder;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -31,13 +26,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure toRootFirst = new DimensionStructure
             {
                 Name = "toRootFirst name",
-                Desc = "toRootFirst desc"
+                Desc = "toRootFirst desc",
             };
 
             DimensionStructure toRootSecond = new DimensionStructure
             {
                 Name = "toRootSecond name",
-                Desc = "toRootSecond desc"
+                Desc = "toRootSecond desc",
             };
 
             _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootFirst);
@@ -56,7 +51,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure toFirstLevel = new DimensionStructure
             {
                 Name = "toFirstLevel name",
-                Desc = "toFirstLevel desc"
+                Desc = "toFirstLevel desc",
             };
 
             // Act
@@ -92,19 +87,19 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure toRootFirst = new DimensionStructure
             {
                 Name = "toRootFirst name",
-                Desc = "toRootFirst desc"
+                Desc = "toRootFirst desc",
             };
 
             DimensionStructure firstLevelFirst = new DimensionStructure
             {
                 Name = "namefirstLevelFirst",
-                Desc = "descfirstLevelFirst"
+                Desc = "descfirstLevelFirst",
             };
 
             DimensionStructure firstLevelSecond = new DimensionStructure
             {
                 Name = "namefirstLevelSecond",
-                Desc = "descfirstLevelSecond"
+                Desc = "descfirstLevelSecond",
             };
             toRootFirst.ChildDimensionStructures.Add(firstLevelFirst);
             toRootFirst.ChildDimensionStructures.Add(firstLevelSecond);
@@ -112,7 +107,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure toRootSecond = new DimensionStructure
             {
                 Name = "toRootSecond name",
-                Desc = "toRootSecond desc"
+                Desc = "toRootSecond desc",
             };
 
             _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(toRootFirst);
@@ -131,7 +126,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure toFirstLevel = new DimensionStructure
             {
                 Name = "toFirstLevel name",
-                Desc = "toFirstLevel desc"
+                Desc = "toFirstLevel desc",
             };
 
             // Act
@@ -212,7 +207,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             DimensionStructure firstOne = new DimensionStructure
             {
                 Name = "first one",
-                Desc = "second one"
+                Desc = "second one",
             };
             _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(firstOne);
 

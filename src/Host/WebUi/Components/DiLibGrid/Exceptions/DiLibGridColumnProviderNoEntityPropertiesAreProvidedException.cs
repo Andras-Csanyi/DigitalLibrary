@@ -16,11 +16,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 
         protected DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(
             SerializationInfo? info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(string? message) : base(message)
+        public DiLibGridColumnProviderNoEntityPropertiesAreProvidedException(string? message)
+            : base(message)
         {
         }
 

@@ -14,8 +14,9 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
         {
         }
 
-        protected ControlPanelWebApiClientGetAllMenusAsyncOperationException(SerializationInfo info,
-                                                                             StreamingContext context)
+        protected ControlPanelWebApiClientGetAllMenusAsyncOperationException(
+            SerializationInfo info,
+            StreamingContext context)
             : base(info, context)
         {
         }

@@ -8,15 +8,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -25,7 +20,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Update_Dimension_Should : TestBase
     {
-        public Update_Dimension_Should() : base(TestInfo)
+        public Update_Dimension_Should()
+            : base(TestInfo)
         {
         }
 
@@ -43,7 +39,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 0
+                IsActive = 0,
             };
             Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
                .ConfigureAwait(false);
@@ -51,6 +47,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             dimensionResult.Name = name;
             dimensionResult.Description = desc;
             dimensionResult.IsActive = isActive;
+
             // Act
             Dimension result = await masterDataBusinessLogic
                .UpdateDimensionAsync(dimensionResult)
@@ -73,7 +70,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Id = 299,
                 Name = "name",
                 Description = "desc",
-                IsActive = 0
+                IsActive = 0,
             };
 
             // Act

@@ -14,17 +14,20 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
         {
         }
 
-        protected MenuBusinessLogicDeleteAsyncOperationException(SerializationInfo info, StreamingContext context) :
-            base(info, context)
+        protected MenuBusinessLogicDeleteAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
-        public MenuBusinessLogicDeleteAsyncOperationException(string message) : base(message)
+        public MenuBusinessLogicDeleteAsyncOperationException(string message)
+            : base(message)
         {
         }
 
-        public MenuBusinessLogicDeleteAsyncOperationException(string message, Exception innerException) : base(message,
-            innerException)
+        public MenuBusinessLogicDeleteAsyncOperationException(string message, Exception innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

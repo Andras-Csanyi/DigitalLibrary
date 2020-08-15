@@ -8,7 +8,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
 

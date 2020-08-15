@@ -8,16 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using Microsoft.AspNetCore.Mvc.Testing;
-
-    using Utils.DiLibHttpClient;
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -35,8 +30,9 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 
         protected readonly ITestOutputHelper _testOutputHelper;
 
-        protected TestBase(DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
-                           ITestOutputHelper testOutputHelper)
+        protected TestBase(
+            DiLibMasterDataWebApplicationFactory<Startup, TTestedEntity> host,
+            ITestOutputHelper testOutputHelper)
         {
             _host = host ?? throw new ArgumentNullException(nameof(host));
             _testOutputHelper = testOutputHelper;

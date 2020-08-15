@@ -9,11 +9,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -22,7 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Get_DimensionStructure_Should : TestBase
     {
-        public Get_DimensionStructure_Should() : base(TestInfo)
+        public Get_DimensionStructure_Should()
+            : base(TestInfo)
         {
         }
 
@@ -36,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure)
@@ -46,7 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Desc = "desc2",
-                IsActive = 0
+                IsActive = 0,
             };
             DimensionStructure dimensionStructure2Result = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure2)

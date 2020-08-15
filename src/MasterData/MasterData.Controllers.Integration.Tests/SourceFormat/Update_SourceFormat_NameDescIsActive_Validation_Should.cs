@@ -8,19 +8,12 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using Validators.TestData;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -33,12 +26,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     {
         public Update_SourceFormat_NameDescIsActive_Validation_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
         [Theory]
-        [MemberData(nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
+        [MemberData(
+            nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
@@ -52,7 +47,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Id = id,
                 Name = name,
                 Desc = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act

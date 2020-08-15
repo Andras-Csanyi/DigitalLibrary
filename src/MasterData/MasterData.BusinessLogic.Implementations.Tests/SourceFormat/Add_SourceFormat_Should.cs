@@ -8,13 +8,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -23,7 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Add_SourceFormat_Should : TestBase
     {
-        public Add_SourceFormat_Should() : base(TestInfo)
+        public Add_SourceFormat_Should()
+            : base(TestInfo)
         {
         }
 

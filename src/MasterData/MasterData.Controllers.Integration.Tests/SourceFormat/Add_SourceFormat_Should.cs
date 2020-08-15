@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -44,7 +38,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act
@@ -67,7 +61,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "nameqqqqq",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             SourceFormat res = await _masterDataHttpClient.AddSourceFormatAsync(orig)

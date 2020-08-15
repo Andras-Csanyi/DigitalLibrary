@@ -7,7 +7,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

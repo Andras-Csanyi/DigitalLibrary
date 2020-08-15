@@ -21,12 +21,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
         }
 
-        public SourceFormatBuilderServiceException(string? message) : base(message)
+        public SourceFormatBuilderServiceException(string? message)
+            : base(message)
         {
         }
 
-        public SourceFormatBuilderServiceException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public SourceFormatBuilderServiceException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

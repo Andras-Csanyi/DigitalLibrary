@@ -8,8 +8,7 @@ namespace DigitalLibrary.Ui.WebUi.Services
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using MasterData.DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
     ///     Helper service for manipulating Dimension domain entities and lists.

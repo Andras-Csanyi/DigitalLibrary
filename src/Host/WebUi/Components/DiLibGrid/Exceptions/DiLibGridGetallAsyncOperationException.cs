@@ -14,17 +14,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
         {
         }
 
-        protected DiLibGridGetallAsyncOperationException(SerializationInfo? info, StreamingContext context) : base(info,
-            context)
+        protected DiLibGridGetallAsyncOperationException(SerializationInfo? info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
 
-        public DiLibGridGetallAsyncOperationException(string? message) : base(message)
+        public DiLibGridGetallAsyncOperationException(string? message)
+            : base(message)
         {
         }
 
-        public DiLibGridGetallAsyncOperationException(string? message, Exception? innerException) : base(message,
-            innerException)
+        public DiLibGridGetallAsyncOperationException(string? message, Exception? innerException)
+            : base(
+                message,
+                innerException)
         {
         }
     }

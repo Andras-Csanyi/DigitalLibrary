@@ -9,21 +9,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.Utils.Guards;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Utils.Guards;
-
-    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
@@ -49,8 +42,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         Check.IsNotNull(newDimensionValue, newDimensionValueErrorMsg);
 
                         await _masterDataValidators.DimensionValueValidator
-                           .ValidateAndThrowAsync(oldDimensionValue,
-                                ruleSet: ValidatorRulesets.ModifyDimensionValue)
+                           .ValidateAndThrowAsync(
+                               oldDimensionValue,
+                               ruleSet: ValidatorRulesets.ModifyDimensionValue)
                            .ConfigureAwait(false);
 
                         Dimension dim = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
@@ -76,7 +70,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             // the dimension - dimension value reference to that
                             DimensionValue modifiedButNewDimensionValue = new DimensionValue
                             {
-                                Value = newDimensionValue.Value
+                                Value = newDimensionValue.Value,
                             };
                             await ctx.DimensionValues.AddAsync(modifiedButNewDimensionValue).ConfigureAwait(false);
                             await ctx.SaveChangesAsync().ConfigureAwait(false);
@@ -100,7 +94,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             await transaction.CommitAsync().ConfigureAwait(false);
 
                             DimensionValue modifiedResult = await ctx.DimensionValues.FirstOrDefaultAsync(
-                                p => p.Id == modifiedButNewDimensionValue.Id);
+                                p => p.Id == modifiedButNewDimensionValue.Id).ConfigureAwait(false);
                             return modifiedResult;
                         }
 

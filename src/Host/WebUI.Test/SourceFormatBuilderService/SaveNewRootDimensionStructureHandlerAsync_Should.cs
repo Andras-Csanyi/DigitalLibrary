@@ -8,15 +8,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using FluentAssertions;
-
     using FluentValidation;
-
-    using MasterData.DomainModel;
-
-    using WebUi.Components.SourceFormatBuilder;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -34,7 +29,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
         public void ThrowException_WhenDimensionStructure_InputIsInvalid(
             long id,
             string name,
@@ -76,7 +71,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "<Pending>")]
         public void ThrowException_WhenDimension_InputIsInvalid(
             long id,
             string name,

@@ -7,15 +7,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -28,7 +23,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     {
         public Update_SourceFormat_NameDescIsActive_Should(
             DiLibMasterDataWebApplicationFactory<Startup, SourceFormat> host,
-            ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -44,7 +40,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "orig",
                 Desc = "orig",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat origResult = await _masterDataHttpClient
                .AddSourceFormatAsync(orig)

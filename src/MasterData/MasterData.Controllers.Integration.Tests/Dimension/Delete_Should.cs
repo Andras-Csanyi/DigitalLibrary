@@ -10,17 +10,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
-
     using WebApp;
-
     using Xunit;
     using Xunit.Abstractions;
 
@@ -31,8 +25,10 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
     public class Delete_Should : TestBase<Dimension>
     {
-        public Delete_Should(DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
-                             ITestOutputHelper testOutputHelper) : base(host, testOutputHelper)
+        public Delete_Should(
+            DiLibMasterDataWebApplicationFactory<Startup, Dimension> host,
+            ITestOutputHelper testOutputHelper)
+            : base(host, testOutputHelper)
         {
         }
 
@@ -44,7 +40,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "asdasd",
                 Description = "asdad",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension1Result = await _masterDataHttpClient.AddDimensionAsync(dimension1)
                .ConfigureAwait(false);
@@ -53,7 +49,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "qweqwe",
                 Description = "qweqwe",
-                IsActive = 0
+                IsActive = 0,
             };
             Dimension dimension2Result = await _masterDataHttpClient.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
@@ -77,7 +73,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = 1000
+                Id = 1000,
             };
 
             // Act

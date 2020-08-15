@@ -9,17 +9,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
-
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
     using FluentValidation;
-
-    using Services;
-
-    using Utils.Guards;
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService
@@ -515,8 +511,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
-                    await RemoveItemRecursivelyAsync(_sourceFormat.RootDimensionStructure,
-                            DimensionStructureToBeDeletedFromTree.Guid)
+                    await RemoveItemRecursivelyAsync(
+                        _sourceFormat.RootDimensionStructure,
+                        DimensionStructureToBeDeletedFromTree.Guid)
                        .ConfigureAwait(false);
                 }
             }
@@ -537,8 +534,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                         if (dimensionStructure.ChildDimensionStructures.ElementAt(i).Guid == documentStructureGuid)
                         {
                             dimensionStructure.ChildDimensionStructures.Remove(
-                                dimensionStructure.ChildDimensionStructures.ElementAt(i)
-                            );
+                                dimensionStructure.ChildDimensionStructures.ElementAt(i));
                             break;
                         }
 

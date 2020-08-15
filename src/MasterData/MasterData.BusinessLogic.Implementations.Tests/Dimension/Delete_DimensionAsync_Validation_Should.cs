@@ -8,17 +8,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
     using FluentValidation;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -27,7 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Delete_DimensionAsync_Validation_Should : TestBase
     {
-        public Delete_DimensionAsync_Validation_Should() : base(TestInfo)
+        public Delete_DimensionAsync_Validation_Should()
+            : base(TestInfo)
         {
         }
 
@@ -39,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act

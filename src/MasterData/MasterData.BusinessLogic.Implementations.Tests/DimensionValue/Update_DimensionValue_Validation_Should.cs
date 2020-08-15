@@ -8,19 +8,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
     using FluentValidation;
-
-    using Utils.Guards;
-
-    using Validators.TestData;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -29,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Update_DimensionValue_Validation_Should : TestBase
     {
-        public Update_DimensionValue_Validation_Should() : base(TestInfo)
+        public Update_DimensionValue_Validation_Should()
+            : base(TestInfo)
         {
         }
 
