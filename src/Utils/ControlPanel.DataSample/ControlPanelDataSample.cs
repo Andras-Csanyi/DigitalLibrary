@@ -27,7 +27,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "Available modules in the system",
                     IsActive = 1,
                     MenuRoute = "modules",
-                    ModuleId = controlPanel.Id
+                    ModuleId = controlPanel.Id,
                 };
                 ctx.Menus.Add(modulesListMenu);
                 ctx.SaveChanges();
@@ -38,7 +38,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "Available menus in the system",
                     IsActive = 1,
                     MenuRoute = "menus",
-                    ModuleId = controlPanel.Id
+                    ModuleId = controlPanel.Id,
                 };
                 ctx.Menus.Add(availableMenusList);
                 ctx.SaveChanges();
@@ -58,7 +58,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "Dimensions in the system",
                     IsActive = 1,
                     MenuRoute = "dimension",
-                    ModuleId = masterDataModule.Id
+                    ModuleId = masterDataModule.Id,
                 };
                 ctx.Menus.Add(dimension);
                 ctx.SaveChanges();
@@ -69,7 +69,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "Source formats description",
                     IsActive = 1,
                     MenuRoute = "sourceformats",
-                    ModuleId = masterDataModule.Id
+                    ModuleId = masterDataModule.Id,
                 };
                 ctx.Menus.Add(topDimensionStructure);
                 ctx.SaveChanges();
@@ -80,7 +80,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "Dimension structures",
                     IsActive = 1,
                     MenuRoute = "dimensionstructures",
-                    ModuleId = masterDataModule.Id
+                    ModuleId = masterDataModule.Id,
                 };
                 ctx.Menus.Add(dimensionStructure);
                 ctx.SaveChanges();
@@ -91,7 +91,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                     Description = "SourceFormat Builder",
                     IsActive = 1,
                     MenuRoute = "sourceformatbuilder",
-                    ModuleId = masterDataModule.Id
+                    ModuleId = masterDataModule.Id,
                 };
                 ctx.Menus.Add(documentBuilder);
                 ctx.SaveChanges();
@@ -114,7 +114,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Team Manager",
                 Description = "Module for managing teams",
                 ModuleRoute = "teammanager",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.Modules.Add(teamManager);
             ctx.SaveChanges();
@@ -124,7 +124,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Money Tracker",
                 Description = "Module for tracking money",
                 ModuleRoute = "money_tracker",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.Modules.Add(moneyTracker);
             ctx.SaveChanges();
@@ -134,7 +134,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Master Data",
                 Description = "Module for managing Master Data",
                 ModuleRoute = "masterdata",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.Modules.Add(masterData);
             ctx.SaveChanges();
@@ -144,7 +144,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
                 Name = "Control Panel",
                 Description = "Control Panel Module",
                 ModuleRoute = "controlpanel",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.Modules.Add(controlPanelModule);
             ctx.SaveChanges();

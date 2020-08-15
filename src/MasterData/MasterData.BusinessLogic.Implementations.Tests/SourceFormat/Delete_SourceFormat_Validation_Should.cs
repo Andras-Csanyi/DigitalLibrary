@@ -40,7 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act

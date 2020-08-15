@@ -44,7 +44,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureValidator(),
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
-                null
+                null,
             },
             new object[]
             {
@@ -57,7 +57,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                     new DimensionStructureDimensionStructureValidator(),
                     new DimensionStructureQueryObjectValidator()),
                 null,
-            }
+            },
         };
 
         [Theory]

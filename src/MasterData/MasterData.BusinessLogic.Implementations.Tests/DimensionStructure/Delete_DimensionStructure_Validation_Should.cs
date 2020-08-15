@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Id = 1000
+                Id = 1000,
             };
 
             // Act

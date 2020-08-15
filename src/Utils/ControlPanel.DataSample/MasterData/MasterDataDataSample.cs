@@ -96,7 +96,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             {
                 Name = "Nutrition intake",
                 Desc = "Nutrition intake dimension structure",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.DimensionStructures.Add(nutritionIntakeTopDimensionStructure);
             ctx.SaveChanges();
@@ -108,7 +108,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             {
                 Name = "RSS Dimension Structure",
                 Desc = "RSS Dimension structure",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.DimensionStructures.Add(rssTopDimensionStructure);
             ctx.SaveChanges();

@@ -43,7 +43,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "Add_TheItem",
                 Description = "Add_TheItem",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act
@@ -65,7 +65,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "ThrowException_WhenNameUniqueIndexViolated",
                 Description = "ThrowException_WhenNameUniqueIndexViolated",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await _masterDataHttpClient.AddDimensionAsync(dimension).ConfigureAwait(false);
 

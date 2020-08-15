@@ -40,7 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name1",
                 Description = "desc1",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension1Result = await masterDataBusinessLogic.AddDimensionAsync(dimension1)
                .ConfigureAwait(false);
@@ -49,7 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Description = "desc2",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension2Result = await masterDataBusinessLogic.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);

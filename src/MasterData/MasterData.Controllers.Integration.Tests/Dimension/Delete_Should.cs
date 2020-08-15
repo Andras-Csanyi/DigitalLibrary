@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "asdasd",
                 Description = "asdad",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension1Result = await _masterDataHttpClient.AddDimensionAsync(dimension1)
                .ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             {
                 Name = "qweqwe",
                 Description = "qweqwe",
-                IsActive = 0
+                IsActive = 0,
             };
             Dimension dimension2Result = await _masterDataHttpClient.AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
@@ -78,7 +78,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = 1000
+                Id = 1000,
             };
 
             // Act

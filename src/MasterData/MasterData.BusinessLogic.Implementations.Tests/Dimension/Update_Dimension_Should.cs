@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 0
+                IsActive = 0,
             };
             Dimension dimensionResult = await masterDataBusinessLogic.AddDimensionAsync(dimension)
                .ConfigureAwait(false);
@@ -74,7 +74,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Id = 299,
                 Name = "name",
                 Description = "desc",
-                IsActive = 0
+                IsActive = 0,
             };
 
             // Act

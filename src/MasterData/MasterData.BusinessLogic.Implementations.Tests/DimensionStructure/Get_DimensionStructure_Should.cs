@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureResult = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure)
@@ -47,7 +47,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name2",
                 Desc = "desc2",
-                IsActive = 0
+                IsActive = 0,
             };
             DimensionStructure dimensionStructure2Result = await masterDataBusinessLogic.AddDimensionStructureAsync(
                     dimensionStructure2)

@@ -103,7 +103,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
                 Description = "desc",
                 ModuleId = moduleResult.Id,
                 IsActive = 1,
-                MenuRoute = "asd"
+                MenuRoute = "asd",
             };
 
             // Act

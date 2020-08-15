@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             new object[]
             {
                 1, null
-            }
+            },
         };
 
         public static IEnumerable<object[]> AddDimensionStructure_Validation_TestData = new List<object[]>

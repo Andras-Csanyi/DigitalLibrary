@@ -99,7 +99,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             {
                 Name = "Hungarian Legal Entity Format",
                 Desc = "Hungarian Legal Entity Format, mainly Kft., Bt., or etc.",
-                IsActive = 1
+                IsActive = 1,
             };
             ctx.DimensionStructures.Add(hungarianLegalEntityFormat);
             ctx.SaveChanges();

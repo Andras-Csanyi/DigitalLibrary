@@ -33,7 +33,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
             {
                 new Dimension(),
                 new Dimension(),
-                new Dimension()
+                new Dimension(),
             };
 
             List<Dimension> result = await service.AddNulloToListAsFirstItem(list)

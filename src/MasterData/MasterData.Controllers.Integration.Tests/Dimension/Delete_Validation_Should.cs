@@ -41,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act

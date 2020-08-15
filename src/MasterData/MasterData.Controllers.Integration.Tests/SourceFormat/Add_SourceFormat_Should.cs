@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "name",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             // Act
@@ -67,7 +67,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "nameqqqqq",
                 Desc = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
 
             SourceFormat res = await _masterDataHttpClient.AddSourceFormatAsync(orig)

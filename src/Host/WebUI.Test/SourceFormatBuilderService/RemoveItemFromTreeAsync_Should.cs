@@ -57,12 +57,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             {
                 Id = 102,
                 Name = "two oh one",
-                Desc = "two oh two"
+                Desc = "two oh two",
             };
             List<DimensionStructure> childDimensionStructures = new List<DimensionStructure>
             {
                 firstLevelFirst,
-                firstLevelSecond
+                firstLevelSecond,
             };
             DimensionStructure rootDimensionStructure = new DimensionStructure
             {
@@ -187,7 +187,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>
                 {
                     secondLevelFirst,
-                    secondLevelSecond
+                    secondLevelSecond,
                 },
             };
             DimensionStructure firstLevelFirst_secondLevelFirst = new DimensionStructure
@@ -322,7 +322,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 ChildDimensionStructures = new List<DimensionStructure>
                 {
                     secondLevelFirst,
-                    secondLevelSecond
+                    secondLevelSecond,
                 },
             };
             DimensionStructure firstLevelFirst = new DimensionStructure

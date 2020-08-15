@@ -46,7 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue dimVal1 = new DimensionValue
             {
-                Value = "dimval1"
+                Value = "dimval1",
             };
             DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal1,
@@ -63,7 +63,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             DimensionValue dimval1Modified = new DimensionValue
             {
-                Value = "super-duper value"
+                Value = "super-duper value",
             };
             DimensionValue result = await masterDataBusinessLogic.ModifyDimensionValueAsync(
                 dimensionResult.Id,
@@ -94,12 +94,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             DimensionValue oldDimensionValue = new DimensionValue
             {
                 Id = 101,
-                Value = "asd"
+                Value = "asd",
             };
 
             DimensionValue newDimensionValue = new DimensionValue
             {
-                Value = "asdasd"
+                Value = "asdasd",
             };
 
             // Act
@@ -122,7 +122,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
@@ -130,7 +130,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue dimVal1 = new DimensionValue
             {
-                Value = "dimval1"
+                Value = "dimval1",
             };
             DimensionValue dimVal1Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal1,
@@ -138,7 +138,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionValue dimVal2 = new DimensionValue
             {
-                Value = "dimval2"
+                Value = "dimval2",
             };
             DimensionValue dimVal2Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal2,
@@ -148,14 +148,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "dimension 2",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimension2Result = await masterDataBusinessLogic
                .AddDimensionAsync(dimension2)
                .ConfigureAwait(false);
             DimensionValue dimVal3 = new DimensionValue
             {
-                Value = "dimval3"
+                Value = "dimval3",
             };
             DimensionValue dimVal3Result = await masterDataBusinessLogic.AddDimensionValueAsync(
                 dimVal3,
@@ -164,7 +164,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Act
             DimensionValue dimVal3Modification = new DimensionValue
             {
-                Value = "modified value"
+                Value = "modified value",
             };
             Func<Task> action = async () =>
             {
@@ -187,7 +187,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
@@ -196,12 +196,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             DimensionValue oldDimensionValue = new DimensionValue
             {
                 Id = 101,
-                Value = "old one"
+                Value = "old one",
             };
 
             DimensionValue modifiedOldOne = new DimensionValue
             {
-                Value = "modified stuff"
+                Value = "modified stuff",
             };
 
             // Act

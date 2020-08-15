@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "source format",
                 Desc = "Source format",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
@@ -73,7 +73,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "source format",
                 Desc = "Source format",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
@@ -115,7 +115,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "First Level second",
                 Desc = "first level second",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureFirstLevelTwoResult = await masterDataBusinessLogic
                .AddDimensionStructureAsync(dimensionStructureFirstLevelTwo)
@@ -154,7 +154,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "source format",
                 Desc = "Source format",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat sourceFormatResult = await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
@@ -196,7 +196,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "First Level second",
                 Desc = "first level second",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureFirstLevelSecondResult = await masterDataBusinessLogic
                .AddDimensionStructureAsync(dimensionStructureFirstLevelSecond)
@@ -217,7 +217,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "first level one - Second Level One",
                 Desc = "first level one - Second Level one",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureFirstLevelOneSecondLevelOneResult = await masterDataBusinessLogic
                .AddDimensionStructureAsync(dimensionStructureFirstLevelOneSecondLevelOne)
@@ -260,7 +260,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             {
                 Name = "first level second - Second Level One",
                 Desc = "first level second - Second Level one",
-                IsActive = 1
+                IsActive = 1,
             };
             DimensionStructure dimensionStructureFirstLevelSecondSecondLevelOneResult = await masterDataBusinessLogic
                .AddDimensionStructureAsync(dimensionStructureFirstLevelSecondSecondLevelOne)

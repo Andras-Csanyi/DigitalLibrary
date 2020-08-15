@@ -41,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             // Arrange
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Id = 400
+                Id = 400,
             };
 
             // Act

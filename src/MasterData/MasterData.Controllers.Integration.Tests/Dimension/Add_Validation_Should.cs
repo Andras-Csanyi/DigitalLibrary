@@ -52,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
                 Id = id,
                 Name = name,
                 Description = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act

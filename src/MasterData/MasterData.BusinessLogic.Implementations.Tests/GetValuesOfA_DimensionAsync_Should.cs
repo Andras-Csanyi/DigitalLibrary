@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DomainModel.DimensionValue dimensionValue = new DomainModel.DimensionValue
             {
-                Value = "value"
+                Value = "value",
             };
             DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(
@@ -73,7 +73,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)
@@ -81,7 +81,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DomainModel.DimensionValue dimensionValue = new DomainModel.DimensionValue
             {
-                Value = "value"
+                Value = "value",
             };
             DomainModel.DimensionValue dimensionValueResult = await masterDataBusinessLogic
                .AddDimensionValueAsync(
@@ -90,7 +90,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DomainModel.DimensionValue dimensionValue2 = new DomainModel.DimensionValue
             {
-                Value = "value2"
+                Value = "value2",
             };
             DomainModel.DimensionValue dimensionValueResult2 = await masterDataBusinessLogic
                .AddDimensionValueAsync(
@@ -99,7 +99,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DomainModel.DimensionValue dimensionValue3 = new DomainModel.DimensionValue
             {
-                Value = "value3"
+                Value = "value3",
             };
             DomainModel.DimensionValue dimensionValueResult3 = await masterDataBusinessLogic
                .AddDimensionValueAsync(
@@ -145,7 +145,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 Name = "name",
                 Description = "desc",
-                IsActive = 1
+                IsActive = 1,
             };
             DomainModel.Dimension dimensionResult = await masterDataBusinessLogic
                .AddDimensionAsync(dimension)

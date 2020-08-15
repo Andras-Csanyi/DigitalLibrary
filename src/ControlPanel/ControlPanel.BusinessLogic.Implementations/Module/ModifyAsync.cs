@@ -76,7 +76,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             {
                                 DomainModel.Entities.Menu toBeDeleted = new DomainModel.Entities.Menu
                                 {
-                                    Id = l
+                                    Id = l,
                                 };
                                 await _menuBusinessLogic.DeleteAsync(toBeDeleted).ConfigureAwait(false);
                             }

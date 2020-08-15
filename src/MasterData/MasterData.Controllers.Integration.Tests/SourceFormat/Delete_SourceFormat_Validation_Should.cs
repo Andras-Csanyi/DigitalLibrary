@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act

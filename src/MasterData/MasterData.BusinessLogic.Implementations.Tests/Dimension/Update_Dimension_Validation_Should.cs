@@ -51,7 +51,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 Id = id,
                 Name = name,
                 Description = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act

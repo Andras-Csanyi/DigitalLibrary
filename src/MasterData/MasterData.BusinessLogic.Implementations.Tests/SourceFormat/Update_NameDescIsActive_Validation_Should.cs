@@ -49,7 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 Id = id,
                 Name = name,
                 Desc = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act

@@ -40,7 +40,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             {
                 Name = "Something root",
                 Desc = "Something root description",
-                IsActive = 1
+                IsActive = 1,
             };
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 

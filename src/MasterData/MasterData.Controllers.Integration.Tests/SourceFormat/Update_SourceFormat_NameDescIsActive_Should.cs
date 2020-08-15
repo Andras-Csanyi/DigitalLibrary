@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "orig",
                 Desc = "orig",
-                IsActive = 1
+                IsActive = 1,
             };
             SourceFormat origResult = await _masterDataHttpClient
                .AddSourceFormatAsync(orig)

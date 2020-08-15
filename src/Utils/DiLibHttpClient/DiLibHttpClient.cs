@@ -201,7 +201,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         {
             string payloadString = JsonConvert.SerializeObject(payload, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
             StringContent stringContent = new StringContent(payloadString, Encoding.UTF8);
             stringContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
@@ -212,7 +212,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         {
             T result = JsonConvert.DeserializeObject<T>(stringContent, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
             return result;
         }

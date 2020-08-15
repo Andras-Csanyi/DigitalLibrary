@@ -74,7 +74,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                     DimensionDimensionValue dimensionDimensionValue = new DimensionDimensionValue
                                     {
                                         DimensionId = dimension.Id,
-                                        DimensionValueId = doesDimensionValueExists.Id
+                                        DimensionValueId = doesDimensionValueExists.Id,
                                     };
                                     await ctx.DimensionDimensionValues.AddAsync(dimensionDimensionValue)
                                        .ConfigureAwait(false);
@@ -95,7 +95,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             // create dimension value entry
                             DimensionValue newDimensionValue = new DimensionValue
                             {
-                                Value = dimensionValue.Value
+                                Value = dimensionValue.Value,
                             };
                             await ctx.DimensionValues.AddAsync(newDimensionValue)
                                .ConfigureAwait(false);
@@ -105,7 +105,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             DimensionDimensionValue newlyAddedDimensionValue = new DimensionDimensionValue
                             {
                                 DimensionId = dimension.Id,
-                                DimensionValueId = newDimensionValue.Id
+                                DimensionValueId = newDimensionValue.Id,
                             };
                             await ctx.DimensionDimensionValues.AddAsync(newlyAddedDimensionValue)
                                .ConfigureAwait(false);

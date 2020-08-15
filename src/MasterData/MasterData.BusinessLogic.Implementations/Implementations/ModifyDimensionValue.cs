@@ -76,7 +76,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             // the dimension - dimension value reference to that
                             DimensionValue modifiedButNewDimensionValue = new DimensionValue
                             {
-                                Value = newDimensionValue.Value
+                                Value = newDimensionValue.Value,
                             };
                             await ctx.DimensionValues.AddAsync(modifiedButNewDimensionValue).ConfigureAwait(false);
                             await ctx.SaveChangesAsync().ConfigureAwait(false);

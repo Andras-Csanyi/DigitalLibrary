@@ -13,6 +13,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
 
         Delete,
 
-        Modify
+        Modify,
     }
 }

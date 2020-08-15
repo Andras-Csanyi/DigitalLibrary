@@ -52,7 +52,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             {
                 Name = "second",
                 Desc = "second",
-                IsActive = 0
+                IsActive = 0,
             };
             SourceFormat secondResult = await _masterDataHttpClient
                .AddSourceFormatAsync(second)

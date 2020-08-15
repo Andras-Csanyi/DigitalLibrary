@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 null,
                 null,
                 null,
-                null
+                null,
             },
             new object[]
             {

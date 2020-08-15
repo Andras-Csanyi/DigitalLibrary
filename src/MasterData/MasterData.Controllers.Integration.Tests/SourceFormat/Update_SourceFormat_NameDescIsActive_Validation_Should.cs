@@ -53,7 +53,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
                 Id = id,
                 Name = name,
                 Desc = desc,
-                IsActive = isActive
+                IsActive = isActive,
             };
 
             // Act

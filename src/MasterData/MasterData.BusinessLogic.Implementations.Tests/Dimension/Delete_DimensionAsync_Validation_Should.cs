@@ -40,7 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             // Arrange
             Dimension dimension = new Dimension
             {
-                Id = 0
+                Id = 0,
             };
 
             // Act
