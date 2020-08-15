@@ -81,6 +81,18 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .ToList()
                .Count
                .Should().Be(1);
+
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure
+               .ChildDimensionStructures
+               .Where(g => g.Guid == toBeReplaced.Guid)
+               .ToList()
+               .Count
+               .Should().Be(0);
+
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure
+               .ChildDimensionStructures
+               .Count
+               .Should().Be(2);
         }
 
         [Fact]
