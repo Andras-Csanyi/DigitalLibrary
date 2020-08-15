@@ -17,7 +17,6 @@
     <Rule Id="CA1005" Action="Warning" />
     <Rule Id="CA1008" Action="Warning" />
     <Rule Id="CA1012" Action="Warning" />
-    <Rule Id="CA1014" Action="None"/>
     <Rule Id="CA1017" Action="Warning" />
     <Rule Id="CA1021" Action="Warning" />
     <Rule Id="CA1024" Action="Warning" />
@@ -37,7 +36,7 @@
     <Rule Id="CA1708" Action="Warning" />
     <Rule Id="CA1711" Action="Warning" />
     <Rule Id="CA1725" Action="Warning" />
-    <Rule Id="CA1815" Action="None"/>
+    <Rule Id="CA1815" Action="None" />
     <Rule Id="CA2109" Action="Warning" />
     <Rule Id="CA2217" Action="Warning" />
   </Rules>
@@ -118,17 +117,13 @@
     <Rule Id="CA1309" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-      <Rule Id="SA1101" Action="None"/> <!-- .this -->
-      <Rule Id="SA1305" Action="Warning"/>
-      <Rule Id="SA1412" Action="None"/> <!-- utf8 -->
-      <Rule Id="SA1600" Action="Warning"/> <!-- public elements doc -->
-      <Rule Id="SA1601" Action="Warning"/> <!-- partial elements doc -->
-      <Rule Id="SA1602" Action="Warning"/> <!-- enums doc -->
-      <Rule Id="SA1609" Action="Warning"/>
-      <Rule Id="SA1639" Action="None"/> <!-- File header summary -->
-      <Rule Id="SX1101" Action="Warning"/>
-      <Rule Id="SX1309" Action="Warning"/>
-      <Rule Id="SX1309S" Action="Warning"/>
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1305" Action="Warning" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1609" Action="Warning" />
+    <Rule Id="SX1101" Action="Warning" />
+    <Rule Id="SX1309" Action="Warning" />
+    <Rule Id="SX1309S" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="xunit.analyzers" RuleNamespace="xunit.analyzers">
     <Rule Id="xUnit1015" Action="Warning" />
