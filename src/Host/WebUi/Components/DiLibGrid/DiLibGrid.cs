@@ -11,8 +11,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
+
     using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
     using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers;
+
     using Newtonsoft.Json;
 
     public class DiLibGrid<T>
@@ -159,7 +161,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                      || GetAllAsyncMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(GetAllAsyncMethodInfo.HttpMethod)} is null, or " +
-                            $"{nameof(GetAllAsyncMethodInfo.Url)} is null";
+                                     $"{nameof(GetAllAsyncMethodInfo.Url)} is null";
                         throw new DiLibGridHttpOperationGuardException(msg);
                     }
 
@@ -170,7 +172,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                      || AddNewItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(AddNewItemMethodInfo.HttpMethod)} is null, or " +
-                            $"{nameof(AddNewItemMethodInfo.Url)} is null!";
+                                     $"{nameof(AddNewItemMethodInfo.Url)} is null!";
                         throw new DiLibGridHttpOperationGuardException(msg);
                     }
 
@@ -181,7 +183,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                      || DeleteItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(DeleteItemMethodInfo.HttpMethod)} is null, or " +
-                            $"{nameof(DeleteItemMethodInfo.Url)} is null!";
+                                     $"{nameof(DeleteItemMethodInfo.Url)} is null!";
                         throw new DiLibGridHttpOperationGuardException(msg);
                     }
 
@@ -192,7 +194,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
                      || UpdateItemMethodInfo.Url == null)
                     {
                         string msg = $"{nameof(UpdateItemMethodInfo.HttpMethod)} is null, or " +
-                            $"{nameof(UpdateItemMethodInfo.Url)} is null!";
+                                     $"{nameof(UpdateItemMethodInfo.Url)} is null!";
                         throw new DiLibGridHttpOperationGuardException(msg);
                     }
 
@@ -225,8 +227,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
             if (obj != null)
             {
                 return $"Object type: {_genericObjectPropertiesProvider.GetType<T>()}, " +
-                    $"id: {_genericObjectPropertiesProvider.GetPropertyValueOfGenericObject("Id", obj)}, " +
-                    $"name: {_genericObjectPropertiesProvider.GetPropertyValueOfGenericObject("Name", obj)}";
+                       $"id: {_genericObjectPropertiesProvider.GetPropertyValueOfGenericObject("Id", obj)}, " +
+                       $"name: {_genericObjectPropertiesProvider.GetPropertyValueOfGenericObject("Name", obj)}";
             }
 
             return null;

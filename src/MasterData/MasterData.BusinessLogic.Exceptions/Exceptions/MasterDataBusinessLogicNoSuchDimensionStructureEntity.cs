@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         public MasterDataBusinessLogicNoSuchDimensionStructureEntity(string? message, Exception? innerException)
             : base(
-            message, innerException)
+                message, innerException)
         {
         }
     }

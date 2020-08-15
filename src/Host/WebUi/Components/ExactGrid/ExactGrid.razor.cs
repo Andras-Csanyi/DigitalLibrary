@@ -11,11 +11,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
     using System.Net.Http;
     using System.Reflection;
     using System.Threading.Tasks;
+
     using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Web.Api;
+
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
+
     using Newtonsoft.Json;
 
     public partial class ExactGrid
@@ -56,7 +60,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
             Columns = await GetColumnNames().ConfigureAwait(false);
             _httpClient = HttpClientFactory.CreateClient("httpClient");
             string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
+                         $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
                 HttpMethod.Get, url);
             HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)

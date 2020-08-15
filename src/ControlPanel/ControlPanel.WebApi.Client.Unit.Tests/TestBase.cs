@@ -7,6 +7,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
+
     using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
 
     [ExcludeFromCodeCoverage]

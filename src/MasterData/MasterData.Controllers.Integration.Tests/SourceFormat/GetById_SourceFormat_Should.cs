@@ -7,10 +7,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+
     using FluentAssertions;
+
     using WebApp;
+
     using Xunit;
     using Xunit.Abstractions;
 

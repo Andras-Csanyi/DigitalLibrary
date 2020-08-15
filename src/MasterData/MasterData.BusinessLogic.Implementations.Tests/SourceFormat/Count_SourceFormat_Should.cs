@@ -7,9 +7,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

@@ -8,11 +8,16 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+
     using FluentAssertions;
+
     using FluentValidation;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -20,6 +25,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
     {
+        public SaveNewRootDimensionStructureHandlerAsync_Should(ITestOutputHelper outputHelper)
+            : base(outputHelper)
+        {
+        }
+
         [Theory(Skip = "tmp")]
         [InlineData(1, "name", "desc", 1)]
         [InlineData(0, "", "desc", 1)]

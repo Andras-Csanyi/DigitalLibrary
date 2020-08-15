@@ -7,6 +7,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

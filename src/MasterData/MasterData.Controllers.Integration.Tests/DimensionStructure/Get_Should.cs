@@ -9,10 +9,14 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+
     using FluentAssertions;
+
     using WebApp;
+
     using Xunit;
     using Xunit.Abstractions;
 

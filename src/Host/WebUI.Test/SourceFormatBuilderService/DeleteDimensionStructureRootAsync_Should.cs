@@ -7,11 +7,16 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+
     using FluentAssertions;
+
     using Moq;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -19,6 +24,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class DeleteDimensionStructureRootAsync_Should : TestBase
     {
+        public DeleteDimensionStructureRootAsync_Should(ITestOutputHelper outputHelper)
+            : base(outputHelper)
+        {
+        }
+
         [Fact]
         public async Task SetRootDimensionStructure_To_Null()
         {

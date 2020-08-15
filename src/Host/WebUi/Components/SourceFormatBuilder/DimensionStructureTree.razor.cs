@@ -9,10 +9,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Utils.Guards;
+
     using Microsoft.AspNetCore.Components;
 
     public partial class DimensionStructureTree
@@ -237,7 +240,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 Dimension dimension = _dimensions.FirstOrDefault(p => p.Id == _newDimensionStructure.DimensionId);
                 _newDimensionStructure.Dimension = dimension;
 
-                await SourceFormatBuilderService.AddOrUpdateDocumentStructureToTreeAsync(
+                await SourceFormatBuilderService.AddOrReplaceDocumentStructureToTreeAsync(
                         _newDimensionStructure,
                         DimensionStructureParameter.Guid)
                    .ConfigureAwait(false);

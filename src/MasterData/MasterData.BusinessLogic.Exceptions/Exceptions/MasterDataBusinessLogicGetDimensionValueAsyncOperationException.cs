@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
             string? message,
             Exception? innerException)
             : base(
-            message, innerException)
+                message, innerException)
         {
         }
     }

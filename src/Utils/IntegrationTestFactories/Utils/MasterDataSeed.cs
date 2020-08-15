@@ -6,6 +6,7 @@
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
     using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.Ctx;
 
     [ExcludeFromCodeCoverage]

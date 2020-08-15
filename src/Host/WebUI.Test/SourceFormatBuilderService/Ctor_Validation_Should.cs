@@ -9,14 +9,18 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
+
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
+
     using FluentAssertions;
+
     using Xunit;
+    using Xunit.Abstractions;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
@@ -54,6 +58,11 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 null,
             },
         };
+
+        public Ctor_Validation_Should(ITestOutputHelper outputHelper)
+            : base(outputHelper)
+        {
+        }
 
         [Theory]
         [MemberData(nameof(ThrowExceptionWhenInputIsNull))]

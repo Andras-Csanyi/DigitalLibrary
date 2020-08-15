@@ -10,6 +10,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
+
     using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
 
     public class GenericObjectPropertiesProvider

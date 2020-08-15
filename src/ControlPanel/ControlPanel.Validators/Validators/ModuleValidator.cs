@@ -6,6 +6,7 @@
 namespace DigitalLibrary.ControlPanel.Validators
 {
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
+
     using FluentValidation;
 
     public class ModuleValidator : AbstractValidator<Module>

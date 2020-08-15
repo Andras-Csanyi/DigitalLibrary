@@ -7,11 +7,13 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class DimensionStructureDimensionStructureConfiguration : IEntityTypeConfiguration<
-        DimensionStructureDimensionStructure>
+    public class DimensionStructureDimensionStructureConfiguration
+        : IEntityTypeConfiguration<
+            DimensionStructureDimensionStructure>
     {
         public void Configure(EntityTypeBuilder<DimensionStructureDimensionStructure> builder)
         {

@@ -7,6 +7,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     public interface IControlPanelWebClient

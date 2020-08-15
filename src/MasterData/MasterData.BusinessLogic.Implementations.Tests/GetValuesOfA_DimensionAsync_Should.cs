@@ -8,8 +8,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.DomainModel;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

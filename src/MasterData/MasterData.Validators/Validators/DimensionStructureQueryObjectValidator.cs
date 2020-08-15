@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.Validators
 {
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+
     using FluentValidation;
 
     public class DimensionStructureQueryObjectValidator : AbstractValidator<DimensionStructureQueryObject>

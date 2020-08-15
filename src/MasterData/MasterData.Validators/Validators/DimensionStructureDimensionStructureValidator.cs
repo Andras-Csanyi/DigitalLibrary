@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.Validators
 {
     using DigitalLibrary.MasterData.DomainModel;
+
     using FluentValidation;
 
     public class DimensionStructureDimensionStructureValidator : AbstractValidator<DimensionStructureDimensionStructure>

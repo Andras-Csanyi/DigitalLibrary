@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using System.Collections.Generic;
+
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
     public class Dimension : IHaveId, IHaveName

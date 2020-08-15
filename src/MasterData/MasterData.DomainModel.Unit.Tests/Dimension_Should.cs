@@ -7,8 +7,11 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

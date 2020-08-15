@@ -9,12 +9,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
+
     using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
 
@@ -43,8 +46,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                         await _masterDataValidators.DimensionValueValidator
                            .ValidateAndThrowAsync(
-                               oldDimensionValue,
-                               ruleSet: ValidatorRulesets.ModifyDimensionValue)
+                                oldDimensionValue,
+                                ruleSet: ValidatorRulesets.ModifyDimensionValue)
                            .ConfigureAwait(false);
 
                         Dimension dim = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
@@ -60,7 +63,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                         List<DimensionDimensionValue> countOfDimensionDimensionValueRelation = await ctx
                            .DimensionDimensionValues
                            .Where(p => p.DimensionValueId == oldDimensionValue.Id
-                             && p.DimensionId != dimensionId)
+                                    && p.DimensionId != dimensionId)
                            .ToListAsync().ConfigureAwait(false);
 
                         if (countOfDimensionDimensionValueRelation.Any())
@@ -77,13 +80,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                             DimensionDimensionValue theOneGoingToBeModified = await ctx.DimensionDimensionValues
                                .FirstOrDefaultAsync(p => p.DimensionId == dimensionId
-                                 && p.DimensionValueId == oldDimensionValue.Id)
+                                                      && p.DimensionValueId == oldDimensionValue.Id)
                                .ConfigureAwait(false);
                             if (theOneGoingToBeModified == null)
                             {
                                 string msg = $"There is no DimensionDimensionValue entity with " +
-                                    $"dimension id: {dimensionId}, and" +
-                                    $"dimension value id: {oldDimensionValue.Id}!";
+                                             $"dimension id: {dimensionId}, and" +
+                                             $"dimension value id: {oldDimensionValue.Id}!";
                                 throw new MasterDataBusinessLogicNoSuchDimensionDimensionValueEntity(msg);
                             }
 

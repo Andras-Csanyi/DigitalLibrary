@@ -7,10 +7,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
 
@@ -20,7 +22,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
+                using (IDbContextTransaction transaction =
+                    await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
                 {
                     try
                     {
@@ -32,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                            .ConfigureAwait(false);
 
                         string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                            $"with id: {dimensionStructure}.";
+                                     $"with id: {dimensionStructure}.";
                         Check.IsNotNull(toBeDeleted, msg);
 
                         ctx.Entry(toBeDeleted).State = EntityState.Deleted;

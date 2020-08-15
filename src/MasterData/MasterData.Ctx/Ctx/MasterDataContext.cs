@@ -8,6 +8,7 @@ namespace DigitalLibrary.MasterData.Ctx
     using DigitalLibrary.MasterData.Ctx.Configurations;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+
     using Microsoft.EntityFrameworkCore;
 
     public class MasterDataContext : DbContext

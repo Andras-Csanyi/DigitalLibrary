@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
             SerializationInfo? info,
             StreamingContext context)
             : base(
-            info, context)
+                info, context)
         {
         }
 
@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
             string? message,
             Exception? innerException)
             : base(
-            message, innerException)
+                message, innerException)
         {
         }
     }
