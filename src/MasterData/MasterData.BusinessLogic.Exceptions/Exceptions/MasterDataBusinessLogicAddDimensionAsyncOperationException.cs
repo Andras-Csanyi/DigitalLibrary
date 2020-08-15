@@ -19,9 +19,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         protected MasterDataBusinessLogicAddDimensionAsyncOperationException(
             SerializationInfo? info,
             StreamingContext context)
-            : base(
-                info,
-                context)
+            : base(info, context)
         {
         }
 
