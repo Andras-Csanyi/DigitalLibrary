@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
         <RazorLangVersion>3.0</RazorLangVersion>
     </PropertyGroup>
 
@@ -10,6 +11,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.7"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.7"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 
 
