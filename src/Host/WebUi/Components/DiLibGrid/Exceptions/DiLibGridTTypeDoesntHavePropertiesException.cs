@@ -16,7 +16,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions
 
         protected DiLibGridTTypeDoesntHavePropertiesException(SerializationInfo? info, StreamingContext context)
             : base(
-            info, context)
+                info, context)
         {
         }
 

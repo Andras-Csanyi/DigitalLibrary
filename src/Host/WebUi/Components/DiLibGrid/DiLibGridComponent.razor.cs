@@ -8,9 +8,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using BlazorStrap;
-
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
 

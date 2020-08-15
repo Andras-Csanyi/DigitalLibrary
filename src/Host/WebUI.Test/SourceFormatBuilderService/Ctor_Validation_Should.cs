@@ -9,7 +9,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-    using System.Threading.Tasks;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
