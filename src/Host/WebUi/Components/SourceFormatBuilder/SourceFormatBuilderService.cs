@@ -9,13 +9,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Services;
-    using DigitalLibrary.Utils.Guards;
+
     using FluentValidation;
+
+    using Services;
+
+    using Utils.Guards;
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService
@@ -28,13 +32,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private List<Dimension> _dimensions = new List<Dimension>();
 
-        private IDomainEntityHelperService _domainEntityHelperService;
+        private readonly IDomainEntityHelperService _domainEntityHelperService;
 
         private bool _foundDuringDimensionStructureReplaceInTheTree;
 
-        private IMasterDataHttpClient _masterDataHttpClient;
-
-        private SourceFormat _sourceFormat = new SourceFormat();
+        private readonly IMasterDataHttpClient _masterDataHttpClient;
 
 
         public SourceFormatBuilderService(
@@ -51,6 +53,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             _domainEntityHelperService = domainEntityHelperService;
         }
 
+        /// <inheritdoc/>
         public async Task AddDimensionStructureAsync(
             long parentDimensionStructureId,
             DimensionStructure dimensionStructure)
@@ -73,14 +76,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             Check.IsNotNull(dimensionStructure);
 
-            if (_sourceFormat.RootDimensionStructure != null)
+            if (SourceFormat.RootDimensionStructure != null)
             {
                 string msg = "DimensionStructure in SourceFormat is not null.";
                 throw new SourceFormatBuilderServiceException(msg);
             }
 
-            _sourceFormat.RootDimensionStructure = dimensionStructure;
-            _sourceFormat.RootDimensionStructureId = dimensionStructure.Id;
+            SourceFormat.RootDimensionStructure = dimensionStructure;
+            SourceFormat.RootDimensionStructureId = dimensionStructure.Id;
         }
 
 
@@ -93,65 +96,69 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Check.AreNotEqual(parentDimensionStructureGuid, Guid.Empty);
 
             // ReSharper disable once CA1062
-            if (dimensionStructure.Guid == _sourceFormat.RootDimensionStructure.Guid)
+            if (dimensionStructure.Guid == SourceFormat.RootDimensionStructure.Guid)
             {
-                _sourceFormat.RootDimensionStructure.Name = dimensionStructure.Name;
-                _sourceFormat.RootDimensionStructure.Desc = dimensionStructure.Desc;
-                _sourceFormat.RootDimensionStructure.DimensionId = dimensionStructure.DimensionId;
-                _sourceFormat.RootDimensionStructure.Dimension = dimensionStructure.Dimension;
-                _sourceFormat.RootDimensionStructure.IsActive = dimensionStructure.IsActive;
+                SourceFormat.RootDimensionStructure.Name = dimensionStructure.Name;
+                SourceFormat.RootDimensionStructure.Desc = dimensionStructure.Desc;
+                SourceFormat.RootDimensionStructure.DimensionId = dimensionStructure.DimensionId;
+                SourceFormat.RootDimensionStructure.Dimension = dimensionStructure.Dimension;
+                SourceFormat.RootDimensionStructure.IsActive = dimensionStructure.IsActive;
                 return;
             }
 
             bool isFound = await FindDimensionStructureInTreeAsync(
                 dimensionStructure,
-                _sourceFormat.RootDimensionStructure.ChildDimensionStructures).ConfigureAwait(false);
+                SourceFormat.RootDimensionStructure.ChildDimensionStructures).ConfigureAwait(false);
 
             if (isFound)
             {
-                if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
                     await IterateThroughTheTreeForUpdating(
                             dimensionStructure,
-                            _sourceFormat.RootDimensionStructure.ChildDimensionStructures)
+                            SourceFormat.RootDimensionStructure.ChildDimensionStructures)
                        .ConfigureAwait(false);
                 }
             }
             else
             {
-                if (_sourceFormat.RootDimensionStructure.Guid == parentDimensionStructureGuid)
+                if (SourceFormat.RootDimensionStructure.Guid == parentDimensionStructureGuid)
                 {
-                    _sourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(dimensionStructure);
+                    SourceFormat.RootDimensionStructure.ChildDimensionStructures.Add(dimensionStructure);
                     return;
                 }
 
-                if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
                     await IterateThroughTheTreeForAdding(
                             dimensionStructure,
-                            _sourceFormat.RootDimensionStructure.ChildDimensionStructures,
+                            SourceFormat.RootDimensionStructure.ChildDimensionStructures,
                             parentDimensionStructureGuid)
                        .ConfigureAwait(false);
                 }
             }
         }
 
+        /// <inheritdoc/>
         public async Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure)
         {
             Check.IsNotNull(dimensionStructure);
             await CheckIfSourceFormatIsNull().ConfigureAwait(false);
 
-            _sourceFormat.RootDimensionStructure = null;
-            _sourceFormat.RootDimensionStructureId = null;
+            SourceFormat.RootDimensionStructure = null;
+            SourceFormat.RootDimensionStructureId = null;
         }
 
+        /// <inheritdoc/>
         public async Task DeleteDocumentStructureFromTreeAsync()
         {
             await RemoveItemFromTreeAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
 
+        /// <inheritdoc/>
         public async Task<bool> FindDimensionStructureInTreeAsync(
             DimensionStructure dimensionStructure,
             ICollection<DimensionStructure> dimensionStructures)
@@ -162,10 +169,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 foreach (DimensionStructure structure in dimensionStructures)
                 {
-                    if (structure.Guid == dimensionStructure.Guid)
-                    {
-                        return true;
-                    }
+                    if (structure.Guid == dimensionStructure.Guid) return true;
 
                     if (structure.ChildDimensionStructures.Any())
                     {
@@ -180,34 +184,39 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             return false;
         }
 
+        /// <inheritdoc/>
         public async Task<List<Dimension>> GetAllDimensionsFromServer()
         {
             return await _masterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public async Task<DimensionStructure> GetDimensionStructureByIdAsync(long dimensionStructureId)
         {
             Check.AreNotEqual(dimensionStructureId, 0);
             DimensionStructureQueryObject query = new DimensionStructureQueryObject
             {
                 GetDimensionsStructuredById = dimensionStructureId,
-                IncludeChildrenWhenGetDimensionStructureById = true,
+                IncludeChildrenWhenGetDimensionStructureById = true
             };
             DimensionStructure result = await _masterDataHttpClient.GetDimensionStructureByIdAsync(query)
                .ConfigureAwait(false);
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<DimensionStructure> GetDimensionStructureFromTreeByIdAsync(long dimensionStructureId)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
             return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public async Task<List<Dimension>> GetDimensionsWithNulloAsync()
         {
             try
@@ -225,36 +234,47 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
+        /// <inheritdoc/>
         public async Task<List<SourceFormat>> GetSourceFormatsAsync()
         {
             return await _masterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public bool IsEditSourceFormatDetailsButtonDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public bool IsLoadSourceFormatsButtonDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public bool IsNewSourceFormatButtonDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public bool IsSourceFormatCancelButtonDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public bool IsSourceFormatDropDownlistDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public bool IsSourceFormatSaveButtonDisabled { get; set; } = false;
 
+        /// <inheritdoc/>
         public long LoadedSourceFormatId { get; set; }
 
+        /// <inheritdoc/>
         public IMasterDataValidators MasterDataValidators { get; }
 
+        /// <inheritdoc/>
         public async Task OnUpdate(long sourceFormatId)
         {
             Check.AreNotEqual(0, sourceFormatId);
             SourceFormat querySourceFormat = new SourceFormat { Id = sourceFormatId };
-            _sourceFormat = await _masterDataHttpClient.GetSourceFormatWithFullDimensionStructureTreeAsync(
+            SourceFormat = await _masterDataHttpClient.GetSourceFormatWithFullDimensionStructureTreeAsync(
                     querySourceFormat)
                .ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
         public async Task ReplaceDimensionStructureInTheTree()
         {
             Check.IsNotNull(UpdateNodeOldDimensionStructure);
@@ -281,13 +301,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                     if (_foundDuringDimensionStructureReplaceInTheTree == false)
                     {
                         string msg = $"There is no DocumentStructure with id {UpdateNodeOldDimensionStructure} " +
-                            $"in the tree.";
+                            "in the tree.";
                         throw new SourceFormatBuilderServiceException(msg);
                     }
                 }
             }
         }
 
+        /// <inheritdoc/>
         public async Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure)
         {
             await MasterDataValidators.DimensionStructureValidator
@@ -314,14 +335,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 await MasterDataValidators.DimensionStructureValidator
                    .ValidateAndThrowAsync(
                         newRootDimensionStructure,
-                        ruleSet: DimensionStructureValidatorRulesets.Add)
+                        DimensionStructureValidatorRulesets.Add)
                    .ConfigureAwait(false);
 
                 if (newRootDimensionStructure.Dimension != null)
                 {
                     await MasterDataValidators.DimensionValidator.ValidateAndThrowAsync(
                             newRootDimensionStructure.Dimension,
-                            ruleSet: ValidatorRulesets.UpdateDimension)
+                            ValidatorRulesets.UpdateDimension)
                        .ConfigureAwait(false);
                 }
 
@@ -348,7 +369,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 {
                     if (string.IsNullOrEmpty(newRootDimensionStructure.Name))
                     {
-                        msg = $"Something went wrong during saving " +
+                        msg = "Something went wrong during saving " +
                             $"{newRootDimensionStructure.Name}";
                     }
                 }
@@ -361,22 +382,23 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
+        /// <inheritdoc/>
         public async Task SetDefaultStateForReplacementOfDimensionStructureInTree()
         {
             UpdateNodeNewDimensionStructure = null;
             UpdateNodeOldDimensionStructure = null;
         }
 
-        public SourceFormat SourceFormat
-        {
-            get => _sourceFormat;
-            set => _sourceFormat = value;
-        }
+        /// <inheritdoc/>
+        public SourceFormat SourceFormat { get; set; } = new SourceFormat();
 
+        /// <inheritdoc/>
         public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
 
+        /// <inheritdoc/>
         public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
 
+        /// <inheritdoc/>
         public async Task UpdateSourceFormatBuilder()
         {
             throw new NotImplementedException();
@@ -389,9 +411,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         private async Task CheckIfSourceFormatIsNull()
         {
-            if (_sourceFormat == null)
+            if (SourceFormat == null)
             {
-                string msg = $"There is no SourceFormat set up.";
+                string msg = "There is no SourceFormat set up.";
                 throw new SourceFormatBuilderServiceException(msg);
             }
         }
@@ -414,9 +436,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 foreach (DimensionStructure dimensionStructure in dimensionStructures)
                 {
                     if (dimensionStructure.Guid == parentDimensionStructureGuid)
-                    {
                         dimensionStructure.ChildDimensionStructures.Add(dimensionStructureToBeAdded);
-                    }
                     else
                     {
                         await IterateThroughTheTreeForAdding(
@@ -442,10 +462,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             {
                 for (int i = 0; i < dimensionStructureTree.ChildDimensionStructures.Count; i++)
                 {
-                    if (_foundDuringDimensionStructureReplaceInTheTree)
-                    {
-                        break;
-                    }
+                    if (_foundDuringDimensionStructureReplaceInTheTree) break;
 
                     if (dimensionStructureTree.ChildDimensionStructures.ElementAt(i).Guid == oldDimensionStructure.Guid)
                     {
@@ -502,18 +519,18 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         private async Task RemoveItemFromTreeAsync()
         {
             Check.IsNotNull(DimensionStructureToBeDeletedFromTree);
-            if (_sourceFormat.RootDimensionStructure.Guid == DimensionStructureToBeDeletedFromTree.Guid)
+            if (SourceFormat.RootDimensionStructure.Guid == DimensionStructureToBeDeletedFromTree.Guid)
             {
-                _sourceFormat.RootDimensionStructure = null;
-                _sourceFormat.RootDimensionStructureId = 0;
+                SourceFormat.RootDimensionStructure = null;
+                SourceFormat.RootDimensionStructureId = 0;
             }
             else
             {
-                if (_sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                if (SourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
                 {
                     await RemoveItemRecursivelyAsync(
-                        _sourceFormat.RootDimensionStructure,
-                        DimensionStructureToBeDeletedFromTree.Guid)
+                            SourceFormat.RootDimensionStructure,
+                            DimensionStructureToBeDeletedFromTree.Guid)
                        .ConfigureAwait(false);
                 }
             }
