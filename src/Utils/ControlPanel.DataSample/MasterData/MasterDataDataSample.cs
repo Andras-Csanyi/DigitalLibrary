@@ -5,7 +5,6 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Collections.Generic;
-
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
 

@@ -5,10 +5,8 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
-
     using Microsoft.EntityFrameworkCore;
 
     [ExcludeFromCodeCoverage]

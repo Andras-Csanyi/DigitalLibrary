@@ -6,11 +6,8 @@ namespace Guard.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.Utils.Guards;
-
     using FluentAssertions;
-
     using Xunit;
 
     [ExcludeFromCodeCoverage]

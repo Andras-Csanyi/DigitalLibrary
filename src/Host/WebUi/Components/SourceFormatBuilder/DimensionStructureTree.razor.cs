@@ -9,15 +9,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using BlazorStrap;
-
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
-
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.AspNetCore.Components;
-
-    using Utils.Guards;
 
     public partial class DimensionStructureTree
     {

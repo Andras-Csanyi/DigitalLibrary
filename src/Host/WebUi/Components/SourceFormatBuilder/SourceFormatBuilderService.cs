@@ -9,17 +9,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
-
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
     using FluentValidation;
-
-    using Services;
-
-    using Utils.Guards;
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService

@@ -7,11 +7,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
+    using DigitalLibrary.Utils.Guards;
     using FluentAssertions;
-
-    using Utils.Guards;
-
     using Xunit;
 
     [ExcludeFromCodeCoverage]

@@ -7,8 +7,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using DomainModel.Entities;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     public interface IModuleBusinessLogic
     {

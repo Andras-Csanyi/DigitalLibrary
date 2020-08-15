@@ -11,12 +11,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.DiLibGrid
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
-
-    using Exceptions;
-
+    using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Exceptions;
+    using DigitalLibrary.Ui.WebUi.Components.DiLibGrid.Providers;
     using Newtonsoft.Json;
-
-    using Providers;
 
     public class DiLibGrid<T>
     {

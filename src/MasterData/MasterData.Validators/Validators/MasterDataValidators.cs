@@ -5,7 +5,7 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
-    using Utils.Guards;
+    using DigitalLibrary.Utils.Guards;
 
     public class MasterDataValidators : IMasterDataValidators
     {

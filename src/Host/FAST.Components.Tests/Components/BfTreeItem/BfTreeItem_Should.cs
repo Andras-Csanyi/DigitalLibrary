@@ -7,14 +7,10 @@ namespace FAST.Components.Tests.Components.BfTreeItem
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-
     using Bunit;
-
     using FAST.Components.Components;
     using FAST.Components.Components.TreeView;
-
     using FluentAssertions;
-
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

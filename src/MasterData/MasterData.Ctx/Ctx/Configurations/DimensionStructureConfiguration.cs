@@ -5,8 +5,7 @@
 
 namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
-    using DomainModel;
-
+    using DigitalLibrary.MasterData.DomainModel;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

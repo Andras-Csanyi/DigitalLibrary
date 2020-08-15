@@ -7,7 +7,6 @@ namespace FAST.Components.Components.Accordion
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using Microsoft.AspNetCore.Components;
 
     /// <summary>

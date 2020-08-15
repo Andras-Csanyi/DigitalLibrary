@@ -7,7 +7,6 @@ namespace FAST.Components.Components.TreeView
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using Microsoft.AspNetCore.Components;
 
     public partial class BfTreeItem

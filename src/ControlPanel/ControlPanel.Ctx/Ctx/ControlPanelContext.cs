@@ -5,10 +5,8 @@
 
 namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 {
-    using Configurations;
-
-    using DomainModel.Entities;
-
+    using DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
     using Microsoft.EntityFrameworkCore;
 
     public class ControlPanelContext : DbContext

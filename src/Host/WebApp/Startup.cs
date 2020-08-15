@@ -6,7 +6,6 @@
 namespace WebApp
 {
     using System;
-
     using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
     using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
     using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
@@ -20,7 +19,6 @@ namespace WebApp
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.ControlPanel.DataSample;
     using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -29,7 +27,6 @@ namespace WebApp
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-
     using Newtonsoft.Json;
 
     public class Startup

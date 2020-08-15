@@ -8,16 +8,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using Microsoft.EntityFrameworkCore;
-
-    using Utils.Guards;
 
     public partial class MasterDataBusinessLogic
     {

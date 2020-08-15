@@ -7,13 +7,9 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
     using System;
     using System.Threading.Tasks;
-
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
-
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using FluentValidation;
-
     using Microsoft.EntityFrameworkCore;
 
     public partial class ModuleBusinessLogic
