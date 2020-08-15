@@ -118,9 +118,9 @@
     <Rule Id="CA1309" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-      <Rule Id="SA1101" Action="Hidden"/> <!-- .this -->
+      <Rule Id="SA1101" Action="None"/> <!-- .this -->
       <Rule Id="SA1305" Action="Warning"/>
-      <Rule Id="SA1412" Action="Warning"/>
+      <Rule Id="SA1412" Action="None"/> <!-- utf8 -->
       <Rule Id="SA1600" Action="Warning"/> <!-- public elements doc -->
       <Rule Id="SA1601" Action="Warning"/> <!-- partial elements doc -->
       <Rule Id="SA1602" Action="Warning"/> <!-- enums doc -->
