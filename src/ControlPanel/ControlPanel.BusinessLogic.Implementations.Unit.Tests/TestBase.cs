@@ -5,6 +5,8 @@
 
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Ctx.Ctx;
 
     using Implementations.Menu;
@@ -18,6 +20,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
 
     using Validators;
 
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory

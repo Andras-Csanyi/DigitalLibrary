@@ -20,11 +20,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using Xunit;
     using Xunit.Abstractions;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     [Collection("DigitalLibrary.IaC.MasterData.Controllers.Integration.Tests")]
-    [SuppressMessage("ReSharper", "UnusedVariable")]
     public class Get_SourceFormat_Should : TestBase<SourceFormat>
     {
         public Get_SourceFormat_Should(

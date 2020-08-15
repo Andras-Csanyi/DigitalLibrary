@@ -18,8 +18,10 @@ namespace FAST.Components.Tests.Components.Accordion
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class BfAccordionItem_OpeningClosing_Should : TestContext
     {
         [Fact]

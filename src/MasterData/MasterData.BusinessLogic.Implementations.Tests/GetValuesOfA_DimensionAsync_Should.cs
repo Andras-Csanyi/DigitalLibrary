@@ -15,10 +15,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GetValuesOfA_DimensionAsync_Should : TestBase
     {
         public GetValuesOfA_DimensionAsync_Should() : base(TestInfo)
@@ -116,21 +116,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DimensionDimensionValue res = result.DimensionDimensionValues
                .FirstOrDefault(p => p.DimensionValueId == dimensionValueResult.Id
-                 && p.DimensionId == dimensionResult.Id);
+                                 && p.DimensionId == dimensionResult.Id);
             res.Id.Should().NotBe(0);
             res.DimensionId.Should().Be(dimensionResult.Id);
             res.DimensionValueId.Should().Be(dimensionValueResult.Id);
 
             DimensionDimensionValue res2 = result.DimensionDimensionValues
                .FirstOrDefault(p => p.DimensionValueId == dimensionValueResult2.Id
-                 && p.DimensionId == dimensionResult.Id);
+                                 && p.DimensionId == dimensionResult.Id);
             res2.Id.Should().NotBe(0);
             res2.DimensionId.Should().Be(dimensionResult.Id);
             res2.DimensionValueId.Should().Be(dimensionValueResult2.Id);
 
             DimensionDimensionValue res3 = result.DimensionDimensionValues
                .FirstOrDefault(p => p.DimensionValueId == dimensionValueResult3.Id
-                 && p.DimensionId == dimensionResult.Id);
+                                 && p.DimensionId == dimensionResult.Id);
             res3.Id.Should().NotBe(0);
             res3.DimensionId.Should().Be(dimensionResult.Id);
             res3.DimensionValueId.Should().Be(dimensionValueResult3.Id);

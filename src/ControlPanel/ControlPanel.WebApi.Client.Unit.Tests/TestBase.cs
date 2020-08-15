@@ -11,12 +11,13 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
     using Client.Menu;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1051")]
+    [SuppressMessage("ReSharper", "CA1051", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         protected readonly IControlPanelWebClient ControlPanelWebApiClient;
 
-        [SuppressMessage("ReSharper", "CA2000")]
+        [SuppressMessage("ReSharper", "CA2000", Justification = "Reviewed.")]
         protected TestBase()
         {
             HttpClient client = new HttpClient();

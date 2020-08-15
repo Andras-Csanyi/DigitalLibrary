@@ -18,10 +18,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
-    [SuppressMessage("ReSharper", "TooManyArguments")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {

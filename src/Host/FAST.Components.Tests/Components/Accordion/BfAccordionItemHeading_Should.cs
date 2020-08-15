@@ -18,8 +18,10 @@ namespace FAST.Components.Tests.Components.Accordion
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class BfAccordionItemHeading_Should : TestContext
     {
         [Fact]
@@ -36,8 +38,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             IAttr attr = cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                    $"{FastHtmlElements.FastAccordionItem}>" +
-                    $"span")
+                                  $"{FastHtmlElements.FastAccordionItem}>" +
+                                  $"span")
                .Attributes
                .GetNamedItem("custom");
             attr.Value.Should().Be("value");
@@ -57,8 +59,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                    $"{FastHtmlElements.FastAccordionItem}>" +
-                    $"span")
+                     $"{FastHtmlElements.FastAccordionItem}>" +
+                     $"span")
                .InnerHtml
                .Contains("content")
                .Should()

@@ -19,9 +19,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
     {
         [Theory(Skip = "tmp")]

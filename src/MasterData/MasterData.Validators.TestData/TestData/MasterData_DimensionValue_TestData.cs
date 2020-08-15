@@ -10,10 +10,11 @@ namespace DigitalLibrary.MasterData.Validators.TestData
 
     using DomainModel;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
     public static class MasterData_DimensionValue_TestData
     {
         public static IEnumerable<object[]> DimensionValue_Modify_TestData = new List<object[]>
@@ -34,8 +35,8 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             {
                 1,
                 new DimensionValue(),
-                null
-            }
+                null,
+            },
         };
     }
 }

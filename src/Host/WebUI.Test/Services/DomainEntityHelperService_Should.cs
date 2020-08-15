@@ -17,9 +17,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class DomainEntityHelperService_Should
     {
         [Fact]

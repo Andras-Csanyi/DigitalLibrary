@@ -14,9 +14,11 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
     public class Dimension_Should
     {
         [Fact]
@@ -29,11 +31,11 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
             int isActive = 1;
             List<DimensionDimensionValue> dimensionDimensionValues = new List<DimensionDimensionValue>
             {
-                new DimensionDimensionValue { Id = 100, DimensionId = 100, DimensionValueId = 100 }
+                new DimensionDimensionValue { Id = 100, DimensionId = 100, DimensionValueId = 100 },
             };
             List<DimensionStructure> dimensionStructures = new List<DimensionStructure>
             {
-                new DimensionStructure { Id = 100, Name = "name" }
+                new DimensionStructure { Id = 100, Name = "name" },
             };
 
             // Act
@@ -44,7 +46,7 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
                 Description = desc,
                 IsActive = isActive,
                 DimensionDimensionValues = dimensionDimensionValues,
-                DimensionStructure = dimensionStructures
+                DimensionStructure = dimensionStructures,
             };
 
             // Assert

@@ -15,9 +15,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     using WebUi.Services;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA1051")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
         protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =

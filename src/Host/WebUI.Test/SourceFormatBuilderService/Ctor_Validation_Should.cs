@@ -24,10 +24,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "CA2000")]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Ctor_Validation_Should : TestBase
     {
         public static IEnumerable<object[]> ThrowExceptionWhenInputIsNull => new List<object[]>

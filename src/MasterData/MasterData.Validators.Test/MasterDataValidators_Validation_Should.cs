@@ -15,12 +15,13 @@ namespace DigitalLibrary.MasterData.Validators.Test
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "CA2211")]
-    [SuppressMessage("ReSharper", "TooManyArguments")]
-    [SuppressMessage("ReSharper", "CA1806")]
-    [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1806", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "ObjectCreationAsStatement", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class MasterDataValidators_Validation_Should
     {
         public static IEnumerable<object[]> ValidatorCtorInput = new List<object[]>

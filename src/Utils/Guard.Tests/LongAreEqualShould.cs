@@ -14,8 +14,9 @@ namespace Guard.Tests
     using Xunit;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class LongAreEqualShould
     {
         [Fact]

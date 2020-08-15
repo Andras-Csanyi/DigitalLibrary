@@ -15,9 +15,10 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Menu
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class ModifyAsync_Should : TestBase
     {
         [Fact]

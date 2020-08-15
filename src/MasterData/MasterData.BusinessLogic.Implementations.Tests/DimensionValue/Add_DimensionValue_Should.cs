@@ -20,10 +20,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
     using Xunit;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [SuppressMessage("ReSharper", "CA1707")]
-    [SuppressMessage("ReSharper", "UnusedVariable")]
+    [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Add_DimensionValue_Should : TestBase
     {
         public Add_DimensionValue_Should() : base(TestInfo)
@@ -78,12 +78,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
             DimensionDimensionValue res1 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == firstDimensionValueResult.Id);
+                  && p.DimensionValueId == firstDimensionValueResult.Id);
             res1.Should().NotBeNull();
 
             DimensionDimensionValue res2 = res.DimensionDimensionValues.FirstOrDefault(
                 p => p.DimensionId == dimensionResult.Id
-                 && p.DimensionValueId == secondDimensionValueResult.Id);
+                  && p.DimensionValueId == secondDimensionValueResult.Id);
             res2.Should().NotBeNull();
         }
 
