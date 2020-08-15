@@ -8,9 +8,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    using FluentAssertions;
+    using DigitalLibrary.Utils.Guards;
 
-    using Utils.Guards;
+    using FluentAssertions;
 
     using Xunit;
 

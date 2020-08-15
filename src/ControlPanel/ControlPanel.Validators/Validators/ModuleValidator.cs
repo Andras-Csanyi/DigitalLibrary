@@ -5,7 +5,7 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
-    using DomainModel.Entities;
+    using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using FluentValidation;
 

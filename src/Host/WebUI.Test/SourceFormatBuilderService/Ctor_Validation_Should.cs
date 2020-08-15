@@ -10,16 +10,14 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
+    using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.Guards;
+
     using FluentAssertions;
-
-    using MasterData.Validators;
-    using MasterData.WebApi.Client;
-
-    using Utils.DiLibHttpClient;
-    using Utils.Guards;
-
-    using WebUi.Components.SourceFormatBuilder;
-    using WebUi.Services;
 
     using Xunit;
     using Xunit.Abstractions;

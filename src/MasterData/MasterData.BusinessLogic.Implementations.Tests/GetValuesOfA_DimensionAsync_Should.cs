@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     using FluentAssertions;
 

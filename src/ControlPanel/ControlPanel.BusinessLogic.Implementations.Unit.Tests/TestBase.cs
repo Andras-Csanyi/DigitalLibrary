@@ -7,18 +7,14 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Ctx.Ctx;
-
-    using Implementations.Menu;
+    using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu;
+    using DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
+    using DigitalLibrary.Utils.Guards;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-
-    using Module;
-
-    using Utils.Guards;
-
-    using Validators;
 
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase

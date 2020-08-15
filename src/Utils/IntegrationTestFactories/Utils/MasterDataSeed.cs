@@ -7,7 +7,7 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Utils
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using MasterData.Ctx;
+    using DigitalLibrary.MasterData.Ctx;
 
     [ExcludeFromCodeCoverage]
     public static class MasterDataSeed

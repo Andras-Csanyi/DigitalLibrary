@@ -10,13 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
-
-    using Interfaces;
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
 
     using Microsoft.EntityFrameworkCore;
 

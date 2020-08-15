@@ -9,14 +9,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
+
     using FluentAssertions;
 
-    using MasterData.BusinessLogic.ViewModels;
-    using MasterData.DomainModel;
-
     using Moq;
-
-    using WebUi.Components.SourceFormatBuilder;
 
     using Xunit;
     using Xunit.Abstractions;

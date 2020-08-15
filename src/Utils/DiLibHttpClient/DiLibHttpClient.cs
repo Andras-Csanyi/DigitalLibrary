@@ -11,9 +11,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Text;
     using System.Threading.Tasks;
 
-    using Exceptions;
-
-    using Guards;
+    using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
+    using DigitalLibrary.Utils.Guards;
 
     using Newtonsoft.Json;
 

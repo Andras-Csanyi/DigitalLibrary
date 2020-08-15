@@ -8,9 +8,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System;
     using System.Threading.Tasks;
 
-    using Ctx;
-
-    using Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
 
     using Microsoft.EntityFrameworkCore;
 

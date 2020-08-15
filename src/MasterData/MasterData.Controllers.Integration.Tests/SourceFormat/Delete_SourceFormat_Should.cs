@@ -10,13 +10,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
 
     using FluentAssertions;
-
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
 
     using WebApp;
 

@@ -12,8 +12,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
-
-    using Utils.Guards;
+    using DigitalLibrary.Utils.Guards;
 
     public class DimensionStructureTreeComponentService : IDimensionStructureTreeComponentService
     {

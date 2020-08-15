@@ -9,11 +9,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.Services
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Services;
+
     using FluentAssertions;
-
-    using MasterData.DomainModel;
-
-    using WebUi.Services;
 
     using Xunit;
 

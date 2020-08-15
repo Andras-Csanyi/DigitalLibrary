@@ -9,15 +9,13 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Ctx.Ctx;
-
-    using Exceptions.Module;
+    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
+    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+    using DigitalLibrary.ControlPanel.Validators;
 
     using FluentValidation;
 
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators;
 
     public partial class ModuleBusinessLogic
     {

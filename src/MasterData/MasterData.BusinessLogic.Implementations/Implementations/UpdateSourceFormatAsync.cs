@@ -9,18 +9,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Ctx;
-
-    using DomainModel;
-
-    using Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
 
     using FluentValidation;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
-
-    using Validators;
 
     public partial class MasterDataBusinessLogic
     {

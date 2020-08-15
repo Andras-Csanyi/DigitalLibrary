@@ -8,13 +8,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
 
     using FluentAssertions;
-
-    using Utils.ControlPanel.DataSample.MasterData;
-
-    using ViewModels;
 
     using Xunit;
 

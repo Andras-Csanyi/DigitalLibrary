@@ -15,12 +15,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Ui.WebUi.Services;
+    using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
-
-    using Services;
-
-    using Utils.Guards;
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService

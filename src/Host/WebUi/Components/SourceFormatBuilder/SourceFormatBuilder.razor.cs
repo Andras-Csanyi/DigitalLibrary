@@ -13,10 +13,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Ui.WebUi.Services;
 
     using Microsoft.AspNetCore.Components;
-
-    using Services;
 
     public partial class SourceFormatBuilder
     {

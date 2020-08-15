@@ -8,7 +8,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System;
     using System.Threading.Tasks;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     public partial class MasterDataBusinessLogic
     {

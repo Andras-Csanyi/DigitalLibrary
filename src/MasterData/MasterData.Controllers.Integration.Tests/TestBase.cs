@@ -9,12 +9,11 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
+    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+
     using Microsoft.AspNetCore.Mvc.Testing;
-
-    using Utils.DiLibHttpClient;
-    using Utils.IntegrationTestFactories.Factories;
-
-    using WebApi.Client;
 
     using WebApp;
 

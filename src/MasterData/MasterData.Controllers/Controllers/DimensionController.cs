@@ -9,16 +9,13 @@ namespace DigitalLibrary.MasterData.Controllers
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using BusinessLogic.Interfaces;
-
-    using DomainModel;
+    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Web.Api;
+    using DigitalLibrary.Utils.Guards;
 
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-
-    using Utils.Guards;
-
-    using Web.Api;
 
     [ApiController]
     [Route(MasterDataApi.Dimensions.V1.DimensionRouteBase)]

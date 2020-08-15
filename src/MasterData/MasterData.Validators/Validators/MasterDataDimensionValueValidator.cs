@@ -7,7 +7,7 @@ namespace DigitalLibrary.MasterData.Validators
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using DomainModel;
+    using DigitalLibrary.MasterData.DomainModel;
 
     using FluentValidation;
 

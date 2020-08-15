@@ -9,15 +9,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DomainModel;
-
-    using Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.Utils.Guards;
 
     using FluentAssertions;
-
-    using Utils.Guards;
-
-    using Validators.TestData;
 
     using Xunit;
 

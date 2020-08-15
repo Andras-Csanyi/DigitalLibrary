@@ -9,7 +9,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using Client.Menu.Exceptions;
+    using DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions;
 
     using FluentAssertions;
 
