@@ -27,7 +27,8 @@ namespace DigitalLibrary.MasterData.Ctx
 
         public DbSet<SourceFormat> SourceFormats { get; set; }
 
-        public MasterDataContext(DbContextOptions<MasterDataContext> options) : base(options)
+        public MasterDataContext(DbContextOptions<MasterDataContext> options)
+            : base(options)
         {
         }
 

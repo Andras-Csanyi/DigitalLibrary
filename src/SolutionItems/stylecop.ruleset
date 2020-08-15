@@ -125,7 +125,7 @@
       <Rule Id="SA1601" Action="Warning"/> <!-- partial elements doc -->
       <Rule Id="SA1602" Action="Warning"/> <!-- enums doc -->
       <Rule Id="SA1609" Action="Warning"/>
-      <Rule Id="SA1639" Action="Warning"/>
+      <Rule Id="SA1639" Action="None"/> <!-- File header summary -->
       <Rule Id="SX1101" Action="Warning"/>
       <Rule Id="SX1309" Action="Warning"/>
       <Rule Id="SX1309S" Action="Warning"/>
