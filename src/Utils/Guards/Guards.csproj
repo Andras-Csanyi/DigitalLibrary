@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>DigitalLibrary.Utils.Guards</AssemblyName>
         <RootNamespace>DigitalLibrary.Utils.Guards</RootNamespace>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
 
 </Project>

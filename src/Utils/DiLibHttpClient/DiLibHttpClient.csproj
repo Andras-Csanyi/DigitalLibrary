@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>DigitalLibrary.Utils.DiLibHttpClient</AssemblyName>
         <RootNamespace>DigitalLibrary.Utils.DiLibHttpClient</RootNamespace>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +15,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Guards\Guards.csproj"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
 
 </Project>

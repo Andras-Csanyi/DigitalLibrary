@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,6 +26,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Guards\Guards.csproj"/>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
 
 </Project>

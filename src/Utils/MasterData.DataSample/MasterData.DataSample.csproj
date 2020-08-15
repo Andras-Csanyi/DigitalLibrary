@@ -4,11 +4,12 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>DigitalLibrary.Utils.MasterData.DataSample</RootNamespace>
         <AssemblyName>DigitalLibrary.Utils.MasterData.DataSample</AssemblyName>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj" />
-        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj" />
+        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -17,6 +18,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
     </ItemGroup>
 
 </Project>

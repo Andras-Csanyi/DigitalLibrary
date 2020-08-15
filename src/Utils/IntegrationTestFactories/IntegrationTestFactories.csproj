@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.Utils.IntegrationTestFactories</AssemblyName>
         <OutputType>Library</OutputType>
         <RootNamespace>DigitalLibrary.Utils.IntegrationTestFactories</RootNamespace>
+        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
