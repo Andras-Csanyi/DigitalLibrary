@@ -646,6 +646,7 @@
     <Rule Id="CA1708" Action="Warning" />
     <Rule Id="CA1711" Action="Warning" />
     <Rule Id="CA1725" Action="Warning" />
+    <Rule Id="CA1815" Action="None"/>
     <Rule Id="CA2109" Action="Warning" />
     <Rule Id="CA2217" Action="Warning" />
   </Rules>
