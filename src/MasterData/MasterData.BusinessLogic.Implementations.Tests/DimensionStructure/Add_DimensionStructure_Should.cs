@@ -7,8 +7,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.DomainModel;
+
+    using DomainModel;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

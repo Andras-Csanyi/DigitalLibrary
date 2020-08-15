@@ -72,17 +72,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             DimensionStructure dimensionStructure,
             Guid parentDocumentStructureGuid);
 
-        /// <summary>
-        /// Updates <see cref="DimensionStructure"/> node in the DimensionStructure tree.
-        /// The guid marks which node has to be replaced by the provided DimensionStructure.
-        /// </summary>
-        /// <param name="newDimensionStructure">The new DimensionStructure.</param>
-        /// <param name="dimensionStructureToBeUpdated">The one which is going to be replaced.</param>
-        /// <returns>Task</returns>
-        Task UpdateDocumentStructureInTheTreeAsync(
-            DimensionStructure newDimensionStructure,
-            Guid dimensionStructureToBeUpdated);
-
         Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
 
         Task DeleteDocumentStructureFromTreeAsync();
@@ -108,6 +97,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
 
         Task SetDefaultStateForReplacementOfDimensionStructureInTree();
+
+        /// <summary>
+        ///     Updates <see cref="DimensionStructure" /> node in the DimensionStructure tree.
+        ///     The guid marks which node has to be replaced by the provided DimensionStructure.
+        /// </summary>
+        /// <param name="newDimensionStructure">The new DimensionStructure.</param>
+        /// <param name="dimensionStructureToBeUpdated">The one which is going to be replaced.</param>
+        /// <returns>Task</returns>
+        Task UpdateDocumentStructureInTheTreeAsync(
+            DimensionStructure newDimensionStructure,
+            Guid dimensionStructureToBeUpdated);
 
         Task UpdateSourceFormatBuilder();
     }

@@ -7,6 +7,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 

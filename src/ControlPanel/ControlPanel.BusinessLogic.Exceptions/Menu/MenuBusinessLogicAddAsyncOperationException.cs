@@ -16,7 +16,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 
         protected MenuBusinessLogicAddAsyncOperationException(SerializationInfo info, StreamingContext context)
             : base(
-            info, context)
+                info, context)
         {
         }
 

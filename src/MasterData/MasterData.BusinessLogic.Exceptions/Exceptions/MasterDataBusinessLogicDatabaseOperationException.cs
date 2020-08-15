@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         public MasterDataBusinessLogicDatabaseOperationException(string? message, Exception? innerException)
             : base(
-            message, innerException)
+                message, innerException)
         {
         }
     }

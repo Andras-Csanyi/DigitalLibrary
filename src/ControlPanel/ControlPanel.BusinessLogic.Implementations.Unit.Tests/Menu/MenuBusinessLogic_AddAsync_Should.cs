@@ -9,9 +9,13 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu;
+
+    using Exceptions.Menu;
+
     using FluentAssertions;
+
     using FluentValidation;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

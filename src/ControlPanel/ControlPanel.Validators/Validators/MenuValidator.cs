@@ -5,7 +5,8 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
-    using DigitalLibrary.ControlPanel.DomainModel.Entities;
+    using DomainModel.Entities;
+
     using FluentValidation;
 
     public class MenuValidator : AbstractValidator<Menu>

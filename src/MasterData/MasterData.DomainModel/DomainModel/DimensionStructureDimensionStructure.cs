@@ -5,7 +5,7 @@
 
 namespace DigitalLibrary.MasterData.DomainModel
 {
-    using DigitalLibrary.MasterData.DomainModel.Interfaces;
+    using Interfaces;
 
     public class DimensionStructureDimensionStructure : IHaveId
     {

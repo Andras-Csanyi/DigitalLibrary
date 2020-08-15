@@ -5,10 +5,12 @@
 
 namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
+    using DomainModel;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    using Utils.Guards;
 
     public class SourceFormatConfiguration : IEntityTypeConfiguration<SourceFormat>
     {

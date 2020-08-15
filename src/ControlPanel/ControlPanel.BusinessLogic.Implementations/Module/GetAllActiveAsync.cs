@@ -9,8 +9,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-    using DigitalLibrary.ControlPanel.Ctx.Ctx;
+
+    using Ctx.Ctx;
+
+    using Exceptions.Module;
+
     using Microsoft.EntityFrameworkCore;
 
     public partial class ModuleBusinessLogic

@@ -6,7 +6,8 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.DomainModel;
+
+    using DomainModel;
 
     public partial interface IMasterDataBusinessLogic
     {

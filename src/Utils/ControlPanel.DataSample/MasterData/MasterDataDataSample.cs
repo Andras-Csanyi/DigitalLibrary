@@ -5,6 +5,7 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Collections.Generic;
+
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
 
@@ -22,7 +23,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
         public static int GetSourceFormatAmount()
         {
             return SourceFormatAmount
-              + AmountOfSourceFormatBusinessPartner;
+                 + AmountOfSourceFormatBusinessPartner;
         }
 
         public static void Populate(MasterDataContext ctx)

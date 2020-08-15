@@ -9,10 +9,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BlazorStrap;
+
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Ui.WebUi.Services;
+
     using Microsoft.AspNetCore.Components;
+
+    using Services;
 
     public partial class SourceFormatBuilder
     {

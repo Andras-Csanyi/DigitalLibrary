@@ -7,7 +7,8 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
-    using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
+
+    using Client.Menu;
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1051", Justification = "Reviewed.")]

@@ -8,7 +8,9 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Factories
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using DigitalLibrary.MasterData.Ctx;
+
+    using MasterData.Ctx;
+
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.EntityFrameworkCore;

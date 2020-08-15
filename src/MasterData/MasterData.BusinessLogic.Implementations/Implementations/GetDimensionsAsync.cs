@@ -8,9 +8,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.DomainModel;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
     using Microsoft.EntityFrameworkCore;
 
     public partial class MasterDataBusinessLogic

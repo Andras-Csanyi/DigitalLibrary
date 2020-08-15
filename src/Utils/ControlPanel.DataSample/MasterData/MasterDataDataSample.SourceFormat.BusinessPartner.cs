@@ -5,8 +5,10 @@
 namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
 {
     using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+
     using Microsoft.EntityFrameworkCore;
 
     [ExcludeFromCodeCoverage]
@@ -169,7 +171,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample.MasterData
             {
                 Name = "Hungarian Public Place",
                 Desc = "Hungarian Public Place, which consists of place name, place type and place number," +
-                    "or registration number",
+                       "or registration number",
                 IsActive = 1,
             };
             ctx.DimensionStructures.Add(hungarianPublicSpace);

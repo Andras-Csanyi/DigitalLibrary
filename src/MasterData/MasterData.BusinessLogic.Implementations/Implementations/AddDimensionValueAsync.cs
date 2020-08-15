@@ -7,14 +7,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.Guards;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
     using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
+
+    using Utils.Guards;
+
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {
@@ -58,7 +65,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                 DimensionDimensionValue doesDimensionDimensionValueRelationExist = await ctx
                                    .DimensionDimensionValues
                                    .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
-                                     && p.DimensionValueId == doesDimensionValueExists.Id)
+                                                          && p.DimensionValueId == doesDimensionValueExists.Id)
                                    .ConfigureAwait(false);
 
                                 // if doesnt exists create one

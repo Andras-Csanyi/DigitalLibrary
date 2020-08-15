@@ -9,12 +9,17 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module;
-    using DigitalLibrary.ControlPanel.Ctx.Ctx;
-    using DigitalLibrary.ControlPanel.Validators;
+
+    using Ctx.Ctx;
+
+    using Exceptions.Module;
+
     using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Storage;
+
+    using Validators;
 
     public partial class ModuleBusinessLogic
     {
@@ -54,8 +59,8 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         module.ModuleRoute = modify.ModuleRoute;
 
                         await _moduleValidator.ValidateAndThrowAsync(
-                            module,
-                            ruleSet: ValidatorRulesets.Modify)
+                                module,
+                                ruleSet: ValidatorRulesets.Modify)
                            .ConfigureAwait(false);
 
                         ctx.Entry(module).State = EntityState.Modified;

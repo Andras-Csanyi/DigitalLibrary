@@ -6,10 +6,15 @@
 namespace FAST.Components.Tests.Components.Accordion
 {
     using System.Diagnostics.CodeAnalysis;
+
     using AngleSharp.Dom;
+
     using Bunit;
+
     using FAST.Components.Components.Accordion;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -29,8 +34,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             IAttr attr = cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                    $"{FastHtmlElements.FastAccordionItem}>" +
-                    $"div")
+                                  $"{FastHtmlElements.FastAccordionItem}>" +
+                                  $"div")
                .Attributes
                .GetNamedItem("custom");
             attr.Value.Should().Be("value");
@@ -47,8 +52,8 @@ namespace FAST.Components.Tests.Components.Accordion
 
             // Assert
             cut.Find($"{FastHtmlElements.FastAccordion}>" +
-                    $"{FastHtmlElements.FastAccordionItem}>" +
-                    $"div")
+                     $"{FastHtmlElements.FastAccordionItem}>" +
+                     $"div")
                .InnerHtml
                .Contains("content")
                .Should()

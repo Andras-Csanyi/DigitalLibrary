@@ -5,10 +5,13 @@
 
 namespace DigitalLibrary.MasterData.Ctx
 {
-    using DigitalLibrary.MasterData.Ctx.Configurations;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
+    using Configurations;
+
+    using DomainModel;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Utils.Guards;
 
     public class MasterDataContext : DbContext
     {

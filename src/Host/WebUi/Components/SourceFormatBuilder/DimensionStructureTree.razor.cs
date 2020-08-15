@@ -14,9 +14,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Utils.Guards;
 
     using Microsoft.AspNetCore.Components;
+
+    using Utils.Guards;
 
     public partial class DimensionStructureTree
     {

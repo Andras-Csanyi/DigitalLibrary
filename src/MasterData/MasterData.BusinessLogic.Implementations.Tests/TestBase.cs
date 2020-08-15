@@ -6,13 +6,18 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System.Diagnostics.CodeAnalysis;
-    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
-    using DigitalLibrary.Utils.Guards;
+
+    using Ctx;
+
+    using Interfaces;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
+
+    using Utils.ControlPanel.DataSample.MasterData;
+    using Utils.Guards;
+
+    using Validators;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]

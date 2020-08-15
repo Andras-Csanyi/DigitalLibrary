@@ -8,8 +8,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System;
     using System.Runtime.Serialization;
 
-    public class MasterDataBusinessLogicAddDimensionStructureDimensionStructureAsyncOperationException :
-        Exception
+    public class MasterDataBusinessLogicAddDimensionStructureDimensionStructureAsyncOperationException : Exception
     {
         public MasterDataBusinessLogicAddDimensionStructureDimensionStructureAsyncOperationException()
         {

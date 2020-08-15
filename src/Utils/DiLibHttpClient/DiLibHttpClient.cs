@@ -10,8 +10,11 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Net.Mime;
     using System.Text;
     using System.Threading.Tasks;
-    using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
-    using DigitalLibrary.Utils.Guards;
+
+    using Exceptions;
+
+    using Guards;
+
     using Newtonsoft.Json;
 
     public class DiLibHttpClient : IDiLibHttpClient
@@ -111,7 +114,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string errorDetails =
+                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -145,7 +149,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     }
                     catch (Exception e)
                     {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string errorDetails =
+                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }

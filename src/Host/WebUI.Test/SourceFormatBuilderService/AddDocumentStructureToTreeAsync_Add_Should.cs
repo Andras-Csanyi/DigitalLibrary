@@ -9,21 +9,21 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
-
     using FluentAssertions;
 
+    using MasterData.DomainModel;
+
     using Moq;
+
+    using WebUi.Components.SourceFormatBuilder;
 
     using Xunit;
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Integration tests for the scenario where new <see cref="DocumentStructure"/>s are added
-    /// to the <see cref="DocumentStructure"/> tree.
-    ///
-    /// The tests below covers the basic functionality.
+    ///     Integration tests for the scenario where new <see cref="DocumentStructure" />s are added
+    ///     to the <see cref="DocumentStructure" /> tree.
+    ///     The tests below covers the basic functionality.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable method names.")]

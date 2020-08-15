@@ -7,8 +7,10 @@ namespace DigitalLibrary.Ui.WebUi.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.DomainModel.Interfaces;
-    using DigitalLibrary.Utils.Guards;
+
+    using MasterData.DomainModel.Interfaces;
+
+    using Utils.Guards;
 
     /// <summary>
     ///     Helper service for manipulating domain models.

@@ -5,8 +5,8 @@
 
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
-    using DigitalLibrary.Utils.DiLibHttpClient;
-    using DigitalLibrary.Utils.Guards;
+    using Utils.DiLibHttpClient;
+    using Utils.Guards;
 
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {

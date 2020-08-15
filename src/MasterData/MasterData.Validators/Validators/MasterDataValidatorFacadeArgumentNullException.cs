@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.Validators
 
         public MasterDataValidatorFacadeArgumentNullException(string? message, Exception? innerException)
             : base(
-            message, innerException)
+                message, innerException)
         {
         }
     }

@@ -7,13 +7,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.Guards;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
     using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Utils.Guards;
+
+    using Validators;
 
     public partial class MasterDataBusinessLogic
     {

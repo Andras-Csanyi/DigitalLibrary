@@ -5,27 +5,25 @@
 
 namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 {
-    using System;
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
-
     using FluentAssertions;
 
+    using MasterData.BusinessLogic.ViewModels;
+    using MasterData.DomainModel;
+
     using Moq;
+
+    using WebUi.Components.SourceFormatBuilder;
 
     using Xunit;
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Integration test cases when a <see cref="DocumentStructure"/> is updated in the tree.
-    ///
-    /// The test cases cover the basic functionality.
+    ///     Integration test cases when a <see cref="DocumentStructure" /> is updated in the tree.
+    ///     The test cases cover the basic functionality.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Test cases are more readable.")]

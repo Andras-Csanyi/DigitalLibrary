@@ -8,12 +8,19 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators.TestData;
-    using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
+
+    using DomainModel;
+
     using FluentAssertions;
+
+    using Utils.IntegrationTestFactories.Factories;
+
+    using Validators.TestData;
+
+    using WebApi.Client;
+
     using WebApp;
+
     using Xunit;
     using Xunit.Abstractions;
 

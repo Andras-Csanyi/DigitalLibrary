@@ -7,14 +7,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
     using System;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.Guards;
+
+    using Ctx;
+
+    using DomainModel;
+
+    using Exceptions;
+
     using FluentValidation;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Utils.Guards;
+
+    using Validators;
+
+    using ViewModels;
 
     public partial class MasterDataBusinessLogic
     {
@@ -73,7 +81,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             catch (Exception e)
             {
                 string msg = $"Error happened while querying Dimensionstructure and its " +
-                    $"DimensionStructure tree";
+                             $"DimensionStructure tree";
                 throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
             }
         }

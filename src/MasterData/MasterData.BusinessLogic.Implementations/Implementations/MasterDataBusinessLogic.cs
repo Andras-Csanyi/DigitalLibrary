@@ -5,11 +5,15 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
-    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
-    using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.Guards;
+    using Ctx;
+
+    using Interfaces;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Utils.Guards;
+
+    using Validators;
 
     public partial class MasterDataBusinessLogic : IMasterDataBusinessLogic
     {

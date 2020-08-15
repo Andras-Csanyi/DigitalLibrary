@@ -5,13 +5,16 @@
 
 namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
+    using DomainModel;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class DimensionStructureDimensionStructureConfiguration : IEntityTypeConfiguration<
-        DimensionStructureDimensionStructure>
+    using Utils.Guards;
+
+    public class DimensionStructureDimensionStructureConfiguration
+        : IEntityTypeConfiguration<
+            DimensionStructureDimensionStructure>
     {
         public void Configure(EntityTypeBuilder<DimensionStructureDimensionStructure> builder)
         {

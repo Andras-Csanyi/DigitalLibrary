@@ -6,7 +6,8 @@
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using System;
-    using DigitalLibrary.MasterData.DomainModel.Interfaces;
+
+    using Interfaces;
 
     public class SourceFormat : IHaveId, IHaveName, IHaveGuidId
     {

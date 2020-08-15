@@ -6,10 +6,14 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
 {
     using System;
-    using DigitalLibrary.ControlPanel.BusinessLogic.Interfaces.Interfaces;
-    using DigitalLibrary.ControlPanel.Ctx.Ctx;
-    using DigitalLibrary.ControlPanel.Validators;
+
+    using Ctx.Ctx;
+
+    using Interfaces.Interfaces;
+
     using Microsoft.EntityFrameworkCore;
+
+    using Validators;
 
     public partial class ModuleBusinessLogic : IModuleBusinessLogic
     {

@@ -7,7 +7,8 @@ namespace DigitalLibrary.MasterData.DomainModel
 {
     using System;
     using System.Collections.Generic;
-    using DigitalLibrary.MasterData.DomainModel.Interfaces;
+
+    using Interfaces;
 
     public class DimensionStructure : IHaveId, IHaveGuidId
     {

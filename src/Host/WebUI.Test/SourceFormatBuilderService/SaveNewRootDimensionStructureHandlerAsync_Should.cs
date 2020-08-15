@@ -9,12 +9,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
-
     using FluentAssertions;
 
     using FluentValidation;
+
+    using MasterData.DomainModel;
+
+    using WebUi.Components.SourceFormatBuilder;
 
     using Xunit;
     using Xunit.Abstractions;

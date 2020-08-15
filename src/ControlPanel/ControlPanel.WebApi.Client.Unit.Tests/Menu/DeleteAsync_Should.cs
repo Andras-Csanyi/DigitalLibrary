@@ -8,8 +8,11 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Menu
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions;
+
+    using Client.Menu.Exceptions;
+
     using FluentAssertions;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

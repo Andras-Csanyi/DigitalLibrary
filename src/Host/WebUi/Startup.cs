@@ -6,19 +6,27 @@
 namespace DigitalLibrary.Ui.WebUi
 {
     using System;
+
     using BlazorStrap;
-    using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
-    using DigitalLibrary.Ui.WebUi.Notifiers;
-    using DigitalLibrary.Ui.WebUi.Services;
-    using DigitalLibrary.Utils.DiLibHttpClient;
+
+    using Components.SourceFormatBuilder;
+
+    using ControlPanel.WebApi.Client.Menu;
+
+    using MasterData.Validators;
+    using MasterData.WebApi.Client;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using Notifiers;
+
+    using Services;
+
+    using Utils.DiLibHttpClient;
 
     public class Startup
     {

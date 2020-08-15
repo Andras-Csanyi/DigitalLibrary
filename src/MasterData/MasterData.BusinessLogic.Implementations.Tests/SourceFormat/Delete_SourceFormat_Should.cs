@@ -10,11 +10,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
-    using DigitalLibrary.Utils.Guards;
+
+    using DomainModel;
+
+    using Exceptions;
+
     using FluentAssertions;
+
+    using Utils.ControlPanel.DataSample.MasterData;
+    using Utils.Guards;
+
     using Xunit;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

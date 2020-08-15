@@ -8,12 +8,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Services;
+    using MasterData.DomainModel;
+    using MasterData.Validators;
+    using MasterData.WebApi.Client;
 
     using Moq;
+
+    using WebUi.Services;
 
     using Xunit.Abstractions;
 
@@ -25,14 +26,14 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [SuppressMessage("ReSharper", "SA1401", Justification = "Reviewed.")]
     public class TestBase
     {
-        protected readonly ITestOutputHelper _outputHelper;
-
         protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
             new Mock<IDomainEntityHelperService>();
 
         protected readonly Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
 
         protected readonly Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
+
+        protected readonly ITestOutputHelper _outputHelper;
 
         protected readonly SourceFormat _sourceFormat = new SourceFormat
         {
