@@ -81,9 +81,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// <summary>
         /// Deletes root <see cref="DocumentStructure"/> of <see cref="SourceFormat"/>.
         /// </summary>
-        /// <returns>Task</returns>
+        /// <returns>Task.</returns>
         Task DeleteDimensionStructureRootAsync();
 
+        /// <summary>
+        /// Deletes a <see cref="DocumentStructure"/> from <see cref="SourceFormat"/>'s <see cref="DocumentStructure"/>
+        /// tree.
+        /// </summary>
+        /// <returns>Task.</returns>
         Task DeleteDocumentStructureFromTreeAsync();
 
         Task<List<Dimension>> GetAllDimensionsFromServer();
