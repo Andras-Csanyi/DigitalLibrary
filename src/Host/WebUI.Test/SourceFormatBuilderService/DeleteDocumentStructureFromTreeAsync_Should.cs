@@ -1,4 +1,4 @@
-// <copyright file="RemoveItemFromTreeAsync_Should.cs" company="Andras Csanyi">
+// <copyright file="DeleteDocumentStructureFromTreeAsync_Should.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -22,32 +22,24 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
     using Xunit.Abstractions;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    /// <summary>
+    ///     Tests when a <see cref="DocumentStructure" /> is going to be deleted from
+    ///     <see cref="SourceFormat" /> <see cref="DocumentStructure" /> tree.
+    /// </summary>
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable test cases.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class RemoveItemFromTreeAsync_Should : TestBase
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Reviewed.")]
+    public class DeleteDocumentStructureFromTreeAsync_Should : TestBase
     {
-        public RemoveItemFromTreeAsync_Should(ITestOutputHelper outputHelper)
+        public DeleteDocumentStructureFromTreeAsync_Should(ITestOutputHelper outputHelper)
             : base(outputHelper)
         {
         }
 
-        // [Fact]
-        // public async Task Remove_RootDimensionStructure()
-        // {
-        //     // Arrange
-        //     DimensionStructure rootDimensionStructure = new DimensionStructure
-        //     {
-        //         Id = 100,
-        //         Guid = Guid.NewGuid(),
-        //         Name = "name",
-        //         Desc = "Desc",
-        //         ChildDimensionStructures = new List<DimensionStructure>(),
-        //     };
-        // }
-        [Fact(Skip = "tmp")]
-        public async Task RemoveItem_WhenMultipleItemsOnTheFirstLevel()
+        [Fact]
+        public async Task DeleteItem_WhenMultipleItemsOnTheFirstLevel()
         {
             // Arrange
             DimensionStructure firstLevelFirst = new DimensionStructure
@@ -107,13 +99,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(1);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault().Id.Should().Be(firstLevelSecond.Id);
         }
 
-        [Fact(Skip = "tmp")]
-        public async Task RemoveItem_WhenOnlyASingleItemIsOnTheFirstLevel()
+        [Fact]
+        public async Task DeleteItem_WhenOnlyASingleItemIsOnTheFirstLevel()
         {
             // Arrange
             DimensionStructure firstLevelFirst = new DimensionStructure
@@ -167,8 +158,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(0);
         }
 
-        [Fact(Skip = "tmp")]
-        public async Task RemoveItem_WhenSingleItemOnTheSecondLevel()
+        [Fact]
+        public async Task DeleteItem_WhenSingleItemOnTheSecondLevel()
         {
             // Arrange
             DimensionStructure secondLevelFirst = new DimensionStructure
@@ -276,37 +267,32 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .Where(p => p.Id == firstLevelThird.Id).ToList().Count.Should().Be(1);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelFirst.Id)
                .ChildDimensionStructures.Count.Should().Be(1);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelFirst.Id)
                .ChildDimensionStructures
                .Where(q => q.Id == firstLevelFirst_secondLevelFirst.Id).ToList().Count.Should().Be(1);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures.Count.Should().Be(2);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures
                .Where(q => q.Id == secondLevelFirst.Id).ToList().Count.Should().Be(1);
 
-            // ReSharper disable once PossibleNullReferenceException
             builderService.SourceFormat.RootDimensionStructure.ChildDimensionStructures
                .FirstOrDefault(p => p.Id == firstLevelThird.Id)
                .ChildDimensionStructures
                .Where(q => q.Id == secondLevelSecond.Id).ToList().Count.Should().Be(1);
         }
 
-        [Fact(Skip = "tmp")]
-        public async Task RemoveItemWithItsChildren_WhenMultipleItemsOnTheFirstLevel_AndOneOfThemHasChild()
+        [Fact]
+        public async Task DeleteItemWithItsChildren_WhenMultipleItemsOnTheFirstLevel_AndOneOfThemHasChild()
         {
             // Arrange
             DimensionStructure secondLevelFirst = new DimensionStructure

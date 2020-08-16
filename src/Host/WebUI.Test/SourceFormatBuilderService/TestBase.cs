@@ -40,7 +40,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             Name = "Test Source Format",
             Desc = "Test Source Format Description",
             IsActive = 1,
-            RootDimensionStructure = new DimensionStructure(),
+            RootDimensionStructure = new DimensionStructure
+            {
+                Id = 100,
+                Name = "root dimension structure",
+                Desc = "root dimension structure desc",
+            },
             RootDimensionStructureId = 100,
         };
 

@@ -12,6 +12,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
 
+    /// <summary>
+    ///     ISourceFormatBuilder interface.
+    ///     It describes how SourceFormat builder component's business logic Api
+    ///     looks like.
+    /// </summary>
     public interface ISourceFormatBuilderService
     {
         DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
@@ -72,8 +77,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             DimensionStructure dimensionStructure,
             Guid parentDocumentStructureGuid);
 
-        Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure);
+        /// <summary>
+        ///     Deletes root <see cref="DocumentStructure" /> of <see cref="SourceFormat" />.
+        /// </summary>
+        /// <returns>Task.</returns>
+        void DeleteDimensionStructureRootAsync();
 
+        /// <summary>
+        ///     Deletes a <see cref="DocumentStructure" /> from <see cref="SourceFormat" />'s <see cref="DocumentStructure" />
+        ///     tree.
+        /// </summary>
+        /// <returns>Task.</returns>
         Task DeleteDocumentStructureFromTreeAsync();
 
         Task<List<Dimension>> GetAllDimensionsFromServer();
@@ -96,7 +110,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
 
-        Task SetDefaultStateForReplacementOfDimensionStructureInTree();
+        void SetDefaultStateForReplacementOfDimensionStructureInTree();
 
         /// <summary>
         ///     Updates <see cref="DimensionStructure" /> node in the DimensionStructure tree.

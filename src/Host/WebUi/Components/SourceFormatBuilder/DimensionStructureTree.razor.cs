@@ -215,8 +215,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             SourceFormatBuilderService.UpdateNodeNewDimensionStructure = dimensionStructure;
             await SourceFormatBuilderService.ReplaceDimensionStructureInTheTree()
                .ConfigureAwait(false);
-            await SourceFormatBuilderService.SetDefaultStateForReplacementOfDimensionStructureInTree()
-               .ConfigureAwait(false);
+            SourceFormatBuilderService.SetDefaultStateForReplacementOfDimensionStructureInTree();
             await HideUpdateDocumentStructureInTreeModalWindowAsync().ConfigureAwait(false);
             await SourceFormatBuilderNotifierService.UpdateSourceFormatBuilder().ConfigureAwait(false);
         }
