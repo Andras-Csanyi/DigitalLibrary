@@ -18,8 +18,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
     using Xunit.Abstractions;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    /// <summary>
+    /// Testing when root <see cref="DimensionStructure"/> of <see cref="SourceFormat"/>
+    /// is deleted.
+    /// </summary>
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable test cases.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class DeleteDimensionStructureRootAsync_Should : TestBase
@@ -40,17 +44,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                 _masterDataWebApiClientMock.Object,
                 _masterDataValidatorsMock.Object,
                 _domainEntityHelperServiceMock.Object);
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Name = "Something root",
-                Desc = "Something root description",
-                IsActive = 1,
-            };
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.DeleteDimensionStructureRootAsync(
-                    dimensionStructure)
+            await sourceFormatBuilderService.DeleteDimensionStructureRootAsync()
                .ConfigureAwait(false);
 
             // Assert

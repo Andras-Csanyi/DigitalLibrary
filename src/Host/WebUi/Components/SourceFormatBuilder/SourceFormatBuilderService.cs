@@ -119,9 +119,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         }
 
         /// <inheritdoc />
-        public async Task DeleteDimensionStructureRootAsync(DimensionStructure dimensionStructure)
+        public async Task DeleteDimensionStructureRootAsync()
         {
-            Check.IsNotNull(dimensionStructure);
             await CheckIfSourceFormatIsNull().ConfigureAwait(false);
 
             SourceFormat.RootDimensionStructure = null;

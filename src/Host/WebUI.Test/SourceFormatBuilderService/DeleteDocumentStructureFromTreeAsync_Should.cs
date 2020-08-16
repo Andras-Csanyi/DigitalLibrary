@@ -26,26 +26,35 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class RemoveItemFromTreeAsync_Should : TestBase
+    public class DeleteDocumentStructureFromTreeAsync_Should : TestBase
     {
-        public RemoveItemFromTreeAsync_Should(ITestOutputHelper outputHelper)
+        public DeleteDocumentStructureFromTreeAsync_Should(ITestOutputHelper outputHelper)
             : base(outputHelper)
         {
         }
 
-        // [Fact]
-        // public async Task Remove_RootDimensionStructure()
-        // {
-        //     // Arrange
-        //     DimensionStructure rootDimensionStructure = new DimensionStructure
-        //     {
-        //         Id = 100,
-        //         Guid = Guid.NewGuid(),
-        //         Name = "name",
-        //         Desc = "Desc",
-        //         ChildDimensionStructures = new List<DimensionStructure>(),
-        //     };
-        // }
+        [Fact]
+        public async Task Delete_RootDimensionStructure()
+        {
+            // Arrange
+            _masterDataWebApiClientMock
+               .Setup(c => c.GetSourceFormatWithFullDimensionStructureTreeAsync(It.IsAny<SourceFormat>()))
+               .ReturnsAsync(_sourceFormat);
+
+            ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidatorsMock.Object,
+                _domainEntityHelperServiceMock.Object);
+            await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
+
+            // Act
+            await sourceFormatBuilderService.DeleteDimensionStructureRootAsync().ConfigureAwait(false);
+
+            // Assert
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructure.Should().BeNull();
+            sourceFormatBuilderService.SourceFormat.RootDimensionStructureId.Should().BeNull();
+        }
+
         [Fact(Skip = "tmp")]
         public async Task RemoveItem_WhenMultipleItemsOnTheFirstLevel()
         {
