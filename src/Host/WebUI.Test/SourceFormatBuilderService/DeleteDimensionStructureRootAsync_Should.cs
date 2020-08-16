@@ -47,8 +47,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             await sourceFormatBuilderService.OnUpdate(100).ConfigureAwait(false);
 
             // Act
-            await sourceFormatBuilderService.DeleteDimensionStructureRootAsync()
-               .ConfigureAwait(false);
+            sourceFormatBuilderService.DeleteDimensionStructureRootAsync();
 
             // Assert
             sourceFormatBuilderService.SourceFormat.RootDimensionStructure.Should().BeNull();

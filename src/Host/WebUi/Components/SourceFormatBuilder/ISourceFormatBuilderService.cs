@@ -81,7 +81,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         ///     Deletes root <see cref="DocumentStructure" /> of <see cref="SourceFormat" />.
         /// </summary>
         /// <returns>Task.</returns>
-        Task DeleteDimensionStructureRootAsync();
+        void DeleteDimensionStructureRootAsync();
 
         /// <summary>
         ///     Deletes a <see cref="DocumentStructure" /> from <see cref="SourceFormat" />'s <see cref="DocumentStructure" />
@@ -110,7 +110,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
 
-        Task SetDefaultStateForReplacementOfDimensionStructureInTree();
+        void SetDefaultStateForReplacementOfDimensionStructureInTree();
 
         /// <summary>
         ///     Updates <see cref="DimensionStructure" /> node in the DimensionStructure tree.
