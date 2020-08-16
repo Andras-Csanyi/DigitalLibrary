@@ -46,7 +46,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatBuilderService"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatBuilderService" /> class.
         /// </summary>
         /// <param name="masterDataHttpClient">IMasterDataHttpClient</param>
         /// <param name="masterDataValidators">IMasterDataValidators</param>
@@ -64,39 +64,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             MasterDataValidators = masterDataValidators;
             _domainEntityHelperService = domainEntityHelperService;
         }
-
-        /// <inheritdoc />
-        public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
-
-        /// <inheritdoc />
-        public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
-
-        /// <inheritdoc />
-        public SourceFormat SourceFormat { get; set; } = new SourceFormat();
-
-        /// <inheritdoc />
-        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
-
-        /// <inheritdoc />
-        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
-
-        /// <inheritdoc />
-        public bool IsNewSourceFormatButtonDisabled { get; set; }
-
-        /// <inheritdoc />
-        public bool IsSourceFormatCancelButtonDisabled { get; set; }
-
-        /// <inheritdoc />
-        public bool IsSourceFormatDropDownlistDisabled { get; set; }
-
-        /// <inheritdoc />
-        public bool IsSourceFormatSaveButtonDisabled { get; set; }
-
-        /// <inheritdoc />
-        public long LoadedSourceFormatId { get; set; }
-
-        /// <inheritdoc />
-        public IMasterDataValidators MasterDataValidators { get; }
 
         /// <inheritdoc />
         public async Task AddDimensionStructureAsync(
@@ -231,6 +198,30 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             return await _masterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+
+        /// <inheritdoc />
+        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
+
+        /// <inheritdoc />
+        public bool IsNewSourceFormatButtonDisabled { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSourceFormatCancelButtonDisabled { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSourceFormatDropDownlistDisabled { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSourceFormatSaveButtonDisabled { get; set; }
+
+        /// <inheritdoc />
+        public long LoadedSourceFormatId { get; set; }
+
+        /// <inheritdoc />
+        public IMasterDataValidators MasterDataValidators { get; }
+
 
         /// <inheritdoc />
         public async Task OnUpdate(long sourceFormatId)
@@ -359,6 +350,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         }
 
         /// <inheritdoc />
+        public SourceFormat SourceFormat { get; set; } = new SourceFormat();
+
+        /// <inheritdoc />
         [SuppressMessage("ReSharper", "CA1062", Justification = "Checked.")]
         public async Task UpdateDocumentStructureInTheTreeAsync(
             DimensionStructure newDimensionStructure,
@@ -383,17 +377,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             }
         }
 
+        /// <inheritdoc />
+        public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
+
+        /// <inheritdoc />
+        public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
+
 
         /// <inheritdoc />
         public async Task UpdateSourceFormatBuilder()
         {
             throw new NotImplementedException();
-        }
-
-
-        public async Task SaveSourceFormat()
-        {
-            // check whether all dimension structure has id, if not then create them before save
         }
 
         private async Task CheckDimensionStructureUniquenessInTree(DimensionStructure dimensionStructure)
@@ -416,9 +410,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         }
 
         /// <summary>
-        /// Finds <see cref="DimensionStructure"/> node in the tree based on its <see cref="Guid"/> value
-        /// and removes from the tree.
-        /// It adds another <see cref="DimensionStructure"/> to the same node.
+        ///     Finds <see cref="DimensionStructure" /> node in the tree based on its <see cref="Guid" /> value
+        ///     and removes from the tree.
+        ///     It adds another <see cref="DimensionStructure" /> to the same node.
         /// </summary>
         /// <param name="dimensionStructure">To be added.</param>
         /// <param name="toBeReplacedDimensionStructureGuid">To be removed.</param>
@@ -453,8 +447,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         }
 
         /// <summary>
-        /// Finds the <see cref="DocumentStructure"/> node in the tree based on its <see cref="Guid"/>
-        /// value and adds the given <see cref="DocumentStructure"/> to it.
+        ///     Finds the <see cref="DocumentStructure" /> node in the tree based on its <see cref="Guid" />
+        ///     value and adds the given <see cref="DocumentStructure" /> to it.
         /// </summary>
         /// <param name="dimensionStructureToBeAdded">To be added.</param>
         /// <param name="dimensionStructures">The nodes.</param>
@@ -580,6 +574,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 await GetDimensionStructureByIdAsync(newRootDimensionStructure.Id)
                    .ConfigureAwait(false);
             SourceFormat.RootDimensionStructure = newRootDimensionStructureFromServer;
+        }
+
+
+        public async Task SaveSourceFormat()
+        {
+            // check whether all dimension structure has id, if not then create them before save
         }
     }
 }
