@@ -13,10 +13,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.Validators;
 
     /// <summary>
-    /// ISourceFormatBuilder interface.
-    ///
-    /// It describes how SourceFormat builder component's business logic Api
-    /// looks like.
+    ///     ISourceFormatBuilder interface.
+    ///     It describes how SourceFormat builder component's business logic Api
+    ///     looks like.
     /// </summary>
     public interface ISourceFormatBuilderService
     {
@@ -79,14 +78,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Guid parentDocumentStructureGuid);
 
         /// <summary>
-        /// Deletes root <see cref="DocumentStructure"/> of <see cref="SourceFormat"/>.
+        ///     Deletes root <see cref="DocumentStructure" /> of <see cref="SourceFormat" />.
         /// </summary>
         /// <returns>Task.</returns>
         Task DeleteDimensionStructureRootAsync();
 
         /// <summary>
-        /// Deletes a <see cref="DocumentStructure"/> from <see cref="SourceFormat"/>'s <see cref="DocumentStructure"/>
-        /// tree.
+        ///     Deletes a <see cref="DocumentStructure" /> from <see cref="SourceFormat" />'s <see cref="DocumentStructure" />
+        ///     tree.
         /// </summary>
         /// <returns>Task.</returns>
         Task DeleteDocumentStructureFromTreeAsync();

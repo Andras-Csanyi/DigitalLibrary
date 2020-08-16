@@ -19,8 +19,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Testing when root <see cref="DimensionStructure"/> of <see cref="SourceFormat"/>
-    /// is deleted.
+    ///     Testing when root <see cref="DimensionStructure" /> of <see cref="SourceFormat" />
+    ///     is deleted.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable test cases.")]

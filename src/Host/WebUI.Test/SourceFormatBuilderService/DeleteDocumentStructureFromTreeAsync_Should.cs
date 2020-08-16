@@ -23,8 +23,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Tests when a <see cref="DocumentStructure"/> is going to be deleted from
-    /// <see cref="SourceFormat"/> <see cref="DocumentStructure"/> tree.
+    ///     Tests when a <see cref="DocumentStructure" /> is going to be deleted from
+    ///     <see cref="SourceFormat" /> <see cref="DocumentStructure" /> tree.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable test cases.")]
