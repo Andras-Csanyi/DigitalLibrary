@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RuleSet Name="DocumentationAnalyzers" Description="DocumentationAnalyzers" ToolsVersion="15.0">
+<RuleSet Name="DocumentationAnalyzers" Description="DocumentationAnalyzers" ToolsVersion="16.0">
     <Rules AnalyzerId="DocumentationAnalyzers" RuleNamespace="DocumentationAnalyzers">
         <Rule Id="DOC100" Action="None" />    <!-- PlaceTextInParagraphs -->
         <Rule Id="DOC101" Action="Warning" /> <!-- UseChildBlocksConsistently -->

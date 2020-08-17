@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="DigitalLibraryProject" Description="DigitalLibrary Project rulesets." ToolsVersion="16.0">
     <Rules AnalyzerId="Microsoft.CodeAnalysis.Analyzers" RuleNamespace="Microsoft.CodeAnalysis.Analyzers">
         <Rule Id="RS1007" Action="Warning"/>
@@ -115,18 +115,5 @@
     </Rules>
     <Rules AnalyzerId="Microsoft.NetCore.CSharp.Analyzers" RuleNamespace="Microsoft.NetCore.CSharp.Analyzers">
         <Rule Id="CA1309" Action="Warning"/>
-    </Rules>
-    <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-        <Rule Id="SA1101" Action="None"/>
-        <Rule Id="SA1202" Action="None"/> <!-- order -->
-        <Rule Id="SA1305" Action="Warning"/>
-        <Rule Id="SA1309" Action="None"/>
-        <Rule Id="SA1609" Action="Warning"/>
-        <Rule Id="SX1101" Action="Warning"/>
-        <Rule Id="SX1309" Action="Warning"/>
-        <Rule Id="SX1309S" Action="Warning"/>
-    </Rules>
-    <Rules AnalyzerId="xunit.analyzers" RuleNamespace="xunit.analyzers">
-        <Rule Id="xUnit1015" Action="Warning"/>
     </Rules>
 </RuleSet>
