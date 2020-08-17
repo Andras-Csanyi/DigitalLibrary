@@ -21,10 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		SolutionItems\.editorconfig = SolutionItems\.editorconfig
 		..\.gitignore = ..\.gitignore
-		SolutionItems\stylecop.json = SolutionItems\stylecop.json
 		SolutionItems\xunit.runner.json = SolutionItems\xunit.runner.json
 		..\README.md = ..\README.md
-		SolutionItems\stylecop.ruleset = SolutionItems\stylecop.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DC7A8EB3-8974-4E8E-B8D6-96A9E7B65098}"
@@ -112,6 +110,17 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST.Components.Tests", "Host\FAST.Components.Tests\FAST.Components.Tests.csproj", "{26BABB9A-5C6F-4B0D-A2B0-AAC33149ECF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLib.FAST.Widgets.Tests", "Host\DiLib.FAST.Widgets.Tests\DiLib.FAST.Widgets.Tests.csproj", "{435334E1-47EC-4B68-B84D-51EA5C7D7225}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rulesets", "Rulesets", "{8646235C-2E27-406C-9567-29FD46D445B9}"
+ProjectSection(SolutionItems) = preProject
+	Rulesets\FxCop.ruleset = Rulesets\FxCop.ruleset
+	Rulesets\Documentation.ruleset = Rulesets\Documentation.ruleset
+	Rulesets\StyleCopAnalyzers.ruleset = Rulesets\StyleCopAnalyzers.ruleset
+	Rulesets\DigitalLibrary.ruleset = Rulesets\DigitalLibrary.ruleset
+	Rulesets\stylecop.json = Rulesets\stylecop.json
+	Rulesets\Codequality.ruleset = Rulesets\Codequality.ruleset
+	Rulesets\xunit.ruleset = Rulesets\xunit.ruleset
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

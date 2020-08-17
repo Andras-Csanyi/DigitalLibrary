@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>DigitalLibrary.Utils.ControlPanel.DataSample</AssemblyName>
         <RootNamespace>DigitalLibrary.Utils.ControlPanel.DataSample</RootNamespace>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
     </ItemGroup>
 
 </Project>

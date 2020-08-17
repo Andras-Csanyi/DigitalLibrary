@@ -5,7 +5,7 @@
         <AssemblyName>DigitalLibrary.Utils.IntegrationTestFactories</AssemblyName>
         <OutputType>Library</OutputType>
         <RootNamespace>DigitalLibrary.Utils.IntegrationTestFactories</RootNamespace>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +16,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.7"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0"/>
-        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 

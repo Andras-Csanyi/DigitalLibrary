@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
 
         <IsPackable>false</IsPackable>
 
@@ -29,6 +30,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MasterData.Controllers\MasterData.Controllers.csproj"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
     </ItemGroup>
 
 </Project>

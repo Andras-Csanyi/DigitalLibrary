@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<RuleSet Name="Digital Library Analyzers"
+         Description="Digital Library Analyzers"
+         ToolsVersion="16.0">
+    <Include Path="StyleCopAnalyzers.ruleset" Action="Default"/>
+    <Include Path="Codequality.ruleset" Action="Default"/>
+    <Include Path="FxCop.ruleset" Action="Default"/>
+    <Include Path="Documentation.ruleset" Action="Default"/>
+    <Include Path="xunit.ruleset" Action="Default"/>
+</RuleSet>

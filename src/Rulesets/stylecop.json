@@ -1,0 +1,12 @@
+{
+    "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+    "settings": {
+        "documentationRules": {
+            "companyName": "Andras Csanyi",
+            "copyrightText": "Copyright (c) {companyName}. All rights reserved.\n Licensed under {licenseName}.",
+            "variables": {
+                "licenseName": "MIT"
+            }
+        }
+    }
+}

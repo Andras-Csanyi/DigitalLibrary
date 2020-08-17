@@ -8,7 +8,7 @@
         <AssemblyName>DigitalLibrary.Ui.WebUI.Test</AssemblyName>
 
         <RootNamespace>DigitalLibrary.Ui.WebUI.Test</RootNamespace>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,7 +34,7 @@
         <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
         <ProjectReference Include="..\WebUi\WebUi.csproj"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 
