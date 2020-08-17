@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.ControlPanel.Validators</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.Validators</RootNamespace>
         <LangVersion>default</LangVersion>
@@ -16,7 +16,7 @@
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="9.1.1"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <AdditionalFiles Include="../../SolutionItems/stylecop.json"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 

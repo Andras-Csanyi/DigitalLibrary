@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <CodeAnalysisRuleSet>../../SolutionItems/stylecop.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.MasterData.Validators.Test</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Validators.Test</RootNamespace>
         <LangVersion>default</LangVersion>
@@ -28,6 +28,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MasterData.Validators\MasterData.Validators.csproj"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
     </ItemGroup>
 
 </Project>
