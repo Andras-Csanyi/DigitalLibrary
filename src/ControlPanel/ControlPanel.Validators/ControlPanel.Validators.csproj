@@ -14,7 +14,7 @@
 
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="9.1.1"/>
+        <PackageReference Include="FluentValidation" Version="9.1.3"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
