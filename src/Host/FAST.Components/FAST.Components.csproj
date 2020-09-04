@@ -10,20 +10,20 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.7"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.7"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.7" />
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\background.png"/>
-        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js"/>
-        <_ContentIncludedByDefault Remove="wwwroot\styles.css"/>
+        <_ContentIncludedByDefault Remove="wwwroot\background.png" />
+        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js" />
+        <_ContentIncludedByDefault Remove="wwwroot\styles.css" />
     </ItemGroup>
 
 </Project>
