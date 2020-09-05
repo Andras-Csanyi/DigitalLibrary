@@ -387,6 +387,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             try
             {
                 Check.IsNotNull(SourceFormat);
+                await MasterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
+                        SourceFormat,
+                        ruleSet: SourceFormatValidatorRulesets.Add)
+                   .ConfigureAwait(false);
             }
             catch (Exception e)
             {
