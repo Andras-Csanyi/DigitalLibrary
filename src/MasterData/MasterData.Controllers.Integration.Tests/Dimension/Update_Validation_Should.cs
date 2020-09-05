@@ -37,8 +37,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 
         [Theory]
         [MemberData(
-            nameof(MasterData_Dimension_TestData.UpdateDimensionAsync_Validation),
-            MemberType = typeof(MasterData_Dimension_TestData))]
+            nameof(MasterData_Dimension_Validation_TestData.UpdateDimensionAsync_Validation),
+            MemberType = typeof(MasterData_Dimension_Validation_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,

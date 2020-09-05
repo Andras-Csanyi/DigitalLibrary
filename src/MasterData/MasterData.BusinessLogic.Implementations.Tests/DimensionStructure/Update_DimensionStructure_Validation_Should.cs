@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 
         [Theory]
         [MemberData(
-            nameof(MasterData_DimensionStructure_TestData.ModifyDimensionStructure_Validation_TestData),
+            nameof(MasterData_DimensionStructure_Validation_TestData.ModifyDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,

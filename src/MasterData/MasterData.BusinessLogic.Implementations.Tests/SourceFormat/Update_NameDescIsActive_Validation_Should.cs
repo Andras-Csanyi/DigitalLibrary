@@ -19,8 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class Update_SourceFormat_Validation_Should : TestBase
@@ -34,8 +34,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
         [Theory]
         [MemberData(
-            nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_Validation_TestData),
-            MemberType = typeof(MasterData_DimensionStructure_TestData))]
+            nameof(MasterData_DimensionStructure_Validation_TestData.ModifyTopDimensionStructure_Validation_TestData),
+            MemberType = typeof(MasterData_DimensionStructure_Validation_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,
