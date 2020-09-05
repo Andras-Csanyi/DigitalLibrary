@@ -19,8 +19,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
     using Xunit.Abstractions;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    /// <summary>
+    ///     These test cases cover the scenario when a <see cref="SourceFormat" /> has a new
+    ///     RootDimensionStructure which is type of <see cref="DimensionStructure" />.
+    /// </summary>
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
@@ -30,7 +34,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         {
         }
 
-        [Theory(Skip = "tmp")]
+        [Theory]
         [InlineData(1, "name", "desc", 1)]
         [InlineData(0, "", "desc", 1)]
         [InlineData(0, null, "desc", 1)]
@@ -49,7 +53,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Arrange
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
+                _masterDataValidators,
                 _domainEntityHelperServiceMock.Object);
 
             DimensionStructure dimensionStructure = new DimensionStructure
@@ -72,7 +76,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .WithInnerException<ValidationException>();
         }
 
-        [Theory(Skip = "tmp")]
+        [Theory]
         [InlineData(1, "name", "desc", 1)]
         [InlineData(0, "", "desc", 1)]
         [InlineData(0, null, "desc", 1)]
@@ -81,7 +85,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [InlineData(0, "name", null, 1)]
         [InlineData(0, "name", "de", 1)]
         [InlineData(0, "name", "desc", 2)]
-        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "<Pending>")]
+        [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
         public void ThrowException_WhenDimension_InputIsInvalid(
             long id,
             string name,
@@ -91,7 +95,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             // Arrange
             SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
+                _masterDataValidators,
                 _domainEntityHelperServiceMock.Object);
 
             Dimension dimension = new Dimension
@@ -124,13 +128,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .WithInnerException<ValidationException>();
         }
 
-        [Fact(Skip = "tmp")]
+        [Fact]
         public async Task AddDimensionStructureWithDimension_AsRootDimensionStructure()
         {
             // Arrange
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
+                _masterDataValidators,
                 _domainEntityHelperServiceMock.Object);
 
             Dimension dimension = new Dimension
@@ -168,13 +172,13 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
                .Should().Be(dimensionStructure.Id);
         }
 
-        [Fact(Skip = "tmp")]
+        [Fact]
         public async Task AddDimensionStructureWithoutDimension_AsRootDimensionStructure()
         {
             // Arrange
             ISourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
                 _masterDataWebApiClientMock.Object,
-                _masterDataValidatorsMock.Object,
+                _masterDataValidators,
                 _domainEntityHelperServiceMock.Object);
 
             DimensionStructure dimensionStructure = new DimensionStructure
