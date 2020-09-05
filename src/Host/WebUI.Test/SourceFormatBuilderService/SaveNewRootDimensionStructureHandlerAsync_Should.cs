@@ -19,8 +19,12 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit;
     using Xunit.Abstractions;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    /// <summary>
+    /// These test cases cover the scenario when a <see cref="SourceFormat"/> has a new
+    /// RootDimensionStructure which is type of <see cref="DimensionStructure"/>.
+    /// </summary>
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class SaveNewRootDimensionStructureHandlerAsync_Should : TestBase
