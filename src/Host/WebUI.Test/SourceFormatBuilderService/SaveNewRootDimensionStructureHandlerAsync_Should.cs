@@ -20,8 +20,8 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit.Abstractions;
 
     /// <summary>
-    /// These test cases cover the scenario when a <see cref="SourceFormat"/> has a new
-    /// RootDimensionStructure which is type of <see cref="DimensionStructure"/>.
+    ///     These test cases cover the scenario when a <see cref="SourceFormat" /> has a new
+    ///     RootDimensionStructure which is type of <see cref="DimensionStructure" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
