@@ -10,8 +10,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     using DigitalLibrary.MasterData.DomainModel;
 
+    /// <summary>
+    /// MasterDataBusinessLogic interface for <see cref="SourceFormat"/>s.
+    /// </summary>
     public partial interface IMasterDataBusinessLogic
     {
+        /// <summary>
+        /// Saves a new <see cref="SourceFormat"/> in the database. 
+        /// </summary>
+        /// <param name="sourceFormat">New SourceFormant</param>
+        /// <returns>Saved SourceFormat.</returns>
         Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat);
 
         Task<long> CountSourceFormatsAsync();

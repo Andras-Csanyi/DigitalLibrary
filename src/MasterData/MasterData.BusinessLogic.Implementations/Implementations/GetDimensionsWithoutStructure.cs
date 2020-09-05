@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
-    public partial class MasterDataBusinessLogic : IMasterDataBusinessLogic
+    public partial class MasterDataBusinessLogic
     {
         public async Task<List<Dimension>> GetDimensionsWithoutStructureAsync()
         {

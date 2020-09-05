@@ -41,21 +41,6 @@ namespace DigitalLibrary.MasterData.Validators.TestData
             new object[] { 0, "name", "desc", 2 },
         };
 
-        public static IEnumerable<object[]> AddSourceFormat_Validation_TestData = new List<object[]>
-        {
-            new object[] { 1, "name", "desc", 1 },
-
-            new object[] { 0, null, "desc", 1 },
-            new object[] { 0, string.Empty, "desc", 1 },
-            new object[] { 0, "as", "desc", 1 },
-
-            new object[] { 0, "name", null, 1 },
-            new object[] { 0, "name", string.Empty, 1 },
-            new object[] { 0, "name", "de", 1 },
-
-            new object[] { 0, "name", "desc", 2 },
-        };
-
         public static IEnumerable<object[]> ModifyDimensionStructure_TestData = new List<object[]>
         {
             new object[] { "name2", "desc", 1 },

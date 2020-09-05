@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using Microsoft.EntityFrameworkCore;
 
+    /// <inheritdoc />
     public partial class MasterDataBusinessLogic : IMasterDataBusinessLogic
     {
         private readonly DbContextOptions<MasterDataContext> _dbContextOptions;

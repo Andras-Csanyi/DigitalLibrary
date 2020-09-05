@@ -37,8 +37,8 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
 
         [Theory]
         [MemberData(
-            nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
-            MemberType = typeof(MasterData_DimensionStructure_TestData))]
+            nameof(MasterData_SourceFormat_TestData.AddNew),
+            MemberType = typeof(MasterData_SourceFormat_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,

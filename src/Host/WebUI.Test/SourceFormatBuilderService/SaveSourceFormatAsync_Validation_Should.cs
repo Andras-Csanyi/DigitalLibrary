@@ -50,8 +50,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         [Theory]
         [MemberData(
             nameof(MasterData_SourceFormat_TestData.AddNew),
-            MemberType = typeof(MasterData_SourceFormat_TestData)
-        )]
+            MemberType = typeof(MasterData_SourceFormat_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,

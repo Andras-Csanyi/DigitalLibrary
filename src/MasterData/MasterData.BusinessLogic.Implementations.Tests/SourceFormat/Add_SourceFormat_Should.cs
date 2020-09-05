@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         private const string TestInfo = nameof(Add_SourceFormat_Should);
 
         [Fact]
-        public async Task Add_TheItem()
+        public async Task Add_WhenSourceFormat_DoesntHaveRootDimensionStructure()
         {
             // Arrange
             SourceFormat sourceFormat = new SourceFormat
@@ -74,6 +74,76 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             // Assert
             action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>();
+        }
+
+        [Fact]
+        public async Task Add_WithoutCreatingDimensionStructure_WhenRootDimension_IsAlreadyAttached_ToOtherEntities()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WhenSourceFormatHasRootDimension_ButNoDimensionTree()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithOneLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithOneLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithTwoLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithTwoLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithThreeLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithThreeLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithOneLevelSingle_DimensionStructureTree_DimensionStructuresExist()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithOneLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithTwoLevelSingle_DimensionStructureTree_DimensionStructuresAreExist()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithTwoLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithThreeLevelSingle_DimensionStructureTree_DimensionStructuresAreExist()
+        {
+        }
+
+        [Fact]
+        public async Task Add_WithThreeLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        {
         }
     }
 }

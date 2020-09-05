@@ -10,6 +10,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     using DigitalLibrary.MasterData.DomainModel;
 
+    /// <summary>
+    /// MasterDataBusinessLogic interface.
+    /// Describes database operations.
+    ///
+    /// This interface is split into pieces where a piece concerns a domain model in MasterData domain.
+    /// </summary>
     public partial interface IMasterDataBusinessLogic
     {
         Task<DimensionValue> AddDimensionValueAsync(DimensionValue dimensionValue, long dimensionId);

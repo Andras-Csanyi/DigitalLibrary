@@ -35,8 +35,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
         [Theory]
         [MemberData(
-            nameof(MasterData_DimensionStructure_TestData.AddSourceFormat_Validation_TestData),
-            MemberType = typeof(MasterData_DimensionStructure_TestData))]
+            nameof(MasterData_SourceFormat_TestData.AddNew),
+            MemberType = typeof(MasterData_SourceFormat_TestData))]
         public void ThrowException_WhenInputIsInvalid(
             long id,
             string name,
@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             int isActive)
         {
             // Arrange
-            SourceFormat dimensionStructure = new SourceFormat
+            SourceFormat sourceFormat = new SourceFormat
             {
                 Id = id,
                 Name = name,
@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             // Act
             Func<Task> action = async () =>
             {
-                await masterDataBusinessLogic.AddSourceFormatAsync(dimensionStructure).ConfigureAwait(false);
+                await masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat).ConfigureAwait(false);
             };
 
             // Assert
