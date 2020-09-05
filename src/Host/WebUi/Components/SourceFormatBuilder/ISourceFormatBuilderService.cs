@@ -108,6 +108,13 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 
         Task SaveNewRootDimensionStructureAsync(DimensionStructure newRootDimensionStructure);
 
+        /// <summary>
+        ///     Saves the new RootDimensionStructure for SourceFormat. Saving means it setups the properties
+        ///     of the service accordingly and does not touch serverside. Serverside saving is a different operation.
+        /// </summary>
+        /// <param name="newRootDimensionStructure">The new RootDimensionStructure</param>
+        /// <returns>Task</returns>
+        /// <exception cref="SourceFormatBuilderServiceException">General exception wrapping other exception.</exception>
         Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
 
         void SetDefaultStateForReplacementOfDimensionStructureInTree();

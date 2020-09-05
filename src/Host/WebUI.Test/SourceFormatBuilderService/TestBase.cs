@@ -32,6 +32,14 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
 
         protected readonly Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
 
+        protected readonly IMasterDataValidators _masterDataValidators = new MasterDataValidators(
+            new DimensionValidator(),
+            new MasterDataDimensionValueValidator(),
+            new SourceFormatValidator(),
+            new DimensionStructureValidator(),
+            new DimensionStructureDimensionStructureValidator(),
+            new DimensionStructureQueryObjectValidator());
+
         protected readonly ITestOutputHelper _outputHelper;
 
         protected readonly SourceFormat _sourceFormat = new SourceFormat

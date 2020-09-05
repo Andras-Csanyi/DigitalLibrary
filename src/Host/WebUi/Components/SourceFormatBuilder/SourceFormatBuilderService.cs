@@ -277,13 +277,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                .ConfigureAwait(false);
         }
 
-        /// <summary>
-        ///     Saves the new RootDimensionStructure for DocumentStructure. Saving means it setups the properties
-        ///     of the service accordingly.
-        /// </summary>
-        /// <param name="newRootDimensionStructure">The new RootDimensionStructure</param>
-        /// <returns>Task</returns>
-        /// <exception cref="SourceFormatBuilderServiceException">General exception wrapping other exception.</exception>
+        /// <inheritdoc/>
         [SuppressMessage("ReSharper", "CA1062", Justification = "Checked.")]
         public async Task SaveNewRootDimensionStructureHandlerAsync(
             DimensionStructure newRootDimensionStructure)
@@ -305,8 +299,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                             ValidatorRulesets.UpdateDimension)
                        .ConfigureAwait(false);
                 }
-
-                newRootDimensionStructure.Guid = Guid.NewGuid();
 
                 SourceFormat.RootDimensionStructure = newRootDimensionStructure;
 
