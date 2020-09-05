@@ -10,12 +10,16 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
+    /// <summary>
+    /// DimensionStructure entity which represents a node in a DimensionStructure tree which
+    /// describes a document structure.
+    /// </summary>
     public class DimensionStructure : IHaveId, IHaveGuidId
     {
         /// <summary>
         ///     WARNING!!! It is used only when SourceFormat is built.
         /// </summary>
-        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; }
+        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; } = new List<DimensionStructure>();
 
         public string Desc { get; set; }
 
@@ -23,7 +27,8 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public long? DimensionId { get; set; }
 
-        public ICollection<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
+        public ICollection<DimensionStructureDimensionStructure>
+            DimensionStructureDimensionStructures { get; set; } = new List<DimensionStructureDimensionStructure>();
 
         public int IsActive { get; set; }
 
@@ -31,15 +36,9 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int SortOrder { get; set; }
 
-        public ICollection<SourceFormat> SourceFormats { get; set; }
+        public ICollection<SourceFormat> SourceFormats { get; set; } = new List<SourceFormat>();
 
-        public DimensionStructure()
-        {
-            ChildDimensionStructures = new List<DimensionStructure>();
-            Guid = Guid.NewGuid();
-        }
-
-        public Guid Guid { get; set; }
+        public Guid Guid { get; set; } = Guid.NewGuid();
 
         public long Id { get; set; }
     }

@@ -306,7 +306,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                        .ConfigureAwait(false);
                 }
 
-                // ReSharper disable once CA1062
                 newRootDimensionStructure.Guid = Guid.NewGuid();
 
                 SourceFormat.RootDimensionStructure = newRootDimensionStructure;
