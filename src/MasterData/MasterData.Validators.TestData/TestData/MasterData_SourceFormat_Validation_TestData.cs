@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Validation test data for validating CRUD operations concerning <see cref="SourceFormat"/>.
+    ///     Validation test data for validating CRUD operations concerning <see cref="SourceFormat" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     public static class MasterData_SourceFormat_Validation_TestData
     {
         /// <summary>
-        /// Test data for adding a new <see cref="SourceFormat"/> input validation.
+        ///     Test data for adding a new <see cref="SourceFormat" /> input validation.
         /// </summary>
         public static IEnumerable<object[]> AddNew = new List<object[]>
         {

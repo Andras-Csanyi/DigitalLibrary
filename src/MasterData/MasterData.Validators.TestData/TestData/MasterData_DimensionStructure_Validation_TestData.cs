@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
-    /// Test data for validation concerning operations related to <see cref="DimensionStructure"/>.
+    ///     Test data for validation concerning operations related to <see cref="DimensionStructure" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     public static class MasterData_DimensionStructure_Validation_TestData
     {
         /// <summary>
-        /// Test data for adding new <see cref="DimensionStructure"/> operation.
+        ///     Test data for adding new <see cref="DimensionStructure" /> operation.
         /// </summary>
         public static IEnumerable<object[]> AddDimensionStructure_Validation_TestData = new List<object[]>
         {
@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
         };
 
         /// <summary>
-        /// Test data for modifying <see cref="DimensionStructure"/> operation.
+        ///     Test data for modifying <see cref="DimensionStructure" /> operation.
         /// </summary>
         public static IEnumerable<object[]> ModifyDimensionStructure_Validation_TestData = new List<object[]>
         {

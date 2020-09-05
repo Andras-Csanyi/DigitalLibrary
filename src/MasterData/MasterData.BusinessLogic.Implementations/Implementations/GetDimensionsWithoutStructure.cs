@@ -11,7 +11,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
-    using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
 

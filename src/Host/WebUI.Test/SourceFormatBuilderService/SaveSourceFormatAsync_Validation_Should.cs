@@ -13,7 +13,7 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Input validation of saving <see cref="SourceFormat"/> is checked.
+    ///     Input validation of saving <see cref="SourceFormat" /> is checked.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "More readable class name.")]
@@ -23,28 +23,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         public SaveSourceFormatAsync_Validation_Should(ITestOutputHelper testOutputHelper)
             : base(testOutputHelper)
         {
-        }
-
-        [Fact]
-        public void ThrowException_WhenInputIsNull()
-        {
-            // Arrange
-            SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
-                _masterDataWebApiClientMock.Object,
-                _masterDataValidators,
-                _domainEntityHelperServiceMock.Object);
-
-            sourceFormatBuilderService.SourceFormat = null;
-
-            // Act
-            Func<Task> action = async () =>
-            {
-                await sourceFormatBuilderService.SaveSourceFormatAsync()
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
         }
 
         [Theory]
@@ -67,6 +45,28 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             sourceFormatBuilderService.SourceFormat.Name = name;
             sourceFormatBuilderService.SourceFormat.Desc = desc;
             sourceFormatBuilderService.SourceFormat.IsActive = isActive;
+
+            // Act
+            Func<Task> action = async () =>
+            {
+                await sourceFormatBuilderService.SaveSourceFormatAsync()
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            action.Should().ThrowExactly<SourceFormatBuilderServiceException>();
+        }
+
+        [Fact]
+        public void ThrowException_WhenInputIsNull()
+        {
+            // Arrange
+            SourceFormatBuilderService sourceFormatBuilderService = new SourceFormatBuilderService(
+                _masterDataWebApiClientMock.Object,
+                _masterDataValidators,
+                _domainEntityHelperServiceMock.Object);
+
+            sourceFormatBuilderService.SourceFormat = null;
 
             // Act
             Func<Task> action = async () =>

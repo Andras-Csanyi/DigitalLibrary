@@ -277,7 +277,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                .ConfigureAwait(false);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         [SuppressMessage("ReSharper", "CA1062", Justification = "Checked.")]
         public async Task SaveNewRootDimensionStructureHandlerAsync(
             DimensionStructure newRootDimensionStructure)
@@ -334,6 +334,24 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         }
 
         /// <inheritdoc />
+        public async Task SaveSourceFormatAsync()
+        {
+            try
+            {
+                Check.IsNotNull(SourceFormat);
+                await MasterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
+                        SourceFormat,
+                        ruleSet: SourceFormatValidatorRulesets.Add)
+                   .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                string msg = "Error at saving SourceFormat!";
+                throw new SourceFormatBuilderServiceException(msg, e);
+            }
+        }
+
+        /// <inheritdoc />
         public void SetDefaultStateForReplacementOfDimensionStructureInTree()
         {
             UpdateNodeNewDimensionStructure = null;
@@ -379,24 +397,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         public async Task UpdateSourceFormatBuilder()
         {
             throw new NotImplementedException();
-        }
-
-        /// <inheritdoc/>
-        public async Task SaveSourceFormatAsync()
-        {
-            try
-            {
-                Check.IsNotNull(SourceFormat);
-                await MasterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                        SourceFormat,
-                        ruleSet: SourceFormatValidatorRulesets.Add)
-                   .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                string msg = "Error at saving SourceFormat!";
-                throw new SourceFormatBuilderServiceException(msg, e);
-            }
         }
 
         private async Task CheckDimensionStructureUniquenessInTree(DimensionStructure dimensionStructure)

@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Validation test data for operations concerning <see cref="Dimension"/>.
+    ///     Validation test data for operations concerning <see cref="Dimension" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     public static class MasterData_Dimension_Validation_TestData
     {
         /// <summary>
-        /// Input validation test data for operation when adding new <see cref="Dimension"/>.
+        ///     Input validation test data for operation when adding new <see cref="Dimension" />.
         /// </summary>
         public static IEnumerable<object[]> AddDimensionAsync_Validation = new List<object[]>
         {
@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
         };
 
         /// <summary>
-        /// Input validation test data for operation when updating <see cref="Dimension"/>.
+        ///     Input validation test data for operation when updating <see cref="Dimension" />.
         /// </summary>
         public static IEnumerable<object[]> UpdateDimensionAsync_Validation = new List<object[]>
         {

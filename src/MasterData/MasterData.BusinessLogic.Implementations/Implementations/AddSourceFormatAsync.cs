@@ -19,12 +19,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
-    using Microsoft.EntityFrameworkCore.Storage;
-
     [SuppressMessage("ReSharper", "SA1601", Justification = "Reviewed.")]
     public partial class MasterDataBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormat> AddSourceFormatAsync(
             SourceFormat sourceFormat)
         {
@@ -54,27 +52,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             }
         }
 
-        private async Task<long> SaveSourceFormatAsync(
-            SourceFormat sourceFormat,
+        private async Task SaveDimensionStructureTreeAsync(
+            ICollection<DimensionStructure> childDimensionStructures,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(sourceFormat);
-            Check.IsNotNull(ctx);
-
-            await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                    sourceFormat,
-                    ruleSet: SourceFormatValidatorRulesets.Add)
-               .ConfigureAwait(false);
-
-            await ctx.SourceFormats.AddAsync(sourceFormat).ConfigureAwait(false);
-            await ctx.SaveChangesAsync().ConfigureAwait(false);
-
-            if (sourceFormat.RootDimensionStructure != null)
-            {
-                await SaveRootDimensionAsync(sourceFormat, ctx).ConfigureAwait(false);
-            }
-
-            return sourceFormat.Id;
         }
 
         private async Task SaveRootDimensionAsync(
@@ -98,10 +79,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             }
         }
 
-        private async Task SaveDimensionStructureTreeAsync(
-            ICollection<DimensionStructure> childDimensionStructures,
+        private async Task<long> SaveSourceFormatAsync(
+            SourceFormat sourceFormat,
             MasterDataContext ctx)
         {
+            Check.IsNotNull(sourceFormat);
+            Check.IsNotNull(ctx);
+
+            await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
+                    sourceFormat,
+                    ruleSet: SourceFormatValidatorRulesets.Add)
+               .ConfigureAwait(false);
+
+            await ctx.SourceFormats.AddAsync(sourceFormat).ConfigureAwait(false);
+            await ctx.SaveChangesAsync().ConfigureAwait(false);
+
+            if (sourceFormat.RootDimensionStructure != null)
+            {
+                await SaveRootDimensionAsync(sourceFormat, ctx).ConfigureAwait(false);
+            }
+
+            return sourceFormat.Id;
         }
     }
 }

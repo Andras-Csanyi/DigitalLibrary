@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
-    /// Input validation data for operations concerning <see cref="DimensionStructure"/>.
+    ///     Input validation data for operations concerning <see cref="DimensionStructure" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

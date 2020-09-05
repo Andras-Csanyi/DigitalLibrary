@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
-    /// Test data for operations concerning <see cref="DimensionValue"/> entity.
+    ///     Test data for operations concerning <see cref="DimensionValue" /> entity.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.Validators.TestData
     public static class MasterData_DimensionValue_TestData
     {
         /// <summary>
-        /// Test data for validating input for <see cref="DimensionValue"/> entity.
+        ///     Test data for validating input for <see cref="DimensionValue" /> entity.
         /// </summary>
         public static IEnumerable<object[]> DimensionValue_Modify_TestData = new List<object[]>
         {

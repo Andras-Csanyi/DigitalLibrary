@@ -28,10 +28,6 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
         protected readonly Mock<IDomainEntityHelperService> _domainEntityHelperServiceMock =
             new Mock<IDomainEntityHelperService>();
 
-        protected readonly Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
-
-        protected readonly Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
-
         protected readonly IMasterDataValidators _masterDataValidators = new MasterDataValidators(
             new DimensionValidator(),
             new MasterDataDimensionValueValidator(),
@@ -39,6 +35,10 @@ namespace DigitalLibrary.Ui.WebUI.Test.SourceFormatBuilderService
             new DimensionStructureValidator(),
             new DimensionStructureDimensionStructureValidator(),
             new DimensionStructureQueryObjectValidator());
+
+        protected readonly Mock<IMasterDataValidators> _masterDataValidatorsMock = new Mock<IMasterDataValidators>();
+
+        protected readonly Mock<IMasterDataHttpClient> _masterDataWebApiClientMock = new Mock<IMasterDataHttpClient>();
 
         protected readonly ITestOutputHelper _outputHelper;
 
