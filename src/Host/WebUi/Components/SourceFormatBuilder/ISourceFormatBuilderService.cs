@@ -131,5 +131,11 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             Guid dimensionStructureToBeUpdated);
 
         Task UpdateSourceFormatBuilder();
+
+        /// <summary>
+        /// Sends the already setup and populated <see cref="SourceFormat"/> to serverside for saving.
+        /// </summary>
+        /// <returns>Task.</returns>
+        Task SaveSourceFormatAsync();
     }
 }

@@ -381,6 +381,20 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
+        public async Task SaveSourceFormatAsync()
+        {
+            try
+            {
+                Check.IsNotNull(SourceFormat);
+            }
+            catch (Exception e)
+            {
+                string msg = "Error at saving SourceFormat!";
+                throw new SourceFormatBuilderServiceException(msg, e);
+            }
+        }
+
         private async Task CheckDimensionStructureUniquenessInTree(DimensionStructure dimensionStructure)
         {
             throw new NotImplementedException();
@@ -565,12 +579,6 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
                 await GetDimensionStructureByIdAsync(newRootDimensionStructure.Id)
                    .ConfigureAwait(false);
             SourceFormat.RootDimensionStructure = newRootDimensionStructureFromServer;
-        }
-
-
-        public async Task SaveSourceFormat()
-        {
-            // check whether all dimension structure has id, if not then create them before save
         }
     }
 }
