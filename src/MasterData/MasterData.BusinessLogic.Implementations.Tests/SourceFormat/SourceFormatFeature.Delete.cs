@@ -77,7 +77,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void ThrowException_WhenEntityDoesntExist()
+        public void Delete_ThrowException_WhenEntityDoesntExist()
         {
             Func<Task> action = null;
 

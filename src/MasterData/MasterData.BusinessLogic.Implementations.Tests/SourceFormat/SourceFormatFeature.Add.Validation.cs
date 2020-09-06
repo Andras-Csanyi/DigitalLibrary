@@ -29,7 +29,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             nameof(MasterData_SourceFormat_Validation_TestData.AddNew),
             MemberType = typeof(MasterData_SourceFormat_Validation_TestData))]
         [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
-        public void ThrowException_WhenInputIsInvalid(
+        public void Add_Validation_ThrowException_WhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -59,7 +59,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void ThrowException_WhenInputIsNull()
+        public void Add_Validation_ThrowException_WhenInputIsNull()
         {
             Func<Task> action = null;
 

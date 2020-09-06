@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public async Task ReturnsAllIncludingActiveAndInactive()
+        public async Task Count_ReturnsAllIncludingActiveAndInactive()
         {
             SourceFormat sourceFormat = null;
             SourceFormat sourceFormat2 = null;
@@ -58,7 +58,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public async Task ReturnsZero_WhenThereAreNoSourceFormatsInTheDatabase()
+        public async Task Count_ReturnsZero_WhenThereAreNoSourceFormatsInTheDatabase()
         {
             long count = 0;
 

@@ -124,7 +124,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public async Task ThrowExpection_WhenNameUniqueConstraintIsViolated()
+        public async Task Add_ThrowExpection_WhenNameUniqueConstraintIsViolated()
         {
             SourceFormat sourceFormat = null;
             Func<Task> action = null;
