@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -16,18 +16,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
+    using Xbehave;
+
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class TestBase
+    public partial class SourceFormatFeature
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
            .Create(builder => { builder.AddDebug(); });
 
-        protected IMasterDataBusinessLogic masterDataBusinessLogic;
+        protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
-        protected TestBase(string TestInfo)
+        private const string TestInfo = nameof(SourceFormatFeature);
+
+        [Background]
+        public void Background()
         {
             string msg = $"{TestInfo} cannot be null, empty or whitespace!";
             Check.NotNullOrEmptyOrWhitespace(TestInfo, msg);
@@ -60,9 +65,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator);
 
-            masterDataBusinessLogic = new MasterDataBusinessLogic(
-                _dbContextOptions,
-                masterDataValidators);
+            "Given there is the MasterDataBusinessLogic"
+               .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
+                    _dbContextOptions,
+                    masterDataValidators)
+                );
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
