@@ -22,10 +22,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class MasterDataBusinessLogicFeature : TestBase
+    public class CtorFeature : MasterDataBusinessLogicFeature
     {
-        public MasterDataBusinessLogicFeature()
-            : base(nameof(MasterDataBusinessLogicFeature))
+        public CtorFeature()
+            : base(nameof(CtorFeature))
         {
         }
 

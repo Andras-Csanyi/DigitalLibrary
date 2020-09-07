@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class TestBase
+    public class MasterDataBusinessLogicFeature
     {
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
            .Create(builder => { builder.AddDebug(); });
@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         private readonly string _testInfo;
 
-        public TestBase(string testInfo)
+        public MasterDataBusinessLogicFeature(string testInfo)
         {
             _testInfo = testInfo
              ?? throw new ArgumentNullException($"No testInfo is provided");
