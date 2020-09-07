@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public partial class SourceFormatFeature : TestBase
     {
-        public SourceFormatFeature(string testInfo)
+        public SourceFormatFeature()
             : base(nameof(SourceFormatFeature))
         {
         }
