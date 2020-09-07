@@ -1,4 +1,4 @@
-// <copyright file="Delete_SourceFormat_Should.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Delete.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -22,6 +22,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    /// <summary>
+    /// Test cases covering Delete method.
+    /// </summary>
     public partial class SourceFormatFeature
     {
         [Scenario]

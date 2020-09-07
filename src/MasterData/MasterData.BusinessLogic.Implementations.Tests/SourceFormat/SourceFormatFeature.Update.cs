@@ -1,4 +1,4 @@
-// <copyright file="Update_SourceFormat_NameDescIsActive_Should.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Update.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -19,6 +19,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    /// <summary>
+    /// Test cases covering Update method.
+    /// </summary>
     public partial class SourceFormatFeature
     {
         [Scenario]

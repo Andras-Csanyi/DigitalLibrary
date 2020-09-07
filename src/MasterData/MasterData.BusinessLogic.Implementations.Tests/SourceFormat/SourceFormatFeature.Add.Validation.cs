@@ -1,4 +1,4 @@
-// <copyright file="Add_SourceFormat_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Add.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -22,6 +22,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    /// <summary>
+    /// Test cases covering Add method validation.
+    /// </summary>
     public partial class SourceFormatFeature
     {
         [Scenario]

@@ -1,4 +1,4 @@
-// <copyright file="TestBase.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Background.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -18,6 +18,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xbehave;
 
+    /// <summary>
+    /// Background steps for <see cref="SourceFormat"/> related test cases.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
@@ -68,8 +71,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             "Given there is the MasterDataBusinessLogic"
                .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
                     _dbContextOptions,
-                    masterDataValidators)
-                );
+                    masterDataValidators));
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {

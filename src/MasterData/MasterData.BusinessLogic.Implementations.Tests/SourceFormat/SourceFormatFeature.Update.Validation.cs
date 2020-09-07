@@ -1,4 +1,4 @@
-// <copyright file="Update_NameDescIsActive_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Update.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -21,6 +21,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    /// <summary>
+    /// Test cases covering Update validation.
+    /// </summary>
     public partial class SourceFormatFeature
     {
         [Scenario]

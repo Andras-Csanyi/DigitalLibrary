@@ -1,4 +1,4 @@
-// <copyright file="Count_SourceFormat_Should.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.Count.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -17,10 +17,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xunit;
 
+    /// <summary>
+    /// Test cases covering Count method.
+    /// </summary>
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public async Task Count_ReturnsAllIncludingActiveAndInactive()
+        public void Count_ReturnsAllIncludingActiveAndInactive()
         {
             SourceFormat sourceFormat = null;
             SourceFormat sourceFormat2 = null;
@@ -58,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public async Task Count_ReturnsZero_WhenThereAreNoSourceFormatsInTheDatabase()
+        public void Count_ReturnsZero_WhenThereAreNoSourceFormatsInTheDatabase()
         {
             long count = 0;
 
