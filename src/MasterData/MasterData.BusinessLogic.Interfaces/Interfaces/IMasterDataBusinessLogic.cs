@@ -24,6 +24,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<Dimension> GetDimensionByIdAsync(long dimensionId);
 
+        /// <summary>
+        /// Returns list of <see cref="DimensionValue"/>.
+        /// It doesn't return with related entities.
+        /// </summary>
+        /// <returns>List of DimensionValues.</returns>
         Task<List<DimensionValue>> GetDimensionValuesAsync();
 
         Task<Dimension> GetValuesOfADimensionAsync(long dimensionId);

@@ -17,6 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
+        /// <inheritdoc/>
         public async Task<List<DimensionValue>> GetDimensionValuesAsync()
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

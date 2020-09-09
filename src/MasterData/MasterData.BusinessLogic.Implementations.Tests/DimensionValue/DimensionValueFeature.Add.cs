@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionValueFeature
     {
         [Scenario]
-        public async Task AddSecondValueToDimensionValueOfASingleDimension()
+        public void AddSecondValueToDimensionValueOfASingleDimension()
         {
             Dimension dimension = null;
             "Given is a dimension"
@@ -88,7 +88,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 {
                     DimensionDimensionValue res1 = res.DimensionDimensionValues.FirstOrDefault(
                         p => p.DimensionId == dimensionResult.Id
-                         && p.DimensionValueId == firstDimensionValueResult.Id);
+                          && p.DimensionValueId == firstDimensionValueResult.Id);
                     res1.Should().NotBeNull();
                 });
 
@@ -97,13 +97,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 {
                     DimensionDimensionValue res2 = res.DimensionDimensionValues.FirstOrDefault(
                         p => p.DimensionId == dimensionResult.Id
-                         && p.DimensionValueId == secondDimensionValueResult.Id);
+                          && p.DimensionValueId == secondDimensionValueResult.Id);
                     res2.Should().NotBeNull();
                 });
         }
 
         [Scenario]
-        public async Task Create_AddDimensionValueAndConnectToDimension()
+        public void Create_AddDimensionValueAndConnectToDimension()
         {
             Dimension alreadyExistingDimension = null;
             "Given there is a dimension"
