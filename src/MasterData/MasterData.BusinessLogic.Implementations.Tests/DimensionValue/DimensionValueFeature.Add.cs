@@ -88,7 +88,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 {
                     DimensionDimensionValue res1 = res.DimensionDimensionValues.FirstOrDefault(
                         p => p.DimensionId == dimensionResult.Id
-                         && p.DimensionValueId == firstDimensionValueResult.Id);
+                          && p.DimensionValueId == firstDimensionValueResult.Id);
                     res1.Should().NotBeNull();
                 });
 
@@ -97,7 +97,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 {
                     DimensionDimensionValue res2 = res.DimensionDimensionValues.FirstOrDefault(
                         p => p.DimensionId == dimensionResult.Id
-                         && p.DimensionValueId == secondDimensionValueResult.Id);
+                          && p.DimensionValueId == secondDimensionValueResult.Id);
                     res2.Should().NotBeNull();
                 });
         }
@@ -207,79 +207,91 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             "And the dimension values count is the expected"
                .x(() => secondDimensionValueResult.DimensionDimensionValues.Count.Should().Be(1));
             "And dimension values list has the second dimension value"
-               .x(() => 
-            secondDimensionValueResult
-               .DimensionDimensionValues.FirstOrDefault(p => p.DimensionId == secondDimensionResult.Id)
-               .Should()
-               .NotBeNull());
+               .x(() => secondDimensionValueResult
+                   .DimensionDimensionValues.FirstOrDefault(p => p.DimensionId == secondDimensionResult.Id)
+                   .Should()
+                   .NotBeNull());
         }
 
         [Scenario]
         public async Task Return_DimensionValue_WithRelatedEntities_WhenDimensionValueAndDimensionRelationAlreadyExist()
         {
             // Arrange
-            Dimension alreadyExistingDimension = new Dimension
-            {
-                Name = "name",
-                Description = "Description",
-                IsActive = 1,
-            };
-            Dimension alreadyExistingDimensionResult = await _masterDataBusinessLogic
-               .AddDimensionAsync(
-                    alreadyExistingDimension).ConfigureAwait(false);
+            Dimension alreadyExistingDimension = null;
+            "Given there is a dimension"
+               .x(() => alreadyExistingDimension = new Dimension
+                {
+                    Name = "name",
+                    Description = "Description",
+                    IsActive = 1,
+                });
+            Dimension alreadyExistingDimensionResult = null;
+            "And it is stored in the database"
+               .x(async () => alreadyExistingDimensionResult = await _masterDataBusinessLogic
+                   .AddDimensionAsync(alreadyExistingDimension)
+                   .ConfigureAwait(false));
 
-            DimensionValue alreadyExistingDimensionValue =
-                new DimensionValue
+            DimensionValue alreadyExistingDimensionValue = null;
+            "And there is a dimension value"
+               .x(() => alreadyExistingDimensionValue = new DimensionValue
                 {
                     Value = "value",
-                };
-            DimensionValue alreadyExistingDimensionValueResult = await _masterDataBusinessLogic
-               .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
-               .ConfigureAwait(false);
+                });
 
-            DimensionValue secondDimensionValue = new DimensionValue
-            {
-                Value = "value",
-            };
+            DimensionValue alreadyExistingDimensionValueResult = null;
+            "And dimension value is added to the dimension"
+               .x(async () => alreadyExistingDimensionValueResult = await _masterDataBusinessLogic
+                   .AddDimensionValueAsync(alreadyExistingDimensionValue, alreadyExistingDimensionResult.Id)
+                   .ConfigureAwait(false));
 
-            // Act
-            DimensionValue secondDimensionValueResult = await _masterDataBusinessLogic
-               .AddDimensionValueAsync(
-                    secondDimensionValue, alreadyExistingDimensionResult.Id).ConfigureAwait(false);
+            DimensionValue secondDimensionValue = null;
+            "And there is a dimension value"
+               .x(() => secondDimensionValue = new DimensionValue
+                {
+                    Value = "value",
+                });
+
+            DimensionValue secondDimensionValueResult = null;
+            "When second dimension value is added to dimension"
+               .x(async () => secondDimensionValueResult = await _masterDataBusinessLogic
+                   .AddDimensionValueAsync(secondDimensionValue, alreadyExistingDimensionResult.Id)
+                   .ConfigureAwait(false));
 
             // Assert
-            secondDimensionValueResult.Should().NotBeNull();
-            secondDimensionValueResult.Id.Should().Be(alreadyExistingDimensionValueResult.Id);
-            secondDimensionValueResult.Value.Should().Be(alreadyExistingDimensionValueResult.Value);
-            secondDimensionValueResult.DimensionDimensionValues.Count.Should().Be(1);
-            DimensionDimensionValue res = secondDimensionValueResult.DimensionDimensionValues.ElementAt(0);
-            DimensionDimensionValue orig = alreadyExistingDimensionValueResult
-               .DimensionDimensionValues.ElementAt(0);
-            res.Id.Should().Be(orig.Id);
-            res.DimensionId.Should().Be(orig.DimensionId);
-            res.DimensionValueId.Should().Be(orig.DimensionValueId);
+            "Then result is not null".x(() => secondDimensionValueResult.Should().NotBeNull());
+            "And result id is equal to dimension id"
+               .x(() => secondDimensionValueResult.Id.Should().Be(alreadyExistingDimensionValueResult.Id));
+            "And result value is equal to value"
+               .x(() => secondDimensionValueResult.Value.Should().Be(alreadyExistingDimensionValueResult.Value));
+            "And dimension value result value count is equals to 1"
+               .x(() => secondDimensionValueResult.DimensionDimensionValues.Count.Should().Be(1));
         }
 
         [Scenario]
         public void ThrowException_WhenThereIsNoSuchDimension()
         {
-            // Arrange
-            long dimensionId = 100;
-            DimensionValue dimensionValue = new DimensionValue
-            {
-                Value = "something string",
-            };
+            long dimensionId = 0;
+            "Given there is a dimension id"
+               .x(() => dimensionId = 100);
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.AddDimensionValueAsync(dimensionValue, dimensionId)
-                   .ConfigureAwait(false);
-            };
+            DimensionValue dimensionValue = null;
+            "And there is a dimension value"
+               .x(() => dimensionValue = new DimensionValue
+                {
+                    Value = "something string",
+                });
 
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionValueAsyncOperationException>()
-               .WithInnerExceptionExactly<GuardException>();
+            Func<Task> action = null;
+            "When dimension value is added to dimension doesn't exist"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.AddDimensionValueAsync(dimensionValue, dimensionId)
+                       .ConfigureAwait(false);
+                });
+
+            "Then it throws exception"
+               .x(() => action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionValueAsyncOperationException>()
+                   .WithInnerExceptionExactly<GuardException>());
         }
     }
 }
