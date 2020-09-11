@@ -81,28 +81,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .x(() => result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0));
         }
 
-        [Scenario]
-        public void DeleteThrowsExceptionWhenThereIsNoSuchDimensionStructure()
-        {
-            DimensionStructure dimensionStructure = null;
-            "Given there is a dimension structure points to not existing data in database"
-               .x(() => dimensionStructure = new DimensionStructure
-                {
-                    Id = 1000,
-                });
-
-            Func<Task> action = null;
-            "When not existing dimension structure is deleted"
-               .x(() => action = async () =>
-                {
-                    await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
-                       .ConfigureAwait(false);
-                });
-
-            "Then an exception is thrown"
-               .x(() => action.Should()
-                   .ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-                   .WithInnerException<GuardException>());
-        }
+        
     }
 }

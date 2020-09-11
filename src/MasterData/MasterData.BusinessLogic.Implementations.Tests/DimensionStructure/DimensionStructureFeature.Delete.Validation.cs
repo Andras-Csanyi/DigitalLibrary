@@ -25,42 +25,45 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     /// </summary>
     public partial class DimensionStructureFeature
     {
-        [Scenario(Skip = "Needs to be reviewed.")]
-        public void Delete_ThrowException_WhenInputIsNull()
+        [Scenario]
+        public void DeleteThrowsExceptionWhenInputIsNull()
         {
-            // Arrange
+            Func<Task> action = null;
+            "When delete dimension structure method is call with a null input"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.DeleteDimensionStructureAsync(null)
+                       .ConfigureAwait(false);
+                });
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.DeleteDimensionStructureAsync(null)
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
+                   .WithInnerException<GuardException>());
         }
 
-        [Scenario(Skip = "Needs to be reviewed.")]
-        public void Delete_ThrowException_WhenThereIsNoSuchDimensionStructure()
+        [Scenario]
+        public void DeleteThrowsExceptionWhenThereIsNoSuchDimensionStructure()
         {
-            // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Id = 1000,
-            };
+            DimensionStructure dimensionStructure = null;
+            "Given there is a dimension structure points to not existing data in database"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Id = 1000,
+                });
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
-                   .ConfigureAwait(false);
-            };
+            Func<Task> action = null;
+            "When not existing dimension structure is deleted"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
+                       .ConfigureAwait(false);
+                });
 
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
+                   .WithInnerException<GuardException>());
         }
     }
 }
