@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public async Task Add_DimensionStructure()
+        public async Task AddADimensionStructure()
         {
             DimensionStructure dimensionStructure = null;
             "Given there is a dimension structure"
