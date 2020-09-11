@@ -22,27 +22,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     /// </summary>
     public partial class DimensionStructureFeature
     {
-        [Scenario(Skip = "Needs to be reviewed.")]
+        [Scenario]
         public async Task Add_DimensionStructure()
         {
-            // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Name = "name",
-                Desc = "desc",
-                IsActive = 1,
-            };
+            DimensionStructure dimensionStructure = null;
+            "Given there is a dimension structure"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Name = "name",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
 
-            // Act
-            DimensionStructure result = await _masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure)
-               .ConfigureAwait(false);
+            DimensionStructure result = null;
+            "When it is saved in the database"
+               .x(async () => result = await _masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure)
+                   .ConfigureAwait(false));
 
-            // Assert
-            result.Should().NotBeNull();
-            result.Id.Should().NotBe(0);
-            result.Name.Should().Be(dimensionStructure.Name);
-            result.Desc.Should().Be(dimensionStructure.Desc);
-            result.IsActive.Should().Be(dimensionStructure.IsActive);
+            "Then returning result is not null".x(() => result.Should().NotBeNull());
+            "And returning result id is not 0".x(() => result.Id.Should().NotBe(0));
+            "And returning result name equals to the original's name"
+               .x(() => result.Name.Should().Be(dimensionStructure.Name));
+            "And returning result desc equals to the original's desc"
+               .x(() => result.Desc.Should().Be(dimensionStructure.Desc));
+            "And returning result is active value equals to the original's is active value"
+               .x(() => result.IsActive.Should().Be(dimensionStructure.IsActive));
         }
     }
 }
