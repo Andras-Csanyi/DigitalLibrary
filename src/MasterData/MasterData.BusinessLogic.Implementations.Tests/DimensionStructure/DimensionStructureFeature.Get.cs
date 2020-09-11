@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public async Task Get_AnItem()
+        public async Task GetDimensionStructuresAsync()
         {
             DimensionStructure dimensionStructure = null;
             "Given there is a dimension structure"
