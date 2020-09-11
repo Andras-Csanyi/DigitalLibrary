@@ -23,20 +23,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     /// </summary>
     public partial class DimensionStructureFeature
     {
-        [Scenario(Skip = "Needs to be reviewed.")]
-        public void GetDimensionStructureByIdAsync_ThrowException_WhenInputIsNull()
+        [Scenario]
+        public void GetDimensionStructureByIdAsyncThrowsExceptionWhenInputIsNull()
         {
-            // Arrange
+            Func<Task> action = null;
+            "When GetDimensionStructureByIdAsync is called with null input"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(null)
+                       .ConfigureAwait(false);
+                });
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.GetDimensionStructureByIdAsync(null)
-                   .ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicGetDimensionStructureByIdAsyncOperationException>();
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicGetDimensionStructureByIdAsyncOperationException>());
         }
     }
 }
