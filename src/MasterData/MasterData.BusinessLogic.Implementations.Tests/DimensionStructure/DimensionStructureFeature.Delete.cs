@@ -27,63 +27,82 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     /// </summary>
     public partial class DimensionStructureFeature
     {
-        [Scenario(Skip = "Needs to be reviewed.")]
-        public async Task Delete_AnItem()
+        [Scenario]
+        public async Task DeleteAnItem()
         {
-            // Arrange
-            List<DimensionStructure> initList = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
-               .ConfigureAwait(false);
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Name = "name",
-                Desc = "desc",
-                IsActive = 1,
-            };
-            DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic.AddDimensionStructureAsync(
-                    dimensionStructure)
-               .ConfigureAwait(false);
+            List<DimensionStructure> initList = null;
+            "Given we know the amount of dimension structures in the database"
+               .x(async () => initList = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
+                   .ConfigureAwait(false));
 
-            DimensionStructure dimensionStructure2 = new DimensionStructure
-            {
-                Name = "name2",
-                Desc = "desc2",
-                IsActive = 1,
-            };
-            DimensionStructure dimensionStructure2Result = await _masterDataBusinessLogic.AddDimensionStructureAsync(
-                    dimensionStructure2)
-               .ConfigureAwait(false);
+            DimensionStructure dimensionStructure = null;
+            "And there is a dimension structure"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Name = "name",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
 
-            // Act
-            await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure2Result)
-               .ConfigureAwait(false);
+            "And dimension structure is saved in the database"
+               .x(async () => await _masterDataBusinessLogic.AddDimensionStructureAsync(
+                        dimensionStructure)
+                   .ConfigureAwait(false));
 
-            // Assert
-            List<DimensionStructure> result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
-               .ConfigureAwait(false);
-            result.Count.Should().Be(initList.Count + 1);
-            result.Where(p => p.Name == dimensionStructure.Name).ToList().Count.Should().Be(1);
-            result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0);
+            DimensionStructure dimensionStructure2 = null;
+            "And there is a dimension structure"
+               .x(() => dimensionStructure2 = new DimensionStructure
+                {
+                    Name = "name2",
+                    Desc = "desc2",
+                    IsActive = 1,
+                });
+
+            DimensionStructure dimensionStructure2Result = null;
+            "And dimension structure is stored in the database"
+               .x(async () => dimensionStructure2Result = await _masterDataBusinessLogic.AddDimensionStructureAsync(
+                        dimensionStructure2)
+                   .ConfigureAwait(false));
+
+
+            "When the latter dimension structure is deleted from the database"
+               .x(async () => await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure2Result)
+                   .ConfigureAwait(false));
+
+            List<DimensionStructure> result = null;
+            "And the result list is queried"
+               .x(async () => result = await _masterDataBusinessLogic.GetDimensionStructuresAsync()
+                   .ConfigureAwait(false));
+
+            "Then result count is initlist count +1 ".x(() => result.Count.Should().Be(initList.Count + 1));
+            "And the first dimension structure is in the list"
+               .x(() => result.Where(p => p.Name == dimensionStructure.Name).ToList().Count.Should().Be(1));
+            "And the second, deleted, dimension structure is not in the list"
+               .x(() => result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0));
         }
 
-        [Scenario(Skip = "Needs to be reviewed.")]
-        public void ThrowException_WhenThereIsNoSuchDimensionStructure()
+        [Scenario]
+        public void DeleteThrowsExceptionWhenThereIsNoSuchDimensionStructure()
         {
-            // Arrange
-            DimensionStructure dimensionStructure = new DimensionStructure
-            {
-                Id = 1000,
-            };
+            DimensionStructure dimensionStructure = null;
+            "Given there is a dimension structure points to not existing data in database"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Id = 1000,
+                });
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
-                   .ConfigureAwait(false);
-            };
+            Func<Task> action = null;
+            "When not existing dimension structure is deleted"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.DeleteDimensionStructureAsync(dimensionStructure)
+                       .ConfigureAwait(false);
+                });
 
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException>()
+                   .WithInnerException<GuardException>());
         }
     }
 }
