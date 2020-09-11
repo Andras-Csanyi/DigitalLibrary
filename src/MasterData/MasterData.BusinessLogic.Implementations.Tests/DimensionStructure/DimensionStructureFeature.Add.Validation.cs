@@ -28,50 +28,54 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     /// </summary>
     public partial class DimensionStructureFeature
     {
-        // [Scenario(Skip = "Needs to be reviewed.")]
-        // [MemberData(
-        //     nameof(MasterData_DimensionStructure_Validation_TestData.AddDimensionStructure_Validation_TestData),
-        //     MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        // public void ThrowException_WhenInputIsInvalid(
-        //     long id,
-        //     string name,
-        //     string desc,
-        //     int isActive)
-        // {
-        //     // Arrange
-        //     DimensionStructure dimensionStructure = new DimensionStructure
-        //     {
-        //         Id = id,
-        //         Name = name,
-        //         Desc = desc,
-        //         IsActive = isActive,
-        //     };
-        //
-        //     // Act
-        //     Func<Task> action = async () =>
-        //     {
-        //         await _masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
-        //     };
-        //
-        //     // Assert
-        //     action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-        //        .WithInnerException<ValidationException>();
-        // }
+        [Scenario]
+        [MemberData(
+            nameof(MasterData_DimensionStructure_Validation_TestData.AddDimensionStructure_Validation_TestData),
+            MemberType = typeof(MasterData_DimensionStructure_Validation_TestData))]
+        public void ThrowException_WhenInputIsInvalid(
+            long id,
+            string name,
+            string desc,
+            int isActive)
+        {
+            DimensionStructure dimensionStructure = null;
+            "Given there is a dimension structure with invalid data"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Id = id,
+                    Name = name,
+                    Desc = desc,
+                    IsActive = isActive,
+                });
 
-        [Scenario(Skip = "Needs to be reviewed.")]
+            Func<Task> action = null;
+            "When the dimension with invalid data gets saved"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.AddDimensionStructureAsync(dimensionStructure)
+                       .ConfigureAwait(false);
+                });
+
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
+                   .WithInnerException<ValidationException>());
+        }
+
+        [Scenario]
         public void ThrowException_WhenInputIsNull()
         {
-            // Arrange
+            Func<Task> action = null;
+            "When the save dimension structure is called with null input"
+               .x(() => action = async () =>
+                {
+                    await _masterDataBusinessLogic.AddDimensionStructureAsync(null).ConfigureAwait(false);
+                });
 
-            // Act
-            Func<Task> action = async () =>
-            {
-                await _masterDataBusinessLogic.AddDimensionStructureAsync(null).ConfigureAwait(false);
-            };
-
-            // Assert
-            action.Should().ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
-               .WithInnerException<GuardException>();
+            "Then an exception is thrown"
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicAddDimensionStructureAsyncOperationException>()
+                   .WithInnerException<GuardException>());
         }
     }
 }
