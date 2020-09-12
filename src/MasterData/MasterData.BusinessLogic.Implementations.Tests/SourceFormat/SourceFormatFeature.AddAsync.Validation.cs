@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Add.Validation.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.AddAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             nameof(MasterData_SourceFormat_Validation_TestData.AddNew),
             MemberType = typeof(MasterData_SourceFormat_Validation_TestData))]
         [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
-        public void Add_Validation_ThrowException_WhenInputIsInvalid(
+        public void AddAsync_ThrowsWhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -62,7 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Add_Validation_ThrowException_WhenInputIsNull()
+        public void AddAsync_ThrowsExceptionWhenInputIsNull()
         {
             Func<Task> action = null;
 

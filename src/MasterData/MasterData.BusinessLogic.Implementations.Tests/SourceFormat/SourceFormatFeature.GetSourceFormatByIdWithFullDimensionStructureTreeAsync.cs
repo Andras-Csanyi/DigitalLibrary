@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.ByIdWithFullDimensionStructureTreeAsync.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.GetSourceFormatByIdWithFullDimensionStructureTreeAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -23,7 +23,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public void Return_SourceFormat_WithRootDimensionStructure()
+        public void
+            GetSourceFormatByIdWithFullDimensionStructureTreeAsync_ReturnsSourceFormatWithRootDimensionStructure()
         {
             // Arrange
             SourceFormat sourceFormat = null;
@@ -83,7 +84,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Return_SourceFormat_WithTree_WithOneLevelDepth()
+        public void
+            GetSourceFormatByIdWithFullDimensionStructureTreeAsync_ReturnsSourceFormatWithTreeWithOneLevelDepth()
         {
             // Arrange
             SourceFormat sourceFormat = null;
@@ -201,7 +203,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Return_SourceFormat_WithTree_WithTwoLevelDepth()
+        public void GetSourceFormatByIdWithFullDimensionStructureTreeAsync_ReturnSourceFormatWithTreeWithTwoLevelDepth()
         {
             // Arrange
             SourceFormat sourceFormat = null;

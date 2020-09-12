@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Delete.Validation.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.DeleteAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public void Delete_Validation_ThrowException_WhenInputIsInvalid()
+        public void DeleteAsync_ThrowsWhenInputIsInvalid()
         {
             // Arrange
             SourceFormat sourceFormat = null;
@@ -53,7 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Delete_Validation_ThrowException_WhenInputIsNull()
+        public void DeleteAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
 

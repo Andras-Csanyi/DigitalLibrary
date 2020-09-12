@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Update.Validation.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.UpdateAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [MemberData(
             nameof(MasterData_DimensionStructure_Validation_TestData.ModifyTopDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_Validation_TestData))]
-        public void Update_NameDescIsActive_Validation_ThrowException_WhenInputIsInvalid(
+        public void UpdateAsync_ThrowsWhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -60,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Update_NameDescIsActive_ThrowException_WhenInputIsNull()
+        public void UpdateAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When source format update method is called with null parameter"

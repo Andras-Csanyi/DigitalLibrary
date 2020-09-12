@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Update.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.UpdateAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [MemberData(
             nameof(MasterData_DimensionStructure_TestData.ModifyTopDimensionStructure_TestData),
             MemberType = typeof(MasterData_DimensionStructure_TestData))]
-        public void Update_NameDescIsActive(
+        public void UpdateAsync_UpdatesNameDescIsActive(
             string name,
             string desc,
             int isActive)
@@ -75,7 +75,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Update_NameDescIsActive_ThrowException_WhenThereIsNoSuchSourceFormat()
+        public void UpdateAsync_ThrowsWhenThereIsNoSuchSourceFormat()
         {
             SourceFormat sourceFormat = null;
             "Given there is a source format"
@@ -101,7 +101,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Update_NameDescIsActive_ThrowException_WhenUniqueConstraintIsViolated()
+        public void UpdateAsync_ThrowsWhenUniqueConstraintIsViolated()
         {
             SourceFormat sourceFormat = null;
             "Given there is a source format"

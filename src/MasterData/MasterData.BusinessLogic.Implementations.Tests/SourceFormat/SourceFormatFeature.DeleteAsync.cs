@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Delete.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.DeleteAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public void Delete()
+        public void DeleteAsync_DeletesAnItem()
         {
             SourceFormat first = null;
             SourceFormat second = null;
@@ -80,7 +80,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Delete_ThrowException_WhenEntityDoesntExist()
+        public void DeleteAsync_ThrowsWhenEntityDoesNotExist()
         {
             Func<Task> action = null;
 

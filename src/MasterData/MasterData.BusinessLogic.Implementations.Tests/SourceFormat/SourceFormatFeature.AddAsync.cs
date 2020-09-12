@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Add.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.AddAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public void Add_WhenSourceFormat_DoesntHaveRootDimensionStructure()
+        public void AddAsync_AddsWhenSourceFormatDoesntHaveRootDimensionStructure()
         {
             SourceFormat sourceFormat = null;
             SourceFormat result = null;
@@ -54,77 +54,77 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Fact]
-        public void Add_WhenSourceFormatHasRootDimension_ButNoDimensionTree()
+        public void AddAsync_AddsWhenSourceFormatHasRootDimensionButNoDimensionTree()
         {
         }
 
         [Fact]
-        public void Add_WithOneLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        public void AddAsync_AddsWithOneLevelMultipleDimensionStructureTreeDimensionStructuresAreExist()
         {
         }
 
         [Fact]
-        public void Add_WithOneLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithOneLevelMultipleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Fact]
-        public void Add_WithOneLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithOneLevelSingleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Fact]
-        public void Add_WithOneLevelSingle_DimensionStructureTree_DimensionStructuresExist()
+        public void AddAsync_AddsWithOneLevelSingleDimensionStructureTreeDimensionStructuresExist()
         {
         }
 
         [Fact]
-        public void Add_WithoutCreatingDimensionStructure_WhenRootDimension_IsAlreadyAttached_ToOtherEntities()
+        public void AddAsync_AddsWithoutCreatingDimensionStructureWhenRootDimensionIsAlreadyAttachedToOtherEntities()
         {
         }
 
         [Fact]
-        public void Add_WithThreeLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        public void AddAsync_AddsWithThreeLevelMultipleDimensionStructureTreeDimensionStructuresAreExist()
         {
         }
 
         [Fact]
-        public void Add_WithThreeLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithThreeLevelMultipleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Fact]
-        public void Add_WithThreeLevelSingle_DimensionStructureTree_DimensionStructuresAreExist()
+        public void AddAsync_AddsWithThreeLevelSingleDimensionStructureTreeDimensionStructuresAreExist()
         {
         }
 
         [Fact]
-        public void Add_WithThreeLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithThreeLevelSingleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Fact]
-        public void Add_WithTwoLevelMultiple_DimensionStructureTree_DimensionStructuresAreExist()
+        public void AddAsync_AddsWithTwoLevelMultipleDimensionStructureTreeDimensionStructuresAreExist()
         {
         }
 
         [Fact]
-        public void Add_WithTwoLevelMultiple_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithTwoLevelMultipleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Fact]
-        public void Add_WithTwoLevelSingle_DimensionStructureTree_DimensionStructuresAreExist()
+        public void AddAsync_AddsWithTwoLevelSingleDimensionStructureTreeDimensionStructuresAreExist()
         {
         }
 
         [Fact]
-        public void Add_WithTwoLevelSingle_DimensionStructureTree_DimensionStructuresAreNew()
+        public void AddAsync_AddsWithTwoLevelSingleDimensionStructureTreeDimensionStructuresAreNew()
         {
         }
 
         [Scenario]
-        public void Add_ThrowExpection_WhenNameUniqueConstraintIsViolated()
+        public void AddAsync_ThrowsExpectionWhenNameUniqueConstraintIsViolated()
         {
             SourceFormat sourceFormat = null;
             Func<Task> action = null;

@@ -1,4 +1,4 @@
-// <copyright file="SourceFormatFeature.Count.cs" company="Andras Csanyi">
+// <copyright file="SourceFormatFeature.CountAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     public partial class SourceFormatFeature
     {
         [Scenario]
-        public void Count_ReturnsAllIncludingActiveAndInactive()
+        public void CountAsync_ReturnsAllIncludingActiveAndInactive()
         {
             SourceFormat sourceFormat = null;
             SourceFormat sourceFormat2 = null;
@@ -61,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Scenario]
-        public void Count_ReturnsZero_WhenThereAreNoSourceFormatsInTheDatabase()
+        public void CountAsync_ReturnsZeroWhenThereAreNoSourceFormatsInTheDatabase()
         {
             long count = 0;
 
