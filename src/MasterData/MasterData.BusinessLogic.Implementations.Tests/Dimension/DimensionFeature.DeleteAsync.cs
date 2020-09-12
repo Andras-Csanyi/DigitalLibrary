@@ -1,4 +1,4 @@
-// <copyright file="Delete_DimensionAsync_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.DeleteAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionFeature
     {
         [Scenario]
-        public async Task DeletesTheItem()
+        public async Task DeleteAsync_DeletesTheItem()
         {
             Dimension dimension1 = null;
             "Given there is a dimension"
@@ -73,7 +73,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void DeleteThrowsWhenThereIsNoEntity()
+        public void DeleteAsync_ThrowsWhenThereIsNoEntity()
         {
             Dimension dimension = null;
             "Given there is a dimension not in the database"

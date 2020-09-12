@@ -1,4 +1,4 @@
-// <copyright file="Add_DimensionAsync_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.AddAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionFeature
     {
         [Scenario]
-        public void AddDimension()
+        public void AddAsync_AddsDimension()
         {
             Dimension dimension = null;
             "Given there is a dimension"

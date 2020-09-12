@@ -1,4 +1,4 @@
-// <copyright file="Update_Dimension_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.UpdateAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_Dimension_Validation_TestData.UpdateDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_Validation_TestData))]
-        public void UpdateThrowsExceptionWhenInputIsInvalid(
+        public void UpdateAsync_ThrowsWhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -56,12 +56,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 });
 
             "Then an exception is thrown"
-               .x(() => action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
                    .WithInnerException<ValidationException>());
         }
 
         [Scenario]
-        public void UpdateThrowsExceptionWhenInputsAreNull()
+        public void UpdateAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When a dimension is updated with null input"
@@ -72,7 +73,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                 });
 
             "Then an exception is thrown"
-               .x(() => action.Should().ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicUpdateDimensionAsyncOperationException>()
                    .WithInnerException<GuardException>());
         }
     }

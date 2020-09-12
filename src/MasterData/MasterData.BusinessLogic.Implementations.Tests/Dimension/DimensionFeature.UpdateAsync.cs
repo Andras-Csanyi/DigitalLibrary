@@ -1,4 +1,4 @@
-// <copyright file="Update_Dimension_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.UpdateAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionFeature
     {
         [Scenario]
-        public async Task UpdateDimension()
+        public void UpdateAsync_UpdatesTheDimension()
         {
             // Arrange
             string name = null;
@@ -81,7 +81,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void UpdateThrowsExceptionWhenThereIsNoSuchEntity()
+        public void UpdateAsync_ThrowsWhenThereIsNoSuchEntity()
         {
             Dimension dimension = null;
             "Given there is a dimension"

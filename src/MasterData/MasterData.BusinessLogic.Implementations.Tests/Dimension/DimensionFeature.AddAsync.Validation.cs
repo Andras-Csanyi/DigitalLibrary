@@ -1,4 +1,4 @@
-// <copyright file="Add_DimensionAsync_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.AddAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_Dimension_Validation_TestData.AddDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_Validation_TestData))]
-        public void AddValidationThrowsWhenInputIsInvalid(
+        public void AddAsync_ValidationThrowsWhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -61,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void AddValidationThrowsWhenInputIsNull()
+        public void AddAsync_ValidationThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When the input is null"

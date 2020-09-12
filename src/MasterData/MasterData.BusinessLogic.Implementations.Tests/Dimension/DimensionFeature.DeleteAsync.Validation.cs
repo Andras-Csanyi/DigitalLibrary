@@ -1,4 +1,4 @@
-// <copyright file="Delete_DimensionAsync_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionFeature.DeleteAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionFeature
     {
         [Scenario]
-        public void DeleteThrowsExceptionWhenInputIsInvalid()
+        public void DeleteAsync_ThrowsWhenInputIsInvalid()
         {
             Dimension dimension = null;
             "Given there is a dimension with invalid data for deletion"
@@ -51,7 +51,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void DeleteThrowsExceptionWhenInputIsNull()
+        public void DeleteAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When I try to delete a dimension with null input"
