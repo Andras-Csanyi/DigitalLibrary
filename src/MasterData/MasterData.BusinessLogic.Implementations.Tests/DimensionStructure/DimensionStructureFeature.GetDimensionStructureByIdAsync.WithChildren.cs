@@ -1,4 +1,4 @@
-// <copyright file="GetDimensionStructureByIdAsync_WithChildren_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.GetDimensionStructureByIdAsync.WithChildren.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public void GetDimensionStructureByIdAsyncReturnsWithChildrenWhenItIsNotRootDimensionStructure()
+        public void GetDimensionStructureByIdAsync_ReturnsChildrenWhenItIsNotRootDimensionStructure()
         {
             DimensionStructure dimensionStructureForId = null;
             "Given a dimension structure is queried from database"
@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task GetDimensionStructureByIdAsyncReturnsWithChildrenWhenItIsRootDimension()
+        public async Task GetDimensionStructureByIdAsync_ReturnsChildrenWhenItIsRootDimension()
         {
             DimensionStructure dimensionStructureForId = null;
             "Given there is a dimension structure with children in the database"

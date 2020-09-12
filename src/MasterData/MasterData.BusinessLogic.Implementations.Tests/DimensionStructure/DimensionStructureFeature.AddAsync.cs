@@ -1,4 +1,4 @@
-// <copyright file="Add_DimensionStructure_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.AddAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public async Task AddADimensionStructure()
+        public async Task AddAsync_AddsTheDimensionStructure()
         {
             DimensionStructure dimensionStructure = null;
             "Given there is a dimension structure"

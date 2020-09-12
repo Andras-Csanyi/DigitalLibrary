@@ -1,4 +1,4 @@
-// <copyright file="Delete_DimensionStructure_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.DeleteAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public void DeleteThrowsExceptionWhenInputIsNull()
+        public void DeleteAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When delete dimension structure method is call with a null input"
@@ -43,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void DeleteThrowsExceptionWhenThereIsNoSuchDimensionStructure()
+        public void DeleteAsync_ThrowsWhenThereIsNoSuchDimensionStructure()
         {
             DimensionStructure dimensionStructure = null;
             "Given there is a dimension structure points to not existing data in database"

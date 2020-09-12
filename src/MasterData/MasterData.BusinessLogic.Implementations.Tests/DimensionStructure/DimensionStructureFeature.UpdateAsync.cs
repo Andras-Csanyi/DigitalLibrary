@@ -1,4 +1,4 @@
-// <copyright file="Update_DimensionStructure_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.UpdateAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public void UpdateAsyncThrowsExceptionWhenThereIsNoSuchEntity()
+        public void UpdateAsync_ThrowsWhenThereIsNoSuchEntity()
         {
             DimensionStructure orig = null;
             "Given there is a dimensions structure"
@@ -52,7 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task UpdateAsyncUpdates()
+        public async Task UpdateAsync_UpdatesDimensionStructure()
         {
             // Arrange
             string updateName = "update name";

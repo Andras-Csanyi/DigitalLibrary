@@ -1,4 +1,4 @@
-// <copyright file="Update_DimensionValue_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionValueFeature.UpdateAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_DimensionValue_TestData.DimensionValue_Modify_TestData),
             MemberType = typeof(MasterData_DimensionValue_TestData))]
-        public void ThrowException_WhenInputIsNull(
+        public void UpdateAsync_ThrowsWhenInputIsNull(
             long id,
             DimensionValue oldDimensionValue,
             DimensionValue newDimensionValue)
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void ThrowException_WhenOldDimensionValue_HasZeroId()
+        public void UpdateAsync_ThrowsWhenOldDimensionValueHasZeroId()
         {
             DimensionValue old = null;
             "Given there is the old dimension value with zero id"

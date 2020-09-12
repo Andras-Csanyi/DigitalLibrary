@@ -1,4 +1,4 @@
-// <copyright file="Add_DimensionValue_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionValueFeature.AddAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [Scenario]
         [InlineData(0, 0)]
         [InlineData(100, 100)]
-        public void Throw_MasterDataBusinessLogicAddDimensionValueOperationException_WhenInputIsNull(
+        public void AddAsync_ThrowsWhenInputIsNull(
             long dimensionId,
             long dimensionValueId)
         {

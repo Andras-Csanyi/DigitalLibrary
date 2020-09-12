@@ -1,4 +1,4 @@
-// <copyright file="Add_DimensionValue_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionValueFeature.AddAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionValueFeature
     {
         [Scenario]
-        public void AddSecondValueToDimensionValueOfASingleDimension()
+        public void AddAsync_AddsSecondValueToDimensionValueOfASingleDimension()
         {
             Dimension dimension = null;
             "Given is a dimension"
@@ -103,7 +103,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void Create_AddDimensionValueAndConnectToDimension()
+        public void AddAsync_CreatesAndAddDimensionValueAndConnectsToDimension()
         {
             Dimension alreadyExistingDimension = null;
             "Given there is a dimension"
@@ -142,7 +142,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task Create_DimensionValueDimensionRelation_WhenDimensionValueExist_ButNoDimensionRelation()
+        public void AddAsync_CreatesDimensionValueDimensionRelationWhenDimensionValueExistButNoDimensionRelation()
         {
             // Arrange
             Dimension alreadyExistingDimension = null;
@@ -214,7 +214,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task Return_DimensionValue_WithRelatedEntities_WhenDimensionValueAndDimensionRelationAlreadyExist()
+        public void
+            AddAsync_ReturnsDimensionValueWithRelatedEntitiesWhenDimensionValueAndDimensionRelationAlreadyExist()
         {
             // Arrange
             Dimension alreadyExistingDimension = null;
@@ -268,7 +269,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void ThrowException_WhenThereIsNoSuchDimension()
+        public void AddAsync_ThrowsWhenThereIsNoSuchDimension()
         {
             long dimensionId = 0;
             "Given there is a dimension id"

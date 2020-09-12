@@ -1,4 +1,4 @@
-// <copyright file="Delete_DimensionStructure_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.DeleteAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public async Task DeleteAnItem()
+        public async Task DeleteASync_DeletesAnItem()
         {
             List<DimensionStructure> initList = null;
             "Given we know the amount of dimension structures in the database"
@@ -80,7 +80,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
             "And the second, deleted, dimension structure is not in the list"
                .x(() => result.Where(p => p.Name == dimensionStructure2.Name).ToList().Count.Should().Be(0));
         }
-
-        
     }
 }

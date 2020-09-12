@@ -1,4 +1,4 @@
-// <copyright file="Count_DimensionValues_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionValueFeature.CountAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionValueFeature
     {
         [Scenario]
-        public async Task ReturnDimensionValuesCount_WhenASingleDimensionValueIsInTheSystem()
+        public void CountAsync_ReturnsDimensionValuesCountWhenASingleDimensionValueIsInTheSystem()
         {
             Dimension dimension = null;
             "Given there is a dimension"
@@ -61,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task ReturnDimensionValuesCount_WhenMultipleDimensionsHaveMultipleDimensionValues()
+        public void CountAsync_ReturnsDimensionValuesCountWhenMultipleDimensionsHaveMultipleDimensionValues()
         {
             Dimension dimension1 = null;
             "Given there is a dimension"
@@ -150,7 +150,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public async Task ReturnDimensionValuesCount_WhenMultipleDimensionValuesAreInTheSystem()
+        public void CountAsync_ReturnsDimensionValuesCountWhenMultipleDimensionValuesAreInTheSystem()
         {
             Dimension dimension = null;
             "Given there is a dimension"

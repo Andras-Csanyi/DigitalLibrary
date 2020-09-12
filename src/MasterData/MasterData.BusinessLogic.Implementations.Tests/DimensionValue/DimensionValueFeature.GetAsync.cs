@@ -1,4 +1,4 @@
-// <copyright file="Get_DimensionValues_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionValueFeature.GetAsync.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionValueFeature
     {
         [Scenario]
-        public void ReturnAllDimensionValuesWhenASingleDimensionValueIsInTheSystem()
+        public void GetAsync_ReturnsAllDimensionValuesWhenASingleDimensionValueIsInTheSystem()
         {
             Dimension dimension = null;
             "Given there is a dimension"
@@ -63,7 +63,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void ReturnAllDimensionValuesWhenMultipleDimensionsHaveMultipleDimensionValues()
+        public void GetAsync_ReturnsAllDimensionValuesWhenMultipleDimensionsHaveMultipleDimensionValues()
         {
             Dimension dimension1 = null;
             "Given there is a dimension"
@@ -156,7 +156,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void ReturnAllDimensionValues_WhenMultipleDimensionValuesAreInTheSystem()
+        public void GetAsync_ReturnsAllDimensionValuesWhenMultipleDimensionValuesAreInTheSystem()
         {
             Dimension dimension = null;
             "Given there is a dimension"

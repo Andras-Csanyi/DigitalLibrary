@@ -1,4 +1,4 @@
-// <copyright file="Update_DimensionStructure_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.UpdateAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         [MemberData(
             nameof(MasterData_DimensionStructure_Validation_TestData.ModifyDimensionStructure_Validation_TestData),
             MemberType = typeof(MasterData_DimensionStructure_Validation_TestData))]
-        public void UpdateAsyncValidationThrowsExceptionWhenInputIsInvalid(
+        public void UpdateAsync_ValidationThrowsWhenInputIsInvalid(
             long id,
             string name,
             string desc,
@@ -60,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         }
 
         [Scenario]
-        public void Update_Validation_ThrowException_WhenInputIsNull()
+        public void UpdateAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When save modified dimension structure method is called with null input"

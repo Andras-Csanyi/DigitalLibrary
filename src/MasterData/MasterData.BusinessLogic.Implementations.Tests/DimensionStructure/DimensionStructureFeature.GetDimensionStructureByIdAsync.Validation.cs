@@ -1,4 +1,4 @@
-// <copyright file="GetDimensionStructureByIdAsync_Validation_Should.cs" company="Andras Csanyi">
+// <copyright file="DimensionStructureFeature.GetDimensionStructureByIdAsync.Validation.cs" company="Andras Csanyi">
 // Copyright (c) Andras Csanyi. All rights reserved.
 //  Licensed under MIT.
 // </copyright>
@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     public partial class DimensionStructureFeature
     {
         [Scenario]
-        public void GetDimensionStructureByIdAsyncThrowsExceptionWhenInputIsNull()
+        public void GetDimensionStructureByIdAsync_ThrowsWhenInputIsNull()
         {
             Func<Task> action = null;
             "When GetDimensionStructureByIdAsync is called with null input"

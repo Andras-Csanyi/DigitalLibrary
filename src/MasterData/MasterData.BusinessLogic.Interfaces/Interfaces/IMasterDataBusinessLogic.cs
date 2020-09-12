@@ -33,10 +33,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<Dimension> GetValuesOfADimensionAsync(long dimensionId);
 
+        /// <summary>
+        /// Updates <see cref="DimensionValue"/>.
+        /// It takes the dimension id and based on the value looks up for the value and updates it.
+        /// Only that <see cref="DimensionValue"/> will be updated which has connection to the given
+        /// <see cref="Dimension"/>. If the value has connection to multiple <see cref="Dimension"/> than
+        /// these connection will be separated and rebuilt.
+        /// </summary>
+        /// <param name="dimensionId">Dimension.</param>
+        /// <param name="oldDimensionValue">Old value.</param>
+        /// <param name="newDimensionValue">New value.</param>
+        /// <returns>Updated dimension value.</returns>
         Task<DimensionValue> ModifyDimensionValueAsync(
             long dimensionId,
             DimensionValue oldDimensionValue,
-            DimensionValue newDimensionvalue);
+            DimensionValue newDimensionValue);
 
         Task<DimensionStructure> ReorderDimensionsInDimensionStructureAsync(
             long dimensionStructureId,
