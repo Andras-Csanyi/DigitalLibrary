@@ -54,28 +54,34 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
                .x(() => result.ChildDimensionStructures.Count.Should().Be(3));
         }
 
-        [Scenario(Skip = "Needs to be reviewed.")]
+        [Scenario]
         public async Task GetDimensionStructureByIdAsyncReturnsWithChildrenWhenItIsRootDimension()
         {
-            // Arrange
-            DimensionStructure dimensionStructureForId = await _masterDataBusinessLogic
-               .GetDimensionStructureByNameAsync(
-                    MasterDataDataSample.HungarianBusinessPartnerRootDimensionStructureName)
-               .ConfigureAwait(false);
+            DimensionStructure dimensionStructureForId = null;
+            "Given there is a dimension structure with children in the database"
+               .x(async () => dimensionStructureForId = await _masterDataBusinessLogic
+                   .GetDimensionStructureByNameAsync(
+                        MasterDataDataSample.HungarianBusinessPartnerRootDimensionStructureName)
+                   .ConfigureAwait(false));
 
-            // Act
-            DimensionStructureQueryObject dimensionStructureQueryObject = new DimensionStructureQueryObject
-            {
-                GetDimensionsStructuredById = dimensionStructureForId.Id,
-                IncludeChildrenWhenGetDimensionStructureById = true,
-            };
-            DimensionStructure result = await _masterDataBusinessLogic
-               .GetDimensionStructureByIdAsync(dimensionStructureQueryObject)
-               .ConfigureAwait(false);
+            DimensionStructureQueryObject dimensionStructureQueryObject = null;
+            "And there is a query for getting it with dimension structure tree"
+               .x(() => dimensionStructureQueryObject = new DimensionStructureQueryObject
+                {
+                    GetDimensionsStructuredById = dimensionStructureForId.Id,
+                    IncludeChildrenWhenGetDimensionStructureById = true,
+                });
 
-            // Assert
-            result.ChildDimensionStructures.Should().NotBeNullOrEmpty();
-            result.ChildDimensionStructures.Count.Should().Be(4);
+            DimensionStructure result = null;
+            "When dimension structure is queried with its dimension structure tree by id"
+               .x(async () => result = await _masterDataBusinessLogic
+                   .GetDimensionStructureByIdAsync(dimensionStructureQueryObject)
+                   .ConfigureAwait(false));
+
+            "Then child dimension structures is not null".x(() =>
+                result.ChildDimensionStructures.Should().NotBeNullOrEmpty());
+            "And amount of child dimension structures is 4"
+               .x(() => result.ChildDimensionStructures.Count.Should().Be(4));
         }
     }
 }
