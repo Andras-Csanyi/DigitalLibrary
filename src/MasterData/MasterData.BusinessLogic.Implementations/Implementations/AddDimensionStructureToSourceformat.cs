@@ -5,17 +5,21 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
 
     public partial class MasterDataBusinessLogic
     {
-        public async Task<DimensionStructure> AddDimensionStructureToSourceformatAsync(
+        /// <inheritdoc/>
+        public async Task<DimensionStructure> AddDimensionStructureToSourceFormatAsRootDimensionStructureAsync(
             long dimensionStructureId,
             long sourceFormatId)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public partial class MasterDataBusinessLogic
     {
+        /// <inheritdoc/>
         public async Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure)
         {
             try

@@ -19,7 +19,8 @@ namespace DigitalLibrary.MasterData.DomainModel
         /// <summary>
         ///     WARNING!!! It is used only when SourceFormat is built.
         /// </summary>
-        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; } = new List<DimensionStructure>();
+        public ICollection<DimensionStructure> ChildDimensionStructures { get; set; } =
+            new List<DimensionStructure>();
 
         public string Desc { get; set; }
 
@@ -27,8 +28,11 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public long? DimensionId { get; set; }
 
-        public ICollection<DimensionStructureDimensionStructure>
-            DimensionStructureDimensionStructures { get; set; } = new List<DimensionStructureDimensionStructure>();
+        /// <summary>
+        /// The tree which describes the whole document structure.
+        /// </summary>
+        public ICollection<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; } =
+            new List<DimensionStructureDimensionStructure>();
 
         public int IsActive { get; set; }
 
@@ -36,7 +40,13 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int SortOrder { get; set; }
 
-        public ICollection<SourceFormat> SourceFormats { get; set; } = new List<SourceFormat>();
+        /// <summary>
+        /// List of <see cref="SourceFormat"/>s where this <see cref="DimensionStructure"/>
+        /// is the root <see cref="DimensionStructure"/> in the <see cref="DimensionStructure"/>
+        /// tree.
+        /// </summary>
+        public ICollection<SourceFormat> SourceFormatsRootDimensionStructures { get; set; }
+            = new List<SourceFormat>();
 
         public Guid Guid { get; set; } = Guid.NewGuid();
 

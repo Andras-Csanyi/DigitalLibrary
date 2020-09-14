@@ -41,7 +41,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.RootDimensionStructureId).HasColumnName("root_dimensionstructure_id");
 
             builder.HasOne(p => p.RootDimensionStructure)
-               .WithMany(s => s.SourceFormats)
+               .WithMany(s => s.SourceFormatsRootDimensionStructures)
                .HasForeignKey(k => k.RootDimensionStructureId)
                .IsRequired(false);
         }

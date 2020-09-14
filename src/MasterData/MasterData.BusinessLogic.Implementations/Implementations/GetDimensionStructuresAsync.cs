@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     return await ctx.DimensionStructures
                        .AsNoTracking()
                        .Include(i => i.Dimension)
-                       .Include(ii => ii.SourceFormats)
+                       .Include(ii => ii.SourceFormatsRootDimensionStructures)
                        .ToListAsync()
                        .ConfigureAwait(false);
                 }
