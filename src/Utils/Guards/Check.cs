@@ -22,7 +22,12 @@ namespace DigitalLibrary.Utils.Guards
         {
             if (value == comparedTo)
             {
-                ThrowGuardException(message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"{value} cannot be equal to {comparedTo}";
+                }
+
+                throw new GuardException(message);
             }
         }
 
@@ -37,7 +42,12 @@ namespace DigitalLibrary.Utils.Guards
         {
             if (value == comparedTo)
             {
-                ThrowGuardException(message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"{value} cannot be equal to {comparedTo}";
+                }
+
+                throw new GuardException(message);
             }
         }
 
@@ -52,7 +62,12 @@ namespace DigitalLibrary.Utils.Guards
         {
             if (value == comparedTo)
             {
-                ThrowGuardException(message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"{value} cannot be equal to {comparedTo}";
+                }
+
+                throw new GuardException(message);
             }
         }
 
@@ -67,7 +82,12 @@ namespace DigitalLibrary.Utils.Guards
         {
             if (value == comparedTo)
             {
-                ThrowGuardException(message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"{value} cannot be equal to {comparedTo}";
+                }
+
+                throw new GuardException(message);
             }
         }
 
@@ -75,38 +95,40 @@ namespace DigitalLibrary.Utils.Guards
         ///     Checks whether toBeChecked is null or not. If message is set
         ///     then Exception message will contains the message.
         /// </summary>
-        /// <param name="toBeChecked">Object will be checked</param>
+        /// <param name="toBeChecked">Object will be checked.</param>
         /// <param name="message">If exception is thrown this message will be added.</param>
-        /// <typeparam name="T">Type of toBeCompared/</typeparam>
+        /// <typeparam name="T">Type of toBeCompared.</typeparam>
         public static void IsNotNull<T>(T toBeChecked, string message = null)
         {
+            // ReSharper disable once CompareNonConstrainedGenericWithNull
             if (toBeChecked == null)
             {
-                ThrowGuardException(message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"Type {typeof(T)} cannot be null.";
+                }
+
+                throw new GuardException(message);
             }
         }
 
+        /// <summary>
+        /// Checks whether given string is empty, null or whitespace. If the string is empty, null
+        /// or whitespace then <see cref="ThrowGuardException"/> is thrown.
+        /// </summary>
+        /// <param name="toBeChecked">String to be checked.</param>
+        /// <param name="message">Custom error message.</param>
         public static void NotNullOrEmptyOrWhitespace(string toBeChecked, string message = null)
         {
             if (string.IsNullOrEmpty(toBeChecked) || string.IsNullOrWhiteSpace(toBeChecked))
             {
-                ThrowGuardException(message);
-            }
-        }
+                if (string.IsNullOrEmpty(message))
+                {
+                    message = $"Given string cannot be empty, null or whitespace";
+                }
 
-        private static void ThrowGuardException(string message)
-        {
-            string msg;
-            if (message == null)
-            {
-                msg = $"Guard exception.";
+                throw new GuardException(message);
             }
-            else
-            {
-                msg = message;
-            }
-
-            throw new GuardException(msg);
         }
     }
 }
