@@ -57,8 +57,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 });
 
             "Then the business logic throws exception"
-               .x(() => action.Should().ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>()
-                   .WithInnerException<ValidationException>());
+               .x(() => action.Should()
+                   .ThrowExactly<MasterDataBusinessLogicAddSourceFormatAsyncOperationException>());
         }
 
         [Scenario]

@@ -38,8 +38,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 });
 
             "When adding SourceFormat"
-               .x(async () => result = await _masterDataBusinessLogic.AddSourceFormatAsync(
-                    sourceFormat).ConfigureAwait(false));
+               .x(async () => result = await _masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false));
 
             "Then the result should not be null"
                .x(() => result.Should().NotBeNull());
@@ -53,9 +53,64 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .x(() => result.IsActive.Should().Be(sourceFormat.IsActive));
         }
 
-        [Fact]
-        public void AddAsync_AddsWhenSourceFormatHasRootDimensionButNoDimensionTree()
+        [Scenario]
+        public void AddAsync_AddsWhenSourceFormatHasNewRootDimensionButNoDimensionTree()
         {
+            SourceFormat sourceFormat = null;
+            "Given there is a source format"
+               .x(() => sourceFormat = new SourceFormat
+                {
+                    Name = "source format",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
+
+            DimensionStructure dimensionStructure = null;
+            "And there is a dimension structure"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Name = "dim struct",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
+
+            "And dimension structure is root dimension structure of source format"
+               .x(() =>
+                {
+                    sourceFormat.RootDimensionStructure = dimensionStructure;
+                });
+
+            SourceFormat result = null;
+            "When source format is saved it returns with the saved source format"
+               .x(async () => result = await _masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false));
+
+            "Then result is not null"
+               .x(() => result.Should().NotBeNull());
+            "And result source format id is not 0"
+               .x(() => result.Id.Should().NotBe(0));
+            "And result source format name equals to original's name"
+               .x(() => result.Name.Should().Be(sourceFormat.Name));
+            "And result source format desc equals to original's desc"
+               .x(() => result.Desc.Should().Be(sourceFormat.Desc));
+            "And result source format is active equals to original's is active"
+               .x(() => result.IsActive.Should().Be(sourceFormat.IsActive));
+            "And result source format root dimension is not null"
+               .x(() => result.RootDimensionStructure.Should().NotBeNull());
+            "And result source format root dimension id is not 0"
+               .x(() => result.RootDimensionStructureId.Should().NotBe(0));
+            "And root dimension name equals to original's name"
+               .x(() => result.RootDimensionStructure.Name.Should().Be(dimensionStructure.Name));
+            "And root dimension desc equals to original's desc"
+               .x(() => result.RootDimensionStructure.Desc.Should().Be(dimensionStructure.Desc));
+            "And root dimension is active equals to original's is active"
+               .x(() => result.RootDimensionStructure.IsActive.Should().Be(dimensionStructure.IsActive));
+        }
+
+        [Scenario]
+        public void AddAsync_AddsWhenSourceFormatHasAlreadyExistingDimensionStructureAsRootDimensionStructure()
+        {
+            
         }
 
         [Fact]

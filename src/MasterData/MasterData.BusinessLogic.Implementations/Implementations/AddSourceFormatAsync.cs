@@ -20,6 +20,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     using FluentValidation;
 
+    using Microsoft.EntityFrameworkCore.Storage;
+
     [SuppressMessage("ReSharper", "SA1601", Justification = "Reviewed.")]
     public partial class MasterDataBusinessLogic
     {
@@ -29,7 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (var transaction = await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
+                using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
+                   .ConfigureAwait(false))
                 {
                     try
                     {
@@ -55,25 +58,37 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             SourceFormat sourceFormat,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(sourceFormat);
-            Check.IsNotNull(ctx);
+            try
+            {
+                Check.IsNotNull(sourceFormat);
+                Check.IsNotNull(ctx);
 
-            await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                    sourceFormat,
-                    ruleSet: SourceFormatValidatorRulesets.Add)
-               .ConfigureAwait(false);
+                await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
+                        sourceFormat,
+                        ruleSet: SourceFormatValidatorRulesets.Add)
+                   .ConfigureAwait(false);
 
-            await ctx.SourceFormats.AddAsync(sourceFormat).ConfigureAwait(false);
-            await ctx.SaveChangesAsync().ConfigureAwait(false);
+                await ctx.SourceFormats.AddAsync(sourceFormat).ConfigureAwait(false);
+                await ctx.SaveChangesAsync().ConfigureAwait(false);
 
-            DimensionStructure rootDimensionStructure = await CheckAndSaveRootDimensionAsync(sourceFormat, ctx)
-               .ConfigureAwait(false);
-            await CheckAndSaveDimensionStructureTreeAsync(
-                sourceFormat,
-                rootDimensionStructure,
-                ctx).ConfigureAwait(false);
+                if (sourceFormat.RootDimensionStructure != null)
+                {
+                    DimensionStructure rootDimensionStructure = await CheckAndSaveRootDimensionAsync(sourceFormat, ctx)
+                       .ConfigureAwait(false);
 
-            return sourceFormat;
+                    await CheckAndSaveDimensionStructureTreeAsync(
+                        sourceFormat,
+                        rootDimensionStructure,
+                        ctx).ConfigureAwait(false);
+                }
+
+                return sourceFormat;
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(SaveSourceFormatAsync)}";
+                throw new MasterDataBusinessLogicException(msg, e);
+            }
         }
 
         private async Task CheckAndSaveDimensionStructureTreeAsync(
@@ -81,17 +96,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             DimensionStructure rootDimensionStructure,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(sourceFormat);
-            Check.IsNotNull(rootDimensionStructure);
-            Check.IsNotNull(ctx);
-
-            if (sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+            try
             {
-                await SaveDimensionStructureTreeAsync(
-                        sourceFormat.RootDimensionStructure.ChildDimensionStructures,
-                        rootDimensionStructure.Id,
-                        ctx)
-                   .ConfigureAwait(false);
+                Check.IsNotNull(sourceFormat);
+                Check.IsNotNull(rootDimensionStructure);
+                Check.IsNotNull(ctx);
+
+                if (sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                {
+                    await SaveDimensionStructureTreeAsync(
+                            sourceFormat.RootDimensionStructure.ChildDimensionStructures,
+                            rootDimensionStructure.Id,
+                            ctx)
+                       .ConfigureAwait(false);
+                }
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(CheckAndSaveDimensionStructureTreeAsync)}";
+                throw new MasterDataBusinessLogicException(msg, e);
             }
         }
 
@@ -100,12 +123,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             long parentDimensionStructureId,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(childDimensionStructures);
-            Check.IsNotNull(ctx);
-            Check.AreNotEqual(parentDimensionStructureId, 0);
-
-            foreach (DimensionStructure childDimensionStructure in childDimensionStructures)
+            try
             {
+                Check.IsNotNull(childDimensionStructures);
+                Check.IsNotNull(ctx);
+                Check.AreNotEqual(parentDimensionStructureId, 0);
+
+                foreach (DimensionStructure childDimensionStructure in childDimensionStructures)
+                {
+                }
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(SaveDimensionStructureTreeAsync)}";
+                throw new MasterDataBusinessLogicException(msg, e);
             }
         }
 
@@ -113,37 +144,41 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             SourceFormat sourceFormat,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(sourceFormat);
-            // EF Core gives a temporary negative value to Id
-            if (sourceFormat.RootDimensionStructure != null && sourceFormat.RootDimensionStructureId > 0)
+            try
             {
-                // Add new relation to an existing DimensionStructure
-                await AddSourceFormatWhereDimensionStructureIsARootDimensionStructure(
-                        sourceFormat.RootDimensionStructureId,
-                        sourceFormat.Id,
-                        ctx)
-                   .ConfigureAwait(false);
-            }
-            else if (sourceFormat.RootDimensionStructure != null && sourceFormat.RootDimensionStructureId <= 0)
-            {
-                // Create a new DimensionStructure
-                DimensionStructure newDimensionStructure =
-                    await CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure(
-                            sourceFormat.RootDimensionStructure,
+                Check.IsNotNull(sourceFormat);
+                // EF Core gives a temporary negative value to Id
+                if (sourceFormat.RootDimensionStructureId > 0)
+                {
+                    // Add new relation to an existing DimensionStructure
+                    await AddSourceFormatWhereDimensionStructureIsARootDimensionStructure(
                             sourceFormat.RootDimensionStructureId,
+                            sourceFormat.Id,
                             ctx)
                        .ConfigureAwait(false);
+                }
+                else if (sourceFormat.RootDimensionStructureId <= 0)
+                {
+                    // Create a new DimensionStructure
+                    DimensionStructure newDimensionStructure =
+                        await CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure(
+                                sourceFormat.RootDimensionStructure,
+                                sourceFormat.RootDimensionStructureId,
+                                ctx)
+                           .ConfigureAwait(false);
+                }
+
+                DimensionStructure result = await ctx.DimensionStructures
+                   .FindAsync(sourceFormat.RootDimensionStructureId)
+                   .ConfigureAwait(false);
+
+                return result;
             }
-
-            long id = sourceFormat.RootDimensionStructureId ?? 0;
-            DimensionStructureQueryObject query = new DimensionStructureQueryObject
+            catch (Exception e)
             {
-                GetDimensionsStructuredById = id,
-            };
-            DimensionStructure result = await GetDimensionStructureByIdAsync(query)
-               .ConfigureAwait(false);
-
-            return result;
+                string msg = $"{nameof(CheckAndSaveRootDimensionAsync)}";
+                throw new MasterDataBusinessLogicException(msg, e);
+            }
         }
 
         private async Task<DimensionStructure>
@@ -152,28 +187,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 long? sourceFormatId,
                 MasterDataContext ctx)
         {
-            Check.IsNotNull(newDimensionStructure);
-            Check.IsNotNull(sourceFormatId);
-            Check.AreNotEqual(sourceFormatId, 0);
-            Check.IsNotNull(ctx);
-
-            DimensionStructure result = await AddDimensionStructureAsync(newDimensionStructure)
-               .ConfigureAwait(false);
-
-            long id = sourceFormatId ?? 0;
-            SourceFormat querySourceFormat = new SourceFormat { Id = id };
-            SourceFormat sourceFormat = await GetSourceFormatByIdAsync(querySourceFormat).ConfigureAwait(false);
-
-            if (sourceFormat != null && result != null)
+            try
             {
-                result.SourceFormatsRootDimensionStructures.Add(sourceFormat);
-                await ctx.SaveChangesAsync().ConfigureAwait(false);
-                return result;
-            }
+                Check.IsNotNull(newDimensionStructure);
+                Check.IsNotNull(sourceFormatId);
+                Check.AreNotEqual(sourceFormatId, 0);
+                Check.IsNotNull(ctx);
 
-            string msg = $"Something went wrong in " +
-                         $"{nameof(CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure)}";
-            throw new MasterDataBusinessLogicException(msg);
+                DimensionStructure result = await AddDimensionStructureAsync(newDimensionStructure)
+                   .ConfigureAwait(false);
+
+                long id = sourceFormatId ?? 0;
+                SourceFormat querySourceFormat = new SourceFormat { Id = id };
+                SourceFormat sourceFormat = await GetSourceFormatByIdAsync(querySourceFormat).ConfigureAwait(false);
+
+                if (sourceFormat != null && result != null)
+                {
+                    result.SourceFormatsRootDimensionStructures.Add(sourceFormat);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    return result;
+                }
+
+                string msg = $"Something went wrong in " +
+                    $"{nameof(CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure)}";
+                throw new MasterDataBusinessLogicException(msg);
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure)}";
+                throw new MasterDataBusinessLogicException(msg, e);
+            }
         }
 
         private async Task AddSourceFormatWhereDimensionStructureIsARootDimensionStructure(
@@ -181,32 +224,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             long sourceFormatId,
             MasterDataContext ctx)
         {
-            Check.IsNotNull(sourceFormatRootDimensionStructureId);
-            Check.AreNotEqual(sourceFormatRootDimensionStructureId, 0);
-            Check.AreNotEqual(sourceFormatId, 0);
-            Check.IsNotNull(ctx);
-
-            SourceFormat querySourceFormat = new SourceFormat { Id = sourceFormatId };
-            SourceFormat sourceFormat = await GetSourceFormatByIdAsync(querySourceFormat).ConfigureAwait(false);
-
-            long id = sourceFormatRootDimensionStructureId ?? 0;
-            DimensionStructureQueryObject queryDimensionStructure = new DimensionStructureQueryObject
+            try
             {
-                GetDimensionsStructuredById = id,
-            };
-            DimensionStructure dimensionStructure = await GetDimensionStructureByIdAsync(queryDimensionStructure)
-               .ConfigureAwait(false);
+                Check.IsNotNull(sourceFormatRootDimensionStructureId);
+                Check.AreNotEqual(sourceFormatRootDimensionStructureId, 0);
+                Check.AreNotEqual(sourceFormatId, 0);
+                Check.IsNotNull(ctx);
 
-            if (sourceFormat != null && dimensionStructure != null)
-            {
-                dimensionStructure.SourceFormatsRootDimensionStructures.Add(sourceFormat);
-                await ctx.SaveChangesAsync().ConfigureAwait(false);
-                return;
+                SourceFormat sourceFormat = await ctx.SourceFormats.FindAsync(sourceFormatId)
+                   .ConfigureAwait(false);
+
+                DimensionStructure dimensionStructure = await ctx.DimensionStructures
+                   .FindAsync(sourceFormatRootDimensionStructureId)
+                   .ConfigureAwait(false);
+
+                if (sourceFormat != null && dimensionStructure != null)
+                {
+                    dimensionStructure.SourceFormatsRootDimensionStructures.Add(sourceFormat);
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    return;
+                }
+
+                string msg = $"Either there is no source format with {sourceFormatId}, " +
+                    $"or there is no dimension structure with id {sourceFormatRootDimensionStructureId}.";
+                throw new MasterDataBusinessLogicException(msg);
             }
-
-            string msg = $"Either there is no source format with {sourceFormatId}, " +
-                         $"or there is no dimension structure with id {sourceFormatRootDimensionStructureId}.";
-            throw new MasterDataBusinessLogicException(msg);
+            catch (Exception e)
+            {
+                string msg = $"{nameof(AddSourceFormatWhereDimensionStructureIsARootDimensionStructure)}";
+                throw new MasterDataBusinessLogicException(msg, e);
+            }
         }
     }
 }
