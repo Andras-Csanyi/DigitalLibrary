@@ -13,11 +13,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Logging.Console;
+    using Microsoft.Extensions.Options;
 
     using Xbehave;
+
+    using Xunit.Abstractions;
 
     /// <summary>
     /// Background steps for <see cref="SourceFormat"/> related test cases.
@@ -26,36 +32,45 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class MasterDataBusinessLogicFeature
+    public class MasterDataBusinessLogicFeature : IDisposable
     {
-        public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
-           .Create(builder => { builder.AddDebug(); });
-
         protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         private readonly string _testInfo;
 
-        public MasterDataBusinessLogicFeature(string testInfo)
+        private readonly ITestOutputHelper _outputHelper;
+
+        private readonly IServiceProvider _serviceProvider;
+
+        private DbContextOptions<MasterDataContext> _dbContextOptions;
+
+        protected MasterDataBusinessLogicFeature(
+            string testInfo,
+            ITestOutputHelper testOutputHelper)
         {
             _testInfo = testInfo
-             ?? throw new ArgumentNullException($"No testInfo is provided");
+             ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
+            _outputHelper = testOutputHelper
+             ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
+
+            _serviceProvider = new ServiceCollection()
+               .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
+               .AddEntityFrameworkSqlite()
+               .BuildServiceProvider();
         }
 
         [Background]
         public void Background()
         {
-            string msg = $"{_testInfo} cannot be null, empty or whitespace!";
-            Check.NotNullOrEmptyOrWhitespace(_testInfo, msg);
+            Check.NotNullOrEmptyOrWhitespace(_testInfo);
 
-            DbContextOptions<MasterDataContext> _dbContextOptions =
-                new DbContextOptionsBuilder<MasterDataContext>()
-                   .UseSqlite($"Data Source = {_testInfo}.sqlite")
+            _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
+               .UseSqlite($"Data Source = {_testInfo}.sqlite")
 
-                    // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
-                   .UseLoggerFactory(LoggerFactory)
-                   .EnableDetailedErrors()
-                   .EnableSensitiveDataLogging()
-                   .Options;
+                // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
+                // .UseLoggerFactory(MasterDataLogger)
+               .UseInternalServiceProvider(_serviceProvider)
+               .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
             MasterDataDimensionValueValidator masterDataDimensionValueValidator =
@@ -86,6 +101,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 ctx.Database.EnsureCreated();
                 MasterDataDataSample.Populate(ctx);
             }
+        }
+
+        public void Dispose()
+        {
+            // _masterDataBusinessLogic.Dispose();
+            (_serviceProvider as IDisposable)?.Dispose();
         }
     }
 }

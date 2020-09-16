@@ -5,6 +5,7 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFormat
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
@@ -18,6 +19,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
     using Xbehave;
 
+    using Xunit.Abstractions;
+
     /// <summary>
     /// Background steps for <see cref="SourceFormat"/> related test cases.
     /// </summary>
@@ -27,9 +30,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public partial class SourceFormatFeature : MasterDataBusinessLogicFeature
     {
-        public SourceFormatFeature()
-            : base(nameof(SourceFormatFeature))
+        public SourceFormatFeature(ITestOutputHelper testOutputHelper)
+            : base(nameof(SourceFormatFeature), testOutputHelper)
         {
+            ITestOutputHelper helper = testOutputHelper
+             ?? throw new ArgumentNullException("bla");
         }
     }
 }

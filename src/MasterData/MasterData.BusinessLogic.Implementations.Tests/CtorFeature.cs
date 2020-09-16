@@ -17,6 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Xbehave;
 
     using Xunit;
+    using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -24,8 +25,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class CtorFeature : MasterDataBusinessLogicFeature
     {
-        public CtorFeature()
-            : base(nameof(CtorFeature))
+        public CtorFeature(ITestOutputHelper testOutputHelper)
+            : base(nameof(CtorFeature), testOutputHelper)
         {
         }
 

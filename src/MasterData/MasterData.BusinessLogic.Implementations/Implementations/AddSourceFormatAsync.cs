@@ -73,13 +73,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                 if (sourceFormat.RootDimensionStructure != null)
                 {
-                    DimensionStructure rootDimensionStructure = await CheckAndSaveRootDimensionAsync(sourceFormat, ctx)
-                       .ConfigureAwait(false);
-
-                    await CheckAndSaveDimensionStructureTreeAsync(
-                        sourceFormat,
-                        rootDimensionStructure,
-                        ctx).ConfigureAwait(false);
+                    if (sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+                    {
+                        await CheckAndSaveDimensionStructureTreeAsync(
+                            sourceFormat,
+                            sourceFormat.RootDimensionStructure,
+                            ctx).ConfigureAwait(false);
+                    }
                 }
 
                 return sourceFormat;

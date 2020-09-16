@@ -7,6 +7,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using Xunit.Abstractions;
+
     /// <summary>
     /// Test cases covering <see cref="Dimension"/> related operations.
     /// </summary>
@@ -19,8 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
         /// <summary>
         /// Initializes a new instance of the <see cref="DimensionFeature"/> class.
         /// </summary>
-        public DimensionFeature()
-            : base(nameof(DimensionFeature))
+        public DimensionFeature(ITestOutputHelper testOutputHelper)
+            : base(nameof(DimensionFeature), testOutputHelper)
         {
         }
     }

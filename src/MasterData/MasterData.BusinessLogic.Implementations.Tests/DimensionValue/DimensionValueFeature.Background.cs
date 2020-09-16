@@ -7,6 +7,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using Xunit.Abstractions;
+
     /// <summary>
     /// Tests covering <see cref="DimensionValue"/> related operations.
     /// </summary>
@@ -16,8 +18,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Dimensio
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public partial class DimensionValueFeature : MasterDataBusinessLogicFeature
     {
-        public DimensionValueFeature()
-            : base(nameof(DimensionValueFeature))
+        public DimensionValueFeature(ITestOutputHelper testOutputHelper)
+            : base(nameof(DimensionValueFeature), testOutputHelper)
         {
         }
     }

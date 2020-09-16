@@ -42,6 +42,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj" />
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
         <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
         <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
         <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj" />

@@ -75,10 +75,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 });
 
             "And dimension structure is root dimension structure of source format"
-               .x(() =>
-                {
-                    sourceFormat.RootDimensionStructure = dimensionStructure;
-                });
+               .x(() => { sourceFormat.RootDimensionStructure = dimensionStructure; });
 
             SourceFormat result = null;
             "When source format is saved it returns with the saved source format"
@@ -110,7 +107,72 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Scenario]
         public void AddAsync_AddsWhenSourceFormatHasAlreadyExistingDimensionStructureAsRootDimensionStructure()
         {
-            
+            SourceFormat sourceFormat = null;
+            "Given there is a source format"
+               .x(() => sourceFormat = new SourceFormat
+                {
+                    Name = "source format",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
+
+            DimensionStructure dimensionStructure = null;
+            "And there is a dimension structure"
+               .x(() => dimensionStructure = new DimensionStructure
+                {
+                    Name = "dimension structure name",
+                    Desc = "desc",
+                    IsActive = 1,
+                });
+
+            DimensionStructure dimensionStructureResult = null;
+            "And dimension structure is saved in the database"
+               .x(async () => dimensionStructureResult = await _masterDataBusinessLogic.AddDimensionStructureAsync(
+                        dimensionStructure)
+                   .ConfigureAwait(false));
+
+            "And dimension structure is root dimension structure of source format"
+               .x(() =>
+               {
+                  sourceFormat.RootDimensionStructure = dimensionStructureResult;
+                  sourceFormat.RootDimensionStructureId = dimensionStructureResult.Id;
+               });
+
+            SourceFormat result = null;
+            "When source format is saved it returns with the saved source format"
+               .x(async () => result = await _masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false));
+
+            "Then result is not null"
+               .x(() => result.Should().NotBeNull());
+            "And result source format id is not 0"
+               .x(() => result.Id.Should().NotBe(0));
+            "And result source format name equals to original's name"
+               .x(() => result.Name.Should().Be(sourceFormat.Name));
+            "And result source format desc equals to original's desc"
+               .x(() => result.Desc.Should().Be(sourceFormat.Desc));
+            "And result source format is active equals to original's is active"
+               .x(() => result.IsActive.Should().Be(sourceFormat.IsActive));
+            "And result source format root dimension is not null"
+               .x(() => result.RootDimensionStructure.Should().NotBeNull());
+            "And result source format root dimension structure's id equals to dimension structure id"
+               .x(() => result.RootDimensionStructure.Id.Should().Be(dimensionStructureResult.Id));
+            "And result source format root dimension id is not 0"
+               .x(() => result.RootDimensionStructureId.Should().NotBe(0));
+            "And result source format root dimension id equals to root dimension structure id"
+               .x(() => result.RootDimensionStructureId.Should().Be(dimensionStructureResult.Id));
+            "And root dimension name equals to original's name"
+               .x(() => result.RootDimensionStructure.Name.Should().Be(dimensionStructure.Name));
+            "And root dimension name equals to original saved one's name"
+               .x(() => result.RootDimensionStructure.Name.Should().Be(dimensionStructureResult.Name));
+            "And root dimension desc equals to original's desc"
+               .x(() => result.RootDimensionStructure.Desc.Should().Be(dimensionStructure.Desc));
+            "And root dimension desc equals to original saved one's desc"
+               .x(() => result.RootDimensionStructure.Desc.Should().Be(dimensionStructureResult.Desc));
+            "And root dimension is active equals to original's is active"
+               .x(() => result.RootDimensionStructure.IsActive.Should().Be(dimensionStructure.IsActive));
+            "And root dimension is active equals to original saved one's is active"
+               .x(() => result.RootDimensionStructure.IsActive.Should().Be(dimensionStructureResult.IsActive));
         }
 
         [Fact]
