@@ -263,3 +263,6 @@ global.json
 
 # SQLite files for testing
 *.sqlite
+
+# Specflow - generated files
+*.feature.cs

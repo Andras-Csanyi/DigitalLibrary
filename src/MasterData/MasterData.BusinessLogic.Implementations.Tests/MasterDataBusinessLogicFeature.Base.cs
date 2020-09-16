@@ -21,7 +21,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.Extensions.Logging.Console;
     using Microsoft.Extensions.Options;
 
-    using Xbehave;
+    using TechTalk.SpecFlow;
+
+    // using Xbehave;
 
     using Xunit.Abstractions;
 
@@ -59,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .BuildServiceProvider();
         }
 
-        [Background]
+        [BeforeScenario]
         public void Background()
         {
             Check.NotNullOrEmptyOrWhitespace(_testInfo);
@@ -69,7 +71,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-               .UseInternalServiceProvider(_serviceProvider)
+               // .UseInternalServiceProvider(_serviceProvider)
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
@@ -90,10 +92,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator);
 
-            "Given there is the MasterDataBusinessLogic"
-               .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
-                    _dbContextOptions,
-                    masterDataValidators));
+            _masterDataBusinessLogic = new MasterDataBusinessLogic(_dbContextOptions, masterDataValidators);
+            // "Given there is the MasterDataBusinessLogic"
+            //    .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
+            //         _dbContextOptions,
+            //         masterDataValidators));
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
