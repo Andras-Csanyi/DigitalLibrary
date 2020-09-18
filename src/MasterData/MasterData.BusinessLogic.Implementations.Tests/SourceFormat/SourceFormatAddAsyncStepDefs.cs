@@ -54,8 +54,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [When(@"SourceFormat is saved")]
-        public void SourceFormatIsSaved(){}
-        
+        public void SourceFormatIsSaved()
+        {
+        }
+
         [When(@"it returns with the newly added SourceFormat")]
         public async Task ItReturnsWithTheNewlyAddedSourceFormat()
         {
@@ -91,6 +93,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         public async Task TheReturnedSourceFormatsIsActiveValueEqualsToTheOriginalsIsActiveValue()
         {
             _sourceFormatResult.IsActive.Should().Be(_sourceFormat.IsActive);
+        }
+
+        [Then(@"the returned SourceFormat's RootDimensionStructure is not null")]
+        public async Task TheReturnedSourceFormatsRootDimensionStructureIsNotNull()
+        {
+        }
+
+        [Then(@"the returned SourceFormat's RootDimensionStructure Id is not zero")]
+        public async Task TheReturnedSourceFormatsRootDimensionStructureIsNotZero()
+        {
+        }
+
+        [Then(@"the returned SourceFormat's RootDimensionStructure's name equals to original's name")]
+        public async Task TheReturnesSourceFormatsRootDimensionStructuresNameEqualsToOriginalsName()
+        {
+        }
+
+        [Then(@"the returned SourceFormat's RootDimensionStructure's desc equals to original's desc")]
+        public async Task TheReturnedSourceFormatsRootDimensionStructuresDescEqualsToOriginalsDesc()
+        {
+        }
+
+        [Then(@"the returned SourceFormat's RootDimensionStructure's is active equals to original's is active")]
+        public async Task TheReturnedSourceFormatsRootDimensionStructuresIsActiveEqualToOriginalsIsActive()
+        {
         }
     }
 }
