@@ -11,16 +11,24 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.8"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.8"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.8"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj" />
+        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+            <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.1.8\ref\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
     </ItemGroup>
 </Project>
