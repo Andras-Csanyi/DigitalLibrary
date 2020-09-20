@@ -24,6 +24,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="SpecFlow" Version="3.4.8"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.4.8"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.4.8"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
@@ -39,12 +42,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj" />
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
-        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
-        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
-        <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj" />
+        <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations.Tests.Entities\MasterData.BusinessLogic.Implementations.Tests.Entities.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
+        <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
     </ItemGroup>
 
     <Target Name="AfterUpdateFeatureFilesInProject">

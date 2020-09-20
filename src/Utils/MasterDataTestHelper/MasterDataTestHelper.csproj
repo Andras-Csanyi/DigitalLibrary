@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>DigitalLibrary.Utils.MasterDataTestHelper</RootNamespace>
+        <AssemblyName>DigitalLibrary.Utils.MasterDataTestHelper</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+    </ItemGroup>
+
+</Project>

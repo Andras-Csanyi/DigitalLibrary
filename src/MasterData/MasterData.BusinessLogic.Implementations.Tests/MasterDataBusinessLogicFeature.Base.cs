@@ -6,7 +6,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
@@ -14,6 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
+    using DigitalLibrary.Utils.MasterDataTestHelper;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +28,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using TechTalk.SpecFlow;
 
     // using Xbehave;
-
     using Xunit.Abstractions;
 
     /// <summary>
@@ -46,14 +49,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         private DbContextOptions<MasterDataContext> _dbContextOptions;
 
+        protected Dictionary<string, DomainModel.SourceFormat> _sourceFormatBag =
+            new Dictionary<string, DomainModel.SourceFormat>();
+
+        protected Dictionary<string, DomainModel.SourceFormat> _sourceFormatSaveOperationResultBag =
+            new Dictionary<string, DomainModel.SourceFormat>();
+
+        protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureBag =
+            new Dictionary<string, DomainModel.DimensionStructure>();
+
+        protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureStoredObjectsBag =
+            new Dictionary<string, DomainModel.DimensionStructure>();
+
+
         protected MasterDataBusinessLogicFeature(
             string testInfo,
             ITestOutputHelper testOutputHelper)
         {
             _testInfo = testInfo
-             ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
+                     ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
             _outputHelper = testOutputHelper
-             ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
+                         ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
 
             _serviceProvider = new ServiceCollection()
                .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
@@ -71,7 +87,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-               // .UseInternalServiceProvider(_serviceProvider)
+                // .UseInternalServiceProvider(_serviceProvider)
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
@@ -110,6 +126,52 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         {
             // _masterDataBusinessLogic.Dispose();
             (_serviceProvider as IDisposable)?.Dispose();
+        }
+
+        protected async Task<DomainModel.SourceFormat> GetTargetSourceFormat(
+            string targetDomainObjectName,
+            string targetDomainObjectSource)
+        {
+            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
+            {
+                DomainModel.SourceFormat result = _sourceFormatBag.FirstOrDefault(
+                        p => p.Value.Name == targetDomainObjectName)
+                   .Value;
+                return result;
+            }
+
+            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
+            {
+                DomainModel.SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                        p => p.Value.Name == targetDomainObjectName)
+                   .Value;
+                return result;
+            }
+
+            throw new Exception($"No valid source for SourceFormat.");
+        }
+
+        protected async Task<DomainModel.DimensionStructure> GetTargetDimensionStructure(
+            string targetDomainObjectName,
+            string targetDomainObjectSource)
+        {
+            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
+            {
+                DomainModel.DimensionStructure result = _dimensionStructureBag.FirstOrDefault(
+                        p => p.Value.Name == targetDomainObjectName)
+                   .Value;
+                return result;
+            }
+
+            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
+            {
+                DomainModel.DimensionStructure result = _dimensionStructureStoredObjectsBag.FirstOrDefault(
+                        p => p.Value.Name == targetDomainObjectName)
+                   .Value;
+                return result;
+            }
+
+            throw new Exception($"No valid source for DimensionStructure.");
         }
     }
 }
