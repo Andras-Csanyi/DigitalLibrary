@@ -31,8 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             : base(nameof(SourceFormatAddAsyncStepDefs), testOutputHelper)
         {
             _masterDataTestHelper = masterDataTestHelper
-                                 ?? throw new ArgumentNullException(
-                                        $"{nameof(masterDataTestHelper)}");
+             ?? throw new ArgumentNullException(
+                    $"{nameof(masterDataTestHelper)}");
         }
 
         [Given(@"there is a domain object")]
@@ -290,6 +290,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         public async Task SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNode(
             Table table)
         {
+            SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNodeEntity instance =
+                table.CreateInstance<SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNodeEntity
+                >();
+
+            SourceFormat result = _sourceFormatSaveOperationResultBag
+               .First(p => p.Value.Name.Equals(instance.SourceFormatName))
+               .Value;
+
+            DimensionStructure dimensionStructureResult = await _masterDataTestHelper.DimensionStructureLinkedListHelper
+               .GetChildDimensionStructureFromGivenNode(
+                    result,
+                    instance.NodeName,
+                    instance.DimensionStructureName)
+               .ConfigureAwait(false);
+
+            dimensionStructureResult.Should().NotBeNull();
         }
     }
 }

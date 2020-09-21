@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
+namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper
 {
     public partial class DimensionStructureLinkedListHelper : IDimensionStructureLinkedListHelper
     {

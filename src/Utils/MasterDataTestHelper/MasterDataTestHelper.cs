@@ -3,6 +3,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
     using System;
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper;
 
     public interface IMasterDataTestHelper
     {
@@ -25,8 +26,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
             DimensionStructureFactory = dimensionStructureFactory ?? throw new ArgumentNullException(
                 $"{nameof(dimensionStructureFactory)}");
             DimensionStructureLinkedListHelper = dimensionStructureLinkedListHelper
-                                              ?? throw new ArgumentNullException(
-                                                     $"{nameof(dimensionStructureLinkedListHelper)}");
+             ?? throw new ArgumentNullException(
+                    $"{nameof(dimensionStructureLinkedListHelper)}");
         }
 
 

@@ -372,15 +372,13 @@ Feature: AddAsync
     And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure is not null
     And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure length is <2>
     And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
-      | SourceFormatName | SF1Result            |
-      | PropName         | Name                 |
-      | Value            | ChildAndChildOfOther |
-      | NodeName         | RootDs               |
+      | SourceFormatName       | SF1Result            |
+      | DimensionStructureName | ChildAndChildOfOther |
+      | NodeName               | RootDs               |
     And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
-      | SourceFormatName | SF1Result |
-      | PropName         | Name      |
-      | Value            | ChildNew  |
-      | NodeName         | RootDs    |
+      | SourceFormatName       | SF1Result |
+      | DimensionStructureName | ChildNew  |
+      | NodeName               | RootDs    |
     And a DimensionStructure is child of multiple RootDimensionStructures
       | SourceFormatName | DimensionStructureName | LookupProp |
       | SF1Result        | ChildAndChildOfOther   | Name       |

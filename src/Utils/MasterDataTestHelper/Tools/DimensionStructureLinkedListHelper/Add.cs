@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
+namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -15,8 +15,9 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             if (sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
             {
                 await IterateThroughAndAddAsync(sourceFormat.RootDimensionStructure.ChildDimensionStructures,
-                    nodeName,
-                    childDimensionStructure);
+                        nodeName,
+                        childDimensionStructure)
+                   .ConfigureAwait(false);
             }
 
             return sourceFormat;
@@ -37,8 +38,9 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
                 if (dimensionStructure.ChildDimensionStructures.Any())
                 {
                     await IterateThroughAndAddAsync(dimensionStructure.ChildDimensionStructures,
-                        nodeName,
-                        childDimensionStructure);
+                            nodeName,
+                            childDimensionStructure)
+                       .ConfigureAwait(false);
                 }
             }
         }

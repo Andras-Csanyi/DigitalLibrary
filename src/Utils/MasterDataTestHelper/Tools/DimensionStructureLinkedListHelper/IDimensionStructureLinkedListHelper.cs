@@ -1,4 +1,4 @@
-namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
+namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper
 {
     using System.Threading.Tasks;
 
@@ -10,5 +10,10 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             DimensionStructure childDimensionStructure,
             SourceFormat sourceFormat,
             string nodeName);
+
+        Task<DimensionStructure> GetChildDimensionStructureFromGivenNode(
+            SourceFormat result,
+            string nodeName,
+            string dimensionStructureName);
     }
 }
