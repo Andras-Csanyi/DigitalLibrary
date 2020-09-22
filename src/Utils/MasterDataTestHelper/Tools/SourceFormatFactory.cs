@@ -13,6 +13,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
         public SourceFormatFactory(IStringHelper stringHelper)
         {
+            _stringHelper = stringHelper;
         }
 
         public SourceFormat Create(string name)

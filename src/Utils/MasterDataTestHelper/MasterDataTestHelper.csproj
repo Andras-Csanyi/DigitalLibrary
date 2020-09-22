@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>DigitalLibrary.Utils.MasterDataTestHelper</RootNamespace>
         <AssemblyName>DigitalLibrary.Utils.MasterDataTestHelper</AssemblyName>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

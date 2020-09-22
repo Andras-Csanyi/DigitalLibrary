@@ -14,5 +14,7 @@ namespace DigitalLibrary.MasterData.Validators
         public const string GetById = "GetById";
 
         public const string Update = "Update";
+
+        public const string GetByName = "GetByName";
     }
 }

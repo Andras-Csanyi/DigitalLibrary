@@ -1,5 +1,7 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -15,5 +17,9 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLink
             SourceFormat result,
             string nodeName,
             string dimensionStructureName);
+
+        Task<bool> IsDimensionStructureChildOfRootDimensionStructureAsync(
+            ICollection<DimensionStructure> dimensionStructures,
+            DimensionStructure childDimensionStructure);
     }
 }

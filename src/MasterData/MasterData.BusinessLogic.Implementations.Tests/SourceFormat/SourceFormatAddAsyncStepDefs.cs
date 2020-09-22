@@ -23,16 +23,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
     [Binding]
     public class SourceFormatAddAsyncStepDefs : MasterDataBusinessLogicFeature
     {
-        private readonly IMasterDataTestHelper _masterDataTestHelper;
-
-        protected SourceFormatAddAsyncStepDefs(
-            ITestOutputHelper testOutputHelper,
-            IMasterDataTestHelper masterDataTestHelper)
+        public SourceFormatAddAsyncStepDefs(
+            ITestOutputHelper testOutputHelper)
             : base(nameof(SourceFormatAddAsyncStepDefs), testOutputHelper)
         {
-            _masterDataTestHelper = masterDataTestHelper
-             ?? throw new ArgumentNullException(
-                    $"{nameof(masterDataTestHelper)}");
         }
 
         [Given(@"there is a domain object")]
@@ -105,6 +99,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         }
 
         [Given(@"domain object is saved")]
+        [When(@"domain object is saved")]
         public async Task DomainObjectIsSaved(Table table)
         {
             DomainObjectIsSavedEntity instance = table.CreateInstance<DomainObjectIsSavedEntity>();
@@ -306,6 +301,33 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ConfigureAwait(false);
 
             dimensionStructureResult.Should().NotBeNull();
+        }
+
+        [Then(@"a DimensionStructure is child of RootDimensionStructure")]
+        public async Task ADimensionStructureIsChildOfRootDimensionStructure(Table table)
+        {
+            ADimensionStructureIsChildOfRootDimensionStructureEntity instance = table
+               .CreateInstance<ADimensionStructureIsChildOfRootDimensionStructureEntity>();
+
+            SourceFormat sourceFormatQuery = new SourceFormat
+            {
+                Name = instance.SourceFormatName,
+            };
+            SourceFormat sourceFormat = await _masterDataBusinessLogic
+               .GetSourceFormatByNameWithRootDimensionStructureAsync(sourceFormatQuery)
+               .ConfigureAwait(false);
+
+            DimensionStructure childDimensionStructure = await _masterDataBusinessLogic
+               .GetDimensionStructureByNameAsync(instance.DimensionStructureName)
+               .ConfigureAwait(false);
+
+            bool result = await _masterDataTestHelper.DimensionStructureLinkedListHelper
+               .IsDimensionStructureChildOfRootDimensionStructureAsync(
+                    sourceFormat.RootDimensionStructure.ChildDimensionStructures,
+                    childDimensionStructure)
+               .ConfigureAwait(false);
+
+            result.Should().BeTrue();
         }
     }
 }

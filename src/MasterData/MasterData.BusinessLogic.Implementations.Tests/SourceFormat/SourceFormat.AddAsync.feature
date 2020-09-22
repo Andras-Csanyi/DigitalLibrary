@@ -14,7 +14,35 @@ Feature: AddAsync
 #    And the returned SourceFormat's name equals to the original's name
 #    And the returned SourceFormat's description equals to the original's description
 #    And the returned SourceFormat's is active value equals to the original's is active value
-#
+
+  Scenario: Adds a SourceFormat when the newly added SourceFormat doesn't have RootDimensionStructure
+    Given there is a domain object
+      | Field | Value        |
+      | Name  | SF1          |
+      | Type  | SourceFormat |
+    When domain object is saved
+      | Field            | Value        |
+      | DomainObjectType | SourceFormat |
+      | DomainObjectName | SF1          |
+      | ResultId         | SF1Result    |
+    Then <SF1Result> SourceFormat save result is not null
+    And <SF1Result> SourceFormat result Id is not <0>
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Name      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Desc      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | IsActive  |
+      | EqualsTo     | SF1       |
+  
 #  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension
 #  tree
 #    Given there is a SourceFormat without RootDimensionStructure
@@ -379,10 +407,12 @@ Feature: AddAsync
       | SourceFormatName       | SF1Result |
       | DimensionStructureName | ChildNew  |
       | NodeName               | RootDs    |
-    And a DimensionStructure is child of multiple RootDimensionStructures
-      | SourceFormatName | DimensionStructureName | LookupProp |
-      | SF1Result        | ChildAndChildOfOther   | Name       |
-      | SF2Result        | ChildAndChildOfOther   | Name       |
+    And a DimensionStructure is child of RootDimensionStructure
+      | SourceFormatName       | SF1Result            |
+      | DimensionStructureName | ChildAndChildOfOther |
+    And a DimensionStructure is child of RootDimensionStructure
+      | SourceFormatName       | SF2Result            |
+      | DimensionStructureName | ChildAndChildOfOther |
 
 #  Scenario: Adds a SourceFormat when RootDimensionStructure has a single ChildDimensionStructure on the second level as new
 #

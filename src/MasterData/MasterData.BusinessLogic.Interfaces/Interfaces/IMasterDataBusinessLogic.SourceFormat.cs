@@ -28,6 +28,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat);
 
+        /// <summary>
+        /// It returns a <see cref="SourceFormat"/> without its related entities.
+        /// </summary>
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        /// It returns a <see cref="SourceFormat"/> with its RootDimensionStructure attached.
+        /// </summary>
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameWithRootDimensionStructureAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        /// Returns with <see cref="SourceFormat"/> which contains the full <see cref="DimensionStructure"/>
+        /// tree.
+        /// </summary>
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameWithFullDimensionStructureTreeAsync(SourceFormat sourceFormat);
+
         Task<SourceFormat> GetSourceFormatByIdWithFullDimensionStructureTreeAsync(SourceFormat querySourceFormat);
 
         Task<List<SourceFormat>> GetSourceFormatsAsync();

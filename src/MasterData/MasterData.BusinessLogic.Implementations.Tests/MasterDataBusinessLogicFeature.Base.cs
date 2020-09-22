@@ -18,6 +18,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
     using DigitalLibrary.Utils.MasterDataTestHelper;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +29,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using TechTalk.SpecFlow;
 
-    // using Xbehave;
     using Xunit.Abstractions;
 
     /// <summary>
@@ -61,15 +62,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureStoredObjectsBag =
             new Dictionary<string, DomainModel.DimensionStructure>();
 
+        protected IMasterDataTestHelper _masterDataTestHelper;
+
 
         protected MasterDataBusinessLogicFeature(
             string testInfo,
             ITestOutputHelper testOutputHelper)
         {
             _testInfo = testInfo
-                     ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
+             ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
             _outputHelper = testOutputHelper
-                         ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
+             ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
 
             _serviceProvider = new ServiceCollection()
                .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
@@ -107,6 +110,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator);
+
+            IStringHelper stringHelper = new StringHelper();
+            ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
+            IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
+            IDimensionStructureLinkedListHelper dimensionStructureLinkedListHelper =
+                new DimensionStructureLinkedListHelper();
+            _masterDataTestHelper = new MasterDataTestHelper(
+                sourceFormatFactory,
+                dimensionStructureFactory,
+                dimensionStructureLinkedListHelper
+            );
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(_dbContextOptions, masterDataValidators);
             // "Given there is the MasterDataBusinessLogic"
