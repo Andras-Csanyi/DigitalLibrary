@@ -61,16 +61,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 table.CreateInstance<AddDomainObjectToAnotherDomainObjectsPropertyEntity>();
 
             if (instance.TargetDomainObjectType.Equals(DomainObjectTypesStringEnum.SourceFormat)
-             && instance.DomainObjectNameToBeAdded.Equals(DomainObjectTypesStringEnum.DimensionStructure)
              && instance.TargetDomainObjectPropName.Equals(SourceFormatPropertiesStruct.RootDimensionStructure)
             )
             {
-                SourceFormat targetSourceFormat = await GetTargetSourceFormat(
+                SourceFormat targetSourceFormat = await GetTargetSourceFormatAsync(
                         instance.TargetDomainObjectName,
                         instance.TargetDomainObjectSource)
                    .ConfigureAwait(false);
 
-                DimensionStructure toBeAddedDimensionStructure = await GetTargetDimensionStructure(
+                DimensionStructure toBeAddedDimensionStructure = await GetTargetDimensionStructureAsync(
                         instance.DomainObjectNameToBeAdded,
                         instance.DomainObjectSource)
                    .ConfigureAwait(false);
@@ -111,7 +110,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                    .Value;
                 SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(toSave)
                    .ConfigureAwait(false);
-                _sourceFormatSaveOperationResultBag.Add(instance.ResultId, result);
+                SourceFormat resultWithFullDimensionStructureTree = await _masterDataBusinessLogic
+                   .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(result)
+                   .ConfigureAwait(false);
+                _sourceFormatSaveOperationResultBag.Add(instance.ResultId, resultWithFullDimensionStructureTree);
             }
         }
 
@@ -228,8 +230,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         {
             SourceFormatPropertyIsNotNullEntity instance = table.CreateInstance<SourceFormatPropertyIsNotNullEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(
-                    p => p.Value.Name.Equals(instance.Name))
+            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.Name))
                .Value;
 
             switch (instance.PropertyName)
@@ -249,27 +251,30 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatResultRootDimensionStructurePropertyEqualsToEntity instance = table
                .CreateInstance<SourceFormatResultRootDimensionStructurePropertyEqualsToEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(
-                    p => p.Value.Name.Equals(instance.Name))
+            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.Name))
                .Value;
-            SourceFormat comparedTo = _sourceFormatBag.First(p => p.Value.Name.Equals(instance.EqualsTo)).Value;
+            DimensionStructure comparedTo = _dimensionStructureBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.EqualsTo))
+               .Value;
 
             switch (instance.PropertyName)
             {
                 case DimensionStructurePropertiesStruct.Id:
-                    result.Id.Should().Be(comparedTo.Id);
+                    result.RootDimensionStructure.Id.Should().Be(comparedTo.Id);
+                    result.RootDimensionStructureId.Should().Be(comparedTo.Id);
                     break;
 
                 case DimensionStructurePropertiesStruct.Name:
-                    result.Name.Should().Be(comparedTo.Name);
+                    result.RootDimensionStructure.Name.Should().Be(comparedTo.Name);
                     break;
 
                 case DimensionStructurePropertiesStruct.Desc:
-                    result.Desc.Should().Be(comparedTo.Desc);
+                    result.RootDimensionStructure.Desc.Should().Be(comparedTo.Desc);
                     break;
 
                 case DimensionStructurePropertiesStruct.IsActive:
-                    result.IsActive.Should().Be(comparedTo.IsActive);
+                    result.RootDimensionStructure.IsActive.Should().Be(comparedTo.IsActive);
                     break;
 
                 default:

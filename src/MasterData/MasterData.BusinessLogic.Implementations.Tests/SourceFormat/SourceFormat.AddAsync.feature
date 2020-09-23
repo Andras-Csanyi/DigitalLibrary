@@ -5,16 +5,6 @@ Feature: AddAsync
   Which provides me the ability to
   Build and Manage SourceFormats
 
-#  Scenario: Adds a SourceFormat when the newly added SourceFormat doesn't have RootDimensionStructure
-#    Given there is a SourceFormat without RootDimensionStructure
-#    When saving SourceFormat
-#    And it returns with the newly added SourceFormat
-#    Then the returned SourceFormat is not null
-#    And the returned SourceFormat's id should not be zero
-#    And the returned SourceFormat's name equals to the original's name
-#    And the returned SourceFormat's description equals to the original's description
-#    And the returned SourceFormat's is active value equals to the original's is active value
-
   Scenario: Adds a SourceFormat when the newly added SourceFormat doesn't have RootDimensionStructure
     Given there is a domain object
       | Field | Value        |
@@ -42,9 +32,71 @@ Feature: AddAsync
       | Name         | SF1Result |
       | PropertyName | IsActive  |
       | EqualsTo     | SF1       |
-  
-#  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension
-#  tree
+
+  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension
+  tree
+    Given there is a domain object
+      | Field | Value        |
+      | Name  | SF1          |
+      | Type  | SourceFormat |
+    And there is a domain object
+      | Field | Value              |
+      | Name  | SF1Root            |
+      | Type  | DimensionStructure |
+    And add a domain object to another domain object's property
+      | Field                      | Value                  |
+      | TargetDomainObjectName     | SF1                    |
+      | TargetDomainObjectType     | SourceFormat           |
+      | TargetDomainObjectPropName | RootDimensionStructure |
+      | TargetDomainObjectSource   | Bag                    |
+      | DomainObjectNameToBeAdded  | SF1Root                |
+      | DomainObjectToBeAddedType  | DimensionStructure     |
+      | DomainObjectSource         | Bag                    |
+    When domain object is saved
+      | Field            | Value        |
+      | DomainObjectType | SourceFormat |
+      | DomainObjectName | SF1          |
+      | ResultId         | SF1Result    |
+    Then 'SF1Result' SourceFormat save result is not null
+    And 'SF1Result' SourceFormat result Id is not '0'
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Name      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Desc      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | IsActive  |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property is not null
+      | Name      | PropertyName           |
+      | SF1Result | RootDimensionStructure |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Id        |
+      | EqualsTo     | SF1Root   |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Name      |
+      | EqualsTo     | SF1Root   |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | Desc      |
+      | EqualsTo     | SF1Root   |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value     |
+      | Name         | SF1Result |
+      | PropertyName | IsActive  |
+      | EqualsTo     | SF1Root   |
 #    Given there is a SourceFormat without RootDimensionStructure
 #    And there is a DimensionStructure
 #    And DimensionStructure is RootDimensionStructure of SourceFormat

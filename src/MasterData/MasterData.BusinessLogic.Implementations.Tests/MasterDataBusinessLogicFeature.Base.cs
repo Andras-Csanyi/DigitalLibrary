@@ -142,14 +142,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             (_serviceProvider as IDisposable)?.Dispose();
         }
 
-        protected async Task<DomainModel.SourceFormat> GetTargetSourceFormat(
+        protected async Task<DomainModel.SourceFormat> GetTargetSourceFormatAsync(
             string targetDomainObjectName,
             string targetDomainObjectSource)
         {
             if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
             {
                 DomainModel.SourceFormat result = _sourceFormatBag.FirstOrDefault(
-                        p => p.Value.Name == targetDomainObjectName)
+                        p => p.Key == targetDomainObjectName)
                    .Value;
                 return result;
             }
@@ -157,7 +157,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
             {
                 DomainModel.SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                        p => p.Value.Name == targetDomainObjectName)
+                        p => p.Key == targetDomainObjectName)
                    .Value;
                 return result;
             }
@@ -165,14 +165,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             throw new Exception($"No valid source for SourceFormat.");
         }
 
-        protected async Task<DomainModel.DimensionStructure> GetTargetDimensionStructure(
+        protected async Task<DomainModel.DimensionStructure> GetTargetDimensionStructureAsync(
             string targetDomainObjectName,
             string targetDomainObjectSource)
         {
             if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
             {
                 DomainModel.DimensionStructure result = _dimensionStructureBag.FirstOrDefault(
-                        p => p.Value.Name == targetDomainObjectName)
+                        p => p.Key == targetDomainObjectName)
                    .Value;
                 return result;
             }
@@ -180,7 +180,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
             {
                 DomainModel.DimensionStructure result = _dimensionStructureStoredObjectsBag.FirstOrDefault(
-                        p => p.Value.Name == targetDomainObjectName)
+                        p => p.Key == targetDomainObjectName)
                    .Value;
                 return result;
             }
