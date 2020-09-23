@@ -170,20 +170,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .ConfigureAwait(false);
         }
 
-        [Then(@"<.*> SourceFormat save result is not null")]
+        [Then(@"'(.*)' SourceFormat save result is not null")]
         public async Task SourceFormatSaveResultIsNotNull(string saveResultName)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(
-                    p => p.Value.Name.Equals(saveResultName))
+            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                    p => p.Key.Equals(saveResultName))
                .Value;
             result.Should().NotBeNull();
         }
 
-        [Then(@"<.*> SourceFormat save result Id is not <.*>")]
+        [Then(@"'(.*)' SourceFormat result Id is not '(.*)'")]
         public async Task SourceFormatSaveResultIdIsNotZero(string saveResultName, int notEqualsTo)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(
-                    p => p.Value.Name.Equals(saveResultName))
+            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                    p => p.Key.Equals(saveResultName))
                .Value;
             result.Id.Should().NotBe(notEqualsTo);
         }
@@ -194,15 +194,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatResultPropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultPropertyEqualsToEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(
-                    p => p.Value.Name.Equals(instance.Name))
+            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.Name))
                .Value;
-            SourceFormat comparedTo = _sourceFormatBag.First(p => p.Value.Name.Equals(instance.EqualsTo)).Value;
+            SourceFormat comparedTo = _sourceFormatBag.FirstOrDefault(
+                p => p.Key.Equals(instance.EqualsTo)).Value;
 
             switch (instance.PropertyName)
             {
                 case SourceFormatPropertiesStruct.RootDimensionStructure:
                     result.RootDimensionStructure.Should().NotBe(comparedTo.RootDimensionStructure);
+                    break;
+
+                case SourceFormatPropertiesStruct.Name:
+                    result.Name.Should().Be(comparedTo.Name);
+                    break;
+
+                case SourceFormatPropertiesStruct.Desc:
+                    result.Desc.Should().Be(comparedTo.Desc);
+                    break;
+
+                case SourceFormatPropertiesStruct.IsActive:
+                    result.IsActive.Should().Be(comparedTo.IsActive);
                     break;
 
                 default:

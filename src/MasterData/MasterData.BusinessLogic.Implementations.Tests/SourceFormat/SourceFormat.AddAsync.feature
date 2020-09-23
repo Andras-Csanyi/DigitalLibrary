@@ -25,8 +25,8 @@ Feature: AddAsync
       | DomainObjectType | SourceFormat |
       | DomainObjectName | SF1          |
       | ResultId         | SF1Result    |
-    Then <SF1Result> SourceFormat save result is not null
-    And <SF1Result> SourceFormat result Id is not <0>
+    Then 'SF1Result' SourceFormat save result is not null
+    And 'SF1Result' SourceFormat result Id is not '0'
     And SourceFormat result property equals to
       | Field        | Value     |
       | Name         | SF1Result |
