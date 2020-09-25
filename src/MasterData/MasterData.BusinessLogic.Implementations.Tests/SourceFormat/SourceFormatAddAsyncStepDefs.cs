@@ -103,29 +103,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         {
             DomainObjectIsSavedEntity instance = table.CreateInstance<DomainObjectIsSavedEntity>();
 
-            if (instance.DomainObjectType.Equals(DomainObjectTypesStringEnum.SourceFormat))
+            switch (instance.DomainObjectType)
             {
-                SourceFormat toSave = _sourceFormatBag
-                   .FirstOrDefault(p => p.Key == instance.DomainObjectName)
-                   .Value;
-                SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(toSave)
-                   .ConfigureAwait(false);
+                case DomainObjectTypesStringEnum.SourceFormat:
+                    await SourceFormatDomainObjectTypeIsSaved(instance).ConfigureAwait(false);
+                    break;
 
-                SourceFormat resultWithFullDimensionStructureTree;
-                if (result.RootDimensionStructureId != null)
-                {
-                    resultWithFullDimensionStructureTree = await _masterDataBusinessLogic
-                       .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(result)
-                       .ConfigureAwait(false);
-                }
-                else
-                {
-                    resultWithFullDimensionStructureTree = result;
-                }
-
-                _sourceFormatSaveOperationResultBag.Add(instance.ResultId, resultWithFullDimensionStructureTree);
+                case DomainObjectTypesStringEnum.DimensionStructure:
+                    await DimensionStructureDomainObjectTypeIsSaved(instance).ConfigureAwait(false);
+                    break;
             }
         }
+
 
         [Given(@"sync test domain object")]
         public async Task SyncTestDataObject(Table table)
@@ -264,9 +253,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
                     p => p.Key.Equals(instance.Name))
                .Value;
-            DimensionStructure comparedTo = _dimensionStructureBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.EqualsTo))
-               .Value;
+            DimensionStructure comparedTo;
+            if (instance.Source.Equals(DomainObjectSourceStringEnum.ResultBag))
+            {
+                comparedTo = _dimensionStructureStoredObjectsBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.EqualsTo)).Value;
+            }
+            else
+            {
+                comparedTo = _dimensionStructureBag.FirstOrDefault(
+                    p => p.Key.Equals(instance.EqualsTo)).Value;
+            }
 
             switch (instance.PropertyName)
             {

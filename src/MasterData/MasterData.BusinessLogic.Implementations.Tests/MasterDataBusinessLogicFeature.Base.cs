@@ -11,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -70,9 +71,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             ITestOutputHelper testOutputHelper)
         {
             _testInfo = testInfo
-             ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
+                     ?? throw new ArgumentNullException($"No {nameof(testInfo)} is provided");
             _outputHelper = testOutputHelper
-             ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
+                         ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} provided");
 
             _serviceProvider = new ServiceCollection()
                .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
@@ -90,7 +91,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-                // .UseInternalServiceProvider(_serviceProvider)
+                //  .UseInternalServiceProvider(_serviceProvider)
+                // .EnableDetailedErrors()
+                // .EnableSensitiveDataLogging()
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
@@ -186,6 +189,38 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             }
 
             throw new Exception($"No valid source for DimensionStructure.");
+        }
+
+        protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
+        {
+            DomainModel.SourceFormat toSave = _sourceFormatBag
+               .FirstOrDefault(p => p.Key == instance.DomainObjectName)
+               .Value;
+            DomainModel.SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(toSave)
+               .ConfigureAwait(false);
+
+            DomainModel.SourceFormat resultWithFullDimensionStructureTree;
+            if (result.RootDimensionStructureId != null)
+            {
+                resultWithFullDimensionStructureTree = await _masterDataBusinessLogic
+                   .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(result)
+                   .ConfigureAwait(false);
+            }
+            else
+            {
+                resultWithFullDimensionStructureTree = result;
+            }
+
+            _sourceFormatSaveOperationResultBag.Add(instance.ResultId, resultWithFullDimensionStructureTree);
+        }
+
+        protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
+        {
+            DomainModel.DimensionStructure toSave = _dimensionStructureBag.FirstOrDefault(
+                p => p.Key.Equals(instance.DomainObjectName)).Value;
+            DomainModel.DimensionStructure result = await _masterDataBusinessLogic.AddDimensionStructureAsync(toSave)
+               .ConfigureAwait(false);
+            _dimensionStructureStoredObjectsBag.Add(instance.ResultId, result);
         }
     }
 }

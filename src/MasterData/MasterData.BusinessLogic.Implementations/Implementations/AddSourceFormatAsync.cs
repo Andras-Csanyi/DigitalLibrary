@@ -37,13 +37,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     try
                     {
                         Check.IsNotNull(sourceFormat);
+                        SourceFormat result = null;
+                        if (sourceFormat.RootDimensionStructure != null)
+                        {
+                            result = await SaveSourceFormatWhenItHasRootDimensionStructure(
+                                    sourceFormat,
+                                    ctx)
+                               .ConfigureAwait(false);
+                        }
+                        else
+                        {
+                            result = await SaveSourceFormatAsync(sourceFormat, ctx)
+                               .ConfigureAwait(false);
+                        }
 
-                        SourceFormat result = await SaveSourceFormatAsync(sourceFormat, ctx)
-                           .ConfigureAwait(false);
+                        if (result != null)
+                        {
+                            await ctx.SaveChangesAsync().ConfigureAwait(false);
+                            await transaction.CommitAsync().ConfigureAwait(false);
+                            return result;
+                        }
 
-                        await ctx.SaveChangesAsync().ConfigureAwait(false);
-                        await transaction.CommitAsync().ConfigureAwait(false);
-                        return result;
+                        throw new MasterDataBusinessLogicException($"Something went wrong." +
+                                                                   $"{nameof(result)} which is " +
+                                                                   $"{typeof(SourceFormat)} " +
+                                                                   $"remained null.");
                     }
                     catch (Exception e)
                     {
@@ -52,6 +70,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     }
                 }
             }
+        }
+
+        private async Task<SourceFormat> SaveSourceFormatWhenItHasRootDimensionStructure(
+            SourceFormat sourceFormat,
+            MasterDataContext ctx)
+        {
+            Check.IsNotNull(sourceFormat);
+            Check.IsNotNull(ctx);
+
+            DimensionStructure dimensionStructure = await ctx.DimensionStructures
+               .FindAsync(sourceFormat.RootDimensionStructureId)
+               .ConfigureAwait(false);
+
+            if (dimensionStructure == null)
+            {
+                return await SaveSourceFormatAsync(sourceFormat, ctx).ConfigureAwait(false);
+            }
+
+            sourceFormat.RootDimensionStructure = null;
+            sourceFormat.RootDimensionStructure = dimensionStructure;
+            sourceFormat.RootDimensionStructureId = null;
+            sourceFormat.RootDimensionStructureId = dimensionStructure.Id;
+            return await SaveSourceFormatAsync(sourceFormat, ctx).ConfigureAwait(false);
         }
 
         private async Task<SourceFormat> SaveSourceFormatAsync(
@@ -209,7 +250,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 }
 
                 string msg = $"Something went wrong in " +
-                    $"{nameof(CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure)}";
+                             $"{nameof(CreateNewDimensionStructureAndAttachToSourceFormatAsRootDimensionStructure)}";
                 throw new MasterDataBusinessLogicException(msg);
             }
             catch (Exception e)
@@ -246,7 +287,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 }
 
                 string msg = $"Either there is no source format with {sourceFormatId}, " +
-                    $"or there is no dimension structure with id {sourceFormatRootDimensionStructureId}.";
+                             $"or there is no dimension structure with id {sourceFormatRootDimensionStructureId}.";
                 throw new MasterDataBusinessLogicException(msg);
             }
             catch (Exception e)

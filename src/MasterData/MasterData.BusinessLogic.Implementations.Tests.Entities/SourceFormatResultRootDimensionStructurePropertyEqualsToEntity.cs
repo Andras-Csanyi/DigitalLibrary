@@ -7,5 +7,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities
         public string PropertyName { get; set; }
 
         public string EqualsTo { get; set; }
+
+        public string Source { get; set; }
     }
 }
