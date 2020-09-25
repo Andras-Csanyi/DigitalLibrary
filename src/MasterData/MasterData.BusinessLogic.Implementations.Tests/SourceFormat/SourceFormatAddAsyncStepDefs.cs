@@ -110,9 +110,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                    .Value;
                 SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(toSave)
                    .ConfigureAwait(false);
-                SourceFormat resultWithFullDimensionStructureTree = await _masterDataBusinessLogic
-                   .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(result)
-                   .ConfigureAwait(false);
+
+                SourceFormat resultWithFullDimensionStructureTree;
+                if (result.RootDimensionStructureId != null)
+                {
+                    resultWithFullDimensionStructureTree = await _masterDataBusinessLogic
+                       .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(result)
+                       .ConfigureAwait(false);
+                }
+                else
+                {
+                    resultWithFullDimensionStructureTree = result;
+                }
+
                 _sourceFormatSaveOperationResultBag.Add(instance.ResultId, resultWithFullDimensionStructureTree);
             }
         }

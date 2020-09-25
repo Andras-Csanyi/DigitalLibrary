@@ -33,8 +33,7 @@ Feature: AddAsync
       | PropertyName | IsActive  |
       | EqualsTo     | SF1       |
 
-  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension
-  tree
+  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension tree
     Given there is a domain object
       | Field | Value        |
       | Name  | SF1          |
