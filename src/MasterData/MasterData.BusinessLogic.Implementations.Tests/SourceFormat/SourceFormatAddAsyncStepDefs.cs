@@ -354,5 +354,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             result.Should().BeTrue();
         }
+
+        [Then(@"DimensionStructure is RootDimensionStructure of SourceFormat")]
+        public async Task DimensionStructureIsRootDimensionStructureOfSourceFormat(Table table)
+        {
+            DimensionStructureIsRootDimensionStructureOfSourceFormatEntity instance =
+                table.CreateInstance<DimensionStructureIsRootDimensionStructureOfSourceFormatEntity>();
+
+            DimensionStructure result = await _masterDataBusinessLogic
+               .GetDimensionStructureByNameWithSourceFormatsAsync(instance.Name)
+               .ConfigureAwait(false);
+
+            SourceFormat sourceFormat = result.SourceFormatsRootDimensionStructures.FirstOrDefault(
+                p => p.Name.Equals(instance.SourceFormatName));
+
+            sourceFormat.Should().NotBeNull();
+        }
     }
 }

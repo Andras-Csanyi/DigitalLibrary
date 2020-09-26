@@ -8,6 +8,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities
 
         public string EqualsTo { get; set; }
 
-        public string Source { get; set; }
+        public string Source { get; set; } = "Bag";
     }
 }

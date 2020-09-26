@@ -43,6 +43,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
 
+        /// <summary>
+        /// It returns with <see cref="DimensionStructure"/> and the related <see cref="SourceFormat"/>
+        /// entities included too.
+        /// </summary>
+        /// <param name="name">Name of the DimensionStructure.</param>
+        /// <returns>The DimensionStructure.</returns>
+        Task<DimensionStructure> GetDimensionStructureByNameWithSourceFormatsAsync(string name);
+
         Task<List<DimensionStructure>> GetDimensionStructuresAsync();
 
         Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
