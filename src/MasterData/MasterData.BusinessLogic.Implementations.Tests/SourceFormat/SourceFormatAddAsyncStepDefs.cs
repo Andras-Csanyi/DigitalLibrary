@@ -139,15 +139,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormat sourceFormat = null;
             if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.Bag))
             {
-                sourceFormat = _sourceFormatBag.FirstOrDefault(
-                        p => p.Value.Name.Equals(instance.SourceFormatName))
+                sourceFormat = _sourceFormatBag.First(
+                        p => p.Key.Equals(instance.SourceFormatName))
                    .Value;
             }
 
             if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.ResultBag))
             {
                 sourceFormat = _sourceFormatSaveOperationResultBag.First(
-                        p => p.Value.Name.Equals(instance.SourceFormatName))
+                        p => p.Key.Equals(instance.SourceFormatName))
                    .Value;
             }
 
@@ -155,20 +155,32 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             if (instance.DimensionStructureSource.Equals(DomainObjectSourceStringEnum.Bag))
             {
                 dimensionStructure = _dimensionStructureBag.First(
-                        p => p.Value.Name.Equals(instance.ChildName))
+                        p => p.Key.Equals(instance.ChildName))
                    .Value;
             }
 
             if (instance.DimensionStructureSource.Equals(DomainObjectSourceStringEnum.ResultBag))
             {
                 dimensionStructure = _dimensionStructureStoredObjectsBag.First(
-                        p => p.Value.Name.Equals(instance.ChildName))
+                        p => p.Key.Equals(instance.ChildName))
                    .Value;
             }
 
             SourceFormat result = await _masterDataTestHelper.DimensionStructureLinkedListHelper
-               .AddDimensionStructureToNodeAsync(dimensionStructure, sourceFormat, instance.NodeName)
+               .AddDimensionStructureToNodeAsync(dimensionStructure, sourceFormat, instance.ParentNodeName)
                .ConfigureAwait(false);
+
+            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.Bag))
+            {
+                _sourceFormatBag.Remove(instance.SourceFormatName);
+                _sourceFormatBag.Add(instance.SourceFormatName, result);
+            }
+
+            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.ResultBag))
+            {
+                _sourceFormatSaveOperationResultBag.Remove(instance.SourceFormatName);
+                _sourceFormatSaveOperationResultBag.Add(instance.SourceFormatName, result);
+            }
         }
 
         [Then(@"'(.*)' SourceFormat save result is not null")]
@@ -314,9 +326,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 table.CreateInstance<SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNodeEntity
                 >();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag
-               .First(p => p.Value.Name.Equals(instance.SourceFormatName))
-               .Value;
+            SourceFormat queryObject = new SourceFormat { Name = instance.SourceFormatName };
+            SourceFormat result = await _masterDataBusinessLogic
+               .GetSourceFormatByNameWithFullDimensionStructureTreeAsync(queryObject)
+               .ConfigureAwait(false);
 
             DimensionStructure dimensionStructureResult = await _masterDataTestHelper.DimensionStructureLinkedListHelper
                .GetChildDimensionStructureFromGivenNode(

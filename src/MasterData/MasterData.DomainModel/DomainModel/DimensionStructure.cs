@@ -22,6 +22,12 @@ namespace DigitalLibrary.MasterData.DomainModel
         public ICollection<DimensionStructure> ChildDimensionStructures { get; set; } =
             new List<DimensionStructure>();
 
+        public ICollection<DimensionStructureNode> ParentDimensionStructures { get; set; } =
+            new List<DimensionStructureNode>();
+
+        public ICollection<DimensionStructureNode> ChildDimensionStructures2 { get; set; } =
+            new List<DimensionStructureNode>();
+
         public string Desc { get; set; }
 
         public Dimension Dimension { get; set; }

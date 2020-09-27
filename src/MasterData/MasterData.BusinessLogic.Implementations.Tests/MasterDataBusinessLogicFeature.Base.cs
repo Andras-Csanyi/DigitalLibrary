@@ -91,9 +91,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-                //  .UseInternalServiceProvider(_serviceProvider)
-                // .EnableDetailedErrors()
-                // .EnableSensitiveDataLogging()
+               .UseInternalServiceProvider(_serviceProvider)
+               .EnableDetailedErrors()
+               .EnableSensitiveDataLogging()
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
@@ -135,7 +135,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             {
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
-                MasterDataDataSample.Populate(ctx);
+                // MasterDataDataSample.Populate(ctx);
             }
         }
 

@@ -10,13 +10,25 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLink
     {
         public async Task<SourceFormat> AddDimensionStructureToNodeAsync(DimensionStructure childDimensionStructure,
                                                                          SourceFormat sourceFormat,
-                                                                         string nodeName)
+                                                                         string parentNodeName)
         {
-            if (sourceFormat.RootDimensionStructure.ChildDimensionStructures.Any())
+            DimensionStructureNode dimensionStructureNode = new DimensionStructureNode
+            {
+                ChildDimensionStructureId = childDimensionStructure.Id,
+                ChildDimensionStructure = childDimensionStructure,
+            };
+
+            if (sourceFormat.RootDimensionStructure.Name.Equals(parentNodeName))
+            {
+                sourceFormat.RootDimensionStructure.ChildDimensionStructures2.Add(dimensionStructureNode);
+                return sourceFormat;
+            }
+
+            if (sourceFormat.RootDimensionStructure.ChildDimensionStructures != null)
             {
                 await IterateThroughAndAddAsync(sourceFormat.RootDimensionStructure.ChildDimensionStructures,
-                        nodeName,
-                        childDimensionStructure)
+                        parentNodeName,
+                        dimensionStructureNode)
                    .ConfigureAwait(false);
             }
 
@@ -26,20 +38,21 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLink
         private async Task IterateThroughAndAddAsync(
             ICollection<DimensionStructure> childDimensionStructures,
             string nodeName,
-            DimensionStructure childDimensionStructure)
+            DimensionStructureNode dimensionStructureNode)
         {
-            foreach (DimensionStructure dimensionStructure in childDimensionStructures)
+            foreach (DimensionStructure childdimensionStructure in childDimensionStructures)
             {
-                if (dimensionStructure.Name.Equals(nodeName))
+                if (childdimensionStructure.Name.Equals(nodeName))
                 {
-                    dimensionStructure.ChildDimensionStructures.Add(childDimensionStructure);
+                    childdimensionStructure.ChildDimensionStructures2.Add(dimensionStructureNode);
+                    break;
                 }
 
-                if (dimensionStructure.ChildDimensionStructures.Any())
+                if (childdimensionStructure.ChildDimensionStructures.Any())
                 {
-                    await IterateThroughAndAddAsync(dimensionStructure.ChildDimensionStructures,
+                    await IterateThroughAndAddAsync(childdimensionStructure.ChildDimensionStructures,
                             nodeName,
-                            childDimensionStructure)
+                            dimensionStructureNode)
                        .ConfigureAwait(false);
                 }
             }

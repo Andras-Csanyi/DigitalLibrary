@@ -36,13 +36,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                             result.RootDimensionStructure.Id,
                             ctx)
                        .ConfigureAwait(false);
-                    return sourceFormat;
+
+                    return result;
                 }
             }
             catch (Exception e)
             {
-                string message = $"The {nameof(GetSourceFormatByNameWithFullDimensionStructureTreeAsync)}" +
-                    $"operation failed. See details in the inner exception.";
+                string message = $"The {nameof(GetSourceFormatByNameWithFullDimensionStructureTreeAsync)} " +
+                                 $"operation failed. See details in the inner exception.";
                 throw new MasterDataBusinessLogicException(message, e);
             }
         }

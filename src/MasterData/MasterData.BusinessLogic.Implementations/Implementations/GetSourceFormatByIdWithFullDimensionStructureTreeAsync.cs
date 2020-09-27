@@ -68,10 +68,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
                 List<DimensionStructureDimensionStructure> result = ctx.DimensionStructureDimensionStructures
                    .AsNoTracking()
-                   .AsEnumerable()
                    .Where(id => id.DimensionStructureId == dimensionStructureId)
                    .Where(child => child.ChildDimensionStructureId != 0)
-                   .Where(parent => parent.ParentDimensionStructureId == 0)
                    .ToList();
 
                 if (result.Any())

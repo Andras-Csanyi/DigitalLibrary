@@ -11,7 +11,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLink
         Task<SourceFormat> AddDimensionStructureToNodeAsync(
             DimensionStructure childDimensionStructure,
             SourceFormat sourceFormat,
-            string nodeName);
+            string parentNodeName);
 
         Task<DimensionStructure> GetChildDimensionStructureFromGivenNode(
             SourceFormat result,

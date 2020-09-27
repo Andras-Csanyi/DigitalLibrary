@@ -26,8 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     public partial class MasterDataBusinessLogic
     {
         /// <inheritdoc />
-        public async Task<SourceFormat> AddSourceFormatAsync(
-            SourceFormat sourceFormat)
+        public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -37,31 +36,33 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                     try
                     {
                         Check.IsNotNull(sourceFormat);
-                        SourceFormat result = null;
-                        if (sourceFormat.RootDimensionStructure != null)
-                        {
-                            result = await SaveSourceFormatWhenItHasRootDimensionStructure(
-                                    sourceFormat,
-                                    ctx)
-                               .ConfigureAwait(false);
-                        }
-                        else
-                        {
-                            result = await SaveSourceFormatAsync(sourceFormat, ctx)
-                               .ConfigureAwait(false);
-                        }
+                        // SourceFormat result = null;
 
-                        if (result != null)
-                        {
-                            await ctx.SaveChangesAsync().ConfigureAwait(false);
-                            await transaction.CommitAsync().ConfigureAwait(false);
-                            return result;
-                        }
+                        // if (sourceFormat.RootDimensionStructure != null)
+                        // {
+                        //     result = await SaveSourceFormatWhenItHasRootDimensionStructure(
+                        //             sourceFormat,
+                        //             ctx)
+                        //        .ConfigureAwait(false);
+                        // }
+                        // else
+                        // {
+                        //     result = await SaveSourceFormatAsync(sourceFormat, ctx)
+                        //        .ConfigureAwait(false);
+                        // }
 
-                        throw new MasterDataBusinessLogicException($"Something went wrong." +
-                                                                   $"{nameof(result)} which is " +
-                                                                   $"{typeof(SourceFormat)} " +
-                                                                   $"remained null.");
+                        // if (result != null)
+                        // {
+                        await ctx.AddAsync(sourceFormat).ConfigureAwait(false);
+                        await ctx.SaveChangesAsync().ConfigureAwait(false);
+                        await transaction.CommitAsync().ConfigureAwait(false);
+                        return sourceFormat;
+                        // }
+
+                        // throw new MasterDataBusinessLogicException($"Something went wrong." +
+                        //                                            $"{nameof(result)} which is " +
+                        //                                            $"{typeof(SourceFormat)} " +
+                        //                                            $"remained null.");
                     }
                     catch (Exception e)
                     {

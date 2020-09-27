@@ -43,8 +43,18 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
                .IsRequired(false);
 
             builder.HasMany(p => p.DimensionStructureDimensionStructures)
-               .WithOne(one => one.DimensionStructure)
+               .WithOne(one => one.ChildDimensionStructure)
                .HasForeignKey(k => k.DimensionStructureId)
+               .IsRequired(false);
+
+            builder.HasMany(p => p.ChildDimensionStructures2)
+               .WithOne(k => k.ChildDimensionStructure)
+               .HasForeignKey(l => l.ChildDimensionStructureId)
+               .IsRequired(false);
+
+            builder.HasMany(p => p.ParentDimensionStructures)
+               .WithOne(k => k.ParentDimensionStructure)
+               .HasForeignKey(l => l.ParentDimensionStructureId)
                .IsRequired(false);
         }
     }
