@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             };
 
             DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
-               .AddDimensionStructureAsync(dimensionStructure)
+               .MasterDataDimensionStructureBusinessLogic.AddDimensionStructureAsync(dimensionStructure)
                .ConfigureAwait(false);
 
             SourceFormat sourceFormat = new SourceFormat
@@ -75,7 +75,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 },
             };
 
-            SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(sourceFormat)
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .AddSourceFormatAsync(sourceFormat)
                .ConfigureAwait(false);
         }
     }

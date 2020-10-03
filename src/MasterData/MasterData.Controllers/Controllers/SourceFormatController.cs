@@ -39,8 +39,9 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(
-                    sourceFormat).ConfigureAwait(false);
+                SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                   .AddSourceFormatAsync(
+                        sourceFormat).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -57,7 +58,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                await _masterDataBusinessLogic.DeleteSourceFormatAsync(sourceFormat).ConfigureAwait(false);
+                await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic.DeleteSourceFormatAsync(sourceFormat)
+                   .ConfigureAwait(false);
                 return Ok();
             }
             catch (Exception e)
@@ -76,6 +78,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
                    .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(querySourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
@@ -94,7 +97,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                SourceFormat result = await _masterDataBusinessLogic.GetSourceFormatByIdAsync(sourceFormat)
+                SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                   .GetSourceFormatByIdAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -112,7 +116,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<SourceFormat> result = await _masterDataBusinessLogic.GetSourceFormatsAsync()
+                List<SourceFormat> result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                   .GetSourceFormatsAsync()
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -132,7 +137,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic
-                   .UpdateSourceFormatAsync(sourceFormat)
+                   .MasterDataSourceFormatBusinessLogic.UpdateSourceFormatAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

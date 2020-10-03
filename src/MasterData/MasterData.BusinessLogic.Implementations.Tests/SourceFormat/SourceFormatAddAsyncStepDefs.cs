@@ -82,7 +82,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             if (instance.Type.Equals(DomainObjectTypesStringEnum.DimensionStructure))
             {
-                DimensionStructure result = await _masterDataBusinessLogic.GetDimensionStructureByNameAsync(
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetDimensionStructureByNameAsync(
                         instance.Name)
                    .ConfigureAwait(false);
                 _dimensionStructureStoredObjectsBag.Add(instance.ResultId, result);
@@ -228,10 +230,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 Name = instance.SourceFormatName,
             };
             SourceFormat sourceFormat = await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
                .GetSourceFormatByNameWithRootDimensionStructureAsync(sourceFormatQuery)
                .ConfigureAwait(false);
 
             DimensionStructure childDimensionStructure = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
                .GetDimensionStructureByNameAsync(instance.DimensionStructureName)
                .ConfigureAwait(false);
 
@@ -251,6 +255,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 table.CreateInstance<DimensionStructureIsRootDimensionStructureOfSourceFormatEntity>();
 
             DimensionStructure result = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
                .GetDimensionStructureByNameWithSourceFormatsAsync(instance.Name)
                .ConfigureAwait(false);
 

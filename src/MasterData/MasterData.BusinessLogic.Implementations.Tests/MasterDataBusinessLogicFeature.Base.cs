@@ -11,6 +11,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
@@ -107,7 +111,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator);
 
-            _masterDataBusinessLogic = new MasterDataBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic = new MasterDataDimensionBusinessLogic(
+                _dbContextOptions, masterDataValidators);
+            IMasterDataDimensionStructureBusinessLogic masterDataDimensionStructureBusinessLogic =
+                new MasterDataDimensionStructureBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataDimensionValueBusinessLogic masterDataDimensionValueBusinessLogic =
+                new MasterDataDimensionValueBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic =
+                new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
+
+            _masterDataBusinessLogic = new MasterDataBusinessLogic(
+                masterDataDimensionBusinessLogic,
+                masterDataDimensionStructureBusinessLogic,
+                masterDataDimensionValueBusinessLogic,
+                masterDataSourceFormatBusinessLogic);
             // "Given there is the MasterDataBusinessLogic"
             //    .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
             //         _dbContextOptions,
@@ -174,58 +191,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             (_serviceProvider as IDisposable)?.Dispose();
         }
 
-        protected async Task<DomainModel.SourceFormat> GetTargetSourceFormatAsync(
-            string targetDomainObjectName,
-            string targetDomainObjectSource)
-        {
-            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
-            {
-                DomainModel.SourceFormat result = _sourceFormatBag.FirstOrDefault(
-                        p => p.Key == targetDomainObjectName)
-                   .Value;
-                return result;
-            }
-
-            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
-            {
-                DomainModel.SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                        p => p.Key == targetDomainObjectName)
-                   .Value;
-                return result;
-            }
-
-            throw new Exception($"No valid source for SourceFormat.");
-        }
-
-        protected async Task<DomainModel.DimensionStructure> GetTargetDimensionStructureAsync(
-            string targetDomainObjectName,
-            string targetDomainObjectSource)
-        {
-            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
-            {
-                DomainModel.DimensionStructure result = _dimensionStructureBag.FirstOrDefault(
-                        p => p.Key == targetDomainObjectName)
-                   .Value;
-                return result;
-            }
-
-            if (targetDomainObjectSource.Equals(DomainObjectSourceStringEnum.ResultBag))
-            {
-                DomainModel.DimensionStructure result = _dimensionStructureStoredObjectsBag.FirstOrDefault(
-                        p => p.Key == targetDomainObjectName)
-                   .Value;
-                return result;
-            }
-
-            throw new Exception($"No valid source for DimensionStructure.");
-        }
-
         protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
         {
             DomainModel.SourceFormat toSave = _sourceFormatBag
                .First(p => p.Key == instance.DomainObjectName)
                .Value;
-            DomainModel.SourceFormat result = await _masterDataBusinessLogic.AddSourceFormatAsync(toSave)
+            DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .AddSourceFormatAsync(toSave)
                .ConfigureAwait(false);
 
             // DomainModel.SourceFormat resultWithFullDimensionStructureTree;
@@ -247,7 +219,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         {
             DomainModel.DimensionStructure toSave = _dimensionStructureBag.FirstOrDefault(
                 p => p.Key.Equals(instance.DomainObjectName)).Value;
-            DomainModel.DimensionStructure result = await _masterDataBusinessLogic.AddDimensionStructureAsync(toSave)
+            DomainModel.DimensionStructure result = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
+               .AddDimensionStructureAsync(toSave)
                .ConfigureAwait(false);
             _dimensionStructureStoredObjectsBag.Add(instance.ResultId, result);
         }
