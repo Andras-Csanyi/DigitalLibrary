@@ -147,7 +147,7 @@ namespace WebApp
                     MasterDataContext masterDataContext = scopeServices.GetRequiredService<MasterDataContext>();
                     masterDataContext.Database.EnsureDeleted();
                     masterDataContext.Database.EnsureCreated();
-                    MasterDataDataSample.Populate(masterDataContext);
+                    // MasterDataDataSample.Populate(masterDataContext);
 
                     ControlPanelContext controlPanelContext = scopeServices.GetRequiredService<ControlPanelContext>();
                     controlPanelContext.Database.EnsureDeleted();

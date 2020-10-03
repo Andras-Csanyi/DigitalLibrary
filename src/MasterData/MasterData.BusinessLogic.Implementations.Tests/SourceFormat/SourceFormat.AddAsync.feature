@@ -39,18 +39,10 @@ Feature: AddAsync
       | Name  | SF1          |
       | Type  | SourceFormat |
     And there is a domain object
-      | Field | Value              |
-      | Name  | SF1Root            |
-      | Type  | DimensionStructure |
-    And add a domain object to another domain object's property
-      | Field                      | Value                  |
-      | TargetDomainObjectName     | SF1                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF1Root                |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | Bag                    |
+      | Field | Value                      |
+      | Name  | SF1Root                    |
+      | Type  | DimensionStructureTreeNode |
+    And 'DimensionStructureTreeNode' is DimensionStructureTreeRoot of 'SF1'
     When domain object is saved
       | Field            | Value        |
       | DomainObjectType | SourceFormat |
@@ -97,247 +89,248 @@ Feature: AddAsync
       | PropertyName | IsActive  |
       | EqualsTo     | SF1Root   |
 
-  Scenario: Adds a SourceFormat when RootDimensionStructure an already existing DimensionStructure
-    Given there is a domain object
-      | Field | Value        |
-      | Name  | SF1          |
-      | Type  | SourceFormat |
-    And there is a domain object
-      | Field | Value              |
-      | Name  | SF1Root            |
-      | Type  | DimensionStructure |
-    And domain object is saved
-      | Field            | Value              |
-      | DomainObjectType | DimensionStructure |
-      | DomainObjectName | SF1Root            |
-      | ResultId         | SF1RootResult      |
-    And add a domain object to another domain object's property
-      | Field                      | Value                  |
-      | TargetDomainObjectName     | SF1                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF1RootResult          |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | ResultBag              |
-    When domain object is saved
-      | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
-    Then 'SF1Result' SourceFormat save result is not null
-    And 'SF1Result' SourceFormat result Id is not '0'
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1       |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Id            |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Name          |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Desc          |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | IsActive      |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-
-  Scenario: Adds a SourceFormat when RootDimensionStructure an already existing DimensionStructure with connection
-  to other SourceFormat
-    Given there is a domain object
-      | Field | Value        |
-      | Name  | SF1          |
-      | Type  | SourceFormat |
-    And there is a domain object
-      | Field | Value        |
-      | Name  | SF2          |
-      | Type  | SourceFormat |
-    And there is a domain object
-      | Field | Value              |
-      | Name  | SF1Root            |
-      | Type  | DimensionStructure |
-    And domain object is saved
-      | Field            | Value              |
-      | DomainObjectType | DimensionStructure |
-      | DomainObjectName | SF1Root            |
-      | ResultId         | SF1RootResult      |
-    And add a domain object to another domain object's property
-      | Field                      | Value                  |
-      | TargetDomainObjectName     | SF2                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF1RootResult          |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | ResultBag              |
-    And domain object is saved
-      | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF2          |
-      | ResultId         | SF2Result    |
-    And add a domain object to another domain object's property
-      | Field                      | Value                  |
-      | TargetDomainObjectName     | SF1                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF1RootResult          |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | ResultBag              |
-    When domain object is saved
-      | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
-    Then 'SF1Result' SourceFormat save result is not null
-    And 'SF1Result' SourceFormat result Id is not '0'
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1       |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Id            |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Name          |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | Desc          |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value         |
-      | Name         | SF1Result     |
-      | PropertyName | IsActive      |
-      | EqualsTo     | SF1RootResult |
-      | Source       | ResultBag     |
-    And DimensionStructure is RootDimensionStructure of SourceFormat
-      | Field            | Value   |
-      | Name             | SF1Root |
-      | SourceFormatName | SF1     |
-    And DimensionStructure is RootDimensionStructure of SourceFormat
-      | Field            | Value   |
-      | Name             | SF1Root |
-      | SourceFormatName | SF2     |
-
-  Scenario: Adds a SourceFormat when RootDimensionStructure has a single new ChildDimensionStructure
-    Given there is a domain object
-      | Field | Value        |
-      | Name  | SF1          |
-      | Type  | SourceFormat |
-    And there is a domain object
-      | Field | Value              |
-      | Name  | SF1Root            |
-      | Type  | DimensionStructure |
-    Given there is a domain object
-      | Field | Value              |
-      | Name  | Child              |
-      | Type  | DimensionStructure |
-    And add a domain object to another domain object's property
-      | Field                      | Value                  |
-      | TargetDomainObjectName     | SF1                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF1Root                |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | Bag                    |
-    And SourceFormat RootDimensionStructure has a child DimensionStructure
-      | Field                    | Value   |
-      | ChildName                | Child   |
-      | ParentNodeName           | SF1Root |
-      | SourceFormatSource       | Bag     |
-      | DimensionStructureSource | Bag     |
-      | SourceFormatName         | SF1     |
-    When domain object is saved
-      | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
-    Then 'SF1Result' SourceFormat save result is not null
-    And 'SF1Result' SourceFormat result Id is not '0'
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1       |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1Root   |
-      | Source       | Bag       |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1Root   |
-      | Source       | Bag       |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1Root   |
-      | Source       | Bag       |
-    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
-      | Field                  | Value   |
-      | SourceFormatName       | SF1     |
-      | DimensionStructureName | Child   |
-      | NodeName               | SF1Root |
+    
+#  Scenario: Adds a SourceFormat when RootDimensionStructure an already existing DimensionStructure
+#    Given there is a domain object
+#      | Field | Value        |
+#      | Name  | SF1          |
+#      | Type  | SourceFormat |
+#    And there is a domain object
+#      | Field | Value              |
+#      | Name  | SF1Root            |
+#      | Type  | DimensionStructure |
+#    And domain object is saved
+#      | Field            | Value              |
+#      | DomainObjectType | DimensionStructure |
+#      | DomainObjectName | SF1Root            |
+#      | ResultId         | SF1RootResult      |
+#    And add a domain object to another domain object's property
+#      | Field                      | Value                  |
+#      | TargetDomainObjectName     | SF1                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | SF1RootResult          |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | ResultBag              |
+#    When domain object is saved
+#      | Field            | Value        |
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF1          |
+#      | ResultId         | SF1Result    |
+#    Then 'SF1Result' SourceFormat save result is not null
+#    And 'SF1Result' SourceFormat result Id is not '0'
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Name      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Desc      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | IsActive  |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Id            |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Name          |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Desc          |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | IsActive      |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#
+#  Scenario: Adds a SourceFormat when RootDimensionStructure an already existing DimensionStructure with connection
+#  to other SourceFormat
+#    Given there is a domain object
+#      | Field | Value        |
+#      | Name  | SF1          |
+#      | Type  | SourceFormat |
+#    And there is a domain object
+#      | Field | Value        |
+#      | Name  | SF2          |
+#      | Type  | SourceFormat |
+#    And there is a domain object
+#      | Field | Value              |
+#      | Name  | SF1Root            |
+#      | Type  | DimensionStructure |
+#    And domain object is saved
+#      | Field            | Value              |
+#      | DomainObjectType | DimensionStructure |
+#      | DomainObjectName | SF1Root            |
+#      | ResultId         | SF1RootResult      |
+#    And add a domain object to another domain object's property
+#      | Field                      | Value                  |
+#      | TargetDomainObjectName     | SF2                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | SF1RootResult          |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | ResultBag              |
+#    And domain object is saved
+#      | Field            | Value        |
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF2          |
+#      | ResultId         | SF2Result    |
+#    And add a domain object to another domain object's property
+#      | Field                      | Value                  |
+#      | TargetDomainObjectName     | SF1                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | SF1RootResult          |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | ResultBag              |
+#    When domain object is saved
+#      | Field            | Value        |
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF1          |
+#      | ResultId         | SF1Result    |
+#    Then 'SF1Result' SourceFormat save result is not null
+#    And 'SF1Result' SourceFormat result Id is not '0'
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Name      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Desc      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | IsActive  |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Id            |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Name          |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | Desc          |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value         |
+#      | Name         | SF1Result     |
+#      | PropertyName | IsActive      |
+#      | EqualsTo     | SF1RootResult |
+#      | Source       | ResultBag     |
+#    And DimensionStructure is RootDimensionStructure of SourceFormat
+#      | Field            | Value   |
+#      | Name             | SF1Root |
+#      | SourceFormatName | SF1     |
+#    And DimensionStructure is RootDimensionStructure of SourceFormat
+#      | Field            | Value   |
+#      | Name             | SF1Root |
+#      | SourceFormatName | SF2     |
+#
+#  Scenario: Adds a SourceFormat when RootDimensionStructure has a single new ChildDimensionStructure
+#    Given there is a domain object
+#      | Field | Value        |
+#      | Name  | SF1          |
+#      | Type  | SourceFormat |
+#    And there is a domain object
+#      | Field | Value              |
+#      | Name  | SF1Root            |
+#      | Type  | DimensionStructure |
+#    Given there is a domain object
+#      | Field | Value              |
+#      | Name  | Child              |
+#      | Type  | DimensionStructure |
+#    And add a domain object to another domain object's property
+#      | Field                      | Value                  |
+#      | TargetDomainObjectName     | SF1                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | SF1Root                |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | Bag                    |
+#    And SourceFormat RootDimensionStructure has a child DimensionStructure
+#      | Field                    | Value   |
+#      | ChildName                | Child   |
+#      | ParentNodeName           | SF1Root |
+#      | SourceFormatSource       | Bag     |
+#      | DimensionStructureSource | Bag     |
+#      | SourceFormatName         | SF1     |
+#    When domain object is saved
+#      | Field            | Value        |
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF1          |
+#      | ResultId         | SF1Result    |
+#    Then 'SF1Result' SourceFormat save result is not null
+#    And 'SF1Result' SourceFormat result Id is not '0'
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Name      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Desc      |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | IsActive  |
+#      | EqualsTo     | SF1       |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Name      |
+#      | EqualsTo     | SF1Root   |
+#      | Source       | Bag       |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | Desc      |
+#      | EqualsTo     | SF1Root   |
+#      | Source       | Bag       |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Field        | Value     |
+#      | Name         | SF1Result |
+#      | PropertyName | IsActive  |
+#      | EqualsTo     | SF1Root   |
+#      | Source       | Bag       |
+#    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
+#      | Field                  | Value   |
+#      | SourceFormatName       | SF1     |
+#      | DimensionStructureName | Child   |
+#      | NodeName               | SF1Root |
 #    And SF RootDS ChildDS collection length is not zero
 #    And SF RootDS ChildDS collection has one element
 #    And SF RootDS ChildDS collection's single element's id isn't zero
@@ -525,115 +518,115 @@ Feature: AddAsync
 #    And there is a child where IsActive equals to ChildAndRootDS IsActive
 #    And there is a child where Id eq ChildAndRootDS Id and child is root ds of SF2
 
-  Scenario: Adds a SourceFormat
-  when RootDimensionStructure has multiple ChildDimensionStructures
-  and one of them is new
-  the other one existing with connection to other SourceFormat as ChildDimensionStructure
-
-    Given there is a domain object
-      | Name | SF2          |
-      | Type | SourceFormat |
-    And there is a domain object
-      | Name | SF2Root            |
-      | Type | DimensionStructure |
-    And there is a domain object
-      | Name | ChildAndChildOfOther |
-      | Type | DimensionStructure   |
-    And add a domain object to another domain object's property
-      | TargetDomainObjectName     | SF2                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | SF2Root                |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | Bag                    |
-    And domain object is saved
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF2          |
-      | ResultName       | SF2Result    |
-    And sync test domain object
-      | Type     | DimensionStructure         |
-      | Name     | ChildAndChildOfOther       |
-      | ResultId | ChildAndChildOfOtherResult |
-
-    And there is a domain object
-      | Name | SF1          |
-      | Type | SourceFormat |
-    And there is a domain object
-      | Name | RootDs             |
-      | Type | DimensionStructure |
-    And there is a domain object
-      | Name | ChildNew           |
-      | Type | DimensionStructure |
-
-    And SourceFormat RootDimensionStructure has a child DimensionStructure
-      | ChildName                | ChildNew |
-      | NodeName                 | RootDs   |
-      | SourceFormatSource       | Bag      |
-      | DimensionStructureSource | Bag      |
-      | SourceFormatName         | SF1      |
-    And SourceFormat RootDimensionStructure has a child DimensionStructure
-      | ChildName                | ChildAndChildOfOther |
-      | NodeName                 | RootDs               |
-      | SourceFormatSource       | Bag                  |
-      | DimensionStructureSource | Bag                  |
-      | SourceFormatName         | SF1                  |
-    And add a domain object to another domain object's property
-      | TargetDomainObjectName     | SF1                    |
-      | TargetDomainObjectType     | SourceFormat           |
-      | TargetDomainObjectPropName | RootDimensionStructure |
-      | TargetDomainObjectSource   | Bag                    |
-      | DomainObjectNameToBeAdded  | RootDs                 |
-      | DomainObjectToBeAddedType  | DimensionStructure     |
-      | DomainObjectSource         | Bag                    |
-
-    And domain object is saved
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
-
-    Then <SF1Result> SourceFormat save result is not null
-    And <SF1Result> SourceFormat result Id is not <0>
-    And SourceFormat result property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | Name         | SF1      |
-    And SourceFormat result property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | Desc         | SF1      |
-    And SourceFormat result property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | IsActive     | SF1      |
-    And SourceFormat result property is not null
-      | Name      | PropertyName           |
-      | SF1Result | RootDimensionStructure |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | Id           | RootDs   |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | Name         | RootDs   |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | Desc         | RootDs   |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Name      | PropertyName | EqualsTo |
-      | SF1Result | IsActive     | RootDs   |
-    And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure is not null
-    And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure length is <2>
-    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
-      | SourceFormatName       | SF1Result            |
-      | DimensionStructureName | ChildAndChildOfOther |
-      | NodeName               | RootDs               |
-    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
-      | SourceFormatName       | SF1Result |
-      | DimensionStructureName | ChildNew  |
-      | NodeName               | RootDs    |
-    And a DimensionStructure is child of RootDimensionStructure
-      | SourceFormatName       | SF1Result            |
-      | DimensionStructureName | ChildAndChildOfOther |
-    And a DimensionStructure is child of RootDimensionStructure
-      | SourceFormatName       | SF2Result            |
-      | DimensionStructureName | ChildAndChildOfOther |
+#  Scenario: Adds a SourceFormat
+#  when RootDimensionStructure has multiple ChildDimensionStructures
+#  and one of them is new
+#  the other one existing with connection to other SourceFormat as ChildDimensionStructure
+#
+#    Given there is a domain object
+#      | Name | SF2          |
+#      | Type | SourceFormat |
+#    And there is a domain object
+#      | Name | SF2Root            |
+#      | Type | DimensionStructure |
+#    And there is a domain object
+#      | Name | ChildAndChildOfOther |
+#      | Type | DimensionStructure   |
+#    And add a domain object to another domain object's property
+#      | TargetDomainObjectName     | SF2                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | SF2Root                |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | Bag                    |
+#    And domain object is saved
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF2          |
+#      | ResultName       | SF2Result    |
+#    And sync test domain object
+#      | Type     | DimensionStructure         |
+#      | Name     | ChildAndChildOfOther       |
+#      | ResultId | ChildAndChildOfOtherResult |
+#
+#    And there is a domain object
+#      | Name | SF1          |
+#      | Type | SourceFormat |
+#    And there is a domain object
+#      | Name | RootDs             |
+#      | Type | DimensionStructure |
+#    And there is a domain object
+#      | Name | ChildNew           |
+#      | Type | DimensionStructure |
+#
+#    And SourceFormat RootDimensionStructure has a child DimensionStructure
+#      | ChildName                | ChildNew |
+#      | NodeName                 | RootDs   |
+#      | SourceFormatSource       | Bag      |
+#      | DimensionStructureSource | Bag      |
+#      | SourceFormatName         | SF1      |
+#    And SourceFormat RootDimensionStructure has a child DimensionStructure
+#      | ChildName                | ChildAndChildOfOther |
+#      | NodeName                 | RootDs               |
+#      | SourceFormatSource       | Bag                  |
+#      | DimensionStructureSource | Bag                  |
+#      | SourceFormatName         | SF1                  |
+#    And add a domain object to another domain object's property
+#      | TargetDomainObjectName     | SF1                    |
+#      | TargetDomainObjectType     | SourceFormat           |
+#      | TargetDomainObjectPropName | RootDimensionStructure |
+#      | TargetDomainObjectSource   | Bag                    |
+#      | DomainObjectNameToBeAdded  | RootDs                 |
+#      | DomainObjectToBeAddedType  | DimensionStructure     |
+#      | DomainObjectSource         | Bag                    |
+#
+#    And domain object is saved
+#      | DomainObjectType | SourceFormat |
+#      | DomainObjectName | SF1          |
+#      | ResultId         | SF1Result    |
+#
+#    Then <SF1Result> SourceFormat save result is not null
+#    And <SF1Result> SourceFormat result Id is not <0>
+#    And SourceFormat result property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | Name         | SF1      |
+#    And SourceFormat result property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | Desc         | SF1      |
+#    And SourceFormat result property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | IsActive     | SF1      |
+#    And SourceFormat result property is not null
+#      | Name      | PropertyName           |
+#      | SF1Result | RootDimensionStructure |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | Id           | RootDs   |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | Name         | RootDs   |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | Desc         | RootDs   |
+#    And SourceFormat result's RootDimensionStructure property equals to
+#      | Name      | PropertyName | EqualsTo |
+#      | SF1Result | IsActive     | RootDs   |
+#    And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure is not null
+#    And <SF1Result> SourceFormat result's RootDimensionStructure ChildDimensionStructure length is <2>
+#    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
+#      | SourceFormatName       | SF1Result            |
+#      | DimensionStructureName | ChildAndChildOfOther |
+#      | NodeName               | RootDs               |
+#    And SourceFormat result's DimensionStructureTree has DimensionStructure under given node
+#      | SourceFormatName       | SF1Result |
+#      | DimensionStructureName | ChildNew  |
+#      | NodeName               | RootDs    |
+#    And a DimensionStructure is child of RootDimensionStructure
+#      | SourceFormatName       | SF1Result            |
+#      | DimensionStructureName | ChildAndChildOfOther |
+#    And a DimensionStructure is child of RootDimensionStructure
+#      | SourceFormatName       | SF2Result            |
+#      | DimensionStructureName | ChildAndChildOfOther |
 
 #  Scenario: Adds a SourceFormat when RootDimensionStructure has a single ChildDimensionStructure on the second level as new
 #

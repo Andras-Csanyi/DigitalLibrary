@@ -19,22 +19,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
     {
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
-            try
-            {
-                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-                {
-                    return await ctx.DimensionStructures
-                       .AsNoTracking()
-                       .Include(i => i.Dimension)
-                       .Include(ii => ii.SourceFormatsRootDimensionStructures)
-                       .ToListAsync()
-                       .ConfigureAwait(false);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new MasterDataBusinessLogicGetDimensionStructuresAsyncException(e.Message, e);
-            }
+            // try
+            // {
+            //     using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+            //     {
+            //         return await ctx.DimensionStructures
+            //            .AsNoTracking()
+            //            .Include(i => i.Dimension)
+            //            .Include(ii => ii.SourceFormatsRootDimensionStructures)
+            //            .ToListAsync()
+            //            .ConfigureAwait(false);
+            //     }
+            // }
+            // catch (Exception e)
+            // {
+            //     throw new MasterDataBusinessLogicGetDimensionStructuresAsyncException(e.Message, e);
+            // }
+            throw new NotImplementedException();
         }
     }
 }

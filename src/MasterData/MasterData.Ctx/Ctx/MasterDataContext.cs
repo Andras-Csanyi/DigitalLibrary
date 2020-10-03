@@ -17,13 +17,13 @@ namespace DigitalLibrary.MasterData.Ctx
 
         public DbSet<Dimension> Dimensions { get; set; }
 
-        public DbSet<DimensionStructureDimensionStructure> DimensionStructureDimensionStructures { get; set; }
-
         public DbSet<DimensionStructure> DimensionStructures { get; set; }
 
         public DbSet<DimensionValue> DimensionValues { get; set; }
 
         public DbSet<SourceFormat> SourceFormats { get; set; }
+
+        public DbSet<SourceFormatDimensionStructure> SourceFormatDimensionStructureTreeNodes { get; set; }
 
         public MasterDataContext(DbContextOptions<MasterDataContext> options)
             : base(options)
@@ -40,6 +40,7 @@ namespace DigitalLibrary.MasterData.Ctx
             modelBuilder.ApplyConfiguration(new DimensionDimensionValueConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionStructureConfiguration());
             modelBuilder.ApplyConfiguration(new SourceFormatConfiguration());
+            modelBuilder.ApplyConfiguration(new SourceFormatDimensionStructureTreeNodeConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionStructureDimensionStructureConfiguration());
         }
     }

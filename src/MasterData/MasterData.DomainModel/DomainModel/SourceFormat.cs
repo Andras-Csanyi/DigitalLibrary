@@ -15,16 +15,9 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int IsActive { get; set; }
 
-        public DimensionStructure RootDimensionStructure { get; set; }
+        public SourceFormatDimensionStructure SourceFormatDimensionStructure { get; set; }
 
-        public long? RootDimensionStructureId { get; set; }
-
-        public SourceFormat()
-        {
-            Guid = Guid.NewGuid();
-        }
-
-        public Guid Guid { get; set; }
+        public Guid Guid { get; set; } = Guid.NewGuid();
 
         public long Id { get; set; }
 

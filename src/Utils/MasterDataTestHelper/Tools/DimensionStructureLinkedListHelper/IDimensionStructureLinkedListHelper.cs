@@ -8,18 +8,5 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLink
 
     public interface IDimensionStructureLinkedListHelper
     {
-        Task<SourceFormat> AddDimensionStructureToNodeAsync(
-            DimensionStructure childDimensionStructure,
-            SourceFormat sourceFormat,
-            string parentNodeName);
-
-        Task<DimensionStructure> GetChildDimensionStructureFromGivenNode(
-            SourceFormat result,
-            string nodeName,
-            string dimensionStructureName);
-
-        Task<bool> IsDimensionStructureChildOfRootDimensionStructureAsync(
-            ICollection<DimensionStructure> dimensionStructures,
-            DimensionStructure childDimensionStructure);
     }
 }

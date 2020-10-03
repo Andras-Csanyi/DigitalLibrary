@@ -59,18 +59,18 @@
 
             </li>
             @{
-                if (DimensionStructureParameter.ChildDimensionStructures != null)
-                {
-                    if (DimensionStructureParameter.ChildDimensionStructures.Any())
-                    {
-                        foreach (DimensionStructure dimensionStructure in DimensionStructureParameter.ChildDimensionStructures)
-                        {
-                            <DimensionStructureTree DimensionStructureParameter="@dimensionStructure"
-                                                    ParentDimensionStructureGuidParameter="@DimensionStructureParameter.Guid">
-                            </DimensionStructureTree>
-                        }
-                    }
-                }
+@*                 if (DimensionStructureParameter.ChildDimensionStructures != null) *@
+@*                 { *@
+@*                     if (DimensionStructureParameter.ChildDimensionStructures.Any()) *@
+@*                     { *@
+@*                         foreach (DimensionStructure dimensionStructure in DimensionStructureParameter.ChildDimensionStructures) *@
+@*                         { *@
+@*                             <DimensionStructureTree DimensionStructureParameter="@dimensionStructure" *@
+@*                                                     ParentDimensionStructureGuidParameter="@DimensionStructureParameter.Guid"> *@
+@*                             </DimensionStructureTree> *@
+@*                         } *@
+@*                     } *@
+@*                 } *@
             }
         </ul>
     }

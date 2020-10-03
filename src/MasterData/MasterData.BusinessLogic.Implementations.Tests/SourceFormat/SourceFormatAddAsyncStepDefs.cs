@@ -36,64 +36,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             switch (instance.Type)
             {
                 case DomainObjectTypesStringEnum.SourceFormat:
-                    SourceFormat sourceFormat = _masterDataTestHelper
-                       .SourceFormatFactory
-                       .Create(instance.Name);
+                    SourceFormat sourceFormat = new SourceFormat
+                    {
+                        Name = instance.Name,
+                    };
                     _sourceFormatBag.Add(instance.Name, sourceFormat);
                     break;
 
                 case DomainObjectTypesStringEnum.DimensionStructure:
-                    DimensionStructure dimensionStructure = _masterDataTestHelper
-                       .DimensionStructureFactory
-                       .Create(instance.Name);
+                    DimensionStructure dimensionStructure = new DimensionStructure
+                    {
+                        Name = instance.Name,
+                    };
                     _dimensionStructureBag.Add(instance.Name, dimensionStructure);
                     break;
 
                 default:
                     throw new ArgumentNullException($"Unknown type: {nameof(instance.Type)}");
-            }
-        }
-
-        [Given(@"add a domain object to another domain object's property")]
-        public async Task AddADomainObjectToAnotherDomainObjectsProperty(Table table)
-        {
-            AddDomainObjectToAnotherDomainObjectsPropertyEntity instance =
-                table.CreateInstance<AddDomainObjectToAnotherDomainObjectsPropertyEntity>();
-
-            if (instance.TargetDomainObjectType.Equals(DomainObjectTypesStringEnum.SourceFormat)
-             && instance.TargetDomainObjectPropName.Equals(SourceFormatPropertiesStruct.RootDimensionStructure)
-            )
-            {
-                SourceFormat targetSourceFormat = await GetTargetSourceFormatAsync(
-                        instance.TargetDomainObjectName,
-                        instance.TargetDomainObjectSource)
-                   .ConfigureAwait(false);
-
-                DimensionStructure toBeAddedDimensionStructure = await GetTargetDimensionStructureAsync(
-                        instance.DomainObjectNameToBeAdded,
-                        instance.DomainObjectSource)
-                   .ConfigureAwait(false);
-
-                if (instance.DomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
-                {
-                    targetSourceFormat.RootDimensionStructure = toBeAddedDimensionStructure;
-                }
-                else
-                {
-                    targetSourceFormat.RootDimensionStructure = toBeAddedDimensionStructure;
-                    targetSourceFormat.RootDimensionStructureId = toBeAddedDimensionStructure.Id;
-                }
-
-                if (instance.TargetDomainObjectSource.Equals(DomainObjectSourceStringEnum.Bag))
-                {
-                    _sourceFormatBag[instance.TargetDomainObjectName] = null;
-                    _sourceFormatBag[instance.TargetDomainObjectName] = targetSourceFormat;
-                }
-                else
-                {
-                    _sourceFormatSaveOperationResultBag[instance.TargetDomainObjectName] = null;
-                    _sourceFormatSaveOperationResultBag[instance.TargetDomainObjectName] = targetSourceFormat;
-                }
             }
         }
 
@@ -133,53 +92,27 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Given(@"SourceFormat RootDimensionStructure has a child DimensionStructure")]
         public async Task SourceFormatRootDimensionStructureHasAChildDimensionStructure(Table table)
         {
-            SourceFormatRootDimensionStructureHasAChildDimensionStructureEntity instance = table
-               .CreateInstance<SourceFormatRootDimensionStructureHasAChildDimensionStructureEntity>();
+        }
 
-            SourceFormat sourceFormat = null;
-            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.Bag))
+        [Given(@"'(.*)' is DimensionStructureTreeRoot of '(.*)'")]
+        public async Task DimensionStructureTreeNodeIsDimensionStructureTreeRootOfSourceFormat(
+            string dimensionStructureTreeNodeName,
+            string sourceFormatName)
+        {
+            try
             {
-                sourceFormat = _sourceFormatBag.First(
-                        p => p.Key.Equals(instance.SourceFormatName))
-                   .Value;
+                // DimensionStructureTreeNode dimensionStructureTreeNode = _dimensionStructureTreeNodesBag
+                //    .First(p => p.Key.Equals(dimensionStructureTreeNodeName)).Value;
+                // SourceFormat sourceFormat = _sourceFormatBag
+                //    .First(p => p.Key.Equals(sourceFormatName)).Value;
+                //
+                // sourceFormat.DimensionStructureTreeRoot = dimensionStructureTreeNode;
             }
-
-            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.ResultBag))
+            catch (Exception e)
             {
-                sourceFormat = _sourceFormatSaveOperationResultBag.First(
-                        p => p.Key.Equals(instance.SourceFormatName))
-                   .Value;
-            }
-
-            DimensionStructure dimensionStructure = null;
-            if (instance.DimensionStructureSource.Equals(DomainObjectSourceStringEnum.Bag))
-            {
-                dimensionStructure = _dimensionStructureBag.First(
-                        p => p.Key.Equals(instance.ChildName))
-                   .Value;
-            }
-
-            if (instance.DimensionStructureSource.Equals(DomainObjectSourceStringEnum.ResultBag))
-            {
-                dimensionStructure = _dimensionStructureStoredObjectsBag.First(
-                        p => p.Key.Equals(instance.ChildName))
-                   .Value;
-            }
-
-            SourceFormat result = await _masterDataTestHelper.DimensionStructureLinkedListHelper
-               .AddDimensionStructureToNodeAsync(dimensionStructure, sourceFormat, instance.ParentNodeName)
-               .ConfigureAwait(false);
-
-            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.Bag))
-            {
-                _sourceFormatBag.Remove(instance.SourceFormatName);
-                _sourceFormatBag.Add(instance.SourceFormatName, result);
-            }
-
-            if (instance.SourceFormatSource.Equals(DomainObjectSourceStringEnum.ResultBag))
-            {
-                _sourceFormatSaveOperationResultBag.Remove(instance.SourceFormatName);
-                _sourceFormatSaveOperationResultBag.Add(instance.SourceFormatName, result);
+                throw new SourceFormatStepDefException(
+                    nameof(DimensionStructureTreeNodeIsDimensionStructureTreeRootOfSourceFormat),
+                    e);
             }
         }
 
@@ -216,7 +149,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             switch (instance.PropertyName)
             {
                 case SourceFormatPropertiesStruct.RootDimensionStructure:
-                    result.RootDimensionStructure.Should().NotBe(comparedTo.RootDimensionStructure);
+                    // result.DimensionStructureTreeRoot.Should().NotBe(comparedTo.DimensionStructureTreeRoot);
                     break;
 
                 case SourceFormatPropertiesStruct.Name:
@@ -248,7 +181,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             switch (instance.PropertyName)
             {
                 case SourceFormatPropertiesStruct.RootDimensionStructure:
-                    result.RootDimensionStructure.Should().NotBeNull();
+                    // result.DimensionStructureTreeRoot.Should().NotBeNull();
                     break;
 
                 default:
@@ -259,46 +192,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Then(@"SourceFormat result's RootDimensionStructure property equals to")]
         public async Task SourceFormatResultsRootDimensionStructurePropertyEqualsTo(Table table)
         {
-            SourceFormatResultRootDimensionStructurePropertyEqualsToEntity instance = table
-               .CreateInstance<SourceFormatResultRootDimensionStructurePropertyEqualsToEntity>();
-
-            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.Name))
-               .Value;
-            DimensionStructure comparedTo;
-            if (instance.Source.Equals(DomainObjectSourceStringEnum.ResultBag))
-            {
-                comparedTo = _dimensionStructureStoredObjectsBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.EqualsTo)).Value;
-            }
-            else
-            {
-                comparedTo = _dimensionStructureBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.EqualsTo)).Value;
-            }
-
-            switch (instance.PropertyName)
-            {
-                case DimensionStructurePropertiesStruct.Id:
-                    result.RootDimensionStructure.Id.Should().Be(comparedTo.Id);
-                    result.RootDimensionStructureId.Should().Be(comparedTo.Id);
-                    break;
-
-                case DimensionStructurePropertiesStruct.Name:
-                    result.RootDimensionStructure.Name.Should().Be(comparedTo.Name);
-                    break;
-
-                case DimensionStructurePropertiesStruct.Desc:
-                    result.RootDimensionStructure.Desc.Should().Be(comparedTo.Desc);
-                    break;
-
-                case DimensionStructurePropertiesStruct.IsActive:
-                    result.RootDimensionStructure.IsActive.Should().Be(comparedTo.IsActive);
-                    break;
-
-                default:
-                    throw new Exception($"There is no {instance.PropertyName} of DimensionStructure.");
-            }
         }
 
         [Then(@"<.*> SourceFormat result's RootDimensionStructure ChildDimensionStructure is not null")]
@@ -306,7 +199,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             string resultName)
         {
             SourceFormat result = _sourceFormatSaveOperationResultBag.First(p => p.Value.Name.Equals(resultName)).Value;
-            result.RootDimensionStructure.ChildDimensionStructures.Should().NotBeNull();
+            // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Should().NotBeNull();
         }
 
         [Then(@"<.*> SourceFormat result's RootDimensionStructure ChildDimensionStructure length")]
@@ -315,30 +208,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             int expectedLength)
         {
             SourceFormat result = _sourceFormatSaveOperationResultBag.First(p => p.Value.Name.Equals(resultName)).Value;
-            result.RootDimensionStructure.ChildDimensionStructures.Count.Should().Be(expectedLength);
+            // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Count.Should().Be(expectedLength);
         }
 
         [Then(@"SourceFormat result's DimensionStructureTree has DimensionStructure under given node")]
         public async Task SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNode(
             Table table)
         {
-            SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNodeEntity instance =
-                table.CreateInstance<SourceFormatResultsDimensionStructureTreeHasDimensionStructureUnderGivenNodeEntity
-                >();
-
-            SourceFormat queryObject = new SourceFormat { Name = instance.SourceFormatName };
-            SourceFormat result = await _masterDataBusinessLogic
-               .GetSourceFormatByNameWithFullDimensionStructureTreeAsync(queryObject)
-               .ConfigureAwait(false);
-
-            DimensionStructure dimensionStructureResult = await _masterDataTestHelper.DimensionStructureLinkedListHelper
-               .GetChildDimensionStructureFromGivenNode(
-                    result,
-                    instance.NodeName,
-                    instance.DimensionStructureName)
-               .ConfigureAwait(false);
-
-            dimensionStructureResult.Should().NotBeNull();
         }
 
         [Then(@"a DimensionStructure is child of RootDimensionStructure")]
@@ -359,13 +235,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .GetDimensionStructureByNameAsync(instance.DimensionStructureName)
                .ConfigureAwait(false);
 
-            bool result = await _masterDataTestHelper.DimensionStructureLinkedListHelper
-               .IsDimensionStructureChildOfRootDimensionStructureAsync(
-                    sourceFormat.RootDimensionStructure.ChildDimensionStructures,
-                    childDimensionStructure)
-               .ConfigureAwait(false);
+            // bool result = await _masterDataTestHelper.DimensionStructureLinkedListHelper
+            //    .IsDimensionStructureChildOfRootDimensionStructureAsync(
+            //         sourceFormat.RootDimensionStructure.ChildDimensionStructures,
+            //         childDimensionStructure)
+            //    .ConfigureAwait(false);
 
-            result.Should().BeTrue();
+            // result.Should().BeTrue();
         }
 
         [Then(@"DimensionStructure is RootDimensionStructure of SourceFormat")]
@@ -378,10 +254,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                .GetDimensionStructureByNameWithSourceFormatsAsync(instance.Name)
                .ConfigureAwait(false);
 
-            SourceFormat sourceFormat = result.SourceFormatsRootDimensionStructures.FirstOrDefault(
-                p => p.Name.Equals(instance.SourceFormatName));
+            // SourceFormat sourceFormat = result.SourceFormatsRootDimensionStructures.FirstOrDefault(
+            //     p => p.Name.Equals(instance.SourceFormatName));
 
-            sourceFormat.Should().NotBeNull();
+            // sourceFormat.Should().NotBeNull();
         }
     }
 }

@@ -65,10 +65,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                        .FindAsync(dimensionsStructureId)
                        .ConfigureAwait(false);
 
-                    dimensionStructure.ChildDimensionStructures = await GetDimensionStructureTreeAsync(
-                            dimensionsStructureId,
-                            ctx)
-                       .ConfigureAwait(false);
+                    // dimensionStructure.ChildDimensionStructures = await GetDimensionStructureTreeAsync(
+                    //         dimensionsStructureId,
+                    //         ctx)
+                    //    .ConfigureAwait(false);
 
                     return dimensionStructure;
                 }
@@ -84,17 +84,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         private async Task<DimensionStructure> GetDimensionStructureByIdWithoutChildrenAsync(
             long dimensionStructureId)
         {
-            Check.AreNotEqual(dimensionStructureId, 0);
-
-            using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-            {
-                DimensionStructure result = await ctx.DimensionStructures
-                   .AsNoTracking()
-                   .Include(p => p.DimensionStructureDimensionStructures)
-                   .FirstOrDefaultAsync(k => k.Id == dimensionStructureId)
-                   .ConfigureAwait(false);
-                return result;
-            }
+            // Check.AreNotEqual(dimensionStructureId, 0);
+            //
+            // using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+            // {
+            //     DimensionStructure result = await ctx.DimensionStructures
+            //        .AsNoTracking()
+            //        .Include(p => p.DimensionStructureDimensionStructures)
+            //        .FirstOrDefaultAsync(k => k.Id == dimensionStructureId)
+            //        .ConfigureAwait(false);
+            //     return result;
+            // }
+            throw new NotImplementedException();
         }
     }
 }

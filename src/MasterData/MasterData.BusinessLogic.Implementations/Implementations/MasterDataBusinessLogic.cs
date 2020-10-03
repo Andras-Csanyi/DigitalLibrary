@@ -5,8 +5,10 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 {
+    using System;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
@@ -30,6 +32,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             Check.IsNotNull(masterDataValidators);
             _dbContextOptions = dbContextOptions;
             _masterDataValidators = masterDataValidators;
+        }
+
+        private void Rethrow(string operationName, Exception e)
+        {
+            string msg = $"Operation failed: {operationName}. " +
+                         $"For further details see inner exception.";
+            throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
         }
     }
 }
