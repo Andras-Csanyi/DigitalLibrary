@@ -58,13 +58,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         protected Dictionary<string, DomainModel.SourceFormat> _sourceFormatBag =
             new Dictionary<string, DomainModel.SourceFormat>();
 
-        protected Dictionary<string, DomainModel.SourceFormat> _sourceFormatSaveOperationResultBag =
-            new Dictionary<string, DomainModel.SourceFormat>();
-
         protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureBag =
-            new Dictionary<string, DomainModel.DimensionStructure>();
-
-        protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureStoredObjectsBag =
             new Dictionary<string, DomainModel.DimensionStructure>();
 
         protected IMasterDataTestHelper _masterDataTestHelper;
@@ -77,69 +71,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             Check.NotNullOrEmptyOrWhitespace(_testInfo);
             Check.IsNotNull(testOutputHelper);
 
-            // _serviceProvider = new ServiceCollection()
-            //    .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
-            //    .AddEntityFrameworkSqlite()
-            //    .BuildServiceProvider();
-            //
-            // _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
-            //    .UseSqlite($"Data Source = {_testInfo}.sqlite")
-            //
-            //     // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
-            //     // .UseLoggerFactory(MasterDataLogger)
-            //    .UseInternalServiceProvider(_serviceProvider)
-            //    .EnableDetailedErrors()
-            //    .EnableSensitiveDataLogging()
-            //    .Options;
-            //
-            // DimensionValidator dimensionValidator = new DimensionValidator();
-            // MasterDataDimensionValueValidator masterDataDimensionValueValidator =
-            //     new MasterDataDimensionValueValidator();
-            // SourceFormatValidator sourceFormatValidator = new SourceFormatValidator();
-            // DimensionStructureValidator dimensionStructureValidator = new DimensionStructureValidator();
-            // DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator =
-            //     new DimensionStructureDimensionStructureValidator();
-            // DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator =
-            //     new DimensionStructureQueryObjectValidator();
-            //
-            // MasterDataValidators masterDataValidators = new MasterDataValidators(
-            //     dimensionValidator,
-            //     masterDataDimensionValueValidator,
-            //     sourceFormatValidator,
-            //     dimensionStructureValidator,
-            //     dimensionStructureDimensionStructureValidator,
-            //     dimensionStructureQueryObjectValidator);
-            //
-            // IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic = new MasterDataDimensionBusinessLogic(
-            //     _dbContextOptions, masterDataValidators);
-            // IMasterDataDimensionStructureBusinessLogic masterDataDimensionStructureBusinessLogic =
-            //     new MasterDataDimensionStructureBusinessLogic(_dbContextOptions, masterDataValidators);
-            // IMasterDataDimensionValueBusinessLogic masterDataDimensionValueBusinessLogic =
-            //     new MasterDataDimensionValueBusinessLogic(_dbContextOptions, masterDataValidators);
-            // IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic =
-            //     new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
-            //
-            // _masterDataBusinessLogic = new MasterDataBusinessLogic(
-            //     masterDataDimensionBusinessLogic,
-            //     masterDataDimensionStructureBusinessLogic,
-            //     masterDataDimensionValueBusinessLogic,
-            //     masterDataSourceFormatBusinessLogic);
-            // // "Given there is the MasterDataBusinessLogic"
-            // //    .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
-            // //         _dbContextOptions,
-            // //         masterDataValidators));
-            //
-            // using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-            // {
-            //     ctx.Database.EnsureDeleted();
-            //     ctx.Database.EnsureCreated();
-            //     // MasterDataDataSample.Populate(ctx);
-            // }
-        }
-
-        [BeforeScenario]
-        public void Background()
-        {
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
                .UseSqlite($"Data Source = {_testInfo}.sqlite")
 
@@ -205,6 +136,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureLinkedListHelper);
         }
 
+        [BeforeScenario]
+        public void Background()
+        {
+        }
+
         public void Dispose()
         {
             // _masterDataBusinessLogic.Dispose();
@@ -218,7 +154,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .AddSourceFormatAsync(toSave)
                .ConfigureAwait(false);
 
-            _sourceFormatSaveOperationResultBag.Add(instance.ResultKey, result);
+            _sourceFormatBag.Add(instance.ResultKey, result);
         }
 
         protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
@@ -229,7 +165,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .MasterDataDimensionStructureBusinessLogic
                .AddDimensionStructureAsync(toSave)
                .ConfigureAwait(false);
-            _dimensionStructureStoredObjectsBag.Add(instance.ResultKey, result);
+            _dimensionStructureBag.Add(instance.ResultKey, result);
         }
     }
 }

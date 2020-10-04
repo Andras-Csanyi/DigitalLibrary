@@ -52,26 +52,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                 IsActive = 1,
                 SourceFormatDimensionStructure = new SourceFormatDimensionStructure
                 {
-                    DimensionStructure = new DimensionStructure
-                    {
-                        Name = "dimension structure first",
-                        Desc = "desc",
-                        IsActive = 1,
-                        ChildDimensionStructuresReferences = new List<DimensionStructureDimensionStructure>
-                        {
-                            new DimensionStructureDimensionStructure
-                            {
-                                ChildDimensionStructure = new DimensionStructure
-                                {
-                                    Name = "child 1", Desc = "desc"
-                                },
-                            },
-                            new DimensionStructureDimensionStructure
-                            {
-                                ChildDimensionStructureId = dimensionStructureResult.Id,
-                            },
-                        },
-                    },
+                    DimensionStructure = dimensionStructureResult,
+                    DimensionStructureId = dimensionStructure.Id,
                 },
             };
 

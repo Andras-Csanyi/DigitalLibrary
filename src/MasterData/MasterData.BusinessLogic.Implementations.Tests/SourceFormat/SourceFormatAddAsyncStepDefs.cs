@@ -87,7 +87,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                    .GetDimensionStructureByNameAsync(
                         instance.Name)
                    .ConfigureAwait(false);
-                _dimensionStructureStoredObjectsBag.Add(instance.ResultId, result);
+                _dimensionStructureBag.Add(instance.ResultId, result);
             }
         }
 
@@ -124,25 +124,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatsRootDimensionStructureIsEntity instance =
                 table.CreateInstance<SourceFormatsRootDimensionStructureIsEntity>();
 
-            SourceFormat sourceFormat;
-            if (instance.SourceFormatSource == DomainObjectSourceStringEnum.ResultBag)
-            {
-                sourceFormat = _sourceFormatSaveOperationResultBag[instance.SourceFormatKey];
-            }
-            else
-            {
-                sourceFormat = _sourceFormatBag[instance.SourceFormatKey];
-            }
+            SourceFormat sourceFormat = _sourceFormatBag[instance.SourceFormatKey];
 
-            DimensionStructure dimensionStructure;
-            if (instance.DimensionStructureSource == DomainObjectSourceStringEnum.ResultBag)
-            {
-                dimensionStructure = _dimensionStructureStoredObjectsBag[instance.DimensionStructureKey];
-            }
-            else
-            {
-                dimensionStructure = _dimensionStructureBag[instance.DimensionStructureKey];
-            }
+            DimensionStructure dimensionStructure = _dimensionStructureBag[instance.DimensionStructureKey];
 
             SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
             {
@@ -155,31 +139,91 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             _sourceFormatBag.Add(instance.SourceFormatKey, sourceFormat);
         }
 
+        [Given(@"DimensionStructure is saved")]
+        public async Task DimensionStructureIsSaved(Table table)
+        {
+            var instance = table.CreateInstance<(string key, string resultKey)>();
+
+            DimensionStructure toBeSaved = _dimensionStructureBag[instance.key];
+            DimensionStructure saved = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
+               .AddDimensionStructureAsync(toBeSaved)
+               .ConfigureAwait(false);
+            _dimensionStructureBag.Add(instance.resultKey, saved);
+        }
+
+        [Given(@"SourceFormat is saved")]
+        [When(@"SourceFormat is saved")]
+        public async Task SourceFormatIsSaved(Table table)
+        {
+            var instance = table.CreateInstance<(string key, string resultKey)>();
+
+            SourceFormat toBeSaved = _sourceFormatBag[instance.key];
+            SourceFormat saved = await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddSourceFormatAsync(toBeSaved)
+               .ConfigureAwait(false);
+            _sourceFormatBag.Add(instance.resultKey, saved);
+        }
+
+        [Given(@"'(.*)' DimensionStructure is added to '(.*)' SourceFormat as root DimensionStructure")]
+        public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(
+            string dimensionStructureKey,
+            string sourceFormatKey)
+        {
+            SourceFormat sourceFormat = _sourceFormatBag[sourceFormatKey];
+            DimensionStructure dimensionStructure = _dimensionStructureBag[dimensionStructureKey];
+
+            if (dimensionStructure.Id != 0)
+            {
+                SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
+                {
+                    DimensionStructure = dimensionStructure,
+                    DimensionStructureId = dimensionStructure.Id,
+                    SourceFormat = sourceFormat,
+                };
+                sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
+            }
+            else
+            {
+                SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
+                {
+                    DimensionStructure = dimensionStructure,
+                    SourceFormat = sourceFormat,
+                };
+                sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
+            }
+
+            _sourceFormatBag.Remove(sourceFormatKey);
+            _sourceFormatBag.Add(sourceFormatKey, sourceFormat);
+        }
+
         [When(@"SourceFormat is requested with DimensionStructure tree")]
         public async Task SourceFormatIsRequestedWithDimensionStructureTree(Table table)
         {
             var instance = table.CreateInstance<(string key, string resultKey)>();
 
-            SourceFormat withoutTree = _sourceFormatSaveOperationResultBag[instance.key];
+            SourceFormat withoutTree = _sourceFormatBag[instance.key];
 
-            SourceFormat requestedWithTree = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+            SourceFormat requestedWithTree = await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
                .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(withoutTree)
                .ConfigureAwait(false);
 
-            _sourceFormatSaveOperationResultBag.Add(instance.resultKey, requestedWithTree);
+            _sourceFormatBag.Add(instance.resultKey, requestedWithTree);
         }
 
         [Then(@"'(.*)' SourceFormat save result is not null")]
         public async Task SourceFormatSaveResultIsNotNull(string saveResultName)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag[saveResultName];
+            SourceFormat result = _sourceFormatBag[saveResultName];
             result.Should().NotBeNull();
         }
 
         [Then(@"'(.*)' SourceFormat save result Id is not '(.*)'")]
         public async Task SourceFormatSaveResultIdIsNotZero(string saveResultName, int notEqualsTo)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag[saveResultName];
+            SourceFormat result = _sourceFormatBag[saveResultName];
             result.Id.Should().NotBe(notEqualsTo);
         }
 
@@ -189,7 +233,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatResultPropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultPropertyEqualsToEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag[instance.Key];
+            SourceFormat result = _sourceFormatBag[instance.Key];
             SourceFormat comparedTo = _sourceFormatBag[instance.EqualsTo];
 
             switch (instance.PropertyName)
@@ -220,7 +264,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         {
             SourceFormatPropertyIsNotNullEntity instance = table.CreateInstance<SourceFormatPropertyIsNotNullEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
+            SourceFormat result = _sourceFormatBag.FirstOrDefault(
                     p => p.Key.Equals(instance.Name))
                .Value;
 
@@ -241,7 +285,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag[instance.Key];
+            SourceFormat result = _sourceFormatBag[instance.Key];
             DimensionStructure comparedTo = _dimensionStructureBag[instance.EqualsTo];
 
             switch (instance.PropertyName)
@@ -273,7 +317,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Then(@"'(.*)' SourceFormat result's RootDimensionStructure Id property is not zero")]
         public async Task SourceFormatResultsRootDimensionStructureIdIsNotZero(string resultKey)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag[resultKey];
+            SourceFormat result = _sourceFormatBag[resultKey];
 
             result.SourceFormatDimensionStructure.DimensionStructure.Id
                .Should()
@@ -284,7 +328,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         public async Task GivenSourceFormatResultRootDimensionStructureChildDimensionStructureIsNotNull(
             string resultName)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(p => p.Value.Name.Equals(resultName)).Value;
+            SourceFormat result = _sourceFormatBag.First(p => p.Value.Name.Equals(resultName)).Value;
             // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Should().NotBeNull();
         }
 
@@ -293,7 +337,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             string resultName,
             int expectedLength)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.First(p => p.Value.Name.Equals(resultName)).Value;
+            SourceFormat result = _sourceFormatBag.First(p => p.Value.Name.Equals(resultName)).Value;
             // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Count.Should().Be(expectedLength);
         }
 

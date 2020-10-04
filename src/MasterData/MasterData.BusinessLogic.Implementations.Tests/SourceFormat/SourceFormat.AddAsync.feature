@@ -54,9 +54,7 @@ Feature: AddAsync
     And SourceFormat's root DimensionStructure is
       | Field                    | Value   |
       | SourceFormatKey          | SF1     |
-      | SourceFormatSource       | Bag     |
       | DimensionStructureKey    | SF1Root |
-      | DimensionStructureSource | Bag     |
     When domain object is saved
       | Field            | Value        |
       | DomainObjectType | SourceFormat |
@@ -100,62 +98,67 @@ Feature: AddAsync
       | EqualsTo     | SF1Root           |
     And 'SF1Result' SourceFormat result's RootDimensionStructure Id property is not zero
 
-  Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension tree
+  Scenario: Adds a SourceFormat with an existing root DimensionStructure
     Given there is a domain object
-      | Field | Value        |
-      | Name  | SF1          |
-      | Type  | SourceFormat |
-    And there is a domain object
-      | Field | Value                      |
-      | Name  | SF1Root                    |
-      | Type  | DimensionStructureTreeNode |
-    And 'DimensionStructureTreeNode' is DimensionStructureTreeRoot of 'SF1'
-    When domain object is saved
       | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
-    Then 'SF1Result' SourceFormat save result is not null
-    And 'SF1Result' SourceFormat result Id is not '0'
+      | Key              | SF1          |
+      | Type             | SourceFormat |
+      | NameProperty     | SF1          |
+      | DescProperty     | SF1Desc      |
+      | IsActiveProperty | 1            |
+    And there is a domain object
+      | Field            | Value              |
+      | Key              | SF1Root            |
+      | Type             | DimensionStructure |
+      | NameProperty     | SF1Root            |
+      | DescProperty     | SF1RootDesc        |
+      | IsActiveProperty | 1                  |
+    And DimensionStructure is saved
+      | Field     | Value         |
+      | Key       | SF1Root       |
+      | ResultKey | SF1RootResult |
+    And 'SF1RootResult' DimensionStructure is added to 'SF1' SourceFormat as root DimensionStructure
+    When SourceFormat is saved
+      | Field     | Value     |
+      | Key       | SF1       |
+      | ResultKey | SF1Result |
+    And SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | SF1Result         |
+      | ResultKey | SF1ResultWithTree |
+    Then 'SF1ResultWithTree' SourceFormat save result is not null
+    And 'SF1ResultWithTree' SourceFormat save result Id is not '0'
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1       |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Name              |
+      | EqualsTo     | SF1               |
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1       |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Desc              |
+      | EqualsTo     | SF1               |
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1       |
-    And SourceFormat result property is not null
-      | Name      | PropertyName           |
-      | SF1Result | RootDimensionStructure |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | IsActive          |
+      | EqualsTo     | SF1               |
     And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Id        |
-      | EqualsTo     | SF1Root   |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Name              |
+      | EqualsTo     | SF1Root           |
     And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1Root   |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Desc              |
+      | EqualsTo     | SF1Root           |
     And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1Root   |
-    And SourceFormat result's RootDimensionStructure property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1Root   |
-
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | IsActive          |
+      | EqualsTo     | SF1Root           |
+    And 'SF1Result' SourceFormat result's RootDimensionStructure Id property is not zero
     
 #  Scenario: Adds a SourceFormat when RootDimensionStructure an already existing DimensionStructure
 #    Given there is a domain object
