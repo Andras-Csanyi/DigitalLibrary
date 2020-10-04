@@ -7,44 +7,44 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
+
+    using Microsoft.EntityFrameworkCore;
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
         public async Task<SourceFormat> GetSourceFormatByIdWithFullDimensionStructureTreeAsync(
             SourceFormat querySourceFormat)
         {
-            // try
-            // {
-            //     Check.IsNotNull(querySourceFormat);
-            //     Check.AreNotEqual(querySourceFormat.Id, 0);
-            //
-            //     using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-            //     {
-            //         SourceFormat sourceFormat = await ctx.SourceFormats
-            //            .Include(i => i.DimensionStructureTreeRoot)
-            //            .AsNoTracking()
-            //            .FirstOrDefaultAsync(w => w.Id == querySourceFormat.Id)
-            //            .ConfigureAwait(false);
-            //
-            //         // sourceFormat.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes =
-            //         //     await GetDimensionStructureTreeAsync(sourceFormat.DimensionStructureTreeRootId, ctx)
-            //         //        .ConfigureAwait(false);
-            //
-            //         return sourceFormat;
-            //     }
-            // }
-            // catch (Exception e)
-            // {
-            //     throw new MasterDataBusinessLogicGetSourceFormatByIdWithDimensionStructureTreeAsyncOperationException(
-            //         e.Message,
-            //         e);
-            // }
-            throw new NotImplementedException();
+            try
+            {
+                Check.IsNotNull(querySourceFormat);
+                Check.AreNotEqual(querySourceFormat.Id, 0);
+
+                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+                {
+                    SourceFormat sourceFormat = await ctx.SourceFormats
+                       .Include(i => i.SourceFormatDimensionStructure)
+                       .ThenInclude(ii => ii.DimensionStructure)
+                       .AsNoTracking()
+                       .FirstAsync(p => p.Id == querySourceFormat.Id)
+                       .ConfigureAwait(false);
+
+                    return sourceFormat;
+                }
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(GetSourceFormatByIdWithFullDimensionStructureTreeAsync)} operation failed. " +
+                             $"For further details see inner exception.";
+                throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
+            }
         }
 
         /// <summary>

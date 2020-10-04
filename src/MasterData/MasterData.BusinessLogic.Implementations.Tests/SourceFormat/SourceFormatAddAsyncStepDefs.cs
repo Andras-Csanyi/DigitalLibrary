@@ -44,10 +44,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                     break;
 
                 case DomainObjectTypesStringEnum.DimensionStructure:
-                    DimensionStructure dimensionStructure = new DimensionStructure
-                    {
-                        Name = instance.Key,
-                    };
+                    DimensionStructure dimensionStructure = await _masterDataTestHelper
+                       .DimensionStructureFactory
+                       .Create(instance)
+                       .ConfigureAwait(false);
                     _dimensionStructureBag.Add(instance.Key, dimensionStructure);
                     break;
 
@@ -116,6 +116,57 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                     nameof(DimensionStructureTreeNodeIsDimensionStructureTreeRootOfSourceFormat),
                     e);
             }
+        }
+
+        [Given(@"SourceFormat's root DimensionStructure is")]
+        public async Task SourceFormatsRootDimensionStructureIs(Table table)
+        {
+            SourceFormatsRootDimensionStructureIsEntity instance =
+                table.CreateInstance<SourceFormatsRootDimensionStructureIsEntity>();
+
+            SourceFormat sourceFormat;
+            if (instance.SourceFormatSource == DomainObjectSourceStringEnum.ResultBag)
+            {
+                sourceFormat = _sourceFormatSaveOperationResultBag[instance.SourceFormatKey];
+            }
+            else
+            {
+                sourceFormat = _sourceFormatBag[instance.SourceFormatKey];
+            }
+
+            DimensionStructure dimensionStructure;
+            if (instance.DimensionStructureSource == DomainObjectSourceStringEnum.ResultBag)
+            {
+                dimensionStructure = _dimensionStructureStoredObjectsBag[instance.DimensionStructureKey];
+            }
+            else
+            {
+                dimensionStructure = _dimensionStructureBag[instance.DimensionStructureKey];
+            }
+
+            SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
+            {
+                SourceFormat = sourceFormat,
+                DimensionStructure = dimensionStructure,
+            };
+            sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
+
+            _sourceFormatBag.Remove(instance.SourceFormatKey);
+            _sourceFormatBag.Add(instance.SourceFormatKey, sourceFormat);
+        }
+
+        [When(@"SourceFormat is requested with DimensionStructure tree")]
+        public async Task SourceFormatIsRequestedWithDimensionStructureTree(Table table)
+        {
+            var instance = table.CreateInstance<(string key, string resultKey)>();
+
+            SourceFormat withoutTree = _sourceFormatSaveOperationResultBag[instance.key];
+
+            SourceFormat requestedWithTree = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(withoutTree)
+               .ConfigureAwait(false);
+
+            _sourceFormatSaveOperationResultBag.Add(instance.resultKey, requestedWithTree);
         }
 
         [Then(@"'(.*)' SourceFormat save result is not null")]
@@ -187,6 +238,46 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Then(@"SourceFormat result's RootDimensionStructure property equals to")]
         public async Task SourceFormatResultsRootDimensionStructurePropertyEqualsTo(Table table)
         {
+            SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity instance =
+                table.CreateInstance<SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity>();
+
+            SourceFormat result = _sourceFormatSaveOperationResultBag[instance.Key];
+            DimensionStructure comparedTo = _dimensionStructureBag[instance.EqualsTo];
+
+            switch (instance.PropertyName)
+            {
+                case DimensionStructurePropertiesStruct.Name:
+                    result.SourceFormatDimensionStructure.DimensionStructure.Name
+                       .Should()
+                       .Be(comparedTo.Name);
+                    break;
+
+                case DimensionStructurePropertiesStruct.Desc:
+                    result.SourceFormatDimensionStructure.DimensionStructure.Desc
+                       .Should()
+                       .Be(comparedTo.Desc);
+                    break;
+
+                case DimensionStructurePropertiesStruct.IsActive:
+                    result.SourceFormatDimensionStructure.DimensionStructure.IsActive
+                       .Should()
+                       .Be(comparedTo.IsActive);
+                    break;
+
+                default:
+                    throw new SourceFormatStepDefException(
+                        nameof(SourceFormatResultsRootDimensionStructurePropertyEqualsTo));
+            }
+        }
+
+        [Then(@"'(.*)' SourceFormat result's RootDimensionStructure Id property is not zero")]
+        public async Task SourceFormatResultsRootDimensionStructureIdIsNotZero(string resultKey)
+        {
+            SourceFormat result = _sourceFormatSaveOperationResultBag[resultKey];
+
+            result.SourceFormatDimensionStructure.DimensionStructure.Id
+               .Should()
+               .NotBe(0);
         }
 
         [Then(@"<.*> SourceFormat result's RootDimensionStructure ChildDimensionStructure is not null")]

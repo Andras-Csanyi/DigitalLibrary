@@ -1,12 +1,17 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
+    using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
 
     public interface IDimensionStructureFactory
     {
-        DimensionStructure Create(string name);
+        Task<DimensionStructure> Create(string name);
+
+        Task<DimensionStructure> Create(ThereIsADomainObjectEntity instance);
     }
 
     public class DimensionStructureFactory : IDimensionStructureFactory
@@ -18,7 +23,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             _stringHelper = stringHelper ?? throw new ArgumentNullException($"{nameof(stringHelper)}");
         }
 
-        public DimensionStructure Create(string name)
+        public async Task<DimensionStructure> Create(string name)
         {
             DimensionStructure result = new DimensionStructure
             {
@@ -27,6 +32,20 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             };
 
             return result;
+        }
+
+        public async Task<DimensionStructure> Create(ThereIsADomainObjectEntity instance)
+        {
+            Check.IsNotNull(instance);
+
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Name = instance.NameProperty ?? _stringHelper.GetRandomString(4),
+                Desc = instance.DescProperty ?? _stringHelper.GetRandomString(4),
+                IsActive = Convert.ToInt32(instance.IsActiveProperty),
+            };
+
+            return dimensionStructure;
         }
     }
 }

@@ -36,33 +36,69 @@ Feature: AddAsync
       | PropertyName | IsActive  |
       | EqualsTo     | SF1       |
 
-  Scenario: Adds a SourceFormat when the newly added SourceFormat doesn't have RootDimensionStructure
+  Scenario: Adds a SourceFormat with a new root DimensionStructure
     Given there is a domain object
-      | Field | Value        |
-      | Name  | SF1          |
-      | Type  | SourceFormat |
+      | Field            | Value        |
+      | Key              | SF1          |
+      | Type             | SourceFormat |
+      | NameProperty     | SF1          |
+      | DescProperty     | SF1Desc      |
+      | IsActiveProperty | 1            |
+    And there is a domain object
+      | Field            | Value              |
+      | Key              | SF1Root            |
+      | Type             | DimensionStructure |
+      | NameProperty     | SF1Root            |
+      | DescProperty     | SF1RootDesc        |
+      | IsActiveProperty | 1                  |
+    And SourceFormat's root DimensionStructure is
+      | Field                    | Value   |
+      | SourceFormatKey          | SF1     |
+      | SourceFormatSource       | Bag     |
+      | DimensionStructureKey    | SF1Root |
+      | DimensionStructureSource | Bag     |
     When domain object is saved
       | Field            | Value        |
       | DomainObjectType | SourceFormat |
-      | DomainObjectName | SF1          |
-      | ResultId         | SF1Result    |
+      | Key              | SF1          |
+      | ResultKey        | SF1Result    |
+    And SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | SF1Result         |
+      | ResultKey | SF1ResultWithTree |
     Then 'SF1Result' SourceFormat save result is not null
-    And 'SF1Result' SourceFormat result Id is not '0'
+    And 'SF1Result' SourceFormat save result Id is not '0'
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Name      |
-      | EqualsTo     | SF1       |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Name              |
+      | EqualsTo     | SF1               |
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | Desc      |
-      | EqualsTo     | SF1       |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Desc              |
+      | EqualsTo     | SF1               |
     And SourceFormat result property equals to
-      | Field        | Value     |
-      | Name         | SF1Result |
-      | PropertyName | IsActive  |
-      | EqualsTo     | SF1       |
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | IsActive          |
+      | EqualsTo     | SF1               |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Name              |
+      | EqualsTo     | SF1Root           |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | Desc              |
+      | EqualsTo     | SF1Root           |
+    And SourceFormat result's RootDimensionStructure property equals to
+      | Field        | Value             |
+      | Key          | SF1ResultWithTree |
+      | PropertyName | IsActive          |
+      | EqualsTo     | SF1Root           |
+    And 'SF1Result' SourceFormat result's RootDimensionStructure Id property is not zero
 
   Scenario: Adds a SourceFormat when the newly added SourceFormat has new RootDimensionStructure without dimension tree
     Given there is a domain object
