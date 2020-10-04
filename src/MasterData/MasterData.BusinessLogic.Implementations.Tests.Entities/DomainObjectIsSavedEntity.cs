@@ -4,8 +4,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities
     {
         public string DomainObjectType { get; set; }
 
-        public string DomainObjectName { get; set; }
+        public string Key { get; set; }
 
-        public string ResultId { get; set; }
+        public string ResultKey { get; set; }
     }
 }

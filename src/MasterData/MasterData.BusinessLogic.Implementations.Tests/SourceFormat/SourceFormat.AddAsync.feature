@@ -5,6 +5,37 @@ Feature: AddAsync
   Which provides me the ability to
   Build and Manage SourceFormats
 
+  Scenario: Adds a SourceFormat without DimensionStructure
+    Given there is a domain object
+      | Field            | Value        |
+      | Key              | SF1          |
+      | Type             | SourceFormat |
+      | NameProperty     | SF1          |
+      | DescProperty     | SF1Desc      |
+      | IsActiveProperty | 1            |
+    When domain object is saved
+      | Field            | Value        |
+      | DomainObjectType | SourceFormat |
+      | Key              | SF1          |
+      | ResultKey        | SF1Result    |
+    Then 'SF1Result' SourceFormat save result is not null
+    And 'SF1Result' SourceFormat save result Id is not '0'
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Key          | SF1Result |
+      | PropertyName | Name      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Key          | SF1Result |
+      | PropertyName | Desc      |
+      | EqualsTo     | SF1       |
+    And SourceFormat result property equals to
+      | Field        | Value     |
+      | Key          | SF1Result |
+      | PropertyName | IsActive  |
+      | EqualsTo     | SF1       |
+
   Scenario: Adds a SourceFormat when the newly added SourceFormat doesn't have RootDimensionStructure
     Given there is a domain object
       | Field | Value        |

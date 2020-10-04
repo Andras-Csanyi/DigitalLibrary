@@ -2,7 +2,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
 {
     public struct SourceFormatPropertiesStruct
     {
-        public const string RootDimensionStructure = "RootDimensionStructure";
+        public const string SourceFormatDimensionStructure = "SourceFormatDimensionStructure";
 
         public const string Name = "Name";
 

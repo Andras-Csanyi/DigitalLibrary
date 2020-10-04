@@ -2,8 +2,14 @@
 {
     public class ThereIsADomainObjectEntity
     {
-        public string Name { get; set; }
+        public string Key { get; set; }
 
         public string Type { get; set; }
+
+        public string NameProperty { get; set; }
+
+        public string DescProperty { get; set; }
+
+        public string IsActiveProperty { get; set; }
     }
 }

@@ -36,19 +36,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             switch (instance.Type)
             {
                 case DomainObjectTypesStringEnum.SourceFormat:
-                    SourceFormat sourceFormat = new SourceFormat
-                    {
-                        Name = instance.Name,
-                    };
-                    _sourceFormatBag.Add(instance.Name, sourceFormat);
+                    SourceFormat sourceFormat = await _masterDataTestHelper
+                       .SourceFormatFactory
+                       .Create(instance)
+                       .ConfigureAwait(false);
+                    _sourceFormatBag.Add(instance.Key, sourceFormat);
                     break;
 
                 case DomainObjectTypesStringEnum.DimensionStructure:
                     DimensionStructure dimensionStructure = new DimensionStructure
                     {
-                        Name = instance.Name,
+                        Name = instance.Key,
                     };
-                    _dimensionStructureBag.Add(instance.Name, dimensionStructure);
+                    _dimensionStructureBag.Add(instance.Key, dimensionStructure);
                     break;
 
                 default:
@@ -121,18 +121,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
         [Then(@"'(.*)' SourceFormat save result is not null")]
         public async Task SourceFormatSaveResultIsNotNull(string saveResultName)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                    p => p.Key.Equals(saveResultName))
-               .Value;
+            SourceFormat result = _sourceFormatSaveOperationResultBag[saveResultName];
             result.Should().NotBeNull();
         }
 
-        [Then(@"'(.*)' SourceFormat result Id is not '(.*)'")]
+        [Then(@"'(.*)' SourceFormat save result Id is not '(.*)'")]
         public async Task SourceFormatSaveResultIdIsNotZero(string saveResultName, int notEqualsTo)
         {
-            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                    p => p.Key.Equals(saveResultName))
-               .Value;
+            SourceFormat result = _sourceFormatSaveOperationResultBag[saveResultName];
             result.Id.Should().NotBe(notEqualsTo);
         }
 
@@ -142,15 +138,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             SourceFormatResultPropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultPropertyEqualsToEntity>();
 
-            SourceFormat result = _sourceFormatSaveOperationResultBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.Name))
-               .Value;
-            SourceFormat comparedTo = _sourceFormatBag.FirstOrDefault(
-                p => p.Key.Equals(instance.EqualsTo)).Value;
+            SourceFormat result = _sourceFormatSaveOperationResultBag[instance.Key];
+            SourceFormat comparedTo = _sourceFormatBag[instance.EqualsTo];
 
             switch (instance.PropertyName)
             {
-                case SourceFormatPropertiesStruct.RootDimensionStructure:
+                case SourceFormatPropertiesStruct.SourceFormatDimensionStructure:
                     // result.DimensionStructureTreeRoot.Should().NotBe(comparedTo.DimensionStructureTreeRoot);
                     break;
 
@@ -182,7 +175,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             switch (instance.PropertyName)
             {
-                case SourceFormatPropertiesStruct.RootDimensionStructure:
+                case SourceFormatPropertiesStruct.SourceFormatDimensionStructure:
                     // result.DimensionStructureTreeRoot.Should().NotBeNull();
                     break;
 
