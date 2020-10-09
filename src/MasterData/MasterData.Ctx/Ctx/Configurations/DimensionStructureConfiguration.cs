@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
                .WithMany(p => p.DimensionStructure)
                .IsRequired(false);
 
-            builder.HasMany(p => p.ChildDimensionStructuresReferences)
+            builder.HasMany(p => p.ChildNodes)
                .WithOne(p => p.DimensionStructure)
                .HasForeignKey(p => p.DimensionStructureId);
         }

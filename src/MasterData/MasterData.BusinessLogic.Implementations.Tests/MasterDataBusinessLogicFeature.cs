@@ -3,6 +3,8 @@
 //  Licensed under MIT.
 // </copyright>
 
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
@@ -43,11 +45,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public class MasterDataBusinessLogicFeature : IDisposable
+    public partial class MasterDataBusinessLogicImplementationTests : IDisposable
     {
         protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
-        private readonly string _testInfo;
+        private readonly string _testInfo = nameof(MasterDataBusinessLogicImplementationTests);
 
         private readonly ITestOutputHelper _outputHelper;
 
@@ -65,14 +67,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected IStringHelper stringHelper;
 
-        protected MasterDataBusinessLogicFeature(
-            string testInfo,
-            ITestOutputHelper testOutputHelper)
-        {
-            _testInfo = testInfo;
-            Check.NotNullOrEmptyOrWhitespace(_testInfo);
-            Check.IsNotNull(testOutputHelper);
+        protected ScenarioContext _scenarioContext;
 
+        protected MasterDataBusinessLogicImplementationTests(
+            ITestOutputHelper testOutputHelper,
+            ScenarioContext scenarioContext)
+        {
+            Check.IsNotNull(testOutputHelper);
+            Check.IsNotNull(scenarioContext);
+
+            _scenarioContext = scenarioContext;
+            stringHelper = new StringHelper();
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
                .UseSqlite($"Data Source = {_testInfo}.sqlite")
 
@@ -127,7 +137,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 // MasterDataDataSample.Populate(ctx);
             }
 
-            stringHelper = new StringHelper();
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
             IDimensionStructureLinkedListHelper dimensionStructureLinkedListHelper =
@@ -136,11 +145,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 sourceFormatFactory,
                 dimensionStructureFactory,
                 dimensionStructureLinkedListHelper);
-        }
-
-        [BeforeScenario]
-        public void Background()
-        {
         }
 
         public void Dispose()

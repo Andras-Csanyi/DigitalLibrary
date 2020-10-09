@@ -52,10 +52,22 @@
         <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="DimensionStructure"/>
+        <Folder Include="SourceFormat"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <SpecFlowFeatureFiles Update="DimensionStructure.AddAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat.AddAsync.feature">
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+
     <Target Name="AfterUpdateFeatureFilesInProject">
         <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
         <ItemGroup>
-            <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+            <Compile Include="**\*.feature.cs" Exclude="@(Compile)"/>
         </ItemGroup>
     </Target>
 

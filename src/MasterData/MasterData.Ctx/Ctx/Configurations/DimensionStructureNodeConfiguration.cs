@@ -6,21 +6,26 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class DimensionStructureDimensionStructureConfiguration
-        : IEntityTypeConfiguration<DimensionStructureDimensionStructure>
+    public class DimensionStructureNodeConfiguration
+        : IEntityTypeConfiguration<DimensionStructureNode>
     {
-        public void Configure(EntityTypeBuilder<DimensionStructureDimensionStructure> builder)
+        public void Configure(EntityTypeBuilder<DimensionStructureNode> builder)
         {
             Check.IsNotNull(builder);
 
-            builder.ToTable("dimensionstructure_dimensionstructure");
+            builder.ToTable("dimensionstructurenodes");
 
             builder.HasKey(k => k.Id);
             builder.Property(p => p.Id).HasColumnName("id");
 
-            builder.Property(p => p.ChildDimensionStructureId).HasColumnName("child_id");
+            builder.Property(p => p.ChildNodeId).HasColumnName("child_id");
 
             builder.Property(p => p.DimensionStructureId).HasColumnName("dimensionstructure_id");
+
+            builder.HasMany(m => m.ChildNodes)
+               .WithOne(o => o.ChildNode)
+               .HasForeignKey(k => k.ChildNodeId)
+               .IsRequired(false);
         }
     }
 }

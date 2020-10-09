@@ -16,7 +16,9 @@ namespace DigitalLibrary.MasterData.DomainModel
     /// </summary>
     public class DimensionStructure : IHaveId, IHaveGuidId
     {
-        public ICollection<DimensionStructureDimensionStructure> ChildDimensionStructuresReferences { get; set; }
+        public ICollection<DimensionStructureNode> ChildNodes { get; set; }
+
+        public ICollection<DimensionStructureNode> ReferencedNodes { get; set; }
 
         public string Desc { get; set; }
 
