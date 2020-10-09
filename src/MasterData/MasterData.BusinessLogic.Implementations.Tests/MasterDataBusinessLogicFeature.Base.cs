@@ -63,6 +63,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected IMasterDataTestHelper _masterDataTestHelper;
 
+        protected IStringHelper stringHelper;
+
         protected MasterDataBusinessLogicFeature(
             string testInfo,
             ITestOutputHelper testOutputHelper)
@@ -125,7 +127,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 // MasterDataDataSample.Populate(ctx);
             }
 
-            IStringHelper stringHelper = new StringHelper();
+            stringHelper = new StringHelper();
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
             IDimensionStructureLinkedListHelper dimensionStructureLinkedListHelper =

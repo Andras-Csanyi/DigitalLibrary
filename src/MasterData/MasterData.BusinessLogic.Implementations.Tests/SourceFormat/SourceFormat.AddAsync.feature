@@ -52,9 +52,9 @@ Feature: AddAsync
       | DescProperty     | SF1RootDesc        |
       | IsActiveProperty | 1                  |
     And SourceFormat's root DimensionStructure is
-      | Field                    | Value   |
-      | SourceFormatKey          | SF1     |
-      | DimensionStructureKey    | SF1Root |
+      | Field                 | Value   |
+      | SourceFormatKey       | SF1     |
+      | DimensionStructureKey | SF1Root |
     When domain object is saved
       | Field            | Value        |
       | DomainObjectType | SourceFormat |
@@ -99,30 +99,31 @@ Feature: AddAsync
     And 'SF1Result' SourceFormat result's RootDimensionStructure Id property is not zero
 
   Scenario: Adds a SourceFormat with an existing root DimensionStructure
-    Given there is a domain object
-      | Field            | Value        |
-      | Key              | SF1          |
-      | Type             | SourceFormat |
-      | NameProperty     | SF1          |
-      | DescProperty     | SF1Desc      |
-      | IsActiveProperty | 1            |
-    And there is a domain object
-      | Field            | Value              |
-      | Key              | SF1Root            |
-      | Type             | DimensionStructure |
-      | NameProperty     | SF1Root            |
-      | DescProperty     | SF1RootDesc        |
-      | IsActiveProperty | 1                  |
+    Given there is a SourceFormat domain object
+      | Field    | Value   |
+      | Key      | SF1     |
+      | Name     | SF1     |
+      | Desc     | SF1Desc |
+      | IsActive | 1       |
+    And SourceFormat is saved
+      | Field     | Value     |
+      | Key       | SF1       |
+      | ResultKey | SF1Result |
+    And there is a DimensionStructure domain object
+      | Field    | Value       |
+      | Key      | SF1Root     |
+      | Name     | SF1Root     |
+      | Desc     | SF1RootDesc |
+      | IsActive | 1           |
     And DimensionStructure is saved
       | Field     | Value         |
       | Key       | SF1Root       |
       | ResultKey | SF1RootResult |
-    And 'SF1RootResult' DimensionStructure is added to 'SF1' SourceFormat as root DimensionStructure
-    When SourceFormat is saved
-      | Field     | Value     |
-      | Key       | SF1       |
-      | ResultKey | SF1Result |
-    And SourceFormat is requested with DimensionStructure tree
+    And DimensionStructure is added to SourceFormat as root dimensionstructure
+      | Field                 | Value         |
+      | SourceFormatKey       | SF1Result     |
+      | DimensionStructureKey | SF1RootResult |
+    When SourceFormat is requested with DimensionStructure tree
       | Field     | Value             |
       | Key       | SF1Result         |
       | ResultKey | SF1ResultWithTree |

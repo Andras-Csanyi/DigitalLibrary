@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class SourceFormatDimensionStructureTreeNodeConfiguration
+    public class SourceFormatDimensionStructureConfiguration
         : IEntityTypeConfiguration<SourceFormatDimensionStructure>
     {
         public void Configure(EntityTypeBuilder<SourceFormatDimensionStructure> builder)

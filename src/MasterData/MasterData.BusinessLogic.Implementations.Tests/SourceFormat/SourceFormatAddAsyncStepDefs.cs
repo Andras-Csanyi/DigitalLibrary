@@ -112,7 +112,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
             }
             catch (Exception e)
             {
-                throw new SourceFormatStepDefException(
+                throw new MasterDataStepDefinitionException(
                     nameof(DimensionStructureTreeNodeIsDimensionStructureTreeRootOfSourceFormat),
                     e);
             }
@@ -196,6 +196,87 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
 
             _sourceFormatBag.Remove(sourceFormatKey);
             _sourceFormatBag.Add(sourceFormatKey, sourceFormat);
+        }
+
+        [Given(@"there is a SourceFormat domain object")]
+        public async Task ThereIsASourceFormatDomainObject(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string key,
+                string name,
+                string desc,
+                int isActive)>();
+
+            SourceFormat sourceFormat = new SourceFormat
+            {
+                Name = instance.name ?? stringHelper.GetRandomString(3),
+                Desc = instance.desc ?? stringHelper.GetRandomString(3),
+                IsActive = instance.isActive,
+            };
+
+            if (string.IsNullOrEmpty(instance.key) || string.IsNullOrWhiteSpace(instance.key))
+            {
+                string msg = $"Key is empty or null";
+                throw new MasterDataStepDefinitionException(msg);
+            }
+
+            _sourceFormatBag.Add(instance.key, sourceFormat);
+        }
+
+        [Given(@"there is a DimensionStructure domain object")]
+        public async Task ThereIsADimensionStructureDomainObject(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string key,
+                string name,
+                string desc,
+                int isActive)>();
+            DimensionStructure dimensionStructure = new DimensionStructure
+            {
+                Name = instance.name ?? stringHelper.GetRandomString(4),
+                Desc = instance.desc ?? stringHelper.GetRandomString(4),
+                IsActive = instance.isActive,
+            };
+
+            if (string.IsNullOrEmpty(instance.key) || string.IsNullOrWhiteSpace(instance.key))
+            {
+                string msg = $"Key is empty or null";
+                throw new MasterDataStepDefinitionException(msg);
+            }
+
+            _dimensionStructureBag.Add(instance.key, dimensionStructure);
+        }
+
+        [Given(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]
+        public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string sourceFormatKey,
+                string dimensionStructureKey)>();
+
+            if (string.IsNullOrEmpty(instance.sourceFormatKey)
+             || string.IsNullOrWhiteSpace(instance.sourceFormatKey)
+             || string.IsNullOrEmpty(instance.dimensionStructureKey)
+             || string.IsNullOrWhiteSpace(instance.dimensionStructureKey))
+            {
+                string msg = $"Either {nameof(instance.sourceFormatKey)} or " +
+                    $"{nameof(instance.dimensionStructureKey)} are null. Or both.";
+                throw new MasterDataStepDefinitionException(msg);
+            }
+
+            SourceFormat sourceFormat = _sourceFormatBag[instance.sourceFormatKey];
+            DimensionStructure dimensionStructure = _dimensionStructureBag[instance.dimensionStructureKey];
+
+            await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureAsync(sourceFormat.Id, dimensionStructure.Id)
+               .ConfigureAwait(false);
+
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(sourceFormat)
+               .ConfigureAwait(false);
+
+            _sourceFormatBag.Remove(instance.sourceFormatKey);
+            _sourceFormatBag.Add(instance.sourceFormatKey, result);
         }
 
         [When(@"SourceFormat is requested with DimensionStructure tree")]
@@ -309,7 +390,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.SourceFo
                     break;
 
                 default:
-                    throw new SourceFormatStepDefException(
+                    throw new MasterDataStepDefinitionException(
                         nameof(SourceFormatResultsRootDimensionStructurePropertyEqualsTo));
             }
         }

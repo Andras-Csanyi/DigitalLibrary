@@ -55,5 +55,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<List<SourceFormat>> GetSourceFormatsAsync();
 
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        /// Adds <see cref="DimensionStructure"/> to <see cref="SourceFormat"/> as
+        /// root dimension structure.
+        /// </summary>
+        /// <param name="sourceFormatId">Source format id.</param>
+        /// <param name="dimensionStructureId">Dimension structure id.</param>
+        /// <returns>Task.</returns>
+        Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
     }
 }
