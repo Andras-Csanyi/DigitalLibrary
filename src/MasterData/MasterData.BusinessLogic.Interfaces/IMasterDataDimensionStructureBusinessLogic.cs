@@ -68,5 +68,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
 
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
+
+        /// <summary>
+        /// Adds <see cref="DimensionStructure"/> to the <see cref="DimensionStructure"/> tree as child.
+        /// </summary>
+        /// <param name="childId">DimensionStructure to be added as child.</param>
+        /// <param name="parentId">Parent DimensionStructure.</param>
+        /// <param name="sourceFormatId">SourceFormat.</param>
+        /// <returns>Result or exception.</returns>
+        Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
+
+        /// <summary>
+        /// Returns list of <see cref="DimensionStructure"/> where the parent is the given
+        /// <see cref="DimensionStructure"/>. <see cref="SourceFormat"/> defines the scope of the query.
+        /// </summary>
+        /// <param name="parentId">Parent Id.</param>
+        /// <param name="sourceFormatId">Source format id.</param>
+        /// <returns>List.</returns>
+        Task<List<DimensionStructure>> GetChildrenOfDimensionStructureInSourceFormatScopeAsync(
+            long parentId,
+            long sourceFormatId);
     }
 }

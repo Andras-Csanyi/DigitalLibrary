@@ -1,7 +1,11 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
 

@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
         {
             Check.IsNotNull(builder);
 
-            builder.ToTable("dimensionstructurenodes");
+            builder.ToTable("dimensionstructure_nodes");
 
             builder.HasKey(k => k.Id);
             builder.Property(p => p.Id).HasColumnName("id");
@@ -22,10 +22,21 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.Property(p => p.DimensionStructureId).HasColumnName("dimensionstructure_id");
 
+            builder.Property(p => p.SourceFormatId).HasColumnName("sourceformat_id");
+
             builder.HasMany(m => m.ChildNodes)
                .WithOne(o => o.ChildNode)
                .HasForeignKey(k => k.ChildNodeId)
                .IsRequired(false);
+
+            builder.HasOne(o => o.SourceFormat)
+               .WithMany(m => m.DimensionStructureNodes)
+               .HasForeignKey(k => k.SourceFormatId)
+               .IsRequired(false);
+
+            builder.HasOne(o => o.DimensionStructure)
+               .WithMany(m => m.DimensionStructureNodes)
+               .HasForeignKey(k => k.DimensionStructureId);
         }
     }
 }

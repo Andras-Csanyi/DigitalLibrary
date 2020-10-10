@@ -38,9 +38,14 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.IsActive).IsRequired();
             builder.Property(p => p.IsActive).HasDefaultValue(1);
 
-            builder.HasOne(p => p.SourceFormatDimensionStructure)
+            builder.HasOne(p => p.SourceFormatDimensionStructureNode)
                .WithOne(s => s.SourceFormat)
-               .HasForeignKey<SourceFormatDimensionStructure>(k => k.SourceFormatId)
+               .HasForeignKey<SourceFormatDimensionStructureNode>(k => k.SourceFormatId)
+               .IsRequired(false);
+
+            builder.HasMany(m => m.DimensionStructureNodes)
+               .WithOne(o => o.SourceFormat)
+               .HasForeignKey(k => k.SourceFormatId)
                .IsRequired(false);
         }
     }

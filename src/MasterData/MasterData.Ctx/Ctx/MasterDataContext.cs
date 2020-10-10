@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.Ctx
 
         public DbSet<DimensionStructureNode> DimensionStructureNodes { get; set; }
 
-        public DbSet<SourceFormatDimensionStructure> SourceFormatDimensionStructure { get; set; }
+        public DbSet<SourceFormatDimensionStructureNode> SourceFormatDimensionStructure { get; set; }
 
         public MasterDataContext(DbContextOptions<MasterDataContext> options)
             : base(options)
@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.Ctx
             modelBuilder.ApplyConfiguration(new DimensionDimensionValueConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionStructureConfiguration());
             modelBuilder.ApplyConfiguration(new SourceFormatConfiguration());
-            modelBuilder.ApplyConfiguration(new SourceFormatDimensionStructureConfiguration());
+            modelBuilder.ApplyConfiguration(new SourceFormatDimensionStructureNodeConfiguration());
             modelBuilder.ApplyConfiguration(new DimensionStructureNodeConfiguration());
         }
     }

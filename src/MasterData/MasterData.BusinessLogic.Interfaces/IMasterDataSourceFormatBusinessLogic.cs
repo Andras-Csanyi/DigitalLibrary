@@ -50,7 +50,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <returns>The result.</returns>
         Task<SourceFormat> GetSourceFormatByNameWithFullDimensionStructureTreeAsync(SourceFormat sourceFormat);
 
-        Task<SourceFormat> GetSourceFormatByIdWithFullDimensionStructureTreeAsync(SourceFormat querySourceFormat);
+        /// <summary>
+        /// Returns with <see cref="SourceFormat"/> which brings its root <see cref="DimensionStructure"/>.
+        /// </summary>
+        /// <param name="querySourceFormat">Query object</param>
+        /// <returns>Result or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureAsync(SourceFormat querySourceFormat);
+
+        /// <summary>
+        /// Returns with <see cref="SourceFormat"/> which has the <see cref="DimensionStructure"/> tree mounted.
+        /// </summary>
+        /// <param name="querySourceFormat">SourceFormat query object.</param>
+        /// <returns>SourceFormat or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureTreeAsync(SourceFormat querySourceFormat);
 
         Task<List<SourceFormat>> GetSourceFormatsAsync();
 
@@ -64,5 +76,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <param name="dimensionStructureId">Dimension structure id.</param>
         /// <returns>Task.</returns>
         Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
+
+        /// <summary>
+        /// Returns <see cref="SourceFormat"/> which has all <see cref="DimensionStructureNode"/>s and
+        /// <see cref="DimensionStructure"/>s attached too.
+        /// </summary>
+        /// <param name="sourceFormat">Queryobject.</param>
+        /// <returns>SourceFormat or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(SourceFormat sourceFormat);
     }
 }

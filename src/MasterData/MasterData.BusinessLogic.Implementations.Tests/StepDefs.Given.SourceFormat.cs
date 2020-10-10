@@ -47,28 +47,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         {
         }
 
-        [Given(@"SourceFormat's root DimensionStructure is")]
-        public async Task SourceFormatsRootDimensionStructureIs(Table table)
-        {
-            SourceFormatsRootDimensionStructureIsEntity instance =
-                table.CreateInstance<SourceFormatsRootDimensionStructureIsEntity>();
-
-            DomainModel.SourceFormat sourceFormat = _scenarioContext[instance.SourceFormatKey] as SourceFormat;
-
-            DomainModel.DimensionStructure dimensionStructure = _scenarioContext[instance.DimensionStructureKey]
-                as DimensionStructure;
-
-            SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
-            {
-                SourceFormat = sourceFormat,
-                DimensionStructure = dimensionStructure,
-            };
-            sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
-
-            _scenarioContext.Remove(instance.SourceFormatKey);
-            _scenarioContext.Add(instance.SourceFormatKey, sourceFormat);
-        }
-
         [Given(@"SourceFormat is saved")]
         [When(@"SourceFormat is saved")]
         public async Task SourceFormatIsSaved(Table table)
@@ -86,26 +64,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         [Given(@"there is a SourceFormat domain object")]
         public async Task ThereIsASourceFormatDomainObject(Table table)
         {
-            var instance = table.CreateInstance<(
-                string key,
-                string nameProperty,
-                string descProperty,
-                int isActiveProperty)>();
+            var instance = table.CreateInstance<ThereIsASourceFormatDomainobjectEntity>();
 
             DomainModel.SourceFormat sourceFormat = new DomainModel.SourceFormat
             {
-                Name = instance.nameProperty ?? stringHelper.GetRandomString(3),
-                Desc = instance.descProperty ?? stringHelper.GetRandomString(3),
-                IsActive = instance.isActiveProperty,
+                Name = instance.Name ?? stringHelper.GetRandomString(3),
+                Desc = instance.Desc ?? stringHelper.GetRandomString(3),
+                IsActive = instance.IsActive,
             };
 
-            if (string.IsNullOrEmpty(instance.key) || string.IsNullOrWhiteSpace(instance.key))
+            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
             {
                 string msg = $"Key is empty or null";
                 throw new MasterDataStepDefinitionException(msg);
             }
 
-            _scenarioContext.Add(instance.key, sourceFormat);
+            _scenarioContext.Add(instance.Key, sourceFormat);
         }
     }
 }

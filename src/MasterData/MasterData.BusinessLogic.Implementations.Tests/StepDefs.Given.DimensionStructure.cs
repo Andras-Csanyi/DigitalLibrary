@@ -27,25 +27,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         [Given(@"there is a DimensionStructure domain object")]
         public async Task ThereIsADimensionStructureDomainObject(Table table)
         {
-            var instance = table.CreateInstance<(
-                string key,
-                string name,
-                string desc,
-                int isActive)>();
+            var instance = table.CreateInstance<ThereIsADimensionStructureDomainobjectEntity>();
             DomainModel.DimensionStructure dimensionStructure = new DomainModel.DimensionStructure
             {
-                Name = instance.name ?? stringHelper.GetRandomString(4),
-                Desc = instance.desc ?? stringHelper.GetRandomString(4),
-                IsActive = instance.isActive,
+                Name = instance.Name ?? stringHelper.GetRandomString(4),
+                Desc = instance.Desc ?? stringHelper.GetRandomString(4),
+                IsActive = instance.IsActive,
             };
 
-            if (string.IsNullOrEmpty(instance.key) || string.IsNullOrWhiteSpace(instance.key))
+            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
             {
                 string msg = $"Key is empty or null";
                 throw new MasterDataStepDefinitionException(msg);
             }
 
-            _scenarioContext.Add(instance.key, dimensionStructure);
+            _scenarioContext.Add(instance.Key, dimensionStructure);
         }
 
         [Given(@"DimensionStructure is saved")]
@@ -62,40 +58,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .ConfigureAwait(false);
             _scenarioContext.Add(instance.resultKey, result);
         }
-
-        [Given(@"'(.*)' DimensionStructure is added to '(.*)' SourceFormat as root DimensionStructure")]
-        public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(
-            string dimensionStructureKey,
-            string sourceFormatKey)
-        {
-            DomainModel.SourceFormat sourceFormat = _scenarioContext[sourceFormatKey] as SourceFormat;
-            DomainModel.DimensionStructure dimensionStructure = _scenarioContext[dimensionStructureKey]
-                as DimensionStructure;
-
-            if (dimensionStructure.Id != 0)
-            {
-                SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
-                {
-                    DimensionStructure = dimensionStructure,
-                    DimensionStructureId = dimensionStructure.Id,
-                    SourceFormat = sourceFormat,
-                };
-                sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
-            }
-            else
-            {
-                SourceFormatDimensionStructure sourceFormatDimensionStructure = new SourceFormatDimensionStructure
-                {
-                    DimensionStructure = dimensionStructure,
-                    SourceFormat = sourceFormat,
-                };
-                sourceFormat.SourceFormatDimensionStructure = sourceFormatDimensionStructure;
-            }
-
-            _scenarioContext.Remove(sourceFormatKey);
-            _scenarioContext.Add(sourceFormatKey, sourceFormat);
-        }
-
 
         [Given(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]
         public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(Table table)
@@ -123,11 +85,34 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .ConfigureAwait(false);
 
             DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(sourceFormat)
+               .GetSourceFormatByIdWithRootDimensionStructureAsync(sourceFormat)
                .ConfigureAwait(false);
 
             _scenarioContext.Remove(instance.sourceFormatKey);
             _scenarioContext.Add(instance.sourceFormatKey, result);
+        }
+
+        [Given(@"DimensionStructure is added to DimensionStructure as child in tree of SourceFormat")]
+        public async Task GivenDimensionStructureIsAddedToDimensionStructureAsChildInTreeOfSourceFormat(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string childKey,
+                string parentKey,
+                string sourceFormatKey)>();
+
+            DimensionStructure child = _scenarioContext[instance.childKey] as DimensionStructure;
+            Check.IsNotNull(child);
+
+            DimensionStructure parent = _scenarioContext[instance.parentKey] as DimensionStructure;
+            Check.IsNotNull(parent);
+
+            SourceFormat sourceFormat = _scenarioContext[instance.sourceFormatKey] as SourceFormat;
+            Check.IsNotNull(sourceFormat);
+
+            await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
+               .AddDimensionStructureToParentAsChildInSourceFormatAsync(child.Id, parent.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
         }
     }
 }

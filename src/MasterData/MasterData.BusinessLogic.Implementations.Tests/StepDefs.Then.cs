@@ -94,19 +94,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             switch (instance.PropertyName)
             {
                 case DimensionStructurePropertiesStruct.Name:
-                    result.SourceFormatDimensionStructure.DimensionStructure.Name
+                    result.SourceFormatDimensionStructureNode.DimensionStructureNode.DimensionStructure.Name
                        .Should()
                        .Be(comparedTo.Name);
                     break;
 
                 case DimensionStructurePropertiesStruct.Desc:
-                    result.SourceFormatDimensionStructure.DimensionStructure.Desc
+                    result.SourceFormatDimensionStructureNode.DimensionStructureNode.DimensionStructure.Desc
                        .Should()
                        .Be(comparedTo.Desc);
                     break;
 
                 case DimensionStructurePropertiesStruct.IsActive:
-                    result.SourceFormatDimensionStructure.DimensionStructure.IsActive
+                    result.SourceFormatDimensionStructureNode.DimensionStructureNode.DimensionStructure.IsActive
                        .Should()
                        .Be(comparedTo.IsActive);
                     break;
@@ -122,7 +122,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         {
             DomainModel.SourceFormat result = _scenarioContext[resultKey] as SourceFormat;
 
-            result.SourceFormatDimensionStructure.DimensionStructure.Id
+            result.SourceFormatDimensionStructureNode.DimensionStructureNode.Id
                .Should()
                .NotBe(0);
         }

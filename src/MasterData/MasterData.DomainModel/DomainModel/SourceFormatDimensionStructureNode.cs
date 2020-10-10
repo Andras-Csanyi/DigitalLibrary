@@ -2,7 +2,7 @@ namespace DigitalLibrary.MasterData.DomainModel
 {
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
-    public class SourceFormatDimensionStructure : IHaveId
+    public class SourceFormatDimensionStructureNode : IHaveId
     {
         public long Id { get; set; }
 
@@ -10,8 +10,8 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public long SourceFormatId { get; set; }
 
-        public DimensionStructure DimensionStructure { get; set; }
+        public DimensionStructureNode DimensionStructureNode { get; set; }
 
-        public long DimensionStructureId { get; set; }
+        public long DimensionStructureNodeId { get; set; }
     }
 }

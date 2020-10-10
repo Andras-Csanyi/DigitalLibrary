@@ -79,7 +79,7 @@ namespace DigitalLibrary.MasterData.Controllers
             {
                 SourceFormat result = await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .GetSourceFormatByIdWithFullDimensionStructureTreeAsync(querySourceFormat)
+                   .GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

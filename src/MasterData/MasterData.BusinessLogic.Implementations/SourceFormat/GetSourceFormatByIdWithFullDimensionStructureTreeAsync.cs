@@ -11,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -19,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        public async Task<SourceFormat> GetSourceFormatByIdWithFullDimensionStructureTreeAsync(
+        public async Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureAsync(
             SourceFormat querySourceFormat)
         {
             try
@@ -30,8 +31,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat sourceFormat = await ctx.SourceFormats
-                       .Include(i => i.SourceFormatDimensionStructure)
-                       .ThenInclude(ii => ii.DimensionStructure)
+                       .Include(i => i.SourceFormatDimensionStructureNode)
+                       .ThenInclude(ii => ii.DimensionStructureNode)
+                       .ThenInclude(iii => iii.DimensionStructure)
                        .AsNoTracking()
                        .FirstAsync(p => p.Id == querySourceFormat.Id)
                        .ConfigureAwait(false);
@@ -41,7 +43,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             }
             catch (Exception e)
             {
-                string msg = $"{nameof(GetSourceFormatByIdWithFullDimensionStructureTreeAsync)} operation failed. " +
+                string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
+                             $"{nameof(GetSourceFormatByIdWithRootDimensionStructureAsync)} operation failed. " +
                              $"For further details see inner exception.";
                 throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
             }

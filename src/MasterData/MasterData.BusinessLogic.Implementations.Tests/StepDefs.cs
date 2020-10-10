@@ -53,7 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         private readonly ITestOutputHelper _outputHelper;
 
-        private readonly IServiceProvider _serviceProvider;
+        private IServiceProvider _serviceProvider;
 
         private DbContextOptions<MasterDataContext> _dbContextOptions;
 
@@ -72,19 +72,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             _scenarioContext = scenarioContext;
             stringHelper = new StringHelper();
+            _outputHelper = testOutputHelper;
         }
 
         [BeforeScenario]
         public void BeforeScenario()
         {
+            _serviceProvider = new ServiceCollection()
+               .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
+               .AddEntityFrameworkSqlite()
+               .BuildServiceProvider();
+
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
                .UseSqlite($"Data Source = {_testInfo}.sqlite")
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-               .UseInternalServiceProvider(_serviceProvider)
-               .EnableDetailedErrors()
-               .EnableSensitiveDataLogging()
+                // .UseInternalServiceProvider(_serviceProvider)
+                // .EnableDetailedErrors()
+                // .EnableSensitiveDataLogging()
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
@@ -119,10 +125,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic);
-            // "Given there is the MasterDataBusinessLogic"
-            //    .x(() => _masterDataBusinessLogic = new MasterDataBusinessLogic(
-            //         _dbContextOptions,
-            //         masterDataValidators));
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {

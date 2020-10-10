@@ -40,9 +40,54 @@ Feature: Adding DimensionStructures
       | Key          | RDResultRequested |
       | PropertyName | Id                |
       | NotEqualTo   | 0                 |
-  
-  
-#  Scenario: Add DimensionStructure to the first level in the tree
+
+
+  Scenario: Add DimensionStructure to the first level in the tree
+    Given there is a SourceFormat domain object
+      | Field | Value |
+      | Key   | SF    |
+    And SourceFormat is saved
+      | Field     | Value    |
+      | Key       | SF       |
+      | ResultKey | SFResult |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | DS    |
+    And DimensionStructure is saved
+      | Field     | Value    |
+      | Key       | DS       |
+      | ResultKey | DSResult |
+    And DimensionStructure is added to SourceFormat as root dimensionstructure
+      | Field                 | Value    |
+      | SourceFormatKey       | SFResult |
+      | DimensionStructureKey | DSResult |
+    And there is a DimensionStructure domain object
+      | Field | Value   |
+      | Key   | DSChild |
+    And DimensionStructure is saved
+      | Field     | Value         |
+      | Key       | DSChild       |
+      | ResultKey | DSChildResult |
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value         |
+      | ChildKey        | DSChildResult |
+      | ParentKey       | DSResult      |
+      | SourceFormatKey | SFResult      |
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | SFResult          |
+      | ResultKey | SFRequestedResult |
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | DSChildResult     |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | DSResult          |
+      | ChildKey        | DSChildResult     |
 #
 #  Scenario: Add DimensionStructure to the first level as second node
 #

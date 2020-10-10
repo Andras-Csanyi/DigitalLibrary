@@ -16,10 +16,6 @@ namespace DigitalLibrary.MasterData.DomainModel
     /// </summary>
     public class DimensionStructure : IHaveId, IHaveGuidId
     {
-        public ICollection<DimensionStructureNode> ChildNodes { get; set; }
-
-        public ICollection<DimensionStructureNode> ReferencedNodes { get; set; }
-
         public string Desc { get; set; }
 
         public Dimension Dimension { get; set; }
@@ -36,6 +32,6 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public long Id { get; set; }
 
-        public SourceFormatDimensionStructure SourceFormatDimensionStructure { get; set; }
+        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
     }
 }
