@@ -45,11 +45,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public partial class MasterDataBusinessLogicImplementationTests : IDisposable
+    public partial class StepDefs : IDisposable
     {
         protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
-        private readonly string _testInfo = nameof(MasterDataBusinessLogicImplementationTests);
+        private readonly string _testInfo = nameof(StepDefs);
 
         private readonly ITestOutputHelper _outputHelper;
 
@@ -57,19 +57,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         private DbContextOptions<MasterDataContext> _dbContextOptions;
 
-        protected Dictionary<string, DomainModel.SourceFormat> _sourceFormatBag =
-            new Dictionary<string, DomainModel.SourceFormat>();
-
-        protected Dictionary<string, DomainModel.DimensionStructure> _dimensionStructureBag =
-            new Dictionary<string, DomainModel.DimensionStructure>();
-
         protected IMasterDataTestHelper _masterDataTestHelper;
 
         protected IStringHelper stringHelper;
 
         protected ScenarioContext _scenarioContext;
 
-        protected MasterDataBusinessLogicImplementationTests(
+        protected StepDefs(
             ITestOutputHelper testOutputHelper,
             ScenarioContext scenarioContext)
         {
@@ -155,23 +149,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
         {
-            DomainModel.SourceFormat toSave = _sourceFormatBag[instance.Key];
+            DomainModel.SourceFormat toSave = _scenarioContext[instance.Key] as DomainModel.SourceFormat;
             DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
                .AddSourceFormatAsync(toSave)
                .ConfigureAwait(false);
 
-            _sourceFormatBag.Add(instance.ResultKey, result);
+            _scenarioContext.Add(instance.ResultKey, result);
         }
 
         protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
         {
-            DomainModel.DimensionStructure toSave = _dimensionStructureBag.FirstOrDefault(
-                p => p.Key.Equals(instance.Key)).Value;
+            DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
             DomainModel.DimensionStructure result = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
                .AddDimensionStructureAsync(toSave)
                .ConfigureAwait(false);
-            _dimensionStructureBag.Add(instance.ResultKey, result);
+            _scenarioContext.Add(instance.ResultKey, result);
         }
     }
 }

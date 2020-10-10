@@ -12,6 +12,35 @@ Feature: Adding DimensionStructures
       | Name     | RDd   |
       | Desc     | RDd   |
       | IsActive | 1     |
+    And DimensionStructure is saved
+      | Field     | Value    |
+      | Key       | RD       |
+      | ResultKey | RDResult |
+    When DimensionStructure is requested
+      | Field     | Value             |
+      | Key       | RDResult          |
+      | ResultKey | RDResultRequested |
+    Then DimensionStructure property equals to
+      | Field         | Value             |
+      | Key           | RDResultRequested |
+      | PropertyName  | Name              |
+      | ComparedToKey | RD                |
+    And DimensionStructure property equals to
+      | Field         | Value             |
+      | Key           | RDResultRequested |
+      | PropertyName  | Desc              |
+      | ComparedToKey | RD                |
+    And DimensionStructure property equals to
+      | Field         | Value             |
+      | Key           | RDResultRequested |
+      | PropertyName  | IsActive          |
+      | ComparedToKey | RD                |
+    And DimensionStructure property does not equal to
+      | Field        | Value             |
+      | Key          | RDResultRequested |
+      | PropertyName | Id                |
+      | NotEqualTo   | 0                 |
+  
   
 #  Scenario: Add DimensionStructure to the first level in the tree
 #

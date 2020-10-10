@@ -38,8 +38,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
 
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject);
+        /// <summary>
+        /// Returns <see cref="DimensionStructure"/> having given Id.
+        /// When there is no <see cref="DimensionStructure"/> returns null.
+        /// </summary>
+        /// <param name="dimensionStructure">Query object.</param>
+        /// <returns>DimensionStructure or null.</returns>
+        Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
 
         Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
 

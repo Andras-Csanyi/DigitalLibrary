@@ -6,18 +6,16 @@ Feature: AddAsync
   Build and Manage SourceFormats
 
   Scenario: Adds a SourceFormat without DimensionStructure
-    Given there is a domain object
-      | Field            | Value        |
-      | Key              | SF1          |
-      | Type             | SourceFormat |
-      | NameProperty     | SF1          |
-      | DescProperty     | SF1Desc      |
-      | IsActiveProperty | 1            |
-    When domain object is saved
-      | Field            | Value        |
-      | DomainObjectType | SourceFormat |
-      | Key              | SF1          |
-      | ResultKey        | SF1Result    |
+    Given there is a SourceFormat domain object
+      | Field            | Value   |
+      | Key              | SF1     |
+      | NameProperty     | SF1     |
+      | DescProperty     | SF1Desc |
+      | IsActiveProperty | 1       |
+    When SourceFormat is saved
+      | Field     | Value     |
+      | Key       | SF1       |
+      | ResultKey | SF1Result |
     Then 'SF1Result' SourceFormat save result is not null
     And 'SF1Result' SourceFormat save result Id is not '0'
     And SourceFormat result property equals to
@@ -37,20 +35,18 @@ Feature: AddAsync
       | EqualsTo     | SF1       |
 
   Scenario: Adds a SourceFormat with a new root DimensionStructure
-    Given there is a domain object
-      | Field            | Value        |
-      | Key              | SF1          |
-      | Type             | SourceFormat |
-      | NameProperty     | SF1          |
-      | DescProperty     | SF1Desc      |
-      | IsActiveProperty | 1            |
-    And there is a domain object
-      | Field            | Value              |
-      | Key              | SF1Root            |
-      | Type             | DimensionStructure |
-      | NameProperty     | SF1Root            |
-      | DescProperty     | SF1RootDesc        |
-      | IsActiveProperty | 1                  |
+    Given there is a SourceFormat domain object
+      | Field            | Value   |
+      | Key              | SF1     |
+      | NameProperty     | SF1     |
+      | DescProperty     | SF1Desc |
+      | IsActiveProperty | 1       |
+    And there is a DimensionStructure domain object
+      | Field            | Value       |
+      | Key              | SF1Root     |
+      | NameProperty     | SF1Root     |
+      | DescProperty     | SF1RootDesc |
+      | IsActiveProperty | 1           |
     And SourceFormat's root DimensionStructure is
       | Field                 | Value   |
       | SourceFormatKey       | SF1     |

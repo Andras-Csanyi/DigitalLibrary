@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
@@ -19,34 +20,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
+        /// <inheritdoc/>
         public async Task<DimensionStructure> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject)
+            DimensionStructure dimensionStructure)
         {
             try
             {
-                Check.IsNotNull(dimensionStructureQueryObject);
+                Check.IsNotNull(dimensionStructure);
 
-                await _masterDataValidators.DimensionStructureQueryObjectValidator.ValidateAndThrowAsync(
-                        dimensionStructureQueryObject,
-                        ruleSet: DimensionStructureQueryObjectValidatorRulesets.GetDimensionStructureByIdOperation)
+                await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+                        dimensionStructure,
+                        ruleSet: DimensionStructureValidatorRulesets.GetById)
                    .ConfigureAwait(false);
 
-                if (dimensionStructureQueryObject.IncludeChildrenWhenGetDimensionStructureById)
+                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    DimensionStructure withTree = await GetDimensionStructureByIdWithChildrenAsync(
-                            dimensionStructureQueryObject.GetDimensionsStructuredById)
+                    DimensionStructure result = await ctx.DimensionStructures.FindAsync(dimensionStructure.Id)
                        .ConfigureAwait(false);
-
-                    return withTree;
+                    return result;
                 }
-
-                return await GetDimensionStructureByIdWithoutChildrenAsync(
-                        dimensionStructureQueryObject.GetDimensionsStructuredById)
-                   .ConfigureAwait(false);
             }
             catch (Exception e)
             {
-                throw new MasterDataBusinessLogicGetDimensionStructureByIdAsyncOperationException(e.Message, e);
+                string msg = $"{nameof(MasterDataDimensionBusinessLogic)}.{nameof(GetDimensionStructureByIdAsync)} " +
+                             $"operation failed. For further info see inner exception.";
+                throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }
 

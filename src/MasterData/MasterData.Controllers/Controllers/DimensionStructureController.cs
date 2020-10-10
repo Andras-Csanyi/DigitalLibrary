@@ -78,11 +78,12 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .GetDimensionStructureByIdAsync(
-                        dimensionStructureQueryObject)
-                   .ConfigureAwait(false);
-                return result;
+                // DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
+                //    .GetDimensionStructureByIdAsync(
+                //         dimensionStructureQueryObject)
+                //    .ConfigureAwait(false);
+                // return result;
+                throw new NotImplementedException();
             }
             catch (Exception e)
             {

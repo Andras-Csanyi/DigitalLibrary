@@ -6,6 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
 
     using FluentAssertions;
@@ -15,19 +16,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using Xunit.Abstractions;
 
-    public partial class MasterDataBusinessLogicImplementationTests
+    public partial class StepDefs
     {
         [Then(@"'(.*)' SourceFormat save result is not null")]
         public async Task SourceFormatSaveResultIsNotNull(string saveResultName)
         {
-            DomainModel.SourceFormat result = _sourceFormatBag[saveResultName];
+            DomainModel.SourceFormat result = _scenarioContext[saveResultName] as SourceFormat;
             result.Should().NotBeNull();
         }
 
         [Then(@"'(.*)' SourceFormat save result Id is not '(.*)'")]
         public async Task SourceFormatSaveResultIdIsNotZero(string saveResultName, int notEqualsTo)
         {
-            DomainModel.SourceFormat result = _sourceFormatBag[saveResultName];
+            DomainModel.SourceFormat result = _scenarioContext[saveResultName] as SourceFormat;
             result.Id.Should().NotBe(notEqualsTo);
         }
 
@@ -37,8 +38,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             SourceFormatResultPropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultPropertyEqualsToEntity>();
 
-            DomainModel.SourceFormat result = _sourceFormatBag[instance.Key];
-            DomainModel.SourceFormat comparedTo = _sourceFormatBag[instance.EqualsTo];
+            DomainModel.SourceFormat result = _scenarioContext[instance.Key] as SourceFormat;
+            DomainModel.SourceFormat comparedTo = _scenarioContext[instance.EqualsTo] as SourceFormat;
 
             switch (instance.PropertyName)
             {
@@ -68,9 +69,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         {
             SourceFormatPropertyIsNotNullEntity instance = table.CreateInstance<SourceFormatPropertyIsNotNullEntity>();
 
-            DomainModel.SourceFormat result = _sourceFormatBag.FirstOrDefault(
-                    p => p.Key.Equals(instance.Name))
-               .Value;
+            DomainModel.SourceFormat result = _scenarioContext[instance.Name] as SourceFormat;
 
             switch (instance.PropertyName)
             {
@@ -89,8 +88,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity instance =
                 table.CreateInstance<SourceFormatResultsRootDimensionStructurePropertyEqualsToEntity>();
 
-            DomainModel.SourceFormat result = _sourceFormatBag[instance.Key];
-            DomainModel.DimensionStructure comparedTo = _dimensionStructureBag[instance.EqualsTo];
+            DomainModel.SourceFormat result = _scenarioContext[instance.Key] as SourceFormat;
+            DomainModel.DimensionStructure comparedTo = _scenarioContext[instance.EqualsTo] as DimensionStructure;
 
             switch (instance.PropertyName)
             {
@@ -121,7 +120,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         [Then(@"'(.*)' SourceFormat result's RootDimensionStructure Id property is not zero")]
         public async Task SourceFormatResultsRootDimensionStructureIdIsNotZero(string resultKey)
         {
-            DomainModel.SourceFormat result = _sourceFormatBag[resultKey];
+            DomainModel.SourceFormat result = _scenarioContext[resultKey] as SourceFormat;
 
             result.SourceFormatDimensionStructure.DimensionStructure.Id
                .Should()
@@ -132,7 +131,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public async Task GivenSourceFormatResultRootDimensionStructureChildDimensionStructureIsNotNull(
             string resultName)
         {
-            DomainModel.SourceFormat result = _sourceFormatBag.First(p => p.Value.Name.Equals(resultName)).Value;
+            DomainModel.SourceFormat result = _scenarioContext[resultName] as SourceFormat;
             // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Should().NotBeNull();
         }
 
@@ -141,7 +140,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             string resultName,
             int expectedLength)
         {
-            DomainModel.SourceFormat result = _sourceFormatBag.First(p => p.Value.Name.Equals(resultName)).Value;
+            DomainModel.SourceFormat result = _scenarioContext[resultName] as SourceFormat;
             // result.DimensionStructureTreeRoot.ChildDimensionStructureTreeNodes.Count.Should().Be(expectedLength);
         }
 
@@ -195,6 +194,105 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             //     p => p.Name.Equals(instance.SourceFormatName));
 
             // sourceFormat.Should().NotBeNull();
+        }
+
+        [Then(@"DimensionStructure property equals to")]
+        public async Task DimensionStructurePropertyEqualsTo(Table table)
+        {
+            Check.IsNotNull(table);
+            var instance = table.CreateInstance<(
+                string key,
+                string propertyName,
+                string comparedToKey)>();
+            DimensionStructure comparedTo = _scenarioContext[instance.comparedToKey] as DimensionStructure;
+            DimensionStructure result = _scenarioContext[instance.key] as DimensionStructure;
+
+            Check.IsNotNull(comparedTo);
+            Check.IsNotNull(result);
+
+            switch (instance.propertyName)
+            {
+                case DimensionStructurePropertiesStruct.Name:
+                    result.Name.Should().Be(comparedTo.Name);
+                    break;
+
+                case DimensionStructurePropertiesStruct.Desc:
+                    result.Desc.Should().Be(comparedTo.Desc);
+                    break;
+
+                case DimensionStructurePropertiesStruct.IsActive:
+                    result.IsActive.Should().Be(comparedTo.IsActive);
+                    break;
+
+                default:
+                    string msg = $"{instance.propertyName} doesn't exist or not case covered.";
+                    throw new MasterDataStepDefinitionException(msg);
+            }
+        }
+
+        [Then(@"DimensionStructure property is not null")]
+        public async Task DimensionStructurePropertyIsNotNull(Table table)
+        {
+            Check.IsNotNull(table);
+
+            var instance = table.CreateInstance<(string key, string propertyName)>();
+
+            DimensionStructure result = _scenarioContext[instance.key] as DimensionStructure;
+            Check.IsNotNull(result);
+
+            switch (instance.propertyName)
+            {
+                case DimensionStructurePropertiesStruct.Name:
+                    result.Name.Should().NotBeNull();
+                    break;
+
+                case DimensionStructurePropertiesStruct.Desc:
+                    result.Desc.Should().NotBeNull();
+                    break;
+
+                default:
+                    string msg = $"{instance.propertyName} doesn't exist or not case covered.";
+                    throw new MasterDataStepDefinitionException(msg);
+            }
+        }
+
+        [Then(@"DimensionStructure property does not equal to")]
+        public async Task DimensionStructurePropertyDoesNotEqualTo(Table table)
+        {
+            Check.IsNotNull(table);
+
+            var instance = table.CreateInstance<(
+                string key,
+                string propertyName,
+                string notEqualTo)>();
+
+            DimensionStructure result = _scenarioContext[instance.key] as DimensionStructure;
+            Check.IsNotNull(result);
+
+            switch (instance.propertyName)
+            {
+                case DimensionStructurePropertiesStruct.Id:
+                    int notEqualToId = Convert.ToInt32(instance.notEqualTo);
+                    result.Id.Should().NotBe(notEqualToId);
+                    break;
+
+                case DimensionStructurePropertiesStruct.Name:
+                    result.Name.Should().NotBe(instance.notEqualTo);
+                    break;
+
+                case DimensionStructurePropertiesStruct.Desc:
+                    result.Desc.Should().NotBe(instance.notEqualTo);
+                    break;
+
+                case DimensionStructurePropertiesStruct.IsActive:
+                    int notEqualToIsActive = Convert.ToInt32(instance.notEqualTo);
+                    result.IsActive.Should().NotBe(notEqualToIsActive);
+                    break;
+
+                default:
+                    string msg = $"{instance.propertyName} doesn't exist or not case covered.";
+                    throw new MasterDataStepDefinitionException(msg);
+            }
         }
     }
 }
