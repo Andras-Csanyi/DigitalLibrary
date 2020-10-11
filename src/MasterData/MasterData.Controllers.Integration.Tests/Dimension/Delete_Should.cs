@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Delete_TheItem()
         {
             // Arrange
@@ -71,7 +71,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             result.Where(p => p.Name == dimension2.Name).ToList().Count.Should().Be(0);
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange

@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Add_TheItem()
         {
             // Arrange
@@ -56,7 +56,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             result.IsActive.Should().Be(dimension.IsActive);
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task ThrowException_WhenNameUniqueIndexViolated()
         {
             // Arrange

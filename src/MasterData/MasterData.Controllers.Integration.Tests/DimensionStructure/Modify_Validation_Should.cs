@@ -66,7 +66,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public void ThrowException_WhenInputIsNull()
         {
             // Arrange

@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
-        [Theory]
+        [Theory(Skip = "Needs refactor")]
         [MemberData(
             nameof(MasterData_SourceFormat_Validation_TestData.AddNew),
             MemberType = typeof(MasterData_SourceFormat_Validation_TestData))]
@@ -64,7 +64,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public void ThrowException_WhenInputIsNull()
         {
             // Arrange

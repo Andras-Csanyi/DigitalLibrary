@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         {
         }
 
-        [Theory]
+        [Theory(Skip = "Needs refactor")]
         [MemberData(
             nameof(MasterData_Dimension_Validation_TestData.AddDimensionAsync_Validation),
             MemberType = typeof(MasterData_Dimension_Validation_TestData))]
@@ -64,7 +64,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public void ThrowException_WhenInputIsNull()
         {
             // Arrange

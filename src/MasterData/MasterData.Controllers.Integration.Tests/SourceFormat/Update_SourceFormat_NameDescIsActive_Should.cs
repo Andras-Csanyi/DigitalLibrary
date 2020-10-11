@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Update_NameDescIsActive()
         {
             // Arrange

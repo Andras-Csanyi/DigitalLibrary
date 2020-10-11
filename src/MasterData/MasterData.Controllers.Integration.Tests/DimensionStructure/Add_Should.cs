@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Record_NewEntity()
         {
             // Arrange
@@ -58,7 +58,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             result.IsActive.Should().Be(dimensionStructure.IsActive);
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task ThrowException_WhenUniqueNameConstraintViolated()
         {
             // Arrange
