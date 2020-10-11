@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>DigitalLibrary.Utils.MasterDataTestHelper</RootNamespace>
+        <AssemblyName>DigitalLibrary.Utils.MasterDataTestHelper</AssemblyName>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Implementations.Tests.Entities\MasterData.BusinessLogic.Implementations.Tests.Entities.csproj"/>
+        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+        <ProjectReference Include="..\Guards\Guards.csproj"/>
+    </ItemGroup>
+
+</Project>

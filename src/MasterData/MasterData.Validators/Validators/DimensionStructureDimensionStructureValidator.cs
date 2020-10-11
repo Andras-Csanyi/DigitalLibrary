@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Validators
 
     using FluentValidation;
 
-    public class DimensionStructureDimensionStructureValidator : AbstractValidator<DimensionStructureDimensionStructure>
+    public class DimensionStructureDimensionStructureValidator : AbstractValidator<DimensionStructureNode>
     {
         public DimensionStructureDimensionStructureValidator()
         {

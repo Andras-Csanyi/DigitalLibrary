@@ -39,7 +39,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.AddDimensionAsync(
+                Dimension result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic.AddDimensionAsync(
                         dimension)
                    .ConfigureAwait(false);
                 return Ok(result);
@@ -58,7 +58,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                await _masterDataBusinessLogic.DeleteDimensionAsync(dimension)
+                await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic.DeleteDimensionAsync(dimension)
                    .ConfigureAwait(false);
                 return Ok();
             }
@@ -76,7 +76,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsAsync()
+                List<Dimension> result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic
+                   .GetDimensionsAsync()
                    .ConfigureAwait(false);
                 return result;
             }
@@ -94,7 +95,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                Dimension result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic
+                   .GetDimensionByIdAsync(dimensionId)
                    .ConfigureAwait(false);
                 return result;
             }
@@ -112,7 +114,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.GetDimensionByIdAsync(dimensionId)
+                Dimension result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic
+                   .GetDimensionByIdAsync(dimensionId)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -130,7 +133,8 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                List<Dimension> result = await _masterDataBusinessLogic.GetDimensionsWithoutStructureAsync()
+                List<Dimension> result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic
+                   .GetDimensionsWithoutStructureAsync()
                    .ConfigureAwait(false);
                 return result;
             }
@@ -148,7 +152,7 @@ namespace DigitalLibrary.MasterData.Controllers
         {
             try
             {
-                Dimension result = await _masterDataBusinessLogic.UpdateDimensionAsync(
+                Dimension result = await _masterDataBusinessLogic.MasterDataDimensionBusinessLogic.UpdateDimensionAsync(
                         dimension)
                    .ConfigureAwait(false);
                 return Ok(result);

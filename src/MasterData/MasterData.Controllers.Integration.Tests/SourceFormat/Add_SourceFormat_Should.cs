@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Add_AnItem()
         {
             // Arrange
@@ -57,7 +57,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.SourceFormat
             res.IsActive.Should().Be(orig.IsActive);
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task ThrowsException_WhenUniqueNameConstraintViolated()
         {
             // Arrange

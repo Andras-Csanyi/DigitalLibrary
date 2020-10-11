@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public void ThrowException_WhenThereIsNoSuchEntity()
         {
             // Arrange
@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.DimensionStruc
             action.Should().ThrowExactly<MasterDataHttpClientException>();
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Update_TheItem()
         {
             // Arrange

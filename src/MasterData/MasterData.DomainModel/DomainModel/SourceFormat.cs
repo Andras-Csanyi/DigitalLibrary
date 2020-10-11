@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.DomainModel
 {
     using System;
+    using System.Collections.Generic;
 
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
@@ -15,19 +16,14 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public int IsActive { get; set; }
 
-        public DimensionStructure RootDimensionStructure { get; set; }
+        public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
 
-        public long? RootDimensionStructureId { get; set; }
-
-        public SourceFormat()
-        {
-            Guid = Guid.NewGuid();
-        }
-
-        public Guid Guid { get; set; }
+        public Guid Guid { get; set; } = Guid.NewGuid();
 
         public long Id { get; set; }
 
         public string Name { get; set; }
+
+        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
     }
 }

@@ -117,6 +117,12 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         /// <exception cref="SourceFormatBuilderServiceException">General exception wrapping other exception.</exception>
         Task SaveNewRootDimensionStructureHandlerAsync(DimensionStructure newRootDimensionStructure);
 
+        /// <summary>
+        ///     Sends the already setup and populated <see cref="SourceFormat" /> to serverside for saving.
+        /// </summary>
+        /// <returns>Task.</returns>
+        Task SaveSourceFormatAsync();
+
         void SetDefaultStateForReplacementOfDimensionStructureInTree();
 
         /// <summary>

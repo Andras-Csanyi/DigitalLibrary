@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
         {
         }
 
-        [Fact]
+        [Fact(Skip = "Needs refactor")]
         public async Task Return_All()
         {
             // Arrange
