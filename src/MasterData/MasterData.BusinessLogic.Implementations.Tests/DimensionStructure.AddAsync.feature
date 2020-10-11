@@ -5,6 +5,89 @@ Feature: Adding DimensionStructures
   and trees built from DimensionStructures so
   I need the capability to this
 
+  Background:
+    Given there is a SourceFormat domain object
+      | Field | Value |
+      | Key   | sf-1  |
+    And SourceFormat is saved
+      | Field     | Value       |
+      | Key       | sf-1        |
+      | ResultKey | sf-1-result |
+    And there is a DimensionStructure domain object
+      | Field | Value   |
+      | Key   | root-ds |
+    And DimensionStructure is saved
+      | Field     | Value          |
+      | Key       | root-ds        |
+      | ResultKey | root-ds-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-2  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-2        |
+      | ResultKey | ds-2-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-3  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-3        |
+      | ResultKey | ds-3-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-4  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-4        |
+      | ResultKey | ds-4-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-5  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-5        |
+      | ResultKey | ds-5-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-6  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-6        |
+      | ResultKey | ds-6-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-7  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-7        |
+      | ResultKey | ds-7-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-8  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-8        |
+      | ResultKey | ds-8-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-9  |
+    And DimensionStructure is saved
+      | Field     | Value       |
+      | Key       | ds-9        |
+      | ResultKey | ds-9-result |
+    And there is a DimensionStructure domain object
+      | Field | Value |
+      | Key   | ds-10 |
+    And DimensionStructure is saved
+      | Field     | Value        |
+      | Key       | ds-10        |
+      | ResultKey | ds-10-result |
+    And DimensionStructure is added to SourceFormat as root dimensionstructure
+      | Field                 | Value          |
+      | SourceFormatKey       | sf-1-result    |
+      | DimensionStructureKey | root-ds-result |
+
   Scenario: Add new DimensionStructure
     Given there is a DimensionStructure domain object
       | Field    | Value |
@@ -42,59 +125,583 @@ Feature: Adding DimensionStructures
       | NotEqualTo   | 0                 |
 
 
-  Scenario: Add DimensionStructure to the first level in the tree
-    Given there is a SourceFormat domain object
-      | Field | Value |
-      | Key   | SF    |
-    And SourceFormat is saved
-      | Field     | Value    |
-      | Key       | SF       |
-      | ResultKey | SFResult |
-    And there is a DimensionStructure domain object
-      | Field | Value |
-      | Key   | DS    |
-    And DimensionStructure is saved
-      | Field     | Value    |
-      | Key       | DS       |
-      | ResultKey | DSResult |
-    And DimensionStructure is added to SourceFormat as root dimensionstructure
-      | Field                 | Value    |
-      | SourceFormatKey       | SFResult |
-      | DimensionStructureKey | DSResult |
-    And there is a DimensionStructure domain object
-      | Field | Value   |
-      | Key   | DSChild |
-    And DimensionStructure is saved
-      | Field     | Value         |
-      | Key       | DSChild       |
-      | ResultKey | DSChildResult |
+  Scenario: Add the first DimensionStructure to the first level in the tree
+
     And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
-      | Field           | Value         |
-      | ChildKey        | DSChildResult |
-      | ParentKey       | DSResult      |
-      | SourceFormatKey | SFResult      |
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value                      |
+      | Key       | sf-1-result                |
+      | ResultKey | sf-1-result-request-result |
+
+    Then 'sf-1-result-request-result' SourceFormat save result is not null
+    And root DimensionStructure of 'sf-1-result-request-result' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value                      |
+      | SourceFormatKey                | sf-1-result-request-result |
+      | ContainedDimensionStructureKey | ds-2-result                |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value                      |
+      | SourceFormatKey | sf-1-result-request-result |
+      | ParentKey       | root-ds-result             |
+      | ChildKey        | ds-2-result                |
+
+  Scenario: Add the second DimensionStructure to the first level in the tree
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-3-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
     When SourceFormat is requested with DimensionStructure tree
       | Field     | Value             |
-      | Key       | SFResult          |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-3-result       |
+
+  Scenario: Add the third DimensionStructure to the first level in the tree
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-3-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-4-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-4-result       |
+
+  Scenario: Add the first DimensionStructure to the second level
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-4-result       |
+
+  Scenario: Add the second DimensionStructure to the second level
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-5-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
       | ResultKey | SFRequestedResult |
     Then 'SFRequestedResult' SourceFormat save result is not null
     And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
     And DimensionStructure tree contains given DimensionStructure
       | Field                          | Value             |
       | SourceFormatKey                | SFRequestedResult |
-      | ContainedDimensionStructureKey | DSChildResult     |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-5-result       |
     And given DimensionStructure is child of given DimensionStructure
       | Field           | Value             |
       | SourceFormatKey | SFRequestedResult |
-      | ParentKey       | DSResult          |
-      | ChildKey        | DSChildResult     |
-#
-#  Scenario: Add DimensionStructure to the first level as second node
-#
-#  Scenario: Add DimensionStructure to the first level as third node
-#
-#  Scenario: Add DimensionStructure to the second level
-#
-#  Scenario: Add DimensionStructure to the second level as second element
-#
-#  Scenario: Add DimensionStructure to the second level as third element
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-5-result       |
+
+  Scenario: Add the third DimensionStructure to the second level
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-5-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-6-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-5-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-6-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-5-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-6-result       |
+
+  Scenario: Add the first DimensionStructure to the third level
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-5-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-5-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-5-result       |
+
+  Scenario: Add the second DimensionStructure to the third level
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-5-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-6-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-5-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-6-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-5-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-6-result       |
+
+  Scenario: Add the third DimensionStructure to the third level
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value          |
+      | ChildKey        | ds-2-result    |
+      | ParentKey       | root-ds-result |
+      | SourceFormatKey | sf-1-result    |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-3-result |
+      | ParentKey       | ds-2-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-4-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-5-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-6-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
+      | Field           | Value       |
+      | ChildKey        | ds-7-result |
+      | ParentKey       | ds-3-result |
+      | SourceFormatKey | sf-1-result |
+
+    When SourceFormat is requested with DimensionStructure tree
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | SFRequestedResult |
+
+    Then 'SFRequestedResult' SourceFormat save result is not null
+    And root DimensionStructure of 'SFRequestedResult' SourceFormat is not null
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-2-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-3-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-4-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-5-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-6-result       |
+    And DimensionStructure tree contains given DimensionStructure
+      | Field                          | Value             |
+      | SourceFormatKey                | SFRequestedResult |
+      | ContainedDimensionStructureKey | ds-7-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | root-ds-result    |
+      | ChildKey        | ds-2-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-2-result       |
+      | ChildKey        | ds-3-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-4-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-5-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-6-result       |
+    And given DimensionStructure is child of given DimensionStructure
+      | Field           | Value             |
+      | SourceFormatKey | SFRequestedResult |
+      | ParentKey       | ds-3-result       |
+      | ChildKey        | ds-7-result       |

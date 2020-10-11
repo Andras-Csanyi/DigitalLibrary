@@ -29,6 +29,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                         Check.AreNotEqual(childId, 0);
                         Check.AreNotEqual(parentId, 0);
                         Check.AreNotEqual(sourceFormatId, 0);
+
                         DimensionStructure dimensionStructure = await ctx.DimensionStructures.FindAsync(childId)
                            .ConfigureAwait(false);
                         SourceFormat sourceFormat = await ctx.SourceFormats.FindAsync(sourceFormatId)

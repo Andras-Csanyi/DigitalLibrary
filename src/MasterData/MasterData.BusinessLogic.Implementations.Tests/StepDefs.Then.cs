@@ -267,7 +267,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 string notEqualTo)>();
 
             DimensionStructure result = _scenarioContext[instance.key] as DimensionStructure;
-            Check.IsNotNull(result);
 
             switch (instance.propertyName)
             {

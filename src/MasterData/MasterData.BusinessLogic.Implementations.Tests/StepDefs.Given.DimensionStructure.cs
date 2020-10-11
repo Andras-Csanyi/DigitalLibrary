@@ -101,13 +101,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 string sourceFormatKey)>();
 
             DimensionStructure child = _scenarioContext[instance.childKey] as DimensionStructure;
-            Check.IsNotNull(child);
 
             DimensionStructure parent = _scenarioContext[instance.parentKey] as DimensionStructure;
-            Check.IsNotNull(parent);
 
             SourceFormat sourceFormat = _scenarioContext[instance.sourceFormatKey] as SourceFormat;
-            Check.IsNotNull(sourceFormat);
 
             await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
