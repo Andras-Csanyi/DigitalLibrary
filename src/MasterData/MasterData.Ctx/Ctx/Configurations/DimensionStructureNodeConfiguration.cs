@@ -24,6 +24,9 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.Property(p => p.SourceFormatId).HasColumnName("sourceformat_id");
 
+            builder.Property(p => p.IsActive).HasColumnName("is_active");
+            builder.Property(p => p.IsActive).HasDefaultValue(1);
+
             builder.HasMany(m => m.ChildNodes)
                .WithOne(o => o.ChildNode)
                .HasForeignKey(k => k.ChildNodeId)

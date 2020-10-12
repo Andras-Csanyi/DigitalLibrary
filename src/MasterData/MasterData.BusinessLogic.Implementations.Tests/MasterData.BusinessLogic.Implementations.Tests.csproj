@@ -63,5 +63,4 @@
         <SpecFlowFeatureFiles Update="SourceFormat.AddAsync.feature">
         </SpecFlowFeatureFiles>
     </ItemGroup>
-
 </Project>
