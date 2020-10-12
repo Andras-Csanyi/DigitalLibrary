@@ -7,7 +7,7 @@ namespace DigitalLibrary.MasterData.Validators
 {
     public class DimensionStructureValidatorRulesets
     {
-        public const string Add = "Add";
+        public const string AddAsync = "Add";
 
         public const string Delete = "Delete";
 

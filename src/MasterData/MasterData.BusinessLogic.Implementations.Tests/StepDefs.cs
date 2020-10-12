@@ -164,7 +164,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
             DomainModel.DimensionStructure result = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
-               .AddDimensionStructureAsync(toSave)
+               .AddAsync(toSave)
                .ConfigureAwait(false);
             _scenarioContext.Add(instance.ResultKey, result);
         }

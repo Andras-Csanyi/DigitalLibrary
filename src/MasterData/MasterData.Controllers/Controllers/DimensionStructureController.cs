@@ -41,7 +41,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .AddDimensionStructureAsync(
+                   .AddAsync(
                         dimensionStructure).ConfigureAwait(false);
                 return Ok(result);
             }

@@ -1,9 +1,12 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
@@ -72,6 +75,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             children.FirstOrDefault(w => w.Id == child.Id)
                .Should().NotBeNull();
+        }
+
+        [Then(@"DimensionStructure related operation throws exception")]
+        public void ExceptionWasThrown(Table table)
+        {
+            ExceptionWasThrownEntity instance = table.CreateInstance<ExceptionWasThrownEntity>();
+
+            var exception = _scenarioContext[instance.ResultKey];
+            exception.Should().BeOfType<MasterDataBusinessLogicDimensionStructureDatabaseOperationException>();
         }
     }
 }

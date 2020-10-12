@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        public async Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
                     await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
                             dimensionStructure,
-                            DimensionStructureValidatorRulesets.Add)
+                            ruleSet: DimensionStructureValidatorRulesets.AddAsync)
                        .ConfigureAwait(false);
 
                     DimensionStructure newDimensionStructure = new DimensionStructure
@@ -44,7 +44,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 }
                 catch (Exception e)
                 {
-                    throw new MasterDataBusinessLogicAddDimensionStructureAsyncOperationException(e.Message, e);
+                    string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
+                                 $"{nameof(AddAsync)} operation failed. For further info see inner exception.";
+                    throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
                 }
             }
         }

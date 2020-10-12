@@ -5,6 +5,7 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -16,7 +17,7 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public DimensionStructureValidator()
         {
-            RuleSet(DimensionStructureValidatorRulesets.Add, () =>
+            RuleSet(DimensionStructureValidatorRulesets.AddAsync, () =>
             {
                 When(w => w.Name == null || w.Desc == null, () =>
                 {
@@ -28,9 +29,9 @@ namespace DigitalLibrary.MasterData.Validators
                 {
                     RuleFor(p => p.Id).Equal(0);
                     RuleFor(p => p.Name).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
+                    RuleFor(p => p.Name.Trim().Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
+                    RuleFor(p => p.Desc.Trim().Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });
@@ -47,9 +48,9 @@ namespace DigitalLibrary.MasterData.Validators
                 {
                     RuleFor(p => p.Id).NotEqual(0);
                     RuleFor(p => p.Name).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
+                    RuleFor(p => p.Name.Trim().Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.Desc).NotEmpty().NotEqual(" ");
-                    RuleFor(p => p.Desc.Length).GreaterThanOrEqualTo(3);
+                    RuleFor(p => p.Desc.Trim().Length).GreaterThanOrEqualTo(3);
                     RuleFor(p => p.IsActive).GreaterThanOrEqualTo(0).LessThanOrEqualTo(1);
                 });
             });

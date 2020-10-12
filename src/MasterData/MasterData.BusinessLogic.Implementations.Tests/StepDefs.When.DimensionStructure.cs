@@ -29,11 +29,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             DimensionStructure dimensionStructure = _scenarioContext[instance.key] as DimensionStructure;
 
-            DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
-               .MasterDataDimensionStructureBusinessLogic
-               .GetDimensionStructureByIdAsync(dimensionStructure)
-               .ConfigureAwait(false);
-            _scenarioContext.Add(instance.resultKey, dimensionStructureResult);
+            try
+            {
+                DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetDimensionStructureByIdAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.resultKey, dimensionStructureResult);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.resultKey, e);
+            }
         }
     }
 }

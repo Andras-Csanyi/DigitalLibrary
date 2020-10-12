@@ -28,12 +28,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         public async Task ThereIsADimensionStructureDomainObject(Table table)
         {
             var instance = table.CreateInstance<ThereIsADimensionStructureDomainobjectEntity>();
-            DomainModel.DimensionStructure dimensionStructure = new DomainModel.DimensionStructure
-            {
-                Name = instance.Name ?? stringHelper.GetRandomString(4),
-                Desc = instance.Desc ?? stringHelper.GetRandomString(4),
-                IsActive = instance.IsActive,
-            };
+            DomainModel.DimensionStructure dimensionStructure = await _masterDataTestHelper
+               .DimensionStructureFactory
+               .Create(instance);
 
             if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
             {
@@ -45,6 +42,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         }
 
         [Given(@"DimensionStructure is saved")]
+        [When(@"DimensionStructure is saved")]
         public async Task GivenDimensionStructureIsSaved(Table table)
         {
             Check.IsNotNull(table);
@@ -52,11 +50,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             var instance = table.CreateInstance<(string key, string resultKey)>();
 
             DimensionStructure dimensionStructure = _scenarioContext[instance.key] as DimensionStructure;
-            DimensionStructure result = await _masterDataBusinessLogic
-               .MasterDataDimensionStructureBusinessLogic
-               .AddDimensionStructureAsync(dimensionStructure)
-               .ConfigureAwait(false);
-            _scenarioContext.Add(instance.resultKey, result);
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.resultKey, result);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.resultKey, e);
+            }
         }
 
         [Given(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]

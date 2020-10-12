@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             DimensionStructure childDimensionStructure,
             long parentDimensionId);
 
-        Task<DimensionStructure> AddDimensionStructureAsync(DimensionStructure dimensionStructure);
+        Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
         /// It adds <see cref="DimensionStructure"/> to a <see cref="SourceFormat"/> as its

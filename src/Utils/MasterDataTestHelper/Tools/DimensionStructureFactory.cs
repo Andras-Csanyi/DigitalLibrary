@@ -11,7 +11,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     {
         Task<DimensionStructure> Create(string name);
 
-        Task<DimensionStructure> Create(ThereIsADomainObjectEntity instance);
+        Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance);
     }
 
     public class DimensionStructureFactory : IDimensionStructureFactory
@@ -34,18 +34,45 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             return result;
         }
 
-        public async Task<DimensionStructure> Create(ThereIsADomainObjectEntity instance)
+        public async Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance)
         {
             Check.IsNotNull(instance);
 
+
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Name = instance.NameProperty ?? _stringHelper.GetRandomString(4),
-                Desc = instance.DescProperty ?? _stringHelper.GetRandomString(4),
-                IsActive = Convert.ToInt32(instance.IsActiveProperty),
+                Name = GetTestString(instance.Name),
+                Desc = GetTestString(instance.Desc),
+                IsActive = Convert.ToInt32(instance.IsActive),
             };
 
             return dimensionStructure;
+        }
+
+        private string GetTestString(string instanceProperty)
+        {
+            string result = null;
+
+            switch (instanceProperty)
+            {
+                case "null":
+                    result = null;
+                    break;
+
+                case "empty":
+                    result = string.Empty;
+                    break;
+
+                case "3spaces":
+                    result = "   ";
+                    break;
+
+                case null:
+                    result = _stringHelper.GetRandomString(4);
+                    break;
+            }
+
+            return result;
         }
     }
 }
