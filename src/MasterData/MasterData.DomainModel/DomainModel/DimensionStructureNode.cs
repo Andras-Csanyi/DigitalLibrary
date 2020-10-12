@@ -6,37 +6,37 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     public class DimensionStructureNode : IHaveId, IHaveIsActive
     {
-        public long Id { get; set; }
+        public DimensionStructureNode ChildNode { get; set; }
+
+        public long? ChildNodeId { get; set; }
+
+        public ICollection<DimensionStructureNode> ChildNodes { get; set; } = new List<DimensionStructureNode>();
 
         public DimensionStructure DimensionStructure { get; set; }
 
         public long? DimensionStructureId { get; set; }
 
-        public ICollection<DimensionStructureNode> ChildNodes { get; set; } = new List<DimensionStructureNode>();
-
-        public DimensionStructureNode ChildNode { get; set; }
-
-        public long? ChildNodeId { get; set; }
-
         /// <summary>
-        /// Gets or sets <see cref="SourceFormat"/>.
-        /// This property marks to which <see cref="SourceFormat"/> the node belongs to.
+        ///     Gets or sets <see cref="SourceFormat" />.
+        ///     This property marks to which <see cref="SourceFormat" /> the node belongs to.
         /// </summary>
         public SourceFormat SourceFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets SourceFormatId. It is a reference to <see cref="SourceFormat"/>.
-        /// </summary>
-        public long? SourceFormatId { get; set; }
-
-        /// <summary>
-        /// Gets or sets <see cref="SourceFormatDimensionStructureNode"/>.
-        /// Via this navigation property the fact is setup the node is root dimension structure of a
-        /// <see cref="SourceFormat"/>.
+        ///     Gets or sets <see cref="SourceFormatDimensionStructureNode" />.
+        ///     Via this navigation property the fact is setup the node is root dimension structure of a
+        ///     <see cref="SourceFormat" />.
         /// </summary>
         public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
 
-        /// <inheritdoc/>
+        /// <summary>
+        ///     Gets or sets SourceFormatId. It is a reference to <see cref="SourceFormat" />.
+        /// </summary>
+        public long? SourceFormatId { get; set; }
+
+        public long Id { get; set; }
+
+        /// <inheritdoc />
         public int IsActive { get; set; }
     }
 }

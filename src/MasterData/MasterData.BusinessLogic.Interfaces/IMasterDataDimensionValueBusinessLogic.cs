@@ -6,15 +6,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public interface IMasterDataDimensionValueBusinessLogic
     {
-        Task<DimensionValue> ModifyDimensionValueAsync(
-            long dimensionId,
-            DimensionValue oldDimensionValue,
-            DimensionValue newDimensionValue);
-
         Task<DimensionValue> AddDimensionValueAsync(
             DimensionValue dimensionValue,
             long dimensionId);
 
         Task<long> CountDimensionValuesAsync();
+
+        Task<DimensionValue> ModifyDimensionValueAsync(
+            long dimensionId,
+            DimensionValue oldDimensionValue,
+            DimensionValue newDimensionValue);
     }
 }

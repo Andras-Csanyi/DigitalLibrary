@@ -1,7 +1,6 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
-    using System.ComponentModel.Design;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;

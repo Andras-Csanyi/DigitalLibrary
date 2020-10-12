@@ -7,11 +7,11 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
 
     public interface IMasterDataTestHelper
     {
-        ISourceFormatFactory SourceFormatFactory { get; }
-
         IDimensionStructureFactory DimensionStructureFactory { get; }
 
         IDimensionStructureLinkedListHelper DimensionStructureLinkedListHelper { get; }
+
+        ISourceFormatFactory SourceFormatFactory { get; }
     }
 
     public class MasterDataTestHelper : IMasterDataTestHelper
@@ -26,15 +26,15 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
             DimensionStructureFactory = dimensionStructureFactory ?? throw new ArgumentNullException(
                 $"{nameof(dimensionStructureFactory)}");
             DimensionStructureLinkedListHelper = dimensionStructureLinkedListHelper
-             ?? throw new ArgumentNullException(
-                    $"{nameof(dimensionStructureLinkedListHelper)}");
+                                              ?? throw new ArgumentNullException(
+                                                     $"{nameof(dimensionStructureLinkedListHelper)}");
         }
-
-
-        public ISourceFormatFactory SourceFormatFactory { get; }
 
         public IDimensionStructureFactory DimensionStructureFactory { get; }
 
         public IDimensionStructureLinkedListHelper DimensionStructureLinkedListHelper { get; }
+
+
+        public ISourceFormatFactory SourceFormatFactory { get; }
     }
 }

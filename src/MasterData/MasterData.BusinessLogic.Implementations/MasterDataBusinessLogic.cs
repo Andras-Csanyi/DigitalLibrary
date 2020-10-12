@@ -6,14 +6,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
     public class MasterDataBusinessLogic : IMasterDataBusinessLogic
     {
-        public IMasterDataDimensionBusinessLogic MasterDataDimensionBusinessLogic { get; set; }
-
-        public IMasterDataDimensionStructureBusinessLogic MasterDataDimensionStructureBusinessLogic { get; set; }
-
-        public IMasterDataDimensionValueBusinessLogic MasterDataDimensionValueBusinessLogic { get; set; }
-
-        public IMasterDataSourceFormatBusinessLogic MasterDataSourceFormatBusinessLogic { get; set; }
-
         public MasterDataBusinessLogic(
             IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic,
             IMasterDataDimensionStructureBusinessLogic
@@ -34,5 +26,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                                                   throw new ArgumentNullException(
                                                       nameof(masterDataSourceFormatBusinessLogic));
         }
+
+        public IMasterDataDimensionBusinessLogic MasterDataDimensionBusinessLogic { get; set; }
+
+        public IMasterDataDimensionStructureBusinessLogic MasterDataDimensionStructureBusinessLogic { get; set; }
+
+        public IMasterDataDimensionValueBusinessLogic MasterDataDimensionValueBusinessLogic { get; set; }
+
+        public IMasterDataSourceFormatBusinessLogic MasterDataSourceFormatBusinessLogic { get; set; }
     }
 }

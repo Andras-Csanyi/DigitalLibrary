@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
-    using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -14,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task AddDimensionStructureToParentAsChildInSourceFormatAsync(
             long childId,
             long parentId,

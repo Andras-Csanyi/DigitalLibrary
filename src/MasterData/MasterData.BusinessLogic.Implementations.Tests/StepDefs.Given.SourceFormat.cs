@@ -5,21 +5,17 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
-    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
-    using Xunit.Abstractions;
-
     /// <summary>
-    /// Test cases covering Add functionality.
+    ///     Test cases covering Add functionality.
     /// </summary>
     public partial class StepDefs
     {
@@ -41,12 +37,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             }
         }
 
-
-        [Given(@"SourceFormat RootDimensionStructure has a child DimensionStructure")]
-        public async Task SourceFormatRootDimensionStructureHasAChildDimensionStructure(Table table)
-        {
-        }
-
         [Given(@"SourceFormat is saved")]
         [When(@"SourceFormat is saved")]
         public async Task SourceFormatIsSaved(Table table)
@@ -59,6 +49,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .AddSourceFormatAsync(toBeSaved)
                .ConfigureAwait(false);
             _scenarioContext.Add(instance.resultKey, saved);
+        }
+
+
+        [Given(@"SourceFormat RootDimensionStructure has a child DimensionStructure")]
+        public async Task SourceFormatRootDimensionStructureHasAChildDimensionStructure(Table table)
+        {
         }
 
         [Given(@"there is a SourceFormat domain object")]

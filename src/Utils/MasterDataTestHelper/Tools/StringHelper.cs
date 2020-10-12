@@ -10,9 +10,9 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
     public class StringHelper : IStringHelper
     {
-        private Random rnd = new Random();
-
         private string chars = "qwertyuioplkjhgfdsazxcvbnm";
+
+        private Random rnd = new Random();
 
         public string GetRandomString(int length)
         {

@@ -17,15 +17,15 @@ namespace DigitalLibrary.MasterData.Ctx
 
         public DbSet<Dimension> Dimensions { get; set; }
 
+        public DbSet<DimensionStructureNode> DimensionStructureNodes { get; set; }
+
         public DbSet<DimensionStructure> DimensionStructures { get; set; }
 
         public DbSet<DimensionValue> DimensionValues { get; set; }
 
-        public DbSet<SourceFormat> SourceFormats { get; set; }
-
-        public DbSet<DimensionStructureNode> DimensionStructureNodes { get; set; }
-
         public DbSet<SourceFormatDimensionStructureNode> SourceFormatDimensionStructure { get; set; }
+
+        public DbSet<SourceFormat> SourceFormats { get; set; }
 
         public MasterDataContext(DbContextOptions<MasterDataContext> options)
             : base(options)

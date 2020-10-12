@@ -14,6 +14,8 @@ namespace DigitalLibrary.MasterData.DomainModel
     {
         public string Desc { get; set; }
 
+        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
+
         public int IsActive { get; set; }
 
         public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
@@ -23,7 +25,5 @@ namespace DigitalLibrary.MasterData.DomainModel
         public long Id { get; set; }
 
         public string Name { get; set; }
-
-        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
     }
 }

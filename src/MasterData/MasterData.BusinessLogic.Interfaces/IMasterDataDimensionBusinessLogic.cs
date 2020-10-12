@@ -16,16 +16,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task DeleteDimensionAsync(Dimension dimension);
 
+        Task<Dimension> GetDimensionByIdAsync(long dimensionId);
+
         Task<List<Dimension>> GetDimensionsAsync();
 
         Task<List<Dimension>> GetDimensionsWithoutStructureAsync();
 
-        Task<Dimension> UpdateDimensionAsync(Dimension dimension);
-
         Task<Dimension> GetValuesOfADimensionAsync(long dimensionId);
 
-        Task<Dimension> GetDimensionByIdAsync(long dimensionId);
-
         Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);
+
+        Task<Dimension> UpdateDimensionAsync(Dimension dimension);
     }
 }

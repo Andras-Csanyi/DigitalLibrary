@@ -16,6 +16,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     public interface IMasterDataSourceFormatBusinessLogic
     {
         /// <summary>
+        ///     Adds <see cref="DimensionStructure" /> to <see cref="SourceFormat" /> as
+        ///     root dimension structure.
+        /// </summary>
+        /// <param name="sourceFormatId">Source format id.</param>
+        /// <param name="dimensionStructureId">Dimension structure id.</param>
+        /// <returns>Task.</returns>
+        Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
+
+        /// <summary>
         ///     Saves a new <see cref="SourceFormat" /> in the database.
         /// </summary>
         /// <param name="sourceFormat">New SourceFormant</param>
@@ -29,60 +38,51 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat);
 
         /// <summary>
-        /// It returns a <see cref="SourceFormat"/> without its related entities.
+        ///     Returns <see cref="SourceFormat" /> which has all <see cref="DimensionStructureNode" />s and
+        ///     <see cref="DimensionStructure" />s attached too.
         /// </summary>
-        /// <param name="sourceFormat">SourceFormat query object.</param>
-        /// <returns>The result.</returns>
-        Task<SourceFormat> GetSourceFormatByNameAsync(SourceFormat sourceFormat);
+        /// <param name="sourceFormat">Queryobject.</param>
+        /// <returns>SourceFormat or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(SourceFormat sourceFormat);
 
         /// <summary>
-        /// It returns a <see cref="SourceFormat"/> with its RootDimensionStructure attached.
+        ///     Returns with <see cref="SourceFormat" /> which has the <see cref="DimensionStructure" /> tree mounted.
         /// </summary>
-        /// <param name="sourceFormat">SourceFormat query object.</param>
-        /// <returns>The result.</returns>
-        Task<SourceFormat> GetSourceFormatByNameWithRootDimensionStructureAsync(SourceFormat sourceFormat);
+        /// <param name="querySourceFormat">SourceFormat query object.</param>
+        /// <returns>SourceFormat or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureTreeAsync(SourceFormat querySourceFormat);
 
         /// <summary>
-        /// Returns with <see cref="SourceFormat"/> which contains the full <see cref="DimensionStructure"/>
-        /// tree.
-        /// </summary>
-        /// <param name="sourceFormat">SourceFormat query object.</param>
-        /// <returns>The result.</returns>
-        Task<SourceFormat> GetSourceFormatByNameWithFullDimensionStructureTreeAsync(SourceFormat sourceFormat);
-
-        /// <summary>
-        /// Returns with <see cref="SourceFormat"/> which brings its root <see cref="DimensionStructure"/>.
+        ///     Returns with <see cref="SourceFormat" /> which brings its root <see cref="DimensionStructure" />.
         /// </summary>
         /// <param name="querySourceFormat">Query object</param>
         /// <returns>Result or null.</returns>
         Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureAsync(SourceFormat querySourceFormat);
 
         /// <summary>
-        /// Returns with <see cref="SourceFormat"/> which has the <see cref="DimensionStructure"/> tree mounted.
+        ///     It returns a <see cref="SourceFormat" /> without its related entities.
         /// </summary>
-        /// <param name="querySourceFormat">SourceFormat query object.</param>
-        /// <returns>SourceFormat or null.</returns>
-        Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureTreeAsync(SourceFormat querySourceFormat);
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        ///     Returns with <see cref="SourceFormat" /> which contains the full <see cref="DimensionStructure" />
+        ///     tree.
+        /// </summary>
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameWithFullDimensionStructureTreeAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        ///     It returns a <see cref="SourceFormat" /> with its RootDimensionStructure attached.
+        /// </summary>
+        /// <param name="sourceFormat">SourceFormat query object.</param>
+        /// <returns>The result.</returns>
+        Task<SourceFormat> GetSourceFormatByNameWithRootDimensionStructureAsync(SourceFormat sourceFormat);
 
         Task<List<SourceFormat>> GetSourceFormatsAsync();
 
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
-
-        /// <summary>
-        /// Adds <see cref="DimensionStructure"/> to <see cref="SourceFormat"/> as
-        /// root dimension structure.
-        /// </summary>
-        /// <param name="sourceFormatId">Source format id.</param>
-        /// <param name="dimensionStructureId">Dimension structure id.</param>
-        /// <returns>Task.</returns>
-        Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
-
-        /// <summary>
-        /// Returns <see cref="SourceFormat"/> which has all <see cref="DimensionStructureNode"/>s and
-        /// <see cref="DimensionStructure"/>s attached too.
-        /// </summary>
-        /// <param name="sourceFormat">Queryobject.</param>
-        /// <returns>SourceFormat or null.</returns>
-        Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(SourceFormat sourceFormat);
     }
 }

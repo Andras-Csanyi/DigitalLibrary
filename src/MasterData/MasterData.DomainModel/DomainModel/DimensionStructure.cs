@@ -22,6 +22,8 @@ namespace DigitalLibrary.MasterData.DomainModel
 
         public long? DimensionId { get; set; }
 
+        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
+
         public int IsActive { get; set; }
 
         public string Name { get; set; }
@@ -31,7 +33,5 @@ namespace DigitalLibrary.MasterData.DomainModel
         public Guid Guid { get; set; } = Guid.NewGuid();
 
         public long Id { get; set; }
-
-        public ICollection<DimensionStructureNode> DimensionStructureNodes { get; set; }
     }
 }

@@ -8,9 +8,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
@@ -21,7 +19,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.ControlPanel.DataSample.MasterData;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
     using DigitalLibrary.Utils.MasterDataTestHelper;
@@ -31,15 +28,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Logging.Console;
-    using Microsoft.Extensions.Options;
 
     using TechTalk.SpecFlow;
 
     using Xunit.Abstractions;
 
     /// <summary>
-    /// Background steps for <see cref="SourceFormat"/> related test cases.
+    ///     Background steps for <see cref="SourceFormat" /> related test cases.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
@@ -47,21 +42,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public partial class StepDefs : IDisposable
     {
-        protected IMasterDataBusinessLogic _masterDataBusinessLogic;
+        private readonly ITestOutputHelper _outputHelper;
 
         private readonly string _testInfo = nameof(StepDefs);
 
-        private readonly ITestOutputHelper _outputHelper;
-
-        private IServiceProvider _serviceProvider;
-
         private DbContextOptions<MasterDataContext> _dbContextOptions;
+
+        protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         protected IMasterDataTestHelper _masterDataTestHelper;
 
-        protected IStringHelper stringHelper;
-
         protected ScenarioContext _scenarioContext;
+
+        private IServiceProvider _serviceProvider;
+
+        protected IStringHelper stringHelper;
 
         protected StepDefs(
             ITestOutputHelper testOutputHelper,
@@ -73,6 +68,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             _scenarioContext = scenarioContext;
             stringHelper = new StringHelper();
             _outputHelper = testOutputHelper;
+        }
+
+        public void Dispose()
+        {
+            // _masterDataBusinessLogic.Dispose();
+            (_serviceProvider as IDisposable)?.Dispose();
         }
 
         [BeforeScenario]
@@ -143,10 +144,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureLinkedListHelper);
         }
 
-        public void Dispose()
+        protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
         {
-            // _masterDataBusinessLogic.Dispose();
-            (_serviceProvider as IDisposable)?.Dispose();
+            DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
+            DomainModel.DimensionStructure result = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
+               .AddAsync(toSave)
+               .ConfigureAwait(false);
+            _scenarioContext.Add(instance.ResultKey, result);
         }
 
         protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
@@ -156,16 +161,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .AddSourceFormatAsync(toSave)
                .ConfigureAwait(false);
 
-            _scenarioContext.Add(instance.ResultKey, result);
-        }
-
-        protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
-        {
-            DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
-            DomainModel.DimensionStructure result = await _masterDataBusinessLogic
-               .MasterDataDimensionStructureBusinessLogic
-               .AddAsync(toSave)
-               .ConfigureAwait(false);
             _scenarioContext.Add(instance.ResultKey, result);
         }
     }

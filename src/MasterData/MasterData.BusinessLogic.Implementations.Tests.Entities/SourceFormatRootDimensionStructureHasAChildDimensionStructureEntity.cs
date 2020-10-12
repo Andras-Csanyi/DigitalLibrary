@@ -4,12 +4,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities
     {
         public string ChildName { get; set; }
 
-        public string ParentNodeName { get; set; }
+        public string DimensionStructureSource { get; set; }
 
-        public string SourceFormatSource { get; set; }
+        public string ParentNodeName { get; set; }
 
         public string SourceFormatName { get; set; }
 
-        public string DimensionStructureSource { get; set; }
+        public string SourceFormatSource { get; set; }
     }
 }

@@ -7,46 +7,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Services;
-    using DigitalLibrary.Utils.Guards;
-
-    using FluentValidation;
 
     /// <inheritdoc />
     public class SourceFormatBuilderService : ISourceFormatBuilderService
     {
-        public DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
-
-        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
-
-        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
-
-        public bool IsNewSourceFormatButtonDisabled { get; set; }
-
-        public bool IsSourceFormatCancelButtonDisabled { get; set; }
-
-        public bool IsSourceFormatDropDownlistDisabled { get; set; }
-
-        public bool IsSourceFormatSaveButtonDisabled { get; set; }
-
-        public long LoadedSourceFormatId { get; set; }
-
-        public IMasterDataValidators MasterDataValidators { get; }
-
-        public SourceFormat SourceFormat { get; set; }
-
-        public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
-
-        public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
-
         public async Task AddDimensionStructureAsync(long parentDimensionStructureId,
                                                      DimensionStructure dimensionStructure)
         {
@@ -79,6 +47,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             throw new NotImplementedException();
         }
 
+        public DimensionStructure DimensionStructureToBeDeletedFromTree { get; set; }
+
         public async Task<List<Dimension>> GetAllDimensionsFromServer()
         {
             throw new NotImplementedException();
@@ -108,6 +78,22 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         {
             throw new NotImplementedException();
         }
+
+        public bool IsEditSourceFormatDetailsButtonDisabled { get; set; }
+
+        public bool IsLoadSourceFormatsButtonDisabled { get; set; }
+
+        public bool IsNewSourceFormatButtonDisabled { get; set; }
+
+        public bool IsSourceFormatCancelButtonDisabled { get; set; }
+
+        public bool IsSourceFormatDropDownlistDisabled { get; set; }
+
+        public bool IsSourceFormatSaveButtonDisabled { get; set; }
+
+        public long LoadedSourceFormatId { get; set; }
+
+        public IMasterDataValidators MasterDataValidators { get; }
 
         public async Task OnUpdate(long sourceFormatId)
         {
@@ -139,11 +125,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
             throw new NotImplementedException();
         }
 
+        public SourceFormat SourceFormat { get; set; }
+
         public async Task UpdateDocumentStructureInTheTreeAsync(DimensionStructure newDimensionStructure,
                                                                 Guid dimensionStructureToBeUpdated)
         {
             throw new NotImplementedException();
         }
+
+        public DimensionStructure UpdateNodeNewDimensionStructure { get; set; }
+
+        public DimensionStructure UpdateNodeOldDimensionStructure { get; set; }
 
         public async Task UpdateSourceFormatBuilder()
         {
