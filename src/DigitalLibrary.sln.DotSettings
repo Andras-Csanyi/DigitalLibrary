@@ -306,6 +306,7 @@
 	<s:String x:Key="/Default/Environment/ContinuousTesting/TriggerMode/@EntryValue">OnSave</s:String>
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/SolBuilderDuo/UseMsbuildSolutionBuilder/@EntryValue">NewVersion</s:String>
 	<s:Boolean x:Key="/Default/Environment/Hierarchy/Build/SolutionBuilderNext/LogWarningsToOutput/@EntryValue">False</s:Boolean>
+	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/SolutionBuilderNext/ParallelProcessesCount2/@EntryValue">12</s:Int64>
 	<s:String x:Key="/Default/Environment/ManagedLanguageParameterNameHintsOptions/BlackList/@EntryValue">(begin*, end*)
 (start*, end*)
 (first*, last*)
