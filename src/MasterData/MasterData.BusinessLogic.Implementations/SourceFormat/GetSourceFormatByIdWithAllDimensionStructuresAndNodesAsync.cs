@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -12,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(
             SourceFormat sourceFormat)
         {

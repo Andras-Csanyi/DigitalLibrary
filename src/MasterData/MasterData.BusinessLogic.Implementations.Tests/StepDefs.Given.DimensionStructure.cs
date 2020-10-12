@@ -11,59 +11,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
-    using DigitalLibrary.Utils.MasterDataTestHelper;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
-    using Xunit.Abstractions;
-
     /// <summary>
-    /// Test cases covering Add functionality.
+    ///     Test cases covering Add functionality.
     /// </summary>
     [Binding]
     public partial class StepDefs
     {
-        [Given(@"there is a DimensionStructure domain object")]
-        public async Task ThereIsADimensionStructureDomainObject(Table table)
-        {
-            var instance = table.CreateInstance<ThereIsADimensionStructureDomainobjectEntity>();
-            DomainModel.DimensionStructure dimensionStructure = await _masterDataTestHelper
-               .DimensionStructureFactory
-               .Create(instance);
-
-            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
-            {
-                string msg = $"Key is empty or null";
-                throw new MasterDataStepDefinitionException(msg);
-            }
-
-            _scenarioContext.Add(instance.Key, dimensionStructure);
-        }
-
-        [Given(@"DimensionStructure is saved")]
-        [When(@"DimensionStructure is saved")]
-        public async Task GivenDimensionStructureIsSaved(Table table)
-        {
-            Check.IsNotNull(table);
-
-            var instance = table.CreateInstance<(string key, string resultKey)>();
-
-            DimensionStructure dimensionStructure = _scenarioContext[instance.key] as DimensionStructure;
-            try
-            {
-                DimensionStructure result = await _masterDataBusinessLogic
-                   .MasterDataDimensionStructureBusinessLogic
-                   .AddAsync(dimensionStructure)
-                   .ConfigureAwait(false);
-                _scenarioContext.Add(instance.resultKey, result);
-            }
-            catch (Exception e)
-            {
-                _scenarioContext.Add(instance.resultKey, e);
-            }
-        }
-
         [Given(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]
         public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(Table table)
         {
@@ -115,6 +72,46 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .MasterDataDimensionStructureBusinessLogic
                .AddDimensionStructureToParentAsChildInSourceFormatAsync(child.Id, parent.Id, sourceFormat.Id)
                .ConfigureAwait(false);
+        }
+
+        [Given(@"DimensionStructure is saved")]
+        [When(@"DimensionStructure is saved")]
+        public async Task GivenDimensionStructureIsSaved(Table table)
+        {
+            Check.IsNotNull(table);
+
+            var instance = table.CreateInstance<(string key, string resultKey)>();
+
+            DimensionStructure dimensionStructure = _scenarioContext[instance.key] as DimensionStructure;
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.resultKey, result);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.resultKey, e);
+            }
+        }
+
+        [Given(@"there is a DimensionStructure domain object")]
+        public async Task ThereIsADimensionStructureDomainObject(Table table)
+        {
+            var instance = table.CreateInstance<ThereIsADimensionStructureDomainobjectEntity>();
+            DomainModel.DimensionStructure dimensionStructure = await _masterDataTestHelper
+               .DimensionStructureFactory
+               .Create(instance);
+
+            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
+            {
+                string msg = $"Key is empty or null";
+                throw new MasterDataStepDefinitionException(msg);
+            }
+
+            _scenarioContext.Add(instance.Key, dimensionStructure);
         }
     }
 }

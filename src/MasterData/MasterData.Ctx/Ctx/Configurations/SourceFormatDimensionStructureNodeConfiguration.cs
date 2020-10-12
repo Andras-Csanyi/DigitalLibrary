@@ -1,7 +1,5 @@
 namespace DigitalLibrary.MasterData.Ctx.Configurations
 {
-    using System.Runtime.CompilerServices;
-
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 

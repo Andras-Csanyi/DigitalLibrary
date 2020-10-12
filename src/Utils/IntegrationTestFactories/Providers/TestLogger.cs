@@ -17,10 +17,14 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
         public TestLogger(string categoryName, ITestOutputHelper testOutputHelper)
         {
             _categoryName = categoryName
-                ?? throw new ArgumentNullException($"No {nameof(categoryName)} is provided.");
+                         ?? throw new ArgumentNullException($"No {nameof(categoryName)} is provided.");
             _testOutputHelper = testOutputHelper
-                ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} is provided.");
+                             ?? throw new ArgumentNullException($"No {nameof(testOutputHelper)} is provided.");
         }
+
+        public IDisposable BeginScope<TState>(TState state) => null;
+
+        public bool IsEnabled(LogLevel logLevel) => _categoryName == DbLoggerCategory.Database.Command.Name;
 
         public void Log<TState>(
             LogLevel logLevel,
@@ -31,9 +35,5 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
         {
             _testOutputHelper.WriteLine(formatter(state, exception));
         }
-
-        public bool IsEnabled(LogLevel logLevel) => _categoryName == DbLoggerCategory.Database.Command.Name;
-
-        public IDisposable BeginScope<TState>(TState state) => null;
     }
 }

@@ -113,8 +113,8 @@ namespace DigitalLibrary.Utils.Guards
         }
 
         /// <summary>
-        /// Checks whether given string is empty, null or whitespace. If the string is empty, null
-        /// or whitespace then <see cref="ThrowGuardException"/> is thrown.
+        ///     Checks whether given string is empty, null or whitespace. If the string is empty, null
+        ///     or whitespace then <see cref="ThrowGuardException" /> is thrown.
         /// </summary>
         /// <param name="toBeChecked">String to be checked.</param>
         /// <param name="message">Custom error message.</param>

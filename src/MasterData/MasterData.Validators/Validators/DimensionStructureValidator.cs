@@ -5,7 +5,6 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;

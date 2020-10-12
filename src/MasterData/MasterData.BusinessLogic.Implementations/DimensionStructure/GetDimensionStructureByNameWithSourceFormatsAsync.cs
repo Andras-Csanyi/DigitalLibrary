@@ -7,7 +7,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructure> GetDimensionStructureByNameWithSourceFormatsAsync(string name)
         {
             // try

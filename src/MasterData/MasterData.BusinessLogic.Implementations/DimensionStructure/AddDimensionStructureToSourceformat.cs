@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructure> AddDimensionStructureToSourceFormatAsRootDimensionStructureAsync(
             long dimensionStructureId,
             long sourceFormatId)

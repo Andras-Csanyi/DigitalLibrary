@@ -13,6 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public interface IMasterDataDimensionStructureBusinessLogic
     {
+        Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure);
+
         Task<DimensionStructure> AddChildDimensionStructureAsync(
             long childDimensionStructureId,
             long parentDimensionId);
@@ -21,11 +23,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             DimensionStructure childDimensionStructure,
             long parentDimensionId);
 
-        Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure);
+        /// <summary>
+        ///     Adds <see cref="DimensionStructure" /> to the <see cref="DimensionStructure" /> tree as child.
+        /// </summary>
+        /// <param name="childId">DimensionStructure to be added as child.</param>
+        /// <param name="parentId">Parent DimensionStructure.</param>
+        /// <param name="sourceFormatId">SourceFormat.</param>
+        /// <returns>Result or exception.</returns>
+        Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
 
         /// <summary>
-        /// It adds <see cref="DimensionStructure"/> to a <see cref="SourceFormat"/> as its
-        /// RootDimensionStructure.
+        ///     It adds <see cref="DimensionStructure" /> to a <see cref="SourceFormat" /> as its
+        ///     RootDimensionStructure.
         /// </summary>
         /// <param name="dimensionStructureId">The DimensionStructure will be added.</param>
         /// <param name="sourceFormatId">The SourceFormat it wil be added to.</param>
@@ -39,8 +48,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
-        /// Returns <see cref="DimensionStructure"/> having given Id.
-        /// When there is no <see cref="DimensionStructure"/> returns null.
+        ///     Returns list of <see cref="DimensionStructure" /> where the parent is the given
+        ///     <see cref="DimensionStructure" />. <see cref="SourceFormat" /> defines the scope of the query.
+        /// </summary>
+        /// <param name="parentId">Parent Id.</param>
+        /// <param name="sourceFormatId">Source format id.</param>
+        /// <returns>List.</returns>
+        Task<List<DimensionStructure>> GetChildrenOfDimensionStructureInSourceFormatScopeAsync(
+            long parentId,
+            long sourceFormatId);
+
+        /// <summary>
+        ///     Returns <see cref="DimensionStructure" /> having given Id.
+        ///     When there is no <see cref="DimensionStructure" /> returns null.
         /// </summary>
         /// <param name="dimensionStructure">Query object.</param>
         /// <returns>DimensionStructure or null.</returns>
@@ -49,8 +69,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
 
         /// <summary>
-        /// It returns with <see cref="DimensionStructure"/> and the related <see cref="SourceFormat"/>
-        /// entities included too.
+        ///     It returns with <see cref="DimensionStructure" /> and the related <see cref="SourceFormat" />
+        ///     entities included too.
         /// </summary>
         /// <param name="name">Name of the DimensionStructure.</param>
         /// <returns>The DimensionStructure.</returns>
@@ -68,25 +88,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
 
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
-
-        /// <summary>
-        /// Adds <see cref="DimensionStructure"/> to the <see cref="DimensionStructure"/> tree as child.
-        /// </summary>
-        /// <param name="childId">DimensionStructure to be added as child.</param>
-        /// <param name="parentId">Parent DimensionStructure.</param>
-        /// <param name="sourceFormatId">SourceFormat.</param>
-        /// <returns>Result or exception.</returns>
-        Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
-
-        /// <summary>
-        /// Returns list of <see cref="DimensionStructure"/> where the parent is the given
-        /// <see cref="DimensionStructure"/>. <see cref="SourceFormat"/> defines the scope of the query.
-        /// </summary>
-        /// <param name="parentId">Parent Id.</param>
-        /// <param name="sourceFormatId">Source format id.</param>
-        /// <returns>List.</returns>
-        Task<List<DimensionStructure>> GetChildrenOfDimensionStructureInSourceFormatScopeAsync(
-            long parentId,
-            long sourceFormatId);
     }
 }

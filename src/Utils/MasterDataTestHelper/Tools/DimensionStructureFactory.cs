@@ -64,11 +64,15 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
                     break;
 
                 case "3spaces":
-                    result = "   ";
+                    result = $"{string.Empty}{string.Empty}{string.Empty}";
                     break;
 
                 case null:
                     result = _stringHelper.GetRandomString(4);
+                    break;
+
+                default:
+                    result = instanceProperty;
                     break;
             }
 

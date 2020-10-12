@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -17,18 +16,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     public partial class StepDefs
     {
-        [Then(@"root DimensionStructure of '(.*)' SourceFormat is not null")]
-        public void ThenRootDimensionStructureOfSourceFormatIsNotNull(string resultKey)
+        [Then(@"DimensionStructure related operation throws exception")]
+        public void ExceptionWasThrown(Table table)
         {
-            Check.NotNullOrEmptyOrWhitespace(resultKey);
+            ExceptionWasThrownEntity instance = table.CreateInstance<ExceptionWasThrownEntity>();
 
-            SourceFormat sourceFormat = _scenarioContext[resultKey] as SourceFormat;
-
-            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode
-               .Should().NotBeNull();
-            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode
-               .DimensionStructure
-               .Should().NotBeNull();
+            var exception = _scenarioContext[instance.ResultKey];
+            exception.Should().BeOfType<MasterDataBusinessLogicDimensionStructureDatabaseOperationException>();
         }
 
         [Then(@"DimensionStructure tree contains given DimensionStructure")]
@@ -77,13 +71,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                .Should().NotBeNull();
         }
 
-        [Then(@"DimensionStructure related operation throws exception")]
-        public void ExceptionWasThrown(Table table)
+        [Then(@"root DimensionStructure of '(.*)' SourceFormat is not null")]
+        public void ThenRootDimensionStructureOfSourceFormatIsNotNull(string resultKey)
         {
-            ExceptionWasThrownEntity instance = table.CreateInstance<ExceptionWasThrownEntity>();
+            Check.NotNullOrEmptyOrWhitespace(resultKey);
 
-            var exception = _scenarioContext[instance.ResultKey];
-            exception.Should().BeOfType<MasterDataBusinessLogicDimensionStructureDatabaseOperationException>();
+            SourceFormat sourceFormat = _scenarioContext[resultKey] as SourceFormat;
+
+            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode
+               .Should().NotBeNull();
+            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode
+               .DimensionStructure
+               .Should().NotBeNull();
         }
     }
 }

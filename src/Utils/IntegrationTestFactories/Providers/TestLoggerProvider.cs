@@ -10,17 +10,17 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
     {
         private ITestOutputHelper _outputHelper;
 
+        public TestLoggerProvider(ITestOutputHelper outputHelper)
+        {
+            _outputHelper = outputHelper
+                         ?? throw new ArgumentNullException($"No {nameof(outputHelper)} provided.");
+        }
+
         public void Dispose()
         {
         }
 
         public ILogger CreateLogger(string categoryName) => new TestLogger(
             categoryName, _outputHelper);
-
-        public TestLoggerProvider(ITestOutputHelper outputHelper)
-        {
-            _outputHelper = outputHelper
-                ?? throw new ArgumentNullException($"No {nameof(outputHelper)} provided.");
-        }
     }
 }
