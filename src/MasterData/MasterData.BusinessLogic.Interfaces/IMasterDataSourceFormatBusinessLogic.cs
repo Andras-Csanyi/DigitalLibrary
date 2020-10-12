@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <summary>
         ///     Saves a new <see cref="SourceFormat" /> in the database.
         /// </summary>
-        /// <param name="sourceFormat">New SourceFormant</param>
+        /// <param name="sourceFormat">New SourceFormant.</param>
         /// <returns>Saved SourceFormat.</returns>
         Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat);
 
@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <summary>
         ///     Returns with <see cref="SourceFormat" /> which brings its root <see cref="DimensionStructure" />.
         /// </summary>
-        /// <param name="querySourceFormat">Query object</param>
+        /// <param name="querySourceFormat">Query object.</param>
         /// <returns>Result or null.</returns>
         Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureAsync(SourceFormat querySourceFormat);
 

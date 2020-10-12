@@ -51,14 +51,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             _scenarioContext.Add(instance.resultKey, saved);
         }
 
-
         [Given(@"SourceFormat RootDimensionStructure has a child DimensionStructure")]
-        public async Task SourceFormatRootDimensionStructureHasAChildDimensionStructure(Table table)
+        public void SourceFormatRootDimensionStructureHasAChildDimensionStructure(Table table)
         {
         }
 
         [Given(@"there is a SourceFormat domain object")]
-        public async Task ThereIsASourceFormatDomainObject(Table table)
+        public void ThereIsASourceFormatDomainObject(Table table)
         {
             var instance = table.CreateInstance<ThereIsASourceFormatDomainobjectEntity>();
 
