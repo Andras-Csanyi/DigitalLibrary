@@ -64,11 +64,11 @@
         </SpecFlowFeatureFiles>
     </ItemGroup>
 
-    <Target Name="AfterUpdateFeatureFilesInProject">
-        <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
-        <ItemGroup>
-            <Compile Include="**\*.feature.cs" Exclude="@(Compile)"/>
-        </ItemGroup>
-    </Target>
+    <!--    <Target Name="AfterUpdateFeatureFilesInProject">-->
+    <!--        &lt;!&ndash; include any generated SpecFlow files in the compilation of the project if not included yet &ndash;&gt;-->
+    <!--        <ItemGroup>-->
+    <!--            <Compile Include="**\*.feature.cs" Exclude="@(Compile)"/>-->
+    <!--        </ItemGroup>-->
+    <!--    </Target>-->
 
 </Project>

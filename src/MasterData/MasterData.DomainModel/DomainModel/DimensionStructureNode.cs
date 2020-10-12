@@ -4,7 +4,7 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
-    public class DimensionStructureNode : IHaveId
+    public class DimensionStructureNode : IHaveId, IHaveIsActive
     {
         public long Id { get; set; }
 
@@ -35,5 +35,8 @@ namespace DigitalLibrary.MasterData.DomainModel
         /// <see cref="SourceFormat"/>.
         /// </summary>
         public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
+
+        /// <inheritdoc/>
+        public int IsActive { get; set; }
     }
 }
