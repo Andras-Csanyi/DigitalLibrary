@@ -38,7 +38,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -63,12 +63,5 @@
         <SpecFlowFeatureFiles Update="SourceFormat.AddAsync.feature">
         </SpecFlowFeatureFiles>
     </ItemGroup>
-
-    <Target Name="AfterUpdateFeatureFilesInProject">
-        <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
-        <ItemGroup>
-            <Compile Include="**\*.feature.cs" Exclude="@(Compile)"/>
-        </ItemGroup>
-    </Target>
 
 </Project>
