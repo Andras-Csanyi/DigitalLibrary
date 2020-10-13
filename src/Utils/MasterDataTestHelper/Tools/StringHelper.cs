@@ -3,12 +3,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using System;
     using System.Text;
 
-    public interface IStringHelper
-    {
-        string GetRandomString(int length);
-    }
-
-    public class StringHelper : IStringHelper
+    public class StringHelper
+        : IStringHelper
     {
         private string chars = "qwertyuioplkjhgfdsazxcvbnm";
 
