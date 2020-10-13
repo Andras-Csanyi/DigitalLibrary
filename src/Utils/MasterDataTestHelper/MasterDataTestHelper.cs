@@ -4,15 +4,14 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
-    public interface IMasterDataTestHelper
-    {
-        IDimensionStructureFactory DimensionStructureFactory { get; }
-
-        ISourceFormatFactory SourceFormatFactory { get; }
-    }
-
+    /// <inheritdoc />
     public class MasterDataTestHelper : IMasterDataTestHelper
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasterDataTestHelper"/> class.
+        /// </summary>
+        /// <param name="sourceFormatFactory">SourceFormatFactory.</param>
+        /// <param name="dimensionStructureFactory">DimensionStructureFactory.</param>
         public MasterDataTestHelper(
             ISourceFormatFactory sourceFormatFactory,
             IDimensionStructureFactory dimensionStructureFactory)
@@ -23,8 +22,10 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
                 $"{nameof(dimensionStructureFactory)}");
         }
 
+        /// <inheritdoc/>
         public IDimensionStructureFactory DimensionStructureFactory { get; }
 
+        /// <inheritdoc/>
         public ISourceFormatFactory SourceFormatFactory { get; }
     }
 }
