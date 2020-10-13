@@ -39,7 +39,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
         private string GetTestString(string instanceProperty)
         {
-            string result = null;
+            string result;
 
             switch (instanceProperty)
             {
