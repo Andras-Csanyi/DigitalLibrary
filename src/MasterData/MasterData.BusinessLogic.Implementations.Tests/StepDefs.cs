@@ -23,7 +23,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
-    using DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -136,12 +135,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
-            IDimensionStructureLinkedListHelper dimensionStructureLinkedListHelper =
-                new DimensionStructureLinkedListHelper();
             _masterDataTestHelper = new MasterDataTestHelper(
                 sourceFormatFactory,
-                dimensionStructureFactory,
-                dimensionStructureLinkedListHelper);
+                dimensionStructureFactory);
         }
 
         protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
