@@ -3,38 +3,29 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
     using System;
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
-    using DigitalLibrary.Utils.MasterDataTestHelper.Tools.DimensionStructureLinkedListHelper;
 
-    public interface IMasterDataTestHelper
-    {
-        IDimensionStructureFactory DimensionStructureFactory { get; }
-
-        IDimensionStructureLinkedListHelper DimensionStructureLinkedListHelper { get; }
-
-        ISourceFormatFactory SourceFormatFactory { get; }
-    }
-
+    /// <inheritdoc />
     public class MasterDataTestHelper : IMasterDataTestHelper
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasterDataTestHelper"/> class.
+        /// </summary>
+        /// <param name="sourceFormatFactory">SourceFormatFactory.</param>
+        /// <param name="dimensionStructureFactory">DimensionStructureFactory.</param>
         public MasterDataTestHelper(
             ISourceFormatFactory sourceFormatFactory,
-            IDimensionStructureFactory dimensionStructureFactory,
-            IDimensionStructureLinkedListHelper dimensionStructureLinkedListHelper)
+            IDimensionStructureFactory dimensionStructureFactory)
         {
             SourceFormatFactory = sourceFormatFactory ?? throw new ArgumentNullException(
                 $"{nameof(sourceFormatFactory)}");
             DimensionStructureFactory = dimensionStructureFactory ?? throw new ArgumentNullException(
                 $"{nameof(dimensionStructureFactory)}");
-            DimensionStructureLinkedListHelper = dimensionStructureLinkedListHelper
-                                              ?? throw new ArgumentNullException(
-                                                     $"{nameof(dimensionStructureLinkedListHelper)}");
         }
 
+        /// <inheritdoc/>
         public IDimensionStructureFactory DimensionStructureFactory { get; }
 
-        public IDimensionStructureLinkedListHelper DimensionStructureLinkedListHelper { get; }
-
-
+        /// <inheritdoc/>
         public ISourceFormatFactory SourceFormatFactory { get; }
     }
 }

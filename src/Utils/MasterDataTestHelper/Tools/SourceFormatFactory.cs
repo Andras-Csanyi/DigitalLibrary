@@ -7,33 +7,22 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    public interface ISourceFormatFactory
-    {
-        Task<SourceFormat> Create(string name);
-
-        Task<SourceFormat> Create(ThereIsADomainObjectEntity instance);
-    }
-
+    /// <inheritdoc />
     public class SourceFormatFactory : ISourceFormatFactory
     {
         private readonly IStringHelper _stringHelper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SourceFormatFactory"/> class.
+        /// </summary>
+        /// <param name="stringHelper">SourceFormatFactory instance.</param>
         public SourceFormatFactory(IStringHelper stringHelper)
         {
             _stringHelper = stringHelper;
         }
 
-        public async Task<SourceFormat> Create(string name)
-        {
-            SourceFormat result = new SourceFormat
-            {
-                Name = name,
-                Desc = _stringHelper.GetRandomString(4),
-            };
-            return result;
-        }
-
-        public async Task<SourceFormat> Create(ThereIsADomainObjectEntity instance)
+        /// <inheritdoc/>
+        public SourceFormat Create(ThereIsADomainObjectEntity instance)
         {
             Check.IsNotNull(instance);
 

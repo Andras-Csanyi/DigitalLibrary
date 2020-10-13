@@ -3,25 +3,25 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using System;
     using System.Text;
 
-    public interface IStringHelper
+    /// <summary>
+    /// StringHelper implementation.
+    /// </summary>
+    public class StringHelper
+        : IStringHelper
     {
-        string GetRandomString(int length);
-    }
+        private readonly string _chars = "qwertyuioplkjhgfdsazxcvbnm";
 
-    public class StringHelper : IStringHelper
-    {
-        private string chars = "qwertyuioplkjhgfdsazxcvbnm";
+        private readonly Random _rnd = new Random();
 
-        private Random rnd = new Random();
-
+        /// <inheritdoc/>
         public string GetRandomString(int length)
         {
             StringBuilder result = new StringBuilder();
-            int amountOfDistinctChars = chars.Length;
+            int amountOfDistinctChars = _chars.Length;
 
             for (int i = 0; i < length; i++)
             {
-                result.Append(chars.Substring(rnd.Next(amountOfDistinctChars), 1));
+                result.Append(_chars.Substring(_rnd.Next(amountOfDistinctChars), 1));
             }
 
             return result.ToString();
