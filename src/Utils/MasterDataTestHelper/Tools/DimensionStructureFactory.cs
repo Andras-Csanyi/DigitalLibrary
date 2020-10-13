@@ -7,37 +7,25 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    public interface IDimensionStructureFactory
-    {
-        Task<DimensionStructure> Create(string name);
-
-        Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance);
-    }
-
-    public class DimensionStructureFactory : IDimensionStructureFactory
+    /// <inheritdoc />
+    public class DimensionStructureFactory
+        : IDimensionStructureFactory
     {
         private readonly IStringHelper _stringHelper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DimensionStructureFactory"/> class.
+        /// </summary>
+        /// <param name="stringHelper">StringHelper instance.</param>
         public DimensionStructureFactory(IStringHelper stringHelper)
         {
             _stringHelper = stringHelper ?? throw new ArgumentNullException($"{nameof(stringHelper)}");
         }
 
-        public async Task<DimensionStructure> Create(string name)
-        {
-            DimensionStructure result = new DimensionStructure
-            {
-                Name = name,
-                Desc = _stringHelper.GetRandomString(4),
-            };
-
-            return result;
-        }
-
+        /// <inheritdoc/>
         public async Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance)
         {
             Check.IsNotNull(instance);
-
 
             DimensionStructure dimensionStructure = new DimensionStructure
             {
