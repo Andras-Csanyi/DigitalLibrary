@@ -18,6 +18,6 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// </summary>
         /// <param name="instance">Instance.</param>
         /// <returns>Result string.</returns>
-        Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance);
+        DimensionStructure Create(ThereIsADimensionStructureDomainobjectEntity instance);
     }
 }

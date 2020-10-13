@@ -23,7 +23,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         }
 
         /// <inheritdoc/>
-        public async Task<DimensionStructure> Create(ThereIsADimensionStructureDomainobjectEntity instance)
+        public DimensionStructure Create(ThereIsADimensionStructureDomainobjectEntity instance)
         {
             Check.IsNotNull(instance);
 

@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
              || string.IsNullOrWhiteSpace(instance.dimensionStructureKey))
             {
                 string msg = $"Either {nameof(instance.sourceFormatKey)} or " +
-                             $"{nameof(instance.dimensionStructureKey)} are null. Or both.";
+                    $"{nameof(instance.dimensionStructureKey)} are null. Or both.";
                 throw new MasterDataStepDefinitionException(msg);
             }
 
@@ -98,10 +98,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         }
 
         [Given(@"there is a DimensionStructure domain object")]
-        public async Task ThereIsADimensionStructureDomainObject(Table table)
+        public void ThereIsADimensionStructureDomainObject(Table table)
         {
             var instance = table.CreateInstance<ThereIsADimensionStructureDomainobjectEntity>();
-            DomainModel.DimensionStructure dimensionStructure = await _masterDataTestHelper
+            DomainModel.DimensionStructure dimensionStructure = _masterDataTestHelper
                .DimensionStructureFactory
                .Create(instance);
 
