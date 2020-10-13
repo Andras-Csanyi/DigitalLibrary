@@ -19,24 +19,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     /// </summary>
     public partial class StepDefs
     {
-        [Given(@"domain object is saved")]
-        [When(@"domain object is saved")]
-        public async Task DomainObjectIsSaved(Table table)
-        {
-            DomainObjectIsSavedEntity instance = table.CreateInstance<DomainObjectIsSavedEntity>();
-
-            switch (instance.DomainObjectType)
-            {
-                case DomainObjectTypesStringEnum.SourceFormat:
-                    await SourceFormatDomainObjectTypeIsSaved(instance).ConfigureAwait(false);
-                    break;
-
-                case DomainObjectTypesStringEnum.DimensionStructure:
-                    await DimensionStructureDomainObjectTypeIsSaved(instance).ConfigureAwait(false);
-                    break;
-            }
-        }
-
         [Given(@"SourceFormat is saved")]
         [When(@"SourceFormat is saved")]
         public async Task SourceFormatIsSaved(Table table)
