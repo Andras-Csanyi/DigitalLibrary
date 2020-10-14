@@ -5,29 +5,26 @@
 namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <inheritdoc />
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class DiLibHttpClientException : Exception
     {
-        /// <inheritdoc />
         public DiLibHttpClientException()
         {
         }
 
-        /// <inheritdoc />
         protected DiLibHttpClientException(SerializationInfo? info, StreamingContext context)
             : base(info, context)
         {
         }
 
-        /// <inheritdoc />
         public DiLibHttpClientException(string? message)
             : base(message)
         {
         }
 
-        /// <inheritdoc />
         public DiLibHttpClientException(string? message, Exception? innerException)
             : base(message, innerException)
         {

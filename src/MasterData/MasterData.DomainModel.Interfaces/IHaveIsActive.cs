@@ -1,5 +1,8 @@
 namespace DigitalLibrary.MasterData.DomainModel.Interfaces
 {
+    /// <summary>
+    /// Interface for domain entities having IsActive value.
+    /// </summary>
     public interface IHaveIsActive
     {
         /// <summary>

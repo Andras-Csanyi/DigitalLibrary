@@ -5,6 +5,9 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public class DimensionStructureDimensionStructureValidatorRulesets
     {
         public const string Add = "Add";

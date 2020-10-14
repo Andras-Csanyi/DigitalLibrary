@@ -11,9 +11,16 @@ namespace DigitalLibrary.MasterData.Validators
 
     using FluentValidation;
 
+    /// <summary>
+    /// Validator for <see cref="SourceFormat"/> object.
+    /// It contains multiple validators which can be utilized by using <see cref="SourceFormatValidatorRulesets"/>.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class SourceFormatValidator : AbstractValidator<SourceFormat>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SourceFormatValidator"/> class.
+        /// </summary>
         public SourceFormatValidator()
         {
             RuleSet(SourceFormatValidatorRulesets.Add, () =>

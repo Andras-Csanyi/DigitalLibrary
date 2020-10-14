@@ -5,7 +5,10 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
-    public class DimensionStructureValidatorRulesets
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
+    public struct DimensionStructureValidatorRulesets
     {
         public const string AddAsync = "Add";
 

@@ -6,8 +6,10 @@
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class MasterDataHttpClientException : Exception
     {
         public MasterDataHttpClientException()
