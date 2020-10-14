@@ -16,16 +16,23 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
     using Newtonsoft.Json;
 
+    /// <inheritdoc />
     public class DiLibHttpClient : IDiLibHttpClient
     {
         private readonly HttpClient _httpClient;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DiLibHttpClient"/> class.
+        /// </summary>
+        /// <param name="httpClient">Instance.</param>
         public DiLibHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        public async Task DeleteAsync<T>(T payload, string url) where T : class
+        /// <inheritdoc/>
+        public async Task DeleteAsync<T>(T payload, string url)
+            where T : class
         {
             try
             {
@@ -53,10 +60,11 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
             catch (Exception e)
             {
-                throw new DiLibHttpClientDeleteException(e.Message, e);
+                throw new DiLibHttpClientException(e.Message, e);
             }
         }
 
+        /// <inheritdoc/>
         public async Task<T> GetAsync<T>(string url)
         {
             try
@@ -86,11 +94,13 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
             catch (Exception e)
             {
-                throw new DiLibHttpClientGetException(e.Message, e);
+                throw new DiLibHttpClientException(e.Message, e);
             }
         }
 
-        public async Task<T> PostAsync<T>(T payload, string url) where T : class
+        /// <inheritdoc/>
+        public async Task<T> PostAsync<T>(T payload, string url)
+            where T : class
         {
             try
             {
@@ -121,11 +131,12 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
             catch (Exception e)
             {
-                throw new DiLibHttpClientPostException(e.Message, e);
+                throw new DiLibHttpClientException(e.Message, e);
             }
         }
 
-        public async Task<ReturnType> PostAsync<ReturnType, PayloadType>(PayloadType payload, string url)
+        /// <inheritdoc/>
+        public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url)
         {
             try
             {
@@ -143,7 +154,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
                         string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        ReturnType result = JsonToObject<ReturnType>(content);
+                        TReturnType result = JsonToObject<TReturnType>(content);
                         return result;
                     }
                     catch (Exception e)
@@ -156,11 +167,13 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
             catch (Exception e)
             {
-                throw new DiLibHttpClientPostException(e.Message, e);
+                throw new DiLibHttpClientException(e.Message, e);
             }
         }
 
-        public async Task<T> PutAsync<T>(T payload, string url) where T : class
+        /// <inheritdoc/>
+        public async Task<T> PutAsync<T>(T payload, string url)
+            where T : class
         {
             try
             {
@@ -194,7 +207,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
             catch (Exception e)
             {
-                throw new DiLibHttpClientPutException(e.Message, e);
+                throw new DiLibHttpClientException(e.Message, e);
             }
         }
 
