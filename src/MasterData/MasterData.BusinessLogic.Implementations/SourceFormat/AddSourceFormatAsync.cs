@@ -26,7 +26,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
         public async Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-            {
                 using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync()
                    .ConfigureAwait(false))
                 {
@@ -49,11 +48,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
                         string msg = $"Operation failed: {nameof(AddSourceFormatAsync)}. " +
-                                     $"For further details see inner exception.";
-                        throw new MasterDataBusinessLogicAddSourceFormatAsyncOperationException(msg, e);
+                            $"For further details see inner exception.";
+                        throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                     }
                 }
-            }
         }
     }
 }

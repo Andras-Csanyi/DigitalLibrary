@@ -29,8 +29,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
             DimensionStructure dimensionStructure = new DimensionStructure
             {
-                Name = GetTestString(instance.Name),
-                Desc = GetTestString(instance.Desc),
+                Name = _stringHelper.GetNamePropertyString(instance.Name),
+                Desc = _stringHelper.GetDescPropertyString(instance.Desc),
                 IsActive = Convert.ToInt32(instance.IsActive),
             };
 

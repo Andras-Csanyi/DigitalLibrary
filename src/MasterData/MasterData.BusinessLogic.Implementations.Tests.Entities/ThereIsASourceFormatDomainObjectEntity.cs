@@ -1,6 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities
 {
-    public class ThereIsASourceFormatDomainobjectEntity
+    public class ThereIsASourceFormatDomainObjectEntity
     {
         public string Desc { get; set; }
 
