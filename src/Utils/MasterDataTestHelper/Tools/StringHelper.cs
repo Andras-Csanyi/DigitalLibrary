@@ -6,8 +6,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     /// <summary>
     /// StringHelper implementation.
     /// </summary>
-    public class StringHelper
-        : IStringHelper
+    public class StringHelper : IStringHelper
     {
         private readonly string _chars = "qwertyuioplkjhgfdsazxcvbnm";
 
@@ -25,6 +24,66 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             }
 
             return result.ToString();
+        }
+
+        public string GetNamePropertyString(string value)
+        {
+            string result;
+
+            switch (value)
+            {
+                case "null":
+                    result = null;
+                    break;
+
+                case "empty":
+                    result = string.Empty;
+                    break;
+
+                case "3spaces":
+                    result = $"{string.Empty}{string.Empty}{string.Empty}";
+                    break;
+
+                case null:
+                    result = GetRandomString(4);
+                    break;
+
+                default:
+                    result = value;
+                    break;
+            }
+
+            return result;
+        }
+
+        public string GetDescPropertyString(string value)
+        {
+            string result;
+
+            switch (value)
+            {
+                case "null":
+                    result = null;
+                    break;
+
+                case "empty":
+                    result = string.Empty;
+                    break;
+
+                case "3spaces":
+                    result = $"{string.Empty}{string.Empty}{string.Empty}";
+                    break;
+
+                case null:
+                    result = GetRandomString(4);
+                    break;
+
+                default:
+                    result = value;
+                    break;
+            }
+
+            return result;
         }
     }
 }

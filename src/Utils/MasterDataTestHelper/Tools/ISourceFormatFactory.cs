@@ -16,6 +16,6 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// </summary>
         /// <param name="instance">BDD test instance.</param>
         /// <returns>Result string.</returns>
-        SourceFormat Create(ThereIsADomainObjectEntity instance);
+        SourceFormat Create(ThereIsASourceFormatDomainObjectEntity instance);
     }
 }

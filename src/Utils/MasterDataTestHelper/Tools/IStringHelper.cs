@@ -11,5 +11,9 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// <param name="length">Length of the string.</param>
         /// <returns>Result string.</returns>
         string GetRandomString(int length);
+
+        string GetNamePropertyString(string value);
+
+        string GetDescPropertyString(string value);
     }
 }

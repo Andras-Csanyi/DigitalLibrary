@@ -96,9 +96,3 @@ Feature: AddAsync
       | PropertyName | IsActive          |
       | EqualsTo     | SF1Root           |
     And 'SF1Result' SourceFormat result's RootDimensionStructure Id property is not zero
-
-#  Scenario: Adds a DimensionStructure to SourceFormat as root dimension structure when DimensionStructure is 
-#  already root dimension structure of another SourceFormat
-  
-#  Scenario: Adds a DimensionStructure to SourceFormat as root dimension structure when DimensionStructure is
-#  already part of DimensionStructure tree of another SourceFormat

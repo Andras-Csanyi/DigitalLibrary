@@ -22,15 +22,15 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         }
 
         /// <inheritdoc/>
-        public SourceFormat Create(ThereIsADomainObjectEntity instance)
+        public SourceFormat Create(ThereIsASourceFormatDomainObjectEntity instance)
         {
             Check.IsNotNull(instance);
 
             SourceFormat sourceFormat = new SourceFormat
             {
-                Name = instance.NameProperty ?? _stringHelper.GetRandomString(4),
-                Desc = instance.DescProperty ?? _stringHelper.GetRandomString(4),
-                IsActive = Convert.ToInt32(instance.IsActiveProperty),
+                Name = _stringHelper.GetNamePropertyString(instance.Name),
+                Desc = _stringHelper.GetDescPropertyString(instance.Desc),
+                IsActive = Convert.ToInt32(instance.IsActive),
             };
 
             return sourceFormat;

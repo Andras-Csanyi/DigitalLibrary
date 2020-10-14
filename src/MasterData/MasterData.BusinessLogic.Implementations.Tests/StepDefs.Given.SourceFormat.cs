@@ -5,6 +5,7 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
@@ -26,11 +27,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             var instance = table.CreateInstance<(string key, string resultKey)>();
 
             DomainModel.SourceFormat toBeSaved = _scenarioContext[instance.key] as SourceFormat;
-            DomainModel.SourceFormat saved = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .AddSourceFormatAsync(toBeSaved)
-               .ConfigureAwait(false);
-            _scenarioContext.Add(instance.resultKey, saved);
+            try
+            {
+                SourceFormat saved = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AddSourceFormatAsync(toBeSaved)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.resultKey, saved);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.resultKey, e);
+            }
         }
 
         [Given(@"SourceFormat RootDimensionStructure has a child DimensionStructure")]
@@ -41,14 +49,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         [Given(@"there is a SourceFormat domain object")]
         public void ThereIsASourceFormatDomainObject(Table table)
         {
-            var instance = table.CreateInstance<ThereIsASourceFormatDomainobjectEntity>();
+            var instance = table.CreateInstance<ThereIsASourceFormatDomainObjectEntity>();
 
-            DomainModel.SourceFormat sourceFormat = new DomainModel.SourceFormat
-            {
-                Name = instance.Name ?? stringHelper.GetRandomString(3),
-                Desc = instance.Desc ?? stringHelper.GetRandomString(3),
-                IsActive = instance.IsActive,
-            };
+            DomainModel.SourceFormat sourceFormat = _masterDataTestHelper
+               .SourceFormatFactory
+               .Create(instance);
 
             if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
             {
