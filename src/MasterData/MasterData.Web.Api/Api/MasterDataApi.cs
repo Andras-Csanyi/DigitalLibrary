@@ -6,12 +6,15 @@
 namespace DigitalLibrary.MasterData.Web.Api
 {
     /// <summary>
-    ///     Digital Library MasterData api endpoint
+    ///     Digital Library MasterData api endpoint.
     /// </summary>
     public struct MasterDataApi
     {
         public const string Route = "api/masterdata";
 
+        /// <summary>
+        /// <see cref="SourceFormat"/> related endpoints.
+        /// </summary>
         public struct SourceFormat
         {
             public const string SourceFormatBase = Route + "/SourceFormat";
@@ -92,6 +95,9 @@ namespace DigitalLibrary.MasterData.Web.Api
             }
         }
 
+        /// <summary>
+        /// <see cref="DimensionStructure"/> related endpoints.
+        /// </summary>
         public struct DimensionStructure
         {
             public struct V1

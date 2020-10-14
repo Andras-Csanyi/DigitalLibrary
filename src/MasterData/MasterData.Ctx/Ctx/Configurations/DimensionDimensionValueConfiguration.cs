@@ -10,8 +10,10 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    /// <inheritdoc />
     public class DimensionDimensionValueConfiguration : IEntityTypeConfiguration<DimensionDimensionValue>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<DimensionDimensionValue> builder)
         {
             builder.ToTable("dimension_dimension_value");
@@ -26,6 +28,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
                .WithMany(m => m.DimensionDimensionValues)
                .HasForeignKey(f => f.DimensionId)
                .IsRequired(false);
+
             builder.HasOne(p => p.DimensionValue)
                .WithMany(m => m.DimensionDimensionValues)
                .HasForeignKey(f => f.DimensionValueId)
