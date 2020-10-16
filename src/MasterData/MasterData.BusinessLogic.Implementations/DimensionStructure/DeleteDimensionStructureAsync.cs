@@ -18,34 +18,33 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        public async Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure)
+        /// <inheritdoc/>
+        public async Task DeleteLogicallyAsync(DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
-                using (IDbContextTransaction transaction =
-                    await ctx.Database.BeginTransactionAsync().ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        Check.IsNotNull(dimensionStructure);
+                    Check.IsNotNull(dimensionStructure);
 
-                        DimensionStructure toBeDeleted = await ctx.DimensionStructures
-                           .FindAsync(dimensionStructure.Id)
-                           .ConfigureAwait(false);
+                    DimensionStructure toBeDeleted = await ctx.DimensionStructures
+                       .FindAsync(dimensionStructure.Id)
+                       .ConfigureAwait(false);
 
-                        string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                                     $"with id: {dimensionStructure}.";
-                        Check.IsNotNull(toBeDeleted, msg);
+                    string msg = $"There is no {nameof(DimensionStructure)} entity " +
+                                 $"with id: {dimensionStructure}.";
+                    Check.IsNotNull(toBeDeleted, msg);
 
-                        ctx.Entry(toBeDeleted).State = EntityState.Deleted;
-                        await ctx.SaveChangesAsync().ConfigureAwait(false);
-                        await transaction.CommitAsync().ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(e.Message, e);
-                    }
+                    toBeDeleted.IsActive = 0;
+                    ctx.Entry(toBeDeleted).State = EntityState.Modified;
+                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+                    string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
+                                 $"{nameof(DeleteLogicallyAsync)} operation failed! " +
+                                 $"For further info see inner exception!";
+                    throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
                 }
             }
         }

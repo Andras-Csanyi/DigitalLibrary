@@ -53,11 +53,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="DimensionStructure"/>
-        <Folder Include="SourceFormat"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <SpecFlowFeatureFiles Update="DimensionStructure.AddAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat.AddAsync.feature">

@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -83,6 +84,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode
                .DimensionStructure
                .Should().NotBeNull();
+        }
+
+        [Then(@"DimensionStructure amount is")]
+        public void DimensionStructureAmountIs(Table table)
+        {
+            Check.IsNotNull(table);
+            var instance = table.CreateInstance<(int expectedAmount, string resultKey)>();
+
+            List<DimensionStructure> list = _scenarioContext[instance.resultKey] as List<DimensionStructure>;
+            list.Count.Should().Be(instance.expectedAmount);
+        }
+
+        [Then(@"list of DimensionStructure doesn't contain the deleted one")]
+        public void ListOfDimensionStructureDoesntContainTheDeletedOne(Table table)
+        {
+            Check.IsNotNull(table);
+            var instance = table.CreateInstance<(string resultKey, string dimensionStructureKey)>();
+
+            List<DimensionStructure> list = _scenarioContext[instance.resultKey] as List<DimensionStructure>;
+            DimensionStructure dimensionStructure = _scenarioContext[instance.dimensionStructureKey]
+                as DimensionStructure;
+
+            list.Should().NotContain(dimensionStructure);
         }
     }
 }
