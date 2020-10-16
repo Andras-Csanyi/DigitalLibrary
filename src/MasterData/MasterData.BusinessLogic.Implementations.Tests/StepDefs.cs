@@ -57,6 +57,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected IStringHelper stringHelper;
 
+        protected const string SUCCESS = "SUCCESS";
+
         protected StepDefs(
             ITestOutputHelper testOutputHelper,
             ScenarioContext scenarioContext)

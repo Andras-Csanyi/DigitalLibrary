@@ -23,7 +23,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         }
 
         /// <inheritdoc/>
-        public DimensionStructure Create(ThereIsADimensionStructureDomainobjectEntity instance)
+        public DimensionStructure Create(IDimensionStructureDomainObject instance)
         {
             Check.IsNotNull(instance);
 
@@ -35,36 +35,6 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             };
 
             return dimensionStructure;
-        }
-
-        private string GetTestString(string instanceProperty)
-        {
-            string result;
-
-            switch (instanceProperty)
-            {
-                case "null":
-                    result = null;
-                    break;
-
-                case "empty":
-                    result = string.Empty;
-                    break;
-
-                case "3spaces":
-                    result = $"{string.Empty}{string.Empty}{string.Empty}";
-                    break;
-
-                case null:
-                    result = _stringHelper.GetRandomString(4);
-                    break;
-
-                default:
-                    result = instanceProperty;
-                    break;
-            }
-
-            return result;
         }
     }
 }
