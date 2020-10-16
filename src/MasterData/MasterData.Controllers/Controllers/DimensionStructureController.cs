@@ -60,7 +60,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .DeleteDimensionStructureAsync(dimensionStructure).ConfigureAwait(false);
+                   .DeleteLogicallyAsync(dimensionStructure).ConfigureAwait(false);
                 return Ok();
             }
             catch (Exception e)

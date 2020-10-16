@@ -1,4 +1,4 @@
-Feature: Delete DimensionStructureAsync method input validation
+Feature: Logically Delete DimensionStructureAsync method input validation
 
   As a Data Owner and Data Curator
   In order to keep the data and structures in check
@@ -7,11 +7,15 @@ Feature: Delete DimensionStructureAsync method input validation
 
   Scenario: Exception is thrown when invalid data is provided for DimensionStructure delete
 
-    When deleting DimensionStructure
-      | Field     | Value                      |
-      | Id        | 0                          |
-      | ResultKey | dimension-structure-delete |
+    And there is a DimensionStructure domain object
+      | Field | Value         |
+      | Key   | no-connection |
+
+    When DimensionStructure is logically deleted
+      | Field     | Value                |
+      | Key       | no-connection        |
+      | ResultKey | no-connection-result |
 
     Then DimensionStructure related operation throws exception
-      | Field     | Value                      |
-      | ResultKey | dimension-structure-delete |
+      | Field     | Value                |
+      | ResultKey | no-connection-result |

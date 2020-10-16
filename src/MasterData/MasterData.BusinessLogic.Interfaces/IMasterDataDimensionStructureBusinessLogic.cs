@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 
-        Task DeleteDimensionStructureAsync(DimensionStructure dimensionStructure);
+        Task DeleteLogicallyAsync(DimensionStructure dimensionStructure);
 
         /// <summary>
         ///     Returns list of <see cref="DimensionStructure" /> where the parent is the given
@@ -88,5 +88,24 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
 
         Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
+
+        /// <summary>
+        /// Returns with amount of <see cref="DimensionStructure"/> in the system.
+        /// Both active and inactive included.
+        /// </summary>
+        /// <returns>Amount.</returns>
+        Task<int> GetCountAsync();
+
+        /// <summary>
+        /// Returns with amount of active <see cref="DimensionStructure"/> in the system.
+        /// </summary>
+        /// <returns>Amount.</returns>
+        Task<int> GetActiveCountAsync();
+
+        /// <summary>
+        /// Returns list of active <see cref="DimensionStructure"/> in the system.
+        /// </summary>
+        /// <returns>List.</returns>
+        Task<List<DimensionStructure>> GetActivesListAsync();
     }
 }

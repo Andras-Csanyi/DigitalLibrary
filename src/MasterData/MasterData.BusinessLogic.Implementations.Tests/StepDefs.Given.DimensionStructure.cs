@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
@@ -121,12 +122,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             DomainModel.DimensionStructure dimensionStructure = _masterDataTestHelper
                .DimensionStructureFactory
                .Create(instance);
-
-            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
-            {
-                string msg = $"Key is empty or null";
-                throw new MasterDataStepDefinitionException(msg);
-            }
 
             try
             {
