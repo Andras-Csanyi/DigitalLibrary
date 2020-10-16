@@ -34,7 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
              || string.IsNullOrWhiteSpace(instance.dimensionStructureKey))
             {
                 string msg = $"Either {nameof(instance.sourceFormatKey)} or " +
-                    $"{nameof(instance.dimensionStructureKey)} are null. Or both.";
+                             $"{nameof(instance.dimensionStructureKey)} are null. Or both.";
                 throw new MasterDataStepDefinitionException(msg);
             }
 
@@ -112,6 +112,34 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             }
 
             _scenarioContext.Add(instance.Key, dimensionStructure);
+        }
+
+        [Given(@"there is a saved DimensionStructure domain object")]
+        public async Task ThereIsASavedDimensionStructureDomainObject(Table table)
+        {
+            var instance = table.CreateInstance<ThereIsASavedDimensionStructureDomainobjectEntity>();
+            DomainModel.DimensionStructure dimensionStructure = _masterDataTestHelper
+               .DimensionStructureFactory
+               .Create(instance);
+
+            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
+            {
+                string msg = $"Key is empty or null";
+                throw new MasterDataStepDefinitionException(msg);
+            }
+
+            try
+            {
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.ResultKey, result);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.ResultKey, e);
+            }
         }
     }
 }

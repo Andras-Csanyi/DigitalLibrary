@@ -27,8 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 {
                     try
                     {
-                        string guardMessage = $"{nameof(dimensionStructure)} is zero.";
-                        Check.IsNotNull(dimensionStructure, guardMessage);
+                        Check.IsNotNull(dimensionStructure);
 
                         DimensionStructure toBeDeleted = await ctx.DimensionStructures
                            .FindAsync(dimensionStructure.Id)
@@ -45,9 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                     catch (Exception e)
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
-                        throw new MasterDataBusinessLogicDeleteDimensionStructureAsyncOperationException(
-                            e.Message,
-                            e);
+                        throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(e.Message, e);
                     }
                 }
             }
