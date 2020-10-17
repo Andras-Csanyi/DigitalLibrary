@@ -38,12 +38,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<SourceFormat> GetSourceFormatByIdAsync(SourceFormat sourceFormat);
 
         /// <summary>
-        ///     Returns <see cref="SourceFormat" /> which has all <see cref="DimensionStructureNode" />s and
+        ///     Returns <see cref="SourceFormat" /> which has both active and inactive
+        /// <see cref="DimensionStructureNode" />s and
         ///     <see cref="DimensionStructure" />s attached too.
         /// </summary>
         /// <param name="sourceFormat">Queryobject.</param>
         /// <returns>SourceFormat or null.</returns>
         Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        /// Returns with <see cref="SourceFormat"/> which has only <see cref="DimensionStructureNode"/>s
+        /// where the <see cref="DimensionStructure"/> is active.
+        /// </summary>
+        /// <param name="querySourceFormat">Query object.</param>
+        /// <returns>SourceFormat or null.</returns>
+        Task<SourceFormat> GetSourceFormatByIdWithActiveOnlyDimensionStructuresInTheTreeAsync(
+            SourceFormat querySourceFormat);
 
         /// <summary>
         ///     Returns with <see cref="SourceFormat" /> which has the <see cref="DimensionStructure" /> tree mounted.
@@ -81,6 +91,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <returns>The result.</returns>
         Task<SourceFormat> GetSourceFormatByNameWithRootDimensionStructureAsync(SourceFormat sourceFormat);
 
+        /// <summary>
+        /// Returns list of <see cref="SourceFormat"/> which includes both active and inactive ones.
+        /// </summary>
+        /// <returns>List.</returns>
         Task<List<SourceFormat>> GetSourceFormatsAsync();
 
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);

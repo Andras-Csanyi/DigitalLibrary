@@ -4,7 +4,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -13,39 +12,43 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc />
-        public async Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureTreeAsync(
+        /// <inheritdoc/>
+        public async Task<SourceFormat> GetSourceFormatByIdWithActiveOnlyDimensionStructuresInTheTreeAsync(
             SourceFormat querySourceFormat)
         {
             try
             {
                 Check.IsNotNull(querySourceFormat);
-
-                SourceFormat sourceFormat = await GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
+                SourceFormat result = await GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
                    .ConfigureAwait(false);
+
+                if (result == null)
+                {
+                    return null;
+                }
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    DimensionStructureNode tree = await GetDimensionStructureNodeTreeAsync(
-                            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode,
+                    DimensionStructureNode tree = await GetActiveDimensionStructureNodeTreeAsync(
+                            result.SourceFormatDimensionStructureNode.DimensionStructureNode,
                             ctx)
                        .ConfigureAwait(false);
 
-                    sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode = tree;
+                    result.SourceFormatDimensionStructureNode.DimensionStructureNode = tree;
                 }
 
-                return sourceFormat;
+                return result;
             }
             catch (Exception e)
             {
-                string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
-                             $"{nameof(GetSourceFormatByIdWithDimensionStructureTreeAsync)} " +
+                string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
+                             $"{nameof(GetSourceFormatByIdWithActiveOnlyDimensionStructuresInTheTreeAsync)} " +
                              $"operation failed. For further info see inner exception.";
-                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }
 
-        private async Task<DimensionStructureNode> GetDimensionStructureNodeTreeAsync(
+        private async Task<DimensionStructureNode> GetActiveDimensionStructureNodeTreeAsync(
             DimensionStructureNode dimensionStructureNode,
             MasterDataContext ctx)
         {
@@ -56,6 +59,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                .AsNoTracking()
                .Include(i => i.ChildNodes)
                .Include(ii => ii.DimensionStructure)
+               .Where(p => p.DimensionStructure.IsActive == 1)
                .FirstAsync(w => w.Id == dimensionStructureNode.Id)
                .ConfigureAwait(false);
 
