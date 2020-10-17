@@ -9,6 +9,25 @@ Feature: Logical Delete of DimensionStructure
       | Field     | Value         |
       | ResultKey | no-connection |
 
+    And there is a SourceFormat domain object
+      | Field | Value |
+      | Key   | sf-1  |
+    And SourceFormat is saved
+      | Field     | Value       |
+      | Key       | sf-1        |
+      | ResultKey | sf-1-result |
+    And there is a DimensionStructure domain object
+      | Field | Value       |
+      | Key   | sf1-root-ds |
+    And DimensionStructure is saved
+      | Field     | Value              |
+      | Key       | sf1-root-ds        |
+      | ResultKey | sf1-root-ds-result |
+    And DimensionStructure is added to SourceFormat as root dimensionstructure
+      | Field                 | Value              |
+      | SourceFormatKey       | sf-1-result        |
+      | DimensionStructureKey | sf1-root-ds-result |
+
   Scenario: DimensionStructure doesn't have any connection
 
     When amount of active DimensionStructure is requested
@@ -25,7 +44,7 @@ Feature: Logical Delete of DimensionStructure
       | Field     | Value             |
       | ResultKey | list-after-delete |
 
-    Then difference between list is
+    Then difference between lists is
       | Field           | Value                |
       | ExpectedDiff    | 1                    |
       | FirstResultKey  | amount-before-delete |
@@ -34,3 +53,29 @@ Feature: Logical Delete of DimensionStructure
       | Field                 | Value             |
       | ResultKey             | list-after-delete |
       | DimensionStructureKey | no-connection     |
+
+  Scenario: DimensionStructure is root dimension structure of a SourceFormat
+
+    When amount of active DimensionStructure is requested
+      | Field     | Value                |
+      | ResultKey | amount-before-delete |
+    And DimensionStructure is logically deleted
+      | Field     | Value                            |
+      | Key       | sf1-root-ds-result               |
+      | ResultKey | sf1-root-ds-result-delete-result |
+    And amount of active DimensionStructure is requested
+      | Field     | Value               |
+      | ResultKey | amount-after-delete |
+    And list of active DimensionStructures is requested
+      | Field     | Value             |
+      | ResultKey | list-after-delete |
+
+    Then difference between lists is
+      | Field           | Value                |
+      | ExpectedDiff    | 1                    |
+      | FirstResultKey  | amount-before-delete |
+      | SecondResultKey | amount-after-delete  |
+    And list of DimensionStructure doesn't contain the deleted one
+      | Field                 | Value              |
+      | ResultKey             | list-after-delete  |
+      | DimensionStructureKey | sf1-root-ds-result |

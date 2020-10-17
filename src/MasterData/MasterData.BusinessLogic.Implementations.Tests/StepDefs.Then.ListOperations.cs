@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     public partial class StepDefs
     {
-        [Then(@"difference between list is")]
+        [Then(@"difference between lists is")]
         public void DifferenceBetweenActiveAmountBeforeLogicalDeleteAndAfterIs(Table table)
         {
             Check.IsNotNull(table);
