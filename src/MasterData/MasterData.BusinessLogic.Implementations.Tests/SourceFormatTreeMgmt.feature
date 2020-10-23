@@ -42,3 +42,8 @@ Feature: Source format and its tree management
       | Key             | ds-child-result        |
       | SourceFormatKey | sf-1-result            |
       | ResultKey       | ds-child-delete-result |
+
+    And SourceFormat don't have node with DimensionStructure
+      | Field                 | Value           |
+      | DimensionStructureKey | ds-child-result |
+      | SourceFormatKey       | sf-1-result     |
