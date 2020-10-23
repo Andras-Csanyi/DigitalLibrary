@@ -7,6 +7,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
@@ -134,6 +135,30 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             catch (Exception e)
             {
                 _scenarioContext.Add(instance.ResultKey, e);
+            }
+        }
+
+        [Given(@"DimensionStructure is deleted from the tree")]
+        public async Task DimensionStructureIsDeletedFromTheTree(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string dimensionStructureKey,
+                string sourceFormatKey,
+                string resultKey)>();
+
+            DimensionStructure toBeDeleted = _scenarioContext[instance.dimensionStructureKey] as DimensionStructure;
+            SourceFormat sourceFormat = _scenarioContext[instance.sourceFormatKey] as SourceFormat;
+
+            try
+            {
+                await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
+                   .DeleteFromTree(toBeDeleted.Id, sourceFormat.Id)
+                   .ConfigureAwait(false);
+                _scenarioContext.Add(instance.resultKey, SUCCESS);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.resultKey, e);
             }
         }
     }

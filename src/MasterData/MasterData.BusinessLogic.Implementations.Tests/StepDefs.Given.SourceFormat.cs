@@ -10,7 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
+
+    using FluentAssertions;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -62,6 +65,44 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
             }
 
             _scenarioContext.Add(instance.Key, sourceFormat);
+        }
+
+        [Given(@"SourceFormat is requested with active DimensionStructure tree")]
+        public async Task SourceFormatIsRequestedWithActiveDimensionStructureTree(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string sourceFormatKey,
+                string resultKey)>();
+
+            SourceFormat sourceFormat = _scenarioContext[instance.sourceFormatKey] as SourceFormat;
+
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithActiveDimensionStructureTreeAsync(sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            _scenarioContext.Add(instance.resultKey, result);
+        }
+
+        [Given(@"SourceFormat don't have node with DimensionStructure")]
+        [Then(@"SourceFormat don't have node with DimensionStructure")]
+        public async Task SourceFormatHasInactiveNodeWithDimensionStructure(Table table)
+        {
+            var instance = table.CreateInstance<(
+                string dimensionStructureKey,
+                string sourceFormatKey)>();
+
+            SourceFormat sourceFormat = _scenarioContext[instance.sourceFormatKey] as SourceFormat;
+            DimensionStructure dimensionStructure = _scenarioContext[instance.dimensionStructureKey]
+                as DimensionStructure;
+
+            Check.IsNotNull(sourceFormat);
+            Check.IsNotNull(dimensionStructure);
+
+            DimensionStructureNode node = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetNodeAsync(sourceFormat.Id, dimensionStructure.Id)
+               .ConfigureAwait(false);
+
+            node.Should().BeNull();
         }
     }
 }

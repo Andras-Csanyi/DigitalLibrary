@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
@@ -107,5 +108,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// </summary>
         /// <returns>List.</returns>
         Task<List<DimensionStructure>> GetActivesListAsync();
+
+        /// <summary>
+        /// Deletes a <see cref="DimensionStructure"/> from a <see cref="SourceFormat"/>'s tree.
+        /// </summary>
+        /// <param name="id">Id of the DimensionStructure to be deleted.</param>
+        /// <param name="sourceFormatId">SourceFormat id where the tree belongs to.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Void or exception.</returns>
+        Task DeleteFromTree(
+            long id,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
     }
 }

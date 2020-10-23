@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -56,7 +57,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             SourceFormat querySourceFormat);
 
         /// <summary>
-        ///     Returns with <see cref="SourceFormat" /> which has the <see cref="DimensionStructure" /> tree mounted.
+        ///     Returns with <see cref="SourceFormat" /> which has the <see cref="DimensionStructure" /> tree
+        /// attached. It includes both active and inactive nodes.
         /// </summary>
         /// <param name="querySourceFormat">SourceFormat query object.</param>
         /// <returns>SourceFormat or null.</returns>
@@ -98,5 +100,46 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<List<SourceFormat>> GetSourceFormatsAsync();
 
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
+
+        /// <summary>
+        /// Returns with <see cref="SourceFormat"/> with its <see cref="DimensionStructure"/> tree attached.
+        /// It contains only the active tree.
+        /// </summary>
+        /// <param name="sourceFormatId">SourceFormat id.</param>
+        /// <param name="cancellationToken">
+        ///     <see cref="CancellationToken"/>Cancellation token.</param>
+        /// <returns>
+        ///     A task contains the SourceFormat.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        /// An error happened during database operation.
+        /// </exception>
+        Task<SourceFormat> GetSourceFormatByIdWithActiveDimensionStructureTreeAsync(
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns with <see cref="DimensionStructureNode"/> which represents a node in the tree which
+        /// describes a document structure.
+        /// </summary>
+        /// <param name="sourceFormatId">
+        ///     <see cref="SourceFormat"/> id.
+        /// </param>
+        /// <param name="dimensionStructureId">
+        ///     <see cref="DimensionStructure"/> id.
+        /// </param>
+        /// <param name="cancellationToken">
+        ///     <see cref="CancellationToken"/> token.
+        /// </param>
+        /// <returns>
+        ///     Task containing <see cref="DimensionStructure"/>.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task<DimensionStructureNode> GetNodeAsync(
+            long sourceFormatId,
+            long dimensionStructureId,
+            CancellationToken cancellationToken = default);
     }
 }
