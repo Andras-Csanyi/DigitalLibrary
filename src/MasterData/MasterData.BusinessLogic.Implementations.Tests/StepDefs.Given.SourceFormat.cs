@@ -84,6 +84,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
         }
 
         [Given(@"SourceFormat don't have node with DimensionStructure")]
+        [Then(@"SourceFormat don't have node with DimensionStructure")]
         public async Task SourceFormatHasInactiveNodeWithDimensionStructure(Table table)
         {
             var instance = table.CreateInstance<(
