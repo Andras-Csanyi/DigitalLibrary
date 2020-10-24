@@ -157,5 +157,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// When any operation fails.
         /// </exception>
         Task<List<DimensionStructure>> GetAllAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Queries inactive <see cref="DimensionStructure"/> from the database.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> which contains the <see cref="List{T}"/> of
+        /// <see cref="DimensionStructure"/>s.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// When any operation fails.
+        /// </exception>
+        Task<List<DimensionStructure>> GetInactivesAsync(CancellationToken cancellationToken = default);
     }
 }

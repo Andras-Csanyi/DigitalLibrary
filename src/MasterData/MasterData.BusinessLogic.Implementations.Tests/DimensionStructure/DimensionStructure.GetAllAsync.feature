@@ -34,4 +34,19 @@ Feature: Listing DimensionStructures
       | 1            | 1              | 1              |
       | 1            | 0              | 1              |
       | 10           | 10             | 10             |
+
+  Scenario Outline: Get list of inactive DimensionStructures
+    Given I have <ActiveAmount> active saved DimensionStructures
+    And I have <InactiveAmount> inactive saved DimensionStructures
+    When I query inactive DimensionStructures
+      | Field     | Value           |
+      | ResultKey | all-inactive-ds |
+    Then the available DimensionStructures list with 'all-inactive-ds' result key is <ExpectedResult>
+
+    Examples:
+      | ActiveAmount | InactiveAmount | ExpectedResult |
+      | 0            | 1              | 1              |
+      | 1            | 1              | 1              |
+      | 1            | 0              | 0              |
+      | 10           | 10             | 10             |
       
