@@ -1,7 +1,5 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.stepdefs
 {
-    using System.Collections.Generic;
-
     using DigitalLibrary.Utils.Guards;
 
     using FluentAssertions;

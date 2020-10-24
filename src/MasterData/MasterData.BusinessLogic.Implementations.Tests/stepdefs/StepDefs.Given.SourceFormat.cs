@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.stepdefs
 {
     using System;
     using System.Threading.Tasks;
@@ -11,7 +11,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
-    using DigitalLibrary.Utils.MasterDataTestHelper;
 
     using FluentAssertions;
 

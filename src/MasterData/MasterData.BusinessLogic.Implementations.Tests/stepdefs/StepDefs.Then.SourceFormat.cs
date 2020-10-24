@@ -1,6 +1,5 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.stepdefs
 {
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
 

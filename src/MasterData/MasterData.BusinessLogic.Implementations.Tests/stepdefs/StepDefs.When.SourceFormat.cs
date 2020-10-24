@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.stepdefs
 {
     using System.Threading.Tasks;
 

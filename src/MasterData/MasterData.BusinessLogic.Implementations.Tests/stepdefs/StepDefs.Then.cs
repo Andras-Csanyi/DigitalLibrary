@@ -1,7 +1,6 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.stepdefs
 {
     using System;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
