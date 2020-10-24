@@ -5,7 +5,7 @@
 
 [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 
-namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -15,7 +15,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -24,6 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
@@ -39,11 +39,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public partial class StepDefs : IDisposable
+    [Binding]
+    public partial class StepDefinitions : IDisposable
     {
         private readonly ITestOutputHelper _outputHelper;
 
-        private readonly string _testInfo = nameof(StepDefs);
+        private readonly string _testInfo = nameof(StepDefinitions);
 
         private DbContextOptions<MasterDataContext> _dbContextOptions;
 
@@ -59,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
 
         protected const string SUCCESS = "SUCCESS";
 
-        protected StepDefs(
+        protected StepDefinitions(
             ITestOutputHelper testOutputHelper,
             ScenarioContext scenarioContext)
         {
@@ -142,24 +143,24 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests
                 dimensionStructureFactory);
         }
 
-        protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
-        {
-            DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
-            DomainModel.DimensionStructure result = await _masterDataBusinessLogic
-               .MasterDataDimensionStructureBusinessLogic
-               .AddAsync(toSave)
-               .ConfigureAwait(false);
-            _scenarioContext.Add(instance.ResultKey, result);
-        }
-
-        protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
-        {
-            DomainModel.SourceFormat toSave = _scenarioContext[instance.Key] as DomainModel.SourceFormat;
-            DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .AddSourceFormatAsync(toSave)
-               .ConfigureAwait(false);
-
-            _scenarioContext.Add(instance.ResultKey, result);
-        }
+        // protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
+        // {
+        //     DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
+        //     DomainModel.DimensionStructure result = await _masterDataBusinessLogic
+        //        .MasterDataDimensionStructureBusinessLogic
+        //        .AddAsync(toSave)
+        //        .ConfigureAwait(false);
+        //     _scenarioContext.Add(instance.ResultKey, result);
+        // }
+        //
+        // protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
+        // {
+        //     DomainModel.SourceFormat toSave = _scenarioContext[instance.Key] as DomainModel.SourceFormat;
+        //     DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+        //        .AddSourceFormatAsync(toSave)
+        //        .ConfigureAwait(false);
+        //
+        //     _scenarioContext.Add(instance.ResultKey, result);
+        // }
     }
 }

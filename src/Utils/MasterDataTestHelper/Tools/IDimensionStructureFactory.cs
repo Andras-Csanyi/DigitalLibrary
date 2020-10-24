@@ -2,7 +2,6 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
@@ -18,6 +17,18 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// </summary>
         /// <param name="instance">Instance.</param>
         /// <returns>Result string.</returns>
-        DimensionStructure Create(IDimensionStructureDomainObject instance);
+        DimensionStructure Create<T>(T instance)
+            where T : IDimensionStructureDomainObject;
+    }
+
+    public interface IDimensionStructureDomainObject
+    {
+        string Desc { get; set; }
+
+        int IsActive { get; set; }
+
+        string Key { get; set; }
+
+        string Name { get; set; }
     }
 }

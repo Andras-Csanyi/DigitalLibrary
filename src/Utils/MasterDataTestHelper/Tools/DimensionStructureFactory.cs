@@ -3,7 +3,6 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using System;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
@@ -23,7 +22,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         }
 
         /// <inheritdoc/>
-        public DimensionStructure Create(IDimensionStructureDomainObject instance)
+        public DimensionStructure Create<T>(T instance)
+            where T : IDimensionStructureDomainObject
         {
             Check.IsNotNull(instance);
 
