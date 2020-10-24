@@ -4,32 +4,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
     public partial class StepDefinitions
     {
-        [When(@"list of active DimensionStructures is requested")]
-        public async Task ListOfActiveDimensionStructureIsRequested(Table table)
+        [When(@"I query active DimensionStructures")]
+        public async Task WhenIQueryActiveDimensionStructures(Table table)
         {
-            Check.IsNotNull(table);
-            ListOfActiveDimensionStructureIsRequestedEntity instance = table
-               .CreateInstance<ListOfActiveDimensionStructureIsRequestedEntity>();
+            WhenIQueryActiveDimensionStructuresEntity instance = table
+               .CreateInstance<WhenIQueryActiveDimensionStructuresEntity>();
 
             List<DimensionStructure> result = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
                .GetActivesAsync()
                .ConfigureAwait(false);
+
             _scenarioContext.Add(instance.ResultKey, result);
         }
     }
 
-    internal class ListOfActiveDimensionStructureIsRequestedEntity
+    internal class WhenIQueryActiveDimensionStructuresEntity
     {
         public string ResultKey { get; set; }
-
-        public string Key { get; set; }
     }
 }

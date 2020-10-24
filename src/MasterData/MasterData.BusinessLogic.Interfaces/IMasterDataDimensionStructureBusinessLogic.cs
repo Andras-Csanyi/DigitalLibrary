@@ -14,6 +14,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
     public interface IMasterDataDimensionStructureBusinessLogic
     {
+        /// <summary>
+        /// Adds a new <see cref="DimensionStructure"/> entity to the system.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        /// The object containing the new data.
+        /// </param>
+        /// <returns>
+        /// Returns an instance of the added <see cref="DimensionStructure"/>.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// If any part of the operation fails.
+        /// </exception>
         Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure);
 
         Task<DimensionStructure> AddChildDimensionStructureAsync(
@@ -106,8 +118,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <summary>
         /// Returns list of active <see cref="DimensionStructure"/> in the system.
         /// </summary>
-        /// <returns>List.</returns>
-        Task<List<DimensionStructure>> GetActivesListAsync();
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>
+        /// Returns with <see cref="Task{TResult}"/> containing a <see cref="List{T}"/> of
+        /// <see cref="DimensionStructure"/>.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// If any operation fails during querying data.
+        /// </exception>
+        Task<List<DimensionStructure>> GetActivesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a <see cref="DimensionStructure"/> from a <see cref="SourceFormat"/>'s tree.

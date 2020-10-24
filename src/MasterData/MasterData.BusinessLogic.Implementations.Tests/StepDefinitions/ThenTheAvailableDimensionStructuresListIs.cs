@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
 
     public partial class StepDefinitions
     {
-        [Then(@"the available DimensionStructures list with (.*) result key is (.*)")]
+        [Then(@"the available DimensionStructures list with '(.*)' result key is (.*)")]
         public void ThenTheAvailableDimensionStructuresListIs(string resultKey, int expectedResult)
         {
             Check.NotNullOrEmptyOrWhitespace(resultKey);
