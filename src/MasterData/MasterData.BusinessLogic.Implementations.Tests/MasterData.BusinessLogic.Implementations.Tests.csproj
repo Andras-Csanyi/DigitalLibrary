@@ -52,9 +52,22 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SpecFlowFeatureFiles Update="DimensionStructure.AddAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat.AddAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.DeleteAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.DeleteAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormat.AddAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormat.AddAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormatTreeMgmt.feature">
         </SpecFlowFeatureFiles>
     </ItemGroup>
+
 </Project>

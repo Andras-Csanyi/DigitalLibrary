@@ -120,5 +120,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             long id,
             long sourceFormatId,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Queries <see cref="DimensionStructure"/>s from the database.
+        ///
+        /// <remarks>
+        /// The list of <see cref="DimensionStructure"/> contains both active and inactive items.
+        /// </remarks>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"> Cancellation token.
+        /// </param>
+        /// <returns>
+        /// Returns a task containing a list of active and inactive <see cref="DimensionStructure"/>s.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// When any operation fails.
+        /// </exception>
+        Task<List<DimensionStructure>> GetAllAsync(CancellationToken cancellationToken = default);
     }
 }
