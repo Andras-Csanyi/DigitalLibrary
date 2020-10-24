@@ -91,9 +91,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
-               .UseInternalServiceProvider(_serviceProvider)
-               .EnableDetailedErrors()
-               .EnableSensitiveDataLogging()
+                // .UseInternalServiceProvider(_serviceProvider)
+                // .EnableDetailedErrors()
+                // .EnableSensitiveDataLogging()
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();

@@ -8,6 +8,7 @@ Feature: Logical Delete of DimensionStructure
     Given there is a saved DimensionStructure domain object
       | Field     | Value         |
       | ResultKey | no-connection |
+      | IsActive  | 1             |
 
     And there is a SourceFormat domain object
       | Field | Value |
@@ -16,13 +17,10 @@ Feature: Logical Delete of DimensionStructure
       | Field     | Value       |
       | Key       | sf-1        |
       | ResultKey | sf-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value       |
-      | Key   | sf1-root-ds |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value              |
-      | Key       | sf1-root-ds        |
       | ResultKey | sf1-root-ds-result |
+      | IsActive  | 1                  |
     And DimensionStructure is added to SourceFormat as root dimensionstructure
       | Field                 | Value              |
       | SourceFormatKey       | sf-1-result        |
@@ -36,24 +34,18 @@ Feature: Logical Delete of DimensionStructure
       | Field     | Value       |
       | Key       | sf-2        |
       | ResultKey | sf-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value       |
-      | Key   | sf2-root-ds |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value              |
-      | Key       | sf2-root-ds        |
       | ResultKey | sf2-root-ds-result |
+      | IsActive  | 1                  |
     And DimensionStructure is added to SourceFormat as root dimensionstructure
       | Field                 | Value              |
       | SourceFormatKey       | sf-2-result        |
       | DimensionStructureKey | sf2-root-ds-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | child-ds |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | child-ds        |
       | ResultKey | child-ds-result |
+      | IsActive  | 1               |
     And DimensionStructure is added to DimensionStructure as child in tree of SourceFormat
       | Field           | Value              |
       | ChildKey        | child-ds-result    |
@@ -67,183 +59,108 @@ Feature: Logical Delete of DimensionStructure
       | Field     | Value          |
       | Key       | sf-tree        |
       | ResultKey | sf-tree-result |
-    And there is a DimensionStructure domain object
-      | Field | Value           |
-      | Key   | sf-tree-root-ds |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value                  |
-      | Key       | sf-tree-root-ds        |
       | ResultKey | sf-tree-root-ds-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-1-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1                      |
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-1-1        |
       | ResultKey | tree-1-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-1-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1               |
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-1-2        |
       | ResultKey | tree-1-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-1-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1               |
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-1-3        |
       | ResultKey | tree-1-3-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-1-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1               |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-1-1        |
       | ResultKey | tree-1-1-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-1-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-1-2        |
       | ResultKey | tree-1-1-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-1-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-1-3        |
       | ResultKey | tree-1-1-3-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-2-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-2-1        |
       | ResultKey | tree-1-2-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-2-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-2-2        |
       | ResultKey | tree-1-2-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-2-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-2-3        |
       | ResultKey | tree-1-2-3-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-3-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-3-1        |
       | ResultKey | tree-1-3-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-3-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-3-2        |
       | ResultKey | tree-1-3-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-1-3-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-1-3-3        |
       | ResultKey | tree-1-3-3-result |
+      | IsActive  | 1                 |
 
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-2-1 |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-2-1        |
       | ResultKey | tree-2-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-2-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1               |
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-2-2        |
       | ResultKey | tree-2-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value    |
-      | Key   | tree-2-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1               |
+    And there is a saved DimensionStructure domain object
       | Field     | Value           |
-      | Key       | tree-2-3        |
       | ResultKey | tree-2-3-result |
+      | IsActive  | 1               |
 
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-1-1 |
-    And DimensionStructure is saved
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-1-1        |
       | ResultKey | tree-2-1-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-1-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-1-2        |
       | ResultKey | tree-2-1-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-1-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-1-3        |
       | ResultKey | tree-2-1-3-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-2-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-2-1        |
       | ResultKey | tree-2-2-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-2-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-2-2        |
       | ResultKey | tree-2-2-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-2-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-2-3        |
       | ResultKey | tree-2-2-3-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-3-1 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-3-1        |
       | ResultKey | tree-2-3-1-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-3-2 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-3-2        |
       | ResultKey | tree-2-3-2-result |
-    And there is a DimensionStructure domain object
-      | Field | Value      |
-      | Key   | tree-2-3-3 |
-    And DimensionStructure is saved
+      | IsActive  | 1                 |
+    And there is a saved DimensionStructure domain object
       | Field     | Value             |
-      | Key       | tree-2-3-3        |
       | ResultKey | tree-2-3-3-result |
+      | IsActive  | 1                 |
     And DimensionStructure is added to SourceFormat as root dimensionstructure
       | Field                 | Value                  |
       | SourceFormatKey       | sf-tree-result         |

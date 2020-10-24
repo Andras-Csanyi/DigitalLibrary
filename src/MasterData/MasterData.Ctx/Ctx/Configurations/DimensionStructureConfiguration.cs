@@ -34,7 +34,6 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.Property(p => p.IsActive).HasColumnName("is_active");
             builder.Property(p => p.IsActive).IsRequired();
-            builder.Property(p => p.IsActive).HasDefaultValue(1);
 
             builder.Property(p => p.SortOrder).HasColumnName("sort_number");
 

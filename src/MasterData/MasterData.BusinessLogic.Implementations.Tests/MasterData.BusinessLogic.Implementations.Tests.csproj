@@ -56,9 +56,9 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.DeleteAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.DeleteAsync.Validation.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
         </SpecFlowFeatureFiles>
