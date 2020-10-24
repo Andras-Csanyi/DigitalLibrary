@@ -13,10 +13,23 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     public interface IDimensionStructureFactory
     {
         /// <summary>
-        /// Creates string based on the input parameters.
+        /// Creates a <see cref="DimensionStructure"/> object and populates its field.
+        ///
+        /// <para>
+        /// The field population happens either based on the provided instance.
+        /// </para>
+        ///
+        /// <para>
+        /// Or if no instance properties setup then generated.
+        /// </para>
         /// </summary>
-        /// <param name="instance">Instance.</param>
-        /// <returns>Result string.</returns>
+        /// <param name="instance">The instance containing the parameters.</param>
+        /// <typeparam name="T">
+        /// It is type of <see cref="IDimensionStructureDomainObject"/>.
+        /// </typeparam>
+        /// <returns>
+        /// Returns a <see cref="DimensionStructure"/> object.
+        /// </returns>
         DimensionStructure Create<T>(T instance)
             where T : IDimensionStructureDomainObject;
     }

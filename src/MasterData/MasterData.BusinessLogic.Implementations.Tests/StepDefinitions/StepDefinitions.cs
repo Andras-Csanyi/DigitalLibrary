@@ -142,25 +142,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
                 sourceFormatFactory,
                 dimensionStructureFactory);
         }
-
-        // protected async Task DimensionStructureDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
-        // {
-        //     DomainModel.DimensionStructure toSave = _scenarioContext[instance.Key] as DomainModel.DimensionStructure;
-        //     DomainModel.DimensionStructure result = await _masterDataBusinessLogic
-        //        .MasterDataDimensionStructureBusinessLogic
-        //        .AddAsync(toSave)
-        //        .ConfigureAwait(false);
-        //     _scenarioContext.Add(instance.ResultKey, result);
-        // }
-        //
-        // protected async Task SourceFormatDomainObjectTypeIsSaved(DomainObjectIsSavedEntity instance)
-        // {
-        //     DomainModel.SourceFormat toSave = _scenarioContext[instance.Key] as DomainModel.SourceFormat;
-        //     DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-        //        .AddSourceFormatAsync(toSave)
-        //        .ConfigureAwait(false);
-        //
-        //     _scenarioContext.Add(instance.ResultKey, result);
-        // }
     }
 }
