@@ -38,10 +38,10 @@ Feature: Source format and its tree management
       | SourceFormatKey | sf-1-result     |
 
     And DimensionStructure is deleted from the tree
-      | Field           | Value                  |
-      | Key             | ds-child-result        |
-      | SourceFormatKey | sf-1-result            |
-      | ResultKey       | ds-child-delete-result |
+      | Field                 | Value                  |
+      | DimensionStructureKey | ds-child-result        |
+      | SourceFormatKey       | sf-1-result            |
+      | ResultKey             | ds-child-delete-result |
 
     Then SourceFormat don't have node with DimensionStructure
       | Field                 | Value           |

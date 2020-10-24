@@ -1,6 +1,5 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.Entities;
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
@@ -16,6 +15,18 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// </summary>
         /// <param name="instance">BDD test instance.</param>
         /// <returns>Result string.</returns>
-        SourceFormat Create(ThereIsASourceFormatDomainObjectEntity instance);
+        SourceFormat Create<T>(T instance)
+            where T : ISourceFormatDomainObject;
+    }
+
+    public interface ISourceFormatDomainObject
+    {
+        string Desc { get; set; }
+
+        int IsActive { get; set; }
+
+        string Key { get; set; }
+
+        string Name { get; set; }
     }
 }
