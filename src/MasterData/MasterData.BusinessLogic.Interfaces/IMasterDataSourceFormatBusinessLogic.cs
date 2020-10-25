@@ -96,8 +96,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <summary>
         /// Returns list of <see cref="SourceFormat"/> which includes both active and inactive ones.
         /// </summary>
-        /// <returns>List.</returns>
-        Task<List<SourceFormat>> GetSourceFormatsAsync();
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns>
+        /// Returns with a <see cref="Task{TResult}"/> which contains a <see cref="List{T}"/> containing
+        /// the <see cref="SourceFormat"/> objects available in the system.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        /// An error happened during database operation.
+        /// </exception>
+        Task<List<SourceFormat>> GetSourceFormatsAsync(CancellationToken cancellationToken = default);
 
         Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
 
@@ -141,5 +148,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             long sourceFormatId,
             long dimensionStructureId,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Queries the active <see cref="SourceFormat"/>s from the database and returns a list of them.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> contains a <see cref="List{T}"/> of <see cref="SourceFormat"/>s
+        /// objects. All of them active.
+        ///
+        /// If there are no active <see cref="SourceFormat"/> in the system it returns with an empty list.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task<List<SourceFormat>> GetActivesAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Queries the inactive <see cref="SourceFormat"/>s from the database and returns a list of them.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> containing a <see cref="List{T}"/> of <see cref="SourceFormat"/>s
+        /// objects. All of them inactive.
+        ///
+        /// If there is not inactive <see cref="SourceFormat"/> in the system, then it returns with an empty
+        /// <see cref="List{T}"/>.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task<List<SourceFormat>> GetInactives(CancellationToken cancellationToken = default);
     }
 }

@@ -38,7 +38,6 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.Property(p => p.IsActive).HasColumnName("is_active");
             builder.Property(p => p.IsActive).IsRequired();
-            builder.Property(p => p.IsActive).HasDefaultValue(1);
 
             builder.HasOne(p => p.SourceFormatDimensionStructureNode)
                .WithOne(s => s.SourceFormat)
