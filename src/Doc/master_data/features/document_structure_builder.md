@@ -1,106 +1,35 @@
-# Document Structure Builder
+# Structure of a document
 
-A Document Structure describes a structure of a document, similarly as LaTeX does 
-it with its sections at high level (below sections there are sentences and words if you like).
+The purpose of the system to capture not only the content of a document but also its structure.
+The point of capturing the structure is that it contains information too, and when one have
+multiple documents in the system based on structure information possible to make connections
+between content and structure.
 
-A Document Structure is a tree data structure where every node is a Document Structure.
-A Document Structure, a node, can have a Dimension attached to it.
+In order to be able to store content in useful fashion we need to know the structure of the 
+document we want to work with. When capturing the structure we use multiple and nested objects.
 
-In the Digital Library system there are multiple inputs for example RSS feed, text file input,
-any other file format input or different forms.
+## Source
 
-We need to be able to build these structures.
+A Source describes from we get or request information. It can be and url or organization name,
+like Gutenberg.org or any unique identifier.
 
-**Example - 1**:
+## SourceFormat
 
-A document structure is a reasonable - hopefully - good way to describe a form. In that case
-when you have to manage multiple formats of addresses, because you manage data from EU, you
-have to deal with all the different formats. If you have a tool for building up these data 
-structures and generating the forms based on these. The only thing you have to do is providing
-the proper directives/components and Blazor takes care of the remaining.
+SourceFormat object describes the document format belongs to a source. A Source can be an url,
+for example a blog from where we query RSS feed, or content in defined format, for example
+text files from [Gutenber](https://gutenberg.org).
 
-In the case above Document Structure describes the form and the data we would like to see.
-The dimensions attached to the particular nodes describe that where the data will be stored
-and coming from.
+## DimensionStructure and DimensionStructureNode
 
-The look and feel of the form in the case above will be setup by the Form builder which uses
-Document Structures as basic data structure.
+Understanding what is DimensionStructure one need to be aware of that in this system a 
+document is considered as tree structure. In this tree the nodes may or may not contain
+information. These nodes are the DimensionStructure objects. However, in the implementation
+the tree is built by DimensionStructureNode objects. The reason is that we need to separate 
+the information and functionality of a node. Information is the DimensionStructure, while
+tree functionality is captured in DimensionStructureNode objects.
 
-**Example - 2**:
+In case of text a DimensionStructure can be a paragraph, a sentence or a word. In case of HTML
+document a DimensionStructure can be text wrapped in a HTML tag.
 
-In case of HTML tags are defining, or give some guidance, what to expect.
-
-**Example - 3**:
-
-In case of special documents, like text files from gutenberg.org, the files has their own
-structure. 
-
-## Document Structure
-
-Document Structure consists of DocumentStructure nodes and Dimensions attached to nodes.
-
-Document Structure describes the node and its properties.
-
-Dimension describes the data at the node and the place where it is stored.
-
-## Mandatory fields
-
-- Docuement structure name
-- Document structure description
-
-## Validations
-- Document Structure name has to be unnique
-- a Dimension cannot be added twice to a Document Structure
-- a Document Structure cannot be added twice to a Dimension Structure
-- Dimension has to be unique
-
-All the above means that before saving server side validation must happen. 
-
-## Features
-
-### Create New Document Structure
-
-#### Create a Brand New Document Structure
-
-- Document structure name and description only
-- Adding Existing Root Document Structure
-- Adding a Newly Created Root Document Structure
-- Adding Existing Document Structures to Root Document Structure
-- Adding Newly Created Document Structures to Root Document Structure
-- Adding Existing Dimensions to Document Structures
-- Adding Newly Created Dimensions to Document Structures
-
-#### Create a Document Structure copying and modifying an already existing one
-
-- Delete Root Document Structure
-- Delete Root Document Structure and add an Existing One
-- Delete Root Document Structure and add a Newly created one
-- Delete Any Document Structure from the tree
-- Delete Any Document Structure from the tree and add an existing one
-- Delete Any Document Structure from the tree and add a newly created one
-- Delete Any Dimension fron any node
-- Delete Any Dimension fron any node and add an existing one
-- Delete Any Dimension fron any node and add a newly created one
-- Replace Root Document Structure
-- Replace Root Document Structure to an Existing One
-- Replace Any Document Structure in the tree to an existing one
-- Replace Any Dimension fron any node to an existing one
-
-### Delete Document Structure
-The Document Structure Builder user interface doesn't provide any option for deleting
-Document Structures
-
-### Edit Document Structure
-- Delete Root Document Structure
-- Delete Root Document Structure and add an Existing One
-- Delete Root Document Structure and add a Newly created one
-- Delete Any Document Structure from the tree
-- Delete Any Document Structure from the tree and add an existing one
-- Delete Any Document Structure from the tree and add a newly created one
-- Delete Any Dimension fron any node
-- Delete Any Dimension fron any node and add an existing one
-- Delete Any Dimension fron any node and add a newly created one
-- Replace Root Document Structure
-- Replace Root Document Structure to an Existing One
-- Replace Any Document Structure in the tree to an existing one
-- Replace Any Dimension fron any node to an existing one
+DimensionStructureNode describes the tree structure of DimensionStructures. They provide a wireframe
+of the document and that objects, like DimensionStructure, can be added to nodes.
