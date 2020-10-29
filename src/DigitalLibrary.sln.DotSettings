@@ -307,6 +307,45 @@
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/SolBuilderDuo/UseMsbuildSolutionBuilder/@EntryValue">NewVersion</s:String>
 	<s:Boolean x:Key="/Default/Environment/Hierarchy/Build/SolutionBuilderNext/LogWarningsToOutput/@EntryValue">False</s:Boolean>
 	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/SolutionBuilderNext/ParallelProcessesCount2/@EntryValue">12</s:Int64>
+	<s:String x:Key="/Default/Environment/InlayHints/CppParameterNameHintsOptions2/ShowParameterNameHints/@EntryValue">Never</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=0d785422_002D0dc3_002D405d_002D8845_002Dfe37d9fea223/@EntryIndexedValue">continueOnCapturedContext*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=1d9201d0_002Da616_002D4969_002Da6eb_002Db094259d568d/@EntryIndexedValue">System.Object.ReferenceEquals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=26c65b08_002Dfdb9_002D4b7d_002Da644_002Db63845e36753/@EntryIndexedValue">(from*, to*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=5ef03d0a_002Df32b_002D4e75_002Dbaca_002Dcd0300b6ce28/@EntryIndexedValue">System.Xml.Linq.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=62bb39ba_002D297e_002D4a60_002Dbc09_002Df987c0a796de/@EntryIndexedValue">(min*, max*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=70e1fa4a_002D246c_002D4c61_002D8f69_002D758a250dad15/@EntryIndexedValue">System.Text.StringBuilder.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=75a17993_002Dd6e0_002D4e94_002D8c3c_002D710a2c81d10b/@EntryIndexedValue">(start*, end*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=75e2ea4c_002Dc62b_002D4e4a_002Da765_002Db7eada97e7c3/@EntryIndexedValue">(key, value)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=8773877c_002Df909_002D4561_002D9645_002Deffe76092e99/@EntryIndexedValue">(begin*, end*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=94c7a714_002Dfc3b_002D49c1_002D914a_002Dd5d3ce177113/@EntryIndexedValue">System.Linq.Enumerable.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=ba21cc20_002D9a26_002D4832_002D9a70_002D5a4280e793b1/@EntryIndexedValue">System.Linq.Queryable.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=be0a1060_002D8829_002D4d1c_002Dbbca_002D7143867ee85e/@EntryIndexedValue">System.Threading.Tasks.Task.ConfigureAwait</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=c4ae61e2_002Dfe75_002D4142_002D82cd_002D062dc17812ab/@EntryIndexedValue">System.Collections.IEqualityComparer.Equals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=cb5dcf08_002Dee7a_002D46ef_002Da1e4_002D41ee546dd4ea/@EntryIndexedValue">System.Math.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=d0c17e8c_002D33bc_002D4ad7_002Daa62_002Dafe879a5f64a/@EntryIndexedValue">System.Object.Equals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=e27e53dc_002D5455_002D43f5_002D8c90_002Ded60eeecf785/@EntryIndexedValue">(first*, last*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=e3c9b432_002D44e7_002D462d_002D9083_002D12045acc0104/@EntryIndexedValue">Newtonsoft.Json.Linq.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ExclusionList/=f84374c6_002D73b5_002D48a0_002Db36e_002D5c7dc531bd4e/@EntryIndexedValue">(first*, second*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/CSharpParameterNameHintsOptions/ShowParameterNameHints/@EntryValue">Never</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=165398c7_002D0a17_002D4813_002D8b93_002D510b25d549fe/@EntryIndexedValue">System.Object.ReferenceEquals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=1fcb1a59_002D240c_002D4e51_002D85ec_002D6cd71607270a/@EntryIndexedValue">System.Text.StringBuilder.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=2c299239_002Da366_002D469b_002Db24a_002D54f5ad942777/@EntryIndexedValue">System.Collections.IEqualityComparer.Equals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=31316523_002D0c76_002D4d15_002D8fcc_002Dfefdd3566650/@EntryIndexedValue">Newtonsoft.Json.Linq.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=34b73f49_002Dc3a7_002D44e5_002Da380_002D50aad006a820/@EntryIndexedValue">System.Linq.Enumerable.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=472328da_002D58b3_002D458c_002Db20d_002D3118f175577b/@EntryIndexedValue">(first*, last*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=52c21bb2_002D37e7_002D4042_002D875b_002Df0949e576d9f/@EntryIndexedValue">(min*, max*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=6aaa97bb_002D5ed7_002D42e0_002Db8d5_002D4cf034fee8d3/@EntryIndexedValue">System.Math.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=72d306df_002Dcc98_002D45a0_002Db1f9_002Dfcd9db63818b/@EntryIndexedValue">System.Xml.Linq.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=72fc786c_002D53dc_002D40a1_002D9219_002D96749e100f32/@EntryIndexedValue">(begin*, end*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=945aed7c_002De04a_002D4eb0_002Dacca_002Db75695a0accf/@EntryIndexedValue">System.Linq.Queryable.*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=9611addd_002Dfdba_002D4bf2_002D9afd_002Db8bf7b61575e/@EntryIndexedValue">(start*, end*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=9ad5e6fc_002D1e87_002D4a88_002Da632_002D1a7ea77e8686/@EntryIndexedValue">continueOnCapturedContext*</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=ae153e4f_002D2031_002D43c4_002D90ed_002D074513e22da9/@EntryIndexedValue">(key, value)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=b84ac486_002D2b08_002D4805_002D8854_002D43b26404c6a8/@EntryIndexedValue">System.Object.Equals</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=d77d1a88_002D320a_002D40c1_002D9cc4_002Dfdec2a28fef1/@EntryIndexedValue">System.Threading.Tasks.Task.ConfigureAwait</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=e08dcd6f_002Dca8a_002D4ed3_002D86c6_002D674a98ab6d93/@EntryIndexedValue">(from*, to*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ExclusionList/=ebfb8397_002D7bba_002D4f66_002D9cbe_002Dc8b0f744cd4c/@EntryIndexedValue">(first*, second*)</s:String>
+	<s:String x:Key="/Default/Environment/InlayHints/VBParameterNameHintsOptions/ShowParameterNameHints/@EntryValue">Never</s:String>
 	<s:String x:Key="/Default/Environment/ManagedLanguageParameterNameHintsOptions/BlackList/@EntryValue">(begin*, end*)
 (start*, end*)
 (first*, last*)
@@ -340,7 +379,10 @@ continueOnCapturedContext*</s:String>
 	<s:String x:Key="/Default/Environment/PerformanceGuide/SwitchBehaviour/=VCS/@EntryIndexedValue">LIVE_MONITOR</s:String>
 	<s:String x:Key="/Default/Environment/PerformanceGuide/SwitchBehaviour/=VsBulb/@EntryIndexedValue">DO_NOTHING</s:String>
 	<s:String x:Key="/Default/Environment/PerformanceGuide/SwitchBehaviour/=XAML_0020Designer/@EntryIndexedValue">LIVE_MONITOR</s:String>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002ECpp_002EDaemon_002EParameterHints_002ECppParameterNameHintsOptionsOptionsMigration/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002EParameterNameHints_002ECSharpParameterNameHintsOptionsMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002EDaemon_002ESettings_002EMigration_002ESwaWarningsModeSettingsMigrate/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002EVB_002EParameterNameHints_002EVBParameterNameHintsOptionsMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpKeepExistingMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpPlaceEmbeddedOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpUseContinuousIndentInsideBracesMigration/@EntryIndexedValue">True</s:Boolean>
