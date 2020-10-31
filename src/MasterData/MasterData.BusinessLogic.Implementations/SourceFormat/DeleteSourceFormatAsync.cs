@@ -37,7 +37,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat result = await ctx.SourceFormats
-                       .FirstOrDefaultAsync(w => w.Id == sourceFormat.Id,
+                       .FirstOrDefaultAsync(
+                            w => w.Id == sourceFormat.Id,
                             cancellationToken: cancellationToken)
                        .ConfigureAwait(false);
 

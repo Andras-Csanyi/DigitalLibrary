@@ -62,27 +62,16 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormat.AddAsync.feature">
+        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormat.AddAsync.Validation.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\SourceFormatTreeMgmt.feature">
+        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\Inactivate.Validation.feature">
-            <CodeBehindFile>SourceFormat/Inactivate.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\Delete.feature">
-            <CodeBehindFile>SourceFormat/Delete.Validation.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="SourceFormat\Delete.feature.cs">
-            <DependentUpon>Delete.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
+        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
 </Project>
