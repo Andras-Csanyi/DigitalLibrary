@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Security.Cryptography;
     using System.Threading.Tasks;
 
@@ -37,6 +38,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class GivenThereIsASavedSourceFormatDomainObjectEntity
     {
         public string Name { get; set; }

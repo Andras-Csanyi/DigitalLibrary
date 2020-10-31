@@ -26,6 +26,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class DifferenceBetweenActiveAmountBeforeLogicalDeleteAndAfterIsEntity
     {
         public int ExpectedDiff { get; set; }

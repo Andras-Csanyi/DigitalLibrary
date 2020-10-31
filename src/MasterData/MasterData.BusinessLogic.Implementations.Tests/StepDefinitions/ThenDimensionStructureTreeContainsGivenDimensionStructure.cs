@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -35,6 +36,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class ThenDimensionStructureTreeContainsGivenDimensionStructureEntity
     {
         public string SourceFormatKey { get; set; }

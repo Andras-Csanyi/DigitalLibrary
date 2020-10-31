@@ -1,5 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using FluentAssertions;
 
     using TechTalk.SpecFlow;
@@ -18,6 +20,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class ThenSourceFormatDeleteOperationDoesntShowErrorEntity
     {
         public string Key { get; set; }

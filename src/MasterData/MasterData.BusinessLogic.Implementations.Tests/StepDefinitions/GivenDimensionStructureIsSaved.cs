@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -38,6 +39,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class GivenDimensionStructureIsSavedEntity
     {
         public string Key { get; set; }

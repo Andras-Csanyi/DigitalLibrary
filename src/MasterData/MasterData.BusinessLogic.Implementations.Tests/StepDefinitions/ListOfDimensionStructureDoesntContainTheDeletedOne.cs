@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -30,6 +31,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     internal class ListOfDimensionStructureDoesntContainTheDeletedOneEntity
     {
         public string ResultKey { get; set; }
