@@ -26,11 +26,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
 
         /// <summary>
-        ///     Saves a new <see cref="SourceFormat" /> in the database.
+        ///     Adds a new <see cref="SourceFormat" /> to the system.
         /// </summary>
         /// <param name="sourceFormat">New SourceFormant.</param>
-        /// <returns>Saved SourceFormat.</returns>
-        Task<SourceFormat> AddSourceFormatAsync(SourceFormat sourceFormat);
+        /// <param name="cancellationToken">
+        /// <see cref="CancellationToken"/> token.
+        /// </param>
+        /// <returns>
+        /// Returns a <see cref="Task"/> representing the result of asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        /// An error happened during database operation.
+        /// </exception>
+        Task<SourceFormat> AddAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
 
         Task<long> CountSourceFormatsAsync();
 

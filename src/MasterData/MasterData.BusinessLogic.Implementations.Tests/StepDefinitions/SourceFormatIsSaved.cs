@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
             {
                 SourceFormat saved = await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .AddSourceFormatAsync(toBeSaved)
+                   .AddAsync(toBeSaved)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, saved);
             }

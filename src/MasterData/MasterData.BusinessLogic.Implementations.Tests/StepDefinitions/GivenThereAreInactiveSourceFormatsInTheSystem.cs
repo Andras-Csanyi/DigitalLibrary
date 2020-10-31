@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
                 SourceFormat sourceFormat = _masterDataTestHelper.SourceFormatFactory
                    .Create(sourceFormatDomainObject);
                 await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-                   .AddSourceFormatAsync(sourceFormat)
+                   .AddAsync(sourceFormat)
                    .ConfigureAwait(false);
             }
         }
