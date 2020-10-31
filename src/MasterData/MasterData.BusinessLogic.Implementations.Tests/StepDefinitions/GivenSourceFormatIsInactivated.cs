@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
     public partial class StepDefinitions
     {
         [Given(@"SourceFormat is inactivated")]
+        [When(@"SourceFormat is inactivated")]
         public async Task GivenSourceFormatIsInactivated(Table table)
         {
             GivenSourceFormatIsInactivatedEntity instance = table
