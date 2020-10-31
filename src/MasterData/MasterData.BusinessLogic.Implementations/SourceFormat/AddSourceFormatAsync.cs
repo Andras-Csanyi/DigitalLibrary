@@ -19,7 +19,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     using Microsoft.EntityFrameworkCore.Storage;
 
-    [SuppressMessage("ReSharper", "SA1601", Justification = "Reviewed.")]
     public partial class MasterDataSourceFormatBusinessLogic
     {
         /// <inheritdoc />
@@ -48,7 +47,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     {
                         await transaction.RollbackAsync().ConfigureAwait(false);
                         string msg = $"Operation failed: {nameof(AddSourceFormatAsync)}. " +
-                            $"For further details see inner exception.";
+                                     $"For further details see inner exception.";
                         throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                     }
                 }

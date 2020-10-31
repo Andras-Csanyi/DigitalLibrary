@@ -88,6 +88,8 @@ namespace DigitalLibrary.MasterData.Validators
                 RuleFor(p => p.Name).NotNull().NotEmpty();
                 RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
             });
+
+            RuleSet(SourceFormatValidatorRulesets.Inactivate, () => { RuleFor(p => p.Id).GreaterThanOrEqualTo(1); });
         }
     }
 }

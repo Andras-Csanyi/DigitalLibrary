@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
                .CreateInstance<WhenIQueryInactiveSourceFormatsEntity>();
 
             List<SourceFormat> result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .GetInactives()
+               .GetInActives()
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, result);

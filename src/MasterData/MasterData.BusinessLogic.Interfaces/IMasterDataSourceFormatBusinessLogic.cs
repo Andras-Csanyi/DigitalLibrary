@@ -178,6 +178,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
         ///     Error happened during database operation.
         /// </exception>
-        Task<List<SourceFormat>> GetInactives(CancellationToken cancellationToken = default);
+        Task<List<SourceFormat>> GetInActives(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Inactivates the given <see cref="SourceFormat"/>.
+        /// </summary>
+        /// <param name="sourceFormat">
+        /// The <see cref="SourceFormat"/> going to be inactivated.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> represents the operation result.</returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task InactivateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
     }
 }

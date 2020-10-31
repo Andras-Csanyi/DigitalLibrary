@@ -37,5 +37,10 @@ namespace DigitalLibrary.MasterData.Validators
         /// Update operation.
         /// </summary>
         public const string Update = "Update";
+
+        /// <summary>
+        /// Ruleset identifier for Inactivate operation.
+        /// </summary>
+        public const string Inactivate = "Inactivate";
     }
 }

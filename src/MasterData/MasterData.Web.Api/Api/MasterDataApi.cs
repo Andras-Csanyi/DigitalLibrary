@@ -43,6 +43,11 @@ namespace DigitalLibrary.MasterData.Web.Api
                 public const string Delete = "v1/Delete";
 
                 /// <summary>
+                /// Inactivate endpoint path.
+                /// </summary>
+                public const string Inactivate = "v1/Inactivate";
+
+                /// <summary>
                 /// GetAll endpoint path.
                 /// </summary>
                 public const string GetAll = "v1/GetAll";
