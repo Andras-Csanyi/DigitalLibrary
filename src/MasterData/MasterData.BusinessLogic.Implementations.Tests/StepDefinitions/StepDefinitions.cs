@@ -142,23 +142,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
                 sourceFormatFactory,
                 dimensionStructureFactory);
         }
-
-        [Given(@"SourceFormat is inactivated")]
-        public void GivenSourceFormatIsInactivated(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [When(@"SourceFormat is queried by id")]
-        public void WhenSourceFormatIsQueriedById(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"'(.*)' SourceFormat'(.*)'IsActive'(.*)'(.*)'")]
-        public void ThenSourceFormatIsActive(string p0, string p1, string p2, int p3)
-        {
-            _scenarioContext.Pending();
-        }
     }
 }

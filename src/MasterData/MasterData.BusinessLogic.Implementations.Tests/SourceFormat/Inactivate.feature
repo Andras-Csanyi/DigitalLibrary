@@ -9,8 +9,9 @@ Feature: Inactivating SourceFormat entities in the system
       | Field     | Value     |
       | ResultKey | sf-result |
     And SourceFormat is inactivated
-      | Field | Value     |
-      | Key   | sf-result |
+      | Field     | Value                 |
+      | Key       | sf-result             |
+      | ResultKey | sf-inactivated-result |
     When SourceFormat is queried by id
       | Field     | Value          |
       | Key       | sf-result      |

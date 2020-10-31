@@ -154,7 +154,7 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-                   .GetSourceFormatByIdAsync(sourceFormat)
+                   .GetByIdAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
