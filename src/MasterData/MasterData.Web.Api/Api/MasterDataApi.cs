@@ -53,9 +53,9 @@ namespace DigitalLibrary.MasterData.Web.Api
                 public const string GetActives = "v1/GetActives";
 
                 /// <summary>
-                /// GetInactives endpoint path.
+                /// GetInActives endpoint path.
                 /// </summary>
-                public const string GetInactives = "v1/GetInactives";
+                public const string GetInActives = "v1/GetInactives";
 
                 /// <summary>
                 /// GetById endpoint path.
