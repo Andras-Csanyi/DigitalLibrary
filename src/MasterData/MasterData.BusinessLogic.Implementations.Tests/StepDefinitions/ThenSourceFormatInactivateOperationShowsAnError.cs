@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
 
             object ex = _scenarioContext[instance.Key];
 
-            ex.GetType().Should().Be(typeof(MasterDataBusinessLogicSourceFormatDatabaseOperationException));
+            ex.GetType().Should().Be<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
     }
 

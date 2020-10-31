@@ -129,7 +129,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// </exception>
         Task<List<SourceFormat>> GetSourceFormatsAsync(CancellationToken cancellationToken = default);
 
-        Task<SourceFormat> UpdateSourceFormatAsync(SourceFormat sourceFormat);
+        /// <summary>
+        /// Updates t<see cref="SourceFormat"/> stored in the system.
+        /// </summary>
+        /// <param name="sourceFormat">
+        /// Instance of <see cref="SourceFormat"/> where the Id identifies the <see cref="SourceFormat"/>
+        /// going to be updated. Other parameters this payload object represents the new values.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing the result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        /// An error happened during database operation.
+        /// </exception>
+        Task<SourceFormat> UpdateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns with <see cref="SourceFormat"/> with its <see cref="DimensionStructure"/> tree attached.
