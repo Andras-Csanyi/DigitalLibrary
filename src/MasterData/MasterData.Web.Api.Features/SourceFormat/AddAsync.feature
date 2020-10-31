@@ -1,4 +1,8 @@
-Feature: SourceFormat AddAsync
+Feature: Adding SourceFormat Entity To The System
+
+  As a Data Owner and Data Curator
+  I need to be able to manage SourceFormat related data in the system
+  So that, I need functionality covering this.
 
   Scenario: Adds New SourceFormat - IsActive is zero
 
