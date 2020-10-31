@@ -71,6 +71,18 @@
         <SpecFlowFeatureFiles Update="SourceFormat\Inactivate.Validation.feature">
             <CodeBehindFile>SourceFormat/Inactivate.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\Delete.feature">
+            <CodeBehindFile>SourceFormat/Delete.Validation.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="SourceFormat\Delete.feature.cs">
+            <DependentUpon>Delete.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
 
 </Project>

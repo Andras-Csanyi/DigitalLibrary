@@ -46,6 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         ctx.SourceFormats.Remove(result);
                         await ctx.SaveChangesAsync(cancellationToken)
                            .ConfigureAwait(false);
+                        return;
                     }
 
                     string msg = $"There is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
