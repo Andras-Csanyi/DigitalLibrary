@@ -68,6 +68,9 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\SourceFormatTreeMgmt.feature">
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\Inactivate.Validation.feature">
+            <CodeBehindFile>SourceFormat/Inactivate.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
 </Project>
