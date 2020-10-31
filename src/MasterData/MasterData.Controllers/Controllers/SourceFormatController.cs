@@ -88,7 +88,7 @@ namespace DigitalLibrary.MasterData.Controllers
             {
                 await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .DeleteSourceFormatAsync(sourceFormat)
+                   .DeleteAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok();
             }

@@ -44,7 +44,25 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<long> CountSourceFormatsAsync();
 
-        Task DeleteSourceFormatAsync(SourceFormat secondResult);
+        /// <summary>
+        /// Deletes the defined <see cref="SourceFormat"/> from the system.
+        ///
+        /// The Id property of the provided instance defines which <see cref="SourceFormat"/> is going to be
+        /// deleted.
+        /// </summary>
+        /// <param name="target">
+        ///    The <see cref="SourceFormat"/> object going to be deleted.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///    Returns a <see cref="Task{TResult}"/> representing the result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        /// An error happened during database operation.
+        /// </exception>
+        Task DeleteAsync(
+            SourceFormat target,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Finds and returns with a <see cref="SourceFormat"/> by Id. 

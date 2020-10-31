@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
@@ -16,9 +17,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     using FluentValidation;
 
+    using Microsoft.EntityFrameworkCore;
+
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        public async Task DeleteSourceFormatAsync(SourceFormat sourceFormat)
+        /// <inheritdoc/>
+        public async Task DeleteAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
         {
             try
             {
@@ -30,18 +36,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    SourceFormat result = await ctx.SourceFormats.FindAsync(sourceFormat.Id).ConfigureAwait(false);
+                    SourceFormat result = await ctx.SourceFormats
+                       .FirstOrDefaultAsync(w => w.Id == sourceFormat.Id,
+                            cancellationToken: cancellationToken)
+                       .ConfigureAwait(false);
 
-                    string msg = $"Ther is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
-                    Check.IsNotNull(result, msg);
+                    if (result != null)
+                    {
+                        ctx.SourceFormats.Remove(result);
+                        await ctx.SaveChangesAsync(cancellationToken)
+                           .ConfigureAwait(false);
+                    }
 
-                    ctx.SourceFormats.Remove(result);
-                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    string msg = $"There is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
+                    throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                 }
             }
             catch (Exception e)
             {
-                throw new MasterDataBusinessLogicDeleteSourceFormatAsyncOperationException(e.Message, e);
+                string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
+                             $"{nameof(DeleteAsync)} operation failed! " +
+                             $"For further information see inner exception!";
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(e.Message, e);
             }
         }
     }
