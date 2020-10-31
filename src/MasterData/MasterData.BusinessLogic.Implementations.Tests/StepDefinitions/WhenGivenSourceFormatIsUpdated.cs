@@ -11,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefi
     public partial class StepDefinitions
     {
         [When(@"given SourceFormat is updated")]
+        [Given(@"given SourceFormat is updated")]
         public async Task WhenGivenSourceFormatIsUpdated(Table table)
         {
             WhenGivenSourceFormatIsUpdatedEntity instance = table

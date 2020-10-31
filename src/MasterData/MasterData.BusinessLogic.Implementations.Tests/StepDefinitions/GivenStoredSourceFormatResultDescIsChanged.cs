@@ -1,0 +1,31 @@
+namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Tests.StepDefinitions
+{
+    using DigitalLibrary.MasterData.DomainModel;
+
+    using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow.Assist;
+
+    public partial class StepDefinitions
+    {
+        [Given(@"stored SourceFormat result Desc is changed")]
+        public void GivenStoredSourceFormatResultDescIsChanged(Table table)
+        {
+            GivenStoredSourceFormatResultDescIsChangedEntity instance = table
+               .CreateInstance<GivenStoredSourceFormatResultDescIsChangedEntity>();
+
+            SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
+            sourceFormat.Desc = instance.Desc;
+            _scenarioContext.Remove(instance.ResultKey);
+            _scenarioContext.Add(instance.ResultKey, sourceFormat);
+        }
+    }
+
+    internal class GivenStoredSourceFormatResultDescIsChangedEntity
+    {
+        public string Key { get; set; }
+
+        public string ResultKey { get; set; }
+
+        public string Desc { get; set; }
+    }
+}
