@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace DigitalLibrary.MasterData.WebApi.Client
+namespace MasterData.Web.Api.Client.Interfaces
 {
     /// <summary>
     ///     Master Data Http Client interface.

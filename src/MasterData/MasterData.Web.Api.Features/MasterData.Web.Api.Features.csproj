@@ -31,4 +31,10 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+    </ItemGroup>
 </Project>

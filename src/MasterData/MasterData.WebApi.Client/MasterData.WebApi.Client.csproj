@@ -13,6 +13,7 @@
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
         <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+        <ProjectReference Include="..\MasterData.Web.Api.Client.Interfaces\MasterData.Web.Api.Client.Interfaces.csproj"/>
         <ProjectReference Include="..\MasterData.Web.Api\MasterData.Web.Api.csproj"/>
     </ItemGroup>
 

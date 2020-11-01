@@ -4,6 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     using TechTalk.SpecFlow;
@@ -17,7 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             GivenThereIsASavedSourceFormatDomainObjectEntity instance = table
                .CreateInstance<GivenThereIsASavedSourceFormatDomainObjectEntity>();
 
-            ISourceFormatDomainObject domainObject = new ThereIsASourceFormatDomainObjectEntity
+            ISourceFormatDomainObject domainObject = new GivenThereIsASourceFormatDomainObjectEntity
             {
                 Name = instance.Name,
                 Desc = instance.Desc,

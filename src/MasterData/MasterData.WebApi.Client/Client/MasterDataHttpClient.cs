@@ -3,6 +3,8 @@
 //  Licensed under MIT.
 // </copyright>
 
+using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+
 namespace DigitalLibrary.MasterData.WebApi.Client
 {
     using DigitalLibrary.Utils.DiLibHttpClient;

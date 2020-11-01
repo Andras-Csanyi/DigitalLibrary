@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     using TechTalk.SpecFlow;
@@ -14,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         {
             for (int i = 0; i < p0; i++)
             {
-                ISourceFormatDomainObject sourceFormatDomainObject = new ThereIsASourceFormatDomainObjectEntity
+                ISourceFormatDomainObject sourceFormatDomainObject = new GivenThereIsASourceFormatDomainObjectEntity
                 {
                     IsActive = 1,
                 };
