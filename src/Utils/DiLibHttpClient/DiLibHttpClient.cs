@@ -9,6 +9,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Net.Http.Headers;
     using System.Net.Mime;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
@@ -99,7 +100,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         }
 
         /// <inheritdoc/>
-        public async Task<T> PostAsync<T>(T payload, string url)
+        public async Task<T> PostAsync<T>(T payload, string url, CancellationToken cancellationToken = default)
             where T : class
         {
             try
@@ -111,20 +112,28 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     HttpMethod.Post, url);
                 httpRequestMessage.Content = CreateStringContent(payload);
 
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+                using (HttpResponseMessage httpResponseMessage = await _httpClient
+                   .SendAsync(httpRequestMessage, cancellationToken)
                    .ConfigureAwait(false))
                 {
                     try
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
-                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string content = await httpResponseMessage
+                           .Content
+                           .ReadAsStringAsync()
+                           .ConfigureAwait(false);
+
                         T result = JsonToObject<T>(content);
                         return result;
                     }
                     catch (Exception e)
                     {
-                        string errorDetails =
-                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string errorDetails = await httpResponseMessage
+                           .Content
+                           .ReadAsStringAsync()
+                           .ConfigureAwait(false);
+
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }

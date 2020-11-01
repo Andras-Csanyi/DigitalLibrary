@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
 
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {

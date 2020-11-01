@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace DigitalLibrary.MasterData.WebApi.Client
+namespace DigitalLibrary.MasterData.Web.Api.Client.Exceptions
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

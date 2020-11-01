@@ -3,10 +3,13 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace MasterData.Web.Api.Client.Interfaces
+namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
+    using DigitalLibrary.MasterData.DomainModel;
 
     public partial interface IMasterDataHttpClient
     {

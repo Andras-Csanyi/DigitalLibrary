@@ -11,6 +11,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators.TestData;
+    using DigitalLibrary.MasterData.Web.Api.Client.Exceptions;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
 

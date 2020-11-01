@@ -4,6 +4,7 @@
 
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -34,9 +35,13 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// </summary>
         /// <param name="payload">Object to be posted.</param>
         /// <param name="url">The url where to the object will be posted.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
         /// <typeparam name="T">Type will be posted, and the return result Type too.</typeparam>
         /// <returns>HttpResponseMessage with Status 200 and content where type is T.</returns>
-        Task<T> PostAsync<T>(T payload, string url)
+        /// <exception cref="DiLibHttpException">
+        ///    Any error happen.
+        /// </exception>
+        Task<T> PostAsync<T>(T payload, string url, CancellationToken cancellationToken = default)
             where T : class;
 
         /// <summary>

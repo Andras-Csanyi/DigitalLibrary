@@ -3,12 +3,13 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace MasterData.Web.Api.Client.Interfaces
+namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
 {
     /// <summary>
     ///     Master Data Http Client interface.
     /// </summary>
     public partial interface IMasterDataHttpClient
     {
+        ISourceFormat SourceFormat { get; set; }
     }
 }

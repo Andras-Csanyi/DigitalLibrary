@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
 
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 {
@@ -45,7 +45,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 
             HttpClient httpClient = _host.CreateClient();
             DiLibHttpClient diLibHttpClient = new DiLibHttpClient(httpClient);
-            _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
+            // _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
         }
     }
 }

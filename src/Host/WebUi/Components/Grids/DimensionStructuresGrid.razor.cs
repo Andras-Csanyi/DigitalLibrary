@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
@@ -142,10 +142,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             _sourceFormats = new List<SourceFormat>();
             _sourceFormats.Add(new SourceFormat { Name = "-- Select One --" });
-            List<SourceFormat> result = await MasterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false);
-            _sourceFormats.AddRange(result);
+            // List<SourceFormat> result = await MasterDataHttpClient
+            //    .GetSourceFormatsAsync()
+            //    .ConfigureAwait(false);
+            // _sourceFormats.AddRange(result);
         }
 
         private async Task SaveDimensionStructureHandler()

@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
 
 namespace DigitalLibrary.Ui.WebUi.Components.Grids
 {
@@ -61,21 +61,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task DeleteHandler()
         {
-            Task deleteTask = Task.Run(async () => await MasterDataHttpClient.DeleteSourceFormatAsync(
-                    _deleteItem)
-               .ConfigureAwait(false));
-            deleteTask.GetAwaiter().GetResult();
-            GetAllData();
-            StateHasChanged();
-            _deleteModal.Hide();
+            // Task deleteTask = Task.Run(async () => await MasterDataHttpClient.DeleteSourceFormatAsync(
+            //         _deleteItem)
+            //    .ConfigureAwait(false));
+            // deleteTask.GetAwaiter().GetResult();
+            // GetAllData();
+            // StateHasChanged();
+            // _deleteModal.Hide();
         }
 
         private void GetAllData()
         {
-            Task<List<SourceFormat>> getTask = Task.Run(async () => await MasterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false));
-            Data = getTask.GetAwaiter().GetResult();
+            // Task<List<SourceFormat>> getTask = Task.Run(async () => await MasterDataHttpClient
+            //    .GetSourceFormatsAsync()
+            //    .ConfigureAwait(false));
+            // Data = getTask.GetAwaiter().GetResult();
         }
 
 
@@ -83,7 +83,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Data = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
+                // Data = await MasterDataHttpClient.GetSourceFormatsAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -95,14 +95,14 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Task<SourceFormat> addTask = Task.Run(async () => await MasterDataHttpClient
-                   .AddSourceFormatAsync(_newItem)
-                   .ConfigureAwait(false));
-                addTask.GetAwaiter().GetResult();
-                GetAllData();
-                StateHasChanged();
-                _newItem = new SourceFormat();
-                _addNewModal.Hide();
+                // Task<SourceFormat> addTask = Task.Run(async () => await MasterDataHttpClient
+                //    .AddSourceFormatAsync(_newItem)
+                //    .ConfigureAwait(false));
+                // addTask.GetAwaiter().GetResult();
+                // GetAllData();
+                // StateHasChanged();
+                // _newItem = new SourceFormat();
+                // _addNewModal.Hide();
             }
             catch (Exception e)
             {
@@ -114,15 +114,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             try
             {
-                Task<SourceFormat> modifyTask = Task.Run(async () => await MasterDataHttpClient
-                   .UpdateSourceFormatAsync(_editedItem)
-                   .ConfigureAwait(false));
-                modifyTask.GetAwaiter().GetResult();
-                MasterDataHttpClient.UpdateSourceFormatAsync(_editedItem);
-                GetAllData();
-                StateHasChanged();
-                _editedItem = new SourceFormat();
-                _editModal.Hide();
+                // Task<SourceFormat> modifyTask = Task.Run(async () => await MasterDataHttpClient
+                //    .UpdateSourceFormatAsync(_editedItem)
+                //    .ConfigureAwait(false));
+                // modifyTask.GetAwaiter().GetResult();
+                // MasterDataHttpClient.UpdateSourceFormatAsync(_editedItem);
+                // GetAllData();
+                // StateHasChanged();
+                // _editedItem = new SourceFormat();
+                // _editModal.Hide();
             }
             catch (Exception e)
             {

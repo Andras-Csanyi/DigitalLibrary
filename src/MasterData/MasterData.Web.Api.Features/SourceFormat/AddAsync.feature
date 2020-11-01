@@ -16,12 +16,9 @@ Feature: SourceFormat Api - Adding SourceFormat Entity
       | Field     | Value     |
       | Key       | sf        |
       | ResultKey | sf-result |
-    Then The result SourceFormat has the following properties
-      | Field    | Value     |
-      | Key      | sf-result |
-      | Name     | asd       |
-      | Desc     | asd       |
-      | IsActive | 0         |
+    Then 'sf-result' SourceFormat Name property is 'asd'
+    And 'sf-result' SourceFormat Desc property is 'asd'
+    And 'sf-result' SourceFormat IsActive property is '1'
 
   Scenario: Adds New SourceFormat - IsActive is 1
 
@@ -35,9 +32,6 @@ Feature: SourceFormat Api - Adding SourceFormat Entity
       | Field     | Value     |
       | Key       | sf        |
       | ResultKey | sf-result |
-    Then The result SourceFormat has the following properties
-      | Field    | Value     |
-      | Key      | sf-result |
-      | Name     | asd       |
-      | Desc     | asd       |
-      | IsActive | 1         |
+    Then 'sf-result' SourceFormat Name property is 'asd'
+    And 'sf-result' SourceFormat Desc property is 'asd'
+    And 'sf-result' SourceFormat IsActive property is '1'

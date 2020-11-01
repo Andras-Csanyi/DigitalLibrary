@@ -1,4 +1,4 @@
-using IMasterDataHttpClient = MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
 
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
@@ -8,6 +8,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
@@ -61,9 +62,27 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             HttpClient httpClient = _host.CreateClient();
             DiLibHttpClient diLibHttpClient = new DiLibHttpClient(httpClient);
-            _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
+            SourceFormatHttpClient sourceFormatHttpClient = new SourceFormatHttpClient(diLibHttpClient);
+            _masterDataHttpClient = new MasterDataHttpClient(sourceFormatHttpClient);
         }
 
+        [Then(@"'(.*)' SourceFormat Name property is '(.*)'")]
+        public void ThenSourceFormatNamePropertyIs(string p0, string asd)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"'(.*)' SourceFormat Desc property is '(.*)'")]
+        public void ThenSourceFormatDescPropertyIs(string p0, string asd1)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"'(.*)' SourceFormat IsActive property is '(.*)'")]
+        public void ThenSourceFormatIsActivePropertyIs(string p0, string p1)
+        {
+            _scenarioContext.Pending();
+        }
 
         [Then(@"The result SourceFormat has the following properties")]
         public void ThenTheResultSourceFormatHasTheFollowingProperties(Table table)
