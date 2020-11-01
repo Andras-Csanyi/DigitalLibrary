@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.BusinessLogic.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.BusinessLogic.Implementations", "MasterData\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj", "{5CAAF825-1516-4A6C-B3EB-B9114541369C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.BusinessLogic.Implementations.Tests", "MasterData\MasterData.BusinessLogic.Implementations.Tests\MasterData.BusinessLogic.Implementations.Tests.csproj", "{EED55A73-CD47-48CF-BF9D-C1F16D99CCDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.BusinessLogic.Features", "MasterData\MasterData.BusinessLogic.Features\MasterData.BusinessLogic.Features.csproj", "{EED55A73-CD47-48CF-BF9D-C1F16D99CCDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{51AD6AE7-80CE-4882-8F97-D22DD30628B8}"
 EndProject

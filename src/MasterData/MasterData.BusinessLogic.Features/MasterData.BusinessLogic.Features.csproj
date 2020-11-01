@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <IsPackable>false</IsPackable>
+
+        <LangVersion>default</LangVersion>
+
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Features</AssemblyName>
+
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Features</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="SpecFlow" Version="3.4.31"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.4.31"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.4.31"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
+        <ProjectReference Include="..\MasterData.Validators.TestData\MasterData.Validators.TestData.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\Inactivate.Validation.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\Delete.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+
+</Project>
