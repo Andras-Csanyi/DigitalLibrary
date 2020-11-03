@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using Xunit;
 
-    public class TestBase<TStartup> : WebApplicationFactory<TStartup>
+    public class WebApiFeatureTestApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -21,11 +21,16 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             builder.ConfigureServices(services =>
             {
-                ServiceDescriptor masterDataDescriptor = services.SingleOrDefault(
+                ServiceDescriptor masterDataContextDescriptor = services.SingleOrDefault(
                     d => d.ServiceType == typeof(DbContextOptions<MasterDataContext>));
-                if (masterDataDescriptor != null)
+
+                services.Remove(masterDataContextDescriptor);
+
+                ServiceDescriptor found = services.SingleOrDefault(d => d.ServiceType == typeof
+                    (DbContextOptions<MasterDataContext>));
+                if (found != null)
                 {
-                    services.Remove(masterDataDescriptor);
+                    throw new Exception();
                 }
 
                 services.AddDbContext<MasterDataContext>(options => { options.UseSqlite(entityName); });

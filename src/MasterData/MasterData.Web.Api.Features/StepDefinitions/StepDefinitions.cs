@@ -1,4 +1,4 @@
-using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
@@ -7,6 +7,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using System.Net.Http;
 
     using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
     using DigitalLibrary.Utils.DiLibHttpClient;
@@ -29,7 +30,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using Xunit.Abstractions;
 
     [Binding]
-    public partial class StepDefinitions : IClassFixture<TestBase<Startup>>
+    public partial class StepDefinitions : IClassFixture<WebApiFeatureTestApplicationFactory<Startup>>
     {
         private ScenarioContext _scenarioContext;
 
@@ -44,7 +45,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         public StepDefinitions(
             ScenarioContext scenarioContext,
             ITestOutputHelper testOutputHelper,
-            WebApplicationFactory<Startup> host)
+            WebApiFeatureTestApplicationFactory<Startup> host)
         {
             Check.IsNotNull(scenarioContext);
             _scenarioContext = scenarioContext;
