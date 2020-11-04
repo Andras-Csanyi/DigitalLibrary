@@ -18,7 +18,7 @@ Feature: SourceFormat Api - Adding SourceFormat Entity
       | ResultKey | sf-result |
     Then 'sf-result' SourceFormat Name property is 'asd'
     And 'sf-result' SourceFormat Desc property is 'asd'
-    And 'sf-result' SourceFormat IsActive property is '1'
+    And 'sf-result' SourceFormat IsActive property is '0'
 
   Scenario: Adds New SourceFormat - IsActive is 1
 

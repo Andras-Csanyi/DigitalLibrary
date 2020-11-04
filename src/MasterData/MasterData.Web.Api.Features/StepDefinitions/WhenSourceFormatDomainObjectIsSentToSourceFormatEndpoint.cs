@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
+    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -17,10 +18,19 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
 
-            SourceFormat result = await _masterDataHttpClient
-               .SourceFormat
-               .AddAsync(sourceFormat)
-               .ConfigureAwait(false);
+            try
+            {
+                SourceFormat result = await _masterDataHttpClient
+                   .SourceFormat
+                   .AddAsync(sourceFormat)
+                   .ConfigureAwait(false);
+
+                _scenarioContext.Add(instance.ResultKey, result);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.ResultKey, e);
+            }
         }
     }
 }

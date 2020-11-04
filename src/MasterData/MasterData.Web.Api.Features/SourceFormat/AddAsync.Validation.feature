@@ -13,8 +13,11 @@ Feature: Adding SourceFormat To The System Input Validation
       | Name     | <Name>        |
       | Desc     | <Description> |
       | IsActive | <IsActive>    |
-    When SourceFormat domain object is saved
-    Then SourceFormat domain object related save operation returns with bad request
+    When SourceFormat domain object is sent to SourceFormat endpoint
+      | Field     | Value         |
+      | Key       | sf-validation |
+      | ResultKey | sf-result     |
+    Then SourceFormat domain object related 'sf-result' save operation returns with bad request
 
     Examples:
       | Name    | Description | IsActive |

@@ -66,29 +66,5 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             SourceFormatHttpClient sourceFormatHttpClient = new SourceFormatHttpClient(diLibHttpClient);
             _masterDataHttpClient = new MasterDataHttpClient(sourceFormatHttpClient);
         }
-
-        [Then(@"'(.*)' SourceFormat Name property is '(.*)'")]
-        public void ThenSourceFormatNamePropertyIs(string p0, string asd)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"'(.*)' SourceFormat Desc property is '(.*)'")]
-        public void ThenSourceFormatDescPropertyIs(string p0, string asd1)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"'(.*)' SourceFormat IsActive property is '(.*)'")]
-        public void ThenSourceFormatIsActivePropertyIs(string p0, string p1)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"The result SourceFormat has the following properties")]
-        public void ThenTheResultSourceFormatHasTheFollowingProperties(Table table)
-        {
-            _scenarioContext.Pending();
-        }
     }
 }
