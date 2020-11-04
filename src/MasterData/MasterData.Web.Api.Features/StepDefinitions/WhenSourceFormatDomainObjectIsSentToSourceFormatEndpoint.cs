@@ -4,7 +4,10 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
+
+    using DiLibHttpClientResponseObjects;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -18,18 +21,18 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
 
-            try
-            {
-                SourceFormat result = await _masterDataHttpClient
-                   .SourceFormat
-                   .AddAsync(sourceFormat)
-                   .ConfigureAwait(false);
+            DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
+               .SourceFormat
+               .AddAsync(sourceFormat)
+               .ConfigureAwait(false);
 
-                _scenarioContext.Add(instance.ResultKey, result);
-            }
-            catch (Exception e)
+            if (result.IsSuccess)
             {
-                _scenarioContext.Add(instance.ResultKey, e);
+                _scenarioContext.Add(instance.ResultKey, result.Result);
+            }
+            else
+            {
+                _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
             }
         }
     }

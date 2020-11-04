@@ -5,6 +5,7 @@
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Net.Mime;
@@ -14,6 +15,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
     using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
     using DigitalLibrary.Utils.Guards;
+
+    using DiLibHttpClientResponseObjects;
 
     using Newtonsoft.Json;
 
@@ -100,47 +103,54 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         }
 
         /// <inheritdoc/>
-        public async Task<T> PostAsync<T>(T payload, string url, CancellationToken cancellationToken = default)
+        public async Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
+                                                                   string url,
+                                                                   CancellationToken cancellationToken = default)
             where T : class
         {
-            try
+            Check.IsNotNull(payload);
+            Check.NotNullOrEmptyOrWhitespace(url);
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                HttpMethod.Post, url);
+            httpRequestMessage.Content = CreateStringContent(payload);
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(
+                    httpRequestMessage,
+                    cancellationToken)
+               .ConfigureAwait(false))
             {
-                Check.IsNotNull(payload);
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Post, url);
-                httpRequestMessage.Content = CreateStringContent(payload);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient
-                   .SendAsync(httpRequestMessage, cancellationToken)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
-                        string content = await httpResponseMessage
-                           .Content
-                           .ReadAsStringAsync()
-                           .ConfigureAwait(false);
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    string content = await httpResponseMessage
+                       .Content
+                       .ReadAsStringAsync()
+                       .ConfigureAwait(false);
 
-                        T result = JsonToObject<T>(content);
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails = await httpResponseMessage
-                           .Content
-                           .ReadAsStringAsync()
-                           .ConfigureAwait(false);
+                    T res = JsonToObject<T>(content);
 
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    result.Result = res;
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage
+                       .Content
+                       .ReadAsStringAsync()
+                       .ConfigureAwait(false);
+
+                    result.ExceptionMessage = e.Message;
+                    result.ErrorDetails = errorDetails;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+                    result.IsSuccess = false;
+
+                    return result;
+                }
             }
         }
 

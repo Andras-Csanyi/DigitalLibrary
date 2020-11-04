@@ -7,6 +7,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Threading;
     using System.Threading.Tasks;
 
+    using DiLibHttpClientResponseObjects;
+
     /// <summary>
     /// DiLib Http Client interface.
     /// </summary>
@@ -41,7 +43,9 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <exception cref="DiLibHttpException">
         ///    Any error happen.
         /// </exception>
-        Task<T> PostAsync<T>(T payload, string url, CancellationToken cancellationToken = default)
+        Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
+                                                      string url,
+                                                      CancellationToken cancellationToken = default)
             where T : class;
 
         /// <summary>

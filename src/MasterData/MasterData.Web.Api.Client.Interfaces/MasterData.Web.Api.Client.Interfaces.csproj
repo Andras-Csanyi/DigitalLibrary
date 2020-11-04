@@ -7,9 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\Utils\DiLibHttpClientResponseObjects\DiLibHttpClientResponseObjects.csproj"/>
         <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
         <ProjectReference Include="..\MasterData.Web.Api.Client.Exceptions\MasterData.Web.Api.Client.Exceptions.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client.ResponseObjects\MasterData.WebApi.Client.ResponseObjects.csproj"/>
     </ItemGroup>
 
 </Project>
