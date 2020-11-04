@@ -15,6 +15,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     public partial class StepDefinitions
     {
         [When(@"SourceFormat domain object is sent to SourceFormat endpoint")]
+        [Given(@"SourceFormat domain object is sent to SourceFormat endpoint")]
         public async Task WhenSourceFormatDomainObjectIsSentToSourceFormatEndpoint(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
