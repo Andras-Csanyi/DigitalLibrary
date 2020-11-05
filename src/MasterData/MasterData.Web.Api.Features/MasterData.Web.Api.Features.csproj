@@ -39,9 +39,4 @@
         <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
         <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
-    <ItemGroup>
-        <SpecFlowFeatureFiles Update="SourceFormat\ModifyAsync.feature">
-            <CodeBehindFile>SourceFormat/ModifyAsync.Validation.feature.cs</CodeBehindFile>
-        </SpecFlowFeatureFiles>
-    </ItemGroup>
 </Project>

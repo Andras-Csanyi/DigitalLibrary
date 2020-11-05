@@ -1,10 +1,11 @@
-Feature: SourceFormat endpoint - Modify method
+Feature: SourceFormat endpoint - Update method input validation
 
   As a Data Owner and Data Curator
   I need to be able to modify data and data structure in the system
-  So that, I modify functionality
+  And I need to be able to do so it prevents the data or data structure from corruption
+  So that, I need validation at modification
 
-  Scenario Outline: SourceFormat is modified
+  Scenario Outline: Invalid data input at modification returns with Bad Request
 
     Given there is a SourceFormat domain object
       | Field    | Value            |
@@ -22,23 +23,21 @@ Feature: SourceFormat endpoint - Modify method
       | Name     | <Name>        |
       | Desc     | <Description> |
       | IsActive | <IsActive>    |
-    And stored SourceFormat domain object Id value is
-      | Field         | Value         |
-      | IdValueSource | orig-result   |
-      | Key           | orig-modified |
-      | ResultKey     | orig-modified |
-    When modified SourceFormat domain object is sent to SourceFormat endpoint
+    When SourceFormat domain object is sent to SourceFormat endpoint
       | Field     | Value                |
       | Key       | orig-modified        |
       | ResultKey | orig-modified-result |
 
-    Then 'orig-modified-result' SourceFormat Name property is '<Name>'
-    And 'orig-modified-result' SourceFormat Desc property is '<Description>'
-    And 'orig-modified-result' SourceFormat IsActive property is '<IsActive>'
+    Then SourceFormat domain object related 'orig-modified-result' save operation returns with bad request
 
     Examples:
       | Name      | Description      | IsActive |
-      | asd       | description-orig | 1        |
-      | name-orig | asd              | 1        |
-      | name-orig | description-orig | 0        |
-      | asd       | asd              | 0        |
+      | null      | description-orig | 1        |
+      | empty     | description-orig | 1        |
+      | as        | description-orig | 1        |
+      | 3spaces   | description-orig | 1        |
+      | name-orig | null             | 1        |
+      | name-orig | empty            | 1        |
+      | name-orig | as               | 1        |
+      | name-orig | 3spaces          | 1        |
+      | name-orig | description-orig | 2        |
