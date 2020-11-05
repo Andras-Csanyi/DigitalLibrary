@@ -53,5 +53,41 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         Task<DilibHttpClientResponse<SourceFormat>> UpdateAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Sends the payload to SourceFormat endpoint's InactivateAsync method.
+        /// Http method is PUT.
+        /// </summary>
+        /// <param name="toBeInactivated">
+        /// It represents the object we would like to have inactivated.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing the result of asynchronous operation.
+        /// It contains a <see cref="DilibHttpClientResponse{T}"/> which encloses in case of successful operation
+        /// the result in the <see cref="DilibHttpClientResponse{T}.Result"/> property.
+        /// In case of unsuccessful operation other properties contain details.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormat>> InactivateAsync(
+            SourceFormat toBeInactivated,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Requests a <see cref="SourceFormat"/> object identified by the provided payload Id value.
+        /// Communication happens via http POST method.
+        /// </summary>
+        /// <param name="getById">
+        /// A <see cref="SourceFormat"/> object where the ID identifies the requested object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing the result of an asynchronous operation.
+        /// It encloses a <see cref="DilibHttpClientResponse{T}"/> where the Result property is null since
+        /// Inactivate operation doesn't return value.
+        /// In case of failure other properties provide further details of the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormat>> GetByIdAsync(
+            SourceFormat getById,
+            CancellationToken cancellationToken = default);
     }
 }

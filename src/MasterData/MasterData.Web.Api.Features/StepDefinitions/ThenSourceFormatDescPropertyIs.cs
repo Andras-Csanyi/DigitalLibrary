@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
+    using DiLibHttpClientResponseObjects;
+
     using FluentAssertions;
 
     using TechTalk.SpecFlow;
@@ -15,10 +17,11 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             Check.IsNotNull(key);
             Check.IsNotNull(expectedValue);
 
-            SourceFormat result = _scenarioContext[key] as SourceFormat;
+            DilibHttpClientResponse<SourceFormat> result = _scenarioContext[key]
+                as DilibHttpClientResponse<SourceFormat>;
             Check.IsNotNull(result);
 
-            result.Desc.Should().Be(expectedValue);
+            result.Result.Desc.Should().Be(expectedValue);
         }
     }
 }

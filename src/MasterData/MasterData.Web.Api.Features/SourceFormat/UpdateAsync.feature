@@ -4,7 +4,7 @@ Feature: SourceFormat endpoint - Update method
   I need to be able to modify data and data structure in the system
   So that, I modify functionality
 
-  Scenario Outline: SourceFormat is modified
+  Scenario Outline: SourceFormat is updated
 
     Given there is a SourceFormat domain object
       | Field    | Value            |

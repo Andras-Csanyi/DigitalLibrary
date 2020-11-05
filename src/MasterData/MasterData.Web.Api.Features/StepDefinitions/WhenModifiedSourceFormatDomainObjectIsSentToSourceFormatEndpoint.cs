@@ -19,7 +19,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             Check.IsNotNull(table);
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
+            SourceFormat sourceFormat = _scenarioContext[instance.Key]
+                as SourceFormat;
             Check.IsNotNull(sourceFormat);
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
@@ -27,14 +28,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                .UpdateAsync(sourceFormat)
                .ConfigureAwait(false);
 
-            if (result.IsSuccess)
-            {
-                _scenarioContext.Add(instance.ResultKey, result.Result);
-            }
-            else
-            {
-                _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
-            }
+            _scenarioContext.Add(instance.ResultKey, result);
         }
     }
 }

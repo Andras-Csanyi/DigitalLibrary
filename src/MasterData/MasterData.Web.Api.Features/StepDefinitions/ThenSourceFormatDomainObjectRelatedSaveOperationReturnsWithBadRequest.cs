@@ -19,7 +19,9 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         {
             Check.IsNotNull(key);
 
-            int result = (int) _scenarioContext[key];
+            DilibHttpClientResponse<SourceFormat> res = _scenarioContext[key]
+                as DilibHttpClientResponse<SourceFormat>;
+            int result = (int) res.HttpStatusCode;
 
             result.Should().Be((int) HttpStatusCode.BadRequest);
         }

@@ -102,19 +102,21 @@ namespace DigitalLibrary.MasterData.Controllers
         /// Inactivates the given <see cref="SourceFormat"/>.
         /// </summary>
         /// <param name="sourceFormat">The <see cref="SourceFormat"/> going to be inactivated.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.Inactivate)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> InactivateAsync(
-            SourceFormat sourceFormat)
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .InactivateAsync(sourceFormat)
+                   .InactivateAsync(sourceFormat, cancellationToken)
                    .ConfigureAwait(false);
                 return Ok();
             }
@@ -145,11 +147,20 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns a <see cref="SourceFormat"/> object identified by the provided object ID value.
+        /// </summary>
+        /// <param name="sourceFormat">
+        /// Its ID value identifies the <see cref="SourceFormat"/> requested.
+        /// </param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing result of asynchronous operation.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
+        public async Task<ActionResult<SourceFormat>> GetByIdAsync(SourceFormat sourceFormat)
         {
             try
             {

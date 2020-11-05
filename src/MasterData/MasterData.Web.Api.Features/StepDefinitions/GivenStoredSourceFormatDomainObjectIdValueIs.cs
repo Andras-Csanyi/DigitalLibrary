@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
+    using DiLibHttpClientResponseObjects;
+
     using Gherkin.Events.Args.Attachment;
 
     using TechTalk.SpecFlow;
@@ -16,13 +18,15 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             GivenStoredSourceFormatDomainObjectIdValueIsEntity instance = table
                .CreateInstance<GivenStoredSourceFormatDomainObjectIdValueIsEntity>();
 
-            SourceFormat source = _scenarioContext[instance.IdValueSource] as SourceFormat;
+            DilibHttpClientResponse<SourceFormat> source = _scenarioContext[instance.IdValueSource]
+                as DilibHttpClientResponse<SourceFormat>;
             Check.IsNotNull(source);
 
-            SourceFormat modified = _scenarioContext[instance.Key] as SourceFormat;
+            SourceFormat modified = _scenarioContext[instance.Key]
+                as SourceFormat;
             Check.IsNotNull(modified);
 
-            modified.Id = source.Id;
+            modified.Id = source.Result.Id;
             _scenarioContext.Remove(instance.ResultKey);
             _scenarioContext.Add(instance.ResultKey, modified);
         }

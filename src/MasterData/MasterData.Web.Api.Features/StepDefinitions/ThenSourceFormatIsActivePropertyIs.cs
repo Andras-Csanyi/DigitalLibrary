@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
+    using DiLibHttpClientResponseObjects;
+
     using FluentAssertions;
 
     using Io.Cucumber.Messages;
@@ -16,10 +18,11 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         {
             Check.IsNotNull(key);
 
-            SourceFormat result = _scenarioContext[key] as SourceFormat;
+            DilibHttpClientResponse<SourceFormat> result = _scenarioContext[key]
+                as DilibHttpClientResponse<SourceFormat>;
             Check.IsNotNull(result);
 
-            result.IsActive.Should().Be(expectedResult);
+            result.Result.IsActive.Should().Be(expectedResult);
         }
     }
 }

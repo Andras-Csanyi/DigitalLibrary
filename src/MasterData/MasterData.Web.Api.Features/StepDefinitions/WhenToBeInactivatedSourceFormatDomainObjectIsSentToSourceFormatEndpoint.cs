@@ -1,10 +1,9 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.DiLibHttpClient;
+    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using DiLibHttpClientResponseObjects;
@@ -14,21 +13,22 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [When(@"SourceFormat domain object is sent to SourceFormat endpoint")]
-        [Given(@"SourceFormat domain object is sent to SourceFormat endpoint")]
-        public async Task WhenSourceFormatDomainObjectIsSentToSourceFormatEndpoint(Table table)
+        [When(@"to be inactivated SourceFormat domain object is sent to SourceFormat endpoint")]
+        public async Task WhenToBeInactivatedSourceFormatDomainObjectIsSentToSourceFormatEndpoint(Table table)
         {
+            Check.IsNotNull(table);
+
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            SourceFormat sourceFormat = _scenarioContext[instance.Key]
-                as SourceFormat;
+            DilibHttpClientResponse<SourceFormat> toBeInactivated = _scenarioContext[instance.Key]
+                as DilibHttpClientResponse<SourceFormat>;
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
                .SourceFormat
-               .AddAsync(sourceFormat)
+               .InactivateAsync(toBeInactivated.Result)
                .ConfigureAwait(false);
 
-            _scenarioContext.Add(instance.ResultKey, result);
+            _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
         }
     }
 }
