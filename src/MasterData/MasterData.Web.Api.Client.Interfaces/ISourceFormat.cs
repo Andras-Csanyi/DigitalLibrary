@@ -34,5 +34,24 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         Task<DilibHttpClientResponse<SourceFormat>> AddAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Sends the payload to SourceFormat endpoint's UpdateAsync method.
+        /// Http method is Update.
+        /// </summary>
+        /// <param name="sourceFormat">
+        /// Object represents the object to be modified and the changed data.
+        /// Id identifies the object to be modified. The remaining parameters representing the new data.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing the result of asynchronous operation.
+        /// It contains a <see cref="DilibHttpClientResponse{T}"/> which encloses in case of successful operation
+        /// the result in the <see cref="DilibHttpClientResponse{T}.Result"/> property.
+        /// In case of unsuccessful operation other properties contain details.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormat>> UpdateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
     }
 }

@@ -59,13 +59,21 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url);
 
         /// <summary>
-        ///     Payload will be sent to url via PUT http verb.
+        ///     Sends <see cref="T"/> type payload to the given url via PUT http verb.
         /// </summary>
         /// <param name="payload">Payload object.</param>
         /// <param name="url">The url where to payload will be sent.</param>
         /// <typeparam name="T">Type of payload and result type.</typeparam>
-        /// <returns>HttpResponseMessage with Status 200, content type is T.</returns>
-        Task<T> PutAsync<T>(T payload, string url)
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains a <see cref="DilibHttpClientResponse{T}"/> object where its Result property contains the
+        /// operation result in case of success.
+        /// In case of any error other properties of the result object provides further information about the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<T>> PutAsync<T>(
+            T payload,
+            string url,
+            CancellationToken cancellationToken = default)
             where T : class;
     }
 }

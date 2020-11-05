@@ -199,12 +199,14 @@ namespace DigitalLibrary.MasterData.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SourceFormat>> UpdateAsync(
-            SourceFormat sourceFormat)
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic
-                   .MasterDataSourceFormatBusinessLogic.UpdateAsync(sourceFormat)
+                   .MasterDataSourceFormatBusinessLogic
+                   .UpdateAsync(sourceFormat, cancellationToken)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

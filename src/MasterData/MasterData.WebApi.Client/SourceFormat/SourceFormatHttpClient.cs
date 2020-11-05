@@ -9,6 +9,8 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
 
+    using DiLibHttpClientResponseObjects;
+
     /// <inheritdoc />
     public partial class SourceFormatHttpClient : ISourceFormat
     {
