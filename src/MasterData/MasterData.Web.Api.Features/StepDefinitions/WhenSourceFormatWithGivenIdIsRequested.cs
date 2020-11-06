@@ -18,16 +18,15 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             WhenSourceFormatWithGivenIdIsRequestedEntity instance = table
                .CreateInstance<WhenSourceFormatWithGivenIdIsRequestedEntity>();
 
-            DilibHttpClientResponse<SourceFormat> getById = _scenarioContext[instance.IdValueSource]
-                as DilibHttpClientResponse<SourceFormat>;
+            SourceFormat getById = _scenarioContext[instance.IdValueSource] as SourceFormat;
             Check.IsNotNull(getById);
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
                .SourceFormat
-               .GetByIdAsync(getById.Result)
+               .GetByIdAsync(getById)
                .ConfigureAwait(false);
 
-            _scenarioContext.Add(instance.ResultKey, result);
+            _scenarioContext.Add(instance.ResultKey, result.Result);
         }
     }
 

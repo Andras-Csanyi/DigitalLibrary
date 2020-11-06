@@ -28,7 +28,14 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                .AddAsync(sourceFormat)
                .ConfigureAwait(false);
 
-            _scenarioContext.Add(instance.ResultKey, result);
+            if (result.IsSuccess)
+            {
+                _scenarioContext.Add(instance.ResultKey, result.Result);
+            }
+            else
+            {
+                _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
+            }
         }
     }
 }

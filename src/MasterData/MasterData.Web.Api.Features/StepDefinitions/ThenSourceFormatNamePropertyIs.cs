@@ -17,11 +17,10 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             Check.IsNotNull(key);
             Check.IsNotNull(expectedValue);
 
-            DilibHttpClientResponse<SourceFormat> result = _scenarioContext[key]
-                as DilibHttpClientResponse<SourceFormat>;
+            SourceFormat result = _scenarioContext[key] as SourceFormat;
             Check.IsNotNull(result);
 
-            result.Result.Name.Should().Be(expectedValue);
+            result.Name.Should().Be(expectedValue);
         }
     }
 }

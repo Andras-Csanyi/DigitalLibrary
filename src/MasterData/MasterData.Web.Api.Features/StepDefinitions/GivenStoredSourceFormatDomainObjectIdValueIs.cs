@@ -18,15 +18,14 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             GivenStoredSourceFormatDomainObjectIdValueIsEntity instance = table
                .CreateInstance<GivenStoredSourceFormatDomainObjectIdValueIsEntity>();
 
-            DilibHttpClientResponse<SourceFormat> source = _scenarioContext[instance.IdValueSource]
-                as DilibHttpClientResponse<SourceFormat>;
+            SourceFormat source = _scenarioContext[instance.IdValueSource] as SourceFormat;
             Check.IsNotNull(source);
 
             SourceFormat modified = _scenarioContext[instance.Key]
                 as SourceFormat;
             Check.IsNotNull(modified);
 
-            modified.Id = source.Result.Id;
+            modified.Id = source.Id;
             _scenarioContext.Remove(instance.ResultKey);
             _scenarioContext.Add(instance.ResultKey, modified);
         }

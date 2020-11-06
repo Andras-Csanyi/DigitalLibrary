@@ -20,12 +20,11 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            DilibHttpClientResponse<SourceFormat> toBeInactivated = _scenarioContext[instance.Key]
-                as DilibHttpClientResponse<SourceFormat>;
+            SourceFormat toBeInactivated = _scenarioContext[instance.Key] as SourceFormat;
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
                .SourceFormat
-               .InactivateAsync(toBeInactivated.Result)
+               .InactivateAsync(toBeInactivated)
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
