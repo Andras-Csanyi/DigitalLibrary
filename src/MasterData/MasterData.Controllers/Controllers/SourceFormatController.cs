@@ -7,6 +7,7 @@ namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
@@ -17,12 +18,21 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
+    /// <summary>
+    ///     Contains only the <see cref="SourceFormat" /> related methods.
+    /// </summary>
     [ApiController]
     [Route(MasterDataApi.SourceFormat.SourceFormatBase)]
     public class SourceFormatController : ControllerBase
     {
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="SourceFormatController" /> class.
+        /// </summary>
+        /// <param name="masterDataBusinessLogic">
+        ///     <see cref="IMasterDataBusinessLogic" /> instance.
+        /// </param>
         public SourceFormatController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
         {
@@ -30,18 +40,29 @@ namespace DigitalLibrary.MasterData.Controllers
             _masterDataBusinessLogic = masterDataBusinessLogic;
         }
 
+        /// <summary>
+        ///     Adding new <see cref="SourceFormat" /> controller method.
+        /// </summary>
+        /// <param name="sourceFormat">
+        ///     The <see cref="SourceFormat" /> object going to be stored.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.
+        ///     It contains either the added <see cref="SourceFormat" /> or <see cref="HttpResponse" /> with error message.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> AddSourceFormatAsync(
+        public async Task<ActionResult<SourceFormat>> AddAsync(
             SourceFormat sourceFormat)
         {
             try
             {
-                SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-                   .AddSourceFormatAsync(
-                        sourceFormat).ConfigureAwait(false);
+                SourceFormat result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AddAsync(sourceFormat)
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -50,15 +71,52 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///     Deletes <see cref="SourceFormat" /> from the system.
+        /// </summary>
+        /// <param name="sourceFormat">The <see cref="SourceFormat" /> going to be deleted.</param>
+        /// <returns>
+        ///     A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.
+        /// </returns>
         [HttpDelete]
         [Route(MasterDataApi.SourceFormat.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> DeleteSourceFormatAsync(SourceFormat sourceFormat)
+        public async Task<ActionResult> DeleteAsync(SourceFormat sourceFormat)
         {
             try
             {
-                await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic.DeleteSourceFormatAsync(sourceFormat)
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .DeleteAsync(sourceFormat)
+                   .ConfigureAwait(false);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        ///     Inactivates the given <see cref="SourceFormat" />.
+        /// </summary>
+        /// <param name="sourceFormat">The <see cref="SourceFormat" /> going to be inactivated.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormat.V1.Inactivate)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> InactivateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .InactivateAsync(sourceFormat, cancellationToken)
                    .ConfigureAwait(false);
                 return Ok();
             }
@@ -89,16 +147,25 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///     Returns a <see cref="SourceFormat" /> object identified by the provided object ID value.
+        /// </summary>
+        /// <param name="sourceFormat">
+        ///     Its ID value identifies the <see cref="SourceFormat" /> requested.
+        /// </param>
+        /// <returns>
+        ///     Returns a <see cref="Task{TResult}" /> representing result of asynchronous operation.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> GetSourceFormatByIdAsync(SourceFormat sourceFormat)
+        public async Task<ActionResult<SourceFormat>> GetByIdAsync(SourceFormat sourceFormat)
         {
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-                   .GetSourceFormatByIdAsync(sourceFormat)
+                   .GetByIdAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -108,11 +175,15 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///     Returns all available <see cref="SourceFormat" /> in the system.
+        /// </summary>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.SourceFormat.V1.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<SourceFormat>>> GetSourceFormatsAsync()
+        public async Task<ActionResult<List<SourceFormat>>> GetAllAsync()
         {
             try
             {
@@ -127,17 +198,78 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///     Updates the given <see cref="SourceFormat" /> entity in the system.
+        /// </summary>
+        /// <param name="sourceFormat">
+        ///     Instance of <see cref="SourceFormat" /> with the new data.
+        /// </param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpPut]
         [Route(MasterDataApi.SourceFormat.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SourceFormat>> UpdateSourceFormatAsync(
-            SourceFormat sourceFormat)
+        public async Task<ActionResult<SourceFormat>> UpdateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 SourceFormat result = await _masterDataBusinessLogic
-                   .MasterDataSourceFormatBusinessLogic.UpdateSourceFormatAsync(sourceFormat)
+                   .MasterDataSourceFormatBusinessLogic
+                   .UpdateAsync(sourceFormat, cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        ///     Returns all active <see cref="SourceFormat" /> items in the system.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        [HttpGet]
+        [Route(MasterDataApi.SourceFormat.V1.GetActives)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<SourceFormat>>> GetActivesAsync(
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                List<SourceFormat> result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .GetActivesAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        ///     Returns all inactive <see cref="SourceFormat" /> items in the system.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        [HttpGet]
+        [Route(MasterDataApi.SourceFormat.V1.GetInActives)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<SourceFormat>>> GetInActivesAsync(
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                List<SourceFormat> result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .GetInActives(cancellationToken)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

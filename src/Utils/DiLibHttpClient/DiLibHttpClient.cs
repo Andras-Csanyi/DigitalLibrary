@@ -9,10 +9,13 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
     using System.Net.Http.Headers;
     using System.Net.Mime;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.Utils.DiLibHttpClient.Exceptions;
     using DigitalLibrary.Utils.Guards;
+
+    using DiLibHttpClientResponseObjects;
 
     using Newtonsoft.Json;
 
@@ -22,7 +25,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         private readonly HttpClient _httpClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiLibHttpClient"/> class.
+        ///     Initializes a new instance of the <see cref="DiLibHttpClient" /> class.
         /// </summary>
         /// <param name="httpClient">Instance.</param>
         public DiLibHttpClient(HttpClient httpClient)
@@ -30,112 +33,141 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        /// <inheritdoc/>
-        public async Task DeleteAsync<T>(T payload, string url)
+        /// <inheritdoc />
+        public async Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
+            T payload,
+            string url,
+            CancellationToken cancellationToken = default)
             where T : class
         {
-            try
+            Check.IsNotNull(payload);
+            Check.NotNullOrEmptyOrWhitespace(url);
+
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                HttpMethod.Delete, url);
+            httpRequestMessage.Content = CreateStringContent(payload);
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+               .ConfigureAwait(false))
             {
-                Check.IsNotNull(payload);
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Delete, url);
-                httpRequestMessage.Content = CreateStringContent(payload);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    httpResponseMessage.EnsureSuccessStatusCode();
+
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+                    result.ErrorDetails = errorDetails;
+                    result.IsSuccess = false;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
+                }
             }
         }
 
-        /// <inheritdoc/>
-        public async Task<T> GetAsync<T>(string url)
+        /// <inheritdoc />
+        public async Task<DilibHttpClientResponse<T>> GetAsync<T>(
+            string url,
+            CancellationToken cancellationToken = default)
         {
-            try
+            Check.NotNullOrEmptyOrWhitespace(url);
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+               .ConfigureAwait(false))
             {
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
-                        string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        T result = JsonToObject<T>(responseString);
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+                    T res = JsonToObject<T>(responseString);
+
+                    result.Result = res;
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+
+                    result.IsSuccess = false;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+                    result.ErrorDetails = errorDetails;
+
+                    return result;
+                }
             }
         }
 
-        /// <inheritdoc/>
-        public async Task<T> PostAsync<T>(T payload, string url)
+        /// <inheritdoc />
+        public async Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
+                                                                   string url,
+                                                                   CancellationToken cancellationToken = default)
             where T : class
         {
-            try
+            Check.IsNotNull(payload);
+            Check.NotNullOrEmptyOrWhitespace(url);
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                HttpMethod.Post, url);
+            httpRequestMessage.Content = CreateStringContent(payload);
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(
+                    httpRequestMessage,
+                    cancellationToken)
+               .ConfigureAwait(false))
             {
-                Check.IsNotNull(payload);
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Post, url);
-                httpRequestMessage.Content = CreateStringContent(payload);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
-                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        T result = JsonToObject<T>(content);
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails =
-                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    string content = await httpResponseMessage
+                       .Content
+                       .ReadAsStringAsync()
+                       .ConfigureAwait(false);
+
+                    T res = JsonToObject<T>(content);
+
+                    result.Result = res;
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage
+                       .Content
+                       .ReadAsStringAsync()
+                       .ConfigureAwait(false);
+
+                    result.ExceptionMessage = e.Message;
+                    result.ErrorDetails = errorDetails;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+                    result.IsSuccess = false;
+
+                    return result;
+                }
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url)
         {
             try
@@ -153,7 +185,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     try
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
-                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string content =
+                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         TReturnType result = JsonToObject<TReturnType>(content);
                         return result;
                     }
@@ -171,43 +204,50 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc/>
-        public async Task<T> PutAsync<T>(T payload, string url)
+        /// <inheritdoc />
+        public async Task<DilibHttpClientResponse<T>> PutAsync<T>(
+            T payload,
+            string url,
+            CancellationToken cancellationToken = default)
             where T : class
         {
-            try
+            Check.IsNotNull(payload);
+            Check.NotNullOrEmptyOrWhitespace(url);
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+                HttpMethod.Put, url);
+            httpRequestMessage.Content = CreateStringContent(payload);
+
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient
+               .SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false))
             {
-                Check.IsNotNull(payload);
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Put, url);
-                httpRequestMessage.Content = CreateStringContent(payload);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
+                    httpResponseMessage.EnsureSuccessStatusCode();
 
-                        string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        T result = JsonToObject<T>(resultString);
+                    string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+                    T resulToObject = JsonToObject<T>(resultString);
 
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    result.Result = resulToObject;
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+                    result.ErrorDetails = errorDetails;
+                    result.IsSuccess = false;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
+                }
             }
         }
 

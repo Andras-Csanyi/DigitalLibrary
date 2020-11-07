@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
 
@@ -43,7 +43,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 
             HttpClient httpClient = _host.CreateClient();
             DiLibHttpClient diLibHttpClient = new DiLibHttpClient(httpClient);
-            _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
+            // _masterDataHttpClient = new MasterDataHttpClient(diLibHttpClient);
         }
     }
 }

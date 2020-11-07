@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

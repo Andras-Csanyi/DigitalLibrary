@@ -13,7 +13,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
 
     using FluentValidation;
 

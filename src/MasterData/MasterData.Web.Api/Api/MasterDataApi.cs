@@ -13,24 +13,63 @@ namespace DigitalLibrary.MasterData.Web.Api
         public const string Route = "api/masterdata";
 
         /// <summary>
-        /// <see cref="SourceFormat"/> related endpoints.
+        ///     <see cref="SourceFormat" /> related endpoints.
         /// </summary>
         public struct SourceFormat
         {
+            /// <summary>
+            ///     Base path.
+            /// </summary>
             public const string SourceFormatBase = Route + "/SourceFormat";
 
+            /// <summary>
+            ///     V1 Api endpoint for <see cref="SourceFormat" />.
+            /// </summary>
             public struct V1
             {
+                /// <summary>
+                ///     Add endpoint path.
+                /// </summary>
                 public const string Add = "v1/Add";
 
+                /// <summary>
+                ///     Update endpoint path.
+                /// </summary>
                 public const string Update = "v1/Update";
 
+                /// <summary>
+                ///     Delete endpoint path.
+                /// </summary>
                 public const string Delete = "v1/Delete";
 
+                /// <summary>
+                ///     Inactivate endpoint path.
+                /// </summary>
+                public const string Inactivate = "v1/Inactivate";
+
+                /// <summary>
+                ///     GetAll endpoint path.
+                /// </summary>
                 public const string GetAll = "v1/GetAll";
 
+                /// <summary>
+                ///     GetActives endpoint path.
+                /// </summary>
+                public const string GetActives = "v1/GetActives";
+
+                /// <summary>
+                ///     GetInActives endpoint path.
+                /// </summary>
+                public const string GetInActives = "v1/GetInactives";
+
+                /// <summary>
+                ///     GetById endpoint path.
+                /// </summary>
                 public const string GetById = "v1/GetById";
 
+                /// <summary>
+                ///     GetByIdWithDimensionStructureTree endpoint path.
+                /// </summary>
                 public const string GetByIdWithFullDimensionStructureTree = "v1/GetByIdWithDimensionStructureTree";
             }
         }
@@ -96,7 +135,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         }
 
         /// <summary>
-        /// <see cref="DimensionStructure"/> related endpoints.
+        ///     <see cref="DimensionStructure" /> related endpoints.
         /// </summary>
         public struct DimensionStructure
         {

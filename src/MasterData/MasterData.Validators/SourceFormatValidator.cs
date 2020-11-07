@@ -12,14 +12,14 @@ namespace DigitalLibrary.MasterData.Validators
     using FluentValidation;
 
     /// <summary>
-    /// Validator for <see cref="SourceFormat"/> object.
-    /// It contains multiple validators which can be utilized by using <see cref="SourceFormatValidatorRulesets"/>.
+    ///     Validator for <see cref="SourceFormat" /> object.
+    ///     It contains multiple validators which can be utilized by using <see cref="SourceFormatValidatorRulesets" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public class SourceFormatValidator : AbstractValidator<SourceFormat>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatValidator"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatValidator" /> class.
         /// </summary>
         public SourceFormatValidator()
         {
@@ -88,6 +88,8 @@ namespace DigitalLibrary.MasterData.Validators
                 RuleFor(p => p.Name).NotNull().NotEmpty();
                 RuleFor(p => p.Name.Length).GreaterThanOrEqualTo(3);
             });
+
+            RuleSet(SourceFormatValidatorRulesets.Inactivate, () => { RuleFor(p => p.Id).GreaterThanOrEqualTo(1); });
         }
     }
 }

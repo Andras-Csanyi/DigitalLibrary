@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     /// <inheritdoc />
     public class DimensionValueConfiguration : IEntityTypeConfiguration<DimensionValue>
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Configure(EntityTypeBuilder<DimensionValue> builder)
         {
             builder.ToTable("dimension_value");

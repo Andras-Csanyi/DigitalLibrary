@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     /// <inheritdoc />
     public class DimensionStructureConfiguration : IEntityTypeConfiguration<DimensionStructure>
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Configure(EntityTypeBuilder<DimensionStructure> builder)
         {
             builder.ToTable("dimension_structure");

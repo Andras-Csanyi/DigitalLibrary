@@ -13,7 +13,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
 
     using FluentValidation;
     using FluentValidation.Results;
@@ -140,10 +140,10 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
         {
             _sourceFormats = new List<SourceFormat>();
             _sourceFormats.Add(new SourceFormat { Name = "-- Select One --" });
-            List<SourceFormat> result = await MasterDataHttpClient
-               .GetSourceFormatsAsync()
-               .ConfigureAwait(false);
-            _sourceFormats.AddRange(result);
+            // List<SourceFormat> result = await MasterDataHttpClient
+            //    .GetSourceFormatsAsync()
+            //    .ConfigureAwait(false);
+            // _sourceFormats.AddRange(result);
         }
 
         private async Task SaveDimensionStructureHandler()

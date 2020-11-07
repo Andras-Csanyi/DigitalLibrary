@@ -6,7 +6,7 @@
 namespace DigitalLibrary.MasterData.Validators
 {
     /// <summary>
-    /// MasterDataValidators facade.
+    ///     MasterDataValidators facade.
     /// </summary>
     public interface IMasterDataValidators
     {
@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.Validators
         public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
 
         /// <summary>
-        /// Gets <see cref="DimensionStructureValidator"/>.
+        ///     Gets <see cref="DimensionStructureValidator" />.
         /// </summary>
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.Validators
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         /// <summary>
-        /// Gets <see cref="SourceFormatValidator"/>.
+        ///     Gets <see cref="SourceFormatValidator" />.
         /// </summary>
         public SourceFormatValidator SourceFormatValidator { get; }
     }

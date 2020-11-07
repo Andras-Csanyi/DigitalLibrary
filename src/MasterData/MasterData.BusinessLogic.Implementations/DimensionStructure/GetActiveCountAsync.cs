@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -10,7 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<int> GetActiveCountAsync()
         {
             try

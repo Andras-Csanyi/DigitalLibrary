@@ -5,10 +5,54 @@
         <AssemblyName>DigitalLibrary.MasterData.Web.Api.Features</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Features</RootNamespace>
         <LangVersion>default</LangVersion>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
     <ItemGroup>
         <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
         <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
 
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.9"/>
+        <PackageReference Include="SpecFlow" Version="3.4.31"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.4.31"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.4.31"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="1.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
+            <CodeBehindFile>SourceFormat/InactivateAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\DeleteAsync.Validation.feature">
+            <CodeBehindFile>SourceFormat/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="SourceFormat\InactivateAsync.Validation.feature.cs">
+            <DependentUpon>InactivateAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
 </Project>

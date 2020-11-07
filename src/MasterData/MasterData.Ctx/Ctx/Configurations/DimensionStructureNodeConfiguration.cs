@@ -10,7 +10,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     public class DimensionStructureNodeConfiguration
         : IEntityTypeConfiguration<DimensionStructureNode>
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Configure(EntityTypeBuilder<DimensionStructureNode> builder)
         {
             Check.IsNotNull(builder);

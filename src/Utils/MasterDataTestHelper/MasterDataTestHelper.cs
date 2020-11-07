@@ -8,7 +8,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
     public class MasterDataTestHelper : IMasterDataTestHelper
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterDataTestHelper"/> class.
+        ///     Initializes a new instance of the <see cref="MasterDataTestHelper" /> class.
         /// </summary>
         /// <param name="sourceFormatFactory">SourceFormatFactory.</param>
         /// <param name="dimensionStructureFactory">DimensionStructureFactory.</param>
@@ -22,10 +22,10 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
                 $"{nameof(dimensionStructureFactory)}");
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IDimensionStructureFactory DimensionStructureFactory { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ISourceFormatFactory SourceFormatFactory { get; }
     }
 }

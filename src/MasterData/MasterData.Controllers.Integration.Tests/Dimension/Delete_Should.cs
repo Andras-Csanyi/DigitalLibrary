@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.Controllers.Integration.Tests.Dimension
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Exceptions;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
 
     using FluentAssertions;

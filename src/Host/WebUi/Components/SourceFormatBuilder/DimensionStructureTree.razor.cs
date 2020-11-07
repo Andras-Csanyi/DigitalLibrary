@@ -13,7 +13,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.Utils.Guards;
 
     using Microsoft.AspNetCore.Components;
