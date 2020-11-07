@@ -3,6 +3,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net.Http;
 
@@ -30,6 +31,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using Xunit.Abstractions;
 
     [Binding]
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public partial class StepDefinitions : IClassFixture<WebApiFeatureTestApplicationFactory<Startup>>
     {
         private ScenarioContext _scenarioContext;

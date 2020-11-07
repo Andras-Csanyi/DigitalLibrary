@@ -6,6 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -17,7 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         {
             Check.IsNotNull(table);
 
-            DimensionStructureIsRequestedEntity instance = table.CreateInstance<DimensionStructureIsRequestedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             DimensionStructure dimensionStructure = _scenarioContext[instance.Key] as DimensionStructure;
 
@@ -34,14 +35,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 _scenarioContext.Add(instance.ResultKey, e);
             }
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class DimensionStructureIsRequestedEntity
-    {
-        public string Key { get; set; }
-
-        public string ResultKey { get; set; }
     }
 }

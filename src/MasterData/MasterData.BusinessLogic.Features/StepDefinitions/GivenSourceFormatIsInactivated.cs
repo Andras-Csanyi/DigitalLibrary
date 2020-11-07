@@ -6,6 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -16,8 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"SourceFormat is inactivated")]
         public async Task GivenSourceFormatIsInactivated(Table table)
         {
-            GivenSourceFormatIsInactivatedEntity instance = table
-               .CreateInstance<GivenSourceFormatIsInactivatedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             SourceFormat toBeInactivated = _scenarioContext[instance.Key] as SourceFormat;
             Check.IsNotNull(toBeInactivated);
@@ -36,14 +36,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 _scenarioContext.Add(instance.ResultKey, e);
             }
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class GivenSourceFormatIsInactivatedEntity
-    {
-        public string Key { get; set; }
-
-        public string ResultKey { get; set; }
     }
 }

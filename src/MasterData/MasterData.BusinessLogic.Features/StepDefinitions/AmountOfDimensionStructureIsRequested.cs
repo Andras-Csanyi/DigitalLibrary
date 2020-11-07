@@ -4,6 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -14,8 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         public async Task AmountOfDimensionStructureIsRequested(Table table)
         {
             Check.IsNotNull(table);
-            AmountOfDimensionStructureIsRequestedEntity instance =
-                table.CreateInstance<AmountOfDimensionStructureIsRequestedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             int count = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
                .GetActiveCountAsync()
@@ -23,14 +23,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             _scenarioContext.Add(instance.ResultKey, count);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class AmountOfDimensionStructureIsRequestedEntity
-    {
-        public string ResultKey { get; set; }
-
-        public string Key { get; set; }
     }
 }

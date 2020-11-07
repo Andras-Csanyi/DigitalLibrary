@@ -5,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -14,8 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"I query all DimensionStructures")]
         public async Task WhenIQueryAllDimensionStructures(Table table)
         {
-            WhenIQueryAllDimensionStructureEntity instance = table
-               .CreateInstance<WhenIQueryAllDimensionStructureEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             List<DimensionStructure> dimensionStructures = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
@@ -24,12 +24,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             _scenarioContext.Add(instance.ResultKey, dimensionStructures);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class WhenIQueryAllDimensionStructureEntity
-    {
-        public string ResultKey { get; set; }
     }
 }

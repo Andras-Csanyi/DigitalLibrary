@@ -5,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -15,8 +16,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Given(@"given SourceFormat is updated")]
         public async Task WhenGivenSourceFormatIsUpdated(Table table)
         {
-            WhenGivenSourceFormatIsUpdatedEntity instance = table
-               .CreateInstance<WhenGivenSourceFormatIsUpdatedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             SourceFormat payload = _scenarioContext[instance.Key] as SourceFormat;
 
@@ -34,14 +34,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 _scenarioContext.Add(instance.ResultKey, e);
             }
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class WhenGivenSourceFormatIsUpdatedEntity
-    {
-        public string Key { get; set; }
-
-        public string ResultKey { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [ExcludeFromCodeCoverage]
     internal class SourceFormatResultPropertyEqualsToEntity
     {
         public string EqualsTo { get; set; }

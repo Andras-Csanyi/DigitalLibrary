@@ -6,6 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -16,8 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         public async Task ListOfActiveDimensionStructureIsRequested(Table table)
         {
             Check.IsNotNull(table);
-            ListOfActiveDimensionStructureIsRequestedEntity instance = table
-               .CreateInstance<ListOfActiveDimensionStructureIsRequestedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             List<DimensionStructure> result = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
@@ -25,14 +25,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                .ConfigureAwait(false);
             _scenarioContext.Add(instance.ResultKey, result);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class ListOfActiveDimensionStructureIsRequestedEntity
-    {
-        public string ResultKey { get; set; }
-
-        public string Key { get; set; }
     }
 }

@@ -5,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -15,7 +16,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"SourceFormat is saved")]
         public async Task SourceFormatIsSaved(Table table)
         {
-            SourceFormatIsSavedEntity instance = table.CreateInstance<SourceFormatIsSavedEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             DomainModel.SourceFormat toBeSaved = _scenarioContext[instance.Key] as SourceFormat;
             try
@@ -31,14 +32,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 _scenarioContext.Add(instance.ResultKey, e);
             }
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class SourceFormatIsSavedEntity
-    {
-        public string Key { get; set; }
-
-        public string ResultKey { get; set; }
     }
 }

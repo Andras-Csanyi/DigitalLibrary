@@ -5,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -14,8 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"I query list of SourceFormats")]
         public async Task WhenIQueryListOfSourceFormats(Table table)
         {
-            WhenIQueryListOfSourceFormatsEntity instance = table
-               .CreateInstance<WhenIQueryListOfSourceFormatsEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             List<SourceFormat> result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
                .GetSourceFormatsAsync()
@@ -23,12 +23,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             _scenarioContext.Add(instance.ResultKey, result);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class WhenIQueryListOfSourceFormatsEntity
-    {
-        public string ResultKey { get; set; }
     }
 }

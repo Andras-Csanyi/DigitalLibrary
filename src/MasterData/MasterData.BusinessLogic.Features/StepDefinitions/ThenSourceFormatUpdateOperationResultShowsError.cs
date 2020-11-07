@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using FluentAssertions;
 
@@ -14,19 +15,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Then(@"SourceFormat update operation result shows error")]
         public void ThenSourceFormatUpdateOperationResultShowsError(Table table)
         {
-            ThenSourceFormatUpdateOperationResultShowsErrorEntity instance = table
-               .CreateInstance<ThenSourceFormatUpdateOperationResultShowsErrorEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             object result = _scenarioContext[instance.Key];
 
             result.GetType().Should().Be<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class ThenSourceFormatUpdateOperationResultShowsErrorEntity
-    {
-        public string Key { get; set; }
     }
 }

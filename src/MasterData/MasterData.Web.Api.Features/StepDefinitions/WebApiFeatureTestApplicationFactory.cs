@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -12,6 +13,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class WebApiFeatureTestApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class
     {

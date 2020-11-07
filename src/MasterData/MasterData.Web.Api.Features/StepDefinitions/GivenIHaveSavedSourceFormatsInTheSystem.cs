@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -31,6 +32,9 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [ExcludeFromCodeCoverage]
     internal class GivenIHaveSavedSourceFormatsInTheSystemEntity : ISourceFormatDomainObject
     {
         public string Desc { get; set; }

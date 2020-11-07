@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
 
@@ -22,6 +23,9 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [ExcludeFromCodeCoverage]
     internal class ThenTheLengthOfTheListIsEntity
     {
         public string Key { get; set; }

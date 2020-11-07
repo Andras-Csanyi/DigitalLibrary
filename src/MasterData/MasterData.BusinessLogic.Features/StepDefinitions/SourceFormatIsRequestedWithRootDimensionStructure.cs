@@ -4,6 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -13,8 +14,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"SourceFormat is requested with root DimensionStructure")]
         public async Task SourceFormatIsRequestedWithRootDimensionStructure(Table table)
         {
-            SourceFormatIsRequestedWithRootDimensionStructureEntity instance = table
-               .CreateInstance<SourceFormatIsRequestedWithRootDimensionStructureEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             DomainModel.SourceFormat withoutTree = _scenarioContext[instance.Key] as SourceFormat;
 
@@ -25,14 +25,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             _scenarioContext.Add(instance.ResultKey, requestedWithTree);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class SourceFormatIsRequestedWithRootDimensionStructureEntity
-    {
-        public string Key { get; set; }
-
-        public string ResultKey { get; set; }
     }
 }

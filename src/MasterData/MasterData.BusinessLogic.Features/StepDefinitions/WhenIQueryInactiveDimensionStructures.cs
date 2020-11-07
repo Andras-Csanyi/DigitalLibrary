@@ -5,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -14,8 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [When(@"I query inactive DimensionStructures")]
         public async Task WhenIQueryInactiveDimensionStructures(Table table)
         {
-            WhenIQueryInactiveDimensionStructuresEntity instance = table
-               .CreateInstance<WhenIQueryInactiveDimensionStructuresEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             List<DimensionStructure> result = await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
@@ -24,12 +24,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             _scenarioContext.Add(instance.ResultKey, result);
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class WhenIQueryInactiveDimensionStructuresEntity
-    {
-        public string ResultKey { get; set; }
     }
 }

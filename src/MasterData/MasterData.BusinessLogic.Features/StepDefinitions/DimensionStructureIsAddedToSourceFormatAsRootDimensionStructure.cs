@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
              || string.IsNullOrWhiteSpace(instance.DimensionStructureKey))
             {
                 string msg = $"Either {nameof(instance.SourceFormatKey)} or " +
-                    $"{nameof(instance.DimensionStructureKey)} are null. Or both.";
+                             $"{nameof(instance.DimensionStructureKey)} are null. Or both.";
                 throw new MasterDataStepDefinitionException(msg);
             }
 
@@ -45,6 +45,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [ExcludeFromCodeCoverage]
     internal class DimensionStructureIsAddedToSourceFormatAsRootDimensionStructureEntity
     {
         public string SourceFormatKey { get; set; }

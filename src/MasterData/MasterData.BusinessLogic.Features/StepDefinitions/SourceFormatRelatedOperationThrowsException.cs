@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using FluentAssertions;
 
@@ -14,18 +15,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Then(@"SourceFormat related operation throws exception")]
         public void SourceFormatRelatedOperationThrowsException(Table table)
         {
-            SourceFormatRelatedOperationThrowsExceptionEntity instance = table
-               .CreateInstance<SourceFormatRelatedOperationThrowsExceptionEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             var exception = _scenarioContext[instance.ResultKey];
             exception.Should().BeOfType<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    internal class SourceFormatRelatedOperationThrowsExceptionEntity
-    {
-        public string ResultKey { get; set; }
     }
 }
