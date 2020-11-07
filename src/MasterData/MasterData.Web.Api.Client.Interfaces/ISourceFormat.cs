@@ -5,6 +5,7 @@
 
 namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
 {
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -88,6 +89,21 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         /// </returns>
         Task<DilibHttpClientResponse<SourceFormat>> GetByIdAsync(
             SourceFormat getById,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Requests list of <see cref="SourceFormat"/>.
+        /// It returns all available <see cref="SourceFormat"/>s in the system independently whether they are
+        /// actives of inactives.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains the result of the operation in the Result property.
+        /// In case of error, other properties of the <see cref="DilibHttpClientResponse{T}"/> object provides
+        /// further information about the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<List<SourceFormat>>> GetAllAsync(
             CancellationToken cancellationToken = default);
     }
 }

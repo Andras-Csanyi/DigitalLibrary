@@ -5,6 +5,7 @@
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -69,36 +70,43 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         }
 
         /// <inheritdoc/>
-        public async Task<T> GetAsync<T>(string url)
+        public async Task<DilibHttpClientResponse<T>> GetAsync<T>(
+            string url,
+            CancellationToken cancellationToken = default)
         {
-            try
+            Check.NotNullOrEmptyOrWhitespace(url);
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+
+            DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
+
+            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+               .ConfigureAwait(false))
             {
-                Check.NotNullOrEmptyOrWhitespace(url);
-
-                HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-
-                using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-                   .ConfigureAwait(false))
+                try
                 {
-                    try
-                    {
-                        httpResponseMessage.EnsureSuccessStatusCode();
-                        string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        T result = JsonToObject<T>(responseString);
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
-                           .ConfigureAwait(false);
-                        throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
-                    }
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+                    T res = JsonToObject<T>(responseString);
+
+                    result.Result = res;
+                    result.IsSuccess = true;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+
+                    return result;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new DiLibHttpClientException(e.Message, e);
+                catch (Exception e)
+                {
+                    string errorDetails = await httpResponseMessage.Content.ReadAsStringAsync()
+                       .ConfigureAwait(false);
+
+                    result.IsSuccess = false;
+                    result.HttpStatusCode = (int) httpResponseMessage.StatusCode;
+                    result.ErrorDetails = errorDetails;
+
+                    return result;
+                }
             }
         }
 
@@ -172,7 +180,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     try
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
-                        string content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string content =
+                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
                         TReturnType result = JsonToObject<TReturnType>(content);
                         return result;
                     }

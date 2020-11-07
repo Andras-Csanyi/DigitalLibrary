@@ -28,9 +28,12 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         ///     It calls url via GET http verb.
         /// </summary>
         /// <param name="url">The url will be hit by GET verb.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <typeparam name="T">Type of the return object.</typeparam>
         /// <returns>HttpResponseMessage with Status 200 with content where type is T.</returns>
-        Task<T> GetAsync<T>(string url);
+        Task<DilibHttpClientResponse<T>> GetAsync<T>(
+            string url,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Posts payload to given url, where http method is POST.
