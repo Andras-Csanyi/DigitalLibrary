@@ -4,7 +4,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     using TechTalk.SpecFlow;

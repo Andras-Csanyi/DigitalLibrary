@@ -1,8 +1,5 @@
 namespace DiLibHttpClientResponseObjects
 {
-    using System;
-    using System.Net;
-
     public class DilibHttpClientResponse<T>
     {
         public string ExceptionMessage { get; set; }

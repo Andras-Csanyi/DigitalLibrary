@@ -11,8 +11,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
-    using Xunit;
-
     [ExcludeFromCodeCoverage]
     public class WebApiFeatureTestApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class

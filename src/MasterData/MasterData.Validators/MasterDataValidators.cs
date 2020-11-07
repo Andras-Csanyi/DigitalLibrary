@@ -11,14 +11,14 @@ namespace DigitalLibrary.MasterData.Validators
     public class MasterDataValidators : IMasterDataValidators
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterDataValidators"/> class.
+        ///     Initializes a new instance of the <see cref="MasterDataValidators" /> class.
         /// </summary>
         /// <param name="dimensionValidator">DimensionValidator.</param>
         /// <param name="dimensionValueValidator">DimensionValueValidator.</param>
         /// <param name="sourceFormatValidator">SourceFormat validator.</param>
         /// <param name="dimensionStructureValidator">DimensionStructure validator.</param>
         /// <param name="dimensionStructureDimensionStructureValidator">
-        /// DimensionStructureDimensionStructure validator.
+        ///     DimensionStructureDimensionStructure validator.
         /// </param>
         /// <param name="dimensionStructureQueryObjectValidator">DimensionStructureQueryObject validator.</param>
         public MasterDataValidators(
@@ -48,14 +48,14 @@ namespace DigitalLibrary.MasterData.Validators
 
         public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
         public DimensionValidator DimensionValidator { get; }
 
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public SourceFormatValidator SourceFormatValidator { get; }
     }
 }

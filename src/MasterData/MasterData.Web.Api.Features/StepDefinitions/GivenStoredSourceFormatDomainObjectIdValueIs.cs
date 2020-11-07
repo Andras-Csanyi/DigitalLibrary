@@ -5,10 +5,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    using DiLibHttpClientResponseObjects;
-
-    using Gherkin.Events.Args.Attachment;
-
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 

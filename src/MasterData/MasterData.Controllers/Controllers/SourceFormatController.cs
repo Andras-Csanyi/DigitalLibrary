@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    /// Contains only the <see cref="SourceFormat"/> related methods.
+    ///     Contains only the <see cref="SourceFormat" /> related methods.
     /// </summary>
     [ApiController]
     [Route(MasterDataApi.SourceFormat.SourceFormatBase)]
@@ -28,10 +28,10 @@ namespace DigitalLibrary.MasterData.Controllers
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatController"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatController" /> class.
         /// </summary>
         /// <param name="masterDataBusinessLogic">
-        /// <see cref="IMasterDataBusinessLogic"/> instance.
+        ///     <see cref="IMasterDataBusinessLogic" /> instance.
         /// </param>
         public SourceFormatController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
@@ -41,14 +41,14 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Adding new <see cref="SourceFormat"/> controller method.
+        ///     Adding new <see cref="SourceFormat" /> controller method.
         /// </summary>
         /// <param name="sourceFormat">
-        /// The <see cref="SourceFormat"/> object going to be stored.
+        ///     The <see cref="SourceFormat" /> object going to be stored.
         /// </param>
         /// <returns>
-        /// A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.
-        /// It contains either the added <see cref="SourceFormat"/> or <see cref="HttpResponse"/> with error message.
+        ///     A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.
+        ///     It contains either the added <see cref="SourceFormat" /> or <see cref="HttpResponse" /> with error message.
         /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.Add)]
@@ -72,11 +72,11 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Deletes <see cref="SourceFormat"/> from the system.
+        ///     Deletes <see cref="SourceFormat" /> from the system.
         /// </summary>
-        /// <param name="sourceFormat">The <see cref="SourceFormat"/> going to be deleted.</param>
+        /// <param name="sourceFormat">The <see cref="SourceFormat" /> going to be deleted.</param>
         /// <returns>
-        /// A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.
+        ///     A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.
         /// </returns>
         [HttpDelete]
         [Route(MasterDataApi.SourceFormat.V1.Delete)]
@@ -99,11 +99,11 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Inactivates the given <see cref="SourceFormat"/>.
+        ///     Inactivates the given <see cref="SourceFormat" />.
         /// </summary>
-        /// <param name="sourceFormat">The <see cref="SourceFormat"/> going to be inactivated.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        /// <param name="sourceFormat">The <see cref="SourceFormat" /> going to be inactivated.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.Inactivate)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -148,13 +148,13 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Returns a <see cref="SourceFormat"/> object identified by the provided object ID value.
+        ///     Returns a <see cref="SourceFormat" /> object identified by the provided object ID value.
         /// </summary>
         /// <param name="sourceFormat">
-        /// Its ID value identifies the <see cref="SourceFormat"/> requested.
+        ///     Its ID value identifies the <see cref="SourceFormat" /> requested.
         /// </param>
         /// <returns>
-        /// Returns a <see cref="Task{TResult}"/> representing result of asynchronous operation.
+        ///     Returns a <see cref="Task{TResult}" /> representing result of asynchronous operation.
         /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormat.V1.GetById)]
@@ -176,9 +176,9 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Returns all available <see cref="SourceFormat"/> in the system.
+        ///     Returns all available <see cref="SourceFormat" /> in the system.
         /// </summary>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.SourceFormat.V1.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -199,12 +199,12 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Updates the given <see cref="SourceFormat"/> entity in the system.
+        ///     Updates the given <see cref="SourceFormat" /> entity in the system.
         /// </summary>
         /// <param name="sourceFormat">
-        /// Instance of <see cref="SourceFormat"/> with the new data.
+        ///     Instance of <see cref="SourceFormat" /> with the new data.
         /// </param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpPut]
         [Route(MasterDataApi.SourceFormat.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -228,10 +228,10 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Returns all active <see cref="SourceFormat"/> items in the system.
+        ///     Returns all active <see cref="SourceFormat" /> items in the system.
         /// </summary>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.SourceFormat.V1.GetActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -254,10 +254,10 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Returns all inactive <see cref="SourceFormat"/> items in the system.
+        ///     Returns all inactive <see cref="SourceFormat" /> items in the system.
         /// </summary>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
+        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.SourceFormat.V1.GetInActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]

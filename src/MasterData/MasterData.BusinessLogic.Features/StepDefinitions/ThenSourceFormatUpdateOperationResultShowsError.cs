@@ -1,7 +1,5 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
-    using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 

@@ -2,26 +2,18 @@
 
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Net.Http;
 
-    using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
-    using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     using TechTalk.SpecFlow;
 

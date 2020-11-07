@@ -2,11 +2,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System.Net;
 
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Web.Api.Client.Exceptions;
     using DigitalLibrary.Utils.Guards;
-
-    using DiLibHttpClientResponseObjects;
 
     using FluentAssertions;
 

@@ -3,8 +3,6 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
-
 namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
 {
     using System.Collections.Generic;
@@ -13,7 +11,7 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.Utils.Guards;
 
     public class DimensionStructureTreeComponentService : IDimensionStructureTreeComponentService

@@ -10,7 +10,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
     public partial class SourceFormatHttpClient
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormat>> DeleteAsync(
             SourceFormat tobeDeleted,
             CancellationToken cancellationToken = default)

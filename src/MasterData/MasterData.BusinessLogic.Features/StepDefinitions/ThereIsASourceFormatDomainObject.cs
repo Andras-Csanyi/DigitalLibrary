@@ -1,9 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
-    using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
-    using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;

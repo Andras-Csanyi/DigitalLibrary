@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;

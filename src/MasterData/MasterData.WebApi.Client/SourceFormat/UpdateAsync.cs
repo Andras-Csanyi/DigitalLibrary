@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
     public partial class SourceFormatHttpClient
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormat>> UpdateAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)

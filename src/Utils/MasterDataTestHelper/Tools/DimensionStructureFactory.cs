@@ -1,7 +1,6 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -13,7 +12,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         private readonly IStringHelper _stringHelper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DimensionStructureFactory"/> class.
+        ///     Initializes a new instance of the <see cref="DimensionStructureFactory" /> class.
         /// </summary>
         /// <param name="stringHelper">StringHelper instance.</param>
         public DimensionStructureFactory(IStringHelper stringHelper)
@@ -21,7 +20,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             _stringHelper = stringHelper ?? throw new ArgumentNullException($"{nameof(stringHelper)}");
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DimensionStructure Create<T>(T instance)
             where T : IDimensionStructureDomainObject
         {

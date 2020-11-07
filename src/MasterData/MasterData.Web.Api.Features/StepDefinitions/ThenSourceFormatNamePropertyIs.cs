@@ -3,8 +3,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    using DiLibHttpClientResponseObjects;
-
     using FluentAssertions;
 
     using TechTalk.SpecFlow;

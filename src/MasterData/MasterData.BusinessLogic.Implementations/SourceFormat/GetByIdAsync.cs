@@ -6,7 +6,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -21,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormat> GetByIdAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)

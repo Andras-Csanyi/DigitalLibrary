@@ -3,8 +3,6 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
-
 namespace DigitalLibrary.Ui.WebUi
 {
     using System;
@@ -13,6 +11,7 @@ namespace DigitalLibrary.Ui.WebUi
 
     using DigitalLibrary.ControlPanel.WebApi.Client.Menu;
     using DigitalLibrary.MasterData.Validators;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Ui.WebUi.Notifiers;

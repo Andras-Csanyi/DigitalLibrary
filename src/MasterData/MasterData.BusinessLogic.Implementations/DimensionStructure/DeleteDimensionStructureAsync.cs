@@ -8,17 +8,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     using System;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Storage;
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteLogicallyAsync(DimensionStructure dimensionStructure)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))

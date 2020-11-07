@@ -33,8 +33,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                    $"{nameof(GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync)} " +
-                    $"operation failed. For further info see inner exception.";
+                             $"{nameof(GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync)} " +
+                             $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

@@ -5,8 +5,6 @@
 namespace DigitalLibrary.Utils.DiLibHttpClient
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Net.Mime;
@@ -27,7 +25,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         private readonly HttpClient _httpClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiLibHttpClient"/> class.
+        ///     Initializes a new instance of the <see cref="DiLibHttpClient" /> class.
         /// </summary>
         /// <param name="httpClient">Instance.</param>
         public DiLibHttpClient(HttpClient httpClient)
@@ -35,7 +33,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
             T payload,
             string url,
@@ -76,7 +74,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> GetAsync<T>(
             string url,
             CancellationToken cancellationToken = default)
@@ -117,7 +115,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
                                                                    string url,
                                                                    CancellationToken cancellationToken = default)
@@ -169,7 +167,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url)
         {
             try
@@ -206,7 +204,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> PutAsync<T>(
             T payload,
             string url,

@@ -3,15 +3,13 @@
 //  Licensed under MIT.
 // </copyright>
 
-using IMasterDataHttpClient = DigitalLibrary.MasterData.Web.Api.Client.Interfaces.IMasterDataHttpClient;
-
 namespace DigitalLibrary.MasterData.Controllers.Integration.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
 
-    using DigitalLibrary.MasterData.WebApi.Client;
+    using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.IntegrationTestFactories.Factories;
 

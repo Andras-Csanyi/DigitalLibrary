@@ -1,7 +1,6 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -12,7 +11,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         private readonly IStringHelper _stringHelper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatFactory"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatFactory" /> class.
         /// </summary>
         /// <param name="stringHelper">SourceFormatFactory instance.</param>
         public SourceFormatFactory(IStringHelper stringHelper)
@@ -20,7 +19,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             _stringHelper = stringHelper;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public SourceFormat Create<T>(T instance)
             where T : ISourceFormatDomainObject
         {

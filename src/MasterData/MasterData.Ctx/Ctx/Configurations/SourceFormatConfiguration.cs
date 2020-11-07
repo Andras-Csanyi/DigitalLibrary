@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     /// <inheritdoc />
     public class SourceFormatConfiguration : IEntityTypeConfiguration<SourceFormat>
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Configure(EntityTypeBuilder<SourceFormat> builder)
         {
             Check.IsNotNull(builder);

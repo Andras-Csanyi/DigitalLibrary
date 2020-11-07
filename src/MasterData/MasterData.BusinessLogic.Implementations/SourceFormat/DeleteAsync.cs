@@ -9,7 +9,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
@@ -21,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)

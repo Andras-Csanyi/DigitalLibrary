@@ -8,38 +8,38 @@ namespace DigitalLibrary.MasterData.Validators
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Validator ruleset options for <see cref="SourceFormatValidator"/>.
+    ///     Validator ruleset options for <see cref="SourceFormatValidator" />.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public struct SourceFormatValidatorRulesets
     {
         /// <summary>
-        /// Add operation.
+        ///     Add operation.
         /// </summary>
         public const string Add = "Add";
 
         /// <summary>
-        /// Delete operation.
+        ///     Delete operation.
         /// </summary>
         public const string Delete = "Delete";
 
         /// <summary>
-        /// GetById operation.
+        ///     GetById operation.
         /// </summary>
         public const string GetById = "GetById";
 
         /// <summary>
-        /// GetByName operation.
+        ///     GetByName operation.
         /// </summary>
         public const string GetByName = "GetByName";
 
         /// <summary>
-        /// Update operation.
+        ///     Update operation.
         /// </summary>
         public const string Update = "Update";
 
         /// <summary>
-        /// Ruleset identifier for Inactivate operation.
+        ///     Ruleset identifier for Inactivate operation.
         /// </summary>
         public const string Inactivate = "Inactivate";
     }

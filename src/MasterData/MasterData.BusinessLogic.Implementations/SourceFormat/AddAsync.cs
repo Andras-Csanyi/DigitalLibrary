@@ -6,19 +6,15 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
-
-    using Microsoft.EntityFrameworkCore.Storage;
 
     public partial class MasterDataSourceFormatBusinessLogic
     {

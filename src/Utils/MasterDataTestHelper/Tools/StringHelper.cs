@@ -4,7 +4,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using System.Text;
 
     /// <summary>
-    /// StringHelper implementation.
+    ///     StringHelper implementation.
     /// </summary>
     public class StringHelper : IStringHelper
     {
@@ -12,7 +12,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
         private readonly Random _rnd = new Random();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string GetRandomString(int length)
         {
             StringBuilder result = new StringBuilder();
