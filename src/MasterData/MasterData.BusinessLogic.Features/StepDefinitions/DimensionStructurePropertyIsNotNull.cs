@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -36,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
                 default:
                     string msg = $"{instance.PropertyName} doesn't exist or not case covered.";
-                    throw new MasterDataStepDefinitionException(msg);
+                    throw new Exception(msg);
             }
         }
     }

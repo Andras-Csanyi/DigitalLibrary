@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -42,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                     break;
 
                 default:
-                    throw new MasterDataStepDefinitionException(
+                    throw new Exception(
                         nameof(SourceFormatResultsRootDimensionStructurePropertyEqualsTo));
             }
         }

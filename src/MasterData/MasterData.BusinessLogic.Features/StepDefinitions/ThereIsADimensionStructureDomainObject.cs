@@ -18,12 +18,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                .DimensionStructureFactory
                .Create(instance);
 
-            if (string.IsNullOrEmpty(instance.Key) || string.IsNullOrWhiteSpace(instance.Key))
-            {
-                string msg = $"Key is empty or null";
-                throw new MasterDataStepDefinitionException(msg);
-            }
-
             _scenarioContext.Add(instance.Key, dimensionStructure);
         }
     }

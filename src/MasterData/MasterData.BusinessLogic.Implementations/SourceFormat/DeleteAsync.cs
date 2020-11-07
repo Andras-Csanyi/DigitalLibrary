@@ -58,7 +58,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
                              $"{nameof(DeleteAsync)} operation failed! " +
                              $"For further information see inner exception!";
-                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(e.Message, e);
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }
     }

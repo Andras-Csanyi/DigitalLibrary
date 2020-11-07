@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
@@ -23,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             {
                 string msg = $"Either {nameof(instance.SourceFormatKey)} or " +
                              $"{nameof(instance.DimensionStructureKey)} are null. Or both.";
-                throw new MasterDataStepDefinitionException(msg);
+                throw new Exception(msg);
             }
 
             DomainModel.SourceFormat sourceFormat = _scenarioContext[instance.SourceFormatKey] as SourceFormat;
