@@ -131,5 +131,22 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         /// </returns>
         Task<DilibHttpClientResponse<List<SourceFormat>>> GetActives(
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Sends a request to the endpoint about that the given <see cref="SourceFormat"/> should be deleted.
+        /// </summary>
+        /// <param name="tobeDeleted">
+        /// The Id property of the payload object marks the object to be deleted in the system.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains the result of the operation in the Result property.
+        /// In case of error, other properties of the <see cref="DilibHttpClientResponse{T}"/> object provides
+        /// further information about the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormat>> DeleteAsync(
+            SourceFormat tobeDeleted,
+            CancellationToken cancellationToken = default);
     }
 }

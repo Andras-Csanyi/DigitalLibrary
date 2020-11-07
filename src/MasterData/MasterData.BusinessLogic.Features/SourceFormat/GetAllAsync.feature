@@ -1,4 +1,4 @@
-Feature: Listing all SourceFormats in the system
+Feature: SourceFormat Business Logic - Listing all SourceFormats
 
   As a Data Owner and Data Curator
   I need to be able to see all the SourceFormats in the system

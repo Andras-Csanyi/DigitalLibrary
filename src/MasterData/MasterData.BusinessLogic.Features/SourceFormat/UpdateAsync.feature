@@ -1,4 +1,4 @@
-Feature: Updating SourceFormat
+Feature: SourceFormat Business Logic - Update a SourceFormat
 
   As a Data Owner and Data Curator
   In order to have the data structure fit for its purpose

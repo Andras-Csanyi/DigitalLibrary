@@ -1,4 +1,4 @@
-Feature: Adding SourceFormat validation
+Feature: SourceFormat Business Logic - Adding SourceFormat input validation
 
   Scenario Outline: Exception is thrown when input is invalid
 

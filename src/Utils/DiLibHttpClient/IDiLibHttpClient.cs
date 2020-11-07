@@ -17,11 +17,19 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <summary>
         ///     It sends the payload to url using DELETE http verb.
         /// </summary>
-        /// <param name="payload">The object which will be sent via DELETE http verb.</param>
+        /// <param name="payload">
+        /// <see cref="T"/> type object which represents or contains data about the object to be deleted.
+        /// </param>
         /// <param name="url">The url which will be hit by DELETE http verb.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <typeparam name="T">Type of payload.</typeparam>
-        /// <returns>HttpResponseMessage with Status 200, if error happened then Status 400.</returns>
-        Task DeleteAsync<T>(T payload, string url)
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// </returns>
+        Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
+            T payload,
+            string url,
+            CancellationToken cancellationToken = default)
             where T : class;
 
         /// <summary>
@@ -46,9 +54,10 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <exception cref="DiLibHttpException">
         ///    Any error happen.
         /// </exception>
-        Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
-                                                      string url,
-                                                      CancellationToken cancellationToken = default)
+        Task<DilibHttpClientResponse<T>> PostAsync<T>(
+            T payload,
+            string url,
+            CancellationToken cancellationToken = default)
             where T : class;
 
         /// <summary>

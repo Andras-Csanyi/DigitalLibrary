@@ -1,4 +1,4 @@
-Feature: Updating SourceFormat entity
+Feature: SourceFormat Business Logic - Update a SourceFormat input validation
 
   As a Data Owner and Data Curator
   I need to be able to update SourceFormat properties

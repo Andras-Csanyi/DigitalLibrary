@@ -1,4 +1,4 @@
-Feature: Input Validation of Deleting SourceFormat
+Feature: SourceFormat Business Logic - Delete a SourceFormat input validation
 
   As a Data Owner and Data Curator
   I need to be able to manage SourceFormats in the system

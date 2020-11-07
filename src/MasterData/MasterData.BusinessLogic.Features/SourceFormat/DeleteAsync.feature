@@ -1,4 +1,4 @@
-Feature: Delete SourceFormat
+Feature: SourceFormat Business Logic - Delete a SourceFormat
 
   As a Data Owner and Data Curator
   I need to be able to manage SourceFormats in the system

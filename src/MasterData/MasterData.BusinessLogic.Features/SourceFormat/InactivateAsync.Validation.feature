@@ -1,4 +1,4 @@
-Feature: Inactivating SourceFormat entities in the system input validation
+Feature: SourceFormat Business Logic - Inactivate a SourceFormat input validation
 
   As a Data Owner and Data Curator
   I need to have the ability to inactivate SourceFormats in the system

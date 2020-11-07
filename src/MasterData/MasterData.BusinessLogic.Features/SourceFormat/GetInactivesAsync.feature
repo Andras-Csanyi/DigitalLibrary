@@ -1,4 +1,4 @@
-Feature: Listing all inactive SourceFormats in the system
+Feature: SourceFormat Business Logic - Listing all inactive SourceFormats
 
   As a Data Owner and Data Curator
   I need to be able to see which SourceFormat is active and inactive and listing them accordingly

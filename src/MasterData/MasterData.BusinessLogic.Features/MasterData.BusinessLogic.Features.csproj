@@ -66,9 +66,9 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\Inactivate.Validation.feature">
+        <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\Delete.feature">
+        <SpecFlowFeatureFiles Update="SourceFormat\DeleteAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
         </SpecFlowFeatureFiles>

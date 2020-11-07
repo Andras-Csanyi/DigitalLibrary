@@ -1,4 +1,4 @@
-Feature: Inactivating SourceFormat entities in the system
+Feature: SourceFormat Business Logic - Inactivate a SourceFormat
 
   As a Data Owner and Data Curator
   I need to have the ability to inactivate SourceFormats in the system
