@@ -1,4 +1,4 @@
-Feature: SourceFormat Endpoint - GetAllAsync method
+Feature: SourceFormat REST Api - Requesting all SourceFormats
 
   As a Data Owner and Data Curator
   I need to be able to list all available SourceFormat entities in the system

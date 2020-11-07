@@ -1,4 +1,4 @@
-Feature: Adding SourceFormat To The System Input Validation
+Feature: SourceFormat REST Api - Adding SourceFormat To The System Input Validation
 
   As a Data Owner and Data Curator
   I need to be able to manage SourceFormat related data in the system

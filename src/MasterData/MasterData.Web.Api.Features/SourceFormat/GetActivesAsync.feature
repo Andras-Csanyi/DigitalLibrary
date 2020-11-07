@@ -1,4 +1,4 @@
-Feature: SourceFormat Endpoint - GetActives endpoint
+Feature: SourceFormat REST Api - Requesting all active SourceFormats
 
   As a Data Owner and Data Curator
   I need to be able to list SourceFormat entities in the system

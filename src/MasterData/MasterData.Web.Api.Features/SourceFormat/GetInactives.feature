@@ -1,4 +1,4 @@
-Feature: SourceFormat Endpoint - GetInactives endpoint
+Feature: SourceFormat REST Api - Requesting all inactive SourceFormats
 
   As a Data Owner and Data Curator
   I need to be able to list SourceFormat entities in the system

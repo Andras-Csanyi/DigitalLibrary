@@ -1,4 +1,4 @@
-Feature: SourceFormat endpoint - Update method input validation
+Feature: SourceFormat REST Api - Update a SourceFormat input validation
 
   As a Data Owner and Data Curator
   I need to be able to modify data and data structure in the system

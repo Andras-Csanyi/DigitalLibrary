@@ -1,4 +1,4 @@
-Feature: SourceFormat Api - Adding SourceFormat Entity
+Feature: SourceFormat REST Api - Adding SourceFormat Entity
 
   As a Data Owner and Data Curator
   I need to be able to manage SourceFormat related data in the system

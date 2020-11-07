@@ -1,4 +1,4 @@
-Feature: SourceFormat endpoint - Inactivate method
+Feature: SourceFormat REST Api - Inactivate a SourceFormat
 
   As a Data Owner and Data Curator
   I need to be able to invalidate data and data structure in the system
