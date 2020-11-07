@@ -259,7 +259,7 @@ namespace DigitalLibrary.MasterData.Controllers
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
-        [Route(MasterDataApi.SourceFormat.V1.GetActives)]
+        [Route(MasterDataApi.SourceFormat.V1.GetInActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<SourceFormat>>> GetInActivesAsync(

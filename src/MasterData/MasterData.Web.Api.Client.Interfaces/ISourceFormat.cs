@@ -92,7 +92,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Requests list of <see cref="SourceFormat"/>.
+        /// Requests list of <see cref="SourceFormat"/>s.
         /// It returns all available <see cref="SourceFormat"/>s in the system independently whether they are
         /// actives of inactives.
         /// </summary>
@@ -104,6 +104,32 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         /// further information about the error.
         /// </returns>
         Task<DilibHttpClientResponse<List<SourceFormat>>> GetAllAsync(
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Requests list of inactive <see cref="SourceFormat"/>s.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains the result of the operation in the Result property.
+        /// In case of error, other properties of the <see cref="DilibHttpClientResponse{T}"/> object provides
+        /// further information about the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<List<SourceFormat>>> GetInactives(
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Requests list of active <see cref="SourceFormat"/>s.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains the result of the operation in the Result property.
+        /// In case of error, other properties of the <see cref="DilibHttpClientResponse{T}"/> object provides
+        /// further information about the error.
+        /// </returns>
+        Task<DilibHttpClientResponse<List<SourceFormat>>> GetActives(
             CancellationToken cancellationToken = default);
     }
 }
