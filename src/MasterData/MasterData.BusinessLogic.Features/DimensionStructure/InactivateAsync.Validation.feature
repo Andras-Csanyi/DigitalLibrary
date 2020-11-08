@@ -1,8 +1,9 @@
-Feature: Logically Delete DimensionStructureAsync method input validation
+Feature: DimensionStructure Business Logic - Inactivate input validation
 
   As a Data Owner and Data Curator
-  In order to keep the data and structures in check
-  I need a functionality makes possible to delete those I don't need
+  In order to keep the data and structures in order
+  One of the steps of making order is inactivate those DimensionStructures I don't need
+  So that, I need a functionality makes possible to inactivate DimensionStructures
   These functionalities needed to be validated.
 
   Scenario: Exception is thrown when invalid data is provided for DimensionStructure delete

@@ -54,7 +54,7 @@
     <ItemGroup>
         <SpecFlowFeatureFiles Update="DimensionStructure\AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.Validation.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\GetAllAsync.feature">
         </SpecFlowFeatureFiles>
@@ -71,17 +71,7 @@
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.AddAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature">
-            <CodeBehindFile>DimensionStructure/DimensionStructure.LogicDeleteAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature.cs">
-            <DependentUpon>DimensionStructure.LogicDeleteAsync.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
     </ItemGroup>
 
 </Project>
