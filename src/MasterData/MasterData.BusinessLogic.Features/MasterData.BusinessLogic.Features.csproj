@@ -58,7 +58,7 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetAllAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
         </SpecFlowFeatureFiles>
