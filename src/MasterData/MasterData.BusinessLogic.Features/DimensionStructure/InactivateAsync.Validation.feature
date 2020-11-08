@@ -18,5 +18,5 @@ Feature: DimensionStructure Business Logic - Inactivate input validation
       | ResultKey | no-connection-result |
 
     Then DimensionStructure related operation throws exception
-      | Field     | Value                |
-      | ResultKey | no-connection-result |
+      | Field | Value                |
+      | Key   | no-connection-result |

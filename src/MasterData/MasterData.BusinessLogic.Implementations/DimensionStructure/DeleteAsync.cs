@@ -7,7 +7,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
+
+    using FluentValidation;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +24,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             try
             {
                 Check.IsNotNull(tobeDeleted);
+
+                await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+                        tobeDeleted,
+                        ruleSet: DimensionStructureValidatorRulesets.Delete)
+                   .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {

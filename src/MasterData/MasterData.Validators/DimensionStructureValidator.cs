@@ -54,7 +54,7 @@ namespace DigitalLibrary.MasterData.Validators
                 });
             });
 
-            RuleSet(DimensionStructureValidatorRulesets.Delete, () => { RuleFor(p => p.Id).NotEqual(0); });
+            RuleSet(DimensionStructureValidatorRulesets.Delete, () => { RuleFor(p => p.Id).GreaterThan(0); });
             RuleSet(DimensionStructureValidatorRulesets.GetById, () => { RuleFor(p => p.Id).NotEqual(0); });
         }
     }

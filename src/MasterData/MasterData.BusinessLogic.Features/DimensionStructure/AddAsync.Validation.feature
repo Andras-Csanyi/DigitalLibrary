@@ -20,8 +20,8 @@ Feature: DimensionStructure Business Logic - Adding DimensionStructure input val
       | ResultKey | sf-1-result |
 
     Then DimensionStructure related operation throws exception
-      | Field     | Value       |
-      | ResultKey | sf-1-result |
+      | Field | Value       |
+      | Key   | sf-1-result |
 
     Examples:
       | Name    | Desc    | IsActive |
