@@ -12,27 +12,26 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [Given(@"DimensionStructure is requested")]
-        [When(@"DimensionStructure is requested")]
-        [Then(@"DimensionStructure is requested")]
-        public async Task DimensionStructureIsRequested(Table table)
+        [When(@"DimensionStructure is deleted")]
+        public async Task WhenDimensionStructureIsDeleted(Table table)
         {
-            Check.IsNotNull(table);
-
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            DimensionStructure dimensionStructure = _scenarioContext[instance.Key] as DimensionStructure;
+            DimensionStructure tobeDeleted = _scenarioContext[instance.Key] as DimensionStructure;
+            Check.IsNotNull(tobeDeleted);
 
             try
             {
-                DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
+                await _masterDataBusinessLogic
                    .MasterDataDimensionStructureBusinessLogic
-                   .GetDimensionStructureByIdAsync(dimensionStructure)
+                   .DeleteAsync(tobeDeleted)
                    .ConfigureAwait(false);
-                _scenarioContext.Add(instance.ResultKey, dimensionStructureResult);
+                _scenarioContext.Remove(instance.ResultKey);
+                _scenarioContext.Add(instance.ResultKey, SUCCESS);
             }
             catch (Exception e)
             {
+                _scenarioContext.Remove(instance.ResultKey);
                 _scenarioContext.Add(instance.ResultKey, e);
             }
         }

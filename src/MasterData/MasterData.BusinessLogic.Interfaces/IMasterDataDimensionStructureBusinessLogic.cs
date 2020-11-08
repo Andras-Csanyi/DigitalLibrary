@@ -185,5 +185,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         ///     When any operation fails.
         /// </exception>
         Task<List<DimensionStructure>> GetInactivesAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Deletes the object having the same Id as the provided one has from the database.
+        /// </summary>
+        /// <param name="tobeDeleted">
+        ///    Object representing the object going to be deleted from the database.
+        /// From this object only the ID property is considered. Any other properties are ignored.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///    Returns <see cref="Task"/> representing value of an asynchronous operation.
+        /// </returns>
+        /// /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        ///     When any operation fails.
+        /// </exception>
+        Task DeleteAsync(
+            DimensionStructure tobeDeleted,
+            CancellationToken cancellationToken = default);
     }
 }
