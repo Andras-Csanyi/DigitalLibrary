@@ -52,7 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.feature">
         </SpecFlowFeatureFiles>

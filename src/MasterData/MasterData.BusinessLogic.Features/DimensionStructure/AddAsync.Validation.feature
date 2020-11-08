@@ -1,4 +1,4 @@
-Feature: Adding DimensionStructure validation
+Feature: DimensionStructure Business Logic - Adding DimensionStructure input validation
 
   As a Data Owner and Data Curator
   I need to be able to record new data and data structures
