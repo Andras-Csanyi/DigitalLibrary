@@ -6,6 +6,8 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
+    using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -17,7 +19,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     public partial class MasterDataDimensionStructureBusinessLogic
     {
         /// <inheritdoc />
-        public async Task DeleteLogicallyAsync(DimensionStructure dimensionStructure)
+        public async Task InactivateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -25,22 +29,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 {
                     Check.IsNotNull(dimensionStructure);
 
-                    DimensionStructure toBeDeleted = await ctx.DimensionStructures
-                       .FindAsync(dimensionStructure.Id)
+                    DimensionStructure toBeDeleted = await ctx.DimensionStructures.FirstOrDefaultAsync(
+                            w => w.Id == dimensionStructure.Id,
+                            cancellationToken)
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                                 $"with id: {dimensionStructure}.";
+                                 $"with id: {dimensionStructure.Id}.";
                     Check.IsNotNull(toBeDeleted, msg);
 
                     toBeDeleted.IsActive = 0;
                     ctx.Entry(toBeDeleted).State = EntityState.Modified;
-                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                                 $"{nameof(DeleteLogicallyAsync)} operation failed! " +
+                                 $"{nameof(InactivateAsync)} operation failed! " +
                                  $"For further info see inner exception!";
                     throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
                 }

@@ -58,7 +58,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 
-        Task DeleteLogicallyAsync(DimensionStructure dimensionStructure);
+        /// <summary>
+        /// Inactivates the given <see cref="DimensionStructure"/> object.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///    The provided payload's ID vlaue identifies which <see cref="DimensionStructure"/> object will be
+        /// inactivated in the system. This operation doesn't concern other properties of the provided object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///    Returns <see cref="Task"/> representing result of asynchronous operation.
+        /// </returns>
+        /// <exception cref="IMasterDataDimensionStructureBusinessLogicDatabaseOperationException">
+        ///    Any error happens.
+        /// </exception>
+        Task InactivateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Returns list of <see cref="DimensionStructure" /> where the parent is the given

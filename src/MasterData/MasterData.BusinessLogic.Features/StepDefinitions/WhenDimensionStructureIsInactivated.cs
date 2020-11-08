@@ -12,22 +12,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [When(@"DimensionStructure is logically deleted")]
-        public async Task DimensionStructureIsLogicallyDeleted(Table table)
+        [When(@"DimensionStructure is inactivated")]
+        public async Task WhenDimensionStructureIsInactivated(Table table)
         {
-            Check.IsNotNull(table);
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            DimensionStructure toBeDeleted = _scenarioContext[instance.Key] as DimensionStructure;
-            Check.IsNotNull(toBeDeleted);
+            DimensionStructure dimensionStructure = _scenarioContext[instance.Key] as DimensionStructure;
+            Check.IsNotNull(dimensionStructure);
 
             try
             {
-                DimensionStructure dimensionStructure = new DimensionStructure
-                {
-                    Id = toBeDeleted.Id,
-                };
-                await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
+                await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
                    .InactivateAsync(dimensionStructure)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, SUCCESS);
