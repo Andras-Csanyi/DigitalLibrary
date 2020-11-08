@@ -1,4 +1,4 @@
-Feature: Listing DimensionStructures
+Feature: DimensionStructure Business Logic - Listing DimensionStructures
 
   As a Data Owner and Data Curator
   I have to know what DimensionStructures are available in the system
