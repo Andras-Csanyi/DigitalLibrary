@@ -27,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             {
                 DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
                    .MasterDataDimensionStructureBusinessLogic
-                   .GetDimensionStructureByIdAsync(dimensionStructure)
+                   .GetByIdAsync(dimensionStructure)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, dimensionStructureResult);
             }

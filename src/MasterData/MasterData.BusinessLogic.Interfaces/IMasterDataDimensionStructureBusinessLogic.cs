@@ -91,9 +91,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         ///     Returns <see cref="DimensionStructure" /> having given Id.
         ///     When there is no <see cref="DimensionStructure" /> returns null.
         /// </summary>
-        /// <param name="dimensionStructure">Query object.</param>
-        /// <returns>DimensionStructure or null.</returns>
-        Task<DimensionStructure> GetDimensionStructureByIdAsync(DimensionStructure dimensionStructure);
+        /// <param name="dimensionStructure">
+        /// ID of this object identifies which <see cref="DimensionStructure"/> is requested.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///    Returns <see cref="Task{TResult}"/> representing result of asynchronous operation.
+        /// It contains a <see cref="DimensionStructure"/> when the object is found.
+        /// It contains <see cref="null"/> when there is no object having the ID value.
+        /// </returns>
+        /// /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        ///     If any part of the operation fails.
+        /// </exception>
+        Task<DimensionStructure> GetByIdAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default);
 
         Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
 
