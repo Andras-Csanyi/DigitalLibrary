@@ -52,8 +52,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.feature">
-        </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.feature">
@@ -71,6 +69,8 @@
         <SpecFlowFeatureFiles Update="SourceFormat\DeleteAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.AddAsync.feature">
         </SpecFlowFeatureFiles>
     </ItemGroup>
 

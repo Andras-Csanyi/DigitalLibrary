@@ -5,13 +5,6 @@ Feature: Adding DimensionStructure validation
   I need to be able to do so the system gets only valid data so
   I need input validation.
 
-  Name has to be:
-  - longer or equal than 3 characters
-  Description has to be:
-  - longer or equal than 3 characters
-  IsActive has to be:
-  - 0 or 1
-
   Scenario Outline: When input is invalid it throws exception
 
     Given there is a DimensionStructure domain object
