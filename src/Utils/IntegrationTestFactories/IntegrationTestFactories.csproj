@@ -12,12 +12,12 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.0"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
