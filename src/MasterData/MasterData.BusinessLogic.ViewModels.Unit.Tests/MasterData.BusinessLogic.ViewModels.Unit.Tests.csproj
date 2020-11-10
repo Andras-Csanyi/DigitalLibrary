@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
 
         <IsPackable>false</IsPackable>
@@ -9,11 +9,13 @@
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.ViewModels.Unit.Tests</AssemblyName>
 
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.ViewModels.Unit.Tests</RootNamespace>
+
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>

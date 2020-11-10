@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.MasterData.Validators.Test</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Validators.Test</RootNamespace>
@@ -12,7 +12,7 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
