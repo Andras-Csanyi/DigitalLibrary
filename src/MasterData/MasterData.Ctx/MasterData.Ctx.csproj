@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.MasterData.Ctx</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Ctx</RootNamespace>
@@ -8,9 +8,9 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
