@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.MasterData.Ctx</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Ctx</RootNamespace>

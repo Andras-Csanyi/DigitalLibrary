@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>DigitalLibrary.Ui.WebUi</AssemblyName>
         <RootNamespace>DigitalLibrary.Ui.WebUi</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
