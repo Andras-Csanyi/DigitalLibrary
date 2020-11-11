@@ -12,6 +12,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
 
+    /// <summary>
+    /// DimensionStructure interface describing business logic methods.
+    /// </summary>
     public interface IMasterDataDimensionStructureBusinessLogic
     {
         /// <summary>
@@ -26,7 +29,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
         ///     If any part of the operation fails.
         /// </exception>
-        Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure);
+        Task<DimensionStructure> AddAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default);
 
         Task<DimensionStructure> AddChildDimensionStructureAsync(
             long childDimensionStructureId,
