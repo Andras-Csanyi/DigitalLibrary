@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             Check.IsNotNull(sourceFormat);
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
-               .SourceFormat
+               .SourceFormatHttpClient
                .UpdateAsync(sourceFormat)
                .ConfigureAwait(false);
 

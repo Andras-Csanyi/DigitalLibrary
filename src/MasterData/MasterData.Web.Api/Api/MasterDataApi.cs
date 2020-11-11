@@ -139,15 +139,21 @@ namespace DigitalLibrary.MasterData.Web.Api
         /// </summary>
         public struct DimensionStructure
         {
+            /// <summary>
+            /// Describes the route up to version.
+            /// </summary>
+            public const string RouteBase = "api/masterdata/dimensionstructure/";
+
             public struct V1
             {
-                public const string DimensionStructureBase = "api/masterdata/dimensionstructure/v1";
-
-                public const string GetSourceFormats = "GetTopDimensionStructures";
+                public const string GetSourceFormats = "v1/GetTopDimensionStructures";
 
                 public const string UpdateDimensionStructure = "UpdateDimensionStructure";
 
-                public const string AddDimensionStructure = "AddDimensionStructure";
+                /// <summary>
+                /// Add method route.
+                /// </summary>
+                public const string Add = "v1/Add";
 
                 public const string GetDimensionStructures = "GetDimensionStructures";
 
@@ -155,7 +161,10 @@ namespace DigitalLibrary.MasterData.Web.Api
 
                 public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
 
-                public const string GetDimensionStructureById = "GetDimensionStructureById";
+                /// <summary>
+                /// GetById method route.
+                /// </summary>
+                public const string GetById = "v1/GetById";
             }
         }
     }

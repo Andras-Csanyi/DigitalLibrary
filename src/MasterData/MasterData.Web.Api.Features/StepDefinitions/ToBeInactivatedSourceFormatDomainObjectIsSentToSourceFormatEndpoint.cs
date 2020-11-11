@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             SourceFormat toBeInactivated = _scenarioContext[instance.Key] as SourceFormat;
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
-               .SourceFormat
+               .SourceFormatHttpClient
                .InactivateAsync(toBeInactivated)
                .ConfigureAwait(false);
 

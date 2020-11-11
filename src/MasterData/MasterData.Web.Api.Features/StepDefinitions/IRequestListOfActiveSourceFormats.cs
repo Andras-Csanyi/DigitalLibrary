@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             DilibHttpClientResponse<List<SourceFormat>> result = await _masterDataHttpClient
-               .SourceFormat
+               .SourceFormatHttpClient
                .GetActives()
                .ConfigureAwait(false);
 

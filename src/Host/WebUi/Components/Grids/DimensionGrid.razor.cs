@@ -172,24 +172,24 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task PopulateDimensionsAsync()
         {
-            _dimensions = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+            // _dimensions = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
         }
 
         private async Task SendDimensionToBeDeletedToBackendAsync()
         {
-            await MasterDataHttpClient.DeleteDimensionAsync(_deleteDimension)
-               .ConfigureAwait(false);
+            // await MasterDataHttpClient.DeleteDimensionAsync(_deleteDimension)
+            //    .ConfigureAwait(false);
         }
 
         private async Task SendEditedDimensionToBackendAsync()
         {
-            await MasterDataHttpClient.UpdateDimensionAsync(_editedDimension).ConfigureAwait(false);
+            // await MasterDataHttpClient.UpdateDimensionAsync(_editedDimension).ConfigureAwait(false);
         }
 
         private async Task SendNewDimensionToBackendAsync()
         {
-            await MasterDataHttpClient.AddDimensionAsync(_newDimension)
-               .ConfigureAwait(false);
+            // await MasterDataHttpClient.AddDimensionAsync(_newDimension)
+            //    .ConfigureAwait(false);
         }
 
         private async Task SetDeleteDimensionToDefaultAsync()

@@ -70,21 +70,21 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task DeleteHandler()
         {
-            try
-            {
-                await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                        _deleteDimensionStructure,
-                        ruleSet: ValidatorRulesets.DeleteDimensionStructure)
-                   .ConfigureAwait(false);
-                await MasterDataHttpClient.DeleteDimensionStructureAsync(_deleteDimensionStructure)
-                   .ConfigureAwait(false);
-                await PopulateDimensionStructures().ConfigureAwait(false);
-                _deleteModalWindow.Hide();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            // try
+            // {
+            //     await MasterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
+            //             _deleteDimensionStructure,
+            //             ruleSet: ValidatorRulesets.DeleteDimensionStructure)
+            //        .ConfigureAwait(false);
+            //     await MasterDataHttpClient.DeleteDimensionStructureAsync(_deleteDimensionStructure)
+            //        .ConfigureAwait(false);
+            //     await PopulateDimensionStructures().ConfigureAwait(false);
+            //     _deleteModalWindow.Hide();
+            // }
+            // catch (Exception e)
+            // {
+            //     Console.WriteLine(e);
+            // }
         }
 
         protected override async Task OnInitializedAsync()
@@ -125,15 +125,15 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
 
         private async Task PopulateDimensions()
         {
-            _dimensions = new List<Dimension>();
-            _dimensions.Add(new Dimension { Name = "-- Select One --" });
-            List<Dimension> result = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
-            _dimensions.AddRange(result);
+            // _dimensions = new List<Dimension>();
+            // _dimensions.Add(new Dimension { Name = "-- Select One --" });
+            // List<Dimension> result = await MasterDataHttpClient.GetDimensionsAsync().ConfigureAwait(false);
+            // _dimensions.AddRange(result);
         }
 
         private async Task PopulateDimensionStructures()
         {
-            _dimensionStructures = await MasterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+            // _dimensionStructures = await MasterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
         }
 
         private async Task PopulateTopDimensionStructures()
@@ -160,8 +160,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                 Console.WriteLine(validationErrorMessages);
             }
 
-            await MasterDataHttpClient.AddDimensionStructureAsync(_newDimensionStructure)
-               .ConfigureAwait(false);
+            // await MasterDataHttpClient.AddDimensionStructureAsync(_newDimensionStructure)
+            //    .ConfigureAwait(false);
             await PopulateDimensionStructures().ConfigureAwait(false);
             _newDimensionStructure = new DimensionStructure();
             _addNewModalWindow.Hide();
@@ -176,8 +176,8 @@ namespace DigitalLibrary.Ui.WebUi.Components.Grids
                         _editedDimensionStructure,
                         ruleSet: ValidatorRulesets.UpdateSourceFormat)
                    .ConfigureAwait(false);
-                await MasterDataHttpClient.UpdateDimensionStructureAsync(_editedDimensionStructure)
-                   .ConfigureAwait(false);
+                // await MasterDataHttpClient.UpdateDimensionStructureAsync(_editedDimensionStructure)
+                //    .ConfigureAwait(false);
                 await PopulateDimensionStructures().ConfigureAwait(false);
                 _editModalWindow.Hide();
                 await InvokeAsync(StateHasChanged).ConfigureAwait(false);

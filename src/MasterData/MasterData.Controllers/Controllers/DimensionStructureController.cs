@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route(MasterDataApi.DimensionStructure.V1.DimensionStructureBase)]
+    [Route(MasterDataApi.DimensionStructure.RouteBase)]
     public class DimensionStructureController : ControllerBase
     {
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.AddDimensionStructure)]
+        [Route(MasterDataApi.DimensionStructure.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> AddDimensionStructure(
@@ -70,7 +70,7 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructureById)]
+        [Route(MasterDataApi.DimensionStructure.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(

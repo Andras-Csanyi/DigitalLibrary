@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             Check.IsNotNull(getById);
 
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
-               .SourceFormat
+               .SourceFormatHttpClient
                .GetByIdAsync(getById)
                .ConfigureAwait(false);
 

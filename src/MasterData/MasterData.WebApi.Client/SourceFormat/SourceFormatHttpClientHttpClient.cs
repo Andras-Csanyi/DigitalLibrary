@@ -6,17 +6,17 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
     using DigitalLibrary.Utils.Guards;
 
     /// <inheritdoc />
-    public partial class SourceFormatHttpClient : ISourceFormat
+    public partial class SourceFormatHttpClientHttpClient : ISourceFormatHttpClient
     {
         private readonly IDiLibHttpClient _diLibHttpClient;
 
         private const string SourceFormatBase = MasterDataApi.SourceFormat.SourceFormatBase;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="SourceFormatHttpClient" /> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatHttpClientHttpClient" /> class.
         /// </summary>
         /// <param name="diLibHttpClient">Http client.</param>
-        public SourceFormatHttpClient(IDiLibHttpClient diLibHttpClient)
+        public SourceFormatHttpClientHttpClient(IDiLibHttpClient diLibHttpClient)
         {
             Check.IsNotNull(diLibHttpClient);
             _diLibHttpClient = diLibHttpClient;

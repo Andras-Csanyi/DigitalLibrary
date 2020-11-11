@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                    .Create(instance);
 
                 await _masterDataHttpClient
-                   .SourceFormat
+                   .SourceFormatHttpClient
                    .AddAsync(sourceFormat)
                    .ConfigureAwait(false);
             }

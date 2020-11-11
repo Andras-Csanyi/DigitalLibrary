@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
     using DiLibHttpClientResponseObjects;
 
-    public partial class SourceFormatHttpClient
+    public partial class SourceFormatHttpClientHttpClient
     {
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormat>> GetByIdAsync(

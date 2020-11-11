@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
     /// <summary>
     ///     Interface for HttpClient communicates with SourceFormat endpoint.
     /// </summary>
-    public interface ISourceFormat
+    public interface ISourceFormatHttpClient
     {
         /// <summary>
         ///     Sends the payload to the SourceFormat Endpoint AddAsync method.

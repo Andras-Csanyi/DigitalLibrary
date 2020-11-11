@@ -12,18 +12,16 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [When(@"SourceFormat domain object is sent to SourceFormat endpoint")]
-        [Given(@"SourceFormat domain object is sent to SourceFormat endpoint")]
-        public async Task WhenSourceFormatDomainObjectIsSentToSourceFormatEndpoint(Table table)
+        [When(@"a DimensionStructure is requested")]
+        public async Task WhenADimensionStructureIsRequested(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            SourceFormat sourceFormat = _scenarioContext[instance.Key]
-                as SourceFormat;
+            DimensionStructure requested = _scenarioContext[instance.Key] as DimensionStructure;
 
-            DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
-               .SourceFormatHttpClient
-               .AddAsync(sourceFormat)
+            DilibHttpClientResponse<DimensionStructure> result = await _masterDataHttpClient
+               .DimensionStructureHttpClient
+               .GetByIdAsync(requested)
                .ConfigureAwait(false);
 
             if (result.IsSuccess)
