@@ -75,11 +75,20 @@
         <SpecFlowFeatureFiles Update="DimensionStructure\DeleteAsync.Validation.feature">
             <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
+            <CodeBehindFile>DimensionStructure/GetAllAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
     <ItemGroup>
         <Compile Update="DimensionStructure\DeleteAsync.Validation.feature.cs">
             <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\GetActivesAsync.feature.cs">
+            <DependentUpon>GetActivesAsync.feature</DependentUpon>
             <AutoGen>true</AutoGen>
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>
