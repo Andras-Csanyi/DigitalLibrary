@@ -4,6 +4,14 @@
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>DigitalLibrary.MasterData.Web.Api.Client.Exceptions</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Client.Exceptions</RootNamespace>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
 </Project>

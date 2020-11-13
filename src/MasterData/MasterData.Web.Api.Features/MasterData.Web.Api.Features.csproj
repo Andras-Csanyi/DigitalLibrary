@@ -9,17 +9,20 @@
         <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
     <ItemGroup>
-        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
 
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.0"/>
-        <PackageReference Include="SpecFlow" Version="3.4.31"/>
-        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.4.31"/>
-        <PackageReference Include="SpecFlow.xUnit" Version="3.4.31"/>
+        <PackageReference Include="SpecFlow" Version="3.5.5"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.5.5"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.5.5"/>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
@@ -34,10 +37,10 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
-        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
-        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj" />
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
     </ItemGroup>
     <ItemGroup>
         <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">

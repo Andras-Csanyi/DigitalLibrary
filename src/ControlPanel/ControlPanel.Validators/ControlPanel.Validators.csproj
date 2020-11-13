@@ -14,10 +14,13 @@
 
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="9.2.2"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" />
-        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="FluentValidation" Version="9.3.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 
 </Project>

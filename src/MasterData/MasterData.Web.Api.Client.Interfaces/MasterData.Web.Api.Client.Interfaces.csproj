@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>DigitalLibrary.MasterData.Web.Api.Client.Interfaces</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Client.Interfaces</RootNamespace>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
@@ -12,6 +13,13 @@
         <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
         <ProjectReference Include="..\MasterData.Web.Api.Client.Exceptions\MasterData.Web.Api.Client.Exceptions.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>
