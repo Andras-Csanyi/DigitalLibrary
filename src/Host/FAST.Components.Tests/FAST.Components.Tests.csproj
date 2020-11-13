@@ -13,7 +13,7 @@
         <PackageReference Include="bunit.web" Version="1.0.0-beta-11"/>
         <PackageReference Include="bunit.xunit" Version="1.0.0-beta-11"/>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
@@ -29,9 +29,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\FAST.Components\FAST.Components.csproj" />
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" />
         <AdditionalFiles Include="../../Rulesets/stylecop.json" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
 </Project>
