@@ -142,7 +142,7 @@ namespace DigitalLibrary.MasterData.Web.Api
             /// <summary>
             /// Describes the route up to version.
             /// </summary>
-            public const string RouteBase = "api/masterdata/dimensionstructure/";
+            public const string RouteBase = "api/masterdata/dimensionstructure";
 
             public struct V1
             {

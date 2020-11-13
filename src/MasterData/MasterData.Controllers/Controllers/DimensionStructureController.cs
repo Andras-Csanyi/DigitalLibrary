@@ -7,6 +7,7 @@ namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
@@ -41,8 +42,8 @@ namespace DigitalLibrary.MasterData.Controllers
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .AddAsync(
-                        dimensionStructure).ConfigureAwait(false);
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -74,16 +75,16 @@ namespace DigitalLibrary.MasterData.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject)
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             try
             {
-                // DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                //    .GetDimensionStructureByIdAsync(
-                //         dimensionStructureQueryObject)
-                //    .ConfigureAwait(false);
-                // return result;
-                throw new NotImplementedException();
+                DimensionStructure result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetByIdAsync(dimensionStructure, cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
             }
             catch (Exception e)
             {
