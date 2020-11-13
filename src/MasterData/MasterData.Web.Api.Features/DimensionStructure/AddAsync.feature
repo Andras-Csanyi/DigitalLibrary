@@ -7,12 +7,12 @@ Feature: DimensionStructure REST endpoint - AddAsync method
   Scenario: Adds DimensionStructure
 
     Given there is a DimensionStructure domain object
-      | Field       | Value |
-      | Key         | ds    |
-      | Name        | asd   |
-      | Description | asd   |
-      | ISActive    | 1     |
-    And DimensionStructure is sent to the endpoint
+      | Field    | Value |
+      | Key      | ds    |
+      | Name     | asd   |
+      | Desc     | asd   |
+      | ISActive | 1     |
+    And DimensionStructure is sent to the Add endpoint
       | Field     | Value     |
       | Key       | ds        |
       | ResultKey | ds-result |

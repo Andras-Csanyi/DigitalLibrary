@@ -12,8 +12,10 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [Given(@"DimensionStructure is sent to the endpoint")]
-        public async Task GivenDimensionStructureIsSentToTheEndpoint(Table table)
+        [Given(@"DimensionStructure is sent to the Add endpoint")]
+        [When(@"DimensionStructure is sent to the Add endpoint")]
+        [Then(@"DimensionStructure is sent to the Add endpoint")]
+        public async Task GivenDimensionStructureIsSentToTheAddEndpoint(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
