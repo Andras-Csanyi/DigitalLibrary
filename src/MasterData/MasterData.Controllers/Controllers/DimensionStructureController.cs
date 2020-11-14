@@ -133,15 +133,17 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         [HttpPut]
-        [Route(MasterDataApi.DimensionStructure.V1.UpdateDimensionStructure)]
+        [Route(MasterDataApi.DimensionStructure.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> Update(DimensionStructure dimensionStructure)
+        public async Task<ActionResult<DimensionStructure>> UpdateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic
-                   .MasterDataDimensionStructureBusinessLogic.UpdateDimensionStructureAsync(dimensionStructure)
+                   .MasterDataDimensionStructureBusinessLogic.UpdateAsync(dimensionStructure, cancellationToken)
                    .ConfigureAwait(false);
                 return Ok(result);
             }

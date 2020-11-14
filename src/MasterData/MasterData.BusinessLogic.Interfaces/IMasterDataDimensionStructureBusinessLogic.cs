@@ -133,7 +133,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
 
         Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
 
-        Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure);
+        /// <summary>
+        /// Updates <see cref="DimensionStructure"/> in the database.
+        /// The Id marks the object going to be updated, other properties hold the new values.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///     Payload <see cref="DimensionStructure"/> object which marks the target and holds the new data.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///     Returns with <see cref="Task{TResult}" /> containing the modified <see cref="DimensionStructure" />.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        ///     If any operation fails during querying data.
+        /// </exception>
+        Task<DimensionStructure> UpdateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Returns with amount of <see cref="DimensionStructure" /> in the system.

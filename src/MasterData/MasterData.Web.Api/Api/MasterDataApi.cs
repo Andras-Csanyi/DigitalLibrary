@@ -148,7 +148,7 @@ namespace DigitalLibrary.MasterData.Web.Api
             {
                 public const string GetSourceFormats = "v1/GetTopDimensionStructures";
 
-                public const string UpdateDimensionStructure = "UpdateDimensionStructure";
+                public const string Update = "UpdateDimensionStructure";
 
                 /// <summary>
                 /// Add method route.

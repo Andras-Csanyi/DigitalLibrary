@@ -54,5 +54,25 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         Task<DilibHttpClientResponse<DimensionStructure>> GetByIdAsync(
             DimensionStructure requested,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates <see cref="DimensionStructure"/>.
+        ///
+        /// The payload object Id value marks which <see cref="DimensionStructure"/> object is going to be
+        /// updated.
+        /// </summary>
+        /// <param name="payload">
+        /// <see cref="DimensionStructure"/> which holds the new data.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> which contains a <see cref="DilibHttpClientResponse{T}"/> enclosing
+        /// the result.
+        /// In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}"/> other
+        /// properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<DimensionStructure>> UpdateAsync(
+            DimensionStructure payload,
+            CancellationToken cancellationToken = default);
     }
 }

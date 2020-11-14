@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
@@ -21,7 +22,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     public partial class MasterDataDimensionStructureBusinessLogic
     {
         /// <inheritdoc />
-        public async Task<DimensionStructure> UpdateDimensionStructureAsync(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> UpdateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             try
             {
@@ -35,7 +38,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     DimensionStructure toBeModified = await ctx.DimensionStructures
-                       .FindAsync(dimensionStructure.Id)
+                       .FirstOrDefaultAsync(w => w.Id == dimensionStructure.Id, cancellationToken)
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {typeof(DimensionStructure)} " +
@@ -47,14 +50,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                     toBeModified.IsActive = dimensionStructure.IsActive;
 
                     ctx.Entry(toBeModified).State = EntityState.Modified;
-                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                     return toBeModified;
                 }
             }
             catch (Exception e)
             {
-                throw new MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException(e.Message, e);
+                string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
+                             $"{nameof(UpdateAsync)} operation failed. " +
+                             $"For further information see inner exception.";
+                throw new MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException(msg, e);
             }
         }
     }
