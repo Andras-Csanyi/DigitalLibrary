@@ -16,7 +16,7 @@ Feature: DimensionStructure REST Endpoint - UpdateAsync method input validation
     And stored DimensionStructure object Id property is set to
       | Field     | Value |
       | Key       | ds    |
-      | IdValue   | 1     |
+      | IdValue   | <Id>  |
       | ResultKey | ds    |
     When DimensionStructure is sent to the Update endpoint
       | Field     | Value     |
@@ -28,15 +28,17 @@ Feature: DimensionStructure REST Endpoint - UpdateAsync method input validation
       | ExpectedValue | 400       |
 
     Examples:
-      | Name    | Description | IsActive |
-      | null    | asd         | 1        |
-      | empty   | asd         | 1        |
-      | 3spaces | asd         | 1        |
-      | as      | asd         | 1        |
+      | Id | Name    | Description | IsActive |
+      | 1  | null    | asd         | 1        |
+      | 1  | empty   | asd         | 1        |
+      | 1  | 3spaces | asd         | 1        |
+      | 1  | as      | asd         | 1        |
 
-      | asd     | null        | 1        |
-      | asd     | empty       | 1        |
-      | asd     | 3spaces     | 1        |
-      | asd     | as          | 1        |
+      | 1  | asd     | null        | 1        |
+      | 1  | asd     | empty       | 1        |
+      | 1  | asd     | 3spaces     | 1        |
+      | 1  | asd     | as          | 1        |
 
-      | asd     | asd         | 2        |
+      | 1  | asd     | asd         | 2        |
+
+      | 0  | asd     | asd         | 1        |
