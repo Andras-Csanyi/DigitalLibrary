@@ -24,15 +24,15 @@ Feature: DimensionStructure REST endpoint - AddAsync method
       | Field      | Value               |
       | Key        | ds-result-requested |
       | ComparedTo | ds-result           |
-    Then DimensionStructure desc property equals to
+    And DimensionStructure desc property equals to
       | Field      | Value               |
       | Key        | ds-result-requested |
       | ComparedTo | ds-result           |
-    Then DimensionStructure IsActive property equals to
+    And DimensionStructure IsActive property equals to
       | Field      | Value               |
       | Key        | ds-result-requested |
       | ComparedTo | ds-result           |
-    Then DimensionStructure Id property is not
+    And DimensionStructure Id property is not
       | Field     | Value               |
       | Key       | ds-result-requested |
       | NotEquals | 0                   |
