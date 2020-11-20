@@ -152,5 +152,65 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpGet]
+        [Route(MasterDataApi.DimensionStructure.V1.GetAll)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetAllAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet]
+        [Route(MasterDataApi.DimensionStructure.V1.GetActives)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetActivesAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetActivesAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet]
+        [Route(MasterDataApi.DimensionStructure.V1.GetInActives)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<DimensionStructure>>> GetInActivesAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                List<DimensionStructure> result = await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .GetInactivesAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

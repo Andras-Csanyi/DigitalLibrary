@@ -165,6 +165,21 @@ namespace DigitalLibrary.MasterData.Web.Api
                 /// GetById method route.
                 /// </summary>
                 public const string GetById = "v1/GetById";
+
+                /// <summary>
+                /// GetAll method route.
+                /// </summary>
+                public const string GetAll = "v1/GetAll";
+
+                /// <summary>
+                /// GetActives method route.
+                /// </summary>
+                public const string GetActives = "v1/GetActives";
+
+                /// <summary>
+                /// GetInActives method route.
+                /// </summary>
+                public const string GetInActives = "v1/GetInActives";
             }
         }
     }
