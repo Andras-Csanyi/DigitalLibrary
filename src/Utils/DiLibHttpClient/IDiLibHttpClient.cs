@@ -17,18 +17,18 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <summary>
         ///     It sends the payload to url using DELETE http verb.
         /// </summary>
+        /// <param name="url">The url which will be hit by DELETE http verb.</param>
         /// <param name="payload">
         ///     <see cref="T" /> type object which represents or contains data about the object to be deleted.
         /// </param>
-        /// <param name="url">The url which will be hit by DELETE http verb.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <typeparam name="T">Type of payload.</typeparam>
         /// <returns>
         ///     Returns <see cref="Task{TResult}" /> representing result of an asynchronous operation.
         /// </returns>
         Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class;
 

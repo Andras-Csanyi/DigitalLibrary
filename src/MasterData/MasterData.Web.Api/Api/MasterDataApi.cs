@@ -157,7 +157,7 @@ namespace DigitalLibrary.MasterData.Web.Api
 
                 public const string GetDimensionStructures = "GetDimensionStructures";
 
-                public const string DeleteDimensionStructure = "DeleteDimensionStructure";
+                public const string Delete = "DeleteDimensionStructure";
 
                 public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
 

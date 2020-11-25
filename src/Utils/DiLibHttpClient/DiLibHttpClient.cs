@@ -35,8 +35,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class
         {

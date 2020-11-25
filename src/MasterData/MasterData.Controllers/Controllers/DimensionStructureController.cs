@@ -52,16 +52,27 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        /// Controller method for deleting <see cref="DimensionStructure"/>.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        /// A <see cref="DimensionStructure"/> object which contains data about which <see cref="DimensionStructure"/>
+        /// needs to be deleted.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpDelete]
-        [Route(MasterDataApi.DimensionStructure.V1.DeleteDimensionStructure)]
+        [Route(MasterDataApi.DimensionStructure.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> Delete(DimensionStructure dimensionStructure)
+        public async Task<ActionResult> DeleteAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .InactivateAsync(dimensionStructure).ConfigureAwait(false);
+                   .DeleteAsync(dimensionStructure, cancellationToken).ConfigureAwait(false);
                 return Ok();
             }
             catch (Exception e)
