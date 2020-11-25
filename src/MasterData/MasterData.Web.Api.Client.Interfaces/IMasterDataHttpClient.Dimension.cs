@@ -5,11 +5,6 @@
 
 namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using DigitalLibrary.MasterData.DomainModel;
-
     public partial interface IMasterDataHttpClient
     {
     }

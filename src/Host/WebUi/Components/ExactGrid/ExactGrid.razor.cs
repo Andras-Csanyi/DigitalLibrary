@@ -15,12 +15,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
     using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Web.Api;
 
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
-
-    using Newtonsoft.Json;
 
     public partial class ExactGrid
     {

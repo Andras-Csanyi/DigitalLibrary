@@ -140,7 +140,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         public struct DimensionStructure
         {
             /// <summary>
-            /// Describes the route up to version.
+            ///     Describes the route up to version.
             /// </summary>
             public const string RouteBase = "api/masterdata/dimensionstructure";
 
@@ -151,37 +151,37 @@ namespace DigitalLibrary.MasterData.Web.Api
                 public const string Update = "UpdateDimensionStructure";
 
                 /// <summary>
-                /// Add method route.
+                ///     Add method route.
                 /// </summary>
                 public const string Add = "v1/Add";
 
                 /// <summary>
-                /// Delete method route.
+                ///     Delete method route.
                 /// </summary>
                 public const string Delete = "DeleteDimensionStructure";
 
                 /// <summary>
-                /// GetById method route.
+                ///     GetById method route.
                 /// </summary>
                 public const string GetById = "v1/GetById";
 
                 /// <summary>
-                /// GetAll method route.
+                ///     GetAll method route.
                 /// </summary>
                 public const string GetAll = "v1/GetAll";
 
                 /// <summary>
-                /// GetActives method route.
+                ///     GetActives method route.
                 /// </summary>
                 public const string GetActives = "v1/GetActives";
 
                 /// <summary>
-                /// GetInActives method route.
+                ///     GetInActives method route.
                 /// </summary>
                 public const string GetInActives = "v1/GetInActives";
 
                 /// <summary>
-                /// Invalidate method route.
+                ///     Invalidate method route.
                 /// </summary>
                 public const string Inactivate = "v1/Inactivate";
             }

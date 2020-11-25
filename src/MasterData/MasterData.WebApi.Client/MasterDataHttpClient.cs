@@ -29,10 +29,10 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             DimensionStructureHttpClient = dimensionStructureHttpClient;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ISourceFormatHttpClient SourceFormatHttpClient { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
     }
 }

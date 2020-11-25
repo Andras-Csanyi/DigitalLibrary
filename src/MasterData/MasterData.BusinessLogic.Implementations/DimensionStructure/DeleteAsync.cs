@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteAsync(
             DimensionStructure tobeDeleted,
             CancellationToken cancellationToken = default)

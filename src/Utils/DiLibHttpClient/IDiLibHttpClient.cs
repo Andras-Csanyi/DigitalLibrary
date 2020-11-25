@@ -67,7 +67,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// </summary>
         /// <param name="url">The url where the payload going to be sent to.</param>
         /// <param name="payload">The payload.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <typeparam name="TReturnType">Generic ReturnType.</typeparam>
         /// <typeparam name="TPayloadType">Generic PayloadType.</typeparam>
         /// <returns>HttpResponseMessage with Status 200, content type is TReturnType.</returns>

@@ -9,11 +9,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
 
     /// <summary>
-    /// DimensionStructure interface describing business logic methods.
+    ///     DimensionStructure interface describing business logic methods.
     /// </summary>
     public interface IMasterDataDimensionStructureBusinessLogic
     {
@@ -43,18 +42,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
 
         /// <summary>
-        /// Inactivates the given <see cref="DimensionStructure"/> object.
+        ///     Inactivates the given <see cref="DimensionStructure" /> object.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///    The provided payload's ID vlaue identifies which <see cref="DimensionStructure"/> object will be
-        /// inactivated in the system. This operation doesn't concern other properties of the provided object.
+        ///     The provided payload's ID vlaue identifies which <see cref="DimensionStructure" /> object will be
+        ///     inactivated in the system. This operation doesn't concern other properties of the provided object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        ///    Returns <see cref="Task"/> representing result of asynchronous operation.
+        ///     Returns <see cref="Task" /> representing result of asynchronous operation.
         /// </returns>
         /// <exception cref="IMasterDataDimensionStructureBusinessLogicDatabaseOperationException">
-        ///    Any error happens.
+        ///     Any error happens.
         /// </exception>
         Task InactivateAsync(
             DimensionStructure dimensionStructure,
@@ -76,15 +75,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         ///     When there is no <see cref="DimensionStructure" /> returns null.
         /// </summary>
         /// <param name="dimensionStructure">
-        /// ID of this object identifies which <see cref="DimensionStructure"/> is requested.
+        ///     ID of this object identifies which <see cref="DimensionStructure" /> is requested.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        ///    Returns <see cref="Task{TResult}"/> representing result of asynchronous operation.
-        /// It contains a <see cref="DimensionStructure"/> when the object is found.
-        /// It contains <see cref="null"/> when there is no object having the ID value.
+        ///     Returns <see cref="Task{TResult}" /> representing result of asynchronous operation.
+        ///     It contains a <see cref="DimensionStructure" /> when the object is found.
+        ///     It contains <see cref="null" /> when there is no object having the ID value.
         /// </returns>
-        /// /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// ///
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
         ///     If any part of the operation fails.
         /// </exception>
         Task<DimensionStructure> GetByIdAsync(
@@ -92,13 +92,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates <see cref="DimensionStructure"/> in the database.
-        /// The Id marks the object going to be updated, other properties hold the new values.
+        ///     Updates <see cref="DimensionStructure" /> in the database.
+        ///     The Id marks the object going to be updated, other properties hold the new values.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     Payload <see cref="DimensionStructure"/> object which marks the target and holds the new data.
+        ///     Payload <see cref="DimensionStructure" /> object which marks the target and holds the new data.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns with <see cref="Task{TResult}" /> containing the modified <see cref="DimensionStructure" />.
         /// </returns>
@@ -171,17 +171,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<List<DimensionStructure>> GetInactivesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes the object having the same Id as the provided one has from the database.
+        ///     Deletes the object having the same Id as the provided one has from the database.
         /// </summary>
         /// <param name="tobeDeleted">
-        ///    Object representing the object going to be deleted from the database.
-        /// From this object only the ID property is considered. Any other properties are ignored.
+        ///     Object representing the object going to be deleted from the database.
+        ///     From this object only the ID property is considered. Any other properties are ignored.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        ///    Returns <see cref="Task"/> representing value of an asynchronous operation.
+        ///     Returns <see cref="Task" /> representing value of an asynchronous operation.
         /// </returns>
-        /// /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
+        /// ///
+        /// <exception cref="MasterDataBusinessLogicDimensionStructureDatabaseOperationException">
         ///     When any operation fails.
         /// </exception>
         Task DeleteAsync(

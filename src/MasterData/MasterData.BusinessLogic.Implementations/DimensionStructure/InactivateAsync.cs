@@ -6,7 +6,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
