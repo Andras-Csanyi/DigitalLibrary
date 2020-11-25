@@ -19,12 +19,21 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
+    /// <summary>
+    /// Controller for managing <see cref="DimensionStructure"/> objects.
+    /// </summary>
     [ApiController]
     [Route(MasterDataApi.DimensionStructure.RouteBase)]
     public class DimensionStructureController : ControllerBase
     {
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DimensionStructureController"/> class.
+        /// </summary>
+        /// <param name="masterDataBusinessLogic">
+        ///    <see cref="IMasterDataBusinessLogic"/> instance, which contains the business logic.
+        /// </param>
         public DimensionStructureController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
         {
@@ -32,17 +41,26 @@ namespace DigitalLibrary.MasterData.Controllers
             _masterDataBusinessLogic = masterDataBusinessLogic;
         }
 
+        /// <summary>
+        ///    Controller method for adding new <see cref="DimensionStructure"/> objects.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///    <see cref="DimensionStructure"/> payload objects.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route(MasterDataApi.DimensionStructure.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> AddDimensionStructure(
-            DimensionStructure dimensionStructure)
+        public async Task<ActionResult<DimensionStructure>> AddAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 DimensionStructure result = await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .AddAsync(dimensionStructure)
+                   .AddAsync(dimensionStructure, cancellationToken)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
@@ -81,11 +99,19 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///    Controller method for requesting <see cref="DimensionStructure"/> object by Id.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///    <see cref="DimensionStructure"/> payload object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route(MasterDataApi.DimensionStructure.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<DimensionStructure>> GetDimensionStructureByIdAsync(
+        public async Task<ActionResult<DimensionStructure>> GetByIdAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default)
         {
@@ -103,46 +129,14 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
-        [HttpGet]
-        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructures)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<DimensionStructure>>> GetDimensionStructures()
-        {
-            try
-            {
-                List<DimensionStructure> result = await _masterDataBusinessLogic
-                   .MasterDataDimensionStructureBusinessLogic.GetDimensionStructuresAsync()
-                   .ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        [HttpPost]
-        [Route(MasterDataApi.DimensionStructure.V1.GetDimensionStructuresByIds)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<DimensionStructure>>> GetDimensionStructuresByIdsAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject)
-        {
-            try
-            {
-                List<DimensionStructure> result = await _masterDataBusinessLogic
-                   .MasterDataDimensionStructureBusinessLogic.GetDimensionStructuresByIdsAsync(
-                        dimensionStructureQueryObject)
-                   .ConfigureAwait(false);
-                return result;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
+        /// <summary>
+        /// Controller method for updating a <see cref="DimensionStructure"/>.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///    A <see cref="DimensionStructure"/> payload object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpPut]
         [Route(MasterDataApi.DimensionStructure.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -164,6 +158,11 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///    Controller method for getting list of all <see cref="DimensionStructure"/>s.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -184,6 +183,11 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///    Controller method for getting all active <see cref="DimensionStructure"/>s.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -204,6 +208,11 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        ///    Controller method for getting all inactive <see cref="DimensionStructure"/>s.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetInActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]

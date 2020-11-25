@@ -155,11 +155,10 @@ namespace DigitalLibrary.MasterData.Web.Api
                 /// </summary>
                 public const string Add = "v1/Add";
 
-                public const string GetDimensionStructures = "GetDimensionStructures";
-
+                /// <summary>
+                /// Delete method route.
+                /// </summary>
                 public const string Delete = "DeleteDimensionStructure";
-
-                public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
 
                 /// <summary>
                 /// GetById method route.

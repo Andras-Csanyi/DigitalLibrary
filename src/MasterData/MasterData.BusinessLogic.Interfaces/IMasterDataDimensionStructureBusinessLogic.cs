@@ -33,14 +33,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
 
-        Task<DimensionStructure> AddChildDimensionStructureAsync(
-            long childDimensionStructureId,
-            long parentDimensionId);
-
-        Task<DimensionStructure> AddChildDimensionStructureAsync(
-            DimensionStructure childDimensionStructure,
-            long parentDimensionId);
-
         /// <summary>
         ///     Adds <see cref="DimensionStructure" /> to the <see cref="DimensionStructure" /> tree as child.
         /// </summary>
@@ -49,19 +41,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <param name="sourceFormatId">SourceFormat.</param>
         /// <returns>Result or exception.</returns>
         Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
-
-        /// <summary>
-        ///     It adds <see cref="DimensionStructure" /> to a <see cref="SourceFormat" /> as its
-        ///     RootDimensionStructure.
-        /// </summary>
-        /// <param name="dimensionStructureId">The DimensionStructure will be added.</param>
-        /// <param name="sourceFormatId">The SourceFormat it wil be added to.</param>
-        /// <returns>The dimension structure.</returns>
-        Task<DimensionStructure> AddDimensionStructureToSourceFormatAsRootDimensionStructureAsync(
-            long dimensionStructureId,
-            long sourceFormatId);
-
-        Task<DimensionStructure> AddDimensionToDimensionStructureAsync(long dimensionId, long dimensionStructureId);
 
         /// <summary>
         /// Inactivates the given <see cref="DimensionStructure"/> object.
@@ -112,27 +91,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
 
-        Task<DimensionStructure> GetDimensionStructureByNameAsync(string name);
-
-        /// <summary>
-        ///     It returns with <see cref="DimensionStructure" /> and the related <see cref="SourceFormat" />
-        ///     entities included too.
-        /// </summary>
-        /// <param name="name">Name of the DimensionStructure.</param>
-        /// <returns>The DimensionStructure.</returns>
-        Task<DimensionStructure> GetDimensionStructureByNameWithSourceFormatsAsync(string name);
-
-        Task<List<DimensionStructure>> GetDimensionStructuresAsync();
-
-        Task<List<DimensionStructure>> GetDimensionStructuresByIdsAsync(
-            DimensionStructureQueryObject dimensionStructureQueryObject);
-
-        Task RemoveChildDimensionStructureAsync(long removedDimensionStructure, long parentDimensionStructure);
-
-        Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId);
-
-        Task RemoveDimensionStructureFromSourceFormatAsync(long dimensionStructureId, long sourceFormatId);
-
         /// <summary>
         /// Updates <see cref="DimensionStructure"/> in the database.
         /// The Id marks the object going to be updated, other properties hold the new values.
@@ -150,13 +108,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> UpdateAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
-
-        /// <summary>
-        ///     Returns with amount of <see cref="DimensionStructure" /> in the system.
-        ///     Both active and inactive included.
-        /// </summary>
-        /// <returns>Amount.</returns>
-        Task<int> GetCountAsync();
 
         /// <summary>
         ///     Returns with amount of active <see cref="DimensionStructure" /> in the system.
