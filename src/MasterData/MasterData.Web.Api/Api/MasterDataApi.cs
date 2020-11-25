@@ -180,6 +180,11 @@ namespace DigitalLibrary.MasterData.Web.Api
                 /// GetInActives method route.
                 /// </summary>
                 public const string GetInActives = "v1/GetInActives";
+
+                /// <summary>
+                /// Invalidate method route.
+                /// </summary>
+                public const string Inactivate = "v1/Inactivate";
             }
         }
     }

@@ -130,5 +130,23 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         Task<DilibHttpClientResponse<DimensionStructure>> DeleteAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Inactivates a <see cref="DimensionStructure"/>.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        /// The payload <see cref="DimensionStructure"/> object where the ID value marks which object
+        /// should be invalidated. Every other property is ignored.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> which contains a <see cref="DilibHttpClientResponse{T}"/> enclosing
+        /// the result.
+        /// In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}"/> other
+        /// properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<DimensionStructure>> InactivateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default);
     }
 }

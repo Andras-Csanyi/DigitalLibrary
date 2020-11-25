@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.DimensionStructure
         {
             string url = $"{MasterDataApi.DimensionStructure.RouteBase}/{MasterDataApi.DimensionStructure.V1.Add}";
             DilibHttpClientResponse<DimensionStructure> result = await _diLibHttpClient
-               .PostAsync<DimensionStructure>(dimensionStructure, url, cancellationToken)
+               .PostAsync<DimensionStructure>(url, dimensionStructure, cancellationToken)
                .ConfigureAwait(false);
             return result;
         }

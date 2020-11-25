@@ -223,5 +223,36 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        /// <summary>
+        /// Controller method for inactivating <see cref="DimensionStructure"/>s.
+        /// </summary>
+        /// <param name="dimensionStructure">
+        ///    Payload <see cref="DimensionStructure"/> object from 3rd party where
+        /// ID marks which <see cref="DimensionStructure"/> going to be inactivated.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        [HttpPut]
+        [Route(MasterDataApi.DimensionStructure.V1.Inactivate)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DimensionStructure>> InactivateAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken)
+        {
+            try
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .InactivateAsync(dimensionStructure, cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

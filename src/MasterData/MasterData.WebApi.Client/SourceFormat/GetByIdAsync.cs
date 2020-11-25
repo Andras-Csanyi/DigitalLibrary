@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
             Check.IsNotNull(getById);
             string url = $"{SourceFormatBase}/{MasterDataApi.SourceFormat.V1.GetById}";
             DilibHttpClientResponse<SourceFormat> result = await _diLibHttpClient
-               .PostAsync(getById, url, cancellationToken)
+               .PostAsync(url, getById, cancellationToken)
                .ConfigureAwait(false);
             return result;
         }

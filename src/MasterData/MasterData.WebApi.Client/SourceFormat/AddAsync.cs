@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
             string url = $"{SourceFormatBase}/{MasterDataApi.SourceFormat.V1.Add}";
             DilibHttpClientResponse<SourceFormat> result = await _diLibHttpClient
-               .PostAsync(sourceFormat, url, cancellationToken)
+               .PostAsync(url, sourceFormat, cancellationToken)
                .ConfigureAwait(false);
 
             return result;

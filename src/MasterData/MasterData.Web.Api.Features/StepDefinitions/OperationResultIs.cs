@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         [Then(@"operation result is")]
         public void ThenOperationResultIs(Table table)
         {
-            KeyExpectedValue instance = table.CreateInstance<KeyExpectedValue>();
+            KeyExpectedValueEntity instance = table.CreateInstance<KeyExpectedValueEntity>();
 
             int result = (int) _scenarioContext[instance.Key];
 

@@ -7,32 +7,30 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using DiLibHttpClientResponseObjects;
 
-    using FluentAssertions;
-
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
     public partial class StepDefinitions
     {
-        [Then(@"a DimensionStructure is requested result is")]
-        public async Task ThenADimensionStructureIsRequestedResultIs(Table table)
+        [When(@"DimensionStructure inactivate endpoint is called")]
+        public async Task WhenDimensionStructureInactivateEndpointIsCalled(Table table)
         {
-            KeyExpectedValueEntity instance = table.CreateInstance<KeyExpectedValueEntity>();
+            KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             DimensionStructure dimensionStructure = _scenarioContext[instance.Key] as DimensionStructure;
 
             DilibHttpClientResponse<DimensionStructure> result = await _masterDataHttpClient
                .DimensionStructureHttpClient
-               .GetByIdAsync(dimensionStructure)
+               .InactivateAsync(dimensionStructure)
                .ConfigureAwait(false);
 
             if (result.IsSuccess)
             {
-                result.Result.Should().BeNull();
+                _scenarioContext.Add(instance.ResultKey, result.Result);
             }
             else
             {
-                result.IsSuccess.Should().BeTrue();
+                _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
             }
         }
     }
