@@ -10,6 +10,14 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
     /// </summary>
     public partial interface IMasterDataHttpClient
     {
-        ISourceFormat SourceFormat { get; set; }
+        /// <summary>
+        ///     Instance of <see cref="SourceFormatHttpClient" />.
+        /// </summary>
+        ISourceFormatHttpClient SourceFormatHttpClient { get; set; }
+
+        /// <summary>
+        ///     Instance of <see cref="DimensionStructureHttpClient" />.
+        /// </summary>
+        IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
     }
 }

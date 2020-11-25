@@ -17,18 +17,18 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <summary>
         ///     It sends the payload to url using DELETE http verb.
         /// </summary>
+        /// <param name="url">The url which will be hit by DELETE http verb.</param>
         /// <param name="payload">
         ///     <see cref="T" /> type object which represents or contains data about the object to be deleted.
         /// </param>
-        /// <param name="url">The url which will be hit by DELETE http verb.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <typeparam name="T">Type of payload.</typeparam>
         /// <returns>
         ///     Returns <see cref="Task{TResult}" /> representing result of an asynchronous operation.
         /// </returns>
         Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class;
 
@@ -46,8 +46,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <summary>
         ///     Posts payload to given url, where http method is POST.
         /// </summary>
-        /// <param name="payload">Object to be posted.</param>
         /// <param name="url">The url where to the object will be posted.</param>
+        /// <param name="payload">Object to be posted.</param>
         /// <param name="cancellationToken">
         ///     <see cref="CancellationToken" />
         /// </param>
@@ -57,26 +57,30 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         ///     Any error happen.
         /// </exception>
         Task<DilibHttpClientResponse<T>> PostAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class;
 
         /// <summary>
         ///     Posts payload to given url, where http method is POST.
         /// </summary>
-        /// <param name="payload">The payload.</param>
         /// <param name="url">The url where the payload going to be sent to.</param>
+        /// <param name="payload">The payload.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <typeparam name="TReturnType">Generic ReturnType.</typeparam>
         /// <typeparam name="TPayloadType">Generic PayloadType.</typeparam>
         /// <returns>HttpResponseMessage with Status 200, content type is TReturnType.</returns>
-        Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url);
+        Task<TReturnType> PostAsync<TReturnType, TPayloadType>(
+            string url,
+            TPayloadType payload,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Sends <see cref="T" /> type payload to the given url via PUT http verb.
         /// </summary>
-        /// <param name="payload">Payload object.</param>
         /// <param name="url">The url where to payload will be sent.</param>
+        /// <param name="payload">Payload object.</param>
         /// <typeparam name="T">Type of payload and result type.</typeparam>
         /// <returns>
         ///     Returns <see cref="Task{TResult}" /> representing result of an asynchronous operation.
@@ -85,8 +89,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         ///     In case of any error other properties of the result object provides further information about the error.
         /// </returns>
         Task<DilibHttpClientResponse<T>> PutAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class;
     }

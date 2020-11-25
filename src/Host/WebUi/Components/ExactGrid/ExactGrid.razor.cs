@@ -15,12 +15,9 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
     using BlazorStrap;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Web.Api;
 
     using Microsoft.AspNetCore.Components;
     using Microsoft.JSInterop;
-
-    using Newtonsoft.Json;
 
     public partial class ExactGrid
     {
@@ -57,17 +54,17 @@ namespace DigitalLibrary.Ui.WebUi.Components.ExactGrid
 
         protected override async Task OnInitializedAsync()
         {
-            Columns = await GetColumnNames().ConfigureAwait(false);
-            _httpClient = HttpClientFactory.CreateClient("httpClient");
-            string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
-                         $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
-            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
-                HttpMethod.Get, url);
-            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-               .ConfigureAwait(false);
-            httpResponseMessage.EnsureSuccessStatusCode();
-            string resultString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            _dimensionStructures = JsonConvert.DeserializeObject<List<DimensionStructure>>(resultString);
+            // Columns = await GetColumnNames().ConfigureAwait(false);
+            // _httpClient = HttpClientFactory.CreateClient("httpClient");
+            // string url = $"{MasterDataApi.DimensionStructure.V1.DimensionStructureBase}/" +
+            //              $"{MasterDataApi.DimensionStructure.V1.GetSourceFormats}";
+            // HttpRequestMessage httpRequestMessage = new HttpRequestMessage(
+            //     HttpMethod.Get, url);
+            // HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
+            //    .ConfigureAwait(false);
+            // httpResponseMessage.EnsureSuccessStatusCode();
+            // string resultString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            // _dimensionStructures = JsonConvert.DeserializeObject<List<DimensionStructure>>(resultString);
         }
 
         public async Task ShowEditModal(DimensionStructure dimensionStructure)

@@ -12,7 +12,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
+        [Given(@"DimensionStructure is requested")]
         [When(@"DimensionStructure is requested")]
+        [Then(@"DimensionStructure is requested")]
         public async Task DimensionStructureIsRequested(Table table)
         {
             Check.IsNotNull(table);
@@ -25,7 +27,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             {
                 DimensionStructure dimensionStructureResult = await _masterDataBusinessLogic
                    .MasterDataDimensionStructureBusinessLogic
-                   .GetDimensionStructureByIdAsync(dimensionStructure)
+                   .GetByIdAsync(dimensionStructure)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, dimensionStructureResult);
             }

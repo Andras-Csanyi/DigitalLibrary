@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
     using DiLibHttpClientResponseObjects;
 
-    public partial class SourceFormatHttpClient
+    public partial class SourceFormatHttpClientHttpClient
     {
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormat>> GetByIdAsync(
@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
             Check.IsNotNull(getById);
             string url = $"{SourceFormatBase}/{MasterDataApi.SourceFormat.V1.GetById}";
             DilibHttpClientResponse<SourceFormat> result = await _diLibHttpClient
-               .PostAsync(getById, url, cancellationToken)
+               .PostAsync(url, getById, cancellationToken)
                .ConfigureAwait(false);
             return result;
         }

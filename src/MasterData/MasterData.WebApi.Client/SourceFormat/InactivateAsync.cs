@@ -9,7 +9,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
     using DiLibHttpClientResponseObjects;
 
-    public partial class SourceFormatHttpClient
+    public partial class SourceFormatHttpClientHttpClient
     {
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormat>> InactivateAsync(
@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
 
             string url = $"{SourceFormatBase}/{MasterDataApi.SourceFormat.V1.Inactivate}";
             DilibHttpClientResponse<SourceFormat> result = await _diLibHttpClient
-               .PostAsync(toBeInactivated, url, cancellationToken)
+               .PostAsync(url, toBeInactivated, cancellationToken)
                .ConfigureAwait(false);
 
             return result;

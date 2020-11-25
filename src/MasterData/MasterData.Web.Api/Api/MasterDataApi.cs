@@ -139,23 +139,51 @@ namespace DigitalLibrary.MasterData.Web.Api
         /// </summary>
         public struct DimensionStructure
         {
+            /// <summary>
+            ///     Describes the route up to version.
+            /// </summary>
+            public const string RouteBase = "api/masterdata/dimensionstructure";
+
             public struct V1
             {
-                public const string DimensionStructureBase = "api/masterdata/dimensionstructure/v1";
+                public const string GetSourceFormats = "v1/GetTopDimensionStructures";
 
-                public const string GetSourceFormats = "GetTopDimensionStructures";
+                public const string Update = "UpdateDimensionStructure";
 
-                public const string UpdateDimensionStructure = "UpdateDimensionStructure";
+                /// <summary>
+                ///     Add method route.
+                /// </summary>
+                public const string Add = "v1/Add";
 
-                public const string AddDimensionStructure = "AddDimensionStructure";
+                /// <summary>
+                ///     Delete method route.
+                /// </summary>
+                public const string Delete = "DeleteDimensionStructure";
 
-                public const string GetDimensionStructures = "GetDimensionStructures";
+                /// <summary>
+                ///     GetById method route.
+                /// </summary>
+                public const string GetById = "v1/GetById";
 
-                public const string DeleteDimensionStructure = "DeleteDimensionStructure";
+                /// <summary>
+                ///     GetAll method route.
+                /// </summary>
+                public const string GetAll = "v1/GetAll";
 
-                public const string GetDimensionStructuresByIds = "GetDimensionStructuresByIds";
+                /// <summary>
+                ///     GetActives method route.
+                /// </summary>
+                public const string GetActives = "v1/GetActives";
 
-                public const string GetDimensionStructureById = "GetDimensionStructureById";
+                /// <summary>
+                ///     GetInActives method route.
+                /// </summary>
+                public const string GetInActives = "v1/GetInActives";
+
+                /// <summary>
+                ///     Invalidate method route.
+                /// </summary>
+                public const string Inactivate = "v1/Inactivate";
             }
         }
     }

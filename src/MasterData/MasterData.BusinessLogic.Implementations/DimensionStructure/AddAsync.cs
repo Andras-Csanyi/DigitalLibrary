@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.Ctx;
@@ -18,7 +19,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     public partial class MasterDataDimensionStructureBusinessLogic
     {
         /// <inheritdoc />
-        public async Task<DimensionStructure> AddAsync(DimensionStructure dimensionStructure)
+        public async Task<DimensionStructure> AddAsync(
+            DimensionStructure dimensionStructure,
+            CancellationToken cancellationToken = default)
         {
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -37,8 +40,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                         Desc = dimensionStructure.Desc,
                         IsActive = dimensionStructure.IsActive,
                     };
-                    await ctx.DimensionStructures.AddAsync(newDimensionStructure).ConfigureAwait(false);
-                    await ctx.SaveChangesAsync().ConfigureAwait(false);
+                    await ctx.DimensionStructures.AddAsync(
+                            newDimensionStructure,
+                            cancellationToken)
+                       .ConfigureAwait(false);
+                    await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                     return newDimensionStructure;
                 }

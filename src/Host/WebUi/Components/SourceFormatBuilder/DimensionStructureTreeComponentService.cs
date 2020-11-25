@@ -34,14 +34,16 @@ namespace DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder
         public async Task<DimensionStructure> GetDimensionStructureById(DimensionStructureQueryObject queryObject)
         {
             Check.IsNotNull(queryObject);
-
-            return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryObject)
-               .ConfigureAwait(false);
+            //
+            // return await _masterDataHttpClient.GetDimensionStructureByIdAsync(queryObject)
+            //    .ConfigureAwait(false);
+            return null;
         }
 
         public async Task<List<DimensionStructure>> GetDimensionStructuresAsync()
         {
-            return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+            // return await _masterDataHttpClient.GetDimensionStructuresAsync().ConfigureAwait(false);
+            return null;
         }
     }
 

@@ -14,17 +14,25 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         /// <summary>
         ///     Initializes a new instance of the <see cref="MasterDataHttpClient" /> class.
         /// </summary>
-        /// <param name="sourceFormatClient">
-        ///     Represents <see cref="MasterData.Web.Api.Client.Interfaces.ISourceFormat" /> client.
+        /// <param name="sourceFormatHttpClientClient">
+        ///     Represents <see cref="ISourceFormatHttpClient" /> client.
         /// </param>
         public MasterDataHttpClient(
-            ISourceFormat sourceFormatClient
+            ISourceFormatHttpClient sourceFormatHttpClientClient,
+            IDimensionStructureHttpClient dimensionStructureHttpClient
         )
         {
-            Check.IsNotNull(sourceFormatClient);
-            SourceFormat = sourceFormatClient;
+            Check.IsNotNull(sourceFormatHttpClientClient);
+            SourceFormatHttpClient = sourceFormatHttpClientClient;
+
+            Check.IsNotNull(dimensionStructureHttpClient);
+            DimensionStructureHttpClient = dimensionStructureHttpClient;
         }
 
-        public ISourceFormat SourceFormat { get; set; }
+        /// <inheritdoc />
+        public ISourceFormatHttpClient SourceFormatHttpClient { get; set; }
+
+        /// <inheritdoc />
+        public IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
     }
 }

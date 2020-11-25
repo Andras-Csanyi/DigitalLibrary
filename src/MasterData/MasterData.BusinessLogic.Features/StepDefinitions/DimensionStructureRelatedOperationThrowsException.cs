@@ -1,8 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
-    using System.Diagnostics.CodeAnalysis;
-
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using FluentAssertions;
 
@@ -14,19 +13,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Then(@"DimensionStructure related operation throws exception")]
         public void DimensionStructureRelatedOperationThrowsException(Table table)
         {
-            DimensionStructureRelatedOperationThrowsExceptionEntity instance = table
-               .CreateInstance<DimensionStructureRelatedOperationThrowsExceptionEntity>();
+            KeyResultKeyEntity instance = table
+               .CreateInstance<KeyResultKeyEntity>();
 
-            var exception = _scenarioContext[instance.ResultKey];
+            var exception = _scenarioContext[instance.Key];
             exception.Should().BeOfType<MasterDataBusinessLogicDimensionStructureDatabaseOperationException>();
         }
-    }
-
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
-    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    [ExcludeFromCodeCoverage]
-    internal class DimensionStructureRelatedOperationThrowsExceptionEntity
-    {
-        public string ResultKey { get; set; }
     }
 }

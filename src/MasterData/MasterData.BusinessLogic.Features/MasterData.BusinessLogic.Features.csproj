@@ -55,15 +55,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\AddAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.AddAsync.Validation.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.LogicDeleteAsync.Validation.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\DimensionStructure.GetAllAsync.feature">
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetAllAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
         </SpecFlowFeatureFiles>
@@ -75,6 +71,31 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.AddAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DeleteAsync.Validation.feature">
+            <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
+            <CodeBehindFile>DimensionStructure/GetAllAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="DimensionStructure\DeleteAsync.Validation.feature.cs">
+            <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\GetActivesAsync.feature.cs">
+            <DependentUpon>GetActivesAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
 
 </Project>

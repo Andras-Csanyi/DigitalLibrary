@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                     Id = toBeDeleted.Id,
                 };
                 await _masterDataBusinessLogic.MasterDataDimensionStructureBusinessLogic
-                   .DeleteLogicallyAsync(dimensionStructure)
+                   .InactivateAsync(dimensionStructure)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, SUCCESS);
             }

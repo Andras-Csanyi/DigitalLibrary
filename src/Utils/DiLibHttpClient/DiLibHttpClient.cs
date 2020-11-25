@@ -35,8 +35,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class
         {
@@ -116,9 +116,10 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         }
 
         /// <inheritdoc />
-        public async Task<DilibHttpClientResponse<T>> PostAsync<T>(T payload,
-                                                                   string url,
-                                                                   CancellationToken cancellationToken = default)
+        public async Task<DilibHttpClientResponse<T>> PostAsync<T>(
+            string url,
+            T payload,
+            CancellationToken cancellationToken = default)
             where T : class
         {
             Check.IsNotNull(payload);
@@ -139,7 +140,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     httpResponseMessage.EnsureSuccessStatusCode();
                     string content = await httpResponseMessage
                        .Content
-                       .ReadAsStringAsync()
+                       .ReadAsStringAsync(cancellationToken)
                        .ConfigureAwait(false);
 
                     T res = JsonToObject<T>(content);
@@ -154,7 +155,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 {
                     string errorDetails = await httpResponseMessage
                        .Content
-                       .ReadAsStringAsync()
+                       .ReadAsStringAsync(cancellationToken)
                        .ConfigureAwait(false);
 
                     result.ExceptionMessage = e.Message;
@@ -168,7 +169,10 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         }
 
         /// <inheritdoc />
-        public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(TPayloadType payload, string url)
+        public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(
+            string url,
+            TPayloadType payload,
+            CancellationToken cancellationToken = default)
         {
             try
             {
@@ -186,14 +190,16 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                     {
                         httpResponseMessage.EnsureSuccessStatusCode();
                         string content =
-                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken)
+                               .ConfigureAwait(false);
                         TReturnType result = JsonToObject<TReturnType>(content);
                         return result;
                     }
                     catch (Exception e)
                     {
                         string errorDetails =
-                            await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken)
+                               .ConfigureAwait(false);
                         throw new DiLibHttpClientErrorDetailsException(errorDetails, e);
                     }
                 }
@@ -206,8 +212,8 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
         /// <inheritdoc />
         public async Task<DilibHttpClientResponse<T>> PutAsync<T>(
-            T payload,
             string url,
+            T payload,
             CancellationToken cancellationToken = default)
             where T : class
         {
