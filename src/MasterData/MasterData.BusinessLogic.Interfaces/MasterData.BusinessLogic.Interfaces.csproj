@@ -13,14 +13,14 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
 
     <ItemGroup>
-        <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
-        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+        <ProjectReference Include="..\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj" />
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj" />
     </ItemGroup>
 
 </Project>

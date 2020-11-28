@@ -31,7 +31,8 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
 
             builder.HasOne(p => p.DimensionStructureNode)
                .WithOne(p => p.SourceFormatDimensionStructureNode)
-               .HasForeignKey<SourceFormatDimensionStructureNode>(k => k.DimensionStructureNodeId);
+               .HasForeignKey<SourceFormatDimensionStructureNode>(k => k.DimensionStructureNodeId)
+               .IsRequired(false);
         }
     }
 }

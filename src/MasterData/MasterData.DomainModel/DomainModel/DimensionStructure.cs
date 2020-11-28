@@ -11,8 +11,9 @@ namespace DigitalLibrary.MasterData.DomainModel
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
     /// <summary>
-    ///     DimensionStructure entity which represents a node in a DimensionStructure tree which
-    ///     describes a document structure.
+    ///     DimensionStructure entity which describes information part of a node
+    /// in the DimensionStructure tree.
+    /// Structural information is described by <see cref="DimensionStructureNode"/> object.
     /// </summary>
     public class DimensionStructure : IHaveId, IHaveGuidId
     {

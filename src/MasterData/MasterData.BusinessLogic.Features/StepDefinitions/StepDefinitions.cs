@@ -13,6 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
@@ -104,6 +105,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new DimensionStructureDimensionStructureValidator();
             DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator =
                 new DimensionStructureQueryObjectValidator();
+            DimensionStructureNodeValidator dimensionStructureNodeValidator = new DimensionStructureNodeValidator();
 
             MasterDataValidators masterDataValidators = new MasterDataValidators(
                 dimensionValidator,
@@ -111,7 +113,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 sourceFormatValidator,
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
-                dimensionStructureQueryObjectValidator);
+                dimensionStructureQueryObjectValidator,
+                dimensionStructureNodeValidator);
 
             IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic = new MasterDataDimensionBusinessLogic(
                 _dbContextOptions, masterDataValidators);
@@ -121,12 +124,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new MasterDataDimensionValueBusinessLogic(_dbContextOptions, masterDataValidators);
             IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic =
                 new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic =
+                new MasterDataDimensionStructureNodeBusinessLogic(_dbContextOptions, masterDataValidators);
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(
                 masterDataDimensionBusinessLogic,
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
-                masterDataSourceFormatBusinessLogic);
+                masterDataSourceFormatBusinessLogic,
+                masterDataDimensionStructureNodeBusinessLogic);
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -140,6 +146,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             _masterDataTestHelper = new MasterDataTestHelper(
                 sourceFormatFactory,
                 dimensionStructureFactory);
+        }
+
+        [Then(@"SourceFormat has root DimensionStructureNode")]
+        public void ThenSourceFormatHasRootDimensionStructureNode(Table table)
+        {
+            _scenarioContext.Pending();
         }
     }
 }

@@ -21,13 +21,15 @@ namespace DigitalLibrary.MasterData.Validators
         ///     DimensionStructureDimensionStructure validator.
         /// </param>
         /// <param name="dimensionStructureQueryObjectValidator">DimensionStructureQueryObject validator.</param>
+        /// <param name="dimensionStructureNodeValidator">DimensionStructureNode validator.</param>
         public MasterDataValidators(
             DimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator dimensionValueValidator,
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator,
             DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator,
-            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator)
+            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator,
+            DimensionStructureNodeValidator dimensionStructureNodeValidator)
         {
             Check.IsNotNull(dimensionValidator);
             Check.IsNotNull(dimensionValueValidator);
@@ -42,6 +44,7 @@ namespace DigitalLibrary.MasterData.Validators
             DimensionStructureValidator = dimensionStructureValidator;
             DimensionStructureDimensionStructureValidator = dimensionStructureDimensionStructureValidator;
             DimensionStructureQueryObjectValidator = dimensionStructureQueryObjectValidator;
+            DimensionStructureNodeValidator = dimensionStructureNodeValidator;
         }
 
         public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
@@ -51,11 +54,16 @@ namespace DigitalLibrary.MasterData.Validators
         /// <inheritdoc />
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
+        /// <inheritdoc/>
         public DimensionValidator DimensionValidator { get; }
 
+        /// <inheritdoc/>
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         /// <inheritdoc />
         public SourceFormatValidator SourceFormatValidator { get; }
+
+        /// <inheritdoc/>
+        public DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
     }
 }

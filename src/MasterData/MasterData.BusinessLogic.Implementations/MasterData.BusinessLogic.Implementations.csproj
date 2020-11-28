@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
-        <ProjectReference Include="..\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj"/>
-        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
-        <ProjectReference Include="..\MasterData.Ctx\MasterData.Ctx.csproj"/>
-        <ProjectReference Include="..\MasterData.Validators\MasterData.Validators.csproj"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj" />
+        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
+        <ProjectReference Include="..\MasterData.Ctx\MasterData.Ctx.csproj" />
+        <ProjectReference Include="..\MasterData.Validators\MasterData.Validators.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,9 +21,9 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
 </Project>

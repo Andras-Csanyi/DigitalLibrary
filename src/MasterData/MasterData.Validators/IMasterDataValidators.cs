@@ -10,22 +10,28 @@ namespace DigitalLibrary.MasterData.Validators
     /// </summary>
     public interface IMasterDataValidators
     {
-        public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
+        DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
 
-        public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
+        DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
 
         /// <summary>
         ///     Gets <see cref="DimensionStructureValidator" />.
         /// </summary>
-        public DimensionStructureValidator DimensionStructureValidator { get; }
+        DimensionStructureValidator DimensionStructureValidator { get; }
 
-        public DimensionValidator DimensionValidator { get; }
+        DimensionValidator DimensionValidator { get; }
 
-        public MasterDataDimensionValueValidator DimensionValueValidator { get; }
+        MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         /// <summary>
         ///     Gets <see cref="SourceFormatValidator" />.
         /// </summary>
-        public SourceFormatValidator SourceFormatValidator { get; }
+        SourceFormatValidator SourceFormatValidator { get; }
+
+
+        /// <summary>
+        /// Gets <see cref="DimensionStructureNodeValidator"/>.
+        /// </summary>
+        DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
     }
 }

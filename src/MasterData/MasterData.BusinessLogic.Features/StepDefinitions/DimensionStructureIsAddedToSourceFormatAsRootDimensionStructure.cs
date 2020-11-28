@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     public partial class StepDefinitions
     {
         [Given(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]
+        [When(@"DimensionStructure is added to SourceFormat as root dimensionstructure")]
         public async Task DimensionStructureIsAddedToSourceFormatAsRootDimensionStructure(Table table)
         {
             DimensionStructureIsAddedToSourceFormatAsRootDimensionStructureEntity instance = table
