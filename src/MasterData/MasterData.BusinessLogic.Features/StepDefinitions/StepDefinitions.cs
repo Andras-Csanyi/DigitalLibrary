@@ -147,11 +147,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 sourceFormatFactory,
                 dimensionStructureFactory);
         }
-
-        [Then(@"SourceFormat has root DimensionStructureNode")]
-        public void ThenSourceFormatHasRootDimensionStructureNode(Table table)
-        {
-            _scenarioContext.Pending();
-        }
     }
 }

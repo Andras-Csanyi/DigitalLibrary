@@ -14,14 +14,14 @@
         public async Task WhenSourceFormatIsRequestedWithDimensionStructureNodeTree(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
-            
+
             SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
 
             SourceFormat result = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithDimensionStructureTreeAsync(sourceFormat)
+               .GetSourceFormatByIdWithDimensionStructureNodeTreeAsync(sourceFormat)
                .ConfigureAwait(false);
-            
+
             _scenarioContext.Add(instance.ResultKey, result);
         }
     }

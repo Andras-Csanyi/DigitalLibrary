@@ -5,7 +5,7 @@
   Which starts with adding a Root DimensionStructureNode to a SourceFormat
   So that, I need a functionality providing it.
 
-  Scenario: Adds existing DimensionStructureNode as root DimensionStructure
+  Scenario: Adds DimensionStructureNode as root DimensionStructureNode
 
     Given there is a saved SourceFormat domain object
       | Field     | Value       |
@@ -19,10 +19,10 @@
       | Key       | sf-1-result          |
       | ResultKey | sf-1-root-dsn-result |
     And SourceFormat is requested with DimensionStructureNode tree
-      | Field     | Value              |
-      | Key       | sf-1-result        |
-      | ResultKey | sf--queried-result |
+      | Field     | Value             |
+      | Key       | sf-1-result       |
+      | ResultKey | sf-queried-result |
 
     Then SourceFormat has root DimensionStructureNode
-      | Field           | Value       |
-      | SourceFormatKey | sf-1-result |
+      | Field | Value             |
+      | Key   | sf-queried-result |
