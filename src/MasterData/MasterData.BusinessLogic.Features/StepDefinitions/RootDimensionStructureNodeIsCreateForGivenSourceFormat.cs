@@ -11,11 +11,12 @@
 
     public partial class StepDefinitions
     {
+        [Given(@"root DimensionStructureNode is created for given SourceFormat")]
         [When(@"root DimensionStructureNode is created for given SourceFormat")]
         public async Task WhenRootDimensionStructureNodeIsCreatedForGivenSourceFormat(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
-            
+
             SourceFormat sourceFormat = _scenarioContext[instance.Key] as SourceFormat;
             Check.IsNotNull(sourceFormat);
 

@@ -23,7 +23,29 @@
         /// Returns <see cref="Task{TResult}"/> representing result of asynchronous operation.
         /// It includes a <see cref="DimensionStructureNode"/> which is the created and attached node.
         /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///    Whatever issue happens.
+        /// </exception>
         Task<DimensionStructureNode> CreateRootNodeAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Deletes a root node and as a result a given <see cref="SourceFormat"/> lost
+        /// its root <see cref="DimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="sourceFormat">
+        ///    The <see cref="SourceFormat"/> where the <see cref="DimensionStructureNode"/> is attached to
+        /// as root node.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///    Returns <see cref="Task{TResult}"/> representing result of asynchronous operation.
+        /// </returns>
+        /// /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///    Whatever issue happens.
+        /// </exception>
+        Task DeleteRootDimensionStructureNodeOfSourceFormatAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default);
     }
