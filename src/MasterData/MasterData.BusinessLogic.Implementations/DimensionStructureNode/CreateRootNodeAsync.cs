@@ -21,21 +21,20 @@
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _masterDataValidators
-                   .SourceFormatValidator
-                   .ValidateAndThrowAsync(
-                        sourceFormat,
-                        SourceFormatValidatorRulesets.AddRootNode,
-                        cancellationToken)
-                   .ConfigureAwait(false);
-
-                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-                    using (IDbContextTransaction transaction = await ctx.Database
-                       .BeginTransactionAsync(cancellationToken)
-                       .ConfigureAwait(false))
+            using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+                using (IDbContextTransaction transaction = await ctx.Database
+                   .BeginTransactionAsync(cancellationToken)
+                   .ConfigureAwait(false))
+                {
+                    try
                     {
+                        await _masterDataValidators.SourceFormatValidator
+                           .ValidateAndThrowAsync(
+                                sourceFormat,
+                                SourceFormatValidatorRulesets.AddRootNode,
+                                cancellationToken)
+                           .ConfigureAwait(false);
+
                         DimensionStructureNode newNode = new DimensionStructureNode();
                         await ctx.DimensionStructureNodes.AddAsync(newNode, cancellationToken).ConfigureAwait(false);
                         await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
@@ -63,16 +62,19 @@
                            .ConfigureAwait(false);
                         await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
+                        await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
                         return newNode;
                     }
-            }
-            catch (Exception e)
-            {
-                string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
-                    $"{nameof(CreateRootNodeAsync)} operation failed. " +
-                    $"For further information see inner exception!";
-                throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
-            }
+                    catch (Exception e)
+                    {
+                        await transaction.RollbackAsync(cancellationToken).ConfigureAwait(false);
+
+                        string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
+                            $"{nameof(CreateRootNodeAsync)} operation failed. " +
+                            $"For further information see inner exception!";
+                        throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
+                    }
+                }
         }
     }
 }

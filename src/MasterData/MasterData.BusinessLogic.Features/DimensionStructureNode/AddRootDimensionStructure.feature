@@ -14,7 +14,7 @@
       | IsActive  | 1           |
       | ResultKey | sf-1-result |
 
-    When root DimensionStructureNode is create for given SourceFormat
+    When root DimensionStructureNode is created for given SourceFormat
       | Field     | Value                |
       | Key       | sf-1-result          |
       | ResultKey | sf-1-root-dsn-result |

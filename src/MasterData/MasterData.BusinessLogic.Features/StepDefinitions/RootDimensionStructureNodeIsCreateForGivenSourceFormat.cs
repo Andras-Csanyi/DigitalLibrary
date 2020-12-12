@@ -11,8 +11,8 @@
 
     public partial class StepDefinitions
     {
-        [When(@"root DimensionStructureNode is create for given SourceFormat")]
-        public async Task WhenRootDimensionStructureNodeIsCreateForGivenSourceFormat(Table table)
+        [When(@"root DimensionStructureNode is created for given SourceFormat")]
+        public async Task WhenRootDimensionStructureNodeIsCreatedForGivenSourceFormat(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
             
