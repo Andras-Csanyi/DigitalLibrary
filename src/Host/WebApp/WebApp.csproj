@@ -7,19 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.1" />
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.1" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
     <ItemGroup>
@@ -35,7 +35,7 @@
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Exceptions\MasterData.BusinessLogic.Exceptions.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
-        <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj"/>
+        <ProjectReference Include="..\..\MasterData\MasterData.BusinessLogic.ViewModels\MasterData.BusinessLogic.ViewModels.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.Controllers\MasterData.Controllers.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj" />
         <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj" />

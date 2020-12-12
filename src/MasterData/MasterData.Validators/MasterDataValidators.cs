@@ -37,6 +37,7 @@ namespace DigitalLibrary.MasterData.Validators
             Check.IsNotNull(dimensionStructureValidator);
             Check.IsNotNull(dimensionStructureDimensionStructureValidator);
             Check.IsNotNull(dimensionStructureQueryObjectValidator);
+            Check.IsNotNull(dimensionStructureNodeValidator);
 
             DimensionValidator = dimensionValidator;
             DimensionValueValidator = dimensionValueValidator;

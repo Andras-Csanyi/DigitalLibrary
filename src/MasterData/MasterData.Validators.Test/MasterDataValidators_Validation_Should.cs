@@ -104,7 +104,7 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 new DimensionStructureDimensionStructureValidator(),
                 new DimensionStructureQueryObjectValidator(),
-                null
+                null,
             },
         };
 
