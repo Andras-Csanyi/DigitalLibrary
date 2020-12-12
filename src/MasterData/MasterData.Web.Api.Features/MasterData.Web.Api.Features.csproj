@@ -112,4 +112,10 @@
             <Visible>true</Visible>
         </Compile>
     </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+    </ItemGroup>
 </Project>
