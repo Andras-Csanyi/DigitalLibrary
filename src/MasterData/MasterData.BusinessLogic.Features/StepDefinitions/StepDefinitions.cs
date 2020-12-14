@@ -153,5 +153,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         {
             _scenarioContext.Pending();
         }
+
+        [When(@"SourceFormatDimensionStructureNode is saved")]
+        public void WhenSourceFormatDimensionStructureNodeIsSaved(Table table)
+        {
+            _scenarioContext.Pending();
+        }
+        
+        [Then(@"SourceFormatDimensionStructureNode id not equals to")]
+        public void ThenSourceFormatDimensionStructureNodeIdNotEqualsTo(Table table)
+        {
+            _scenarioContext.Pending();
+        }
+        
+        [Then(@"SourceFormatDimensionStructureNode DimensionStructureNodeId equals to")]
+        public void ThenSourceFormatDimensionStructureNodeDimensionStructureNodeIdEqualsTo(Table table)
+        {
+            _scenarioContext.Pending();
+        }
+        
+        [Then(@"SourceFormatDimensionStructureNode SourceFormatId equals to")]
+        public void ThenSourceFormatDimensionStructureNodeSourceFormatIdEqualsTo(Table table)
+        {
+            _scenarioContext.Pending();
+        }
     }
 }

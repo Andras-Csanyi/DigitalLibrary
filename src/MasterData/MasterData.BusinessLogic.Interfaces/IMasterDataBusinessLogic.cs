@@ -37,6 +37,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <summary>
         /// Gets or sets <see cref="DimensionStructureNode"/> entity related operations in Master Data context.
         /// </summary>
-        public IMasterDataDimensionStructureNodeBusinessLogic MasterDataDimensionStructureNodeBusinessLogic { get; set; }
+        public IMasterDataDimensionStructureNodeBusinessLogic MasterDataDimensionStructureNodeBusinessLogic
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets <see cref="SourceFormatDimensionStructureNode"/> entity related operations in Master
+        /// Data context.
+        /// </summary>
+        public IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
+            MasterDataSourceFormatDimensionStructureNodeBusinessLogic { get; set; }
     }
 }

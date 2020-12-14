@@ -30,23 +30,28 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             IMasterDataDimensionStructureBusinessLogic masterDataDimensionStructureBusinessLogic,
             IMasterDataDimensionValueBusinessLogic masterDataDimensionValueBusinessLogic,
             IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic,
-            IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic)
+            IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic,
+            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic)
         {
             MasterDataDimensionBusinessLogic = masterDataDimensionBusinessLogic ??
-                throw new ArgumentNullException(
-                    nameof(masterDataDimensionBusinessLogic));
+                                               throw new ArgumentNullException(
+                                                   nameof(masterDataDimensionBusinessLogic));
             MasterDataDimensionStructureBusinessLogic = masterDataDimensionStructureBusinessLogic ??
-                throw new ArgumentNullException(
-                    nameof(masterDataDimensionStructureBusinessLogic));
+                                                        throw new ArgumentNullException(
+                                                            nameof(masterDataDimensionStructureBusinessLogic));
             MasterDataDimensionValueBusinessLogic = masterDataDimensionValueBusinessLogic ??
-                throw new ArgumentNullException(
-                    nameof(masterDataDimensionValueBusinessLogic));
+                                                    throw new ArgumentNullException(
+                                                        nameof(masterDataDimensionValueBusinessLogic));
             MasterDataSourceFormatBusinessLogic = masterDataSourceFormatBusinessLogic ??
-                throw new ArgumentNullException(
-                    nameof(masterDataSourceFormatBusinessLogic));
+                                                  throw new ArgumentNullException(
+                                                      nameof(masterDataSourceFormatBusinessLogic));
             MasterDataDimensionStructureNodeBusinessLogic = masterDataDimensionStructureNodeBusinessLogic ??
-                throw new ArgumentNullException(
-                    nameof(masterDataDimensionStructureNodeBusinessLogic));
+                                                            throw new ArgumentNullException(
+                                                                nameof(masterDataDimensionStructureNodeBusinessLogic));
+            MasterDataSourceFormatDimensionStructureNodeBusinessLogic =
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic ??
+                throw new ArgumentNullException(nameof(masterDataSourceFormatDimensionStructureNodeBusinessLogic));
         }
 
         /// <inheritdoc/>
@@ -67,5 +72,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             get;
             set;
         }
+
+        /// <inheritdoc/>
+        public IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
+            MasterDataSourceFormatDimensionStructureNodeBusinessLogic { get; set; }
     }
 }
