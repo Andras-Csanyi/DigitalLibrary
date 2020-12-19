@@ -156,17 +156,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 sourceFormatFactory,
                 dimensionStructureFactory);
         }
-
-        [Then(@"SourceFormat does not have DimensionStructureNode")]
-        public void ThenSourceFormatDoesNotHaveDimensionStructureNode(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"SourceFormatDimensionStructureNode SourceFormatId equals to")]
-        public void ThenSourceFormatDimensionStructureNodeSourceFormatIdEqualsTo(Table table)
-        {
-            _scenarioContext.Pending();
-        }
     }
 }

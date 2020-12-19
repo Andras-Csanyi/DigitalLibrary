@@ -1,16 +1,19 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System.Threading.Tasks;
+
     using DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
     public partial class StepDefinitions
     {
-        [Given(@"there is a SourceFormatDimensionStructureNode domain object")]
-        public void GivenThereIsASourceFormatDimensionStructureNodeDomainObject(Table table)
+        [Given(@"there is a saved SourceFormatDimensionStructureNode domain object")]
+        public async Task ThereIsASavedSourceFormatDimensionStructureNodeDomainObject(Table table)
         {
             SourceFormatDimensionStructureNodeDomainObjectEntity instance = table
                .CreateInstance<SourceFormatDimensionStructureNodeDomainObjectEntity>();
@@ -34,7 +37,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 result.DimensionStructureNodeId = dimensionStructureNode.Id;
             }
 
-            _scenarioContext.Add(instance.ResultKey, result);
+            SourceFormatDimensionStructureNode node = await _masterDataBusinessLogic
+               .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
+               .AddAsync(result)
+               .ConfigureAwait(false);
+
+            _scenarioContext.Add(instance.ResultKey, node);
         }
     }
 }
