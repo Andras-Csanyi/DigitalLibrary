@@ -6,11 +6,11 @@ namespace DigitalLibrary.MasterData.DomainModel
     {
         public DimensionStructureNode DimensionStructureNode { get; set; }
 
-        public long DimensionStructureNodeId { get; set; }
+        public long? DimensionStructureNodeId { get; set; }
 
         public SourceFormat SourceFormat { get; set; }
 
-        public long SourceFormatId { get; set; }
+        public long? SourceFormatId { get; set; }
 
         public long Id { get; set; }
     }

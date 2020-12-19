@@ -22,6 +22,7 @@ namespace DigitalLibrary.MasterData.Validators
         /// </param>
         /// <param name="dimensionStructureQueryObjectValidator">DimensionStructureQueryObject validator.</param>
         /// <param name="dimensionStructureNodeValidator">DimensionStructureNode validator.</param>
+        /// <param name="sourceFormatDimensionStructureNodeValidator">SourceFormatDimensionStructureNodeValidator validator.</param>
         public MasterDataValidators(
             DimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator dimensionValueValidator,
@@ -29,7 +30,8 @@ namespace DigitalLibrary.MasterData.Validators
             DimensionStructureValidator dimensionStructureValidator,
             DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator,
             DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator,
-            DimensionStructureNodeValidator dimensionStructureNodeValidator)
+            DimensionStructureNodeValidator dimensionStructureNodeValidator,
+            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator)
         {
             Check.IsNotNull(dimensionValidator);
             Check.IsNotNull(dimensionValueValidator);
@@ -38,6 +40,7 @@ namespace DigitalLibrary.MasterData.Validators
             Check.IsNotNull(dimensionStructureDimensionStructureValidator);
             Check.IsNotNull(dimensionStructureQueryObjectValidator);
             Check.IsNotNull(dimensionStructureNodeValidator);
+            Check.IsNotNull(sourceFormatDimensionStructureNodeValidator);
 
             DimensionValidator = dimensionValidator;
             DimensionValueValidator = dimensionValueValidator;
@@ -46,6 +49,7 @@ namespace DigitalLibrary.MasterData.Validators
             DimensionStructureDimensionStructureValidator = dimensionStructureDimensionStructureValidator;
             DimensionStructureQueryObjectValidator = dimensionStructureQueryObjectValidator;
             DimensionStructureNodeValidator = dimensionStructureNodeValidator;
+            SourceFormatDimensionStructureNodeValidator = sourceFormatDimensionStructureNodeValidator;
         }
 
         public DimensionStructureDimensionStructureValidator DimensionStructureDimensionStructureValidator { get; }
@@ -66,5 +70,8 @@ namespace DigitalLibrary.MasterData.Validators
 
         /// <inheritdoc/>
         public DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
+
+        /// <inheritdoc/>
+        public SourceFormatDimensionStructureNodeValidator SourceFormatDimensionStructureNodeValidator { get; }
     }
 }

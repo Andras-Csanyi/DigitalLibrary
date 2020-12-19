@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
         {
             Check.IsNotNull(builder);
 
-            builder.ToTable("sourceformat_dimensionstructurenode");
+            builder.ToTable("sourceformat_dimensionstructure_node");
 
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).HasColumnName("id");

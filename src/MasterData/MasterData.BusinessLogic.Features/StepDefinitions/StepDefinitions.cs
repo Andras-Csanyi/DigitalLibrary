@@ -16,6 +16,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -106,6 +107,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator =
                 new DimensionStructureQueryObjectValidator();
             DimensionStructureNodeValidator dimensionStructureNodeValidator = new DimensionStructureNodeValidator();
+            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator =
+                new SourceFormatDimensionStructureNodeValidator();
 
             MasterDataValidators masterDataValidators = new MasterDataValidators(
                 dimensionValidator,
@@ -114,7 +117,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator,
-                dimensionStructureNodeValidator);
+                dimensionStructureNodeValidator,
+                sourceFormatDimensionStructureNodeValidator);
 
             IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic = new MasterDataDimensionBusinessLogic(
                 _dbContextOptions, masterDataValidators);
@@ -126,13 +130,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
             IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic =
                 new MasterDataDimensionStructureNodeBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic =
+                    new MasterDataSourceFormatDimensionStructureNodeBusinessLogic(_dbContextOptions,
+                        masterDataValidators);
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(
                 masterDataDimensionBusinessLogic,
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic,
-                masterDataDimensionStructureNodeBusinessLogic);
+                masterDataDimensionStructureNodeBusinessLogic,
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic);
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -154,24 +163,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             _scenarioContext.Pending();
         }
 
-        [When(@"SourceFormatDimensionStructureNode is saved")]
-        public void WhenSourceFormatDimensionStructureNodeIsSaved(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-        
-        [Then(@"SourceFormatDimensionStructureNode id not equals to")]
-        public void ThenSourceFormatDimensionStructureNodeIdNotEqualsTo(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-        
-        [Then(@"SourceFormatDimensionStructureNode DimensionStructureNodeId equals to")]
-        public void ThenSourceFormatDimensionStructureNodeDimensionStructureNodeIdEqualsTo(Table table)
-        {
-            _scenarioContext.Pending();
-        }
-        
         [Then(@"SourceFormatDimensionStructureNode SourceFormatId equals to")]
         public void ThenSourceFormatDimensionStructureNodeSourceFormatIdEqualsTo(Table table)
         {

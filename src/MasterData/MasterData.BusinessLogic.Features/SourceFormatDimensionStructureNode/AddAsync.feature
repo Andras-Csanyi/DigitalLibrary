@@ -17,14 +17,14 @@ Feature: SourceFormatDimensionStructureNode Business Logic - AddAsync
       | Field       | Value        |
       | Key         | sfdsn-result |
       | NotEqualsTo | 0            |
-    And SourceFormatDimensionStructureNode DimensionStructureNodeId equals to
+    And SourceFormatDimensionStructureNode DimensionStructureNodeId nullable equals to
       | Field    | Value        |
       | Key      | sfdsn-result |
-      | EqualsTo | 0            |
-    And SourceFormatDimensionStructureNode SourceFormatId equals to
+      | EqualsTo | null         |
+    And SourceFormatDimensionStructureNode SourceFormatId nullable equals to
       | Field    | Value        |
       | Key      | sfdsn-result |
-      | EqualsTo | 0            |
+      | EqualsTo | null         |
 
   Scenario: Add a SourceFormatDimensionStructureNode when only SourceFormat exists
 
