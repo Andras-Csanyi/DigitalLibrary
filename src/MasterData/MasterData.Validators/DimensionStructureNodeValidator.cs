@@ -8,6 +8,7 @@
     {
         public DimensionStructureNodeValidator()
         {
+            RuleSet(DimensionStructureNodeValidatorRulesets.Add, () => { RuleFor(r => r.Id).Equal(0); });
         }
     }
 }

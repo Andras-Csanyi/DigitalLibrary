@@ -2,7 +2,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 {
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
-    public class GivenThereIsADimensionStructureDomainObject : IDimensionStructureDomainObject
+    public class ThereIsADimensionStructureDomainObjectEntity : IDimensionStructureDomainObject
     {
         public string Desc { get; set; }
 
