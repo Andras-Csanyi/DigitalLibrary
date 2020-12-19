@@ -87,9 +87,9 @@ Feature: SourceFormatDimensionStructureNode Business Logic - AddAsync
       | Key         | sfdsn-result |
       | NotEqualsTo | 0            |
     And SourceFormatDimensionStructureNode DimensionStructureNodeId is
-      | Field                  | Value        |
-      | Key                    | sfdsn-result |
-      | DimensionStructureNode | dsn-1        |
+      | Field                     | Value        |
+      | Key                       | sfdsn-result |
+      | DimensionStructureNodeKey | dsn-1        |
     And SourceFormatDimensionStructureNode SourceFormatId is
       | Field           | Value        |
       | Key             | sfdsn-result |

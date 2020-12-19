@@ -1,6 +1,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities;
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
+
+    using FluentAssertions;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -10,7 +14,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Then(@"SourceFormatDimensionStructureNode DimensionStructureNodeId is")]
         public void ThenSourceFormatDimensionStructureNodeDimensionStructureNodeIdIs(Table table)
         {
-            KeyDimensionStructureNodeKeyEntity instance = table.CreateInstance < ()
+            KeyDimensionStructureNodeKeyEntity instance = table.CreateInstance<KeyDimensionStructureNodeKeyEntity>();
+            
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode = 
+                _scenarioContext[instance.Key] as SourceFormatDimensionStructureNode;
+            Check.IsNotNull(sourceFormatDimensionStructureNode);
+            
+            DimensionStructureNode dimensionStructureNode = _scenarioContext[instance.DimensionStructureNodeKey]
+                as DimensionStructureNode;
+            Check.IsNotNull(dimensionStructureNode);
+
+            sourceFormatDimensionStructureNode.DimensionStructureNodeId
+               .Should().Be(dimensionStructureNode.Id);
         }
     }
 }
