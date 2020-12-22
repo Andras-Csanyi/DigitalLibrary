@@ -6,5 +6,9 @@ namespace DigitalLibrary.MasterData.Validators
     public struct SourceFormatDimensionStructureNodeValidatorRulesets
     {
         public const string Add = "Add";
+
+        public const string Delete = "Delete";
+
+        public const string GetById = "GetById";
     }
 }

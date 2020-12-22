@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
@@ -10,18 +11,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [Given(@"SourceFormatDimensionStructureNode is saved")]
-        [When(@"SourceFormatDimensionStructureNode is saved")]
-        public async Task WhenSourceFormatDimensionStructureNodeIsSaved(Table table)
+        [Then(@"SourceFormatDimensionStructureNode is requested")]
+        public async Task ThenSourceFormatDimensionStructureNodeIsRequested(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode =
-                _scenarioContext[instance.Key] as SourceFormatDimensionStructureNode;
+            SourceFormatDimensionStructureNode requested = _scenarioContext[instance.Key]
+                as SourceFormatDimensionStructureNode;
+            Check.IsNotNull(requested);
 
             SourceFormatDimensionStructureNode result = await _masterDataBusinessLogic
                .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
-               .AddAsync(sourceFormatDimensionStructureNode)
+               .GetByIdAsync(requested)
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, result);
