@@ -27,7 +27,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
                     await _masterDataValidators
                        .SourceFormatDimensionStructureNodeValidator.ValidateAndThrowAsync(
                             sourceFormatDimensionStructureNode,
-                            ruleSet: SourceFormatDimensionStructureNodeValidatorRulesets.GetById)
+                            ruleSet: SourceFormatDimensionStructureNodeValidatorRulesets.GetById,
+                            cancellationToken)
                        .ConfigureAwait(false);
 
                     SourceFormatDimensionStructureNode node = await ctx.SourceFormatDimensionStructureNodes

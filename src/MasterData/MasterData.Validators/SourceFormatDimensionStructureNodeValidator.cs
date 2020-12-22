@@ -16,6 +16,8 @@ namespace DigitalLibrary.MasterData.Validators
         public SourceFormatDimensionStructureNodeValidator()
         {
             RuleSet(SourceFormatDimensionStructureNodeValidatorRulesets.Add, () => { RuleFor(o => o.Id).Equal(0); });
+            RuleSet(SourceFormatDimensionStructureNodeValidatorRulesets.Update,
+                () => { RuleFor(o => o.Id).NotEqual(0); });
             RuleSet(SourceFormatDimensionStructureNodeValidatorRulesets.Delete, () =>
             {
                 RuleFor(o => o.Id).NotEqual(0)
