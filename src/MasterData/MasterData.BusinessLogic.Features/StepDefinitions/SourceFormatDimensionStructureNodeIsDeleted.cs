@@ -31,7 +31,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             }
             catch (Exception e)
             {
-                _scenarioContext.Add(instance.Key, FAIL);
+                _scenarioContext.Add(instance.ResultKey, FAIL);
             }
         }
     }
