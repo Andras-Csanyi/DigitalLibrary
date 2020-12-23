@@ -81,6 +81,18 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\UpdateAsync.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.feature.cs">
+            <DependentUpon>UpdateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
 
 </Project>

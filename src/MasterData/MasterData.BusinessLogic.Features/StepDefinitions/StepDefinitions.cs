@@ -61,6 +61,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
         protected const string SUCCESS = "SUCCESS";
 
+        protected const string FAIL = "FAIL";
+
         protected StepDefinitions(
             ITestOutputHelper testOutputHelper,
             ScenarioContext scenarioContext)

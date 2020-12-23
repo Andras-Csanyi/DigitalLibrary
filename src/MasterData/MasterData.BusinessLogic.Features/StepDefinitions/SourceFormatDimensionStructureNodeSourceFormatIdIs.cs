@@ -24,10 +24,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 as SourceFormat;
             Check.IsNotNull(sourceFormat);
 
-            result.SourceFormat.Id.Should().Be(sourceFormat.Id);
-            result.SourceFormat.Name.Should().Be(sourceFormat.Name);
-            result.SourceFormat.IsActive.Should().Be(sourceFormat.IsActive);
-            result.SourceFormat.Guid.Should().Be(sourceFormat.Guid);
             result.SourceFormatId.Should().Be(sourceFormat.Id);
         }
     }

@@ -28,7 +28,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
                        .SourceFormatDimensionStructureNodeValidator
                        .ValidateAndThrowAsync(
                             sourceFormatDimensionStructureNode,
-                            ruleSet: SourceFormatDimensionStructureNodeValidatorRulesets.Add)
+                            ruleSet: SourceFormatDimensionStructureNodeValidatorRulesets.Add,
+                            cancellationToken)
                        .ConfigureAwait(false);
 
                     SourceFormatDimensionStructureNode newNode = new SourceFormatDimensionStructureNode();
