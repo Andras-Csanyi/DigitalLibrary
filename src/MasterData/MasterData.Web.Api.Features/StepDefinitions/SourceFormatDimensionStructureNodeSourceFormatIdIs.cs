@@ -1,6 +1,5 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
+namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
@@ -17,15 +16,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         {
             KeySourceFormatKeyEntity instance = table.CreateInstance<KeySourceFormatKeyEntity>();
 
-            SourceFormatDimensionStructureNode result = _scenarioContext[instance.Key]
-                as SourceFormatDimensionStructureNode;
-            Check.IsNotNull(result);
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode =
+                _scenarioContext[instance.Key] as SourceFormatDimensionStructureNode;
+            Check.IsNotNull(sourceFormatDimensionStructureNode);
 
             SourceFormat sourceFormat = _scenarioContext[instance.SourceFormatKey]
                 as SourceFormat;
             Check.IsNotNull(sourceFormat);
 
-            result.SourceFormatId.Should().Be(sourceFormat.Id);
+            sourceFormatDimensionStructureNode.SourceFormatId.Should()
+               .Be(sourceFormat.Id);
         }
     }
 }

@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
@@ -12,8 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Given(@"there is a SourceFormatDimensionStructureNode domain object")]
         public void GivenThereIsASourceFormatDimensionStructureNodeDomainObject(Table table)
         {
-            SourceFormatDimensionStructureNodeDomainObjectEntity instance = table
-               .CreateInstance<SourceFormatDimensionStructureNodeDomainObjectEntity>();
+            ThereIsASourceFormatDimensionStructureNodeDomainObjectEntity instance = table
+               .CreateInstance<ThereIsASourceFormatDimensionStructureNodeDomainObjectEntity>();
 
             SourceFormatDimensionStructureNode result = new SourceFormatDimensionStructureNode();
 

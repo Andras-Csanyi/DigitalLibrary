@@ -15,8 +15,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Given(@"there is a saved SourceFormatDimensionStructureNode domain object")]
         public async Task ThereIsASavedSourceFormatDimensionStructureNodeDomainObject(Table table)
         {
-            SourceFormatDimensionStructureNodeDomainObjectEntity instance = table
-               .CreateInstance<SourceFormatDimensionStructureNodeDomainObjectEntity>();
+            ThereIsASourceFormatDimensionStructureNodeDomainObjectEntity instance = table
+               .CreateInstance<ThereIsASourceFormatDimensionStructureNodeDomainObjectEntity>();
 
             SourceFormatDimensionStructureNode result = new SourceFormatDimensionStructureNode();
 

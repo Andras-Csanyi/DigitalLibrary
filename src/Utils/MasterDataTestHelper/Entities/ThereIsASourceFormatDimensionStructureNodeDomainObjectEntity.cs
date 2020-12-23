@@ -1,6 +1,6 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities
+namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 {
-    public class SourceFormatDimensionStructureNodeDomainObjectEntity
+    public class ThereIsASourceFormatDimensionStructureNodeDomainObjectEntity
     {
         public string ResultKey { get; set; }
 

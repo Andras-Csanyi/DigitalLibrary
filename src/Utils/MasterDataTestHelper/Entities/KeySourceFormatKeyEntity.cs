@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities
+namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 {
     public class KeySourceFormatKeyEntity
     {
