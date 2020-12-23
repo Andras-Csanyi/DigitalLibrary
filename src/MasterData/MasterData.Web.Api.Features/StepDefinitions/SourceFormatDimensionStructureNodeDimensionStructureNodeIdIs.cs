@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
+namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -14,7 +14,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         [Then(@"SourceFormatDimensionStructureNode DimensionStructureNodeId is")]
         public void ThenSourceFormatDimensionStructureNodeDimensionStructureNodeIdIs(Table table)
         {
-            KeyDimensionStructureNodeKeyEntity instance = table.CreateInstance<KeyDimensionStructureNodeKeyEntity>();
+            KeyDimensionStructureNodeKeyEntity instance = table
+               .CreateInstance<KeyDimensionStructureNodeKeyEntity>();
 
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode =
                 _scenarioContext[instance.Key] as SourceFormatDimensionStructureNode;

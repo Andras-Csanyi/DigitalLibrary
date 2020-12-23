@@ -2,7 +2,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Features.SpecflowEntities;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
