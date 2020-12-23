@@ -12,6 +12,25 @@ namespace DigitalLibrary.MasterData.Web.Api
     {
         public const string Route = "api/masterdata";
 
+        public struct SourceFormatDimensionStructureNode
+        {
+            /// <summary>
+            /// Routebase.
+            /// </summary>
+            public const string BasePath = Route + "/sourceformatdimensionstructurenode";
+
+            /// <summary>
+            /// V1 Api
+            /// </summary>
+            public struct V1
+            {
+                /// <summary>
+                /// Path of Add method.
+                /// </summary>
+                public const string Add = "v1/Add";
+            }
+        }
+
         /// <summary>
         ///     <see cref="SourceFormat" /> related endpoints.
         /// </summary>
@@ -20,7 +39,7 @@ namespace DigitalLibrary.MasterData.Web.Api
             /// <summary>
             ///     Base path.
             /// </summary>
-            public const string SourceFormatBase = Route + "/SourceFormat";
+            public const string BasePath = Route + "/SourceFormat";
 
             /// <summary>
             ///     V1 Api endpoint for <see cref="SourceFormat" />.

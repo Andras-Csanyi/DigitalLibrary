@@ -154,9 +154,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
+            ISourceFormatDimensionStructureNodeFactory sourceFormatDimensionStructureNodeFactory
+                = new SourceFormatDimensionStructureNodeFactory();
             _masterDataTestHelper = new MasterDataTestHelper(
                 sourceFormatFactory,
-                dimensionStructureFactory);
+                dimensionStructureFactory,
+                sourceFormatDimensionStructureNodeFactory);
         }
     }
 }

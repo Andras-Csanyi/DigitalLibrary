@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.MasterData.WebApi.Client.DimensionStructure;
     using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
+    using DigitalLibrary.MasterData.WebApi.Client.SourceFormatDimensionStructureNode;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
@@ -55,7 +56,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             IStringHelper stringHelper = new StringHelper();
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
-            _masterDataTestHelper = new MasterDataTestHelper(sourceFormatFactory, dimensionStructureFactory);
+            ISourceFormatDimensionStructureNodeFactory sourceFormatDimensionStructureNodeFactory
+                = new SourceFormatDimensionStructureNodeFactory();
+            _masterDataTestHelper = new MasterDataTestHelper(
+                sourceFormatFactory,
+                dimensionStructureFactory,
+                sourceFormatDimensionStructureNodeFactory);
 
             HttpClient httpClient = _host.CreateClient();
             DiLibHttpClient diLibHttpClient = new DiLibHttpClient(httpClient);
@@ -63,9 +69,13 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                 diLibHttpClient);
             IDimensionStructureHttpClient dimensionStructureHttpClient = new DimensionStructureHttpClientHttpClient(
                 diLibHttpClient);
+            ISourceFormatDimensionStructureNodeHttpClient sourceFormatDimensionStructureNodeHttpClient =
+                new SourceFormatDimensionStructureNodeHttpClient(diLibHttpClient);
+
             _masterDataHttpClient = new MasterDataHttpClient(
                 sourceFormatHttpClientHttpClient,
-                dimensionStructureHttpClient);
+                dimensionStructureHttpClient,
+                sourceFormatDimensionStructureNodeHttpClient);
         }
     }
 }
