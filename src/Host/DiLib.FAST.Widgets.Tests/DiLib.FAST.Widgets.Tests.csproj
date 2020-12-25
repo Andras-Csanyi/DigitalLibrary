@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="bunit.web" Version="1.0.0-preview-01"/>
-        <PackageReference Include="bunit.xunit" Version="1.0.0-beta-11"/>
+        <PackageReference Include="bunit.xunit" Version="1.0.0-preview-01"/>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
             <PrivateAssets>all</PrivateAssets>
