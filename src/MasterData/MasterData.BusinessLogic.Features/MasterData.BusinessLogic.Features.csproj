@@ -87,6 +87,9 @@
         <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature">
             <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
     <ItemGroup>
@@ -98,6 +101,12 @@
         </Compile>
         <Compile Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature.cs">
             <DependentUpon>AddAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature.cs">
+            <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
             <AutoGen>true</AutoGen>
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>

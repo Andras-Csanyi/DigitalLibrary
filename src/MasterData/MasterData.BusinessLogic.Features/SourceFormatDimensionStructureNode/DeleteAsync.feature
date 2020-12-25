@@ -1,4 +1,4 @@
-﻿Feature: SourceFormatDimensionStructureNode Business Logic - Delete
+﻿Feature: SourceFormatDimensionStructureNode Business Logic - DeleteAsync
 
   As a Data Owner and Data Curator
   I need to be able to manage structures describing a document
