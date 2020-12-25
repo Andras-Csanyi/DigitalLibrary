@@ -84,11 +84,20 @@
         <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\UpdateAsync.feature">
             <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
     <ItemGroup>
         <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.feature.cs">
             <DependentUpon>UpdateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature.cs">
+            <DependentUpon>AddAsync.Validation.feature</DependentUpon>
             <AutoGen>true</AutoGen>
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>

@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -19,12 +20,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode =
                 _scenarioContext[instance.Key] as SourceFormatDimensionStructureNode;
 
-            SourceFormatDimensionStructureNode result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
-               .AddAsync(sourceFormatDimensionStructureNode)
-               .ConfigureAwait(false);
+            try
+            {
+                SourceFormatDimensionStructureNode result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                   .AddAsync(sourceFormatDimensionStructureNode)
+                   .ConfigureAwait(false);
 
-            _scenarioContext.Add(instance.ResultKey, result);
+                _scenarioContext.Add(instance.ResultKey, result);
+            }
+            catch (Exception e)
+            {
+                _scenarioContext.Add(instance.ResultKey, e);
+            }
         }
     }
 }
