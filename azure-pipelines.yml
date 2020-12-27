@@ -42,12 +42,6 @@ steps:
     arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestCoverage/'
     publishTestResults: true
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/**/TestCoverage/coverage.covertura.xml'
-    failIfCoverageEmpty: true
-
 - script: |
     bash <(curl -s https://codecov.io/bash)
   displayName: 'Upload to Codecov.io'
