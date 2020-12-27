@@ -39,3 +39,7 @@ steps:
   inputs:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
+
+- script: |
+    bash <(curl -s https://codecov.io/bash)
+  displayName: 'Upload to Codecov.io'
