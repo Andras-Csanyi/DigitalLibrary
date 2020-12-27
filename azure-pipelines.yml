@@ -45,7 +45,7 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage/coverage.xml'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)/src/'
     failIfCoverageEmpty: true
 
