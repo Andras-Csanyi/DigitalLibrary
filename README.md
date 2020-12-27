@@ -1,3 +1,8 @@
+# Badges
+
+[![codecov](https://codecov.io/gh/SayusiAndo/DigitalLibrary/branch/master/graph/badge.svg?token=XQIZ9D1T4W)](https://codecov.io/gh/SayusiAndo/DigitalLibrary)
+[![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/DigitalLibrary.Github?branchName=refs%2Fpull%2F150%2Fmerge)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=60&branchName=refs%2Fpull%2F150%2Fmerge)
+
 # Digital Library Project 
 This project is about how to manage huge amount of different documents while you can manage 
 the content connections between them. The problem space this project tries to find a good
