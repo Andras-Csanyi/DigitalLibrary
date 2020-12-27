@@ -39,8 +39,14 @@ steps:
   inputs:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestCoverage/'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
     publishTestResults: true
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage/coverage.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)/src/'
+    failIfCoverageEmpty: true
 
 - script: |
     bash <(curl -s https://codecov.io/bash)
