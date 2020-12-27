@@ -40,7 +40,7 @@ steps:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
     #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute \"ExcludeFromCodeCoverage\"'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute "ExcludeFromCodeCoverage"'
     publishTestResults: true
 - task: PublishCodeCoverageResults@1
   inputs:
