@@ -266,3 +266,5 @@ global.json
 
 # Specflow - generated files
 *.feature.cs
+
+*coverage.cobertura.xml
