@@ -6,6 +6,8 @@ It relies on k8s.
 - seamless deployment between releases
 - how to persist Grafana setups/configurations between releases?
 - how to deal with system configurations securely between releases?
+- on Blazor side all modules has its own separated dll
+- components/libraries are heavily tested
 
 ## Api expectations
 - it produces JSON
@@ -16,6 +18,11 @@ It relies on k8s.
 
 ## Services/containers
 - Grafana container
+
+- Auth/Authz/UserMgmt Database container
+- Auth/Authz/UserMgmt Database storage
+- Auth/Authz/UserMgmt service/container
+
 - MasterData Database container
 - MasterData Database storage container
 - MasterData WebHost service/container
