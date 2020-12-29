@@ -7,6 +7,13 @@ It relies on k8s.
 - how to persist Grafana setups/configurations between releases?
 - how to deal with system configurations securely between releases?
 
+## Api expectations
+- it produces JSON
+- it has its own Swagger
+- Metrics are exposed
+- it is authenticated/authorized
+- it is stateless
+
 ## Services/containers
 - Grafana container
 - MasterData Database container
