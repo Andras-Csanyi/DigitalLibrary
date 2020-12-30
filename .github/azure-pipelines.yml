@@ -43,9 +43,7 @@ steps:
     projects: 'src/DigitalLibrary.sln'
     #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
     arguments: '/p:CollectCoverage=true 
-                /p:CoverletOutputFormat=cobertura 
-                /p:ExcludeByFile="**/*.feature.cs,**/*Validator.cs,**/*ValidatorRulesets.cs"
-                /p:ExcludeByAttribute="ExcludeFromCodeCoverage"'
+                /p:CoverletOutputFormat=cobertura'
     publishTestResults: true
 
 - task: PublishCodeCoverageResults@1
