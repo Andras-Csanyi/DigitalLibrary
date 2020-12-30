@@ -58,5 +58,29 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Update)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SourceFormatDimensionStructureNode>> UpdateAsync(
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                SourceFormatDimensionStructureNode node = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                   .UpdateAsync(
+                        sourceFormatDimensionStructureNode,
+                        cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(node);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

@@ -50,6 +50,11 @@ namespace DigitalLibrary.MasterData.Web.Api
                 /// Path of Add method.
                 /// </summary>
                 public const string Add = "v1/Add";
+
+                /// <summary>
+                /// Path of Update method.
+                /// </summary>
+                public const string Update = "v1/Update";
             }
         }
 
