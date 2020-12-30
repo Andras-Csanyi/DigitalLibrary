@@ -173,4 +173,10 @@
     <ItemGroup>
         <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
     </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+    </ItemGroup>
 </Project>

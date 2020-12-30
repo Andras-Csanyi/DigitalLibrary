@@ -32,7 +32,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
         /// </param>
         public MasterDataBusinessLogic(
             IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic,
-            IMasterDataDimensionStructureBusinessLogic masterDataDimensionStructureBusinessLogic,
+            IMasterDataDimensionStructureBusinessLogic
+                masterDataDimensionStructureBusinessLogic,
             IMasterDataDimensionValueBusinessLogic masterDataDimensionValueBusinessLogic,
             IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic,
             IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic,
@@ -77,7 +78,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             get;
             set;
         }
-
+        
         /// <inheritdoc/>
         public IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
             MasterDataSourceFormatDimensionStructureNodeBusinessLogic { get; set; }
