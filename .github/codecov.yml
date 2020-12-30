@@ -1,5 +1,7 @@
 codecov:
   require_ci_to_pass: yes
+  branch: master
+  max_report_age: 24h
 
 coverage:
   precision: 2
