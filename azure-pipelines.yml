@@ -34,13 +34,18 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/DigitalLibrary.sln'
+
+- script:
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test command'
   inputs:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
     #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute=ExcludeFromCodeCoverage'
+    arguments: '/p:CollectCoverage=true 
+                /p:CoverletOutputFormat=cobertura 
+                /p:ExcludeByAttribute=ExcludeFromCodeCoverage'
     publishTestResults: true
 - task: PublishCodeCoverageResults@1
   inputs:
