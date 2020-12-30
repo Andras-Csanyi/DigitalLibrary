@@ -11,8 +11,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         [Given(@"there is a DimensionStructure domain object")]
         public void GivenThereIsADimensionStructureDomainObject(Table table)
         {
-            GivenThereIsADimensionStructureDomainObject instance = table
-               .CreateInstance<GivenThereIsADimensionStructureDomainObject>();
+            ThereIsADimensionStructureDomainObjectEntity instance = table
+               .CreateInstance<ThereIsADimensionStructureDomainObjectEntity>();
 
             DimensionStructure result = _masterDataTestHelper
                .DimensionStructureFactory

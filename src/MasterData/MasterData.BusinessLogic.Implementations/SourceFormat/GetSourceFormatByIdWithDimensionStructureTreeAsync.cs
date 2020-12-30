@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     public partial class MasterDataSourceFormatBusinessLogic
     {
         /// <inheritdoc />
-        public async Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureTreeAsync(
+        public async Task<SourceFormat> GetSourceFormatByIdWithDimensionStructureNodeTreeAsync(
             SourceFormat querySourceFormat)
         {
             try
@@ -39,7 +39,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
-                             $"{nameof(GetSourceFormatByIdWithDimensionStructureTreeAsync)} " +
+                             $"{nameof(GetSourceFormatByIdWithDimensionStructureNodeTreeAsync)} " +
                              $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
             }

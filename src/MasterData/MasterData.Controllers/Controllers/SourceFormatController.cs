@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.Controllers
     ///     Contains only the <see cref="SourceFormat" /> related methods.
     /// </summary>
     [ApiController]
-    [Route(MasterDataApi.SourceFormat.SourceFormatBase)]
+    [Route(MasterDataApi.SourceFormat.BasePath)]
     public class SourceFormatController : ControllerBase
     {
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;

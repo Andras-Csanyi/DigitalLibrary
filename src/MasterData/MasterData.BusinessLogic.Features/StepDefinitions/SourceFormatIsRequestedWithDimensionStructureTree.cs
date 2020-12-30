@@ -22,7 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             SourceFormat result = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithDimensionStructureTreeAsync(sourceFormat)
+               .GetSourceFormatByIdWithDimensionStructureNodeTreeAsync(sourceFormat)
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, result);

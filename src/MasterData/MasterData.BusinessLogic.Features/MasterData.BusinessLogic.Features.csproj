@@ -24,21 +24,21 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.1"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="SpecFlow" Version="3.5.14"/>
-        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.5.14"/>
-        <PackageReference Include="SpecFlow.xUnit" Version="3.5.14"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
-        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.1" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="SpecFlow" Version="3.5.14" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.5.14" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.5.14" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+        <PackageReference Include="xunit.runner.console" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -81,22 +81,46 @@
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\DeleteAsync.Validation.feature">
-            <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
-            <CodeBehindFile>DimensionStructure/GetAllAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\UpdateAsync.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormatDimensionStructureNode\UpdateAsync.Validation.feature">
+            <CodeBehindFile>SourceFormatDimensionStructureNode/AddAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="DimensionStructure\DeleteAsync.Validation.feature.cs">
+        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.feature.cs">
+            <DependentUpon>UpdateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature.cs">
+            <DependentUpon>AddAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature.cs">
             <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
             <AutoGen>true</AutoGen>
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>
         </Compile>
-        <Compile Update="DimensionStructure\GetActivesAsync.feature.cs">
-            <DependentUpon>GetActivesAsync.feature</DependentUpon>
+        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.Validation.feature.cs">
+            <DependentUpon>UpdateAsync.Validation.feature</DependentUpon>
             <AutoGen>true</AutoGen>
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>

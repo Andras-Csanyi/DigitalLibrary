@@ -34,6 +34,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 null,
                 null,
                 null,
+                null,
+                null
             },
             new object[]
             {
@@ -43,6 +45,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 new DimensionStructureDimensionStructureValidator(),
                 new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
             },
             new object[]
             {
@@ -52,6 +56,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 new DimensionStructureDimensionStructureValidator(),
                 new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
             },
             new object[]
             {
@@ -61,6 +67,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 new DimensionStructureDimensionStructureValidator(),
                 new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
             },
             new object[]
             {
@@ -70,6 +78,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 null,
                 new DimensionStructureDimensionStructureValidator(),
                 new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
             },
             new object[]
             {
@@ -79,6 +89,8 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 null,
                 new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
             },
             new object[]
             {
@@ -88,6 +100,30 @@ namespace DigitalLibrary.MasterData.Validators.Test
                 new DimensionStructureValidator(),
                 new DimensionStructureDimensionStructureValidator(),
                 null,
+                new DimensionStructureNodeValidator(),
+                new SourceFormatDimensionStructureNodeValidator(),
+            },
+            new object[]
+            {
+                new DimensionValidator(),
+                new MasterDataDimensionValueValidator(),
+                new SourceFormatValidator(),
+                new DimensionStructureValidator(),
+                new DimensionStructureDimensionStructureValidator(),
+                new DimensionStructureQueryObjectValidator(),
+                null,
+                new SourceFormatDimensionStructureNodeValidator(),
+            },
+            new object[]
+            {
+                new DimensionValidator(),
+                new MasterDataDimensionValueValidator(),
+                new SourceFormatValidator(),
+                new DimensionStructureValidator(),
+                new DimensionStructureDimensionStructureValidator(),
+                new DimensionStructureQueryObjectValidator(),
+                new DimensionStructureNodeValidator(),
+                null
             },
         };
 
@@ -99,7 +135,9 @@ namespace DigitalLibrary.MasterData.Validators.Test
             SourceFormatValidator sourceFormatValidator,
             DimensionStructureValidator dimensionStructureValidator,
             DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator,
-            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator)
+            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator,
+            DimensionStructureNodeValidator dimensionStructureNodeValidator,
+            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator)
         {
             // Arrange
 
@@ -112,7 +150,9 @@ namespace DigitalLibrary.MasterData.Validators.Test
                     sourceFormatValidator,
                     dimensionStructureValidator,
                     dimensionStructureDimensionStructureValidator,
-                    dimensionStructureQueryObjectValidator);
+                    dimensionStructureQueryObjectValidator,
+                    dimensionStructureNodeValidator,
+                    sourceFormatDimensionStructureNodeValidator);
             };
 
             // Assert

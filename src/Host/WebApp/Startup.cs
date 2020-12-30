@@ -16,8 +16,10 @@ namespace WebApp
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Controllers;
     using DigitalLibrary.MasterData.Ctx;
@@ -131,10 +133,14 @@ namespace WebApp
             // }
             services.AddTransient<IMasterDataBusinessLogic, MasterDataBusinessLogic>();
             services.AddTransient<IMasterDataDimensionBusinessLogic, MasterDataDimensionBusinessLogic>();
-            services
-               .AddTransient<IMasterDataDimensionStructureBusinessLogic, MasterDataDimensionStructureBusinessLogic>();
+            services.AddTransient<IMasterDataDimensionStructureBusinessLogic,
+                MasterDataDimensionStructureBusinessLogic>();
+            services.AddTransient<IMasterDataDimensionStructureNodeBusinessLogic,
+                MasterDataDimensionStructureNodeBusinessLogic>();
             services.AddTransient<IMasterDataDimensionValueBusinessLogic, MasterDataDimensionValueBusinessLogic>();
             services.AddTransient<IMasterDataSourceFormatBusinessLogic, MasterDataSourceFormatBusinessLogic>();
+            services.AddTransient<IMasterDataSourceFormatDimensionStructureNodeBusinessLogic,
+                MasterDataSourceFormatDimensionStructureNodeBusinessLogic>();
 
             // Validators
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();
@@ -142,8 +148,10 @@ namespace WebApp
             services.AddTransient<MasterDataDimensionValueValidator>();
             services.AddTransient<SourceFormatValidator>();
             services.AddTransient<DimensionStructureValidator>();
+            services.AddTransient<DimensionStructureNodeValidator>();
             services.AddTransient<DimensionStructureDimensionStructureValidator>();
             services.AddTransient<DimensionStructureQueryObjectValidator>();
+            services.AddTransient<SourceFormatDimensionStructureNodeValidator>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 

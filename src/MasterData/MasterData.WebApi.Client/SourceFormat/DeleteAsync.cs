@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
             SourceFormat tobeDeleted,
             CancellationToken cancellationToken = default)
         {
-            string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/{MasterDataApi.SourceFormat.V1.Delete}";
+            string url = $"{MasterDataApi.SourceFormat.BasePath}/{MasterDataApi.SourceFormat.V1.Delete}";
             DilibHttpClientResponse<SourceFormat> result = await _diLibHttpClient
                .DeleteAsync(url, tobeDeleted, cancellationToken)
                .ConfigureAwait(false);

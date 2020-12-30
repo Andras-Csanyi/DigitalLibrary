@@ -42,6 +42,11 @@ namespace DigitalLibrary.MasterData.Ctx
         public DbSet<DimensionValue> DimensionValues { get; set; }
 
         /// <summary>
+        /// Gets or sets <see cref="SourceFormatDimensionStructureNodes"/> value.
+        /// </summary>
+        public DbSet<SourceFormatDimensionStructureNode> SourceFormatDimensionStructureNodes { get; set; }
+
+        /// <summary>
         ///     Gets or sets SourceFormats value.
         /// </summary>
         public DbSet<SourceFormat> SourceFormats { get; set; }
