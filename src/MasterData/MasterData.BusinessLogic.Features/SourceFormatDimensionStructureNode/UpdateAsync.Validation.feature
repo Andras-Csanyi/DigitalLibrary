@@ -27,9 +27,7 @@ Feature: SourceFormatDimensionStructureNode Business Logic - UpdateAsync Input V
       | Field                    | Value                      |
       | Id                       | <Id>                       |
       | SourceFormatId           | <SourceFormatId>           |
-      | SourceFormat             | <SourceFormat>             |
       | DimensionStructureNodeId | <DimensionStructureNodeId> |
-      | DimensionStructureNode   | <DimensionStructureNode>   |
       | Key                      | sfdsn-saved                |
       | ResultKey                | sfdsn-updated              |
 
@@ -43,12 +41,8 @@ Feature: SourceFormatDimensionStructureNode Business Logic - UpdateAsync Input V
       | Key   | sfdsn-updated-result |
 
     Examples:
-      | Id   | SourceFormatId | SourceFormat | DimensionStructureNodeId | DimensionStructureNode |
-      | 0    | none           | none         | none                     | none                   |
-      | none | 123            | none         | none                     | none                   |
-      | none | sf-saved-2     | none         | none                     | none                   |
-      | none | 123            | sf-saved-2   | none                     | none                   |
-      | none | none           | none         | dsn-saved-2              | none                   |
-      | none | none           | none         | none                     | dsn-saved-2            |
-      | none | none           | none         | 123                      | dsn-saved-2            |
+      | Id   | SourceFormatId | DimensionStructureNodeId |
+      | 0    | none           | none                     |
+      | none | 0              | none                     |
+      | none | none           | 0                        |
       

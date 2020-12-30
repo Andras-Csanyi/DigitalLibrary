@@ -10,9 +10,7 @@ Feature: SourceFormatDimensionStructureNode Business Logic - AddAsync Input Vali
       | Field                    | Value                      |
       | Id                       | <Id>                       |
       | SourceFormatId           | <SourceFormatId>           |
-      | SourceFormat             | <SourceFormat>             |
       | DimensionStructureNodeId | <DimensionStructureNodeId> |
-      | DimensionStructureNode   | <DimensionStructureNode>   |
       | ResultKey                | sfdsn                      |
 
     When SourceFormatDimensionStructureNode is saved
@@ -25,9 +23,7 @@ Feature: SourceFormatDimensionStructureNode Business Logic - AddAsync Input Vali
       | Key   | sfdsn-result |
 
     Examples:
-      | Id   | SourceFormatId | SourceFormat | DimensionStructureNodeId | DimensionStructureNode |
-      | 1    | sf             | sf           | dsn                      | dsn                    |
-      | none | 123            | sf           | 234                      | dsn                    |
-      | none | 1              | null         | 1                        | null                   |
-      | none | sf             | sf           | 123                      | dsn                    |
-      | none | 123            | sf           | dsn                      | dsn                    |
+      | Id   | SourceFormatId | DimensionStructureNodeId |
+      | 1    | none           | none                     |
+      | none | 0              | none                     |
+      | none | none           | 0                        |

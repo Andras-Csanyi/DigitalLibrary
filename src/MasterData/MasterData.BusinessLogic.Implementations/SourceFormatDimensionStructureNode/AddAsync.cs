@@ -34,8 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
 
                     SourceFormatDimensionStructureNode newNode = new SourceFormatDimensionStructureNode();
 
-                    if (sourceFormatDimensionStructureNode.SourceFormat != null
-                     && sourceFormatDimensionStructureNode.SourceFormatId != 0)
+                    if (sourceFormatDimensionStructureNode.SourceFormatId != null)
                     {
                         SourceFormat sourceFormat = await ctx.SourceFormats
                            .FirstOrDefaultAsync(
@@ -53,8 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
                         newNode.SourceFormatId = sourceFormat.Id;
                     }
 
-                    if (sourceFormatDimensionStructureNode.DimensionStructureNode != null
-                     && sourceFormatDimensionStructureNode.DimensionStructureNodeId != 0)
+                    if (sourceFormatDimensionStructureNode.DimensionStructureNodeId != null)
                     {
                         DimensionStructureNode dimensionStructureNode = await ctx.DimensionStructureNodes
                            .FirstOrDefaultAsync(

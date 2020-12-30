@@ -29,50 +29,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 node.Id = Convert.ToInt32(instance.Id);
             }
 
-            if (instance.SourceFormat != "none")
-            {
-                sourceFormat = _scenarioContext[instance.SourceFormat] as SourceFormat;
-                Check.IsNotNull(sourceFormat);
-                node.SourceFormat = sourceFormat;
-            }
-
             if (instance.SourceFormatId != "none")
             {
-                bool isDigitsOnly = instance.SourceFormatId.All(char.IsDigit);
-                if (isDigitsOnly)
-                {
-                    node.SourceFormatId = Convert.ToInt32(instance.SourceFormatId);
-                }
-                else
-                {
-                    SourceFormat sf = _scenarioContext[instance.SourceFormatId] as SourceFormat;
-                    Check.IsNotNull(sf);
-                    node.SourceFormatId = sf.Id;
-                }
-            }
-
-            if (instance.DimensionStructureNode != "none")
-            {
-                dimensionStructureNode = _scenarioContext[instance.DimensionStructureNode]
-                    as DimensionStructureNode;
-                Check.IsNotNull(dimensionStructureNode);
-                node.DimensionStructureNode = dimensionStructureNode;
+                node.SourceFormatId = Convert.ToInt32(instance.SourceFormatId);
             }
 
             if (instance.DimensionStructureNodeId != "none")
             {
-                bool isDigitsOnly = instance.DimensionStructureNodeId.All(char.IsDigit);
-                if (isDigitsOnly)
-                {
-                    node.DimensionStructureNodeId = Convert.ToInt32(instance.DimensionStructureNodeId);
-                }
-                else
-                {
-                    DimensionStructureNode dsn = _scenarioContext[instance.DimensionStructureNodeId]
-                        as DimensionStructureNode;
-                    Check.IsNotNull(dsn);
-                    node.DimensionStructureNodeId = dsn.Id;
-                }
+                node.DimensionStructureNodeId = Convert.ToInt32(instance.DimensionStructureNodeId);
             }
 
             _scenarioContext.Add(instance.ResultKey, node);
@@ -85,11 +49,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
         public string SourceFormatId { get; set; }
 
-        public string SourceFormat { get; set; }
-
         public string DimensionStructureNodeId { get; set; }
-
-        public string DimensionStructureNode { get; set; }
 
         public string ResultKey { get; set; }
 
