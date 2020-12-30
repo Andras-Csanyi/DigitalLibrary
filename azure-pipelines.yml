@@ -55,8 +55,3 @@ steps:
 - script: |
     bash <(curl -s https://codecov.io/bash) -v
   displayName: 'Upload to Codecov.io'
-
-codecov:
-  bot: 'codecov-io'
-  max_report_age: 24h
-  require_ci_to_pass: yes
