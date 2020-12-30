@@ -16,6 +16,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -59,6 +60,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         protected IStringHelper stringHelper;
 
         protected const string SUCCESS = "SUCCESS";
+
+        protected const string FAIL = "FAIL";
 
         protected StepDefinitions(
             ITestOutputHelper testOutputHelper,
@@ -106,6 +109,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator =
                 new DimensionStructureQueryObjectValidator();
             DimensionStructureNodeValidator dimensionStructureNodeValidator = new DimensionStructureNodeValidator();
+            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator =
+                new SourceFormatDimensionStructureNodeValidator();
 
             MasterDataValidators masterDataValidators = new MasterDataValidators(
                 dimensionValidator,
@@ -114,7 +119,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 dimensionStructureValidator,
                 dimensionStructureDimensionStructureValidator,
                 dimensionStructureQueryObjectValidator,
-                dimensionStructureNodeValidator);
+                dimensionStructureNodeValidator,
+                sourceFormatDimensionStructureNodeValidator);
 
             IMasterDataDimensionBusinessLogic masterDataDimensionBusinessLogic = new MasterDataDimensionBusinessLogic(
                 _dbContextOptions, masterDataValidators);
@@ -126,13 +132,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
             IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic =
                 new MasterDataDimensionStructureNodeBusinessLogic(_dbContextOptions, masterDataValidators);
+            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic =
+                    new MasterDataSourceFormatDimensionStructureNodeBusinessLogic(_dbContextOptions,
+                        masterDataValidators);
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(
                 masterDataDimensionBusinessLogic,
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic,
-                masterDataDimensionStructureNodeBusinessLogic);
+                masterDataDimensionStructureNodeBusinessLogic,
+                masterDataSourceFormatDimensionStructureNodeBusinessLogic);
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {
@@ -143,15 +154,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
             IDimensionStructureFactory dimensionStructureFactory = new DimensionStructureFactory(stringHelper);
+            ISourceFormatDimensionStructureNodeFactory sourceFormatDimensionStructureNodeFactory
+                = new SourceFormatDimensionStructureNodeFactory();
             _masterDataTestHelper = new MasterDataTestHelper(
                 sourceFormatFactory,
-                dimensionStructureFactory);
-        }
-
-        [Then(@"SourceFormat does not have DimensionStructureNode")]
-        public void ThenSourceFormatDoesNotHaveDimensionStructureNode(Table table)
-        {
-            _scenarioContext.Pending();
+                dimensionStructureFactory,
+                sourceFormatDimensionStructureNodeFactory);
         }
     }
 }

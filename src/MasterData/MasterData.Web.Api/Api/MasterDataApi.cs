@@ -13,6 +13,62 @@ namespace DigitalLibrary.MasterData.Web.Api
         public const string Route = "api/masterdata";
 
         /// <summary>
+        /// <see cref="DimensionStructureNode"/> related endpoints.
+        /// </summary>
+        public struct DimensionStructureNode
+        {
+            /// <summary>
+            /// Routebase.
+            /// </summary>
+            public const string BasePath = Route + "/dimensionstructurenode";
+
+            /// <summary>
+            /// V1 Api.
+            /// </summary>
+            public struct V1
+            {
+                public const string Add = "v1/Add";
+            }
+        }
+
+        /// <summary>
+        /// <see cref="SourceFormatDimensionStructureNode"/> related endpoints.
+        /// </summary>
+        public struct SourceFormatDimensionStructureNode
+        {
+            /// <summary>
+            /// Routebase.
+            /// </summary>
+            public const string BasePath = Route + "/sourceformatdimensionstructurenode";
+
+            /// <summary>
+            /// V1 Api
+            /// </summary>
+            public struct V1
+            {
+                /// <summary>
+                /// Path of Add method.
+                /// </summary>
+                public const string Add = "v1/Add";
+
+                /// <summary>
+                /// Path of Update method.
+                /// </summary>
+                public const string Update = "v1/Update";
+
+                /// <summary>
+                /// Path of Delete method.
+                /// </summary>
+                public const string Delete = "v1/Delete";
+
+                /// <summary>
+                /// Path of GetById method.
+                /// </summary>
+                public const string GetById = "v1/GetById";
+            }
+        }
+
+        /// <summary>
         ///     <see cref="SourceFormat" /> related endpoints.
         /// </summary>
         public struct SourceFormat
@@ -20,7 +76,7 @@ namespace DigitalLibrary.MasterData.Web.Api
             /// <summary>
             ///     Base path.
             /// </summary>
-            public const string SourceFormatBase = Route + "/SourceFormat";
+            public const string BasePath = Route + "/SourceFormat";
 
             /// <summary>
             ///     V1 Api endpoint for <see cref="SourceFormat" />.

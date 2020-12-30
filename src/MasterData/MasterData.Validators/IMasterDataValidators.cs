@@ -33,5 +33,17 @@ namespace DigitalLibrary.MasterData.Validators
         /// Gets <see cref="DimensionStructureNodeValidator"/>.
         /// </summary>
         DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
+        SourceFormatValidator SourceFormatValidator { get; }
+
+
+        /// <summary>
+        /// Gets <see cref="DimensionStructureNodeValidator"/>.
+        /// </summary>
+        DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
+
+        /// <summary>
+        /// Gets <see cref="SourceFormatDimensionStructureNodeValidator"/>.
+        /// </summary>
+        SourceFormatDimensionStructureNodeValidator SourceFormatDimensionStructureNodeValidator { get; }
     }
 }

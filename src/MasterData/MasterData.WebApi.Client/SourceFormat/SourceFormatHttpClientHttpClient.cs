@@ -10,7 +10,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
     {
         private readonly IDiLibHttpClient _diLibHttpClient;
 
-        private const string SourceFormatBase = MasterDataApi.SourceFormat.SourceFormatBase;
+        private const string SourceFormatBase = MasterDataApi.SourceFormat.BasePath;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="SourceFormatHttpClientHttpClient" /> class.

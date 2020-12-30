@@ -42,11 +42,29 @@
         /// <returns>
         ///    Returns <see cref="Task{TResult}"/> representing result of asynchronous operation.
         /// </returns>
-        /// /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
         ///    Whatever issue happens.
         /// </exception>
         Task DeleteRootDimensionStructureNodeOfSourceFormatAsync(
             SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a <see cref="DimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="dimensionStructureNode">
+        /// The object contains the date of new <see cref="DimensionStructureNode"/>.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of async operation.
+        /// It contains the newly created <see cref="DimensionStructureNode"/> object.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///    Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> AddAsync(
+            DimensionStructureNode dimensionStructureNode,
             CancellationToken cancellationToken = default);
     }
 }

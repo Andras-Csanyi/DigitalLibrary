@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
             for (int i = 0; i < p0; i++)
             {
                 IDimensionStructureDomainObject dimensionStructureDomainObject =
-                    new GivenThereIsADimensionStructureDomainObject
+                    new ThereIsADimensionStructureDomainObjectEntity
                     {
                         IsActive = 1,
                     };

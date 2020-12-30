@@ -14,12 +14,16 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
         /// <param name="dimensionStructureFactory">DimensionStructureFactory.</param>
         public MasterDataTestHelper(
             ISourceFormatFactory sourceFormatFactory,
-            IDimensionStructureFactory dimensionStructureFactory)
+            IDimensionStructureFactory dimensionStructureFactory,
+            ISourceFormatDimensionStructureNodeFactory sourceFormatDimensionStructureNodeFactory)
         {
             SourceFormatFactory = sourceFormatFactory ?? throw new ArgumentNullException(
                 $"{nameof(sourceFormatFactory)}");
             DimensionStructureFactory = dimensionStructureFactory ?? throw new ArgumentNullException(
                 $"{nameof(dimensionStructureFactory)}");
+            SourceFormatDimensionStructureNodeFactory = sourceFormatDimensionStructureNodeFactory
+                                                     ?? throw new ArgumentNullException(
+                                                            nameof(sourceFormatDimensionStructureNodeFactory));
         }
 
         /// <inheritdoc />
@@ -27,5 +31,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
 
         /// <inheritdoc />
         public ISourceFormatFactory SourceFormatFactory { get; }
+
+        /// <inheritdoc/>
+        public ISourceFormatDimensionStructureNodeFactory SourceFormatDimensionStructureNodeFactory { get; }
     }
 }

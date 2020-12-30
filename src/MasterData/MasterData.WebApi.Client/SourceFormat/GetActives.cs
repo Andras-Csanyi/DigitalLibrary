@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
         public async Task<DilibHttpClientResponse<List<SourceFormat>>> GetActives(
             CancellationToken cancellationToken = default)
         {
-            string url = $"{MasterDataApi.SourceFormat.SourceFormatBase}/{MasterDataApi.SourceFormat.V1.GetActives}";
+            string url = $"{MasterDataApi.SourceFormat.BasePath}/{MasterDataApi.SourceFormat.V1.GetActives}";
             DilibHttpClientResponse<List<SourceFormat>> result = await _diLibHttpClient
                .GetAsync<List<SourceFormat>>(url, cancellationToken)
                .ConfigureAwait(false);
