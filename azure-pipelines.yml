@@ -35,8 +35,6 @@ steps:
     command: 'build'
     projects: 'src/DigitalLibrary.sln'
 
-- script:
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test command'
   inputs:
