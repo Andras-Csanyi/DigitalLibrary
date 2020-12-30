@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     public partial class StepDefinitions
     {
         [When(@"SourceFormatDimensionStructureNode is deleted")]
-        public async Task WhenSourceFormatDimensionStructureNodeIsDeleted(Table table)
+        public async Task SourceFormatDimensionStructureNodeIsDeleted(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
