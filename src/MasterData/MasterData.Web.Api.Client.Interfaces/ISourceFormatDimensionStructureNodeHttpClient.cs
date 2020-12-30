@@ -46,5 +46,41 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         Task<DilibHttpClientResponse<SourceFormatDimensionStructureNode>> UpdateAsync(
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Deletes a <see cref="SourceFormatDimensionStructureNode"/> object.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// The <see cref="SourceFormatDimensionStructureNode"/> object describes the entity going to be deleted.
+        /// The Id property identifies which entity going to be deleted.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
+        ///     the result.
+        ///     In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}" /> other
+        ///     properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormatDimensionStructureNode>> DeleteAsync(
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Gets a <see cref="SourceFormatDimensionStructureNode"/> by Id.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// The <see cref="SourceFormatDimensionStructureNode"/> describes which object should be returned.
+        /// The Id property identifies the object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
+        ///     the result.
+        ///     In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}" /> other
+        ///     properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormatDimensionStructureNode>> GetByIdAsync(
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
+            CancellationToken cancellationToken = default);
     }
 }

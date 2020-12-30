@@ -82,5 +82,53 @@ namespace DigitalLibrary.MasterData.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpDelete]
+        [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SourceFormatDimensionStructureNode>> DeleteAsync(
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                   .DeleteAsync(
+                        sourceFormatDimensionStructureNode,
+                        cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.GetById)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SourceFormatDimensionStructureNode>> GetByIdAsync(
+            SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                SourceFormatDimensionStructureNode result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatDimensionStructureNodeBusinessLogic
+                   .GetByIdAsync(
+                        sourceFormatDimensionStructureNode,
+                        cancellationToken)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

@@ -55,6 +55,16 @@ namespace DigitalLibrary.MasterData.Web.Api
                 /// Path of Update method.
                 /// </summary>
                 public const string Update = "v1/Update";
+
+                /// <summary>
+                /// Path of Delete method.
+                /// </summary>
+                public const string Delete = "v1/Delete";
+
+                /// <summary>
+                /// Path of GetById method.
+                /// </summary>
+                public const string GetById = "v1/GetById";
             }
         }
 
