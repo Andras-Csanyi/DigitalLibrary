@@ -29,6 +29,7 @@ steps:
     command: 'restore'
     projects: 'src/DigitalLibrary.sln'
     feedsToUse: 'select'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build command'
   inputs:
@@ -43,8 +44,10 @@ steps:
     #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
     arguments: '/p:CollectCoverage=true 
                 /p:CoverletOutputFormat=cobertura 
-                /p:ExcludeByAttribute=ExcludeFromCodeCoverage'
+                /p:ExcludeByFile="**/*.feature.cs,**/*Validator.cs,**/*ValidatorRulesets.cs"
+                /p:ExcludeByAttribute="ExcludeFromCodeCoverage"'
     publishTestResults: true
+
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
