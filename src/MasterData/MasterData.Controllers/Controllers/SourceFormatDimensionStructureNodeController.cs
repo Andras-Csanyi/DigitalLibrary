@@ -35,6 +35,17 @@ namespace DigitalLibrary.MasterData.Controllers
             _masterDataBusinessLogic = masterDataBusinessLogic;
         }
 
+        /// <summary>
+        /// Controller method for adding new <see cref="SourceFormatDimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// Describes the new object to be added.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
+        /// TResult is <see cref="ActionResult"/>.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,6 +70,18 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        /// Controller method for updating a <see cref="SourceFormatDimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// Id value of payload identifies which object should be updated with the properties of
+        /// the payload object.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
+        /// TResult is <see cref="ActionResult"/>.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -83,6 +106,17 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        /// Controller method for deleting a <see cref="SourceFormatDimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// Id value of payload identifies which object should be deleted.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
+        /// TResult is <see cref="ActionResult"/>.
+        /// </returns>
         [HttpDelete]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -107,6 +141,17 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        /// <summary>
+        /// Controller method for requesting a <see cref="SourceFormatDimensionStructureNode"/> by Id.
+        /// </summary>
+        /// <param name="sourceFormatDimensionStructureNode">
+        /// Id value of payload identifies which object should be returned.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
+        /// TResult is <see cref="ActionResult"/>.
+        /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -11,6 +11,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
 
     using Microsoft.EntityFrameworkCore;
 
+    /// <summary>
+    /// Business logic for <see cref="SourceFormatDimensionStructureNode"/> in Master Data domain.
+    /// </summary>
     public partial class MasterDataSourceFormatDimensionStructureNodeBusinessLogic
         : IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
     {
