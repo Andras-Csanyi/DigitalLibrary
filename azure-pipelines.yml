@@ -54,7 +54,6 @@ steps:
       mergeTestResults: true
 
   - task: PublishCodeCoverageResults@1
-    displayName: 'Uploading coverage...'
     inputs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.opencover.xml'
