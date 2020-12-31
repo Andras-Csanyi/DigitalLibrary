@@ -1,6 +1,7 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;

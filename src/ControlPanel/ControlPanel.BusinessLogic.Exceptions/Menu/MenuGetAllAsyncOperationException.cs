@@ -6,8 +6,10 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class MenuGetAllAsyncOperationException : Exception
     {
         public MenuGetAllAsyncOperationException()

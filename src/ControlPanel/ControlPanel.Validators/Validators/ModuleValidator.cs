@@ -5,10 +5,13 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using FluentValidation;
 
+    [ExcludeFromCodeCoverage]
     public class ModuleValidator : AbstractValidator<Module>
     {
         public ModuleValidator()

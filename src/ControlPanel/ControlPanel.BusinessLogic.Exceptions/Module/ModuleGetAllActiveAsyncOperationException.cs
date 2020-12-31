@@ -6,8 +6,10 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class ModuleGetAllActiveAsyncOperationException : Exception
     {
         public ModuleGetAllActiveAsyncOperationException()

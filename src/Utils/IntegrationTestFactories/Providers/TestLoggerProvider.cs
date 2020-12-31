@@ -1,11 +1,13 @@
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using Microsoft.Extensions.Logging;
 
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
     public class TestLoggerProvider : ILoggerProvider
     {
         private ITestOutputHelper _outputHelper;

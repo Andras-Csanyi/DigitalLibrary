@@ -5,10 +5,13 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
 
     using FluentValidation;
 
+    [ExcludeFromCodeCoverage]
     public class DimensionStructureQueryObjectValidator : AbstractValidator<DimensionStructureQueryObject>
     {
         public DimensionStructureQueryObjectValidator()

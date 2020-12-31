@@ -5,9 +5,12 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.Utils.Guards;
 
     /// <inheritdoc />
+    [ExcludeFromCodeCoverage]
     public class MasterDataValidators : IMasterDataValidators
     {
         /// <summary>

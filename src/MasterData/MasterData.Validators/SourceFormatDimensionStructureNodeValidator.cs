@@ -1,5 +1,7 @@
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
 
     using FluentValidation;
@@ -7,6 +9,7 @@ namespace DigitalLibrary.MasterData.Validators
     /// <summary>
     /// Validator rules for <see cref="SourceFormatDimensionStructureNode"/> object.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class SourceFormatDimensionStructureNodeValidator
         : AbstractValidator<SourceFormatDimensionStructureNode>
     {

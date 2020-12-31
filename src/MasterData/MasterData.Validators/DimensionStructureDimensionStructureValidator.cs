@@ -5,10 +5,14 @@
 
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
 
     using FluentValidation;
 
+
+    [ExcludeFromCodeCoverage]
     public class DimensionStructureDimensionStructureValidator : AbstractValidator<DimensionStructureNode>
     {
         public DimensionStructureDimensionStructureValidator()

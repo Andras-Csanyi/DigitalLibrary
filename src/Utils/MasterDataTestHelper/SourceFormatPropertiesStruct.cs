@@ -5,6 +5,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
     /// <summary>
     ///     Contains properties of <see cref="SourceFormat" />.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1815", Justification = "Reviewed.")]
     public struct SourceFormatPropertiesStruct
     {

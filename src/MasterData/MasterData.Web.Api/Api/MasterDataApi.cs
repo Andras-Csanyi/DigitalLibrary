@@ -5,9 +5,12 @@
 
 namespace DigitalLibrary.MasterData.Web.Api
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     ///     Digital Library MasterData api endpoint.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public struct MasterDataApi
     {
         public const string Route = "api/masterdata";

@@ -4,6 +4,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class GivenThereIsASourceFormatDomainObjectEntity : ISourceFormatDomainObject

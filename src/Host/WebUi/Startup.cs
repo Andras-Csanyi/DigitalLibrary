@@ -6,6 +6,7 @@
 namespace DigitalLibrary.Ui.WebUi
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using BlazorStrap;
 
@@ -24,6 +25,8 @@ namespace DigitalLibrary.Ui.WebUi
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public IConfiguration Configuration { get; }
