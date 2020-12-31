@@ -3,6 +3,9 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+variables:
+  solution: "src/DigitalLibrary.sln"
+
 trigger:
  branches:
   include:
@@ -30,21 +33,19 @@ steps:
     projects: 'src/DigitalLibrary.sln'
     feedsToUse: 'select'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build command'
-  inputs:
-    command: 'build'
-    projects: 'src/DigitalLibrary.sln'
+- script: dotnet build $(solution) --configuration Debug
+  displayName: 'Building...'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test command'
+- script: |
+    dotnet test --logger trx --no-build /p:CollectCoverage=true 
+                /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\"
+                /p:CoverletOutputFormat=opencover 
+  displayName: 'Testing...'
+
+- task: PublishTestResults@2
   inputs:
-    command: 'test'
-    projects: 'src/DigitalLibrary.sln'
-    #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
-    arguments: '/p:CollectCoverage=true 
-                /p:CoverletOutputFormat=cobertura'
-    publishTestResults: true
+    testRunner: xunit
+    testResultsFiles: '**/*.trx'
 
 - task: PublishCodeCoverageResults@1
   inputs:
