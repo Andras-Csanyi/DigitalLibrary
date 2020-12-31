@@ -14,7 +14,6 @@ namespace DigitalLibrary.Ui.WebUi
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.MasterData.WebApi.Client;
-    using DigitalLibrary.Ui.WebUi.Components.SourceFormatBuilder;
     using DigitalLibrary.Ui.WebUi.Notifiers;
     using DigitalLibrary.Ui.WebUi.Services;
     using DigitalLibrary.Utils.DiLibHttpClient;
@@ -87,14 +86,11 @@ namespace DigitalLibrary.Ui.WebUi
             services.AddTransient<IMasterDataHttpClient, MasterDataHttpClient>();
 
             // Services
-            services.AddSingleton<IDimensionStructureTreeComponentService, DimensionStructureTreeComponentService>();
-            services.AddSingleton<ISourceFormatBuilderService, SourceFormatBuilderService>();
             services.AddSingleton<IDimensionDomainEntityHelperService, DimensionDomainEntityHelperService>();
             services.AddSingleton<IDomainEntityHelperService, DomainEntityHelperService>();
 
             // Notifiers
             services.AddSingleton<DocumentBuilderDocumentDisplayNotifier>();
-            services.AddSingleton<SourceFormatBuilderNotifierService>();
 
             // validators
             services.AddTransient<DimensionStructureValidator>();

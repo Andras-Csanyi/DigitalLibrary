@@ -34,17 +34,32 @@
     <ItemGroup>
         <_ContentIncludedByDefault Remove="Components\Grid\Grid.razor" />
         <_ContentIncludedByDefault Remove="Components\Grid\GridHeader.razor" />
-        <_ContentIncludedByDefault Remove="Components\DiLibGrid\DiLibGridComponent.razor" />
-        <_ContentIncludedByDefault Remove="Components\DiLibGrid\DiLibModalEdit.razor" />
-        <_ContentIncludedByDefault Remove="Components\ExactGrid\ExactGrid.razor" />
-        <_ContentIncludedByDefault Remove="Components\Grids\TopDimensionStructuresGrid.razor" />
-        <_ContentIncludedByDefault Remove="Components\MasterData\DimensionStructure.razor" />
-        <_ContentIncludedByDefault Remove="Shared\Components\DiLibGrid\DiLibGridComponent.razor" />
-        <_ContentIncludedByDefault Remove="Shared\Components\DiLibGrid\DiLibModalEdit.razor" />
-        <_ContentIncludedByDefault Remove="Shared\Components\ExactGrid\ExactGrid.razor" />
-        <_ContentIncludedByDefault Remove="Shared\Components\Grids\TopDimensionStructuresGrid.razor" />
-        <_ContentIncludedByDefault Remove="Shared\Components\MasterData\DimensionStructure.razor" />
+        <_ContentIncludedByDefault Remove="Components\DiLibGrid\DiLibGridComponent.razor"/>
+        <_ContentIncludedByDefault Remove="Components\DiLibGrid\DiLibModalEdit.razor"/>
+        <_ContentIncludedByDefault Remove="Components\ExactGrid\ExactGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Grids\TopDimensionStructuresGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Components\MasterData\DimensionStructure.razor"/>
+        <_ContentIncludedByDefault Remove="Shared\Components\DiLibGrid\DiLibGridComponent.razor"/>
+        <_ContentIncludedByDefault Remove="Shared\Components\DiLibGrid\DiLibModalEdit.razor"/>
+        <_ContentIncludedByDefault Remove="Shared\Components\ExactGrid\ExactGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Shared\Components\Grids\TopDimensionStructuresGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Shared\Components\MasterData\DimensionStructure.razor"/>
         <_ContentIncludedByDefault Remove="Components\Forms\AddRootDimensionStructureForm.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Grids\DimensionGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Grids\DimensionStructuresGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Grids\SourceFormatsGrid.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Header\DiLibHeader.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Header\DiLibUserProfile.razor"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <UpToDateCheckInput Remove="Components\DiLibGrid\DiLibGridComponent.razor"/>
+        <UpToDateCheckInput Remove="Components\DiLibGrid\DiLibModalEdit.razor"/>
+        <UpToDateCheckInput Remove="Components\MasterData\DimensionStructure.razor"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Components"/>
     </ItemGroup>
 
 </Project>
