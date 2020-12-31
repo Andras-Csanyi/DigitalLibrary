@@ -19,10 +19,6 @@ pr:
 
 pool: 'contabo'
 
-variables:
-  buildConfiguration: 'Debug'
-  solution: 'src/DigitalLibrary.sln'
-
 steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore command'
