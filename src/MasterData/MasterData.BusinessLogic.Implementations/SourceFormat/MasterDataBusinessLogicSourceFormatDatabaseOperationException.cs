@@ -1,8 +1,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class MasterDataBusinessLogicSourceFormatDatabaseOperationException : Exception
     {
         public MasterDataBusinessLogicSourceFormatDatabaseOperationException()

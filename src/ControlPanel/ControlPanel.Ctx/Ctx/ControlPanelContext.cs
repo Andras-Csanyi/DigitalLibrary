@@ -5,11 +5,14 @@
 
 namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations;
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using Microsoft.EntityFrameworkCore;
 
+    [ExcludeFromCodeCoverage]
     public class ControlPanelContext : DbContext
     {
         public DbSet<Menu> Menus { get; set; }

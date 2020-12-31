@@ -6,8 +6,10 @@
 namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class ModuleControllerArgumentNullException : Exception
     {
         public ModuleControllerArgumentNullException()

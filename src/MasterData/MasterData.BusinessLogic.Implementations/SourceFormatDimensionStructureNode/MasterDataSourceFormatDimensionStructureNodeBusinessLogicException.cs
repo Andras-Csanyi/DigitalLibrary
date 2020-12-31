@@ -1,11 +1,13 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     /// <summary>
     /// Exception.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class MasterDataSourceFormatDimensionStructureNodeBusinessLogicException : Exception
     {
         /// <summary>

@@ -6,8 +6,10 @@
 namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class ControlPanelWebApiClientGetAllMenusAsyncOperationException : Exception
     {
         public ControlPanelWebApiClientGetAllMenusAsyncOperationException()
