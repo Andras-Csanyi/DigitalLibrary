@@ -25,25 +25,22 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/DigitalLibrary.sln'
-    arguments: 'Debug'
+    arguments: '-c Debug'
+    workingDirectory: 'Building...'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
-    arguments: '--logger trx \
-                --results-directory "$(Agent.TempDirectory)/testresults/" \
-                --no-build \
-                /p:CollectCoverage=true \
-                /p:p:CoverletOutput="./coverage/" \
-                /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \
-                /p:CoverletOutputFormat=opencover'
+    arguments: '--logger trx \ --results-directory "$(Agent.TempDirectory)/testresults/" \ --no-build \ /p:CollectCoverage=true \ /p:p:CoverletOutput="./coverage/" \ /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \ /p:CoverletOutputFormat=opencover'
+    testRunTitle: 'Testing...'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'xunit'
     testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
     mergeTestResults: true
+    testRunTitle: 'Publishing test results...'
 
 - script: |
     bash <(curl -s https://codecov.io/bash) -v
