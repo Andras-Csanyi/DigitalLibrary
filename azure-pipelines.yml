@@ -4,43 +4,43 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
- branches:
-  include:
-    - master
-  exclude:
-    - doc/*
- paths:
-     exclude:
-         - src/README.md
-         - src/doc/*
+  branches:
+    include:
+      - master
+    exclude:
+      - doc/*
+  paths:
+    exclude:
+      - src/README.md
+      - src/doc/*
 
 pr:
-- master
+  - master
 
 pool: 'contabo'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'Restoring...'
-  inputs:
-    command: 'restore'
-    projects: 'src/DigitalLibrary.sln'
-    feedsToUse: 'select'
-    verbosityRestore: 'Normal'
+  - task: DotNetCoreCLI@2
+    displayName: 'Restoring...'
+    inputs:
+      command: 'restore'
+      projects: 'src/DigitalLibrary.sln'
+      feedsToUse: 'select'
+      verbosityRestore: 'Normal'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Building...'
-  inputs:
-    command: 'build'
-    projects: 'src/DigitalLibrary.sln'
-    arguments: '-c Debug'
+  - task: DotNetCoreCLI@2
+    displayName: 'Building...'
+    inputs:
+      command: 'build'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '-c Debug'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Testing...'
-  inputs:
-    command: 'test'
-    projects: 'src/DigitalLibrary.sln'
-    arguments: '--logger trx \
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing...'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '--logger trx \
                 --results-directory "$(Agent.TempDirectory)/testresults/" \
                 --no-build \
                 /p:CollectCoverage=true \
@@ -48,13 +48,13 @@ steps:
                 /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \ 
                 /p:CoverletOutputFormat=opencover'
 
-- task: PublishTestResults@2
-  displayName: 'Publishing test results...'
-  inputs:
-    testResultsFormat: 'xunit'
-    testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
-    mergeTestResults: true
+  - task: PublishTestResults@2
+    displayName: 'Publishing test results...'
+    inputs:
+      testResultsFormat: 'xunit'
+      testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
+      mergeTestResults: true
 
-- script: |
-    bash <(curl -s https://codecov.io/bash) -v
-  displayName: 'Upload to Codecov.io'
+  - script: |
+      bash <(curl -s https://codecov.io/bash) -v
+    displayName: 'Upload to Codecov.io'
