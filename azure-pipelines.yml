@@ -40,12 +40,7 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: >
-        "--no-build  
-        /p:CollectCoverage=true  
-        /p:CoverletOutput=\"./coverage/\"  
-        /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\"  
-        /p:CoverletOutputFormat=opencover"
+      arguments: '--no-build /p:CollectCoverage=true /p:CoverletOutput=""./coverage/"" /p:ExcludeByAttribute=""Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute"" /p:CoverletOutputFormat=opencover'
       publishTestResults: true
 
   - task: PublishTestResults@2
