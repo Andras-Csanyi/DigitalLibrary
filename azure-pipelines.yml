@@ -40,21 +40,18 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Coverage...'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
-        --logger trx
-        --results-directory $(System.DefaultWorkingDirectory)/testresults/
         /p:CollectCoverage=true \ 
         /p:CoverletOutput=$(System.DefaultWorkingDirectory)/coverage/
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
       publishTestResults: false
-
-  - task: PublishTestResults@2
-    displayName: 'Publishing test results...'
-    inputs:
-      testResultsFormat: 'xunit'
-      testResultsFiles: '$(System.DefaultWorkingDirectory)/testresults/*.trx'
-      mergeTestResults: true
 
   - task: PublishCodeCoverageResults@1
     inputs:
