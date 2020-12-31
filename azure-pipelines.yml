@@ -45,7 +45,7 @@ steps:
                 --no-build \
                 /p:CollectCoverage=true \
                 /p:CoverletOutput="./coverage/" \
-                /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \ 
+                /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \
                 /p:CoverletOutputFormat=opencover'
 
   - task: PublishTestResults@2
