@@ -42,7 +42,7 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \ 
         /p:CollectCoverage=true \ 
-        /p:p:CoverletOutput='$(Agent.TempDirectory)/coverage/'
+        /p:CoverletOutput='$(Agent.TempDirectory)/coverage/'
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
       publishTestResults: true
