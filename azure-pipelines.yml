@@ -40,7 +40,7 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: |
+      arguments: >
         "--no-build  
         /p:CollectCoverage=true  
         /p:CoverletOutput=\"./coverage/\"  
