@@ -40,9 +40,7 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: '--logger trx 
-                  --results-directory $(Agent.TempDirectory)/testresults/ 
-                  --no-build  
+      arguments: '--no-build  
                   /p:CollectCoverage=true  
                   /p:CoverletOutput=\"./coverage/\"  
                   /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\"  
