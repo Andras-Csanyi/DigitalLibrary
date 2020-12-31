@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
 
@@ -36,6 +37,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class ThereIsASourceFormatDimensionStructureNodeDomainObjectForValidationEntity
     {
         public string Id { get; set; }

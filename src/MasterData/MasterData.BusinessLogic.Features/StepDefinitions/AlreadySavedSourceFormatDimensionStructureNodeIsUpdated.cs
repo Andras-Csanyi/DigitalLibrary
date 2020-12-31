@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -43,6 +44,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class AlreadySavedSourceFormatDimensionStructureNodeIsUpdatedEntity
     {
         public string Id { get; set; }

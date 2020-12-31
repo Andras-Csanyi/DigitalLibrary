@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -39,6 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class ThereIsASourceFormatDimensionStructureNodeDomainObjectForValidation
     {
         public string Id { get; set; }

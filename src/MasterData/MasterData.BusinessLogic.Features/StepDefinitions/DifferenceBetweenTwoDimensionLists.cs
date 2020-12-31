@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -30,6 +31,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class ThenDifferenceBetweenTwoDimensionListsEntity
     {
         public string BeforeKey { get; set; }
