@@ -43,7 +43,7 @@ steps:
       arguments: "--no-build \ 
         /p:CollectCoverage=true \
         /p:CoverletOutput='./coverage/' \ 
-        /p:ExcludeByAttribute='Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute' \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
       publishTestResults: true
 
