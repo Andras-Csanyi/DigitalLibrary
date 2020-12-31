@@ -40,23 +40,16 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Coverage...'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
-        /p:CollectCoverage=true \ 
-        /p:CoverletOutput=$(System.DefaultWorkingDirectory)/coverage/
+        /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
-      publishTestResults: false
+      publishTestResults: true
 
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/*.xml'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.*.xml'
       pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
   - script: |
