@@ -34,6 +34,7 @@ steps:
     dotnet test --logger trx --no-build /p:CollectCoverage=true 
                 /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\"
                 /p:CoverletOutputFormat=opencover 
+                $(solution)
   displayName: 'Testing...'
 
 - task: PublishTestResults@2
