@@ -1,9 +1,11 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using TechTalk.SpecFlow;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "tmp")]
     public partial class StepDefinitions
     {
         [Given(@"I have (.*) active saved DimensionStructures")]

@@ -32,6 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     }
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     internal class ThenDifferenceBetweenTwoDimensionListsEntity
     {
         public string BeforeKey { get; set; }
