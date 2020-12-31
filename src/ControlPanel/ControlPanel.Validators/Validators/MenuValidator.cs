@@ -14,6 +14,9 @@ namespace DigitalLibrary.ControlPanel.Validators
     [ExcludeFromCodeCoverage]
     public class MenuValidator : AbstractValidator<Menu>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MenuValidator"/> class.
+        /// </summary>
         public MenuValidator()
         {
             RuleSet(ValidatorRulesets.AddNew, () =>

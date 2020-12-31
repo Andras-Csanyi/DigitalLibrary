@@ -10,14 +10,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ModuleDeleteOperationException : Exception
     {
         public ModuleDeleteOperationException()
-        {
-        }
-
-        protected ModuleDeleteOperationException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -28,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 
         public ModuleDeleteOperationException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ModuleDeleteOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

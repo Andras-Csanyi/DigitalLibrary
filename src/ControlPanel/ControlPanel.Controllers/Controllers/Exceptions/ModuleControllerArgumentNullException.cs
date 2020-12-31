@@ -10,14 +10,10 @@ namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ModuleControllerArgumentNullException : Exception
     {
         public ModuleControllerArgumentNullException()
-        {
-        }
-
-        protected ModuleControllerArgumentNullException(SerializationInfo? info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -28,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.Controllers.Exceptions
 
         public ModuleControllerArgumentNullException(string? message, Exception? innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ModuleControllerArgumentNullException(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

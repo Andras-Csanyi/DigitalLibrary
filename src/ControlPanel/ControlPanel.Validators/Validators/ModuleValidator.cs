@@ -14,6 +14,9 @@ namespace DigitalLibrary.ControlPanel.Validators
     [ExcludeFromCodeCoverage]
     public class ModuleValidator : AbstractValidator<Module>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModuleValidator"/> class.
+        /// </summary>
         public ModuleValidator()
         {
             RuleSet(ValidatorRulesets.AddNew, () =>

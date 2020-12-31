@@ -15,6 +15,7 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations
     [ExcludeFromCodeCoverage]
     public class MenuConfiguration : IEntityTypeConfiguration<Menu>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
             builder.HasKey(p => p.Id);

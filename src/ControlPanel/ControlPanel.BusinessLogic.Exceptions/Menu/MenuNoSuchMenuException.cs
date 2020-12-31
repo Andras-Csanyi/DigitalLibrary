@@ -10,14 +10,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MenuNoSuchMenuException : Exception
     {
         public MenuNoSuchMenuException()
-        {
-        }
-
-        protected MenuNoSuchMenuException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -28,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 
         public MenuNoSuchMenuException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MenuNoSuchMenuException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

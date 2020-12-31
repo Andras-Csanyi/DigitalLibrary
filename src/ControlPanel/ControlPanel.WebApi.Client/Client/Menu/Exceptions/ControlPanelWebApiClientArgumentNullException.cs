@@ -10,14 +10,10 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ControlPanelWebApiClientArgumentNullException : Exception
     {
         public ControlPanelWebApiClientArgumentNullException()
-        {
-        }
-
-        protected ControlPanelWebApiClientArgumentNullException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -28,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
 
         public ControlPanelWebApiClientArgumentNullException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ControlPanelWebApiClientArgumentNullException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

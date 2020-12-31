@@ -10,16 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MasterDataBusinessLogicAddDimensionAsyncOperationException : Exception
     {
         public MasterDataBusinessLogicAddDimensionAsyncOperationException()
-        {
-        }
-
-        protected MasterDataBusinessLogicAddDimensionAsyncOperationException(
-            SerializationInfo? info,
-            StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -30,6 +24,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         public MasterDataBusinessLogicAddDimensionAsyncOperationException(string? message, Exception? innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MasterDataBusinessLogicAddDimensionAsyncOperationException(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(info, context)
         {
         }
     }

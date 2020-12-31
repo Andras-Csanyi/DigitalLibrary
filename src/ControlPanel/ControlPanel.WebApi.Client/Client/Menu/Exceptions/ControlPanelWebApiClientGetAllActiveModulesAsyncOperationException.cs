@@ -10,16 +10,10 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException : Exception
     {
         public ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException()
-        {
-        }
-
-        protected ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(
-            SerializationInfo? info,
-            StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -32,6 +26,13 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Menu.Exceptions
             string? message,
             Exception? innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ControlPanelWebApiClientGetAllActiveModulesAsyncOperationException(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(info, context)
         {
         }
     }

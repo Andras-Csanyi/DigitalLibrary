@@ -10,15 +10,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ModuleGetAllActiveAsyncOperationException : Exception
     {
         public ModuleGetAllActiveAsyncOperationException()
-        {
-        }
-
-        protected ModuleGetAllActiveAsyncOperationException(SerializationInfo info, StreamingContext context)
-            : base(
-                info, context)
         {
         }
 
@@ -29,6 +24,12 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 
         public ModuleGetAllActiveAsyncOperationException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ModuleGetAllActiveAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(
+                info, context)
         {
         }
     }

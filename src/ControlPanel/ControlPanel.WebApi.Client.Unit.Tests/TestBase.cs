@@ -15,6 +15,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
+        [SuppressMessage("ReSharper", "SA1401", Justification = "tmp")]
         protected readonly IControlPanelWebClient ControlPanelWebApiClient;
 
         [SuppressMessage("ReSharper", "CA2000", Justification = "Reviewed.")]

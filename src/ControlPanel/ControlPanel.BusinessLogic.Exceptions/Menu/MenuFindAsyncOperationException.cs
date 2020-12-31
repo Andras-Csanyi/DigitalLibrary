@@ -10,16 +10,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MenuFindAsyncOperationException : Exception
     {
         public MenuFindAsyncOperationException()
-        {
-        }
-
-        protected MenuFindAsyncOperationException(SerializationInfo info, StreamingContext context)
-            : base(
-                info,
-                context)
         {
         }
 
@@ -30,6 +24,13 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 
         public MenuFindAsyncOperationException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MenuFindAsyncOperationException(SerializationInfo info, StreamingContext context)
+            : base(
+                info,
+                context)
         {
         }
     }

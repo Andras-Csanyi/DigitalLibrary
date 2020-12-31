@@ -10,14 +10,10 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MenuNullInputException : Exception
     {
         public MenuNullInputException()
-        {
-        }
-
-        protected MenuNullInputException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -28,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 
         public MenuNullInputException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MenuNullInputException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }
