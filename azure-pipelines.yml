@@ -3,9 +3,6 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-variables:
-  solution: "src/DigitalLibrary.sln"
-
 trigger:
  branches:
   include:
@@ -23,7 +20,8 @@ pr:
 pool: 'contabo'
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
+  solution: 'src/DigitalLibrary.sln'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -44,8 +42,9 @@ steps:
 
 - task: PublishTestResults@2
   inputs:
-    testRunner: xunit
+    testResultsFormat: 'xunit'
     testResultsFiles: '**/*.trx'
+    mergeTestResults: true
 
 - task: PublishCodeCoverageResults@1
   inputs:
