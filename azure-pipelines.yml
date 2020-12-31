@@ -43,13 +43,13 @@ steps:
       arguments: "--no-build \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-        /p:CoverletOutputFormat=opencover"
+        /p:CoverletOutputFormat=cobertura"
       publishTestResults: true
 
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.*.xml'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
       pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
   - script: |
