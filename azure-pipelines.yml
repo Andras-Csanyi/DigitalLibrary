@@ -54,12 +54,11 @@ steps:
       mergeTestResults: true
 
   - task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.opencover.xml'
-    pathToSources: '$(System.DefaultWorkingDirectory)/src'
-
-
+    displayName: 'Uploading coverage...'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.opencover.xml'
+      pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
   - script: |
       bash <(curl -s https://codecov.io/bash) -v
