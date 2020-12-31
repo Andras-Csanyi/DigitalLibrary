@@ -46,7 +46,7 @@ steps:
         /p:CoverletOutput='$(System.DefaultWorkingDirectory)/coverage/'
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
-      publishTestResults: true
+      publishTestResults: false
 
   - task: PublishTestResults@2
     displayName: 'Publishing test results...'
