@@ -51,7 +51,7 @@ steps:
     displayName: 'Publishing test results...'
     inputs:
       testResultsFormat: 'xunit'
-      testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
+      testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
       mergeTestResults: true
 
   - script: |
