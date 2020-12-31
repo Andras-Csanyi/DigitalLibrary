@@ -41,8 +41,7 @@ steps:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \ 
-        /p:CollectCoverage=true \
-        /p:CoverletOutput='./coverage/' \ 
+        /p:CollectCoverage=true \ 
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
       publishTestResults: true
@@ -53,6 +52,14 @@ steps:
       testResultsFormat: 'xunit'
       testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
       mergeTestResults: true
+
+  - task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.opencover.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)/src'
+
+
 
   - script: |
       bash <(curl -s https://codecov.io/bash) -v
