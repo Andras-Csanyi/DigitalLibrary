@@ -41,6 +41,7 @@ steps:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
+        --logger trx
         --results-directory $(System.DefaultWorkingDirectory)/testresults/
         /p:CollectCoverage=true \ 
         /p:CoverletOutput=$(System.DefaultWorkingDirectory)/coverage/
