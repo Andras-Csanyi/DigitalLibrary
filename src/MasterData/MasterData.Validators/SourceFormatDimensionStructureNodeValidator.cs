@@ -7,14 +7,14 @@ namespace DigitalLibrary.MasterData.Validators
     using FluentValidation;
 
     /// <summary>
-    /// Validator rules for <see cref="SourceFormatDimensionStructureNode"/> object.
+    ///     Validator rules for <see cref="SourceFormatDimensionStructureNode" /> object.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public class SourceFormatDimensionStructureNodeValidator
         : AbstractValidator<SourceFormatDimensionStructureNode>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatDimensionStructureNodeValidator"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatDimensionStructureNodeValidator" /> class.
         /// </summary>
         public SourceFormatDimensionStructureNodeValidator()
         {

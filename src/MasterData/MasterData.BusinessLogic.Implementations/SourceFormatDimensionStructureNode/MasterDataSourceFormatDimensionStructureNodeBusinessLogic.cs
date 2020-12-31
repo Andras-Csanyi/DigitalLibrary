@@ -1,8 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode
 {
     using System;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
@@ -12,7 +10,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Business logic for <see cref="SourceFormatDimensionStructureNode"/> in Master Data domain.
+    ///     Business logic for <see cref="SourceFormatDimensionStructureNode" /> in Master Data domain.
     /// </summary>
     public partial class MasterDataSourceFormatDimensionStructureNodeBusinessLogic
         : IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
@@ -22,13 +20,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
         private readonly IMasterDataValidators _masterDataValidators;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterDataSourceFormatDimensionStructureNodeBusinessLogic"/> class.
+        ///     Initializes a new instance of the <see cref="MasterDataSourceFormatDimensionStructureNodeBusinessLogic" /> class.
         /// </summary>
         /// <param name="dbContextOptions">
-        /// Database related options.
-        /// <see cref="DbContextOptions{T}"/>.
+        ///     Database related options.
+        ///     <see cref="DbContextOptions{T}" />.
         /// </param>
-        /// <param name="masterDataValidators"><see cref="MasterDataValidators"/>.</param>
+        /// <param name="masterDataValidators"><see cref="MasterDataValidators" />.</param>
         public MasterDataSourceFormatDimensionStructureNodeBusinessLogic(
             DbContextOptions<MasterDataContext> dbContextOptions,
             IMasterDataValidators masterDataValidators)

@@ -11,7 +11,6 @@ namespace DigitalLibrary.MasterData.Validators
 
     using FluentValidation;
 
-
     [ExcludeFromCodeCoverage]
     public class DimensionStructureDimensionStructureValidator : AbstractValidator<DimensionStructureNode>
     {

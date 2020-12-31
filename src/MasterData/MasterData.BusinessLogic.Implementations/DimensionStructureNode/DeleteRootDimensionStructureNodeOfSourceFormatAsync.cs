@@ -7,7 +7,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task DeleteRootDimensionStructureNodeOfSourceFormatAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)

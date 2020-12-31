@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
-    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using FluentAssertions;

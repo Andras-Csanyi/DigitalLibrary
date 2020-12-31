@@ -2,14 +2,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
-
 
     public partial class StepDefinitions
     {

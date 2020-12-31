@@ -62,19 +62,19 @@ namespace DigitalLibrary.MasterData.Validators
         /// <inheritdoc />
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DimensionValidator DimensionValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         /// <inheritdoc />
         public SourceFormatValidator SourceFormatValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public SourceFormatDimensionStructureNodeValidator SourceFormatDimensionStructureNodeValidator { get; }
     }
 }

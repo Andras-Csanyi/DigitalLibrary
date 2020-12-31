@@ -8,17 +8,17 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
     using DiLibHttpClientResponseObjects;
 
     /// <summary>
-    /// Http Client interface for <see cref="SourceFormatDimensionStructureNode"/> object.
+    ///     Http Client interface for <see cref="SourceFormatDimensionStructureNode" /> object.
     /// </summary>
     public interface ISourceFormatDimensionStructureNodeHttpClient
     {
         /// <summary>
-        /// Adding a <see cref="SourceFormatDimensionStructureNode"/> object.
+        ///     Adding a <see cref="SourceFormatDimensionStructureNode" /> object.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// The object contains the details of the new object.
+        ///     The object contains the details of the new object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
         ///     the result.
@@ -30,13 +30,13 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates a <see cref="SourceFormatDimensionStructureNode"/> object.
+        ///     Updates a <see cref="SourceFormatDimensionStructureNode" /> object.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// The object contains the new properties of the object should be updated.
-        /// The Id property identifies which object should be updated.
+        ///     The object contains the new properties of the object should be updated.
+        ///     The Id property identifies which object should be updated.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
         ///     the result.
@@ -48,13 +48,13 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes a <see cref="SourceFormatDimensionStructureNode"/> object.
+        ///     Deletes a <see cref="SourceFormatDimensionStructureNode" /> object.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// The <see cref="SourceFormatDimensionStructureNode"/> object describes the entity going to be deleted.
-        /// The Id property identifies which entity going to be deleted.
+        ///     The <see cref="SourceFormatDimensionStructureNode" /> object describes the entity going to be deleted.
+        ///     The Id property identifies which entity going to be deleted.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
         ///     the result.
@@ -66,13 +66,13 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Gets a <see cref="SourceFormatDimensionStructureNode"/> by Id.
+        ///     Gets a <see cref="SourceFormatDimensionStructureNode" /> by Id.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// The <see cref="SourceFormatDimensionStructureNode"/> describes which object should be returned.
-        /// The Id property identifies the object.
+        ///     The <see cref="SourceFormatDimensionStructureNode" /> describes which object should be returned.
+        ///     The Id property identifies the object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
         ///     the result.

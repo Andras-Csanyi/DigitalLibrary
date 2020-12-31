@@ -1,13 +1,6 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using System;
-    using System.Net;
-
-    using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
-
-    using DiLibHttpClientResponseObjects;
 
     using FluentAssertions;
 

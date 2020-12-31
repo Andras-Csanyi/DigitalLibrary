@@ -15,7 +15,7 @@ namespace DigitalLibrary.ControlPanel.Validators
     public class MenuValidator : AbstractValidator<Menu>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuValidator"/> class.
+        ///     Initializes a new instance of the <see cref="MenuValidator" /> class.
         /// </summary>
         public MenuValidator()
         {

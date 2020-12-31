@@ -21,12 +21,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
 
         /// <summary>
-        /// Gets or sets instance of <see cref="SourceFormatDimensionStructureNodeHttpClient"/>.
+        ///     Gets or sets instance of <see cref="SourceFormatDimensionStructureNodeHttpClient" />.
         /// </summary>
         ISourceFormatDimensionStructureNodeHttpClient SourceFormatDimensionStructureNodeHttpClient { get; set; }
 
         /// <summary>
-        /// Gets or sets instance of <see cref="DimensionStructureNodeHttpClient"/>.
+        ///     Gets or sets instance of <see cref="DimensionStructureNodeHttpClient" />.
         /// </summary>
         IDimensionStructureNodeHttpClient DimensionStructureNodeHttpClient { get; set; }
     }

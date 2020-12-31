@@ -32,7 +32,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
         /// <inheritdoc />
         public ISourceFormatFactory SourceFormatFactory { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public ISourceFormatDimensionStructureNodeFactory SourceFormatDimensionStructureNodeFactory { get; }
     }
 }

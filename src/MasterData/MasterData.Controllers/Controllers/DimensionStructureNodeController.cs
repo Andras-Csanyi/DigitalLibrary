@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    /// Web Api Controller for <see cref="DimensionStructureNode"/>.
+    ///     Web Api Controller for <see cref="DimensionStructureNode" />.
     /// </summary>
     [ApiController]
     [Route(MasterDataApi.DimensionStructureNode.BasePath)]
@@ -22,10 +22,10 @@ namespace DigitalLibrary.MasterData.Controllers
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DimensionStructureNodeController"/> class.
+        ///     Initializes a new instance of the <see cref="DimensionStructureNodeController" /> class.
         /// </summary>
         /// <param name="masterDataBusinessLogic">
-        /// Instance of <see cref="IMasterDataBusinessLogic"/>.
+        ///     Instance of <see cref="IMasterDataBusinessLogic" />.
         /// </param>
         public DimensionStructureNodeController(IMasterDataBusinessLogic masterDataBusinessLogic)
         {

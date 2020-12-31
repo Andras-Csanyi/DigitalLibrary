@@ -8,8 +8,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using DiLibHttpClientResponseObjects;
 
-    using Io.Cucumber.Messages;
-
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 

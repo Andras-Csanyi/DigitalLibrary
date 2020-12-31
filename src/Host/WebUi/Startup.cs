@@ -25,7 +25,6 @@ namespace DigitalLibrary.Ui.WebUi
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
-
     [ExcludeFromCodeCoverage]
     public class Startup
     {

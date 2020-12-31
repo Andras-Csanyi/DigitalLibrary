@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
 
     public partial class MasterDataSourceFormatDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormatDimensionStructureNode> GetByIdAsync(
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
             CancellationToken cancellationToken = default)
