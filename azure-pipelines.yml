@@ -20,33 +20,30 @@ pr:
 pool: 'contabo'
 
 steps:
-- script: dotnet restore $(solution)
-  displayName: 'Restoring...'
 
-- script: dotnet build $(solution) --configuration Debug
-  displayName: 'Building...'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'src/DigitalLibrary.sln'
+    arguments: 'Debug'
 
-- script: |
-    dotnet test --logger trx \
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'src/DigitalLibrary.sln'
+    arguments: '--logger trx \
+                --results-directory "$(Agent.TempDirectory)/testresults/" \
                 --no-build \
                 /p:CollectCoverage=true \
+                /p:p:CoverletOutput="./coverage/" \
                 /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \
-                /p:CoverletOutputFormat=opencover \
-                $(solution)
-  displayName: 'Testing...'
+                /p:CoverletOutputFormat=opencover'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'xunit'
-    testResultsFiles: '**/*.trx'
+    testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
     mergeTestResults: true
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
-    pathToSources: '$(System.DefaultWorkingDirectory)/src/'
-    failIfCoverageEmpty: true
 
 - script: |
     bash <(curl -s https://codecov.io/bash) -v
