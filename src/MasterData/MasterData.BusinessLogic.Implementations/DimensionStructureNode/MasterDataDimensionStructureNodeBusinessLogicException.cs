@@ -1,8 +1,10 @@
 ﻿namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class MasterDataDimensionStructureNodeBusinessLogicException : Exception
     {
         public MasterDataDimensionStructureNodeBusinessLogicException()

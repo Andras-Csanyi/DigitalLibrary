@@ -19,7 +19,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
         ISourceFormatFactory SourceFormatFactory { get; }
 
         /// <summary>
-        /// Gets instance of <see cref="SourceFormatDimensionStructureNodeFactory"/>.
+        ///     Gets instance of <see cref="SourceFormatDimensionStructureNodeFactory" />.
         /// </summary>
         ISourceFormatDimensionStructureNodeFactory SourceFormatDimensionStructureNodeFactory { get; }
     }

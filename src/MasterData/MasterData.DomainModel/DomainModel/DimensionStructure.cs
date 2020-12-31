@@ -12,8 +12,8 @@ namespace DigitalLibrary.MasterData.DomainModel
 
     /// <summary>
     ///     DimensionStructure entity which describes information part of a node
-    /// in the DimensionStructure tree.
-    /// Structural information is described by <see cref="DimensionStructureNode"/> object.
+    ///     in the DimensionStructure tree.
+    ///     Structural information is described by <see cref="DimensionStructureNode" /> object.
     /// </summary>
     public class DimensionStructure : IHaveId, IHaveGuidId
     {

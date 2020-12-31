@@ -11,6 +11,7 @@ namespace DigitalLibrary.Utils.ControlPanel.DataSample
     using DigitalLibrary.ControlPanel.Ctx.Ctx;
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1303", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1307", Justification = "Reviewed.")]
     public static class ControlPanelDataSample

@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode
 {
     using System;
-    using System.Data;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDi
 
     public partial class MasterDataSourceFormatDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<SourceFormatDimensionStructureNode> UpdateAsync(
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
             CancellationToken cancellationToken = default)

@@ -1,0 +1,57 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  branches:
+    include:
+      - master
+    exclude:
+      - doc/*
+  paths:
+    exclude:
+      - src/README.md
+      - src/doc/*
+
+pr:
+  - master
+
+pool: 'contabo'
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Restoring...'
+    inputs:
+      command: 'restore'
+      projects: 'src/DigitalLibrary.sln'
+      feedsToUse: 'select'
+      verbosityRestore: 'Normal'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Building...'
+    inputs:
+      command: 'build'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '-c Debug'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing...'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: "--no-build \
+        /p:CollectCoverage=true \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+        /p:CoverletOutputFormat=cobertura"
+      publishTestResults: true
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
+      pathToSources: '$(System.DefaultWorkingDirectory)/src'
+
+  - script: |
+      bash <(curl -s https://codecov.io/bash) -v
+    displayName: 'Upload to Codecov.io'

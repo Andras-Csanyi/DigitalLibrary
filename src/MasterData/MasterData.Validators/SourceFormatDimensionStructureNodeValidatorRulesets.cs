@@ -1,8 +1,11 @@
 namespace DigitalLibrary.MasterData.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
-    /// Contains available rulesets for <see cref="SourceFormatDimensionStructureNodeValidator"/>.
+    ///     Contains available rulesets for <see cref="SourceFormatDimensionStructureNodeValidator" />.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public struct SourceFormatDimensionStructureNodeValidatorRulesets
     {
         public const string Add = "Add";

@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructureNode> AddAsync(
             DimensionStructureNode dimensionStructureNode,
             CancellationToken cancellationToken = default)

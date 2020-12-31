@@ -5,13 +5,17 @@
 
 namespace DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+    [ExcludeFromCodeCoverage]
     public class ModuleConfiguration : IEntityTypeConfiguration<Module>
     {
+        /// <inheritdoc />
         public void Configure(EntityTypeBuilder<Module> builder)
         {
             builder.HasKey(p => p.Id);

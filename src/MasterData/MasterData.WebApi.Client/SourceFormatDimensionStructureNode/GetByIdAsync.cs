@@ -10,7 +10,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormatDimensionStructure
 
     public partial class SourceFormatDimensionStructureNodeHttpClient
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DilibHttpClientResponse<SourceFormatDimensionStructureNode>> GetByIdAsync(
             SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode,
             CancellationToken cancellationToken = default)

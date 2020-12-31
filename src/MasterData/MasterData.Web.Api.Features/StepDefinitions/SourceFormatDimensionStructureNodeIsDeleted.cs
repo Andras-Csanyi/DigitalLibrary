@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -10,7 +9,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
-    using TechTalk.SpecFlow.CommonModels;
 
     public partial class StepDefinitions
     {

@@ -1,7 +1,6 @@
 namespace DigitalLibrary.MasterData.Controllers
 {
     using System;
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -14,7 +13,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    /// Web Api Controller for <see cref="SourceFormatDimensionStructureNode"/>.
+    ///     Web Api Controller for <see cref="SourceFormatDimensionStructureNode" />.
     /// </summary>
     [ApiController]
     [Route(MasterDataApi.SourceFormatDimensionStructureNode.BasePath)]
@@ -23,10 +22,10 @@ namespace DigitalLibrary.MasterData.Controllers
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceFormatDimensionStructureNodeController"/> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatDimensionStructureNodeController" /> class.
         /// </summary>
         /// <param name="masterDataBusinessLogic">
-        /// Instance of Master Data Business Logic.
+        ///     Instance of Master Data Business Logic.
         /// </param>
         public SourceFormatDimensionStructureNodeController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
@@ -36,15 +35,15 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Controller method for adding new <see cref="SourceFormatDimensionStructureNode"/>.
+        ///     Controller method for adding new <see cref="SourceFormatDimensionStructureNode" />.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// Describes the new object to be added.
+        ///     Describes the new object to be added.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
-        /// TResult is <see cref="ActionResult"/>.
+        ///     Returns a <see cref="Task{TResult}" /> representing result of async operation, where
+        ///     TResult is <see cref="ActionResult" />.
         /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Add)]
@@ -71,16 +70,16 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Controller method for updating a <see cref="SourceFormatDimensionStructureNode"/>.
+        ///     Controller method for updating a <see cref="SourceFormatDimensionStructureNode" />.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// Id value of payload identifies which object should be updated with the properties of
-        /// the payload object.
+        ///     Id value of payload identifies which object should be updated with the properties of
+        ///     the payload object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
-        /// TResult is <see cref="ActionResult"/>.
+        ///     Returns a <see cref="Task{TResult}" /> representing result of async operation, where
+        ///     TResult is <see cref="ActionResult" />.
         /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Update)]
@@ -107,15 +106,15 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Controller method for deleting a <see cref="SourceFormatDimensionStructureNode"/>.
+        ///     Controller method for deleting a <see cref="SourceFormatDimensionStructureNode" />.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// Id value of payload identifies which object should be deleted.
+        ///     Id value of payload identifies which object should be deleted.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
-        /// TResult is <see cref="ActionResult"/>.
+        ///     Returns a <see cref="Task{TResult}" /> representing result of async operation, where
+        ///     TResult is <see cref="ActionResult" />.
         /// </returns>
         [HttpDelete]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.Delete)]
@@ -142,15 +141,15 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Controller method for requesting a <see cref="SourceFormatDimensionStructureNode"/> by Id.
+        ///     Controller method for requesting a <see cref="SourceFormatDimensionStructureNode" /> by Id.
         /// </summary>
         /// <param name="sourceFormatDimensionStructureNode">
-        /// Id value of payload identifies which object should be returned.
+        ///     Id value of payload identifies which object should be returned.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
-        /// Returns a <see cref="Task{TResult}"/> representing result of async operation, where
-        /// TResult is <see cref="ActionResult"/>.
+        ///     Returns a <see cref="Task{TResult}" /> representing result of async operation, where
+        ///     TResult is <see cref="ActionResult" />.
         /// </returns>
         [HttpPost]
         [Route(MasterDataApi.SourceFormatDimensionStructureNode.V1.GetById)]

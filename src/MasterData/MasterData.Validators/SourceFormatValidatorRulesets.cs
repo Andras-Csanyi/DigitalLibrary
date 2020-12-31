@@ -44,7 +44,7 @@ namespace DigitalLibrary.MasterData.Validators
         public const string Inactivate = "Inactivate";
 
         /// <summary>
-        /// Ruleset identifier for AddRootNode operation.
+        ///     Ruleset identifier for AddRootNode operation.
         /// </summary>
         public const string AddRootNode = "AddRootNode";
     }

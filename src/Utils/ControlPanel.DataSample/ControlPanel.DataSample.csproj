@@ -27,4 +27,8 @@
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="MasterData"/>
+    </ItemGroup>
+
 </Project>

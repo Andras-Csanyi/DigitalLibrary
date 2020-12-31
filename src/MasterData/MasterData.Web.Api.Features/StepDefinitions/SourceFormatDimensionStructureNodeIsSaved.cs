@@ -1,6 +1,5 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
-    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;

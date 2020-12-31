@@ -5,10 +5,13 @@
 
 namespace DigitalLibrary.Ui.WebUi
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
 
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static IHostBuilder CreateHostBuilder(string[] args) =>

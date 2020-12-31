@@ -5,8 +5,10 @@
 namespace DigitalLibrary.Utils.Guards
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     public class GuardException : Exception
     {
         public GuardException()

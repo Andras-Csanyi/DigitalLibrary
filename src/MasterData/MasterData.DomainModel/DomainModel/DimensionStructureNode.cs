@@ -5,9 +5,9 @@ namespace DigitalLibrary.MasterData.DomainModel
     using DigitalLibrary.MasterData.DomainModel.Interfaces;
 
     /// <summary>
-    /// DimensionStructureNode object which describes the structural part of a node
-    /// in the DimensionStructure tree. It provides a hook where the not structural
-    /// property representatives, such as <see cref="DimensionStructure"/> can be attached.
+    ///     DimensionStructureNode object which describes the structural part of a node
+    ///     in the DimensionStructure tree. It provides a hook where the not structural
+    ///     property representatives, such as <see cref="DimensionStructure" /> can be attached.
     /// </summary>
     public class DimensionStructureNode : IHaveId, IHaveIsActive
     {

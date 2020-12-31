@@ -26,6 +26,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             return result.ToString();
         }
 
+        /// <inheritdoc/>
         public string GetNamePropertyString(string value)
         {
             string result;
@@ -56,6 +57,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
             return result;
         }
 
+        /// <inheritdoc/>
         public string GetDescPropertyString(string value)
         {
             string result;

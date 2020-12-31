@@ -31,8 +31,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Menu
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                   .DeleteMenuAsync(null).ConfigureAwait
-                        (false);
+                   .DeleteMenuAsync(null).ConfigureAwait(false);
             };
 
             // Assert

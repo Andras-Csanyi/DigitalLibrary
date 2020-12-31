@@ -6,16 +6,14 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MenuModifyOperationException : Exception
     {
         public MenuModifyOperationException()
-        {
-        }
-
-        protected MenuModifyOperationException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -26,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Menu
 
         public MenuModifyOperationException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MenuModifyOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

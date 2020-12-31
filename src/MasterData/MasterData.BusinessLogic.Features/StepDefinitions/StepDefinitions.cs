@@ -40,6 +40,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Covered.")]
     [Binding]
     public partial class StepDefinitions : IDisposable
     {

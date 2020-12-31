@@ -1,11 +1,7 @@
 ﻿namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
-    using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
 
@@ -18,13 +14,13 @@
         private readonly IMasterDataValidators _masterDataValidators;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterDataDimensionStructureNodeBusinessLogic"/> class.
+        ///     Initializes a new instance of the <see cref="MasterDataDimensionStructureNodeBusinessLogic" /> class.
         /// </summary>
         /// <param name="dbContextOptions">
-        /// DbContext options for Master Data context.
+        ///     DbContext options for Master Data context.
         /// </param>
         /// <param name="masterDataValidators">
-        /// Validators used in Master Data context.
+        ///     Validators used in Master Data context.
         /// </param>
         public MasterDataDimensionStructureNodeBusinessLogic(
             DbContextOptions<MasterDataContext> dbContextOptions,

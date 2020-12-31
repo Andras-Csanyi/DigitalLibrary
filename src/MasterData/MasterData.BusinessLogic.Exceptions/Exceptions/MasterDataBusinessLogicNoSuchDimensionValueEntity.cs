@@ -10,14 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MasterDataBusinessLogicNoSuchDimensionValueEntity : Exception
     {
         public MasterDataBusinessLogicNoSuchDimensionValueEntity()
-        {
-        }
-
-        protected MasterDataBusinessLogicNoSuchDimensionValueEntity(SerializationInfo? info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -29,6 +25,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
         public MasterDataBusinessLogicNoSuchDimensionValueEntity(string? message, Exception? innerException)
             : base(
                 message, innerException)
+        {
+        }
+
+        protected MasterDataBusinessLogicNoSuchDimensionValueEntity(SerializationInfo? info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

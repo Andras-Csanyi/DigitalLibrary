@@ -5,10 +5,14 @@
 
 namespace WebApp
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
 
-    class Program
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "tmp")]
+    public class Program
     {
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

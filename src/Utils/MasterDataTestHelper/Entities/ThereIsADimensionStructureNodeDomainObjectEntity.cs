@@ -1,7 +1,8 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 {
-    using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class ThereIsADimensionStructureNodeDomainObjectEntity
     {
         public string ResultKey { get; set; }

@@ -1,7 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System;
-    using System.Linq;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Covered.")]
     public partial class StepDefinitions
     {
         [Given(@"already saved SourceFormatDimensionStructureNode is updated")]
@@ -20,9 +21,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             SourceFormatDimensionStructureNode node = _scenarioContext[instance.Key]
                 as SourceFormatDimensionStructureNode;
             Check.IsNotNull(node);
-
-            SourceFormat sourceFormat = null;
-            DimensionStructureNode dimensionStructureNode = null;
 
             if (instance.Id != "none")
             {
@@ -43,6 +41,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     internal class AlreadySavedSourceFormatDimensionStructureNodeIsUpdatedEntity
     {
         public string Id { get; set; }
