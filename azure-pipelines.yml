@@ -40,9 +40,10 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: "--no-build \ 
+      arguments: "--no-build \
+        --results-directory '$(System.DefaultWorkingDirectory)/testresults/'
         /p:CollectCoverage=true \ 
-        /p:CoverletOutput='$(Agent.TempDirectory)/coverage/'
+        /p:CoverletOutput='$(System.DefaultWorkingDirectory)/coverage/'
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover"
       publishTestResults: true
@@ -51,13 +52,13 @@ steps:
     displayName: 'Publishing test results...'
     inputs:
       testResultsFormat: 'xunit'
-      testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/testresults/*.trx'
       mergeTestResults: true
 
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(Agent.TempDirectory)/coverage/coverage.opencover.xml'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/*.xml'
       pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
   - script: |
