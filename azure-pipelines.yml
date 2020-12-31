@@ -47,6 +47,7 @@ steps:
       publishTestResults: true
 
   - task: PublishCodeCoverageResults@1
+    displayName: 'Coverage...'
     inputs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
@@ -54,4 +55,4 @@ steps:
 
   - script: |
       bash <(curl -s https://codecov.io/bash) -v
-    displayName: 'Upload to Codecov.io'
+    displayName: 'Codecov.io'
