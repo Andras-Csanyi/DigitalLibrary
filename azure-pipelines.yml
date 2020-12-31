@@ -20,27 +20,34 @@ pr:
 pool: 'contabo'
 
 steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restoring...'
+  inputs:
+    command: 'restore'
+    projects: 'src/DigitalLibrary.sln'
+    feedsToUse: 'select'
+    verbosityRestore: 'Normal'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Building...'
   inputs:
     command: 'build'
     projects: 'src/DigitalLibrary.sln'
     arguments: '-c Debug'
-    workingDirectory: 'Building...'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Testing...'
   inputs:
     command: 'test'
     projects: 'src/DigitalLibrary.sln'
-    arguments: '--logger trx \ --results-directory "$(Agent.TempDirectory)/testresults/" \ --no-build \ /p:CollectCoverage=true \ /p:p:CoverletOutput="./coverage/" \ /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \ /p:CoverletOutputFormat=opencover'
-    testRunTitle: 'Testing...'
+    arguments: '--logger trx --results-directory "$(Agent.TempDirectory)/testresults/" --no-build /p:CollectCoverage=true /p:p:CoverletOutput="./coverage/" /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" /p:CoverletOutputFormat=opencover'
 
 - task: PublishTestResults@2
+  displayName: 'Publishing test results...'
   inputs:
     testResultsFormat: 'xunit'
     testResultsFiles: '$(Agent.TempDirectory)/testresults/*.trx'
     mergeTestResults: true
-    testRunTitle: 'Publishing test results...'
 
 - script: |
     bash <(curl -s https://codecov.io/bash) -v
