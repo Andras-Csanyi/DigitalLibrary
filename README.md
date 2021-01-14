@@ -1,7 +1,7 @@
 # Badges
 
-[![codecov](https://codecov.io/gh/SayusiAndo/DigitalLibrary/branch/master/graph/badge.svg?token=XQIZ9D1T4W)](https://codecov.io/gh/SayusiAndo/DigitalLibrary)
-[![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/DigitalLibrary.Github?branchName=refs%2Fpull%2F150%2Fmerge)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=60&branchName=refs%2Fpull%2F150%2Fmerge)
+[![codecov](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary/branch/master/graph/badge.svg?token=xLhCIRup4Y)](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary)
+[![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/Andras-Csanyi.DigitalLibrary.Github?branchName=master)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=64&branchName=master)
 
 # Digital Library Project 
 This project is about how to manage huge amount of different documents while you can manage 
