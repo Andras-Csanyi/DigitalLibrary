@@ -59,14 +59,17 @@ steps:
 
   - script: |
       dotnet tool uninstall --global dotnet-sonarscanner
-    displayName: 'Remove sonar...'
-
-  - script: |
       dotnet tool install --global dotnet-sonarscanner
-    displayName: 'Install sonar...'
+    displayName: 'Install sonar'
 
   - script: |
-      dotnet sonarscanner begin /k:"{{ $sonar.project.key }}"  /d:sonar.login="{{ $sonar.login.key }}" /d:sonar.host.url="{{ $sonar.host.url }}" /d:sonar:verbose=true
+      dotnet sonarscanner begin /k:"{{ $sonar.project.key }}" /d:sonar.login="{{ $sonar.login.key }}" /d:sonar.host.url="{{ $sonar.host.url }}" /d:sonar:verbose=true
+    displayName: 'Sonar begin phase'
+
+  - script: |
       dotnet build 'src/DigitalLibrary.sln'
+    displayName: 'Sonar build phase'
+
+  - script: |
       dotnet sonarscanner end /d:sonar.login="{{ $sonar.login.key }}"
-    displayName: 'Sonar...'
+    displayName: 'Sonar end phase'
