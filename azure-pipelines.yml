@@ -68,7 +68,7 @@ steps:
     displayName: 'Install sonar'
 
   - script: |
-      dotnet sonarscanner begin /k:"$(SONAR_PROJECT_KEY)" /d:sonar.login="$(SONAR_LOGIN_KEY)" /d:sonar.host.url="$(SONAR_HOST_URL)" /d:sonar:verbose="true"
+      dotnet sonarscanner begin /k:"$(SONAR_PROJECT_KEY)" /d:sonar.login="$(SONAR_LOGIN_KEY)" /d:sonar.host.url="$(SONAR_HOST_URL)" /d:sonar.verbose="true"
     displayName: 'Sonar begin phase'
 
   - script: |
