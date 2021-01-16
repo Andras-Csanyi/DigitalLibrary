@@ -270,3 +270,5 @@ global.json
 *coverage.cobertura.xml
 *coverage.opencover.xml
 **/coverage
+
+.sonarqube

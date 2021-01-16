@@ -55,13 +55,14 @@ steps:
 
   - script: |
       bash <(curl -s https://codecov.io/bash) -v
-    displayName: 'Codecov.io'
+    displayName: 'Uploading to Codecov.io'
 
   - script: |
       dotnet tool install --global dotnet-sonarscanner
-    displayName: 'Install dotnet-sonarscanner'
+    displayName: 'Install sonar...'
 
   - script: |
-      dotnet sonarscanner begin /k:"dilib-test"  /d:sonar.login="2bfcf0a3a551f38a3a0e9dce552b15d84c9cadc6"
+      dotnet sonarscanner begin /k:"{{ $sonar.project.key }}"  /d:sonar.login="{{ $sonar.login.key }}" /d:sonar.host.url="{{ $sonar.host.url }}"
       dotnet build 'src/DigitalLibrary.sln'
-      dotnet sonarscanner end /d:sonar.login="2bfcf0a3a551f38a3a0e9dce552b15d84c9cadc6"
+      dotnet sonarscanner end /d:sonar.login="{{ $sonar.login.key }}"
+    displayName: 'Sonar...'
