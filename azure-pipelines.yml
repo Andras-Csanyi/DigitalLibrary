@@ -58,6 +58,10 @@ steps:
     displayName: 'Uploading to Codecov.io'
 
   - script: |
+      dotnet tool uninstall --global dotnet-sonarscanner
+    displayName: 'Remove sonar...'
+
+  - script: |
       dotnet tool install --global dotnet-sonarscanner
     displayName: 'Install sonar...'
 
