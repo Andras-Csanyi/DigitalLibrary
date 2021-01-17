@@ -67,29 +67,14 @@ steps:
       dotnet tool install --global dotnet-sonarscanner
     displayName: 'Install sonar'
 
-  # - script: |
-  #     dotnet sonarscanner begin /k:"$(sonar.project.key)" /d:sonar.login="$(sonar.login.key)" /d:sonar.host.url="$(sonar.host.url)" /d:sonar.verbose="true"
-  #   displayName: 'Sonar begin phase'
+  - script: |
+      dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
+    displayName: 'Sonar begin phase'
 
-  # - script: |
-  #     dotnet build 'src/DigitalLibrary.sln'
-  #   displayName: 'Sonar build phase'
+  - script: |
+      dotnet build 'src/DigitalLibrary.sln'
+    displayName: 'Sonar build phase'
 
-  # - script: |
-  #     dotnet sonarscanner end /d:sonar.login="{{ $sonar.login.key }}"
-  #   displayName: 'Sonar end phase'
-
-  - task: SonarQubePrepare@4
-    inputs:
-      SonarQube: 'contabo - sonar'
-      scannerMode: 'CLI'
-      configMode: 'manual'
-      cliProjectKey: 'dilib-test'
-      cliProjectName: 'dilib-test'
-      cliSources: 'src'
-
-  - task: SonarQubeAnalyze@4
-
-  - task: SonarQubePublish@4
-    inputs:
-      pollingTimeoutSec: '300'
+  - script: |
+      dotnet sonarscanner end
+    displayName: 'Sonar end phase'
