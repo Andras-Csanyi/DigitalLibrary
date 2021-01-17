@@ -33,6 +33,15 @@ steps:
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
 
+  - task: SonarQubePrepare@4
+    inputs:
+      SonarQube: 'sonarcloud'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
+      cliProjectName: 'Andras-Csanyi_DigitalLibrary'
+      cliSources: '.'
+
   - task: DotNetCoreCLI@2
     displayName: 'Building...'
     inputs:
@@ -51,6 +60,12 @@ steps:
         /p:CoverletOutputFormat=cobertura"
       publishTestResults: true
 
+  - task: SonarQubeAnalyze@4
+
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
+
   - task: PublishCodeCoverageResults@1
     displayName: 'Coverage...'
     inputs:
@@ -62,19 +77,19 @@ steps:
       bash <(curl -s https://codecov.io/bash) -v
     displayName: 'Uploading to Codecov.io'
 
-  - script: |
-      dotnet tool uninstall --global dotnet-sonarscanner
-      dotnet tool install --global dotnet-sonarscanner
-    displayName: 'Install sonar'
+  # - script: |
+  #     dotnet tool uninstall --global dotnet-sonarscanner
+  #     dotnet tool install --global dotnet-sonarscanner
+  #   displayName: 'Install sonar'
 
-  - script: |
-      dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
-    displayName: 'Sonar begin phase'
+  # - script: |
+  #     dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
+  #   displayName: 'Sonar begin phase'
 
-  - script: |
-      dotnet build 'src/DigitalLibrary.sln'
-    displayName: 'Sonar build phase'
+  # - script: |
+  #     dotnet build 'src/DigitalLibrary.sln'
+  #   displayName: 'Sonar build phase'
 
-  - script: |
-      dotnet sonarscanner end
-    displayName: 'Sonar end phase'
+  # - script: |
+  #     dotnet sonarscanner end
+  #   displayName: 'Sonar end phase'
