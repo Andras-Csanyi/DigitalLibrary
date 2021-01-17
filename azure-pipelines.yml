@@ -33,9 +33,10 @@ steps:
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
 
-  - task: SonarQubePrepare@4
+  - task: SonarCloudPrepare@1
     inputs:
-      SonarQube: 'sonarcloud'
+      SonarCloud: 'sonarcloud'
+      organization: 'andras-csanyi'
       scannerMode: 'CLI'
       configMode: 'manual'
       cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
@@ -60,9 +61,9 @@ steps:
         /p:CoverletOutputFormat=cobertura"
       publishTestResults: true
 
-  - task: SonarQubeAnalyze@4
+  - task: SonarCloudAnalyze@1
 
-  - task: SonarQubePublish@4
+  - task: SonarCloudPublish@1
     inputs:
       pollingTimeoutSec: '300'
 
