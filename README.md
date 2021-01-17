@@ -2,16 +2,18 @@
 
 [![codecov](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary/branch/master/graph/badge.svg?token=xLhCIRup4Y)](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary)
 [![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/Andras-Csanyi.DigitalLibrary.Github?branchName=master)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=64&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Andras-Csanyi_DigitalLibrary&metric=alert_status)](https://sonarcloud.io/dashboard?id=Andras-Csanyi_DigitalLibrary)
 
-# Digital Library Project 
-This project is about how to manage huge amount of different documents while you can manage 
-the content connections between them. The problem space this project tries to find a good
-solution are the following:
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=Andras-Csanyi_DigitalLibrary)
 
- - ETL documents in from different sources in different format
- - managing content and relations between different documents and/or its sections
- - user interface for reading, where the document connections are displayed in the way it elevates
- the reading experience
+# Digital Library Project
+
+This project is about how to manage huge amount of different documents while you can manage the content connections
+between them. The problem space this project tries to find a good solution are the following:
+
+- ETL documents in from different sources in different format
+- managing content and relations between different documents and/or its sections
+- user interface for reading, where the document connections are displayed in the way it elevates the reading experience
  - support for writing a document where including other document references is easy
  - support for searching through the stored documents
  - support for different searching such as full text, thesaurus, etc.
