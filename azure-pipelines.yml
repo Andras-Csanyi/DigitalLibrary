@@ -25,9 +25,8 @@ steps:
     inputs:
       SonarCloud: 'sonarcloud'
       organization: 'andras-csanyi'
-      scannerMode: 'MSBuild'
-      projectKey: 'Andras-Csanyi_DigitalLibrary'
-      projectName: 'Andras-Csanyi_DigitalLibrary'
+      scannerMode: 'CLI'
+      configMode: 'file'
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=${Agent.TempDirectory}/**/XUnit.TestResults.xml
