@@ -20,20 +20,14 @@ pr:
 pool: 'contabo'
 
 steps:
-  - script: |
-      dotnet tool uninstall --global dotnet-sonarscanner
-      dotnet tool install --global dotnet-sonarscanner
-    displayName: 'Install sonar'
   
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud'
       organization: 'andras-csanyi'
-      scannerMode: 'CLI'
-      configMode: 'manual'
-      cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
-      cliProjectName: 'Andras-Csanyi_DigitalLibrary'
-      cliSources: '.'
+      scannerMode: 'MSBuild'
+      projectKey: 'Andras-Csanyi_DigitalLibrary'
+      projectName: 'Andras-Csanyi_DigitalLibrary'
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=${Agent.TempDirectory}/**/XUnit.TestResults.xml
