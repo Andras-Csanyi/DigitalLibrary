@@ -69,9 +69,9 @@ steps:
       arguments: "--no-build \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-        /p:CoverletOutputFormat=opencover
-        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/
-        /p:MergeWith=$(Agent.TempDirectory)/coverage/ --collect \"Code coverage\""
+        /p:CoverletOutputFormat=opencover \
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
       publishTestResults: true
 
   - task: PublishTestResults@2
