@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.MasterData.WebApi.Client</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.WebApi.Client</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{AD236E1C-6E1E-4C84-8D49-C9F7AC19DC98}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

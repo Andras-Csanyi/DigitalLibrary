@@ -14,24 +14,12 @@ trigger:
       - src/README.md
       - src/doc/*
 
-variables:
-  SONAR_PROJECT_KEY: $(sonar.project.key)
-  SONAR_LOGIN_KEY: $(sonar.login.key)
-  SONAR_HOST_URL: $(sonar.host.url)
-
 pr:
   - master
 
 pool: 'contabo'
 
 steps:
-  - task: DotNetCoreCLI@2
-    displayName: 'Restoring...'
-    inputs:
-      command: 'restore'
-      projects: 'src/DigitalLibrary.sln'
-      feedsToUse: 'select'
-      verbosityRestore: 'Normal'
 
   - task: SonarCloudPrepare@1
     inputs:
@@ -42,6 +30,18 @@ steps:
       cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
       cliProjectName: 'Andras-Csanyi_DigitalLibrary'
       cliSources: '.'
+      extraProperties: |
+        sonar.exclusions=**/obj/**,**/*.dll
+        sonar.cs.xunit.reportsPaths=${Agent.TempDirectory}/**/XUnit.TestResults.xml
+        sonar.cs.opencover.reportsPaths=${Agent.TempDirectory}/**/opencoverCoverage.xml
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Restoring...'
+    inputs:
+      command: 'restore'
+      projects: 'src/DigitalLibrary.sln'
+      feedsToUse: 'select'
+      verbosityRestore: 'Normal'
 
   - task: DotNetCoreCLI@2
     displayName: 'Building...'
@@ -61,11 +61,26 @@ steps:
         /p:CoverletOutputFormat=cobertura"
       publishTestResults: true
 
-  - task: SonarCloudAnalyze@1
-
-  - task: SonarCloudPublish@1
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing...'
     inputs:
-      pollingTimeoutSec: '300'
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: "--no-build \
+        /p:CollectCoverage=true \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+        /p:CoverletOutputFormat=opencover
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/ --collect \"Code coverage\""
+      publishTestResults: true
+
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: "$(Agent.TempDirectory)/**.*trx"
+      mergeTestResults: true
+    condition: succeededOrFailed()
 
   - task: PublishCodeCoverageResults@1
     displayName: 'Coverage...'
@@ -77,6 +92,12 @@ steps:
   - script: |
       bash <(curl -s https://codecov.io/bash) -v
     displayName: 'Uploading to Codecov.io'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
 
   # - script: |
   #     dotnet tool uninstall --global dotnet-sonarscanner

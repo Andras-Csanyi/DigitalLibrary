@@ -6,6 +6,7 @@
         <LangVersion>default</LangVersion>
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Interfaces</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Interfaces</RootNamespace>
+        <ProjectGuid>{285F6CB0-48BD-4465-B392-5A36A5F68E47}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

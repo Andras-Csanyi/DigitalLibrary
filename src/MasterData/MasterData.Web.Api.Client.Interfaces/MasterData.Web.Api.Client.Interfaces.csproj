@@ -6,6 +6,7 @@
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Client.Interfaces</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{3E0FA191-8B17-4418-A71D-EDA6EF0FC1E4}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

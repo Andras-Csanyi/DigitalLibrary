@@ -6,6 +6,7 @@
         <LangVersion>default</LangVersion>
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Implementations</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Implementations</RootNamespace>
+        <ProjectGuid>{77D0FF67-F884-42C1-A4CD-8A8EC21BF52A}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

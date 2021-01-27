@@ -7,6 +7,7 @@
         <LangVersion>default</LangVersion>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <PreserveCompilationContext>true</PreserveCompilationContext>
+        <ProjectGuid>{CB1FF012-D2CA-41A7-84F6-85E0F3B39B3F}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
@@ -24,6 +25,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="SpecFlow" Version="3.6.23"/>
         <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23"/>
         <PackageReference Include="SpecFlow.xUnit" Version="3.6.23"/>

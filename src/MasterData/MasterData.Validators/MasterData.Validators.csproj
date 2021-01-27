@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.MasterData.Validators</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Validators</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{657D60EC-4027-4B0B-9821-743FF034A6B8}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="9.4.0"/>

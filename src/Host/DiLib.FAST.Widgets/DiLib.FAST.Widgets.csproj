@@ -5,6 +5,7 @@
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <RazorLangVersion>3.0</RazorLangVersion>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{4FC285A0-3609-432A-91FA-8F69D5E3A9C6}</ProjectGuid>
     </PropertyGroup>
 
 

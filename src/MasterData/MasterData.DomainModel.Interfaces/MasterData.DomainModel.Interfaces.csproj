@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.MasterData.DomainModel.Interfaces</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.DomainModel.Interfaces</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{6E0015A5-C106-495C-8AD3-7257030908CF}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

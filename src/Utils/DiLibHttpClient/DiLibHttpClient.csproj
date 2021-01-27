@@ -6,6 +6,7 @@
         <RootNamespace>DigitalLibrary.Utils.DiLibHttpClient</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{BCFF98A8-0A16-4650-A12F-782CA9A9F353}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

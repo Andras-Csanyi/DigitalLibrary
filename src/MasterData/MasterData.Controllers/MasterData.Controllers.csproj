@@ -7,6 +7,7 @@
         <RootNamespace>DigitalLibrary.MasterData.Controllers</RootNamespace>
         <OutputType>Library</OutputType>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{768FCBDA-16C0-43AB-9837-B531B5CDFCD4}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

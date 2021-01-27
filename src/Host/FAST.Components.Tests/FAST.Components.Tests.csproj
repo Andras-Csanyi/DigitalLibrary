@@ -7,6 +7,7 @@
         <IsPackable>false</IsPackable>
 
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{CBBF8CD6-E12A-4B57-9474-26C419AB755F}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +24,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">

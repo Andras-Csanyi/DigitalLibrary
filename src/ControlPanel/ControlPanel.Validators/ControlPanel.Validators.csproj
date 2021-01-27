@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.ControlPanel.Validators</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.Validators</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{795EA0A4-55F1-4633-807E-BBBFAAB877DD}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

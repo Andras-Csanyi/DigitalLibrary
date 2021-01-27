@@ -7,6 +7,7 @@
         <RootNamespace>DigitalLibrary.Utils.IntegrationTestFactories</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{CAC50D82-6F3B-4F5C-9BAE-A77BA55C7097}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

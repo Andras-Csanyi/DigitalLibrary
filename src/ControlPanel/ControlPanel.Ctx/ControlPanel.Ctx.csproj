@@ -6,6 +6,7 @@
         <RootNamespace>DigitalLibrary.ControlPanel.Ctx</RootNamespace>
         <AssemblyName>DigitalLibrary.ControlPanel.Ctx</AssemblyName>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{7A09EA62-79F8-46B7-9D48-54CD1CF40126}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

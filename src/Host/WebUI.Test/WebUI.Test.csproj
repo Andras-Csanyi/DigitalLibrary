@@ -10,6 +10,7 @@
         <RootNamespace>DigitalLibrary.Ui.WebUI.Test</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{C3D5C2B1-50D9-438A-A2A3-ABC83AA7F07F}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,6 +26,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
         <PackageReference Include="Moq" Version="4.16.0"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>

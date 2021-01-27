@@ -6,6 +6,7 @@
         <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{B1D78C19-D070-4D0F-A766-BD76F3A00253}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +23,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
