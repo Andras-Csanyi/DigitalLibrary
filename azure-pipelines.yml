@@ -34,6 +34,15 @@ steps:
         sonar.cs.xunit.reportsPaths=${Agent.TempDirectory}/**/XUnit.TestResults.xml
         sonar.cs.opencover.reportsPaths=${Agent.TempDirectory}/**/coverage.opencover.xml
 
+  # - script: |
+  #     dotnet sonarscanner begin /o:andras-csanyi
+  #                               /k:Andras-Csanyi_DigitalLibrary 
+  #                               /n:Andras-Csanyi_DigitalLibrary
+  #                               /d:sonar.host.url=https://sonarcloud.io 
+  #                               /d:sonar.login=login 
+  #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.xml'
+  #                               /v:version=1.0
+
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
     inputs:
