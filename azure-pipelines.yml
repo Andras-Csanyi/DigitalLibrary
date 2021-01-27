@@ -20,7 +20,11 @@ pr:
 pool: 'contabo'
 
 steps:
-
+  - script: |
+      dotnet tool uninstall --global dotnet-sonarscanner
+      dotnet tool install --global dotnet-sonarscanner
+    displayName: 'Install sonar'
+  
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud'
@@ -99,10 +103,7 @@ steps:
     inputs:
       pollingTimeoutSec: '300'
 
-  # - script: |
-  #     dotnet tool uninstall --global dotnet-sonarscanner
-  #     dotnet tool install --global dotnet-sonarscanner
-  #   displayName: 'Install sonar'
+  
 
   # - script: |
   #     dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
