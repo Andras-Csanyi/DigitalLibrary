@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Implementations</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Implementations</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{7BBE0FF5-0447-48C8-8391-A99C6AA8203E}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

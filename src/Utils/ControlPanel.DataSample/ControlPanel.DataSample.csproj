@@ -6,6 +6,7 @@
         <RootNamespace>DigitalLibrary.Utils.ControlPanel.DataSample</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{574A6235-12F1-4DEA-B993-6B450F8972CE}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

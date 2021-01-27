@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.MasterData.Web.Api.Client.Exceptions</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api.Client.Exceptions</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <ProjectGuid>{848A18AE-A77F-4343-BE3F-5A2C741B06E2}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

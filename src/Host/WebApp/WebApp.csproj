@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{380C1471-F4A5-4E2F-A5C6-82FD4ADB67F1}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

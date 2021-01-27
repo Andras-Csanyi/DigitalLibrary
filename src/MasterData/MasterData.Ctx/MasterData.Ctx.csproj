@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.MasterData.Ctx</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Ctx</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{A834A504-DFA8-4FE8-BB4D-4A95A2BCF2B7}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">

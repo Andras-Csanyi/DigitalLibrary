@@ -6,6 +6,7 @@
         <AssemblyName>SayusiAndo.DigitalLibrary.WebUi.FAST.Components</AssemblyName>
         <LangVersion>default</LangVersion>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <ProjectGuid>{BF2AE79F-3CC1-40DF-B7AC-946906790CA1}</ProjectGuid>
     </PropertyGroup>
 
 

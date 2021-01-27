@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.MasterData.DomainModel</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.DomainModel</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{5503206E-4EDB-431F-8F78-7A2D21E5C497}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>

@@ -7,6 +7,7 @@
         <RootNamespace>DigitalLibrary.MasterData.Validators.Test</RootNamespace>
         <LangVersion>default</LangVersion>
         <IsPackable>false</IsPackable>
+        <ProjectGuid>{71615C90-4038-43F1-A63E-627AF0DB232F}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,6 +22,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>

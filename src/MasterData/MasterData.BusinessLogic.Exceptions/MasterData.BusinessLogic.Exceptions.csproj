@@ -6,6 +6,7 @@
         <LangVersion>default</LangVersion>
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Exceptions</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Exceptions</RootNamespace>
+        <ProjectGuid>{7FB561C7-BE2C-4F3D-85D4-33204C781479}</ProjectGuid>
     </PropertyGroup>
 
 

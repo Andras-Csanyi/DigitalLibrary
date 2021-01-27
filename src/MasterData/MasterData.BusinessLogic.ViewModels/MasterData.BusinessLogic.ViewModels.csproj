@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.ViewModels</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.ViewModels</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{637C6F6D-DF9A-4348-BFD3-F5D913B8C555}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

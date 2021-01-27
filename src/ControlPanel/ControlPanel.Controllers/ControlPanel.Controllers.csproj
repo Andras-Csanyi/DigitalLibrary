@@ -5,6 +5,7 @@
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>DigitalLibrary.ControlPanel.Controllers</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.Controllers</RootNamespace>
+        <ProjectGuid>{D984C863-24CA-4BB9-BB41-95754AF95BCE}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

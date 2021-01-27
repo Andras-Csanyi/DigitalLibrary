@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.Utils.MasterDataTestHelper</AssemblyName>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{0F44CEFA-2664-40DC-BDD5-8981B700028E}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

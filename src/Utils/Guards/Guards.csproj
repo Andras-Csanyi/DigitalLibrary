@@ -6,6 +6,7 @@
         <RootNamespace>DigitalLibrary.Utils.Guards</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{4F6B92D5-79E7-491C-8355-27940546497E}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>

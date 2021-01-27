@@ -11,6 +11,7 @@
         <RootNamespace>DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests</RootNamespace>
 
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{22954E20-1ECE-4576-A07C-3CD98B1E3BB9}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,6 +28,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
