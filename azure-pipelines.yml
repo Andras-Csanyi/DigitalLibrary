@@ -31,7 +31,7 @@ steps:
       cliSources: '.'
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
-        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/*.trx
+        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
         sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
   # - script: |
@@ -81,8 +81,6 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
         --configuration Debug \
-        --logger trx \
-        --results-directory $(Agent.TempDirectory) \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
@@ -92,8 +90,8 @@ steps:
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
     inputs:
-      testResultsFormat: VSTest
-      testResultsFiles: "$(Agent.TempDirectory)/**.*trx"
+      testResultsFormat: 'XUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/**.*trx'
       mergeTestResults: true
     condition: succeededOrFailed()
 
