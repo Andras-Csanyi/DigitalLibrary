@@ -46,7 +46,6 @@ steps:
   - script: |
       dotnet tool uninstall --global dotnet-sonarscanner
       dotnet tool install --global dotnet-sonarscanner
-      dotnet-sonarscanner /h
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
