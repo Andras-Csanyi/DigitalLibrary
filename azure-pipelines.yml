@@ -31,7 +31,7 @@ steps:
       cliSources: '.'
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
-        sonar.cs.xunit.reportsPaths=${Agent.TempDirectory}/**/*.trx
+        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/*.trx
         sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
   # - script: |
@@ -80,7 +80,9 @@ steps:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
-        --configuration Debug
+        --configuration Debug \
+        --logger trx \
+        --results-directory $(Agent.TempDirectory) \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
