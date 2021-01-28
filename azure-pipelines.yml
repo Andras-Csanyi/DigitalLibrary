@@ -43,6 +43,11 @@ steps:
   #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.xml'
   #                               /v:version=1.0
 
+  - script: |
+      dotnet tool remove --global dotnet-sonarscanner
+      dotnet tool install --global dotnet-sonarscanner
+      dotnet-sonarscanner /h
+
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
     inputs:
