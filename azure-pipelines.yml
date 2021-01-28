@@ -43,9 +43,9 @@ steps:
   #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.xml'
   #                               /v:version=1.0
 
-  - script: |
-      dotnet tool uninstall --global dotnet-sonarscanner
-      dotnet tool install --global dotnet-sonarscanner
+  # - script: |
+  #     dotnet tool uninstall --global dotnet-sonarscanner
+  #     dotnet tool install --global dotnet-sonarscanner
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
@@ -109,7 +109,7 @@ steps:
   # - task: SonarCloudAnalyze@1
 
   - script: |
-      dotnet-sonarscanner end
+      dotnet sonarscanner end
 
   - task: SonarCloudPublish@1
     inputs:
