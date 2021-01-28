@@ -50,6 +50,7 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
+      noCache: true
 
   - task: DotNetCoreCLI@2
     displayName: 'Building...'
@@ -58,16 +59,16 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: '-c Debug'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Testing - cobertura'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
-      arguments: "--no-build \
-        /p:CollectCoverage=true \
-        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-        /p:CoverletOutputFormat=cobertura"
-      publishTestResults: true
+  # - task: DotNetCoreCLI@2
+  #   displayName: 'Testing - cobertura'
+  #   inputs:
+  #     command: 'test'
+  #     projects: 'src/DigitalLibrary.sln'
+  #     arguments: "--no-build \
+  #       /p:CollectCoverage=true \
+  #       /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+  #       /p:CoverletOutputFormat=cobertura"
+  #     publishTestResults: true
 
   - task: DotNetCoreCLI@2
     displayName: 'Testing - opencover'
@@ -75,12 +76,12 @@ steps:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
+        --configuration Debug
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
         /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
         /p:MergeWith=$(Agent.TempDirectory)/coverage/"
-      publishTestResults: true
 
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
@@ -90,16 +91,16 @@ steps:
       mergeTestResults: true
     condition: succeededOrFailed()
 
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Coverage...'
-    inputs:
-      codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
-      pathToSources: '$(System.DefaultWorkingDirectory)/src'
+  # - task: PublishCodeCoverageResults@1
+  #   displayName: 'Coverage...'
+  #   inputs:
+  #     codeCoverageTool: 'Cobertura'
+  #     summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
+  #     pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
-  - script: |
-      bash <(curl -s https://codecov.io/bash) -v
-    displayName: 'Uploading to Codecov.io'
+  # - script: |
+  #     bash <(curl -s https://codecov.io/bash) -v
+  #   displayName: 'Uploading to Codecov.io'
 
   - task: SonarCloudAnalyze@1
 
