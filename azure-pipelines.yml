@@ -109,7 +109,7 @@ steps:
   # - task: SonarCloudAnalyze@1
 
   - script: |
-      dotnet sonarscanner end
+      dotnet-sonarscanner end
 
   - task: SonarCloudPublish@1
     inputs:
