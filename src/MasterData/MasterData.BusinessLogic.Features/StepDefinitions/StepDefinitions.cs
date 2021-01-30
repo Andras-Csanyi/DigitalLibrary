@@ -16,7 +16,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -133,18 +132,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
             IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic =
                 new MasterDataDimensionStructureNodeBusinessLogic(_dbContextOptions, masterDataValidators);
-            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic =
-                    new MasterDataSourceFormatDimensionStructureNodeBusinessLogic(_dbContextOptions,
-                        masterDataValidators);
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(
                 masterDataDimensionBusinessLogic,
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic,
-                masterDataDimensionStructureNodeBusinessLogic,
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic);
+                masterDataDimensionStructureNodeBusinessLogic);
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {

@@ -34,9 +34,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
                 masterDataDimensionStructureBusinessLogic,
             IMasterDataDimensionValueBusinessLogic masterDataDimensionValueBusinessLogic,
             IMasterDataSourceFormatBusinessLogic masterDataSourceFormatBusinessLogic,
-            IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic,
-            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic)
+            IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic)
         {
             Check.IsNotNull(masterDataDimensionBusinessLogic);
             MasterDataDimensionBusinessLogic = masterDataDimensionBusinessLogic;
@@ -52,10 +50,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
 
             Check.IsNotNull(masterDataDimensionStructureNodeBusinessLogic);
             MasterDataDimensionStructureNodeBusinessLogic = masterDataDimensionStructureNodeBusinessLogic;
-
-            Check.IsNotNull(masterDataSourceFormatDimensionStructureNodeBusinessLogic);
-            MasterDataSourceFormatDimensionStructureNodeBusinessLogic =
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic;
         }
 
         /// <inheritdoc />
@@ -76,9 +70,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations
             get;
             set;
         }
-
-        /// <inheritdoc />
-        public IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
-            MasterDataSourceFormatDimensionStructureNodeBusinessLogic { get; set; }
     }
 }
