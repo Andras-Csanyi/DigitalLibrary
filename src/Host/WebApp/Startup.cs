@@ -19,7 +19,6 @@ namespace WebApp
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Controllers;
     using DigitalLibrary.MasterData.Ctx;
@@ -139,8 +138,6 @@ namespace WebApp
                 MasterDataDimensionStructureNodeBusinessLogic>();
             services.AddTransient<IMasterDataDimensionValueBusinessLogic, MasterDataDimensionValueBusinessLogic>();
             services.AddTransient<IMasterDataSourceFormatBusinessLogic, MasterDataSourceFormatBusinessLogic>();
-            services.AddTransient<IMasterDataSourceFormatDimensionStructureNodeBusinessLogic,
-                MasterDataSourceFormatDimensionStructureNodeBusinessLogic>();
 
             // Validators
             services.AddTransient<IMasterDataValidators, MasterDataValidators>();

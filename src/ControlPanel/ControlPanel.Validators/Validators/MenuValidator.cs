@@ -5,12 +5,18 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using FluentValidation;
 
+    [ExcludeFromCodeCoverage]
     public class MenuValidator : AbstractValidator<Menu>
     {
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="MenuValidator" /> class.
+        /// </summary>
         public MenuValidator()
         {
             RuleSet(ValidatorRulesets.AddNew, () =>

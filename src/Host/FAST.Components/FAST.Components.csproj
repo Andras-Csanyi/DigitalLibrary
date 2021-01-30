@@ -6,14 +6,15 @@
         <AssemblyName>SayusiAndo.DigitalLibrary.WebUi.FAST.Components</AssemblyName>
         <LangVersion>default</LangVersion>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <ProjectGuid>{BF2AE79F-3CC1-40DF-B7AC-946906790CA1}</ProjectGuid>
     </PropertyGroup>
 
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

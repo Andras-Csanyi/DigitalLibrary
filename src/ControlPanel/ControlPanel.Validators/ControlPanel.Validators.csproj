@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.ControlPanel.Validators</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.Validators</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{795EA0A4-55F1-4633-807E-BBBFAAB877DD}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,9 +15,9 @@
 
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="9.3.0"/>
+        <PackageReference Include="FluentValidation" Version="9.4.0"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

@@ -1,5 +1,8 @@
 namespace DiLibHttpClientResponseObjects
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public class DilibHttpClientResponse<T>
     {
         public string ExceptionMessage { get; set; }

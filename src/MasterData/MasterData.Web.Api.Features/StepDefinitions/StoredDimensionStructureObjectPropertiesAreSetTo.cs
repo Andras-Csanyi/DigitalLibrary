@@ -1,5 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
@@ -27,6 +29,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class GivenStoredDimensionStructureObjectPropertiesAreSetToEntity : KeyResultKeyEntity
     {
         public string Name { get; set; }

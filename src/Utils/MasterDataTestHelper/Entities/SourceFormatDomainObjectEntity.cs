@@ -1,7 +1,10 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
+    [ExcludeFromCodeCoverage]
     public class SourceFormatDomainObjectEntity : ISourceFormatDomainObject
     {
         public string Desc { get; set; }

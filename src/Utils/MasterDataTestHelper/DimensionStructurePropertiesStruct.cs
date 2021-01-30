@@ -5,6 +5,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
     /// <summary>
     ///     Properties of <see cref="DimensionStructure" /> object.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "CA1815", Justification = "Justified.")]
     public struct DimensionStructurePropertiesStruct
     {

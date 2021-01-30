@@ -23,15 +23,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     [SuppressMessage("ReSharper", "CA2211", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "TooManyArguments", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
+    [SuppressMessage("ReSharper", "SA1201", Justification = "tmp")]
     public class MenuBusinessLogic_AddAsync_Should : TestBase
     {
+        private const string TestInfo = nameof(MenuBusinessLogic_AddAsync_Should);
+
         public MenuBusinessLogic_AddAsync_Should()
             : base(TestInfo)
         {
         }
 
-        private const string TestInfo = nameof(MenuBusinessLogic_AddAsync_Should);
-
+        [SuppressMessage("ReSharper", "SA1401", Justification = "tmp")]
         public static IEnumerable<object[]> ThrowValidationExceptionWhenInputIsInvalid = new List<object[]>
         {
             new object[] { 1, "asd", "asd", 0, 1, "asd" },

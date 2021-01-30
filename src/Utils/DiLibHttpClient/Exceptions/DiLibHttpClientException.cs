@@ -8,6 +8,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient.Exceptions
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class DiLibHttpClientException : Exception
     {

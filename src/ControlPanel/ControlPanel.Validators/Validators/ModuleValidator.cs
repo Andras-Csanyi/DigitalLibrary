@@ -5,12 +5,18 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.ControlPanel.DomainModel.Entities;
 
     using FluentValidation;
 
+    [ExcludeFromCodeCoverage]
     public class ModuleValidator : AbstractValidator<Module>
     {
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ModuleValidator" /> class.
+        /// </summary>
         public ModuleValidator()
         {
             RuleSet(ValidatorRulesets.AddNew, () =>

@@ -8,18 +8,18 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
     using DiLibHttpClientResponseObjects;
 
     /// <summary>
-    /// Http Client interface for <see cref="IDimensionStructureNode"/> objects.
+    ///     Http Client interface for <see cref="IDimensionStructureNode" /> objects.
     /// </summary>
     public interface IDimensionStructureNodeHttpClient
     {
         /// <summary>
-        /// Calls Add method of <see cref="DimensionStructureNode"/> REST Api and POSTs
-        /// the payload.
+        ///     Calls Add method of <see cref="DimensionStructureNode" /> REST Api and POSTs
+        ///     the payload.
         /// </summary>
         /// <param name="dimensionStructureNode">
-        /// The object contains the properties of the new object.
+        ///     The object contains the properties of the new object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}" /> which contains a <see cref="DilibHttpClientResponse{T}" /> enclosing
         ///     the result.

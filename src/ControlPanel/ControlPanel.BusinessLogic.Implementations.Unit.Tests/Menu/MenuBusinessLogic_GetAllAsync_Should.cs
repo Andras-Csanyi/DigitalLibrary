@@ -17,14 +17,15 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests.M
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedVariable", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MenuBusinessLogic_GetAllAsync_Should : TestBase
     {
+        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
+
         public MenuBusinessLogic_GetAllAsync_Should()
             : base(TestInfo)
         {
         }
-
-        private const string TestInfo = nameof(MenuBusinessLogic_GetAllAsync_Should);
 
         [Fact]
         [Trait("Category", "Unit")]

@@ -10,7 +10,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.MasterData.WebApi.Client.DimensionStructure;
     using DigitalLibrary.MasterData.WebApi.Client.DimensionStructureNode;
     using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
-    using DigitalLibrary.MasterData.WebApi.Client.SourceFormatDimensionStructureNode;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
@@ -70,15 +69,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                 diLibHttpClient);
             IDimensionStructureHttpClient dimensionStructureHttpClient = new DimensionStructureHttpClientHttpClient(
                 diLibHttpClient);
-            ISourceFormatDimensionStructureNodeHttpClient sourceFormatDimensionStructureNodeHttpClient =
-                new SourceFormatDimensionStructureNodeHttpClient(diLibHttpClient);
             IDimensionStructureNodeHttpClient dimensionStructureNodeHttpClient =
                 new DimensionStructureNodeHttpClient(diLibHttpClient);
 
             _masterDataHttpClient = new MasterDataHttpClient(
                 sourceFormatHttpClientHttpClient,
                 dimensionStructureHttpClient,
-                sourceFormatDimensionStructureNodeHttpClient,
                 dimensionStructureNodeHttpClient);
         }
     }

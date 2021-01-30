@@ -6,6 +6,7 @@
         <LangVersion>default</LangVersion>
         <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Implementations</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Implementations</RootNamespace>
+        <ProjectGuid>{77D0FF67-F884-42C1-A4CD-8A8EC21BF52A}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

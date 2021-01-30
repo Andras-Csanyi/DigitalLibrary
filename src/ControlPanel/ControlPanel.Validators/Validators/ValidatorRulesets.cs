@@ -5,6 +5,9 @@
 
 namespace DigitalLibrary.ControlPanel.Validators
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public static class ValidatorRulesets
     {
         public const string AddNew = "AddNew";

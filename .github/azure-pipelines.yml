@@ -4,54 +4,124 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
- branches:
-  include:
-    - master
-  exclude:
-    - doc/*
- paths:
-     exclude:
-         - src/README.md
-         - src/doc/*
+  branches:
+    include:
+      - master
+    exclude:
+      - doc/*
+  paths:
+    exclude:
+      - src/README.md
+      - src/doc/*
 
 pr:
-- master
+  - master
 
 pool: 'contabo'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet restore command'
-  inputs:
-    command: 'restore'
-    projects: 'src/DigitalLibrary.sln'
-    feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build command'
-  inputs:
-    command: 'build'
-    projects: 'src/DigitalLibrary.sln'
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'sonarcloud'
+      organization: 'andras-csanyi'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
+      cliProjectName: 'Andras-Csanyi_DigitalLibrary'
+      cliSources: '.'
+      extraProperties: |
+        sonar.exclusions=**/obj/**,**/*.dll
+        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
+        sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test command'
-  inputs:
-    command: 'test'
-    projects: 'src/DigitalLibrary.sln'
-    #arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/'
-    arguments: '/p:CollectCoverage=true 
-                /p:CoverletOutputFormat=cobertura 
-                /p:ExcludeByAttribute=ExcludeFromCodeCoverage'
-    publishTestResults: true
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
-    pathToSources: '$(System.DefaultWorkingDirectory)/src/'
-    failIfCoverageEmpty: true
+  # - script: |
+  #     dotnet sonarscanner begin /o:andras-csanyi
+  #                               /k:Andras-Csanyi_DigitalLibrary 
+  #                               /n:Andras-Csanyi_DigitalLibrary
+  #                               /d:sonar.host.url=https://sonarcloud.io 
+  #                               /d:sonar.login=login 
+  #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.xml'
+  #                               /v:version=1.0
 
-- script: |
-    bash <(curl -s https://codecov.io/bash) -v
-  displayName: 'Upload to Codecov.io'
+  # - script: |
+  #     dotnet tool uninstall --global dotnet-sonarscanner
+  #     dotnet tool install --global dotnet-sonarscanner
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Restoring...'
+    inputs:
+      command: 'restore'
+      projects: 'src/DigitalLibrary.sln'
+      feedsToUse: 'select'
+      verbosityRestore: 'Normal'
+      noCache: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Building...'
+    inputs:
+      command: 'build'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '-c Debug'
+
+  # - task: DotNetCoreCLI@2
+  #   displayName: 'Testing - cobertura'
+  #   inputs:
+  #     command: 'test'
+  #     projects: 'src/DigitalLibrary.sln'
+  #     arguments: "--no-build \
+  #       /p:CollectCoverage=true \
+  #       /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+  #       /p:CoverletOutputFormat=cobertura"
+  #     publishTestResults: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing - opencover'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: "--no-build \
+        --configuration Debug \
+        /p:CollectCoverage=true \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+        /p:CoverletOutputFormat=opencover \
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
+
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    inputs:
+      testResultsFormat: 'XUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/**.*trx'
+      mergeTestResults: true
+    condition: succeededOrFailed()
+
+  # - task: PublishCodeCoverageResults@1
+  #   displayName: 'Coverage...'
+  #   inputs:
+  #     codeCoverageTool: 'Cobertura'
+  #     summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
+  #     pathToSources: '$(System.DefaultWorkingDirectory)/src'
+
+  # - script: |
+  #     bash <(curl -s https://codecov.io/bash) -v
+  #   displayName: 'Uploading to Codecov.io'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
+
+  
+
+  # - script: |
+  #     dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
+  #   displayName: 'Sonar begin phase'
+
+  # - script: |
+  #     dotnet build 'src/DigitalLibrary.sln'
+  #   displayName: 'Sonar build phase'
+
+  # - script: |
+  #     dotnet sonarscanner end
+  #   displayName: 'Sonar end phase'

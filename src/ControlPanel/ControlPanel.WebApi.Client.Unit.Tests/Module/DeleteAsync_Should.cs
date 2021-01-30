@@ -31,8 +31,7 @@ namespace DigitalLibrary.ControlPanel.WebApi.Client.Unit.Tests.Module
             Func<Task> action = async () =>
             {
                 await ControlPanelWebApiClient
-                   .DeleteModuleAsync(null).ConfigureAwait
-                        (false);
+                   .DeleteModuleAsync(null).ConfigureAwait(false);
             };
 
             // Assert

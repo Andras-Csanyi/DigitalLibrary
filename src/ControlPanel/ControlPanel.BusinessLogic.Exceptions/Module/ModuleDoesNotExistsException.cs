@@ -6,16 +6,14 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ModuleDoesNotExistsException : Exception
     {
         public ModuleDoesNotExistsException()
-        {
-        }
-
-        protected ModuleDoesNotExistsException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -26,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 
         public ModuleDoesNotExistsException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ModuleDoesNotExistsException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

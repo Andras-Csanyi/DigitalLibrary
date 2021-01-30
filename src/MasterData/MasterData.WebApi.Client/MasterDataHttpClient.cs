@@ -18,18 +18,17 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         ///     Instance of <see cref="ISourceFormatHttpClient" /> client.
         /// </param>
         /// <param name="dimensionStructureHttpClient">
-        /// Instance of <see cref="IDimensionStructureHttpClient"/> client.
+        ///     Instance of <see cref="IDimensionStructureHttpClient" /> client.
         /// </param>
         /// <param name="sourceFormatDimensionStructureNodeHttpClient">
-        /// Instance of <see cref="ISourceFormatDimensionStructureNodeHttpClient"/> client.
+        ///     Instance of <see cref="ISourceFormatDimensionStructureNodeHttpClient" /> client.
         /// </param>
         /// <param name="dimensionStructureNodeHttpClient">
-        /// Instance of <see cref="IDimensionStructureNodeHttpClient"/> client.
+        ///     Instance of <see cref="IDimensionStructureNodeHttpClient" /> client.
         /// </param>
         public MasterDataHttpClient(
             ISourceFormatHttpClient sourceFormatHttpClientClient,
             IDimensionStructureHttpClient dimensionStructureHttpClient,
-            ISourceFormatDimensionStructureNodeHttpClient sourceFormatDimensionStructureNodeHttpClient,
             IDimensionStructureNodeHttpClient dimensionStructureNodeHttpClient)
         {
             Check.IsNotNull(sourceFormatHttpClientClient);
@@ -37,9 +36,6 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
             Check.IsNotNull(dimensionStructureHttpClient);
             DimensionStructureHttpClient = dimensionStructureHttpClient;
-
-            Check.IsNotNull(sourceFormatDimensionStructureNodeHttpClient);
-            SourceFormatDimensionStructureNodeHttpClient = sourceFormatDimensionStructureNodeHttpClient;
 
             Check.IsNotNull(dimensionStructureNodeHttpClient);
             DimensionStructureNodeHttpClient = dimensionStructureNodeHttpClient;
@@ -51,10 +47,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         /// <inheritdoc />
         public IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
 
-        /// <inheritdoc/>
-        public ISourceFormatDimensionStructureNodeHttpClient SourceFormatDimensionStructureNodeHttpClient { get; set; }
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IDimensionStructureNodeHttpClient DimensionStructureNodeHttpClient { get; set; }
     }
 }

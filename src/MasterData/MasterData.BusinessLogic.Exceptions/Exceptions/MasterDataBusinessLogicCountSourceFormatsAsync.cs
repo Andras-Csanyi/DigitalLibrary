@@ -10,16 +10,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
     using System.Runtime.Serialization;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class MasterDataBusinessLogicCountSourceFormatsAsync : Exception
     {
         public MasterDataBusinessLogicCountSourceFormatsAsync()
-        {
-        }
-
-        protected MasterDataBusinessLogicCountSourceFormatsAsync(
-            SerializationInfo? info,
-            StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -30,6 +24,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Exceptions
 
         public MasterDataBusinessLogicCountSourceFormatsAsync(string? message, Exception? innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MasterDataBusinessLogicCountSourceFormatsAsync(
+            SerializationInfo? info,
+            StreamingContext context)
+            : base(info, context)
         {
         }
     }

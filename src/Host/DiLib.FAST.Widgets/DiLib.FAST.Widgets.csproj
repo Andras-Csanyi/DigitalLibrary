@@ -5,14 +5,15 @@
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <RazorLangVersion>3.0</RazorLangVersion>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{4FC285A0-3609-432A-91FA-8F69D5E3A9C6}</ProjectGuid>
     </PropertyGroup>
 
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

@@ -268,3 +268,7 @@ global.json
 *.feature.cs
 
 *coverage.cobertura.xml
+*coverage.opencover.xml
+**/coverage
+
+.sonarqube

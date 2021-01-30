@@ -3,12 +3,11 @@
 //  Licensed under MIT.
 // </copyright>
 
-[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
@@ -16,7 +15,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
-    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormatDimensionStructureNode;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
@@ -40,14 +38,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "CA1707", Justification = "Reviewed.")]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Covered.")]
     [Binding]
     public partial class StepDefinitions : IDisposable
     {
         private readonly ITestOutputHelper _outputHelper;
 
-        private readonly string _testInfo = nameof(StepDefinitions);
-
         private DbContextOptions<MasterDataContext> _dbContextOptions;
+
+        private Random rnd = new Random();
 
         protected IMasterDataBusinessLogic _masterDataBusinessLogic;
 
@@ -62,6 +61,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
         protected const string SUCCESS = "SUCCESS";
 
         protected const string FAIL = "FAIL";
+
+        private string sqlLiteFileNameWithPath;
 
         protected StepDefinitions(
             ITestOutputHelper testOutputHelper,
@@ -81,6 +82,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
             (_serviceProvider as IDisposable)?.Dispose();
         }
 
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            File.Delete(sqlLiteFileNameWithPath);
+        }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -89,8 +96,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                .AddEntityFrameworkSqlite()
                .BuildServiceProvider();
 
+            string path = Directory.GetCurrentDirectory();
+            string fileName = $"sqlite_{rnd.Next(1, 10000000)}.sqlite";
+            sqlLiteFileNameWithPath = $"{path}/{fileName}";
+
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
-               .UseSqlite($"Data Source = {_testInfo}.sqlite")
+               .UseSqlite($"Data Source = {sqlLiteFileNameWithPath}")
 
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
@@ -132,18 +143,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
                 new MasterDataSourceFormatBusinessLogic(_dbContextOptions, masterDataValidators);
             IMasterDataDimensionStructureNodeBusinessLogic masterDataDimensionStructureNodeBusinessLogic =
                 new MasterDataDimensionStructureNodeBusinessLogic(_dbContextOptions, masterDataValidators);
-            IMasterDataSourceFormatDimensionStructureNodeBusinessLogic
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic =
-                    new MasterDataSourceFormatDimensionStructureNodeBusinessLogic(_dbContextOptions,
-                        masterDataValidators);
 
             _masterDataBusinessLogic = new MasterDataBusinessLogic(
                 masterDataDimensionBusinessLogic,
                 masterDataDimensionStructureBusinessLogic,
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic,
-                masterDataDimensionStructureNodeBusinessLogic,
-                masterDataSourceFormatDimensionStructureNodeBusinessLogic);
+                masterDataDimensionStructureNodeBusinessLogic);
 
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
             {

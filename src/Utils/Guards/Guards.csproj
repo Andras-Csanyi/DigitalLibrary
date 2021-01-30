@@ -6,10 +6,11 @@
         <RootNamespace>DigitalLibrary.Utils.Guards</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{4F6B92D5-79E7-491C-8355-27940546497E}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

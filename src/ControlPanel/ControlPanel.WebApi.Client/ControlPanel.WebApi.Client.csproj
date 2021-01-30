@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.ControlPanel.WebApi.Client</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.WebApi.Client</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{15CE652C-6845-4388-873E-928B41C76F73}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,7 +16,7 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

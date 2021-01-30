@@ -6,15 +6,16 @@
         <RootNamespace>DigitalLibrary.ControlPanel.Ctx</RootNamespace>
         <AssemblyName>DigitalLibrary.ControlPanel.Ctx</AssemblyName>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{7A09EA62-79F8-46B7-9D48-54CD1CF40126}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>

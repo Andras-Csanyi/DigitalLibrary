@@ -1,5 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
@@ -23,6 +25,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class ThenDimensionStructureIdPropertyIsNotEntity
     {
         public string Key { get; set; }

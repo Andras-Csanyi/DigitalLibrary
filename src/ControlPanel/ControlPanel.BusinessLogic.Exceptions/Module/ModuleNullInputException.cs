@@ -6,16 +6,14 @@
 namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "tmp")]
     public class ModuleNullInputException : Exception
     {
         public ModuleNullInputException()
-        {
-        }
-
-        protected ModuleNullInputException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
@@ -26,6 +24,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Exceptions.Module
 
         public ModuleNullInputException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected ModuleNullInputException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

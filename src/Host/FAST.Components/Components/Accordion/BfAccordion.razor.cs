@@ -12,14 +12,14 @@ namespace FAST.Components.Components.Accordion
 
     /// <summary>
     ///     BfAccordion component
-    ///     It is the top most element of a accordion component
+    ///     It is the top most element of a accordion component.
     /// </summary>
     public partial class BfAccordion
     {
         private string _expandModel = BfComponentApis.BfAccordion.ExpandModeValues.Multi;
 
         /// <summary>
-        ///     The content of the component
+        ///     The content of the component.
         /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }

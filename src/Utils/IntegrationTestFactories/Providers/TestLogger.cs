@@ -1,6 +1,7 @@
 namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
@@ -8,6 +9,8 @@ namespace DigitalLibrary.Utils.IntegrationTestFactories.Providers
     using Xunit.Abstractions;
 
     // https://stackoverflow.com/questions/61673470/getting-ef-core-to-output-sql-statements-to-xunits-itestoutputhelper
+
+    [ExcludeFromCodeCoverage]
     public class TestLogger : ILogger
     {
         private string _categoryName;

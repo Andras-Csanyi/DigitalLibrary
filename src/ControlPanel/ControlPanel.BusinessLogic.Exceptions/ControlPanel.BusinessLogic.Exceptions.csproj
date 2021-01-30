@@ -6,11 +6,12 @@
         <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Exceptions</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Exceptions</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{D29E60B1-66FC-48B5-B3A1-B0133B79A06B}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

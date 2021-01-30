@@ -22,11 +22,11 @@ namespace DigitalLibrary.ControlPanel.Controllers
     [Route(ControlPanelWebApi.Module.Base)]
     public class ModuleController : ControllerBase
     {
-        private readonly IModuleBusinessLogic ModuleBusinessLogic;
+        private readonly IModuleBusinessLogic _moduleBusinessLogic;
 
         public ModuleController(IModuleBusinessLogic moduleBusinessLogic)
         {
-            ModuleBusinessLogic = moduleBusinessLogic;
+            _moduleBusinessLogic = moduleBusinessLogic;
         }
 
         [HttpPost]
@@ -44,7 +44,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
                     throw new ModuleControllerArgumentNullException(msg);
                 }
 
-                Module result = await ModuleBusinessLogic.AddAsync(module).ConfigureAwait(false);
+                Module result = await _moduleBusinessLogic.AddAsync(module).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -68,7 +68,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
                     throw new ModuleControllerArgumentNullException(msg);
                 }
 
-                await ModuleBusinessLogic.DeleteAsync(module).ConfigureAwait(false);
+                await _moduleBusinessLogic.DeleteAsync(module).ConfigureAwait(false);
                 return Ok();
             }
             catch (Exception e)
@@ -92,7 +92,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
                     throw new ModuleControllerArgumentNullException(msg);
                 }
 
-                Module result = await ModuleBusinessLogic.FindAsync(module).ConfigureAwait(false);
+                Module result = await _moduleBusinessLogic.FindAsync(module).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -110,7 +110,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
         {
             try
             {
-                List<Module> result = await ModuleBusinessLogic.GetAllActiveAsync().ConfigureAwait(false);
+                List<Module> result = await _moduleBusinessLogic.GetAllActiveAsync().ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -128,7 +128,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
         {
             try
             {
-                List<Module> result = await ModuleBusinessLogic.GetAllAsync().ConfigureAwait(false);
+                List<Module> result = await _moduleBusinessLogic.GetAllAsync().ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)
@@ -152,7 +152,7 @@ namespace DigitalLibrary.ControlPanel.Controllers
                     throw new ModuleControllerArgumentNullException(msg);
                 }
 
-                Module result = await ModuleBusinessLogic.ModifyAsync(module).ConfigureAwait(false);
+                Module result = await _moduleBusinessLogic.ModifyAsync(module).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (Exception e)

@@ -5,6 +5,7 @@
         <AssemblyName>DigitalLibrary.MasterData.Web.Api</AssemblyName>
         <RootNamespace>DigitalLibrary.MasterData.Web.Api</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{D191C42A-A2A1-4637-9113-AE03AB6FCDDE}</ProjectGuid>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <DocumentationFile>bin\Release\netstandard2.0\DigitalLibrary.MasterData.Api.xml</DocumentationFile>
@@ -14,7 +15,7 @@
     </PropertyGroup>
     <ItemGroup>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

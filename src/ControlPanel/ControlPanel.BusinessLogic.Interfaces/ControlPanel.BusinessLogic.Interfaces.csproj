@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Interfaces</AssemblyName>
         <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Interfaces</RootNamespace>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{6F060215-62D2-48A9-8EE5-D4BD24E4E0EA}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,7 +16,7 @@
 
     <ItemGroup>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

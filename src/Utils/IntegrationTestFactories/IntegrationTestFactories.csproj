@@ -7,18 +7,19 @@
         <RootNamespace>DigitalLibrary.Utils.IntegrationTestFactories</RootNamespace>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{CAC50D82-6F3B-4F5C-9BAE-A77BA55C7097}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.2"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>

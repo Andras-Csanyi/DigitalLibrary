@@ -7,7 +7,6 @@
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
-    using DigitalLibrary.Utils.Guards;
 
     using FluentValidation;
 
@@ -16,7 +15,7 @@
 
     public partial class MasterDataDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<DimensionStructureNode> CreateRootNodeAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)
@@ -46,7 +45,7 @@
                         if (sourceFormatResult == null)
                         {
                             string msg = $"There is no {nameof(SourceFormat)} entity " +
-                                $"with id: {sourceFormat.Id}";
+                                         $"with id: {sourceFormat.Id}";
                             throw new MasterDataDimensionStructureNodeBusinessLogicException(msg);
                         }
 
@@ -70,8 +69,8 @@
                         await transaction.RollbackAsync(cancellationToken).ConfigureAwait(false);
 
                         string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
-                            $"{nameof(CreateRootNodeAsync)} operation failed. " +
-                            $"For further information see inner exception!";
+                                     $"{nameof(CreateRootNodeAsync)} operation failed. " +
+                                     $"For further information see inner exception!";
                         throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
                     }
                 }

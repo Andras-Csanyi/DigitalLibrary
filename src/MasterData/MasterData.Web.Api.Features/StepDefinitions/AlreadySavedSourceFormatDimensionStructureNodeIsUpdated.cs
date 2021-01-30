@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -41,6 +42,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class AlreadySavedSourceFormatDimensionStructureNodeIsUpdatedEntity
     {
         public string Key { get; set; }

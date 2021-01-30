@@ -4,32 +4,30 @@
         <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
-
         <AssemblyName>DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests</AssemblyName>
-
         <RootNamespace>DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests</RootNamespace>
-
         <OutputType>Library</OutputType>
-
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{970425E3-6270-4074-91D8-3A964A1BF91A}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Codecov" Version="1.12.3"/>
-        <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+        <PackageReference Include="Codecov" Version="1.12.4"/>
+        <PackageReference Include="coverlet.msbuild" Version="3.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="OpenCover" Version="4.7.922"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0"/>

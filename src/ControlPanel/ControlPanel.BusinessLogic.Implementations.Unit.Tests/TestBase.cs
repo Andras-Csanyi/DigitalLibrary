@@ -22,16 +22,18 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
         public static readonly ILoggerFactory LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory
            .Create(builder => { builder.AddDebug(); });
 
-        protected MenuBusinessLogic MenuBusinessLogic;
+        [SuppressMessage("ReSharper", "SA1401", Justification = "tmp")]
+        protected readonly MenuBusinessLogic MenuBusinessLogic;
 
-        protected ModuleBusinessLogic ModuleBusinessLogic;
+        [SuppressMessage("ReSharper", "SA1401", Justification = "tmp")]
+        protected readonly ModuleBusinessLogic ModuleBusinessLogic;
 
-        public TestBase(string TestInfo)
+        public TestBase(string testInfo)
         {
-            string msg = $"{nameof(TestInfo)} cannot be empty.";
-            Check.NotNullOrEmptyOrWhitespace(TestInfo);
+            string msg = $"{nameof(testInfo)} cannot be empty.";
+            Check.NotNullOrEmptyOrWhitespace(testInfo, msg);
 
-            string fileName = $"Data Source={TestInfo}.sqlite";
+            string fileName = $"Data Source={testInfo}.sqlite";
 
             MenuValidator menuValidator = new MenuValidator();
             ModuleValidator moduleValidator = new ModuleValidator();

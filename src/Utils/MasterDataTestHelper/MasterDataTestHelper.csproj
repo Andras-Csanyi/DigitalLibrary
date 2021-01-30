@@ -6,6 +6,7 @@
         <AssemblyName>DigitalLibrary.Utils.MasterDataTestHelper</AssemblyName>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <LangVersion>default</LangVersion>
+        <ProjectGuid>{0F44CEFA-2664-40DC-BDD5-8981B700028E}</ProjectGuid>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
