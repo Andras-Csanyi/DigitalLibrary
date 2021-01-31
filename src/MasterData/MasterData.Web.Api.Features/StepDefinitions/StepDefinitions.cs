@@ -1,8 +1,10 @@
-[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
+// [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 
 namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Net.Http;
 
     using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
@@ -14,8 +16,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
-
-    using Microsoft.AspNetCore.Mvc.Testing;
 
     using TechTalk.SpecFlow;
 
@@ -31,13 +31,17 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
     {
         private ScenarioContext _scenarioContext;
 
-        private readonly IMasterDataTestHelper _masterDataTestHelper;
+        private IMasterDataTestHelper _masterDataTestHelper;
 
         private readonly ITestOutputHelper _testOutputHelper;
 
-        protected readonly WebApplicationFactory<Startup> _host;
+        private IMasterDataHttpClient _masterDataHttpClient;
 
-        private readonly IMasterDataHttpClient _masterDataHttpClient;
+        private string _entityNameWithPath;
+
+        private Random rnd = new Random();
+
+        protected readonly WebApiFeatureTestApplicationFactory<Startup> _host;
 
         public StepDefinitions(
             ScenarioContext scenarioContext,
@@ -52,6 +56,15 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
 
             Check.IsNotNull(host);
             _host = host;
+        }
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            int random = rnd.Next(1, 10000000);
+            string directoryPath = Directory.GetCurrentDirectory();
+            _entityNameWithPath = $"{directoryPath}/master_data_integration_test_{random}.sql";
+            _host.EntityName = _entityNameWithPath;
 
             IStringHelper stringHelper = new StringHelper();
             ISourceFormatFactory sourceFormatFactory = new SourceFormatFactory(stringHelper);
@@ -76,6 +89,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.StepDefinitions
                 sourceFormatHttpClientHttpClient,
                 dimensionStructureHttpClient,
                 dimensionStructureNodeHttpClient);
+        }
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            File.Delete(_entityNameWithPath);
         }
     }
 }
