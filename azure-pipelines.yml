@@ -53,7 +53,6 @@ steps:
       command: 'restore'
       projects: 'src/DigitalLibrary.sln'
       feedsToUse: 'select'
-      verbosityRestore: 'Normal'
       noCache: true
 
   - task: DotNetCoreCLI@2
