@@ -1,4 +1,4 @@
-﻿Feature: DimensionstructureNode Business Logic - Delete Root DimensionStructureNode from SourceFormat
+﻿Feature: SourceFormat Business Logic - Delete Root DimensionStructureNode from SourceFormat
 
   As a Data Owner and Data Curator
   I need to be able to manage DimensionStructureNode trees

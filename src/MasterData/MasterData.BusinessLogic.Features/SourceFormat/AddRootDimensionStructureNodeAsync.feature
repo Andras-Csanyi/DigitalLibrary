@@ -1,4 +1,4 @@
-﻿Feature: DimensionstructureNode Business Logic - Add Root DimensionStructureNode to SourceFormat
+﻿Feature: SourceFormat Business Logic - Add Root DimensionStructureNode
 
   As a Data Owner and Data Curator
   I need to be able to build DimensionStructureNode trees
@@ -13,6 +13,11 @@
       | Desc      | sf-1        |
       | IsActive  | 1           |
       | ResultKey | sf-1-result |
+
+    And there is a saved DimensionStructureNode domain object
+      | Field     | Value  |
+      | IsActive  | 1      |
+      | ResultKey | dsnode |
 
     When root DimensionStructureNode is created for given SourceFormat
       | Field     | Value                |

@@ -85,7 +85,11 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
+        <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature">
+            <CodeBehindFile>DimensionStructureNode/DimensionStructureNode.AddAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature">
+            <CodeBehindFile>DimensionStructureNode/DimensionStructureNode.DeleteAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
     </ItemGroup>
 
@@ -116,6 +120,18 @@
         </Compile>
         <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
         </SpecFlowFeatureFiles>
+        <Compile Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
+            <DependentUpon>DimensionStructureNode.AddAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature.cs">
+            <DependentUpon>DimensionStructureNode.DeleteAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
 
 </Project>
