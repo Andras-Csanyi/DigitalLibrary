@@ -53,7 +53,6 @@ steps:
       command: 'restore'
       projects: 'src/DigitalLibrary.sln'
       feedsToUse: 'select'
-      verbosityRestore: 'Normal'
       noCache: true
 
   - task: DotNetCoreCLI@2
@@ -81,6 +80,7 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
         --configuration Debug \
+        --verbosity detailed \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
