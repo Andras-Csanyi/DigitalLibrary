@@ -17,13 +17,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     public interface IMasterDataSourceFormatBusinessLogic
     {
         /// <summary>
-        ///     Adds <see cref="DimensionStructure" /> to <see cref="SourceFormat" /> as
-        ///     root dimension structure.
+        ///     Adds a <see cref="DimensionStructureNode" /> to <see cref="SourceFormat" /> as
+        ///     root dimension structure node.
         /// </summary>
         /// <param name="sourceFormatId">Source format id.</param>
-        /// <param name="dimensionStructureId">Dimension structure id.</param>
-        /// <returns>Task.</returns>
-        Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
+        /// <param name="dimensionStructureNodeId">Dimension structure id.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// <see cref="Task"/> representing result of asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     An error happened during database operation.
+        /// </exception>
+        Task AddRootDimensionStructureNodeAsync(
+            long sourceFormatId,
+            long dimensionStructureNodeId,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Adds a new <see cref="SourceFormat" /> to the system.

@@ -86,52 +86,15 @@
         <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature">
-            <CodeBehindFile>DimensionStructureNode/DimensionStructureNode.AddAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature">
-            <CodeBehindFile>DimensionStructureNode/DimensionStructureNode.DeleteAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.feature.cs">
-            <DependentUpon>UpdateAsync.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
-        <Compile Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature.cs">
-            <DependentUpon>AddAsync.Validation.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
-        <Compile Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature.cs">
-            <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
-        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.Validation.feature.cs">
-            <DependentUpon>UpdateAsync.Validation.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
         <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
         </SpecFlowFeatureFiles>
-        <Compile Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
-            <DependentUpon>DimensionStructureNode.AddAsync.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
-        <Compile Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature.cs">
-            <DependentUpon>DimensionStructureNode.DeleteAsync.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
+        <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature.cs">
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
 </Project>

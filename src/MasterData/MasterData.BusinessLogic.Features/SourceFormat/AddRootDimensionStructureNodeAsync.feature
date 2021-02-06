@@ -15,14 +15,21 @@
       | ResultKey | sf-1-result |
 
     And there is a saved DimensionStructureNode domain object
-      | Field     | Value  |
-      | IsActive  | 1      |
-      | ResultKey | dsnode |
+      | Field     | Value   |
+      | IsActive  | 1       |
+      | ResultKey | ds-node |
 
-    When root DimensionStructureNode is created for given SourceFormat
-      | Field     | Value                |
-      | Key       | sf-1-result          |
-      | ResultKey | sf-1-root-dsn-result |
+    When DimensionStructureNode is added to SourceFormat as root
+      | Field                     | Value                |
+      | DimensionStructureNodeKey | ds-node              |
+      | SourceFormatKey           | sf-1-result          |
+      | ResultKey                 | sf-1-root-dsn-result |
+
+    Then operation result is
+      | Field         | Value                |
+      | Key           | sf-1-root-dsn-result |
+      | ExpectedValue | SUCCESS              |
+
     And SourceFormat is requested with DimensionStructureNode tree
       | Field     | Value             |
       | Key       | sf-1-result       |

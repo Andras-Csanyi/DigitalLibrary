@@ -11,6 +11,7 @@
     public partial class StepDefinitions
     {
         [When(@"SourceFormat is requested with DimensionStructureNode tree")]
+        [Then(@"SourceFormat is requested with DimensionStructureNode tree")]
         public async Task WhenSourceFormatIsRequestedWithDimensionStructureNodeTree(Table table)
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
