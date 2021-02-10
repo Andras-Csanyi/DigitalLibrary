@@ -32,7 +32,6 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
         <AdditionalFiles Include="../../Rulesets/stylecop.json" />
-        <PackageReference Include="OpenCover" Version="4.7.922" />
         <PackageReference Include="SpecFlow" Version="3.6.23" />
         <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23" />
         <PackageReference Include="SpecFlow.xUnit" Version="3.6.23" />
