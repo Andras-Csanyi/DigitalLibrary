@@ -80,6 +80,7 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: "--no-build \
         --configuration Debug \
+        --verbosity normal \
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
