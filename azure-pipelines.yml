@@ -84,8 +84,8 @@ steps:
         /p:CollectCoverage=true \
         /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
         /p:CoverletOutputFormat=opencover \
-        /p:CoverletOutput=$(Agent.TempDirectory)'/coverage/' \
-        /p:MergeWith=$(Agent.TempDirectory)'/coverage/'"
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
 
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
