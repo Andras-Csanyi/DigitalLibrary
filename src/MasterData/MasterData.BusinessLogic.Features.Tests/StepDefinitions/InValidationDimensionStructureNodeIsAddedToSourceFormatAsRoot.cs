@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
+namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
     using System;
     using System.Linq;
@@ -6,7 +6,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
 
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
-    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
 
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;

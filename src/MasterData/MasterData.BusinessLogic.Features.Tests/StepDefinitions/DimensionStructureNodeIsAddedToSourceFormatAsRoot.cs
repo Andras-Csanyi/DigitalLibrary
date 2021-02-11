@@ -1,4 +1,4 @@
-namespace DigitalLibrary.MasterData.BusinessLogic.Features.StepDefinitions
+namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
     using System;
     using System.Threading.Tasks;
