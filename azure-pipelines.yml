@@ -26,8 +26,8 @@ steps:
       organization: 'andras-csanyi'
       scannerMode: 'CLI'
       configMode: 'manual'
-      cliProjectKey: 'Andras-Csanyi_DigitalLibrary'
-      cliProjectName: 'Andras-Csanyi_DigitalLibrary'
+      cliProjectKey: 'DigitalLibrary'
+      cliProjectName: 'DigitalLibrary'
       cliSources: '.'
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
