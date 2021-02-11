@@ -1,6 +1,5 @@
 # Badges
 
-[![codecov](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary/branch/master/graph/badge.svg?token=xLhCIRup4Y)](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary)
 [![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/Andras-Csanyi.DigitalLibrary.Github?branchName=master)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=64&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Andras-Csanyi_DigitalLibrary&metric=alert_status)](https://sonarcloud.io/dashboard?id=Andras-Csanyi_DigitalLibrary)
 
