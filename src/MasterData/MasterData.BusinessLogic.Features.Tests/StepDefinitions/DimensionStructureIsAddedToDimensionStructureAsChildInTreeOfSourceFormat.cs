@@ -43,11 +43,5 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         public string ParentKey { get; set; }
 
         public string SourceFormatKey { get; set; }
-
-        [Then(@"asd asd asd asd")]
-        public void ThenAsdAsdAsdAsd()
-        {
-            ScenarioContext.StepIsPending();
-        }
     }
 }
