@@ -119,6 +119,26 @@ steps:
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.Validators.Test
+    displayName: "Coverage MasterData/MasterData.Validators.Test"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
+    displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
+
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
   #   inputs:
