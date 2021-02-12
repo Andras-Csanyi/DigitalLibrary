@@ -99,6 +99,11 @@ steps:
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel"
 
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
+    displayName: "Coverage for ControlPanel"
+
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
   #   inputs:
