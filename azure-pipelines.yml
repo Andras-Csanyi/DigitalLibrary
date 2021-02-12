@@ -94,6 +94,11 @@ steps:
       mergeTestResults: true
     condition: succeededOrFailed()
 
+  - script: |
+      cd ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
+      dotnet dotcover test --dcReportType=html
+    displayName: "Coverage for ControlPanel"
+
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
   #   inputs:
