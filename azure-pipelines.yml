@@ -99,7 +99,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.xml"
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
@@ -107,7 +107,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.xml"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
@@ -115,7 +115,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.xml"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
@@ -123,7 +123,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
@@ -131,7 +131,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
@@ -139,7 +139,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
@@ -147,7 +147,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
     displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
@@ -155,7 +155,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.xml"
     workingDirectory: src/MasterData/MasterData.Validators.Test
     displayName: "Coverage MasterData/MasterData.Validators.Test"
@@ -163,7 +163,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
@@ -171,7 +171,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.xml"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
     displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
@@ -179,7 +179,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.xml"
     workingDirectory: src/Host/FAST.Components.Tests
     displayName: "Coverage Host/FAST.Components.Tests"
@@ -187,13 +187,13 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --reportType=xml \
+      --dotCoverReportType=xml \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.xml"
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
-  - script: |
-      dotnet dotcover 
+  # - script: |
+  #     dotnet dotcover 
 
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
