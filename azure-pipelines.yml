@@ -95,8 +95,8 @@ steps:
     condition: succeededOrFailed()
 
   - script: |
-      cd ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
       dotnet dotcover test --dcReportType=html
+    workingDirectory: ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel"
 
   # - task: PublishCodeCoverageResults@1
