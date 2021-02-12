@@ -104,57 +104,79 @@ steps:
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="ControlPanel.WebApi.Client.Unit.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dcvr"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.BusinessLogic.Features.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.BusinessLogic.ViewModels.Unit.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.Controllers.Integration.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.Controllers.Unit.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.DomainModel.Unit.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
     displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.Validators.Test.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dcvr"
     workingDirectory: src/MasterData/MasterData.Validators.Test
     displayName: "Coverage MasterData/MasterData.Validators.Test"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="MasterData.Web.Api.Features.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dcvr"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="DiLib.FAST.Widgets.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dcvr"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
     displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="FAST.Components.Tests.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dcvr"
     workingDirectory: src/Host/FAST.Components.Tests
     displayName: "Coverage Host/FAST.Components.Tests"
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="WebUI.Test.dcvr"
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dcvr"
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
