@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Validators", "Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Web.Api", "MasterData\MasterData.Web.Api\MasterData.Web.Api.csproj", "{855C07CB-EDBA-4316-8AE7-A6683328DC69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Web.Api.Features", "MasterData\MasterData.Web.Api.Features\MasterData.Web.Api.Features.csproj", "{63B36D81-F54B-4877-8FA7-37442CC4E237}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Web.Api.Features.Tests", "MasterData\MasterData.Web.Api.Features.Tests\MasterData.Web.Api.Features.Tests.csproj", "{63B36D81-F54B-4877-8FA7-37442CC4E237}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{107A9921-6CCD-452B-BD01-5A0CAD081D46}"
 	ProjectSection(SolutionItems) = preProject
