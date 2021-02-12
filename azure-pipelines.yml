@@ -74,7 +74,7 @@ steps:
   #     publishTestResults: true
 
   - task: DotNetCoreCLI@2
-    displayName: 'Testing - opencover'
+    displayName: 'Testing'
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
@@ -97,12 +97,27 @@ steps:
   - script: |
       dotnet dotcover test --dcReportType=html
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
-    displayName: "Coverage for ControlPanel"
+    displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
   - script: |
       dotnet dotcover test --dcReportType=html
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
-    displayName: "Coverage for ControlPanel"
+    displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
+    displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
+    displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
