@@ -180,6 +180,9 @@ steps:
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
+  - script: |
+      dotnet dotcover 
+
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
   #   inputs:
