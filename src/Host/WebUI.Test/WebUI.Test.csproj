@@ -39,9 +39,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
-        <ProjectReference Include="..\WebUi\WebUi.csproj" />
-        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <ProjectReference Include="..\..\MasterData\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+        <ProjectReference Include="..\WebUi\WebUi.csproj"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
     </ItemGroup>
 
 </Project>

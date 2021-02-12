@@ -46,6 +46,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
         <ProjectReference Include="..\ControlPanel.BusinessLogic.Exceptions\ControlPanel.BusinessLogic.Exceptions.csproj"/>
         <ProjectReference Include="..\ControlPanel.BusinessLogic.Implementations\ControlPanel.BusinessLogic.Implementations.csproj"/>

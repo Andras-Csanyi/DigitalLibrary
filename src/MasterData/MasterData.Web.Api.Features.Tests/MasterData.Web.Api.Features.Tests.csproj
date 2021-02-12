@@ -1,0 +1,171 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <AssemblyName>DigitalLibrary.MasterData.Web.Api.Features.Tests</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Web.Api.Features.Tests</RootNamespace>
+        <LangVersion>default</LangVersion>
+        <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <ProjectGuid>{CB1FF012-D2CA-41A7-84F6-85E0F3B39B3F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
+
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="3.0.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.msbuild" Version="3.0.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.3"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="SpecFlow" Version="3.6.23"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.6.23"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+    <ItemGroup>
+        <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
+            <CodeBehindFile>SourceFormat/InactivateAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\DeleteAsync.Validation.feature">
+            <CodeBehindFile>SourceFormat/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\UpdateAsync.feature">
+            <CodeBehindFile>DimensionStructure/UpdateAsync.Validation.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetActives.feature">
+            <CodeBehindFile>DimensionStructure/GetAll.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\GetInActives.feature">
+            <CodeBehindFile>DimensionStructure/GetAll.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\DeleteAsync.Validation.feature">
+            <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\InactivateAsync.feature">
+            <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="DimensionStructure\InactivateAsync.Validation.feature">
+            <CodeBehindFile>DimensionStructure/DeleteAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="SourceFormat\InactivateAsync.Validation.feature.cs">
+            <DependentUpon>InactivateAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\UpdateAsync.feature.cs">
+            <DependentUpon>UpdateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\GetActives.feature.cs">
+            <DependentUpon>GetActives.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\GetInActives.feature.cs">
+            <DependentUpon>GetInActives.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\DeleteAsync.Validation.feature.cs">
+            <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\InactivateAsync.feature.cs">
+            <DependentUpon>InvalidateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="DimensionStructure\InactivateAsync.Validation.feature.cs">
+            <DependentUpon>InactivateAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\AddAsync.feature.cs">
+            <DependentUpon>AddAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\AddAsync.Validation.feature.cs">
+            <DependentUpon>AddAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.feature.cs">
+            <DependentUpon>UpdateAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\UpdateAsync.Validation.feature.cs">
+            <DependentUpon>UpdateAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\DeleteAsync.feature.cs">
+            <DependentUpon>DeleteAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+        <Compile Update="SourceFormatDimensionStructureNode\DeleteAsync.Validation.feature.cs">
+            <DependentUpon>DeleteAsync.Validation.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+    </ItemGroup>
+    <ItemGroup>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+    </ItemGroup>
+</Project>

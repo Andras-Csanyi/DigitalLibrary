@@ -35,4 +35,8 @@
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+
 </Project>
