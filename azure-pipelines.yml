@@ -32,7 +32,9 @@ steps:
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/coverage.html
+
+  # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
   # - script: |
   #     dotnet sonarscanner begin /o:andras-csanyi
@@ -95,7 +97,9 @@ steps:
     condition: succeededOrFailed()
 
   - script: |
-      dotnet dotcover test --no-build --dotCoverOutput="../../coverage/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dcvr"
+      dotnet dotcover test 
+      --no-build 
+      --dotCoverOutput=(Agent.TempDirectory)/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dcvr
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
