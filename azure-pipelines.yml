@@ -139,6 +139,21 @@ steps:
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
 
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
+    displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/Host/FAST.Components.Tests
+    displayName: "Coverage Host/FAST.Components.Tests"
+
+  - script: |
+      dotnet dotcover test --dcReportType=html
+    workingDirectory: src/Host/WebUI.Test
+    displayName: "Coverage Host/Ui.WebUI.Test"
+
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'
   #   inputs:
