@@ -99,7 +99,7 @@ steps:
   - script: |
       dotnet dotcover test 
       --no-build 
-      --dotCoverOutput=(Agent.TempDirectory)/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dcvr
+      --dotCoverOutput=$(Agent.TempDirectory)/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dcvr
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
