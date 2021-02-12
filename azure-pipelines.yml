@@ -32,7 +32,7 @@ steps:
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/coverage.html
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.xml
 
   # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
@@ -99,84 +99,96 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.xml"
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.xml"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.xml"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.xml"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
     displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.xml"
     workingDirectory: src/MasterData/MasterData.Validators.Test
     displayName: "Coverage MasterData/MasterData.Validators.Test"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.xml"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.xml"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
     displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.xml"
     workingDirectory: src/Host/FAST.Components.Tests
     displayName: "Coverage Host/FAST.Components.Tests"
 
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dcvr"
+      --reportType=xml \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.xml"
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
