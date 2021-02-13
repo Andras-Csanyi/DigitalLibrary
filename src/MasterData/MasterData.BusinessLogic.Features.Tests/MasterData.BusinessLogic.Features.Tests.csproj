@@ -28,19 +28,19 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.3"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3"/>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
-        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
-        <PackageReference Include="SpecFlow" Version="3.6.23" />
-        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23" />
-        <PackageReference Include="SpecFlow.xUnit" Version="3.6.23" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
-        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="SpecFlow" Version="3.6.23"/>
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23"/>
+        <PackageReference Include="SpecFlow.xUnit" Version="3.6.23"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.analyzers" Version="0.10.0" />
         <PackageReference Include="xunit.runner.console" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
