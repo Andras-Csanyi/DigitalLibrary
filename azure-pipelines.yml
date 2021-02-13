@@ -32,7 +32,7 @@ steps:
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.html
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
 
   # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
