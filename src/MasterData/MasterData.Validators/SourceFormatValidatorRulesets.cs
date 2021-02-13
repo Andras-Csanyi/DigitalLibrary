@@ -47,5 +47,10 @@ namespace DigitalLibrary.MasterData.Validators
         ///     Ruleset identifier for AddRootNode operation.
         /// </summary>
         public const string AddRootNode = "AddRootNode";
+
+        /// <summary>
+        /// Ruleset identifier for Removing root DimensionStructureNode operation.
+        /// </summary>
+        public const string RemoveRootDimensionStructureNode = "RemoveRootDimensionStructureNode";
     }
 }

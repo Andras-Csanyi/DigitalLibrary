@@ -262,5 +262,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task InactivateAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Removes root <see cref="DimensionStructureNode"/> of <see cref="SourceFormat"/>.
+        /// The <see cref="DimensionStructureNode"/> is not going to be deleted, only removed from
+        /// <see cref="SourceFormat"/>.
+        /// </summary>
+        /// <param name="sourceFormat">The <see cref="SourceFormat"/>
+        ///     where the <see cref="DimensionStructureNode"/> going to be removed.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> representing result of async operations.</returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task RemoveRootDimensionStructureNodeAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
     }
 }

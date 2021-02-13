@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
     public partial class StepDefinitions
     {
+        [Given(@"operation result is")]
         [Then(@"operation result is")]
         public async Task OperationResultIs(Table table)
         {
