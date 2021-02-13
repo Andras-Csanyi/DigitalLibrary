@@ -32,7 +32,7 @@ steps:
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.html
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
 
   # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
@@ -101,7 +101,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dotcover.html"
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
@@ -110,7 +110,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dotcover.html"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
 
@@ -119,7 +119,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
 
@@ -128,7 +128,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
 
@@ -137,7 +137,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
@@ -146,7 +146,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
 
@@ -155,7 +155,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
     displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
 
@@ -164,7 +164,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Validators.Test
     displayName: "Coverage MasterData/MasterData.Validators.Test"
 
@@ -173,7 +173,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
 
@@ -182,7 +182,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dotcover.html"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
     displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
 
@@ -191,7 +191,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dotcover.html"
     workingDirectory: src/Host/FAST.Components.Tests
     displayName: "Coverage Host/FAST.Components.Tests"
 
@@ -200,7 +200,7 @@ steps:
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.html"
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dotcover.html"
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
