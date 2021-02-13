@@ -32,7 +32,9 @@ steps:
       extraProperties: |
         sonar.exclusions=**/obj/**,**/*.dll
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
+
+  # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
 
   # - script: |
   #     dotnet sonarscanner begin /o:andras-csanyi
@@ -74,18 +76,17 @@ steps:
   #     publishTestResults: true
 
   - task: DotNetCoreCLI@2
-    displayName: 'Testing - opencover'
+    displayName: 'Testing'
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: "--no-build \
-        --configuration Debug \
-        --verbosity normal \
-        /p:CollectCoverage=true \
-        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-        /p:CoverletOutputFormat=opencover \
-        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
-        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
+      arguments: "--no-build "
+  #        --configuration Debug \
+  #        /p:CollectCoverage=true \
+  #        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+  #        /p:CoverletOutputFormat=opencover \
+  #        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+  #        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
 
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
@@ -94,6 +95,117 @@ steps:
       testResultsFiles: '$(Agent.TempDirectory)/**.*trx'
       mergeTestResults: true
     condition: succeededOrFailed()
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dotcover.html"
+    workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
+    displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dotcover.html"
+    workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
+    displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
+    displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
+    displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
+    displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.Validators.Test
+    displayName: "Coverage MasterData/MasterData.Validators.Test"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dotcover.html"
+    workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
+    displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dotcover.html"
+    workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
+    displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dotcover.html"
+    workingDirectory: src/Host/FAST.Components.Tests
+    displayName: "Coverage Host/FAST.Components.Tests"
+
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dotcover.html"
+    workingDirectory: src/Host/WebUI.Test
+    displayName: "Coverage Host/Ui.WebUI.Test"
+
+  # - script: |
+  #     dotnet dotcover 
 
   # - task: PublishCodeCoverageResults@1
   #   displayName: 'Coverage...'

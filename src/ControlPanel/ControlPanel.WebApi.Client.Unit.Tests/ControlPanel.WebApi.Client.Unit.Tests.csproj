@@ -46,6 +46,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\ControlPanel.WebApi.Client\ControlPanel.WebApi.Client.csproj"/>
     </ItemGroup>
 
