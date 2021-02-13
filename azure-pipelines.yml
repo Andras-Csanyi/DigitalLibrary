@@ -99,6 +99,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.html"
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
@@ -107,6 +108,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.html"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
@@ -115,6 +117,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
@@ -123,6 +126,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
@@ -131,6 +135,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
@@ -139,6 +144,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
@@ -147,6 +153,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.html"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
@@ -155,6 +162,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.html"
     workingDirectory: src/MasterData/MasterData.Validators.Test
@@ -163,6 +171,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.html"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
@@ -171,6 +180,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.html"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
@@ -179,6 +189,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.html"
     workingDirectory: src/Host/FAST.Components.Tests
@@ -187,6 +198,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.html"
     workingDirectory: src/Host/WebUI.Test
