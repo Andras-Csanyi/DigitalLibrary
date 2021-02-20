@@ -104,6 +104,9 @@
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.Validation.feature">
             <CodeBehindFile>SourceFormat/AddRootDimensionStructureNodeAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
+        <SpecFlowFeatureFiles Update="SourceFormat\RemoveRootDimensionStructureNodeAsync.Validation.feature">
+            <CodeBehindFile>SourceFormat/RemoveRootDimensionStructureNodeAsync.feature.cs</CodeBehindFile>
+        </SpecFlowFeatureFiles>
     </ItemGroup>
 
     <ItemGroup>
@@ -113,6 +116,10 @@
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="StepDefinitions\Utils"/>
     </ItemGroup>
 
 </Project>

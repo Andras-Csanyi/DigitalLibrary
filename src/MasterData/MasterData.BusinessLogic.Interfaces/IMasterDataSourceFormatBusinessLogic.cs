@@ -264,7 +264,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Removes root <see cref="DimensionStructureNode"/> of <see cref="SourceFormat"/>.
+        /// Removes root <see cref="DimensionStructureNode"/> of <see cref="SourceFormat"/> from the data structure.
         /// The <see cref="DimensionStructureNode"/> is not going to be deleted, only removed from
         /// <see cref="SourceFormat"/>.
         /// </summary>
