@@ -278,5 +278,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task RemoveRootDimensionStructureNodeAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Appends the given <see cref="DimensionStructureNode"/> to given <see cref="DimensionStructureNode"/> as
+        /// child in the context of <see cref="SourceFormat"/>. 
+        /// </summary>
+        /// <param name="toBeAddedId">
+        ///     Id of the to be added <see cref="DimensionStructureNode"/> entity.
+        /// </param>
+        /// <param name="parentId">
+        ///     Id of the future parent <see cref="DimensionStructureNode"/> entity.
+        /// </param>
+        /// <param name="sourceFormatId">
+        ///     Id of the <see cref="SourceFormat"/> entity which owns the tree.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///     Returns <see cref="Task"/> representing result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task AppendDimensionStructureNodeToTreeAsync(
+            long toBeAddedId,
+            long parentId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
     }
 }
