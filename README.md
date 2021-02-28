@@ -13,7 +13,7 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=sqale_index)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=Andras-Csanyi_DigitalLibrary)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 
 # Digital Library Project
 
