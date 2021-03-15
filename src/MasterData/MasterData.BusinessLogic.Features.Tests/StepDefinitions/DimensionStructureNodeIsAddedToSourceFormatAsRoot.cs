@@ -29,7 +29,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
             try
             {
-                await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
                    .AddRootDimensionStructureNodeAsync(sourceFormat.Id, dimensionStructureNode.Id)
                    .ConfigureAwait(false);
                 _scenarioContext.Add(instance.ResultKey, SUCCESS);

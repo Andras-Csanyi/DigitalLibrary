@@ -28,16 +28,17 @@ namespace DigitalLibrary.MasterData.DomainModel
         public SourceFormat SourceFormat { get; set; }
 
         /// <summary>
+        ///     Gets or sets SourceFormatId. It is a reference to <see cref="SourceFormat" />.
+        /// </summary>
+        public long? SourceFormatId { get; set; }
+
+        /// <summary>
         ///     Gets or sets <see cref="SourceFormatDimensionStructureNode" />.
         ///     Via this navigation property the fact is setup the node is root dimension structure of a
         ///     <see cref="SourceFormat" />.
         /// </summary>
         public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
 
-        /// <summary>
-        ///     Gets or sets SourceFormatId. It is a reference to <see cref="SourceFormat" />.
-        /// </summary>
-        public long? SourceFormatId { get; set; }
 
         public long Id { get; set; }
 

@@ -35,6 +35,23 @@
       | Key       | sf-1-result       |
       | ResultKey | sf-queried-result |
 
-    Then SourceFormat has root DimensionStructureNode
+    And SourceFormat has root DimensionStructureNode
       | Field | Value             |
       | Key   | sf-queried-result |
+
+    And DimensionStructureNode is requested
+        |Field|Value|
+        |Key|ds-node|
+        |ResultKey|ds-node-requested|
+
+    And DimensionStructure's property is not empty
+        |Field|Value|
+        |Key|ds-node-requested|
+        |PropertyName|SourceFormatId|
+
+    And DimensionStructure's node property equals to a number
+        |Field|Value|
+        |Key|ds-node-requested|
+        |PropertyName|SourceFormatId|
+        |ExpectedResultReferenceSourceFormatKey|sf-1-result|
+        |ReferencedSourceFormatPropertyName|Id|

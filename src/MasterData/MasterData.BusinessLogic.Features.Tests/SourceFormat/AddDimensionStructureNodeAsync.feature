@@ -39,6 +39,21 @@ Feature: SourceFormat Business Logic - Add DimensionStructureNode
     Then operation result is
       | Field          | Value             |
       | Key            | add-dsn-sf-result |
-      | ExpectedResult | SUCCESS           |
-    
-    
+      | ExpectedValue | SUCCESS           |
+
+    And DimensionStructureNode is requested
+        |Field|Value|
+        |Key|ds-node-to-be-added|
+        |ResultKey|ds-node-requested|
+
+    And DimensionStructure's property is not empty
+        |Field|Value|
+        |Key|ds-node-requested|
+        |PropertyName|SourceFormatId|
+
+    And DimensionStructure's node property equals to a number
+        |Field|Value|
+        |Key|ds-node-requested|
+        |PropertyName|SourceFormatId|
+        |ExpectedResultReferenceSourceFormatKey|sf-2-result|
+        |ReferencedSourceFormatPropertyName|Id|

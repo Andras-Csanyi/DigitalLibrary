@@ -38,6 +38,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                            .FirstOrDefaultAsync(k => k.Id == dimensionStructureNodeId, cancellationToken)
                            .ConfigureAwait(false);
 
+                        dimensionStructureNode.SourceFormat = sourceFormat;
+                        ctx.Entry(dimensionStructureNode).State = EntityState.Modified;
+
                         SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode =
                             new SourceFormatDimensionStructureNode
                             {
@@ -58,7 +61,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                            .RollbackAsync(cancellationToken)
                            .ConfigureAwait(false);
                         string msg = $"{nameof(AddRootDimensionStructureNodeAsync)} operation failed!" +
-                            $" For further information see inner exception.";
+                                     $" For further information see inner exception.";
                         throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
                     }
                 }
