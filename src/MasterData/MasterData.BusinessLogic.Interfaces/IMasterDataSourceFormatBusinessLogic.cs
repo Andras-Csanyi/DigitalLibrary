@@ -304,5 +304,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             long parentId,
             long sourceFormatId,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Removes <see cref="DimensionStructureNode"/> from the DimensionStructureNode tree within <see cref="SourceFormat"/>.
+        /// The node is going to be deleted from database as it only has a single connection.
+        /// </summary>
+        /// <param name="id">Id of object to be removed.</param>
+        /// <param name="parentId">Id of parent object.</param>
+        /// <param name="sourceFormatId">Id of SourceFormat.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>Returns <see cref="Task"/> representing result of asynchronous operation.</returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task DeleteDimensionStructureNodeFromTreeAsync(
+            long id,
+            long parentId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
     }
 }

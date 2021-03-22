@@ -12,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
     public partial class StepDefinitions
     {
+        [Given(@"DimensionStructureNode is added to the tree of a SourceFormat")]
         [When(@"DimensionStructureNode is added to the tree of a SourceFormat")]
         public async Task WhenDimensionStructureNodeIsAddedToTheTReeOfASourceFormat(Table table)
         {

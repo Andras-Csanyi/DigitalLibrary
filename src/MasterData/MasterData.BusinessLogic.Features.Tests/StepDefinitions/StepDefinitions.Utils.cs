@@ -5,6 +5,10 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
+    using System.Threading.Tasks;
+
+    using DigitalLibrary.MasterData.DomainModel;
+
     using TechTalk.SpecFlow;
 
     public partial class StepDefinitions
@@ -13,6 +17,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
             where TType : class
         {
             return context[key] as TType;
+        }
+
+        private Task<DimensionStructureNode> FindDimensionStructureNodeInTree(
+            SourceFormat result,
+            DimensionStructureNode dimensionStructureNode)
+        {
+            DimensionStructureNode found;
+            foreach (DimensionStructureNode node in result.DimensionStructureNodes)
+            {
+                found = TraverseForDimensionStructureNodeInTree(node.ChildNodes);
+            }
         }
     }
 }
