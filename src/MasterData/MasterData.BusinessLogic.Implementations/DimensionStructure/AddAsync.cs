@@ -29,10 +29,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 {
                     Check.IsNotNull(dimensionStructure);
 
-                    await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                            dimensionStructure,
-                            ruleSet: DimensionStructureValidatorRulesets.AddAsync)
-                       .ConfigureAwait(false);
+                    await _masterDataValidators.DimensionStructureValidator.ValidateAsync(dimensionStructure, o =>
+                    {
+                        o.IncludeRuleSets(DimensionStructureValidatorRulesets.AddAsync);
+                        o.ThrowOnFailures();
+                    }, cancellationToken).ConfigureAwait(false);
 
                     DimensionStructure newDimensionStructure = new DimensionStructure
                     {
@@ -51,7 +52,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                                 $"{nameof(AddAsync)} operation failed. For further info see inner exception.";
+                        $"{nameof(AddAsync)} operation failed. For further info see inner exception.";
                     throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
                 }
             }

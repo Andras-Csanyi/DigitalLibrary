@@ -16,15 +16,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     public partial class MasterDataSourceFormatBusinessLogic
     {
         /// <inheritdoc />
-        public async Task InactivateAsync(SourceFormat sourceFormat, CancellationToken cancellationToken = default)
+        public async Task InactivateAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default)
         {
             try
             {
                 Check.IsNotNull(sourceFormat);
-                await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                        sourceFormat,
-                        ruleSet: SourceFormatValidatorRulesets.Inactivate)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                {
+                    o.IncludeRuleSets(SourceFormatValidatorRulesets.Inactivate);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -44,8 +47,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(InactivateAsync)} operation failed! " +
-                             $"For further information see inner exception!";
+                    $"{nameof(InactivateAsync)} operation failed! " +
+                    $"For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

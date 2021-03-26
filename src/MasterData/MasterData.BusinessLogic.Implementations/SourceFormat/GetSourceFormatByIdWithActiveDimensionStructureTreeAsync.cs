@@ -23,11 +23,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
                 try
                 {
-                    SourceFormat result = await ctx.SourceFormats
-                       .AsNoTracking()
-                       .FirstOrDefaultAsync(
-                            w => w.Id == sourceFormatId,
-                            cancellationToken)
+                    SourceFormat result = await ctx.SourceFormats.AsNoTracking()
+                       .FirstOrDefaultAsync(w => w.Id == sourceFormatId, cancellationToken)
                        .ConfigureAwait(false);
 
                     if (result == null)
@@ -47,8 +44,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                                 $"{nameof(GetSourceFormatByIdWithActiveDimensionStructureTreeAsync)} " +
-                                 $"operation failed. For further information see inner exception.";
+                        $"{nameof(GetSourceFormatByIdWithActiveDimensionStructureTreeAsync)} " +
+                        $"operation failed. For further information see inner exception.";
                     throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                 }
             }

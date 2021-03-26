@@ -24,10 +24,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension
             {
                 Check.IsNotNull(dimension);
 
-                await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
-                        dimension,
-                        ruleSet: ValidatorRulesets.AddNewDimension)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionValidator.ValidateAsync(dimension, o =>
+                {
+                    o.IncludeRuleSets(ValidatorRulesets.AddNewDimension);
+                    o.ThrowOnFailures();
+                }).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {

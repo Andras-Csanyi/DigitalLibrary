@@ -21,8 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
             {
                 try
                 {
-                    long res = await ctx.DimensionValues.LongCountAsync().ConfigureAwait(false);
-                    return res;
+                    return await ctx.DimensionValues.LongCountAsync().ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

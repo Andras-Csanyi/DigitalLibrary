@@ -25,10 +25,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                     Check.IsNotNull(dimensionStructureNode);
 
                     await _masterDataValidators
-                       .DimensionStructureNodeValidator.ValidateAndThrowAsync(
-                            dimensionStructureNode,
-                            ruleSet: DimensionStructureNodeValidatorRulesets.Add)
-                       .ConfigureAwait(false);
+                       .DimensionStructureNodeValidator.ValidateAsync(dimensionStructureNode, o =>
+                        {
+                            o.IncludeRuleSets(DimensionStructureNodeValidatorRulesets.Add);
+                            o.ThrowOnFailures();
+                        }, cancellationToken).ConfigureAwait(false);
 
                     DimensionStructureNode newNode = new DimensionStructureNode
                     {
@@ -46,8 +47,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
-                                 $"{nameof(AddAsync)} operation has failed. " +
-                                 $"For further info see inner exception.";
+                        $"{nameof(AddAsync)} operation has failed. " +
+                        $"For further info see inner exception.";
                     throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
                 }
             }

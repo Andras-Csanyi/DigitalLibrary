@@ -23,31 +23,29 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             try
             {
                 Check.IsNotNull(tobeDeleted);
-
-                await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                        tobeDeleted,
-                        ruleSet: DimensionStructureValidatorRulesets.Delete)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionStructureValidator.ValidateAsync(tobeDeleted, o =>
+                {
+                    o.IncludeRuleSets(DimensionStructureValidatorRulesets.Delete);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     DimensionStructure res = await ctx.DimensionStructures
-                       .FirstOrDefaultAsync(w => w.Id == tobeDeleted.Id, cancellationToken)
-                       .ConfigureAwait(false);
+                       .FirstOrDefaultAsync(w => w.Id == tobeDeleted.Id, cancellationToken).ConfigureAwait(false);
 
                     if (res != null)
                     {
                         ctx.DimensionStructures.Remove(res);
-                        await ctx.SaveChangesAsync(cancellationToken)
-                           .ConfigureAwait(false);
+                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                     }
                 }
             }
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                             $"{nameof(DeleteAsync)} operation failed. " +
-                             $"For further details see inner exception!";
+                    $"{nameof(DeleteAsync)} operation failed. " +
+                    $"For further details see inner exception!";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }

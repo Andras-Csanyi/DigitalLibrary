@@ -29,10 +29,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension
                     string msg = $"{nameof(dimension)} is null.";
                     Check.IsNotNull(dimension, msg);
 
-                    await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
-                            dimension,
-                            ruleSet: ValidatorRulesets.UpdateDimension)
-                       .ConfigureAwait(false);
+                    await _masterDataValidators.DimensionValidator.ValidateAsync(dimension, o =>
+                    {
+                        o.IncludeRuleSets(ValidatorRulesets.UpdateDimension);
+                        o.ThrowOnFailures();
+                    }).ConfigureAwait(false);
 
                     Dimension toBeModified = await ctx.Dimensions.FindAsync(dimension.Id)
                        .ConfigureAwait(false);

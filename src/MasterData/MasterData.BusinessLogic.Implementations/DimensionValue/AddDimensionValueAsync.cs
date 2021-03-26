@@ -30,10 +30,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
                 Check.IsNotNull(dimensionValue);
                 Check.AreNotEqual(dimensionId, 0);
 
-                await _masterDataValidators.DimensionValueValidator.ValidateAndThrowAsync(
-                        dimensionValue,
-                        ruleSet: ValidatorRulesets.AddNewDimensionValue)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionValueValidator.ValidateAsync(dimensionValue, o =>
+                {
+                    o.IncludeRuleSets(ValidatorRulesets.AddNewDimensionValue);
+                    o.ThrowOnFailures();
+                }).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -61,7 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
                                 DimensionDimensionValue doesDimensionDimensionValueRelationExist = await ctx
                                    .DimensionDimensionValues
                                    .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
-                                                          && p.DimensionValueId == doesDimensionValueExists.Id)
+                                     && p.DimensionValueId == doesDimensionValueExists.Id)
                                    .ConfigureAwait(false);
 
                                 // if doesnt exists create one
