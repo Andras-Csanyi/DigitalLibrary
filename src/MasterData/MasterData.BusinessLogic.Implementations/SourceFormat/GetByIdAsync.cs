@@ -29,12 +29,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
             try
             {
-                await _masterDataValidators
-                   .SourceFormatValidator
-                   .ValidateAndThrowAsync(
-                        sourceFormat,
-                        ruleSet: SourceFormatValidatorRulesets.GetById)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                {
+                    o.IncludeRuleSets(SourceFormatValidatorRulesets.GetById);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -46,8 +45,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(GetByIdAsync)} operation failed! " +
-                             $"For further information see inner exception!";
+                    $"{nameof(GetByIdAsync)} operation failed! " +
+                    $"For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

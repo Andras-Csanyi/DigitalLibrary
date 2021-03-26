@@ -23,10 +23,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension
             try
             {
                 Check.IsNotNull(dimension);
-                await _masterDataValidators.DimensionValidator.ValidateAndThrowAsync(
-                        dimension,
-                        ruleSet: ValidatorRulesets.DeleteDimension)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionValidator.ValidateAsync(dimension, o =>
+                {
+                    o.IncludeRuleSets(ValidatorRulesets.DeleteDimension);
+                    o.ThrowOnFailures();
+                }).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -35,7 +36,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension
                     if (toBeDeleted == null)
                     {
                         string msg = $"There is no {nameof(Dimension)} " +
-                                     $"with id: {dimension}.";
+                            $"with id: {dimension}.";
                         throw new MasterDataBusinessLogicNoSuchDimensionEntity(msg);
                     }
 

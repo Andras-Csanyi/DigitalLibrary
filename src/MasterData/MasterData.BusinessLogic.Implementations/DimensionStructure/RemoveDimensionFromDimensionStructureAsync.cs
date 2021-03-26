@@ -4,7 +4,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        public async Task RemoveDimensionFromDimensionStructureAsync(long dimensionId, long dimensionStructureId)
+        public async Task RemoveDimensionFromDimensionStructureAsync(
+            long dimensionId,
+            long dimensionStructureId)
         {
             throw new System.NotImplementedException();
         }

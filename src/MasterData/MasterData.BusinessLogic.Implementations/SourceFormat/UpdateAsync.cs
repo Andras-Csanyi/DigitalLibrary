@@ -24,14 +24,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 Check.IsNotNull(sourceFormat);
 
-                await _masterDataValidators.SourceFormatValidator
-                   .ValidateAndThrowAsync(sourceFormat, ruleSet: SourceFormatValidatorRulesets.Update)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                {
+                    o.IncludeProperties(SourceFormatValidatorRulesets.Update);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
-                    SourceFormat target = await ctx
-                       .SourceFormats
+                    SourceFormat target = await ctx.SourceFormats
                        .FirstOrDefaultAsync(w => w.Id == sourceFormat.Id, cancellationToken)
                        .ConfigureAwait(false);
 
@@ -51,15 +52,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     }
 
                     string msg = $"There is no {nameof(SourceFormat)} entity in the system with " +
-                                 $"id: {sourceFormat.Id}.";
+                        $"id: {sourceFormat.Id}.";
                     throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                 }
             }
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(UpdateAsync)} operation failed! " +
-                             $"For further information see inner exception!";
+                    $"{nameof(UpdateAsync)} operation failed! " +
+                    $"For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

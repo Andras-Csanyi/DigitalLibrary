@@ -21,9 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 try
                 {
-                    long res = await ctx.SourceFormats.LongCountAsync().ConfigureAwait(false);
-
-                    return res;
+                    return await ctx.SourceFormats.LongCountAsync().ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

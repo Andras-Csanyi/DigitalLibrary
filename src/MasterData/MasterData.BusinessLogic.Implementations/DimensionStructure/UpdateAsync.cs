@@ -30,10 +30,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             {
                 Check.IsNotNull(dimensionStructure);
 
-                await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                        dimensionStructure,
-                        ruleSet: DimensionStructureValidatorRulesets.Update)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionStructureValidator.ValidateAsync(dimensionStructure, o =>
+                {
+                    o.IncludeRuleSets(DimensionStructureValidatorRulesets.Update);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -42,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {typeof(DimensionStructure)} " +
-                                 $"entity with id: {dimensionStructure.Id}";
+                        $"entity with id: {dimensionStructure.Id}";
                     Check.IsNotNull(toBeModified, msg);
 
                     toBeModified.Name = dimensionStructure.Name;
@@ -58,8 +59,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                             $"{nameof(UpdateAsync)} operation failed. " +
-                             $"For further information see inner exception.";
+                    $"{nameof(UpdateAsync)} operation failed. " +
+                    $"For further information see inner exception.";
                 throw new MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException(msg, e);
             }
         }

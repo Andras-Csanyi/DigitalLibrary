@@ -28,24 +28,24 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             try
             {
                 Check.IsNotNull(sourceFormat);
-                await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                        sourceFormat,
-                        ruleSet: SourceFormatValidatorRulesets.Delete)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                {
+                    o.IncludeRuleSets(SourceFormatValidatorRulesets.Delete);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat result = await ctx.SourceFormats
                        .FirstOrDefaultAsync(
                             w => w.Id == sourceFormat.Id,
-                            cancellationToken: cancellationToken)
-                       .ConfigureAwait(false);
+                            cancellationToken
+                        ).ConfigureAwait(false);
 
                     if (result != null)
                     {
                         ctx.SourceFormats.Remove(result);
-                        await ctx.SaveChangesAsync(cancellationToken)
-                           .ConfigureAwait(false);
+                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                         return;
                     }
 
@@ -56,8 +56,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(DeleteAsync)} operation failed! " +
-                             $"For further information see inner exception!";
+                    $"{nameof(DeleteAsync)} operation failed! " +
+                    $"For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

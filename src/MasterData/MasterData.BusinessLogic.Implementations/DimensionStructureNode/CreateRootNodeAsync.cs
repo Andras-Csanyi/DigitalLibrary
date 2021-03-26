@@ -27,12 +27,11 @@
                 {
                     try
                     {
-                        await _masterDataValidators.SourceFormatValidator
-                           .ValidateAndThrowAsync(
-                                sourceFormat,
-                                SourceFormatValidatorRulesets.AddRootNode,
-                                cancellationToken)
-                           .ConfigureAwait(false);
+                        await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                        {
+                            o.IncludeRuleSets(SourceFormatValidatorRulesets.AddRootNode);
+                            o.ThrowOnFailures();
+                        }, cancellationToken).ConfigureAwait(false);
 
                         DimensionStructureNode newNode = new DimensionStructureNode();
                         await ctx.DimensionStructureNodes.AddAsync(newNode, cancellationToken).ConfigureAwait(false);
@@ -45,7 +44,7 @@
                         if (sourceFormatResult == null)
                         {
                             string msg = $"There is no {nameof(SourceFormat)} entity " +
-                                         $"with id: {sourceFormat.Id}";
+                                $"with id: {sourceFormat.Id}";
                             throw new MasterDataDimensionStructureNodeBusinessLogicException(msg);
                         }
 
@@ -69,8 +68,8 @@
                         await transaction.RollbackAsync(cancellationToken).ConfigureAwait(false);
 
                         string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
-                                     $"{nameof(CreateRootNodeAsync)} operation failed. " +
-                                     $"For further information see inner exception!";
+                            $"{nameof(CreateRootNodeAsync)} operation failed. " +
+                            $"For further information see inner exception!";
                         throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
                     }
                 }

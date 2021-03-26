@@ -44,11 +44,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
                         string newDimensionValueErrorMsg = $"{nameof(newDimensionValue)} is null.";
                         Check.IsNotNull(newDimensionValue, newDimensionValueErrorMsg);
 
-                        await _masterDataValidators.DimensionValueValidator
-                           .ValidateAndThrowAsync(
-                                oldDimensionValue,
-                                ruleSet: ValidatorRulesets.ModifyDimensionValue)
-                           .ConfigureAwait(false);
+                        await _masterDataValidators.DimensionValueValidator.ValidateAsync(oldDimensionValue, o =>
+                        {
+                            o.IncludeRuleSets(ValidatorRulesets.ModifyDimensionValue);
+                            o.ThrowOnFailures();
+                        }).ConfigureAwait(false);
 
                         DomainModel.Dimension dim = await ctx.Dimensions.FindAsync(dimensionId).ConfigureAwait(false);
                         string noDimErrMsg = $"There is no dimension with id: {dimensionId}";
@@ -63,7 +63,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
                         List<DimensionDimensionValue> countOfDimensionDimensionValueRelation = await ctx
                            .DimensionDimensionValues
                            .Where(p => p.DimensionValueId == oldDimensionValue.Id
-                                    && p.DimensionId != dimensionId)
+                             && p.DimensionId != dimensionId)
                            .ToListAsync().ConfigureAwait(false);
 
                         if (countOfDimensionDimensionValueRelation.Any())
@@ -80,13 +80,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
 
                             DimensionDimensionValue theOneGoingToBeModified = await ctx.DimensionDimensionValues
                                .FirstOrDefaultAsync(p => p.DimensionId == dimensionId
-                                                      && p.DimensionValueId == oldDimensionValue.Id)
+                                 && p.DimensionValueId == oldDimensionValue.Id)
                                .ConfigureAwait(false);
                             if (theOneGoingToBeModified == null)
                             {
                                 string msg = $"There is no DimensionDimensionValue entity with " +
-                                             $"dimension id: {dimensionId}, and" +
-                                             $"dimension value id: {oldDimensionValue.Id}!";
+                                    $"dimension id: {dimensionId}, and" +
+                                    $"dimension value id: {oldDimensionValue.Id}!";
                                 throw new MasterDataBusinessLogicNoSuchDimensionDimensionValueEntity(msg);
                             }
 
