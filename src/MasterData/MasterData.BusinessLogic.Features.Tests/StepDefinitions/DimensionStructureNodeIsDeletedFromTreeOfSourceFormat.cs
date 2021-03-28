@@ -25,7 +25,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
             Check.IsNotNull(parent);
             SourceFormat sourceFormat = _scenarioContext[instance.SourceFormatKey] as SourceFormat;
             Check.IsNotNull(sourceFormat);
-            string operationResultKey = _scenarioContext[instance.OperationResultKey] as string;
+            string operationResultKey = instance.OperationResultKey;
             Check.IsNotNull(operationResultKey);
 
             try

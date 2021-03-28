@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.HasKey(k => k.Id);
             builder.Property(p => p.Id).HasColumnName("id");
 
-            builder.Property(p => p.ChildNodeId).HasColumnName("child_id");
+            builder.Property(p => p.ChildNodeId).HasColumnName("parent_id");
 
             builder.Property(p => p.DimensionStructureId).HasColumnName("dimensionstructure_id");
 

@@ -53,24 +53,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                             throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                         }
 
-                        DimensionStructureNode parent = await _ctx.DimensionStructureNodes
-                           .Where(w => w.Id == parentId)
-                           .FirstOrDefaultAsync(k => k.SourceFormatId == sourceFormatId, cancellationToken)
-                           .ConfigureAwait(false);
-
-                        if (parent is null)
-                        {
-                            string msg =
-                                $"There is no {nameof(DimensionStructureNode)} with Id: {parentId} considered " +
-                                $"as {nameof(parent)}.";
-                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
-                        }
-
                         DimensionStructureNode parentWithChildren = await _ctx.DimensionStructureNodes
                            .Include(i => i.ChildNodes)
                            .Where(sf => sf.SourceFormatId == sourceFormatId)
                            .FirstOrDefaultAsync(k => k.SourceFormatId == sourceFormatId, cancellationToken)
                            .ConfigureAwait(false);
+
+                        if (parentWithChildren is null)
+                        {
+                            string msg =
+                                $"There is no {nameof(DimensionStructureNode)} with Id: {parentId} considered " +
+                                $"as {nameof(parentWithChildren)}.";
+                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                        }
 
                         toBeAdded.SourceFormat = sourceFormat;
                         _ctx.Entry(toBeAdded).State = EntityState.Modified;
