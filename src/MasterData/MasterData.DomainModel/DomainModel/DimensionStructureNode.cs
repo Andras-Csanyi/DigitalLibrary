@@ -11,11 +11,24 @@ namespace DigitalLibrary.MasterData.DomainModel
     /// </summary>
     public class DimensionStructureNode : IHaveId, IHaveIsActive
     {
-        public DimensionStructureNode ChildNode { get; set; }
+        /// <summary>
+        /// Gets or sets ParentNode value.
+        /// Parent <see cref="DimensionStructureNode"/> of this instance.
+        /// </summary>
+        public DimensionStructureNode ParentNode { get; set; }
 
-        public long? ChildNodeId { get; set; }
+        /// <summary>
+        /// Gets or sets ParentNodeId value.
+        /// </summary>
+        public long? ParentNodeId { get; set; }
 
-        public ICollection<DimensionStructureNode> ChildNodes { get; set; } = new List<DimensionStructureNode>();
+        /// <summary>
+        /// Gets or sets ChildNodes value.
+        ///
+        /// The list represents those <see cref="DimensionStructureNode"/>nodes which children of the given instance.
+        /// The children items has this specific instance set up as their Parent node.
+        /// </summary>
+        public ICollection<DimensionStructureNode> ChildNodes { get; } = new List<DimensionStructureNode>();
 
         public DimensionStructure DimensionStructure { get; set; }
 
@@ -39,7 +52,7 @@ namespace DigitalLibrary.MasterData.DomainModel
         /// </summary>
         public SourceFormatDimensionStructureNode SourceFormatDimensionStructureNode { get; set; }
 
-
+        /// <inheritdoc/>
         public long Id { get; set; }
 
         /// <inheritdoc />
