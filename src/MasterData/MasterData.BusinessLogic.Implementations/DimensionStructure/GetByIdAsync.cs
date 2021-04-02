@@ -9,7 +9,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
@@ -31,10 +30,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             {
                 Check.IsNotNull(dimensionStructure);
 
-                await _masterDataValidators.DimensionStructureValidator.ValidateAndThrowAsync(
-                        dimensionStructure,
-                        ruleSet: DimensionStructureValidatorRulesets.GetById)
-                   .ConfigureAwait(false);
+                await _masterDataValidators.DimensionStructureValidator.ValidateAsync(dimensionStructure, o =>
+                {
+                    o.IncludeProperties(DimensionStructureValidatorRulesets.GetById);
+                    o.ThrowOnFailures();
+                }, cancellationToken).ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
@@ -47,55 +47,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}.{nameof(GetByIdAsync)} " +
-                             $"operation failed. For further info see inner exception.";
+                    $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
-        }
-
-        private async Task<DimensionStructure> GetDimensionStructureByIdWithChildrenAsync(
-            long dimensionsStructureId)
-        {
-            try
-            {
-                Check.AreNotEqual(dimensionsStructureId, 0);
-
-                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-                {
-                    DimensionStructure dimensionStructure = await ctx.DimensionStructures
-                       .FindAsync(dimensionsStructureId)
-                       .ConfigureAwait(false);
-
-                    // dimensionStructure.ChildDimensionStructures = await GetDimensionStructureTreeAsync(
-                    //         dimensionsStructureId,
-                    //         ctx)
-                    //    .ConfigureAwait(false);
-
-                    return dimensionStructure;
-                }
-            }
-            catch (Exception e)
-            {
-                string msg = $"Error happened while querying Dimensionstructure and its " +
-                             $"DimensionStructure tree";
-                throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
-            }
-        }
-
-        private async Task<DimensionStructure> GetDimensionStructureByIdWithoutChildrenAsync(
-            long dimensionStructureId)
-        {
-            // Check.AreNotEqual(dimensionStructureId, 0);
-            //
-            // using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
-            // {
-            //     DimensionStructure result = await ctx.DimensionStructures
-            //        .AsNoTracking()
-            //        .Include(p => p.DimensionStructureDimensionStructures)
-            //        .FirstOrDefaultAsync(k => k.Id == dimensionStructureId)
-            //        .ConfigureAwait(false);
-            //     return result;
-            // }
-            throw new NotImplementedException();
         }
     }
 }

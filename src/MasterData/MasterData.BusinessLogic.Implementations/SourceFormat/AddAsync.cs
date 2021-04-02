@@ -29,10 +29,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 {
                     Check.IsNotNull(sourceFormat);
 
-                    await _masterDataValidators.SourceFormatValidator.ValidateAndThrowAsync(
-                            sourceFormat,
-                            ruleSet: SourceFormatValidatorRulesets.Add)
-                       .ConfigureAwait(false);
+                    await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                    {
+                        o.IncludeRuleSets(SourceFormatValidatorRulesets.Add);
+                        o.ThrowOnFailures();
+                    }, cancellationToken).ConfigureAwait(false);
 
                     await ctx.SourceFormats
                        .AddAsync(sourceFormat, cancellationToken)
@@ -45,7 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 catch (Exception e)
                 {
                     string msg = $"Operation failed: {nameof(AddAsync)}. " +
-                                 $"For further details see inner exception.";
+                        $"For further details see inner exception.";
                     throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                 }
             }
