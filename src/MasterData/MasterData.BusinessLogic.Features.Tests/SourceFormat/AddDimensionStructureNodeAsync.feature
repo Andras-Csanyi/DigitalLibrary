@@ -73,7 +73,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree      |
           | SearchForObjectKey | ds-node-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value               |
           | TreeKey            | sf-2-with-tree      |
           | SearchForObjectKey | ds-node-to-be-added |
@@ -173,7 +173,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |
@@ -184,7 +184,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
@@ -314,7 +314,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |
@@ -325,7 +325,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
@@ -336,7 +336,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node3-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node3-to-be-added |
@@ -441,7 +441,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1     |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value          |
           | TreeKey            | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1     |
@@ -452,7 +452,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1   |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value          |
           | TreeKey            | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1   |

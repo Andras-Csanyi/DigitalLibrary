@@ -139,7 +139,7 @@ Which includes being able to delete nodes
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |
 
-        And DimensionStructureNode parent is
+        And DimensionStructureNode parent by traversing through the tree is
           | Field              | Value                |
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node1-to-be-added |

@@ -56,7 +56,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         DimensionStructureNode parentWithChildren = await _ctx.DimensionStructureNodes
                            .Include(i => i.ChildNodes)
                            .Where(sf => sf.SourceFormatId == sourceFormatId)
-                           .FirstOrDefaultAsync(k => k.SourceFormatId == sourceFormatId, cancellationToken)
+                           .FirstOrDefaultAsync(k => k.Id == parentId, cancellationToken)
                            .ConfigureAwait(false);
 
                         if (parentWithChildren is null)

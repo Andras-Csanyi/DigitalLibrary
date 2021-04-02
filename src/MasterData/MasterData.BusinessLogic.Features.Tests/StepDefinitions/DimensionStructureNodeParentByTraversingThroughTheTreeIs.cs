@@ -13,8 +13,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [Then(@"DimensionStructureNode parent is")]
-        public async Task DimensionStructureNodeParentIs(Table table)
+        [Then(@"DimensionStructureNode parent by traversing through the tree is")]
+        public async Task DimensionStructureNodeParentByTraversingThroughTheTreeIs(Table table)
         {
             DimensionStructureNodeAndParentLookupInTheTreeEntity instance = table
                .CreateInstance<DimensionStructureNodeAndParentLookupInTheTreeEntity>();
