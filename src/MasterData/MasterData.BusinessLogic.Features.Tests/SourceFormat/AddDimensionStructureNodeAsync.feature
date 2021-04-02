@@ -184,6 +184,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | SearchForObjectKey | ds-node1-to-be-added |
           | ParentKey          | sf-2-root-node       |
 
+        And DimensionStructureNode parent in the database is
+          | Field     | Value                |
+          | ChildKey  | ds-node1-to-be-added |
+          | ParentKey | sf-2-root-node       |
+
         And DimensionStructureNode is in the tree
           | Field              | Value                |
           | Key                | sf-2-with-tree       |
@@ -194,6 +199,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
           | ParentKey          | sf-2-root-node       |
+
+        And DimensionStructureNode parent in the database is
+          | Field     | Value                |
+          | ChildKey  | ds-node2-to-be-added |
+          | ParentKey | sf-2-root-node       |
 
     Scenario: Adds a third DimensionStructureNode to the root DimensionStructureNode as child
 
@@ -325,6 +335,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | SearchForObjectKey | ds-node1-to-be-added |
           | ParentKey          | sf-2-root-node       |
 
+        And DimensionStructureNode parent in the database is
+          | Field     | Value                |
+          | ChildKey  | ds-node1-to-be-added |
+          | ParentKey | sf-2-root-node       |
+
         And DimensionStructureNode is in the tree
           | Field              | Value                |
           | Key                | sf-2-with-tree       |
@@ -336,6 +351,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | SearchForObjectKey | ds-node2-to-be-added |
           | ParentKey          | sf-2-root-node       |
 
+        And DimensionStructureNode parent in the database is
+          | Field     | Value                |
+          | ChildKey  | ds-node2-to-be-added |
+          | ParentKey | sf-2-root-node       |
+
         And DimensionStructureNode is in the tree
           | Field              | Value                |
           | Key                | sf-2-with-tree       |
@@ -346,6 +366,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | TreeKey            | sf-2-with-tree       |
           | SearchForObjectKey | ds-node3-to-be-added |
           | ParentKey          | sf-2-root-node       |
+
+        And DimensionStructureNode parent in the database is
+          | Field     | Value                |
+          | ChildKey  | ds-node3-to-be-added |
+          | ParentKey | sf-2-root-node       |
 
     Scenario: Adds a DimensionStructureNode to the level 1 named 1
 
@@ -452,6 +477,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | SearchForObjectKey | dsn-root-1     |
           | ParentKey          | sf-2-root-node |
 
+        And DimensionStructureNode parent in the database is
+          | Field     | Value          |
+          | ChildKey  | dsn-root-1     |
+          | ParentKey | sf-2-root-node |
+
         And DimensionStructureNode is in the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
@@ -462,3 +492,8 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | TreeKey            | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1   |
           | ParentKey          | dsn-root-1     |
+
+        And DimensionStructureNode parent in the database is
+          | Field     | Value        |
+          | ChildKey  | dsn-root-1-1 |
+          | ParentKey | dsn-root-1   |
