@@ -102,7 +102,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
                .UseSqlite($"Data Source = {sqlLiteFileNameWithPath}")
-
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
                 // .UseInternalServiceProvider(_serviceProvider)

@@ -90,6 +90,9 @@ namespace DigitalLibrary.MasterData.Validators
             });
 
             RuleSet(SourceFormatValidatorRulesets.Inactivate, () => { RuleFor(p => p.Id).GreaterThanOrEqualTo(1); });
+            RuleSet(
+                SourceFormatValidatorRulesets.RemoveRootDimensionStructureNode,
+                () => { RuleFor(p => p.Id).GreaterThanOrEqualTo(1); });
         }
     }
 }

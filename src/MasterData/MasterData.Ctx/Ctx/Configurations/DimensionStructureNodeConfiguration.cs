@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.HasKey(k => k.Id);
             builder.Property(p => p.Id).HasColumnName("id");
 
-            builder.Property(p => p.ChildNodeId).HasColumnName("child_id");
+            builder.Property(p => p.ParentNodeId).HasColumnName("parent_id");
 
             builder.Property(p => p.DimensionStructureId).HasColumnName("dimensionstructure_id");
 
@@ -30,8 +30,8 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
             builder.Property(p => p.IsActive).HasDefaultValue(1);
 
             builder.HasMany(m => m.ChildNodes)
-               .WithOne(o => o.ChildNode)
-               .HasForeignKey(k => k.ChildNodeId)
+               .WithOne(o => o.ParentNode)
+               .HasForeignKey(k => k.ParentNodeId)
                .IsRequired(false);
 
             builder.HasOne(o => o.SourceFormat)

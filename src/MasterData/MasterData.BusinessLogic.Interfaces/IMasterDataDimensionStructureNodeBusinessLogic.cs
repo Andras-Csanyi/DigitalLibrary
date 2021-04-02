@@ -66,5 +66,20 @@
         Task<DimensionStructureNode> AddAsync(
             DimensionStructureNode dimensionStructureNode,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns a <see cref="DimensionStructureNode"/> object which has Id value passed to the method.
+        /// </summary>
+        /// <param name="id">The Id value.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// It contains the <see cref="DimensionStructureNode"/> object if there is object with given id. If not the
+        /// result is null.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> GetByIdAsync(long id, CancellationToken cancellationToken = default);
     }
 }

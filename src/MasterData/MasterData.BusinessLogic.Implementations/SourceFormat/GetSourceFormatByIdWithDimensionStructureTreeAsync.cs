@@ -24,14 +24,17 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 SourceFormat sourceFormat = await GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
                    .ConfigureAwait(false);
 
-                using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+                if (sourceFormat.SourceFormatDimensionStructureNode != null)
                 {
-                    DimensionStructureNode tree = await GetDimensionStructureNodeTreeAsync(
-                            sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode,
-                            ctx)
-                       .ConfigureAwait(false);
+                    using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
+                    {
+                        DimensionStructureNode tree = await GetDimensionStructureNodeTreeAsync(
+                                sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode,
+                                ctx)
+                           .ConfigureAwait(false);
 
-                    sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode = tree;
+                        sourceFormat.SourceFormatDimensionStructureNode.DimensionStructureNode = tree;
+                    }
                 }
 
                 return sourceFormat;
@@ -39,8 +42,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
-                             $"{nameof(GetSourceFormatByIdWithDimensionStructureNodeTreeAsync)} " +
-                             $"operation failed. For further info see inner exception.";
+                    $"{nameof(GetSourceFormatByIdWithDimensionStructureNodeTreeAsync)} " +
+                    $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
             }
         }

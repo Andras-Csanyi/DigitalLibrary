@@ -17,13 +17,22 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
     public interface IMasterDataSourceFormatBusinessLogic
     {
         /// <summary>
-        ///     Adds <see cref="DimensionStructure" /> to <see cref="SourceFormat" /> as
-        ///     root dimension structure.
+        ///     Adds a <see cref="DimensionStructureNode" /> to <see cref="SourceFormat" /> as
+        ///     root dimension structure node.
         /// </summary>
         /// <param name="sourceFormatId">Source format id.</param>
-        /// <param name="dimensionStructureId">Dimension structure id.</param>
-        /// <returns>Task.</returns>
-        Task AddRootDimensionStructureAsync(long sourceFormatId, long dimensionStructureId);
+        /// <param name="dimensionStructureNodeId">Dimension structure id.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// <see cref="Task"/> representing result of asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     An error happened during database operation.
+        /// </exception>
+        Task AddRootDimensionStructureNodeAsync(
+            long sourceFormatId,
+            long dimensionStructureNodeId,
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Adds a new <see cref="SourceFormat" /> to the system.
@@ -252,6 +261,86 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// </exception>
         Task InactivateAsync(
             SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Removes root <see cref="DimensionStructureNode"/> of <see cref="SourceFormat"/> from the data structure.
+        /// The <see cref="DimensionStructureNode"/> is not going to be deleted, only removed from
+        /// <see cref="SourceFormat"/>.
+        /// </summary>
+        /// <param name="sourceFormat">The <see cref="SourceFormat"/>
+        ///     where the <see cref="DimensionStructureNode"/> going to be removed.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> representing result of async operations.</returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task RemoveRootDimensionStructureNodeAsync(
+            SourceFormat sourceFormat,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Appends the given <see cref="DimensionStructureNode"/> to given <see cref="DimensionStructureNode"/> as
+        /// child in the context of <see cref="SourceFormat"/>. 
+        /// </summary>
+        /// <param name="toBeAddedId">
+        ///     Id of the to be added <see cref="DimensionStructureNode"/> entity.
+        /// </param>
+        /// <param name="parentId">
+        ///     Id of the future parent <see cref="DimensionStructureNode"/> entity.
+        /// </param>
+        /// <param name="sourceFormatId">
+        ///     Id of the <see cref="SourceFormat"/> entity which owns the tree.
+        /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        ///     Returns <see cref="Task"/> representing result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task AppendDimensionStructureNodeToTreeAsync(
+            long toBeAddedId,
+            long parentId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Removes <see cref="DimensionStructureNode"/> from the DimensionStructureNode tree within <see cref="SourceFormat"/>.
+        /// The node is going to be deleted from database as it only has a single connection.
+        /// </summary>
+        /// <param name="id">Id of object to be removed.</param>
+        /// <param name="parentId">Id of parent object.</param>
+        /// <param name="sourceFormatId">Id of SourceFormat.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>Returns <see cref="Task"/> representing result of asynchronous operation.</returns>
+        /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
+        ///     Error happened during database operation.
+        /// </exception>
+        Task DeleteDimensionStructureNodeFromTreeAsync(
+            long id,
+            long parentId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns a <see cref="DimensionStructureNode"/> entity identified by the passed Id value.
+        /// It returns null if there is no entity with specified id.
+        ///
+        /// The returned entity contains its parent too.
+        /// </summary>
+        /// <param name="nodeId">Id identifies the entity should be returned.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of asynchronous operation. The
+        /// <see cref="Task{TResult}"/> includes either a null, if there is no entity with specified id,
+        /// or with <see cref="DimensionStructureNode"/> entity which includes its parent.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> GetDimensionStructureNodeByIdWithParentAsync(
+            long nodeId,
             CancellationToken cancellationToken = default);
     }
 }

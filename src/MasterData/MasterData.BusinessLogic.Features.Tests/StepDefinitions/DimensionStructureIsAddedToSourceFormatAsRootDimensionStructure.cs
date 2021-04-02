@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
                 as DimensionStructure;
 
             await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .AddRootDimensionStructureAsync(sourceFormat.Id, dimensionStructure.Id)
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, dimensionStructure.Id)
                .ConfigureAwait(false);
 
             DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
