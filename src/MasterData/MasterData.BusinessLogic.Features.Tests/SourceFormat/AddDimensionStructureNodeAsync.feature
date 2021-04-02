@@ -79,6 +79,11 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | SearchForObjectKey | ds-node-to-be-added |
           | ParentKey          | sf-2-root-node      |
 
+        And DimensionStructureNode parent in the database is
+          | Field     | Value               |
+          | ChildKey  | ds-node-to-be-added |
+          | ParentKey | sf-2-root-node      |
+
     Scenario: Adds a second DimensionStructureNode to the root DimensionStructureNode as child
 
     #      Test case:
