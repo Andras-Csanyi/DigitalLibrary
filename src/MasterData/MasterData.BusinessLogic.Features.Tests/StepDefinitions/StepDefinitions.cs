@@ -97,6 +97,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
                .BuildServiceProvider();
 
             string path = Directory.GetCurrentDirectory();
+
+            // clean up sqlite files from previous or debug sessions
+            string[] previousSessionSqlLiteFiles = Directory.GetFiles(path, "*.sqlite");
+            foreach (string previousSessionSqlLiteFile in previousSessionSqlLiteFiles)
+            {
+                File.Delete(previousSessionSqlLiteFile);
+            }
+
+            // create sqlite filename
             string fileName = $"sqlite_{rnd.Next(1, 10000000)}.sqlite";
             sqlLiteFileNameWithPath = $"{path}/{fileName}";
 
