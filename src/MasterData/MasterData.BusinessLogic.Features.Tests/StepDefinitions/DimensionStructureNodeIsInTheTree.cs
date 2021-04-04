@@ -12,8 +12,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
     public partial class StepDefinitions
     {
-        [Then(@"DimensionStructureNode is in the tree")]
-        public async Task DimensionStructureNodeIsInTheTree(Table table)
+        [Then(@"DimensionStructureNode is in the tree by traversing through the tree")]
+        public async Task DimensionStructureNodeIsInTheTreeByTraversingThroughTheTree(Table table)
         {
             DimensionStructureNodeLookupInTheTreeEntity instance = table
                .CreateInstance<DimensionStructureNodeLookupInTheTreeEntity>();

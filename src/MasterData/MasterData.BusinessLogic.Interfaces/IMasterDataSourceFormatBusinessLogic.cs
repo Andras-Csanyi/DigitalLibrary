@@ -342,5 +342,43 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructureNode> GetDimensionStructureNodeByIdWithParentAsync(
             long nodeId,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns the <see cref="DimensionStructureNode"/> specified by the Id input parameter. If there is no
+        /// such entity in the database then it returns null.
+        /// </summary>
+        /// <param name="id">The Id specifies the entity will be returned.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation. The result contains
+        /// the specified entity. If there is no such entity then it returns null. 
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> GetDimensionStructureNodeById(
+            long id,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns <see cref="DimensionStructureNode"/> specified by Id and <see cref="SourceFormat"/> Id.
+        ///
+        /// It means that the specified DimensionStructureNode is part of the tree belongs to the specified
+        /// SourceFormat.
+        /// </summary>
+        /// <param name="dimensionStructureNodeId">The DimensionStructureNode Id value.</param>
+        /// <param name="sourceFormatId">The SourceFormat Id value.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of asynchronous operation. If there is no such
+        /// DimensionStructureNode then returns null.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> GetDimensionStructureNodeByIdAndBySourceFormatId(
+            long dimensionStructureNodeId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
     }
 }
