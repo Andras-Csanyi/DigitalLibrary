@@ -1,15 +1,15 @@
-Feature: SourceFormat Business Logic - Add DimensionStructureNode
+Feature: SourceFormat Business Logic - Delete last DimensionStructureNode in the tree
 
 As a Data Owner and Data Curator
-I have to be able to manage data structures in the system including SourceFormat
-Which includes managing the DimensionStructureNode trees of SourceFormats
+I need to be able to manage trees describe how a document structures
+Which includes being able to delete nodes
 
-    Scenario: Adds DimensionStructureNode to the root DimensionStructureNode as child
+    Scenario: Deletes child of root DimensionStructureNode
 
     #      Test case:
     #      SF
     #      |-> RootDimensionStructureNode
-    #          |-> DSN
+    #          |-> DSN (ds-node-to-be-added)
 
         Given there is a saved SourceFormat domain object
           | Field     | Value       |
@@ -34,34 +34,30 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                   |
           | ResultKey | ds-node-to-be-added |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value               |
           | SourceFormatKey                    | sf-2-result         |
           | ParentDimensionStructureNodeKey    | sf-2-root-node      |
           | ToBeAddedDimensionStructureNodeKey | ds-node-to-be-added |
           | OperationResultKey                 | add-dsn-sf-result   |
 
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | ds-node-to-be-added        |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
+
         Then operation result is
-          | Field         | Value             |
-          | Key           | add-dsn-sf-result |
-          | ExpectedValue | SUCCESS           |
+          | Field         | Value                      |
+          | Key           | delete-ds-node-to-be-added |
+          | ExpectedValue | SUCCESS                    |
 
-        And DimensionStructureNode is requested
-          | Field     | Value               |
-          | Key       | ds-node-to-be-added |
-          | ResultKey | ds-node-requested   |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value             |
-          | Key          | ds-node-requested |
-          | PropertyName | SourceFormatId    |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value             |
-          | Key                                    | ds-node-requested |
-          | PropertyName                           | SourceFormatId    |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result       |
-          | ReferencedSourceFormatPropertyName     | Id                |
+        And DimensionStructureNode is requested and result is
+          | Field          | Value               |
+          | Key            | ds-node-to-be-added |
+          | ResultKey      | ds-node-requested   |
+          | ExpectedResult | null                |
 
         And SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
@@ -69,28 +65,32 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ResultKey | sf-2-with-tree |
 
         And DimensionStructureNode is in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | sf-2-root-node |
+
+        And DimensionStructureNode is in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | sf-2-root-node |
+          | SourceFormatKey           | sf-2-with-tree |
+
+        And DimensionStructureNode is not in the tree by traversing through the tree
           | Field              | Value               |
           | Key                | sf-2-with-tree      |
           | SearchForObjectKey | ds-node-to-be-added |
 
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value               |
-          | TreeKey            | sf-2-with-tree      |
-          | SearchForObjectKey | ds-node-to-be-added |
-          | ParentKey          | sf-2-root-node      |
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value               |
+          | DimensionStructureNodeKey | ds-node-to-be-added |
+          | SourceFormatKey           | sf-2-with-tree      |
 
-        And DimensionStructureNode parent in the database is
-          | Field     | Value               |
-          | ChildKey  | ds-node-to-be-added |
-          | ParentKey | sf-2-root-node      |
-
-    Scenario: Adds a second DimensionStructureNode to the root DimensionStructureNode as child
+    Scenario: Deletes child DimensionStructureNode of root DimensionStructureNode when it has multiple DSN
 
     #      Test case:
     #      SF
     #      |-> RootDimensionStructureNode
-    #          |-> DSN
-    #          |-> DSN
+    #          |-> DSN (ds-node1-to-be-added)
+    #          |-> DSN (ds-node2-to-be-added)
 
         Given there is a saved SourceFormat domain object
           | Field     | Value       |
@@ -127,48 +127,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                    |
           | ResultKey | ds-node2-to-be-added |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                |
           | SourceFormatKey                    | sf-2-result          |
           | ParentDimensionStructureNodeKey    | sf-2-root-node       |
           | ToBeAddedDimensionStructureNodeKey | ds-node2-to-be-added |
           | OperationResultKey                 | add-dsn2-sf-result   |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | ds-node1-to-be-added |
-          | ResultKey | ds-node1-requested   |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | ds-node2-to-be-added       |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value              |
-          | Key          | ds-node1-requested |
-          | PropertyName | SourceFormatId     |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value              |
-          | Key                                    | ds-node1-requested |
-          | PropertyName                           | SourceFormatId     |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result        |
-          | ReferencedSourceFormatPropertyName     | Id                 |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | ds-node2-to-be-added |
-          | ResultKey | ds-node2-requested   |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value              |
-          | Key          | ds-node2-requested |
-          | PropertyName | SourceFormatId     |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value              |
-          | Key                                    | ds-node2-requested |
-          | PropertyName                           | SourceFormatId     |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result        |
-          | ReferencedSourceFormatPropertyName     | Id                 |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -190,29 +163,28 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ParentKey | sf-2-root-node       |
 
         And DimensionStructureNode is in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | sf-2-root-node |
+
+        And DimensionStructureNode is not in the tree by traversing through the tree
           | Field              | Value                |
           | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node2-to-be-added |
 
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value                |
-          | TreeKey            | sf-2-with-tree       |
-          | SearchForObjectKey | ds-node2-to-be-added |
-          | ParentKey          | sf-2-root-node       |
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value                |
+          | DimensionStructureNodeKey | ds-node2-to-be-added |
+          | SourceFormatKey           | sf-2-with-tree       |
 
-        And DimensionStructureNode parent in the database is
-          | Field     | Value                |
-          | ChildKey  | ds-node2-to-be-added |
-          | ParentKey | sf-2-root-node       |
-
-    Scenario: Adds a third DimensionStructureNode to the root DimensionStructureNode as child
+    Scenario: Deletes child DimensionStructureNode of the root DimensionStructureNode when it has multiple child DSN
 
     #      Test case:
     #      SF
     #      |-> RootDimensionStructureNode
-    #          |-> DSN
-    #          |-> DSN
-    #          |-> DSN
+    #          |-> DSN (ds-node1-to-be-added)
+    #          |-> DSN (ds-node2-to-be-added)
+    #          |-> DSN (ds-node3-to-be-added)
 
         Given there is a saved SourceFormat domain object
           | Field     | Value       |
@@ -261,65 +233,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                    |
           | ResultKey | ds-node3-to-be-added |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                |
           | SourceFormatKey                    | sf-2-result          |
           | ParentDimensionStructureNodeKey    | sf-2-root-node       |
           | ToBeAddedDimensionStructureNodeKey | ds-node3-to-be-added |
           | OperationResultKey                 | add-dsn3-sf-result   |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | ds-node1-to-be-added |
-          | ResultKey | ds-node1-requested   |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | ds-node2-to-be-added       |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value              |
-          | Key          | ds-node1-requested |
-          | PropertyName | SourceFormatId     |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value              |
-          | Key                                    | ds-node1-requested |
-          | PropertyName                           | SourceFormatId     |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result        |
-          | ReferencedSourceFormatPropertyName     | Id                 |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | ds-node2-to-be-added |
-          | ResultKey | ds-node2-requested   |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value              |
-          | Key          | ds-node2-requested |
-          | PropertyName | SourceFormatId     |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value              |
-          | Key                                    | ds-node2-requested |
-          | PropertyName                           | SourceFormatId     |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result        |
-          | ReferencedSourceFormatPropertyName     | Id                 |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | ds-node3-to-be-added |
-          | ResultKey | ds-node3-requested   |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value              |
-          | Key          | ds-node3-requested |
-          | PropertyName | SourceFormatId     |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value              |
-          | Key                                    | ds-node3-requested |
-          | PropertyName                           | SourceFormatId     |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result        |
-          | ReferencedSourceFormatPropertyName     | Id                 |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -343,22 +271,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value                |
           | Key                | sf-2-with-tree       |
-          | SearchForObjectKey | ds-node2-to-be-added |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value                |
-          | TreeKey            | sf-2-with-tree       |
-          | SearchForObjectKey | ds-node2-to-be-added |
-          | ParentKey          | sf-2-root-node       |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value                |
-          | ChildKey  | ds-node2-to-be-added |
-          | ParentKey | sf-2-root-node       |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value                |
-          | Key                | sf-2-with-tree       |
           | SearchForObjectKey | ds-node3-to-be-added |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -372,7 +284,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | ds-node3-to-be-added |
           | ParentKey | sf-2-root-node       |
 
-    Scenario: Adds a DimensionStructureNode to the level 1 named 1
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value                |
+          | Key                | sf-2-with-tree       |
+          | SearchForObjectKey | ds-node2-to-be-added |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value                |
+          | DimensionStructureNodeKey | ds-node2-to-be-added |
+          | SourceFormatKey           | sf-2-with-tree       |
+
+    Scenario: Deletes a DimensionStructureNode from level 1 when level 1 has a single item
 
     #      Test case:
     #      SF
@@ -422,41 +344,14 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1        |
           | OperationResultKey                 | dsn-root-1-1-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1               |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -482,23 +377,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1     |
           | ParentKey | sf-2-root-node |
 
-        And DimensionStructureNode is in the tree by traversing through the tree
+        And DimensionStructureNode is not in the tree by traversing through the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1   |
 
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1   |
-          | ParentKey          | dsn-root-1     |
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1   |
+          | SourceFormatKey           | sf-2-with-tree |
 
-        And DimensionStructureNode parent in the database is
-          | Field     | Value        |
-          | ChildKey  | dsn-root-1-1 |
-          | ParentKey | dsn-root-1   |
-
-    Scenario: Adds a second DimensionStructureNode to the level 1 named 2
+    Scenario: Deletes a DimensionStructureNode from level 1 when level 1 has two items
 
     #      Test case:
     #      SF
@@ -554,65 +443,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1            |
           | ResultKey | dsn-root-1-2 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value               |
           | SourceFormatKey                    | sf-2-result         |
           | ParentDimensionStructureNodeKey    | dsn-root-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-2        |
           | OperationResultKey                 | dsn-root-1-2-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1               |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -641,22 +486,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1   |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1   |
-          | ParentKey          | dsn-root-1     |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value        |
-          | ChildKey  | dsn-root-1-1 |
-          | ParentKey | dsn-root-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value          |
-          | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-2   |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -670,7 +499,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-2 |
           | ParentKey | dsn-root-1   |
 
-    Scenario: Adds a third DimensionStructureNode to the level 1 named 3
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | dsn-root-1-1   |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1   |
+          | SourceFormatKey           | sf-2-with-tree |
+
+    Scenario: Deletes a DimensionStructureNode from level 1 when level 1 has three items
 
     #      Test case:
     #      SF
@@ -739,82 +578,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1            |
           | ResultKey | dsn-root-1-3 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value               |
           | SourceFormatKey                    | sf-2-result         |
           | ParentDimensionStructureNodeKey    | dsn-root-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-3        |
           | OperationResultKey                 | dsn-root-1-3-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1               |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -839,22 +617,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Field     | Value          |
           | ChildKey  | dsn-root-1     |
           | ParentKey | sf-2-root-node |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value          |
-          | Key                | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1   |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1   |
-          | ParentKey          | dsn-root-1     |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value        |
-          | ChildKey  | dsn-root-1-1 |
-          | ParentKey | dsn-root-1   |
 
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value          |
@@ -888,14 +650,24 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-3 |
           | ParentKey | dsn-root-1   |
 
-    Scenario: Adds a DimensionStructureNode to the level 2 named 1
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | dsn-root-1-1   |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1   |
+          | SourceFormatKey           | sf-2-with-tree |
+
+    Scenario: Deletes DimensionStructureNode from level 2 when only one node is there
 
     #      Test case:
     #      SF
     #      |-> RootDimensionStructureNode
     #          |-> DSN (dsn-root-1)
     #              |-> DSN (dsn-root-1-1)
-    #                |-> DSN (dsn-root-1-1-1
+    #                |-> DSN (dsn-root-1-1-1)
     #              |-> DSN (dsn-root-1-2)
     #              |-> DSN (dsn-root-1-3)
 
@@ -977,92 +749,14 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-1        |
           | OperationResultKey                 | dsn-root-1-1-1-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1             |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -1136,23 +830,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-3 |
           | ParentKey | dsn-root-1   |
 
-        And DimensionStructureNode is in the tree by traversing through the tree
+        And DimensionStructureNode is not in the tree by traversing through the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1-1 |
 
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1-1 |
-          | ParentKey          | dsn-root-1-1   |
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree |
 
-        And DimensionStructureNode parent in the database is
-          | Field     | Value          |
-          | ChildKey  | dsn-root-1-1-1 |
-          | ParentKey | dsn-root-1-1   |
-
-    Scenario: Adds a second DimensionStructureNode to the level 2 named 2
+    Scenario: Deletes DimensionStructureNode from level 2 when two nodes are there
 
     #      Test case:
     #      SF
@@ -1247,116 +935,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1              |
           | ResultKey | dsn-root-1-1-2 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                 |
           | SourceFormatKey                    | sf-2-result           |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-2        |
           | OperationResultKey                 | dsn-root-1-1-2-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1             |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -1433,22 +1026,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1-1 |
-          | ParentKey          | dsn-root-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value          |
-          | ChildKey  | dsn-root-1-1-1 |
-          | ParentKey | dsn-root-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value          |
-          | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -1462,7 +1039,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-2 |
           | ParentKey | dsn-root-1-1   |
 
-    Scenario: Adds a third DimensionStructureNode to the level 2 named 3
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | dsn-root-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree |
+
+    Scenario: Deletes DimensionStructureNode from level 2 when three nodes are there
 
     #      Test case:
     #      SF
@@ -1570,133 +1157,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1              |
           | ResultKey | dsn-root-1-1-3 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                 |
           | SourceFormatKey                    | sf-2-result           |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-3        |
           | OperationResultKey                 | dsn-root-1-1-3-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1             |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -1773,22 +1248,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value          |
           | Key                | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value          |
-          | TreeKey            | sf-2-with-tree |
-          | SearchForObjectKey | dsn-root-1-1-1 |
-          | ParentKey          | dsn-root-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value          |
-          | ChildKey  | dsn-root-1-1-1 |
-          | ParentKey | dsn-root-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value          |
-          | Key                | sf-2-with-tree |
           | SearchForObjectKey | dsn-root-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -1818,7 +1277,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-3 |
           | ParentKey | dsn-root-1-1   |
 
-    Scenario: Adds a DimensionStructureNode to the level 3 named 1
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value          |
+          | Key                | sf-2-with-tree |
+          | SearchForObjectKey | dsn-root-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value          |
+          | DimensionStructureNodeKey | dsn-root-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree |
+
+    Scenario: Deletes DimensionStructureNode from level 3 when one node is there
 
     #      Test case:
     #      SF
@@ -1939,150 +1408,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-1-1 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-1-1        |
           | OperationResultKey                 | dsn-root-1-1-1-1-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -2204,23 +1544,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-3 |
           | ParentKey | dsn-root-1-1   |
 
-        And DimensionStructureNode is in the tree by traversing through the tree
+        And DimensionStructureNode is not in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
           | SearchForObjectKey | dsn-root-1-1-1-1 |
 
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |
 
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
-    Scenario: Adds a second DimensionStructureNode to the level 3 named 2
+    Scenario: Deletes DimensionStructureNode from level 3 when two nodes are there
 
     #      Test case:
     #      SF
@@ -2354,167 +1688,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-1-2 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-1-2        |
           | OperationResultKey                 | dsn-root-1-1-1-2-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-2           |
-          | ResultKey | dsn-root-1-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -2639,22 +1827,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value            |
-          | Key                | sf-2-with-tree   |
           | SearchForObjectKey | dsn-root-1-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -2668,7 +1840,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-1-2 |
           | ParentKey | dsn-root-1-1-1   |
 
-    Scenario: Adds a third DimensionStructureNode to the level 3 named 3
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value            |
+          | Key                | sf-2-with-tree   |
+          | SearchForObjectKey | dsn-root-1-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |
+
+    Scenario: Deletes DimensionStructureNode from level 3 when three nodes are there
 
     #      Test case:
     #      SF
@@ -2815,184 +1997,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-1-3 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-1          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-1-3        |
           | OperationResultKey                 | dsn-root-1-1-1-3-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-2           |
-          | ResultKey | dsn-root-1-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-3           |
-          | ResultKey | dsn-root-1-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-3-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-3-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -3117,22 +2136,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value            |
-          | Key                | sf-2-with-tree   |
           | SearchForObjectKey | dsn-root-1-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -3162,7 +2165,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-1-3 |
           | ParentKey | dsn-root-1-1-1   |
 
-    Scenario: Adds a fourth DimensionStructureNode to the level 3 named 2-1
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value            |
+          | Key                | sf-2-with-tree   |
+          | SearchForObjectKey | dsn-root-1-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |
+
+    Scenario: Deletes DimensionStructureNode from level 3 when three nodes are there and at other nodes
 
     #      Test case:
     #      SF
@@ -3322,201 +2335,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-2-1 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-2          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-2-1        |
           | OperationResultKey                 | dsn-root-1-1-2-1-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-2           |
-          | ResultKey | dsn-root-1-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-3           |
-          | ResultKey | dsn-root-1-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-3-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-3-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-1           |
-          | ResultKey | dsn-root-1-1-2-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -3637,23 +2470,7 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Field     | Value          |
           | ChildKey  | dsn-root-1-1-3 |
           | ParentKey | dsn-root-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value            |
-          | Key                | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
+        
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
@@ -3702,7 +2519,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-2-1 |
           | ParentKey | dsn-root-1-1-2   |
 
-    Scenario: Adds a fifth DimensionStructureNode to the level 3 named 2-2
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value            |
+          | Key                | sf-2-with-tree   |
+          | SearchForObjectKey | dsn-root-1-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |
+
+    Scenario: Deletes DimensionStructureNode from level 3 when three nodes are there and at other nodes too
 
     #      Test case:
     #      SF
@@ -3875,218 +2702,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-2-2 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-2          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-2-2        |
           | OperationResultKey                 | dsn-root-1-1-2-2-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-2           |
-          | ResultKey | dsn-root-1-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-3           |
-          | ResultKey | dsn-root-1-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-3-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-3-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-1           |
-          | ResultKey | dsn-root-1-1-2-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-2           |
-          | ResultKey | dsn-root-1-1-2-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -4211,22 +2841,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value            |
-          | Key                | sf-2-with-tree   |
           | SearchForObjectKey | dsn-root-1-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -4288,7 +2902,17 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | ChildKey  | dsn-root-1-1-2-2 |
           | ParentKey | dsn-root-1-1-2   |
 
-    Scenario: Adds a sixth DimensionStructureNode to the level 3 named 2-3
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value            |
+          | Key                | sf-2-with-tree   |
+          | SearchForObjectKey | dsn-root-1-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |
+
+    Scenario: Deletes DimensionStructureNode from level 3 when three nodes are there and at other nodes too extend
 
     #      Test case:
     #      SF
@@ -4474,235 +3098,21 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | IsActive  | 1                |
           | ResultKey | dsn-root-1-1-2-3 |
 
-        When DimensionStructureNode is added to the tree of a SourceFormat
+        And DimensionStructureNode is added to the tree of a SourceFormat
           | Field                              | Value                   |
           | SourceFormatKey                    | sf-2-result             |
           | ParentDimensionStructureNodeKey    | dsn-root-1-1-2          |
           | ToBeAddedDimensionStructureNodeKey | dsn-root-1-1-2-3        |
           | OperationResultKey                 | dsn-root-1-1-2-3-result |
 
-        Then DimensionStructureNode is requested
-          | Field     | Value                |
-          | Key       | dsn-root-1           |
-          | ResultKey | dsn-root-1-requested |
+        When DimensionStructureNode is deleted from tree of SourceFormat
+          | Field                           | Value                      |
+          | DimensionStructureNodeKey       | dsn-root-1-1-1-1           |
+          | ParentDimensionStructureNodeKey | sf-2-root-node             |
+          | SourceFormatKey                 | sf-2-result                |
+          | OperationResultKey              | delete-ds-node-to-be-added |
 
-        And DimensionStructure's property is not empty
-          | Field        | Value                |
-          | Key          | dsn-root-1-requested |
-          | PropertyName | SourceFormatId       |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                |
-          | Key                                    | dsn-root-1-requested |
-          | PropertyName                           | SourceFormatId       |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result          |
-          | ReferencedSourceFormatPropertyName     | Id                   |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-1           |
-          | ResultKey | dsn-root-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-1-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-1-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-2           |
-          | ResultKey | dsn-root-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-2-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-2-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                  |
-          | Key       | dsn-root-1-3           |
-          | ResultKey | dsn-root-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                  |
-          | Key          | dsn-root-1-3-requested |
-          | PropertyName | SourceFormatId         |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                  |
-          | Key                                    | dsn-root-1-3-requested |
-          | PropertyName                           | SourceFormatId         |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result            |
-          | ReferencedSourceFormatPropertyName     | Id                     |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-1-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-1-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-2           |
-          | ResultKey | dsn-root-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-2-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-2-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                    |
-          | Key       | dsn-root-1-1-3           |
-          | ResultKey | dsn-root-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                    |
-          | Key          | dsn-root-1-1-3-requested |
-          | PropertyName | SourceFormatId           |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                    |
-          | Key                                    | dsn-root-1-1-3-requested |
-          | PropertyName                           | SourceFormatId           |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result              |
-          | ReferencedSourceFormatPropertyName     | Id                       |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-1           |
-          | ResultKey | dsn-root-1-1-1-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-2           |
-          | ResultKey | dsn-root-1-1-1-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-1-3           |
-          | ResultKey | dsn-root-1-1-1-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-1-3-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-1-3-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-1           |
-          | ResultKey | dsn-root-1-1-2-1-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-1-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-1-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-2           |
-          | ResultKey | dsn-root-1-1-2-2-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-2-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-2-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And DimensionStructureNode is requested
-          | Field     | Value                      |
-          | Key       | dsn-root-1-1-2-3           |
-          | ResultKey | dsn-root-1-1-2-3-requested |
-
-        And DimensionStructure's property is not empty
-          | Field        | Value                      |
-          | Key          | dsn-root-1-1-2-3-requested |
-          | PropertyName | SourceFormatId             |
-
-        And DimensionStructure's node property equals to a number
-          | Field                                  | Value                      |
-          | Key                                    | dsn-root-1-1-2-3-requested |
-          | PropertyName                           | SourceFormatId             |
-          | ExpectedResultReferenceSourceFormatKey | sf-2-result                |
-          | ReferencedSourceFormatPropertyName     | Id                         |
-
-        And SourceFormat is requested with DimensionStructureNode tree
+        Then SourceFormat is requested with DimensionStructureNode tree
           | Field     | Value          |
           | Key       | sf-2-result    |
           | ResultKey | sf-2-with-tree |
@@ -4827,22 +3237,6 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
         And DimensionStructureNode is in the tree by traversing through the tree
           | Field              | Value            |
           | Key                | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-
-        And DimensionStructureNode parent by traversing through the tree is
-          | Field              | Value            |
-          | TreeKey            | sf-2-with-tree   |
-          | SearchForObjectKey | dsn-root-1-1-1-1 |
-          | ParentKey          | dsn-root-1-1-1   |
-
-        And DimensionStructureNode parent in the database is
-          | Field     | Value            |
-          | ChildKey  | dsn-root-1-1-1-1 |
-          | ParentKey | dsn-root-1-1-1   |
-
-        And DimensionStructureNode is in the tree by traversing through the tree
-          | Field              | Value            |
-          | Key                | sf-2-with-tree   |
           | SearchForObjectKey | dsn-root-1-1-1-2 |
 
         And DimensionStructureNode parent by traversing through the tree is
@@ -4919,3 +3313,13 @@ Which includes managing the DimensionStructureNode trees of SourceFormats
           | Field     | Value            |
           | ChildKey  | dsn-root-1-1-2-3 |
           | ParentKey | dsn-root-1-1-2   |
+
+        And DimensionStructureNode is not in the tree by traversing through the tree
+          | Field              | Value            |
+          | Key                | sf-2-with-tree   |
+          | SearchForObjectKey | dsn-root-1-1-1-1 |
+
+        And DimensionStructureNode is not in the tree in the database
+          | Field                     | Value            |
+          | DimensionStructureNodeKey | dsn-root-1-1-1-1 |
+          | SourceFormatKey           | sf-2-with-tree   |

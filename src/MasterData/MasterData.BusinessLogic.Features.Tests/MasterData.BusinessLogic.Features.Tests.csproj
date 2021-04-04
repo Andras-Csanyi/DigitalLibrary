@@ -85,8 +85,6 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature">
-        </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
@@ -95,9 +93,6 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.Validation.feature">
             <CodeBehindFile>SourceFormat/AddRootDimensionStructureNodeAsync.feature.cs</CodeBehindFile>
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\RemoveRootDimensionStructureNodeAsync.Validation.feature">
-            <CodeBehindFile>SourceFormat/RemoveRootDimensionStructureNodeAsync.feature.cs</CodeBehindFile>
         </SpecFlowFeatureFiles>
     </ItemGroup>
 

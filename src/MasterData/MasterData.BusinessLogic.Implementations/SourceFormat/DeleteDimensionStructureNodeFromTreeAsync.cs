@@ -31,21 +31,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         Check.AreNotEqual(parentId, 0);
                         Check.AreNotEqual(sourceFormatId, 0);
 
-                        DimensionStructureNode parent = await ctx.DimensionStructureNodes
-                           .Include(i => i.ChildNodes)
-                           .Where(p => p.Id == parentId)
-                           .FirstOrDefaultAsync(
-                                pp => pp.SourceFormatId == sourceFormatId,
-                                cancellationToken)
-                           .ConfigureAwait(false);
-
-                        if (parent is null)
-                        {
-                            string msg = $"There is no parent {nameof(DimensionStructureNode)} with id: {parent} " +
-                                         $"and {nameof(SourceFormat)}.Id: {sourceFormatId}";
-                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
-                        }
-
                         DimensionStructureNode toBeRemoved = await ctx.DimensionStructureNodes
                            .Where(p => p.Id == id)
                            .FirstOrDefaultAsync(
@@ -59,19 +44,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                                          $"{nameof(SourceFormat)}.Id: {sourceFormatId}";
                             throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                         }
-
-                        DimensionStructureNode contains = parent.ChildNodes
-                           .FirstOrDefault(c => c.Id == toBeRemoved.Id);
-
-                        if (contains is null)
-                        {
-                            string msg = $"The parent with id: {parentId} doesn't have children with id: {id}";
-                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
-                        }
-
-                        parent.ChildNodes.Remove(contains);
-                        ctx.Entry(parent).State = EntityState.Modified;
-                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                         ctx.Entry(toBeRemoved).State = EntityState.Deleted;
                         await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
