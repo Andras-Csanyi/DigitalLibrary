@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -99,14 +100,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
             string path = Directory.GetCurrentDirectory();
             string fileName = $"sqlite_{rnd.Next(1, 10000000)}.sqlite";
             sqlLiteFileNameWithPath = $"{path}/{fileName}";
+            _outputHelper.WriteLine($"SQLite file name: {sqlLiteFileNameWithPath}");
 
             _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
                .UseSqlite($"Data Source = {sqlLiteFileNameWithPath}")
+               .LogTo(msg => Debug.WriteLine(msg))
+               .EnableDetailedErrors()
+               .EnableSensitiveDataLogging()
                 // .UseNpgsql("Server=127.0.0.1;Port=5432;Database=dilib;User Id=andrascsanyi;")
                 // .UseLoggerFactory(MasterDataLogger)
                 // .UseInternalServiceProvider(_serviceProvider)
-                // .EnableDetailedErrors()
-                // .EnableSensitiveDataLogging()
                .Options;
 
             DimensionValidator dimensionValidator = new DimensionValidator();
