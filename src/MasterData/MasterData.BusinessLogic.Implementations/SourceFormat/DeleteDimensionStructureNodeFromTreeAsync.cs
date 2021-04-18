@@ -21,6 +21,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             long sourceFormatId,
             CancellationToken cancellationToken = default)
         {
+            DimensionStructureNode tree = null;
+
             using (MasterDataContext ctx = new(_dbContextOptions))
                 using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync(cancellationToken)
                    .ConfigureAwait(false))
@@ -32,6 +34,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         Check.AreNotEqual(sourceFormatId, 0);
 
                         DimensionStructureNode toBeRemoved = await ctx.DimensionStructureNodes
+                           .AsNoTracking()
+                           .Include(i => i.ChildNodes)
                            .Where(p => p.Id == id)
                            .FirstOrDefaultAsync(
                                 pp => pp.SourceFormatId == sourceFormatId,
@@ -45,8 +49,44 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                             throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                         }
 
-                        ctx.Entry(toBeRemoved).State = EntityState.Deleted;
-                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+                        if (toBeRemoved.ChildNodes.Any())
+                        {
+                            DimensionStructureNode toBeRemovedWithoutChildNodes = await ctx.DimensionStructureNodes
+                               .AsNoTracking()
+                               .Where(p => p.Id == id)
+                               .FirstOrDefaultAsync(
+                                    pp => pp.SourceFormatId == sourceFormatId,
+                                    cancellationToken)
+                               .ConfigureAwait(false);
+
+                            tree = await GetDimensionStructureNodeTreeAsync(
+                                    toBeRemovedWithoutChildNodes,
+                                    ctx)
+                               .ConfigureAwait(false);
+
+                            // if the removed entity has child entities, then the removing scope includes
+                            // the entity itself see the following comment
+                            await DeleteChildNodesOfDimensionStructureNode(
+                                    tree,
+                                    ctx,
+                                    cancellationToken)
+                               .ConfigureAwait(false);
+                        }
+
+                        // double check whether the entity to be removed is still in the database
+                        // if it has child entities, then removal of the specified entity happened previously
+                        DimensionStructureNode toBeRemovedRefresh = await ctx.DimensionStructureNodes
+                           .FirstOrDefaultAsync(
+                                k => k.Id == id,
+                                cancellationToken)
+                           .ConfigureAwait(false);
+
+                        if (toBeRemovedRefresh != null)
+                        {
+                            ctx.Entry(toBeRemovedRefresh).State = EntityState.Deleted;
+                            await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+                        }
+
                         await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
                     }
                     catch (Exception e)
@@ -58,6 +98,33 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                     }
                 }
+        }
+
+        private async Task DeleteChildNodesOfDimensionStructureNode(
+            DimensionStructureNode tree,
+            MasterDataContext ctx,
+            CancellationToken cancellationToken)
+        {
+            if (tree.ChildNodes.Any())
+            {
+                foreach (DimensionStructureNode treeChildNode in tree.ChildNodes)
+                {
+                    await DeleteChildNodesOfDimensionStructureNode(
+                            treeChildNode,
+                            ctx,
+                            cancellationToken)
+                       .ConfigureAwait(false);
+                }
+            }
+
+            DimensionStructureNode dimensionStructureNode = await ctx.DimensionStructureNodes
+               .FirstAsync(
+                    w => w.Id == tree.Id,
+                    cancellationToken)
+               .ConfigureAwait(false);
+            ctx.Entry(dimensionStructureNode).State = EntityState.Deleted;
+            await ctx.SaveChangesAsync(cancellationToken)
+               .ConfigureAwait(false);
         }
     }
 }

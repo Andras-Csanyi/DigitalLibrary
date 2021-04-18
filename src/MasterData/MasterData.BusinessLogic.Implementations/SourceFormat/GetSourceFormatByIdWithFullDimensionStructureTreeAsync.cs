@@ -33,7 +33,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     SourceFormat sourceFormat = await ctx.SourceFormats
                        .Include(i => i.SourceFormatDimensionStructureNode)
                        .ThenInclude(ii => ii.DimensionStructureNode)
-                       .ThenInclude(iii => iii.DimensionStructure)
                        .AsNoTracking()
                        .FirstAsync(p => p.Id == querySourceFormat.Id)
                        .ConfigureAwait(false);
