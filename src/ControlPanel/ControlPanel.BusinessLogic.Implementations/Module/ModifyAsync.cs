@@ -35,10 +35,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             throw new ModuleNullInputException(msg);
                         }
 
-                        await _moduleValidator.ValidateAndThrowAsync(
-                                modify,
-                                ruleSet: ValidatorRulesets.Modify)
-                           .ConfigureAwait(false);
+                        await _moduleValidator.ValidateAsync(modify, o =>
+                        {
+                            o.IncludeRuleSets(ValidatorRulesets.Modify);
+                            o.ThrowOnFailures();
+                        }).ConfigureAwait(false);
 
                         DomainModel.Entities.Module module = await ctx.Modules
                            .Include(p => p.Menus)
@@ -56,10 +57,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                         module.IsActive = modify.IsActive;
                         module.ModuleRoute = modify.ModuleRoute;
 
-                        await _moduleValidator.ValidateAndThrowAsync(
-                                module,
-                                ruleSet: ValidatorRulesets.Modify)
-                           .ConfigureAwait(false);
+                        await _moduleValidator.ValidateAsync(module, o =>
+                        {
+                            o.IncludeProperties(ValidatorRulesets.Modify);
+                            o.ThrowOnFailures();
+                        }).ConfigureAwait(false);
 
                         ctx.Entry(module).State = EntityState.Modified;
                         await ctx.SaveChangesAsync().ConfigureAwait(false);
