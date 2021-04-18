@@ -28,10 +28,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
                         throw new MenuNullInputException(msg);
                     }
 
-                    await _menuValidator.ValidateAndThrowAsync(
-                            menu,
-                            ruleSet: ValidatorRulesets.Find)
-                       .ConfigureAwait(false);
+                    await _menuValidator.ValidateAsync(menu, o =>
+                    {
+                        o.IncludeRuleSets(ValidatorRulesets.Find);
+                        o.ThrowOnFailures();
+                    }).ConfigureAwait(false);
 
                     return await ctx.Menus.FindAsync(menu.Id).ConfigureAwait(false);
                 }

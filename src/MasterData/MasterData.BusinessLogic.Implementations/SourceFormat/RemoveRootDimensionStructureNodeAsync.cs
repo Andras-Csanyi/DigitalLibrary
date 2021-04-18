@@ -23,10 +23,12 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             try
             {
                 Check.IsNotNull(sourceFormat);
-                await _masterDataValidators.SourceFormatValidator
-                   .ValidateAndThrowAsync(
-                        sourceFormat,
-                        SourceFormatValidatorRulesets.RemoveRootDimensionStructureNode)
+                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sourceFormat, o =>
+                        {
+                            o.IncludeProperties(SourceFormatValidatorRulesets.RemoveRootDimensionStructureNode);
+                            o.ThrowOnFailures();
+                        },
+                        cancellationToken)
                    .ConfigureAwait(false);
 
                 using (MasterDataContext ctx = new(_dbContextOptions))
@@ -51,7 +53,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(RemoveRootDimensionStructureNodeAsync)} operation failed! " +
-                    $"For further info see inner exception!";
+                             $"For further info see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

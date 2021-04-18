@@ -34,10 +34,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Module
                             throw new ModuleNullInputException(msg);
                         }
 
-                        await _moduleValidator.ValidateAndThrowAsync(
-                                toBeDelete,
-                                ruleSet: ValidatorRulesets.Delete)
-                           .ConfigureAwait(false);
+                        await _moduleValidator.ValidateAsync(toBeDelete, o =>
+                        {
+                            o.IncludeRuleSets(ValidatorRulesets.Delete);
+                            o.ThrowOnFailures();
+                        }).ConfigureAwait(false);
 
                         List<DomainModel.Entities.Menu> menusToBeDelete = await ctx.Menus
                            .Where(p => p.ModuleId == toBeDelete.Id)
