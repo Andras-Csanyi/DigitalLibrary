@@ -28,10 +28,11 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Menu
                         throw new MenuNullInputException(msg);
                     }
 
-                    await _menuValidator.ValidateAndThrowAsync(
-                            toBeDeleted,
-                            ruleSet: ValidatorRulesets.Delete)
-                       .ConfigureAwait(false);
+                    await _menuValidator.ValidateAsync(toBeDeleted, o =>
+                    {
+                        o.IncludeRuleSets(ValidatorRulesets.Delete);
+                        o.ThrowOnFailures();
+                    }).ConfigureAwait(false);
 
                     ctx.Menus.Remove(toBeDeleted);
                     await ctx.SaveChangesAsync().ConfigureAwait(false);
