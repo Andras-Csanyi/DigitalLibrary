@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -46,6 +47,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
+    [ExcludeFromCodeCoverage]
     internal class DimensionStructureNodeIsDeletedFromTreeOfSourceFormatEntity
     {
         public string DimensionStructureNodeKey { get; set; }

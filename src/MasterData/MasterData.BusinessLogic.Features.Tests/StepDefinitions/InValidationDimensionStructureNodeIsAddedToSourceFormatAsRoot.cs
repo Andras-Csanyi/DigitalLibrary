@@ -65,6 +65,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
     internal class InValidationDimensionStructureNodeIsAddedToSourceFormatAsRoot
     {
