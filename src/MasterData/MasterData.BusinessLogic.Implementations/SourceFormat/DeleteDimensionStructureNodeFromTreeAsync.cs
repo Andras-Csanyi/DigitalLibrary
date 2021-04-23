@@ -105,26 +105,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             MasterDataContext ctx,
             CancellationToken cancellationToken)
         {
-            if (tree.ChildNodes.Any())
+            try
             {
-                foreach (DimensionStructureNode treeChildNode in tree.ChildNodes)
+                if (tree.ChildNodes.Any())
                 {
-                    await DeleteChildNodesOfDimensionStructureNodeAsync(
-                            treeChildNode,
-                            ctx,
-                            cancellationToken)
-                       .ConfigureAwait(false);
+                    foreach (DimensionStructureNode treeChildNode in tree.ChildNodes)
+                    {
+                        await DeleteChildNodesOfDimensionStructureNodeAsync(
+                                treeChildNode,
+                                ctx,
+                                cancellationToken)
+                           .ConfigureAwait(false);
+                    }
                 }
-            }
 
-            DimensionStructureNode dimensionStructureNode = await ctx.DimensionStructureNodes
-               .FirstAsync(
-                    w => w.Id == tree.Id,
-                    cancellationToken)
-               .ConfigureAwait(false);
-            ctx.Entry(dimensionStructureNode).State = EntityState.Deleted;
-            await ctx.SaveChangesAsync(cancellationToken)
-               .ConfigureAwait(false);
+                DimensionStructureNode dimensionStructureNode = await ctx.DimensionStructureNodes
+                   .FirstAsync(
+                        w => w.Id == tree.Id,
+                        cancellationToken)
+                   .ConfigureAwait(false);
+                ctx.Entry(dimensionStructureNode).State = EntityState.Deleted;
+                await ctx.SaveChangesAsync(cancellationToken)
+                   .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
+                             $"{nameof(DeleteChildNodesOfDimensionStructureNodeAsync)} operation has failed. " +
+                             $"For further information see inner exception.";
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
+            }
         }
     }
 }

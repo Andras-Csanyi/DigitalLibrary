@@ -41,6 +41,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                                 cancellationToken)
                            .ConfigureAwait(false);
 
+                        SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode = await ctx
+                           .SourceFormatDimensionStructureNodes
+                           .FirstOrDefaultAsync(
+                                w => w.Id == rootNode.Id,
+                                cancellationToken)
+                           .ConfigureAwait(false);
+                        ctx.Entry(sourceFormatDimensionStructureNode).State = EntityState.Deleted;
+                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
                         if (rootNode == null)
                         {
                             string msg = $"There is no {nameof(DimensionStructureNode)} with Id: " +
@@ -50,8 +59,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
                         if (rootNode.ChildNodes.Any())
                         {
+                            DimensionStructureNode rootNodeWithoutChildren = new DimensionStructureNode
+                            {
+                                Id = rootNode.Id,
+                            };
+
                             DimensionStructureNode tree = await GetDimensionStructureNodeTreeAsync(
-                                    rootNode, ctx)
+                                    rootNodeWithoutChildren, ctx)
                                .ConfigureAwait(false);
                             await DeleteChildNodesOfDimensionStructureNodeAsync(
                                     tree,
@@ -59,15 +73,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                                     cancellationToken)
                                .ConfigureAwait(false);
                         }
-
-                        SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode = await ctx
-                           .SourceFormatDimensionStructureNodes
-                           .FirstOrDefaultAsync(
-                                w => w.Id == rootNode.Id,
-                                cancellationToken)
-                           .ConfigureAwait(false);
-                        ctx.Entry(sourceFormatDimensionStructureNode).State = EntityState.Deleted;
-                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
                         DimensionStructureNode refresh = await ctx.DimensionStructureNodes
                            .FirstOrDefaultAsync(
