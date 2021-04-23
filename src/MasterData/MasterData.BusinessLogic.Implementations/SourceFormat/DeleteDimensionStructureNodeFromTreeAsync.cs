@@ -66,7 +66,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
                             // if the removed entity has child entities, then the removing scope includes
                             // the entity itself see the following comment
-                            await DeleteChildNodesOfDimensionStructureNode(
+                            await DeleteChildNodesOfDimensionStructureNodeAsync(
                                     tree,
                                     ctx,
                                     cancellationToken)
@@ -100,7 +100,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 }
         }
 
-        private async Task DeleteChildNodesOfDimensionStructureNode(
+        private async Task DeleteChildNodesOfDimensionStructureNodeAsync(
             DimensionStructureNode tree,
             MasterDataContext ctx,
             CancellationToken cancellationToken)
@@ -109,7 +109,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 foreach (DimensionStructureNode treeChildNode in tree.ChildNodes)
                 {
-                    await DeleteChildNodesOfDimensionStructureNode(
+                    await DeleteChildNodesOfDimensionStructureNodeAsync(
                             treeChildNode,
                             ctx,
                             cancellationToken)
