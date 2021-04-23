@@ -5,6 +5,7 @@
 
 namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -109,6 +110,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         }
     }
 
+    [ExcludeFromCodeCoverage]
     internal class LookUpForDimensionStructureNodeAndParentResult
     {
         public DimensionStructureNode Actual { get; set; }
