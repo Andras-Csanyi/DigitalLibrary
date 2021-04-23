@@ -1,5 +1,6 @@
 namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -8,6 +9,7 @@ namespace DigitalLibarary.MasterData.DomainModel.Unit.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class SourceFormatDimensionStructureNode_Should
     {
         [Fact]

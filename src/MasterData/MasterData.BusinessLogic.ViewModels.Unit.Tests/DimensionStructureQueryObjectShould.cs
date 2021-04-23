@@ -1,9 +1,12 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.ViewModels.Unit.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using FluentAssertions;
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class DimensionStructureQueryObjectShould
     {
         [Fact]
