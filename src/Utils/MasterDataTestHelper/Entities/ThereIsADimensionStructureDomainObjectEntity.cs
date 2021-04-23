@@ -4,6 +4,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Entities
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Reviewed.")]
+    [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     [ExcludeFromCodeCoverage]
     public class ThereIsADimensionStructureDomainObjectEntity : IDimensionStructureDomainObject
     {
