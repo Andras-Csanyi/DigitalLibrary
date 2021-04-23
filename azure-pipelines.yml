@@ -38,7 +38,7 @@ steps:
       cliProjectName: 'DigitalLibrary'
       cliSources: '.'
       extraProperties: |
-        sonar.exclusions=**/obj/**,**/*.dll
+        sonar.exclusions=**/obj/**,**/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
         sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
 
