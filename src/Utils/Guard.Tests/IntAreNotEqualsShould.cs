@@ -1,6 +1,7 @@
 namespace Guard.Tests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.Utils.Guards;
 
@@ -8,6 +9,7 @@ namespace Guard.Tests
 
     using Xunit;
 
+    [ExcludeFromCodeCoverage]
     public class IntsAreNotEqualShould
     {
         [Fact]

@@ -16,6 +16,7 @@ namespace DigitalLibrary.ControlPanel.BusinessLogic.Implementations.Unit.Tests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
     public class TestBase
     {
