@@ -380,5 +380,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
             long dimensionStructureNodeId,
             long sourceFormatId,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Deletes the specified root <see cref="DimensionStructureNode"/> added to a <see cref="SourceFormat"/>.
+        /// By deleting the root dimensionstructurenode the child nodes also will be deleted.
+        /// </summary>
+        /// <param name="dimensionStructureNodeId">Id of the root dimension structure node will be deleted.</param>
+        /// <param name="sourceFormatId">The source format where the dimension structure node belongs to.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task"/> representing result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task DeleteRootDimensionStructureNodeAsync(
+            long dimensionStructureNodeId,
+            long sourceFormatId,
+            CancellationToken cancellationToken = default);
     }
 }
