@@ -125,6 +125,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLibHttpClientResponseObje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.BusinessLogic.Features.Tests", "MasterData\MasterData.BusinessLogic.Features.Tests\MasterData.BusinessLogic.Features.Tests.csproj", "{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.StepDefinitions", "MasterData\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj", "{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -315,6 +317,10 @@ Global
 		{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -366,6 +372,7 @@ Global
 		{80B9FE0A-2799-465B-8A86-49EA5AB7FB03} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{C3F58196-04D3-482A-8390-E3C93A873A20} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 		{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
+		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {525FE7A8-2BB5-46C1-BDBA-37960809C286}

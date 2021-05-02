@@ -3,6 +3,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
+
     using TechTalk.SpecFlow;
 
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "tmp")]

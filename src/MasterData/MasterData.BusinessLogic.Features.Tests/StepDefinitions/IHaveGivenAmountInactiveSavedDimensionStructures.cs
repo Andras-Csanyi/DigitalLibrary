@@ -2,6 +2,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 {
     using System.Threading.Tasks;
 
+    using DigitalLibrary.Utils.MasterDataTestHelper.Entities;
+
     using TechTalk.SpecFlow;
 
     public partial class StepDefinitions
