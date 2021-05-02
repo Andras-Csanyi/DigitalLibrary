@@ -38,7 +38,24 @@ steps:
       cliProjectName: 'DigitalLibrary'
       cliSources: '.'
       extraProperties: |
-        sonar.exclusions=**/obj/**,**/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**, src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**, src/MasterData/MasterData.Controllers.Integration.Tests/**, src/MasterData/MasterData.Controllers.Unit.Tests/**, src/MasterData/MasterData.Validators.Test/**, src/MasterData/MasterData.DomainModel.Unit.Tests/**, src/MasterData/MasterData.Web.Api.Features.Tests/**, src/Utils/Guard.Tests/**, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**
+        sonar.exclusions=**/obj/**, \
+        **/*.dll, \
+        src/MasterData/MasterData.BusinessLogic.Features.Tests/**, \
+        src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**, \
+        src/MasterData/MasterData.Controllers.Integration.Tests/**, \
+        src/MasterData/MasterData.Controllers.Unit.Tests/**, \
+        src/MasterData/MasterData.Validators.Test/**, \
+        src/MasterData/MasterData.DomainModel.Unit.Tests/**, \
+        src/MasterData/MasterData.StepDefinitions/**, \
+        src/MasterData/MasterData.Web.Api.Features.Tests/**, \
+        src/Utils/Guard.Tests/**, \
+        src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**, \ 
+        src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**, \
+        src/Utils/ControlPanel.DataSample/**, \
+        src/Utils/TestHelper.Unit.Test/**, \
+        src/Utils/Guard.Tests/**, \
+        src/IntegrationTestFactories/**, \
+        src/MasterDataTestHelper/**
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
         sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
 
@@ -212,36 +229,26 @@ steps:
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
-  # - script: |
-  #     dotnet dotcover 
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/Utils.Guard.Tests.dotcover.html"
+    workingDirectory: src/Utils/Guard.Tests
+    displayName: "Coverage Utils/Guard.Tests"
 
-  # - task: PublishCodeCoverageResults@1
-  #   displayName: 'Coverage...'
-  #   inputs:
-  #     codeCoverageTool: 'Cobertura'
-  #     summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/**/coverage.cobertura.xml'
-  #     pathToSources: '$(System.DefaultWorkingDirectory)/src'
-
-  # - script: |
-  #     bash <(curl -s https://codecov.io/bash) -v
-  #   displayName: 'Uploading to Codecov.io'
+  - script: |
+      dotnet dotcover test \
+      --no-build \
+      --dotCoverTempDir=$(Agent.TempDirectory) \
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/TestHelper.Unit.Test.dotcover.html"
+    workingDirectory: src/Utils/TestHelper.Unit.Test
+    displayName: "Coverage Utils/TestHelper.Unit.Test"
 
   - task: SonarCloudAnalyze@1
 
   - task: SonarCloudPublish@1
     inputs:
       pollingTimeoutSec: '300'
-
-  
-
-  # - script: |
-  #     dotnet sonarscanner begin /o:andras-csanyi /k:Andras-Csanyi_DigitalLibrary /d:sonar.host.url=https://sonarcloud.io
-  #   displayName: 'Sonar begin phase'
-
-  # - script: |
-  #     dotnet build 'src/DigitalLibrary.sln'
-  #   displayName: 'Sonar build phase'
-
-  # - script: |
-  #     dotnet sonarscanner end
-  #   displayName: 'Sonar end phase'
