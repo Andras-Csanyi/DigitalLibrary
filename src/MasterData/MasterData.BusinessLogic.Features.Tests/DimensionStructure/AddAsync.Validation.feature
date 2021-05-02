@@ -7,7 +7,7 @@ Feature: DimensionStructure Business Logic - Adding DimensionStructure input val
 
   Scenario Outline: When input is invalid it throws exception
 
-    Given there is a DimensionStructure domain object
+    Given there is a parametrized DimensionStructure domain object
       | Field    | Value      |
       | Key      | sf-1       |
       | Name     | <Name>     |

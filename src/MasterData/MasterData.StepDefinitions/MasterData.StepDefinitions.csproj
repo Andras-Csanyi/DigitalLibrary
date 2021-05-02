@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <AssemblyName>DigitalLibrary.MasterData.StepDefinitions</AssemblyName>
+
+        <RootNamespace>DigitalLibrary.MasterData.StepDefinitions</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Bogus" Version="33.0.2"/>
+        <PackageReference Include="SpecFlow" Version="3.7.38"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+    </ItemGroup>
+
+</Project>

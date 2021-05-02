@@ -1,11 +1,13 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
 
     /// <summary>
     ///     StringHelper implementation.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class StringHelper : IStringHelper
     {
         private readonly string _chars = "qwertyuioplkjhgfdsazxcvbnm";

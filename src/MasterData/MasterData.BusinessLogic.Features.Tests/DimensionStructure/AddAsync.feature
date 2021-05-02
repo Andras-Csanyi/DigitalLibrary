@@ -6,12 +6,9 @@ Feature: DimensionStructure Business Logic - Adding DimensionStructure
 
   Scenario: Adds DimensionStructure
 
-    And there is a DimensionStructure domain object
+    Given there is a DimensionStructure domain object
       | Field    | Value   |
       | Key      | root-ds |
-      | Name     | asdasd  |
-      | Desc     | dsadsa  |
-      | IsActive | 1       |
 
     When DimensionStructure is saved
       | Field     | Value          |

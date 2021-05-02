@@ -15,6 +15,7 @@
 
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.5"/>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
@@ -37,6 +38,7 @@
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
         <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
         <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj"/>
         <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
     <ItemGroup>
@@ -159,5 +161,10 @@
     </ItemGroup>
     <ItemGroup>
         <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="specflow.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>

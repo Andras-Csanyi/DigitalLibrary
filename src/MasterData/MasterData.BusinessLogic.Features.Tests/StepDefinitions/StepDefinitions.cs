@@ -20,13 +20,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
-    using DigitalLibrary.Utils.IntegrationTestFactories.Providers;
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     using TechTalk.SpecFlow;
 
@@ -55,8 +52,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
         protected ScenarioContext _scenarioContext;
 
-        private IServiceProvider _serviceProvider;
-
         protected IStringHelper stringHelper;
 
         protected const string SUCCESS = "SUCCESS";
@@ -80,7 +75,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         public void Dispose()
         {
             // _masterDataBusinessLogic.Dispose();
-            (_serviceProvider as IDisposable)?.Dispose();
         }
 
         [AfterScenario]
@@ -92,11 +86,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
         [BeforeScenario]
         public void BeforeScenario()
         {
-            _serviceProvider = new ServiceCollection()
-               .AddLogging(x => x.AddProvider(new TestLoggerProvider(_outputHelper)))
-               .AddEntityFrameworkSqlite()
-               .BuildServiceProvider();
-
             string path = Directory.GetCurrentDirectory();
             string fileName = $"sqlite_{rnd.Next(1, 10000000)}.sqlite";
             sqlLiteFileNameWithPath = $"{path}/{fileName}";
