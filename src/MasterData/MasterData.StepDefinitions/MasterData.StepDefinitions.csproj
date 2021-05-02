@@ -17,6 +17,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
         <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 

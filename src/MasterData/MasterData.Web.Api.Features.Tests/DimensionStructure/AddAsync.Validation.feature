@@ -7,16 +7,18 @@ Feature: DimensionStructure REST Endpoint - Add Method Input Validation
 
   Scenario Outline: When input is invalid it returns bad request Http code
 
-    Given there is a DimensionStructure domain object
+    Given there is a parametrized DimensionStructure domain object
       | Field    | Value         |
       | Key      | ds            |
       | Name     | <Name>        |
       | Desc     | <Description> |
       | ISActive | <IsActive>    |
+    
     When DimensionStructure is sent to the Add endpoint
       | Field     | Value     |
       | Key       | ds        |
       | ResultKey | ds-result |
+    
     Then operation result is
       | Field         | Value     |
       | Key           | ds-result |

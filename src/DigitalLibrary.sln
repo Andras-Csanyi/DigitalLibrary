@@ -127,6 +127,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.BusinessLogic.Fe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.StepDefinitions", "MasterData\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj", "{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHelper.Unit.Test", "Utils\TestHelper.Unit.Test\TestHelper.Unit.Test.csproj", "{2F8F5522-16C1-4945-A0D3-FB5EEED753CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -321,6 +323,10 @@ Global
 		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -373,6 +379,7 @@ Global
 		{C3F58196-04D3-482A-8390-E3C93A873A20} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 		{9081BFAC-C8B7-4B95-AF93-2BAAE06A25C2} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{46E2653A-93B1-4A0C-A705-812B8A1FCB0D} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
+		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {525FE7A8-2BB5-46C1-BDBA-37960809C286}
