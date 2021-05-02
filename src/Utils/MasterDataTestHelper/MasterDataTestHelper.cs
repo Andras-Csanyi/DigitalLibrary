@@ -1,10 +1,12 @@
 namespace DigitalLibrary.Utils.MasterDataTestHelper
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
 
     /// <inheritdoc />
+    [ExcludeFromCodeCoverage]
     public class MasterDataTestHelper : IMasterDataTestHelper
     {
         /// <summary>
@@ -22,8 +24,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
             DimensionStructureFactory = dimensionStructureFactory ?? throw new ArgumentNullException(
                 $"{nameof(dimensionStructureFactory)}");
             SourceFormatDimensionStructureNodeFactory = sourceFormatDimensionStructureNodeFactory
-                                                     ?? throw new ArgumentNullException(
-                                                            nameof(sourceFormatDimensionStructureNodeFactory));
+             ?? throw new ArgumentNullException(
+                    nameof(sourceFormatDimensionStructureNodeFactory));
         }
 
         /// <inheritdoc />
