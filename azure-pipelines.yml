@@ -38,7 +38,7 @@ steps:
       cliProjectName: 'DigitalLibrary'
       cliSources: '.'
       extraProperties: |
-        sonar.exclusions=**/obj/**, \
+        sonar.coverage.exclusions=**/obj/**, \
         **/*.dll, \
         src/MasterData/MasterData.BusinessLogic.Features.Tests/**, \
         src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**, \
