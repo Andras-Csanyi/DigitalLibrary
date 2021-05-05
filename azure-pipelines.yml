@@ -89,7 +89,7 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: "--no-build "
+      arguments: "--no-build --logger trx --results-directory $(Agent.TempDirectory)"
   #        --configuration Debug \
   #        /p:CollectCoverage=true \
   #        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
