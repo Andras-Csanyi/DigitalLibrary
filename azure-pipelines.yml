@@ -84,14 +84,7 @@ steps:
   #     publishTestResults: true
 
   - script: |
-      dotnet test DigitalLibrary.sln \
-      --no-build \
-      --configuration Debug \ 
-      /p:CollectCoverage=true \ 
-      /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-      /p:CoverletOutputFormat=opencover \
-      /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
-      /p:MergeWith=$(Agent.TempDirectory)/coverage/
+      dotnet test DigitalLibrary.sln --no-build --configuration Debug /p:CollectCoverage=true /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' /p:CoverletOutputFormat=opencover /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ /p:MergeWith=$(Agent.TempDirectory)/coverage/
     workingDirectory: src
     displayName: 'Testing'    
 
