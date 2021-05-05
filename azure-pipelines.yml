@@ -155,8 +155,8 @@ steps:
       --dotCoverTempDir=$(Agent.TempDirectory) \
       --dotCoverReportType=html \
       --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Tests.Integration.dotcover.html"
-      workingDirectory: src/MasterData/MasterData.BusinessLogic.Tests.Integration
-      displayName: "Coverage MasterData.BusinessLogic.Tests.Integration"
+    workingDirectory: src/MasterData/MasterData.BusinessLogic.Tests.Integration
+    displayName: "Coverage MasterData.BusinessLogic.Tests.Integration"
 
   - script: |
       dotnet dotcover test \
