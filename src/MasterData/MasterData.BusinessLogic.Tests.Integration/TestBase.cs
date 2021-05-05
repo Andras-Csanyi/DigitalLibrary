@@ -1,4 +1,4 @@
-namespace MasterData.BusinessLogic.Tests.Integration
+namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 {
     using System;
     using System.Diagnostics;

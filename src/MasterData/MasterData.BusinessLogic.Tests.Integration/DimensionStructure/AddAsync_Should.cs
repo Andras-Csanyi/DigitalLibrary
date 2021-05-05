@@ -1,4 +1,4 @@
-namespace MasterData.BusinessLogic.Tests.Integration.DimensionStructure
+namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStructure
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;

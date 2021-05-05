@@ -4,6 +4,12 @@
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>DigitalLibrary.MasterData.BusinessLogic.Tests.Integration</AssemblyName>
+
+        <RootNamespace>DigitalLibrary.MasterData.BusinessLogic.Tests.Integration</RootNamespace>
+
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
