@@ -88,14 +88,14 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: '--no-build --logger trx --results-directory $(Agent.TempDirectory)'
-      publishTestResults: false
-  #        --configuration Debug \
-  #        /p:CollectCoverage=true \
-  #        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-  #        /p:CoverletOutputFormat=opencover \
-  #        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
-  #        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
+      arguments: |
+        --no-build \
+        --configuration Debug \
+        /p:CollectCoverage=true \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+        /p:CoverletOutputFormat=opencover \
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/
 
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
@@ -245,3 +245,7 @@ steps:
   - task: SonarCloudPublish@1
     inputs:
       pollingTimeoutSec: '300'
+
+  - script: |
+      bash <(curl -s https://codecov.io/bash)
+    displayName: "Codecov upload"
