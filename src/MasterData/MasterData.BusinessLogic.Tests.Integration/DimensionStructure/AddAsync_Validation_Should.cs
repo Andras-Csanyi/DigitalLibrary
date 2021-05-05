@@ -4,6 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
     using DigitalLibrary.MasterData.DomainModel;
 
     using FluentAssertions;
@@ -49,7 +50,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
                .ConfigureAwait(false);
 
             // Assert
-            task.Should().Throw<Exception>();
+            task.Should().Throw<MasterDataBusinessLogicDimensionStructureDatabaseOperationException>();
         }
 
         public AddAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)

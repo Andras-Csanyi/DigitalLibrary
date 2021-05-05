@@ -1,9 +1,12 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+
+    using Bogus;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
@@ -22,14 +25,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     [ExcludeFromCodeCoverage]
     public class TestBase : IDisposable
     {
+        private readonly string sqlLiteFileNameWithPath;
+
         protected readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         protected readonly ITestOutputHelper _testOutputHelper;
 
-        private readonly string sqlLiteFileNameWithPath;
+        protected IEnumerable<DomainModel.DimensionStructure> _dimensionStructureInfinite;
 
-        public TestBase(
-            ITestOutputHelper testOutputHelper)
+        public TestBase(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
 
@@ -82,6 +86,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                 masterDataDimensionValueBusinessLogic,
                 masterDataSourceFormatBusinessLogic,
                 masterDataDimensionStructureNodeBusinessLogic);
+
+            _dimensionStructureInfinite = new Faker<DomainModel
+                    .DimensionStructure>()
+               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName(1))
+               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
+               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0))
+               .GenerateForever();
 
             using (MasterDataContext ctx = new(_dbContextOptions))
             {
