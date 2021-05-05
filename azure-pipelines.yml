@@ -38,29 +38,12 @@ steps:
       cliProjectName: 'DigitalLibrary'
       cliSources: '.'
       extraProperties: |
-        sonar.coverage.exclusions=**/obj/**/*, \
-        **/*.dll, \
-        src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*, \
-        src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, \
-        src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, \
-        src/MasterData/MasterData.Controllers.Integration.Tests/**/*, \
-        src/MasterData/MasterData.Controllers.Unit.Tests/**/*, \
-        src/MasterData/MasterData.Validators.Test/**/*, \
-        src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, \
-        src/MasterData/MasterData.StepDefinitions/**/*, \
-        src/MasterData/MasterData.Web.Api.Features.Tests/**/*, \
-        src/Utils/Guard.Tests/**/*, \
-        src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, \ 
-        src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, \
-        src/Utils/ControlPanel.DataSample/**/*, \
-        src/Utils/TestHelper.Unit.Test/**/*, \
-        src/Utils/Guard.Tests/**/*, \
-        src/IntegrationTestFactories/**/*, \
-        src/MasterDataTestHelper/**/*
+        sonar.coverage.exclusions=**/obj/**/*, **/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*, src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, src/MasterData/MasterData.Controllers.Integration.Tests/**/*, src/MasterData/MasterData.Controllers.Unit.Tests/**/*, src/MasterData/MasterData.Validators.Test/**/*, src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, src/MasterData/MasterData.StepDefinitions/**/*, src/MasterData/MasterData.Web.Api.Features.Tests/**/*, src/Utils/Guard.Tests/**/*, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, src/Utils/ControlPanel.DataSample/**/*, src/Utils/TestHelper.Unit.Test/**/*, src/Utils/Guard.Tests/**/*, src/IntegrationTestFactories/**/*, src/MasterDataTestHelper/**/*
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.xml
+        sonar.cs.dotcover.reportsPaths=$(Agent.TempDirectory)/dotcover/*.dotcover.html
+        sonar.verbose=true
 
-  # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.xml
+  # sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/coverage/coverage.opencover.html
 
   # - script: |
   #     dotnet sonarscanner begin /o:andras-csanyi
@@ -68,7 +51,7 @@ steps:
   #                               /n:Andras-Csanyi_DigitalLibrary
   #                               /d:sonar.host.url=https://sonarcloud.io 
   #                               /d:sonar.login=login 
-  #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.xml'
+  #                               /d:sonar.cs.opencover.reportsPaths=**coverage.opencover.html'
   #                               /v:version=1.0
 
   # - script: |
@@ -126,8 +109,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.BusinessLogic.Implementations.Unit.Tests.dotcover.html"
     workingDirectory: src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests"
 
@@ -135,8 +118,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/ControlPanel.WebApi.Client.Unit.Tests.dotcover.html"
     workingDirectory: src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests
     displayName: "Coverage for ControlPanel/ControlPanel.WebApi.Client.Unit.Tests"
 
@@ -144,8 +127,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Features.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Features.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.Features.Tests"
 
@@ -153,8 +136,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Tests.Integration.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.Tests.Integration.dotcover.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.Tests.Integration
     displayName: "Coverage MasterData.BusinessLogic.Tests.Integration"
 
@@ -162,8 +145,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.BusinessLogic.ViewModels.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests
     displayName: "Coverage MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests"
 
@@ -171,8 +154,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Integration.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Integration.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Integration.Tests"
 
@@ -180,8 +163,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Controllers.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Controllers.Unit.Tests
     displayName: "Coverage MasterData/MasterData.Controllers.Unit.Tests"
 
@@ -189,8 +172,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.DomainModel.Unit.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.DomainModel.Unit.Tests
     displayName: "Coverage MasterData/MasterData.DomainModel.Unit.Tests"
 
@@ -198,8 +181,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Validators.Test.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Validators.Test
     displayName: "Coverage MasterData/MasterData.Validators.Test"
 
@@ -207,8 +190,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/MasterData.Web.Api.Features.Tests.dotcover.html"
     workingDirectory: src/MasterData/MasterData.Web.Api.Features.Tests
     displayName: "Coverage MasterData/MasterData.Web.Api.Features.Tests"
 
@@ -216,8 +199,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/DiLib.FAST.Widgets.Tests.dotcover.html"
     workingDirectory: src/Host/DiLib.FAST.Widgets.Tests
     displayName: "Coverage Host/DiLib.FAST.Widgets.Tests"
 
@@ -225,8 +208,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/FAST.Components.Tests.dotcover.html"
     workingDirectory: src/Host/FAST.Components.Tests
     displayName: "Coverage Host/FAST.Components.Tests"
 
@@ -234,8 +217,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/WebUI.Test.dotcover.html"
     workingDirectory: src/Host/WebUI.Test
     displayName: "Coverage Host/Ui.WebUI.Test"
 
@@ -243,8 +226,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/Utils.Guard.Tests.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/Utils.Guard.Tests.dotcover.html"
     workingDirectory: src/Utils/Guard.Tests
     displayName: "Coverage Utils/Guard.Tests"
 
@@ -252,8 +235,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverTempDir=$(Agent.TempDirectory) \
-      --dotCoverReportType=xml \
-      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/TestHelper.Unit.Test.dotcover.xml"
+      --dotCoverReportType=html \
+      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/TestHelper.Unit.Test.dotcover.html"
     workingDirectory: src/Utils/TestHelper.Unit.Test
     displayName: "Coverage Utils/TestHelper.Unit.Test"
 
