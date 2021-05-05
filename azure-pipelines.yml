@@ -83,19 +83,17 @@ steps:
   #       /p:CoverletOutputFormat=cobertura"
   #     publishTestResults: true
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Testing'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
-      arguments: |
-        --no-build \
-        --configuration Debug \
-        /p:CollectCoverage=true \
-        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
-        /p:CoverletOutputFormat=opencover \
-        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
-        /p:MergeWith=$(Agent.TempDirectory)/coverage/
+  - script: |
+      dotnet test DigitalLibrary.sln \
+      --no-build \
+      --configuration Debug \ 
+      /p:CollectCoverage=true \ 
+      /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+      /p:CoverletOutputFormat=opencover \
+      /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+      /p:MergeWith=$(Agent.TempDirectory)/coverage/
+    workingDirectory: src
+    displayName: 'Testing'    
 
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
