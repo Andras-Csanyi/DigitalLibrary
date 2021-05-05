@@ -20,11 +20,13 @@ namespace MasterData.BusinessLogic.Tests.Integration
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
-    public class TestBase
+    public class TestBase : IDisposable
     {
         protected readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         protected readonly ITestOutputHelper _testOutputHelper;
+
+        private readonly string sqlLiteFileNameWithPath;
 
         public TestBase(
             ITestOutputHelper testOutputHelper)
@@ -34,7 +36,7 @@ namespace MasterData.BusinessLogic.Tests.Integration
             Random rnd = new Random();
             string path = Directory.GetCurrentDirectory();
             string fileName = $"sqlite_{rnd.Next(1, 10000000)}.sqlite";
-            string sqlLiteFileNameWithPath = $"{path}/{fileName}";
+            sqlLiteFileNameWithPath = $"{path}/{fileName}";
             _testOutputHelper.WriteLine($"SQLite file name: {sqlLiteFileNameWithPath}");
 
             DbContextOptions<MasterDataContext> _dbContextOptions = new DbContextOptionsBuilder<MasterDataContext>()
@@ -86,6 +88,19 @@ namespace MasterData.BusinessLogic.Tests.Integration
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
                 // MasterDataDataSample.Populate(ctx);
+            }
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                File.Delete(sqlLiteFileNameWithPath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }
