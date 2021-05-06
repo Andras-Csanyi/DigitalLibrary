@@ -16,10 +16,6 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="coverlet.msbuild" Version="3.0.3">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="FluentAssertions" Version="5.10.3"/>
         <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
@@ -42,10 +38,6 @@
 
     <ItemGroup>
         <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
     </ItemGroup>
 
     <ItemGroup>

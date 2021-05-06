@@ -44,8 +44,7 @@ steps:
       arguments: '-c Debug'
 
   - script: |
-      dotnet test DigitalLibrary.sln --no-build --configuration Debug /p:CollectCoverage=true /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' /p:CoverletOutputFormat=opencover /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ /p:MergeWith=$(Agent.TempDirectory)/coverage/
-    workingDirectory: src
+      dotnet test src/DigitalLibrary.sln --no-build --configuration Debug --settings coverage.runsettings 
     displayName: 'Testing'    
 
   - task: PublishTestResults@2
