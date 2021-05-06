@@ -48,7 +48,8 @@ steps:
       --collect:"XPlat Code Coverage" \
       --settings coverage.runsettings \
       --no-build \
-      --logger trx
+      --logger trx \
+      --results-directory $(Agent.TempDirectory)
     displayName: 'Testing'    
 
   - task: PublishTestResults@2
