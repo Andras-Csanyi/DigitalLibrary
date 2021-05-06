@@ -44,7 +44,10 @@ steps:
       arguments: '-c Debug'
 
   - script: |
-      dotnet test src/DigitalLibrary.sln --collect:"XPlat Code Coverage" --settings coverage.runsettings 
+      dotnet test src/DigitalLibrary.sln \
+      --collect:"XPlat Code Coverage" \
+      --settings coverage.runsettings \
+      --logger trx
     displayName: 'Testing'    
 
   - task: PublishTestResults@2
