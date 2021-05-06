@@ -43,19 +43,20 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: '-c Debug'
 
+  - script: |
+      dotnet test src/DigitalLibrary.sln \
+      --collect:"XPlat Code Coverage" \
+      --settings coverage.runsettings \
+      --no-build \
+      --results-directory $(Agent.TempDirectory)
+    displayName: 'Coverage'
+
   - task: DotNetCoreCLI@2
     displayName: 'Testing and publish result...'
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: '--no-build'
-
-  - script: |
-      dotnet test src/DigitalLibrary.sln \
-      --collect:"XPlat Code Coverage" \
-      --settings coverage.runsettings \
-      --no-build
-    displayName: 'Coverage'
 
   - script: |
       bash <(curl -s https://codecov.io/bash)
