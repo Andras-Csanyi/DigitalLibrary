@@ -44,6 +44,7 @@ steps:
       arguments: '-c Debug'
 
   - task: DotNetCoreCLI@2
+    displayName: 'Testing and publish result...'
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
@@ -55,14 +56,6 @@ steps:
       --settings coverage.runsettings \
       --no-build
     displayName: 'Coverage'
-
-  - task: PublishTestResults@2
-    displayName: "Publish Test Results"
-    inputs:
-      testResultsFormat: 'XUnit'
-      testResultsFiles: '$(Agent.TempDirectory)/**.*trx'
-      mergeTestResults: true
-    condition: succeededOrFailed()
 
   - script: |
       bash <(curl -s https://codecov.io/bash)
