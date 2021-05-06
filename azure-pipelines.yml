@@ -34,7 +34,7 @@ steps:
       command: 'restore'
       projects: 'src/DigitalLibrary.sln'
       feedsToUse: 'select'
-      noCache: true
+      noCache: false
 
   - task: DotNetCoreCLI@2
     displayName: 'Building...'
@@ -44,17 +44,19 @@ steps:
       arguments: '-c Debug'
 
   - script: |
-      dotnet test DigitalLibrary.sln --no-build --configuration Debug /p:CollectCoverage=true /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' /p:CoverletOutputFormat=opencover /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ /p:MergeWith=$(Agent.TempDirectory)/coverage/
-    workingDirectory: src
-    displayName: 'Testing'    
+      dotnet test src/DigitalLibrary.sln \
+      --collect:"XPlat Code Coverage" \
+      --settings coverage.runsettings \
+      --no-build \
+      --results-directory $(Agent.TempDirectory)
+    displayName: 'Coverage'
 
-  - task: PublishTestResults@2
-    displayName: "Publish Test Results"
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing and publish result...'
     inputs:
-      testResultsFormat: 'XUnit'
-      testResultsFiles: '$(Agent.TempDirectory)/**.*trx'
-      mergeTestResults: true
-    condition: succeededOrFailed()
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '--no-build'
 
   - script: |
       bash <(curl -s https://codecov.io/bash)
