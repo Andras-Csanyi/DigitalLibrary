@@ -78,8 +78,6 @@
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\GetActivesAsync.feature">
-        </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
