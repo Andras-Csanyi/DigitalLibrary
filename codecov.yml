@@ -1,3 +1,8 @@
+comment: true
+  layout: "reach, diff, files"
+  behavior: default
+  branches:
+    - "master"
 coverage:
   status:
     project:
@@ -6,6 +11,6 @@ coverage:
         threshold: 10%  # the leniency in hitting the target
         informational: true
     patch:
-      default: 
+      default:
         target: 80%
         informational: true
