@@ -11,7 +11,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
+
+    using FluentValidation;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -28,13 +31,21 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 {
                     Check.IsNotNull(dimensionStructure);
 
+                    await _masterDataValidators.DimensionStructureValidator.ValidateAsync(
+                            dimensionStructure, options =>
+                            {
+                                options.IncludeRuleSets(DimensionStructureValidatorRulesets.Inactivate);
+                                options.ThrowOnFailures();
+                            }, cancellationToken)
+                       .ConfigureAwait(false);
+
                     DimensionStructure toBeDeleted = await ctx.DimensionStructures.FirstOrDefaultAsync(
                             w => w.Id == dimensionStructure.Id,
                             cancellationToken)
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {nameof(DimensionStructure)} entity " +
-                                 $"with id: {dimensionStructure.Id}.";
+                        $"with id: {dimensionStructure.Id}.";
                     Check.IsNotNull(toBeDeleted, msg);
 
                     toBeDeleted.IsActive = 0;
@@ -44,8 +55,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                                 $"{nameof(InactivateAsync)} operation failed! " +
-                                 $"For further info see inner exception!";
+                        $"{nameof(InactivateAsync)} operation failed! " +
+                        $"For further info see inner exception!";
                     throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
                 }
             }
