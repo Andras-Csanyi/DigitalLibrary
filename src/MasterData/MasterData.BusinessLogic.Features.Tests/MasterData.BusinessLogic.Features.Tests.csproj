@@ -62,8 +62,6 @@
     <ItemGroup>
         <SpecFlowFeatureFiles Update="DimensionStructure\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructure\GetAllAsync.feature">
-        </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.Validation.feature">
