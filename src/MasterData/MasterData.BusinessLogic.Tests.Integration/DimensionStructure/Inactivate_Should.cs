@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStructure
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     using Xunit;
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
     public class Inactivate_Should : TestBase
     {
         [Fact]
