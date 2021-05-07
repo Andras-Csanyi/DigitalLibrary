@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStructure
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -10,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     using Xunit;
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
     public class GetInactiveAsync_Should : TestBase
     {
         [Theory]

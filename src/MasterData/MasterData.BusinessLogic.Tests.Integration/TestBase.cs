@@ -108,8 +108,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
         }
 
-        protected async Task CreateInactiveDimensionStructureEntities(int amount)
+        protected async Task<List<DomainModel.DimensionStructure>> CreateInactiveDimensionStructureEntities(int amount)
         {
+            List<DomainModel.DimensionStructure> result = new();
             IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
                 _dimensionStructureFaker.GenerateForever();
 
@@ -117,15 +118,19 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
             {
                 DomainModel.DimensionStructure dimensionStructure = dimensionStructureInfinite.ElementAt(i);
                 dimensionStructure.IsActive = 0;
-                await _masterDataBusinessLogic
+                DomainModel.DimensionStructure saved = await _masterDataBusinessLogic
                    .MasterDataDimensionStructureBusinessLogic
                    .AddAsync(dimensionStructure)
                    .ConfigureAwait(false);
+                result.Add(saved);
             }
+
+            return result;
         }
 
-        protected async Task CreateActiveDimensionStructureEntities(int amount)
+        protected async Task<List<DomainModel.DimensionStructure>> CreateActiveDimensionStructureEntities(int amount)
         {
+            List<DomainModel.DimensionStructure> result = new();
             IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
                 _dimensionStructureFaker.GenerateForever();
 
@@ -133,11 +138,14 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
             {
                 DomainModel.DimensionStructure dimensionStructure = dimensionStructureInfinite.ElementAt(i);
                 dimensionStructure.IsActive = 1;
-                await _masterDataBusinessLogic
+                DomainModel.DimensionStructure saved = await _masterDataBusinessLogic
                    .MasterDataDimensionStructureBusinessLogic
                    .AddAsync(dimensionStructure)
                    .ConfigureAwait(false);
+                result.Add(saved);
             }
+
+            return result;
         }
 
         public void Dispose()
