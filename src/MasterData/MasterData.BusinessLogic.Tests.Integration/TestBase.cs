@@ -5,6 +5,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     using Bogus;
 
@@ -31,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 
         protected readonly ITestOutputHelper _testOutputHelper;
 
-        protected IEnumerable<DomainModel.DimensionStructure> _dimensionStructureInfinite;
+        protected Faker<DomainModel.DimensionStructure> _dimensionStructureFaker;
 
         public TestBase(ITestOutputHelper testOutputHelper)
         {
@@ -87,18 +89,54 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                 masterDataSourceFormatBusinessLogic,
                 masterDataDimensionStructureNodeBusinessLogic);
 
-            _dimensionStructureInfinite = new Faker<DomainModel
-                    .DimensionStructure>()
-               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName(1))
-               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
-               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0))
-               .GenerateForever();
 
             using (MasterDataContext ctx = new(_dbContextOptions))
             {
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
                 // MasterDataDataSample.Populate(ctx);
+            }
+
+            InitializeFakers();
+        }
+
+        private void InitializeFakers()
+        {
+            _dimensionStructureFaker = new Faker<DomainModel.DimensionStructure>()
+               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName(1))
+               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
+               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
+        }
+
+        protected async Task CreateInactiveDimensionStructureEntities(int amount)
+        {
+            IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
+                _dimensionStructureFaker.GenerateForever();
+
+            for (int i = 0; i < amount; i++)
+            {
+                DomainModel.DimensionStructure dimensionStructure = dimensionStructureInfinite.ElementAt(i);
+                dimensionStructure.IsActive = 0;
+                await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
+            }
+        }
+
+        protected async Task CreateActiveDimensionStructureEntities(int amount)
+        {
+            IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
+                _dimensionStructureFaker.GenerateForever();
+
+            for (int i = 0; i < amount; i++)
+            {
+                DomainModel.DimensionStructure dimensionStructure = dimensionStructureInfinite.ElementAt(i);
+                dimensionStructure.IsActive = 1;
+                await _masterDataBusinessLogic
+                   .MasterDataDimensionStructureBusinessLogic
+                   .AddAsync(dimensionStructure)
+                   .ConfigureAwait(false);
             }
         }
 

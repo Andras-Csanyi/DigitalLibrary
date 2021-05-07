@@ -19,8 +19,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
         public async Task RemoveItem()
         {
             // Arrange
-            DimensionStructure dimensionStructureOne = _dimensionStructureInfinite.ElementAt(0);
-            DimensionStructure dimensionStructureTwo = _dimensionStructureInfinite.ElementAt(1);
+            IEnumerable<DimensionStructure> dimensionStructureInfinite = _dimensionStructureFaker.GenerateForever();
+            DimensionStructure dimensionStructureOne = dimensionStructureInfinite.ElementAt(0);
+            DimensionStructure dimensionStructureTwo = dimensionStructureInfinite.ElementAt(1);
 
             await _masterDataBusinessLogic
                .MasterDataDimensionStructureBusinessLogic
