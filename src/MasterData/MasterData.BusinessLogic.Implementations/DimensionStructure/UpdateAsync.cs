@@ -9,7 +9,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
@@ -61,7 +60,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
                     $"{nameof(UpdateAsync)} operation failed. " +
                     $"For further information see inner exception.";
-                throw new MasterDataBusinessLogicUpdateDimensionStructureAsyncOperationException(msg, e);
+                throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }
     }

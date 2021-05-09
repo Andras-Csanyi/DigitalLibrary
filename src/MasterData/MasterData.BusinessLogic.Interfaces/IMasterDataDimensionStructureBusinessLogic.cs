@@ -22,6 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <param name="dimensionStructure">
         ///     The object containing the new data.
         /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>
         ///     Returns an instance of the added <see cref="DimensionStructure" />.
         /// </returns>
