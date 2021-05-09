@@ -3,11 +3,11 @@ coverage:
     project:
       default:
         target: 80%    # the required coverage value
-        threshold: 5%  # the leniency in hitting the target
+        threshold: 10%  # the leniency in hitting the target
     patch:
       default:
         target: 80%
-        treshold: 5%
+        treshold: 10%
 comment:
   layout: "reach, diff, flags, files"
   behavior: default
