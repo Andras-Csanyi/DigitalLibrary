@@ -60,10 +60,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\AddAsync.Validation.feature">
-        </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\DeleteAsync.feature">
