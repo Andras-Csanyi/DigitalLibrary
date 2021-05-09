@@ -1,5 +1,3 @@
-using SourceFormat_Create_Validation_TestData = MasterData.Tests.TestData.SourceFormat_Create_Validation_TestData;
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 {
     using System;
@@ -7,6 +5,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Tests.TestData;
 
     using FluentAssertions;
 

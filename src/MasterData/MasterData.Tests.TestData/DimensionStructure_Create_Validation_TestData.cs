@@ -1,4 +1,4 @@
-namespace MasterData.Tests.TestData
+namespace DigitalLibrary.MasterData.Tests.TestData
 {
     using System.Collections;
     using System.Collections.Generic;

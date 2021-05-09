@@ -1,6 +1,3 @@
-using DimensionStructure_Create_Validation_TestData =
-    MasterData.Tests.TestData.DimensionStructure_Create_Validation_TestData;
-
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStructure
 {
     using System;
@@ -9,6 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Tests.TestData;
 
     using FluentAssertions;
 
