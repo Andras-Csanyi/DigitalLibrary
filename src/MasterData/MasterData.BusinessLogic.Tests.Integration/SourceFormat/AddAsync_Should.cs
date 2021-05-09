@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -9,7 +10,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     using Xunit;
     using Xunit.Abstractions;
 
-    public class SourceFormat_AddAsync_Should : TestBase
+    [ExcludeFromCodeCoverage]
+    public class AddAsync_Should : TestBase
     {
         [Fact]
         public async Task Create_AnEntity()
@@ -30,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             sourceFormatResult.IsActive.Should().Be(sourceFormatOrig.IsActive);
         }
 
-        public SourceFormat_AddAsync_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public AddAsync_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
     }

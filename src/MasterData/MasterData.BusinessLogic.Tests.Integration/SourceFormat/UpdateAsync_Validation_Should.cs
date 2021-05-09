@@ -14,10 +14,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
-    public class AddAsync_Validation_Should : TestBase
+    public class UpdateAsync_Validation_Should : TestBase
     {
         [Fact]
-        public async Task Throw_WhenInputIsNull()
+        public async Task Throw_WhnInputIsNull()
         {
             // Arrange
 
@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             {
                 await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .AddAsync(null)
+                   .UpdateAsync(null)
                    .ConfigureAwait(false);
             };
 
@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
         }
 
         [Theory]
-        [ClassData(typeof(SourceFormat_Create_Validation_TestData))]
+        [ClassData(typeof(SourceFormat_UpdateAsync_Validation_TestData))]
         public async Task Throw_WhenInputIsInvalid(
             long id,
             string name,
@@ -43,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             int isActive)
         {
             // Arrange
-            SourceFormat sourceFormat = new SourceFormat
+            SourceFormat updateObject = new SourceFormat
             {
                 Id = id,
                 Name = name,
@@ -56,7 +56,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             {
                 await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .AddAsync(sourceFormat)
+                   .UpdateAsync(updateObject)
                    .ConfigureAwait(false);
             };
 
@@ -64,7 +64,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
 
-        public AddAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public UpdateAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
     }
