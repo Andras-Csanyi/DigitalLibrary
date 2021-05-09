@@ -47,8 +47,7 @@ steps:
       dotnet test src/DigitalLibrary.sln \
       --collect:"XPlat Code Coverage" \
       --settings coverage.runsettings \
-      --no-build \
-      --results-directory $(Agent.TempDirectory)
+      --no-build
     displayName: 'Coverage'
 
   - task: DotNetCoreCLI@2
