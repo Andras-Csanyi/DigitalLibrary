@@ -28,6 +28,12 @@ pr:
 pool: 'contabo'
 
 steps:
+  - script: dotnet tool uninstall JetBrains.dotCover.GlobalTool -g
+    displayName: "Remove dotCover"
+
+  - script: dotnet tool install JetBrains.dotCover.GlobalTool -g
+    displayName: "Install dotCover"
+
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
     inputs:
