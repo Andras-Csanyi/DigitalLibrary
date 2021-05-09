@@ -1,1 +1,0 @@
-\i ../Tools/SP/r.sp.sql
