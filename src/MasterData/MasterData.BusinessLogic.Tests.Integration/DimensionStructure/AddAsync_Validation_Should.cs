@@ -1,3 +1,6 @@
+using DimensionStructure_Create_Validation_TestData =
+    MasterData.Tests.TestData.DimensionStructure_Create_Validation_TestData;
+
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStructure
 {
     using System;
@@ -16,18 +19,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     public class AddAsync_Validation_Should : TestBase
     {
         [Theory]
-        [InlineData(1, "asd", "asd", 1)]
-        [InlineData(0, null, "asd", 1)]
-        [InlineData(0, "", "asd", 1)]
-        [InlineData(0, "   ", "asd", 1)]
-        [InlineData(0, "  ", "asd", 1)]
-        [InlineData(0, "as", "asd", 1)]
-        [InlineData(0, "asd", null, 1)]
-        [InlineData(0, "asd", "", 1)]
-        [InlineData(0, "asd", "   ", 1)]
-        [InlineData(0, "asd", "  ", 1)]
-        [InlineData(0, "asd", "as", 1)]
-        [InlineData(0, "asd", "asd", 2)]
+        [ClassData(typeof(DimensionStructure_Create_Validation_TestData))]
         public async Task Throw_WhenInputIsInvalid(
             long id,
             string name,
