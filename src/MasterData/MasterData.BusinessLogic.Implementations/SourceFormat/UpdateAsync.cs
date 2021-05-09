@@ -52,15 +52,15 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     }
 
                     string msg = $"There is no {nameof(SourceFormat)} entity in the system with " +
-                        $"id: {sourceFormat.Id}.";
+                                 $"id: {sourceFormat.Id}.";
                     throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                 }
             }
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                    $"{nameof(UpdateAsync)} operation failed! " +
-                    $"For further information see inner exception!";
+                             $"{nameof(UpdateAsync)} operation failed! " +
+                             "For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }
