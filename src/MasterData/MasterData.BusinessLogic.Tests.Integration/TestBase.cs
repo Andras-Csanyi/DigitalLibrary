@@ -35,6 +35,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 
         protected Faker<DomainModel.DimensionStructure> _dimensionStructureFaker;
 
+        protected Faker<DomainModel.SourceFormat> _sourceFormatFaker;
+
         public TestBase(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
@@ -104,6 +106,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
         {
             _dimensionStructureFaker = new Faker<DomainModel.DimensionStructure>()
                .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName(1))
+               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
+               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
+
+            _sourceFormatFaker = new Faker<DomainModel.SourceFormat>()
+               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName())
                .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
                .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
         }
