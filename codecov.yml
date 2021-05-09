@@ -1,8 +1,3 @@
-comment: true
-  layout: "reach, diff, files"
-  behavior: default
-  branches:
-    - "master"
 coverage:
   status:
     project:
@@ -14,3 +9,8 @@ coverage:
       default:
         target: 80%
         informational: true
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  branches:
+    - master
