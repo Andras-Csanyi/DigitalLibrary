@@ -2,7 +2,9 @@ namespace DigitalLibrary.MasterData.Tests.TestData
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class SourceFormat_UpdateAsync_TestData : IEnumerable<object[]>
     {
         IEnumerator IEnumerable.GetEnumerator()
