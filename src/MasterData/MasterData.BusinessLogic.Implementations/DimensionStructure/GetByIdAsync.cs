@@ -32,7 +32,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
                 await _masterDataValidators.DimensionStructureValidator.ValidateAsync(dimensionStructure, o =>
                 {
-                    o.IncludeProperties(DimensionStructureValidatorRulesets.GetById);
+                    o.IncludeRuleSets(DimensionStructureValidatorRulesets.GetById);
                     o.ThrowOnFailures();
                 }, cancellationToken).ConfigureAwait(false);
 
