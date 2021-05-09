@@ -3,13 +3,13 @@ coverage:
     project:
       default:
         target: 80%    # the required coverage value
-        threshold: 10%  # the leniency in hitting the target
-        base: auto
+        threshold: 5%  # the leniency in hitting the target
     patch:
       default:
         target: 80%
-        treshold: 10%
-        base: auto
+        treshold: 5%
 comment:
   layout: "reach, diff, flags, files"
   behavior: default
+codecov:
+  require_ci_to_pass: true
