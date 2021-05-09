@@ -22,6 +22,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <param name="dimensionStructure">
         ///     The object containing the new data.
         /// </param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>
         ///     Returns an instance of the added <see cref="DimensionStructure" />.
         /// </returns>
@@ -31,15 +32,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<DimensionStructure> AddAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
-
-        /// <summary>
-        ///     Adds <see cref="DimensionStructure" /> to the <see cref="DimensionStructure" /> tree as child.
-        /// </summary>
-        /// <param name="childId">DimensionStructure to be added as child.</param>
-        /// <param name="parentId">Parent DimensionStructure.</param>
-        /// <param name="sourceFormatId">SourceFormat.</param>
-        /// <returns>Result or exception.</returns>
-        Task AddDimensionStructureToParentAsChildInSourceFormatAsync(long childId, long parentId, long sourceFormatId);
 
         /// <summary>
         ///     Inactivates the given <see cref="DimensionStructure" /> object.
@@ -58,17 +50,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task InactivateAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default);
-
-        /// <summary>
-        ///     Returns list of <see cref="DimensionStructure" /> where the parent is the given
-        ///     <see cref="DimensionStructure" />. <see cref="SourceFormat" /> defines the scope of the query.
-        /// </summary>
-        /// <param name="parentId">Parent Id.</param>
-        /// <param name="sourceFormatId">Source format id.</param>
-        /// <returns>List.</returns>
-        Task<List<DimensionStructure>> GetChildrenOfDimensionStructureInSourceFormatScopeAsync(
-            long parentId,
-            long sourceFormatId);
 
         /// <summary>
         ///     Returns <see cref="DimensionStructure" /> having given Id.
@@ -127,18 +108,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         ///     If any operation fails during querying data.
         /// </exception>
         Task<List<DimensionStructure>> GetActivesAsync(CancellationToken cancellationToken = default);
-
-        /// <summary>
-        ///     Deletes a <see cref="DimensionStructure" /> from a <see cref="SourceFormat" />'s tree.
-        /// </summary>
-        /// <param name="id">Id of the DimensionStructure to be deleted.</param>
-        /// <param name="sourceFormatId">SourceFormat id where the tree belongs to.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Void or exception.</returns>
-        Task DeleteFromTree(
-            long id,
-            long sourceFormatId,
-            CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Queries <see cref="DimensionStructure" />s from the database.

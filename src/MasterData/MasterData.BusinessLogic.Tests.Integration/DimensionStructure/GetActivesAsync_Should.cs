@@ -12,7 +12,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
-    public class GetActiveAsync_Should : TestBase
+    public class GetActivesAsync_Should : TestBase
     {
         [Theory]
         [InlineData(1, 0)]
@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
             result.Count.Should().Be(activeAmount);
         }
 
-        public GetActiveAsync_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public GetActivesAsync_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
     }

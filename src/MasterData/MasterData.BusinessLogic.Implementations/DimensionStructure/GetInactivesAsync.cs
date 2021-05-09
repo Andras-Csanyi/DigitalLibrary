@@ -29,8 +29,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                             $"{nameof(GetInactivesAsync)} operation failed! " +
-                             $"For further info see inner exception!";
+                    $"{nameof(GetInactivesAsync)} operation failed! " +
+                    "For further info see inner exception!";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }
