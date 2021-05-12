@@ -409,9 +409,26 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// list of <see cref="SourceFormat"/> entities. If there are no <see cref="SourceFormat"/> entities in the
         /// system then the list is empty.
         /// </returns>
-        /// /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
         ///     Whatever issue happens.
         /// </exception>
         Task<List<SourceFormat>> GetAllAsync(CancellationToken cancellationToken = default);
+
+
+        /// <summary>
+        /// Returns all <see cref="DimensionStructureNode"/> entities.
+        ///
+        /// If there are no entities in the system it returns with an empty list.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of asynchronous operation, which includes
+        /// <see cref="List{DimensionStructureNode}"/>.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<List<DimensionStructureNode>> GetAllDimensionStructureNodesAsync(
+            CancellationToken cancellationToken = default);
     }
 }
