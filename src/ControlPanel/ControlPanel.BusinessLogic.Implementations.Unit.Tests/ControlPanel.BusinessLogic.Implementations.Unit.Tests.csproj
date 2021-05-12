@@ -22,7 +22,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
         <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
