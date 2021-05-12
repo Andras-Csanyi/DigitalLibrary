@@ -155,6 +155,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
             return result;
         }
 
+        protected async Task<DomainModel.SourceFormat> CreateSavedSourceFormatEntity()
+        {
+            DomainModel.SourceFormat sourceFormat = _sourceFormatFaker.Generate();
+            DomainModel.SourceFormat result = await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddAsync(sourceFormat)
+               .ConfigureAwait(false);
+            return result;
+        }
+
         public void Dispose()
         {
             try
