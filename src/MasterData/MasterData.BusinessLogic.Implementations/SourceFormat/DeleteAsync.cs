@@ -6,6 +6,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 {
     using System;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -37,27 +38,47 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     SourceFormat result = await ctx.SourceFormats
+                       .Include(p => p.DimensionStructureNodes)
+                       .Include(pp => pp.SourceFormatDimensionStructureNode)
                        .FirstOrDefaultAsync(
                             w => w.Id == sourceFormat.Id,
                             cancellationToken
-                        ).ConfigureAwait(false);
+                        )
+                       .ConfigureAwait(false);
 
-                    if (result != null)
+                    if (result is null)
                     {
-                        ctx.SourceFormats.Remove(result);
-                        await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-                        return;
+                        string msg = $"There is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
+                        throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                     }
 
-                    string msg = $"There is no {nameof(SourceFormat)} with id: {sourceFormat.Id}";
-                    throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                    if (result.DimensionStructureNodes.Any())
+                    {
+                        foreach (DimensionStructureNode node in result.DimensionStructureNodes)
+                        {
+                            ctx.Entry(node).State = EntityState.Deleted;
+                        }
+
+                        await ctx.SaveChangesAsync(cancellationToken)
+                           .ConfigureAwait(false);
+                    }
+
+                    if (result.SourceFormatDimensionStructureNode is not null)
+                    {
+                        ctx.Entry(result.SourceFormatDimensionStructureNode).State = EntityState.Deleted;
+                        await ctx.SaveChangesAsync(cancellationToken)
+                           .ConfigureAwait(false);
+                    }
+
+                    ctx.Entry(result).State = EntityState.Deleted;
+                    await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
                 }
             }
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                    $"{nameof(DeleteAsync)} operation failed! " +
-                    $"For further information see inner exception!";
+                             $"{nameof(DeleteAsync)} operation failed! " +
+                             "For further information see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

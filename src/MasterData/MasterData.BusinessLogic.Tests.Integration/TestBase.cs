@@ -18,6 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
+    using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Validators;
 
     using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
         protected Faker<DomainModel.DimensionStructure> _dimensionStructureFaker;
 
         protected Faker<DomainModel.SourceFormat> _sourceFormatFaker;
+
+        protected Faker<DimensionStructureNode> _dimensionStructureNodeFaker;
 
         public TestBase(ITestOutputHelper testOutputHelper)
         {
@@ -113,6 +116,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName())
                .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
                .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
+
+            _dimensionStructureNodeFaker = new Faker<DimensionStructureNode>();
         }
 
         protected async Task<List<DomainModel.DimensionStructure>> CreateInactiveDimensionStructureEntities(int amount)
@@ -152,6 +157,36 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                 result.Add(saved);
             }
 
+            return result;
+        }
+
+        protected async Task<DomainModel.SourceFormat> CreateSavedSourceFormatEntity()
+        {
+            DomainModel.SourceFormat sourceFormat = _sourceFormatFaker.Generate();
+            DomainModel.SourceFormat result = await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddAsync(sourceFormat)
+               .ConfigureAwait(false);
+            return result;
+        }
+
+        protected async Task<DomainModel.DimensionStructure> CreateSavedDimensionStructureEntity()
+        {
+            DomainModel.DimensionStructure dimensionStructure = _dimensionStructureFaker.Generate();
+            DomainModel.DimensionStructure result = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureBusinessLogic
+               .AddAsync(dimensionStructure)
+               .ConfigureAwait(false);
+            return result;
+        }
+
+        protected async Task<DimensionStructureNode> CreateSavedDimensionStructureNodeEntity()
+        {
+            DimensionStructureNode node = _dimensionStructureNodeFaker.Generate();
+            DimensionStructureNode result = await _masterDataBusinessLogic
+               .MasterDataDimensionStructureNodeBusinessLogic
+               .AddAsync(node)
+               .ConfigureAwait(false);
             return result;
         }
 
