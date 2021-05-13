@@ -62,6 +62,21 @@ steps:
         /p:CoverletOutputFormat=opencover \
         /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
         /p:MergeWith=$(Agent.TempDirectory)/coverage/"
+  
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: "$(Agent.TempDirectory)/**.*trx"
+      mergeTestResults: true
+    condition: succeededOrFailed()
+  
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Coverage...'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(Agent.TempDirectory)/coverage/*.cobertura.xml'
+      pathToSources: '$(System.DefaultWorkingDirectory)/src'
 
   - script: |
       bash <(curl -s https://codecov.io/bash)
