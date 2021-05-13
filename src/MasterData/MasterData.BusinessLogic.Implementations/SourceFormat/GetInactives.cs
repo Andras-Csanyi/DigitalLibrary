@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     public partial class MasterDataSourceFormatBusinessLogic
     {
         /// <inheritdoc />
-        public async Task<List<SourceFormat>> GetInActives(CancellationToken cancellationToken = default)
+        public async Task<List<SourceFormat>> GetInActivesAsync(CancellationToken cancellationToken = default)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(GetInActives)} operation failed! " +
+                             $"{nameof(GetInActivesAsync)} operation failed! " +
                              $"For further info see inner exception!";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }

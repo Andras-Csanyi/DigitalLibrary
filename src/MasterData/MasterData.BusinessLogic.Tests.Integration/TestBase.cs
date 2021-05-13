@@ -190,6 +190,38 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
             return result;
         }
 
+        protected async Task<List<DomainModel.SourceFormat>> CreateActiveAndSavedSourceFormatEntitiesAsync(int amount)
+        {
+            List<DomainModel.SourceFormat> result = new List<DomainModel.SourceFormat>();
+            for (int i = 0; i < amount; i++)
+            {
+                DomainModel.SourceFormat sf = _sourceFormatFaker.Generate();
+                sf.IsActive = 1;
+                DomainModel.SourceFormat saved = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                   .AddAsync(sf)
+                   .ConfigureAwait(false);
+                result.Add(saved);
+            }
+
+            return result;
+        }
+
+        protected async Task<List<DomainModel.SourceFormat>> CreateInactiveAndSavedSourceFormatEntitiesAsync(int amount)
+        {
+            List<DomainModel.SourceFormat> result = new List<DomainModel.SourceFormat>();
+            for (int i = 0; i < amount; i++)
+            {
+                DomainModel.SourceFormat sf = _sourceFormatFaker.Generate();
+                sf.IsActive = 0;
+                DomainModel.SourceFormat saved = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+                   .AddAsync(sf)
+                   .ConfigureAwait(false);
+                result.Add(sf);
+            }
+
+            return result;
+        }
+
         public void Dispose()
         {
             try

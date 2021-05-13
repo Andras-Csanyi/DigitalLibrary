@@ -269,7 +269,7 @@ namespace DigitalLibrary.MasterData.Controllers
             {
                 List<SourceFormat> result = await _masterDataBusinessLogic
                    .MasterDataSourceFormatBusinessLogic
-                   .GetInActives(cancellationToken)
+                   .GetInActivesAsync(cancellationToken)
                    .ConfigureAwait(false);
                 return Ok(result);
             }
