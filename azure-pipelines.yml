@@ -48,14 +48,20 @@ steps:
       --collect:"XPlat Code Coverage" \
       --settings coverage.runsettings \
       --no-build
-    displayName: 'Coverage'
+    displayName: 'Coverage for codecov'
 
   - task: DotNetCoreCLI@2
     displayName: 'Testing and publish result...'
     inputs:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
-      arguments: '--no-build'
+      arguments: "--no-build \
+        --configuration Debug \
+        /p:CollectCoverage=true \
+        /p:ExcludeByAttribute='Obsolete*%2cGeneratedCodeAttribute*%2cCompilerGeneratedAttribute' \
+        /p:CoverletOutputFormat=opencover \
+        /p:CoverletOutput=$(Agent.TempDirectory)/coverage/ \
+        /p:MergeWith=$(Agent.TempDirectory)/coverage/"
 
   - script: |
       bash <(curl -s https://codecov.io/bash)
