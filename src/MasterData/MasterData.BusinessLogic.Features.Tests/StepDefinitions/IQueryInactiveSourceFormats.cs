@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
             List<SourceFormat> result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .GetInActives()
+               .GetInActivesAsync()
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, result);

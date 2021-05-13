@@ -246,7 +246,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <exception cref="MasterDataBusinessLogicSourceFormatDatabaseOperationException">
         ///     Error happened during database operation.
         /// </exception>
-        Task<List<SourceFormat>> GetInActives(CancellationToken cancellationToken = default);
+        Task<List<SourceFormat>> GetInActivesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Inactivates the given <see cref="SourceFormat" />.
