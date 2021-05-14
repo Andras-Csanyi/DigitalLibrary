@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Tests.TestData;
+    using DigitalLibrary.MasterData.Tests.TestData.SourceFormat;
 
     using FluentAssertions;
 
@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
         }
 
         [Theory]
-        [ClassData(typeof(SourceFormat_Create_Validation_TestData))]
+        [ClassData(typeof(Create_Validation_TestData))]
         public async Task Throw_WhenInputIsInvalid(
             long id,
             string name,

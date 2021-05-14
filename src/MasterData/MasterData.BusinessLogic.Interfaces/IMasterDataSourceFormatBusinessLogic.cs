@@ -118,7 +118,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// </summary>
         /// <param name="querySourceFormat">Query object.</param>
         /// <returns>Result or null.</returns>
-        Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureAsync(SourceFormat querySourceFormat);
+        Task<SourceFormat> GetSourceFormatByIdWithRootDimensionStructureNodeAsync(SourceFormat querySourceFormat);
 
         /// <summary>
         ///     It returns a <see cref="SourceFormat" /> without its related entities.

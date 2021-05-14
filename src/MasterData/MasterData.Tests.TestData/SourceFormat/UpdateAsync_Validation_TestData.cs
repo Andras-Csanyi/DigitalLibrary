@@ -1,11 +1,11 @@
-namespace DigitalLibrary.MasterData.Tests.TestData
+namespace DigitalLibrary.MasterData.Tests.TestData.SourceFormat
 {
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class SourceFormat_UpdateAsync_Validation_TestData : IEnumerable<object[]>
+    public class UpdateAsync_Validation_TestData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
         {

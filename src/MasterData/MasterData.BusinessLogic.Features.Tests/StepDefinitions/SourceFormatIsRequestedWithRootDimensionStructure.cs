@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
             DomainModel.SourceFormat requestedWithTree = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithRootDimensionStructureAsync(withoutTree)
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(withoutTree)
                .ConfigureAwait(false);
 
             _scenarioContext.Add(instance.ResultKey, requestedWithTree);

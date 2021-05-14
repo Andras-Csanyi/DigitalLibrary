@@ -4,7 +4,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     using System.Threading;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
@@ -38,6 +37,18 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                            .FirstOrDefaultAsync(k => k.Id == dimensionStructureNodeId, cancellationToken)
                            .ConfigureAwait(false);
 
+                        if (sourceFormat is null)
+                        {
+                            string msg = $"No {nameof(SourceFormat)} with id: {sourceFormatId}.";
+                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                        }
+
+                        if (dimensionStructureNode is null)
+                        {
+                            string msg = $"No {nameof(DimensionStructureNode)} with id: {dimensionStructureNodeId}.";
+                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                        }
+
                         dimensionStructureNode.SourceFormat = sourceFormat;
                         ctx.Entry(dimensionStructureNode).State = EntityState.Modified;
 
@@ -57,12 +68,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                     }
                     catch (Exception e)
                     {
-                        await transaction
-                           .RollbackAsync(cancellationToken)
+                        await transaction.RollbackAsync(cancellationToken)
                            .ConfigureAwait(false);
                         string msg = $"{nameof(AddRootDimensionStructureNodeAsync)} operation failed!" +
                                      $" For further information see inner exception.";
-                        throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
+                        throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                     }
                 }
         }

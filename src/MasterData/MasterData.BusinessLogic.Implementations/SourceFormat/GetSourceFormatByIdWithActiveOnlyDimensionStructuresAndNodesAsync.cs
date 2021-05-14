@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             try
             {
                 Check.IsNotNull(querySourceFormat);
-                SourceFormat result = await GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
+                SourceFormat result = await GetSourceFormatByIdWithRootDimensionStructureNodeAsync(querySourceFormat)
                    .ConfigureAwait(false);
 
                 if (result == null)

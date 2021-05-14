@@ -21,8 +21,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 Check.IsNotNull(querySourceFormat);
 
-                SourceFormat sourceFormat = await GetSourceFormatByIdWithRootDimensionStructureAsync(querySourceFormat)
-                   .ConfigureAwait(false);
+                SourceFormat sourceFormat =
+                    await GetSourceFormatByIdWithRootDimensionStructureNodeAsync(querySourceFormat)
+                       .ConfigureAwait(false);
 
                 if (sourceFormat.SourceFormatDimensionStructureNode != null)
                 {
@@ -42,8 +43,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
-                    $"{nameof(GetSourceFormatByIdWithDimensionStructureNodeTreeAsync)} " +
-                    $"operation failed. For further info see inner exception.";
+                             $"{nameof(GetSourceFormatByIdWithDimensionStructureNodeTreeAsync)} " +
+                             $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
             }
         }

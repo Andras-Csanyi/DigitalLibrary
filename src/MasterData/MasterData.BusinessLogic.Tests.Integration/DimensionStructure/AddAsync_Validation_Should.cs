@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Tests.TestData;
+    using DigitalLibrary.MasterData.Tests.TestData.DimensionStructure;
 
     using FluentAssertions;
 
@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
     public class AddAsync_Validation_Should : TestBase
     {
         [Theory]
-        [ClassData(typeof(DimensionStructure_Create_Validation_TestData))]
+        [ClassData(typeof(Create_Validation_TestData))]
         public async Task Throw_WhenInputIsInvalid(
             long id,
             string name,

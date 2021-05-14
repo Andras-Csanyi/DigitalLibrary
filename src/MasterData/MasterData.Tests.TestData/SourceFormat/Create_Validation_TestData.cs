@@ -1,11 +1,11 @@
-namespace DigitalLibrary.MasterData.Tests.TestData
+namespace DigitalLibrary.MasterData.Tests.TestData.SourceFormat
 {
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class DimensionStructure_Create_Validation_TestData : IEnumerable<object[]>
+    public class Create_Validation_TestData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
         {
