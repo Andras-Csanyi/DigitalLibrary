@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -9,6 +10,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     using Xunit;
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
     public class GetSourceFormatWithRootDimensionStructureNodeAsync_Should : TestBase
     {
         [Fact]
