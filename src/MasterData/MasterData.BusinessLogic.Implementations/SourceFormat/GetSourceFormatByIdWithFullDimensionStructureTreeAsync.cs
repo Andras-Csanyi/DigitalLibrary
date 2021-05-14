@@ -8,7 +8,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     using System;
     using System.Threading.Tasks;
 
-    using DigitalLibrary.MasterData.BusinessLogic.Exceptions;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
@@ -44,7 +43,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}." +
                              $"{nameof(GetSourceFormatByIdWithRootDimensionStructureNodeAsync)} operation failed. " +
                              $"For further details see inner exception.";
-                throw new MasterDataBusinessLogicDatabaseOperationException(msg, e);
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }
     }
