@@ -1,11 +1,13 @@
-namespace DigitalLibrary.MasterData.Tests.TestData
+namespace DigitalLibrary.MasterData.Tests.TestData.SourceFormat
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
 
-    public class SourceFormat_GetSourceFormatByIdWithRootDimensionStructureNodeAsync_Validation_TestData
+    [ExcludeFromCodeCoverage]
+    public class GetSourceFormatByIdWithRootDimensionStructureNodeAsync_Validation_TestData
         : IEnumerable<object[]>
     {
         IEnumerator IEnumerable.GetEnumerator()

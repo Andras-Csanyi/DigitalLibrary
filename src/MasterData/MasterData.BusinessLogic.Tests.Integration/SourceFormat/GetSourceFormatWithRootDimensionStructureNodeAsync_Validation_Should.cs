@@ -6,7 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Tests.TestData;
+    using DigitalLibrary.MasterData.Tests.TestData.SourceFormat;
 
     using FluentAssertions;
 
@@ -17,7 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     public class GetSourceFormatWithRootDimensionStructureNodeAsync_Validation_Should : TestBase
     {
         [Theory]
-        [ClassData(typeof(SourceFormat_GetSourceFormatByIdWithRootDimensionStructureNodeAsync_Validation_TestData))]
+        [ClassData(typeof(GetSourceFormatByIdWithRootDimensionStructureNodeAsync_Validation_TestData))]
         public async Task Throw_WhenInputIsInvalid(SourceFormat queryObject)
         {
             // Arrange

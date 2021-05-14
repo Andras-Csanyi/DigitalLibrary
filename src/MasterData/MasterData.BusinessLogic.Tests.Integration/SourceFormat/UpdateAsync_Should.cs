@@ -4,7 +4,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Tests.TestData;
+    using DigitalLibrary.MasterData.Tests.TestData.SourceFormat;
 
     using FluentAssertions;
 
@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     public class UpdateAsync_Should : TestBase
     {
         [Theory]
-        [ClassData(typeof(SourceFormat_UpdateAsync_TestData))]
+        [ClassData(typeof(UpdateAsync_TestData))]
         public async Task Update_SpecifiedEntity(
             string name,
             string desc,
