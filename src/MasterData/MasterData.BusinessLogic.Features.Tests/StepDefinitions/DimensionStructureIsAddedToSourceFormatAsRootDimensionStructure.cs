@@ -24,7 +24,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
              || string.IsNullOrWhiteSpace(instance.DimensionStructureKey))
             {
                 string msg = $"Either {nameof(instance.SourceFormatKey)} or " +
-                    $"{nameof(instance.DimensionStructureKey)} are null. Or both.";
+                             $"{nameof(instance.DimensionStructureKey)} are null. Or both.";
                 throw new Exception(msg);
             }
 
@@ -37,7 +37,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
                .ConfigureAwait(false);
 
             DomainModel.SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithRootDimensionStructureAsync(sourceFormat)
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
                .ConfigureAwait(false);
 
             _scenarioContext.Remove(instance.SourceFormatKey);

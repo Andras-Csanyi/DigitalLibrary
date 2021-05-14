@@ -28,7 +28,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 
             // Assert
             SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
-               .GetSourceFormatByIdWithRootDimensionStructureAsync(sourceFormat)
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
                .ConfigureAwait(false);
 
             result.SourceFormatDimensionStructureNode.Id.Should().Be(dimensionStructureNode.Id);
