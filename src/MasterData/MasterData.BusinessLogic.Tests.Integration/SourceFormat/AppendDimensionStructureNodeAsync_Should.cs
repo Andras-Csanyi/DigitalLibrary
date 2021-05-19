@@ -184,7 +184,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             /*
             * SF
             * -> root dsn
-            *    -> level 1 - 1 
+            *    -> level 1 - 1
             *       -> level 1 - 1 - 1
             *       -> level 1 - 1 - 2
             *       -> level 1 - 1 - 3

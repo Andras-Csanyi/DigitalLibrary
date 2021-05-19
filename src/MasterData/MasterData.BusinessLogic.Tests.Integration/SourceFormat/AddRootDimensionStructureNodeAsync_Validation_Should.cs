@@ -15,6 +15,11 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     [ExcludeFromCodeCoverage]
     public class AddRootDimensionStructureNodeAsync_Validation_Should : TestBase
     {
+        public AddRootDimensionStructureNodeAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(
+            testOutputHelper)
+        {
+        }
+
         [Theory]
         [InlineData(0, 0, false, false)]
         [InlineData(1, 0, false, false)]
@@ -62,11 +67,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 
             // Assert
             task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
-        }
-
-        public AddRootDimensionStructureNodeAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(
-            testOutputHelper)
-        {
         }
     }
 }
