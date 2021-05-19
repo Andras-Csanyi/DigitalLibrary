@@ -10,10 +10,10 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class DimensionConfiguration : IEntityTypeConfiguration<Dimension>
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Dimension> builder)
         {
             builder.ToTable("dimension");

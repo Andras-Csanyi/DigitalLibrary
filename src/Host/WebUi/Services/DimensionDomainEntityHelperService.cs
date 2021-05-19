@@ -20,18 +20,18 @@ namespace DigitalLibrary.Ui.WebUi.Services
         ///     Creates a new list where the original list element except the listed elements
         ///     in the Except list will be listed.
         /// </summary>
-        /// <param name="originalList">The original list</param>
-        /// <param name="exceptList">Except list</param>
-        /// <returns>Result</returns>
+        /// <param name="originalList"> The original list </param>
+        /// <param name="exceptList"> Except list </param>
+        /// <returns> Result </returns>
         Task<List<Dimension>> CreateNewListExceptAnotherList(
             List<Dimension> originalList,
             List<Dimension> exceptList);
     }
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class DimensionDomainEntityHelperService : IDimensionDomainEntityHelperService
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<List<Dimension>> CreateNewListExceptAnotherList(
             List<Dimension> originalList,
             List<Dimension> exceptList)

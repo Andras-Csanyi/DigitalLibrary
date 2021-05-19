@@ -14,10 +14,10 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
         private readonly IMasterDataValidators _masterDataValidators;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MasterDataDimensionStructureBusinessLogic"/> class.
+        ///     Initializes a new instance of the <see cref="MasterDataDimensionStructureBusinessLogic"/> class.
         /// </summary>
-        /// <param name="dbContextOptions"><see cref="DbContextOptions"/> for MasterDataContext.</param>
-        /// <param name="masterDataValidators">Validators of MasterDataContext.</param>
+        /// <param name="dbContextOptions"> <see cref="DbContextOptions"/> for MasterDataContext. </param>
+        /// <param name="masterDataValidators"> Validators of MasterDataContext. </param>
         public MasterDataDimensionStructureBusinessLogic(
             DbContextOptions<MasterDataContext> dbContextOptions,
             IMasterDataValidators masterDataValidators)

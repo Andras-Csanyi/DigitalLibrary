@@ -6,11 +6,11 @@ namespace DigitalLibrary.MasterData.Ctx.Configurations
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class SourceFormatDimensionStructureNodeConfiguration
         : IEntityTypeConfiguration<SourceFormatDimensionStructureNode>
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<SourceFormatDimensionStructureNode> builder)
         {
             Check.IsNotNull(builder);

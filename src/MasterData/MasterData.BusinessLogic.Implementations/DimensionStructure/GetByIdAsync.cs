@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DimensionStructure> GetByIdAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default)
@@ -47,7 +47,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionBusinessLogic)}.{nameof(GetByIdAsync)} " +
-                    $"operation failed. For further info see inner exception.";
+                             $"operation failed. For further info see inner exception.";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }

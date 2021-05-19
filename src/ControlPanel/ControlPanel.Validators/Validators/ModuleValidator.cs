@@ -15,7 +15,7 @@ namespace DigitalLibrary.ControlPanel.Validators
     public class ModuleValidator : AbstractValidator<Module>
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ModuleValidator" /> class.
+        ///     Initializes a new instance of the <see cref="ModuleValidator"/> class.
         /// </summary>
         public ModuleValidator()
         {

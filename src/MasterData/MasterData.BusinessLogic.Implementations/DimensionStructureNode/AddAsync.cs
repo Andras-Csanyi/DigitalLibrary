@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureNodeBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DimensionStructureNode> AddAsync(
             DimensionStructureNode dimensionStructureNode,
             CancellationToken cancellationToken = default)
@@ -47,8 +47,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                 catch (Exception e)
                 {
                     string msg = $"{nameof(MasterDataDimensionStructureNodeBusinessLogic)}." +
-                        $"{nameof(AddAsync)} operation has failed. " +
-                        $"For further info see inner exception.";
+                                 $"{nameof(AddAsync)} operation has failed. " +
+                                 $"For further info see inner exception.";
                     throw new MasterDataDimensionStructureNodeBusinessLogicException(msg, e);
                 }
             }

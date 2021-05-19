@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.Validators
         DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
 
         /// <summary>
-        ///     Gets <see cref="DimensionStructureValidator" />.
+        ///     Gets <see cref="DimensionStructureValidator"/>.
         /// </summary>
         DimensionStructureValidator DimensionStructureValidator { get; }
 
@@ -24,18 +24,18 @@ namespace DigitalLibrary.MasterData.Validators
         MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
         /// <summary>
-        ///     Gets <see cref="SourceFormatValidator" />.
+        ///     Gets <see cref="SourceFormatValidator"/>.
         /// </summary>
         SourceFormatValidator SourceFormatValidator { get; }
 
 
         /// <summary>
-        ///     Gets <see cref="DimensionStructureNodeValidator" />.
+        ///     Gets <see cref="DimensionStructureNodeValidator"/>.
         /// </summary>
         DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
 
         /// <summary>
-        ///     Gets <see cref="SourceFormatDimensionStructureNodeValidator" />.
+        ///     Gets <see cref="SourceFormatDimensionStructureNodeValidator"/>.
         /// </summary>
         SourceFormatDimensionStructureNodeValidator SourceFormatDimensionStructureNodeValidator { get; }
     }

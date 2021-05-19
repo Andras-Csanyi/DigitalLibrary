@@ -26,8 +26,8 @@ namespace FAST.Components.Components.Accordion
 
         /// <summary>
         ///     Defines whether the accordion is single or multiple expand mode.
-        ///     It can be configured using <see cref="BfComponentApis.BfAccordion.ExpandMode" />
-        ///     and the Api values <see cref="BfComponentApis.BfAccordion.ExpandModeValues" />
+        ///     It can be configured using <see cref="BfComponentApis.BfAccordion.ExpandMode"/>
+        ///     and the Api values <see cref="BfComponentApis.BfAccordion.ExpandModeValues"/>
         /// </summary>
         [Parameter]
         public string ExpandMode { get; set; }

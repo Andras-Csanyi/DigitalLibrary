@@ -8,23 +8,23 @@ namespace DigitalLibrary.MasterData.WebApi.Client
     using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.Utils.Guards;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public partial class MasterDataHttpClient : IMasterDataHttpClient
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MasterDataHttpClient" /> class.
+        ///     Initializes a new instance of the <see cref="MasterDataHttpClient"/> class.
         /// </summary>
         /// <param name="sourceFormatHttpClientClient">
-        ///     Instance of <see cref="ISourceFormatHttpClient" /> client.
+        ///     Instance of <see cref="ISourceFormatHttpClient"/> client.
         /// </param>
         /// <param name="dimensionStructureHttpClient">
-        ///     Instance of <see cref="IDimensionStructureHttpClient" /> client.
+        ///     Instance of <see cref="IDimensionStructureHttpClient"/> client.
         /// </param>
         /// <param name="sourceFormatDimensionStructureNodeHttpClient">
-        ///     Instance of <see cref="ISourceFormatDimensionStructureNodeHttpClient" /> client.
+        ///     Instance of <see cref="ISourceFormatDimensionStructureNodeHttpClient"/> client.
         /// </param>
         /// <param name="dimensionStructureNodeHttpClient">
-        ///     Instance of <see cref="IDimensionStructureNodeHttpClient" /> client.
+        ///     Instance of <see cref="IDimensionStructureNodeHttpClient"/> client.
         /// </param>
         public MasterDataHttpClient(
             ISourceFormatHttpClient sourceFormatHttpClientClient,
@@ -41,13 +41,13 @@ namespace DigitalLibrary.MasterData.WebApi.Client
             DimensionStructureNodeHttpClient = dimensionStructureNodeHttpClient;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public ISourceFormatHttpClient SourceFormatHttpClient { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IDimensionStructureNodeHttpClient DimensionStructureNodeHttpClient { get; set; }
     }
 }

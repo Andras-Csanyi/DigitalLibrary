@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.DimensionStructure
 
     public partial class DimensionStructureHttpClientHttpClient
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DilibHttpClientResponse<DimensionStructure>> UpdateAsync(
             DimensionStructure payload,
             CancellationToken cancellationToken = default)

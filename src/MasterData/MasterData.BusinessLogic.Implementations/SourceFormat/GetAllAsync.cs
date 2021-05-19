@@ -28,8 +28,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}" +
-                    $".{nameof(GetAllAsync)} operation failed. " +
-                    "For further information see the inner exception.";
+                             $".{nameof(GetAllAsync)} operation failed. " +
+                             "For further information see the inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }
         }

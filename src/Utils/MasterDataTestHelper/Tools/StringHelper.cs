@@ -14,7 +14,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
 
         private readonly Random _rnd = new Random();
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string GetRandomString(int length)
         {
             StringBuilder result = new StringBuilder();

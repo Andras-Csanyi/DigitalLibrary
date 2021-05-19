@@ -19,21 +19,21 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
     using Newtonsoft.Json;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class DiLibHttpClient : IDiLibHttpClient
     {
         private readonly HttpClient _httpClient;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DiLibHttpClient" /> class.
+        ///     Initializes a new instance of the <see cref="DiLibHttpClient"/> class.
         /// </summary>
-        /// <param name="httpClient">Instance.</param>
+        /// <param name="httpClient"> Instance. </param>
         public DiLibHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DilibHttpClientResponse<T>> DeleteAsync<T>(
             string url,
             T payload,
@@ -74,7 +74,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DilibHttpClientResponse<T>> GetAsync<T>(
             string url,
             CancellationToken cancellationToken = default)
@@ -115,7 +115,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DilibHttpClientResponse<T>> PostAsync<T>(
             string url,
             T payload,
@@ -168,7 +168,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<TReturnType> PostAsync<TReturnType, TPayloadType>(
             string url,
             TPayloadType payload,
@@ -210,7 +210,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DilibHttpClientResponse<T>> PutAsync<T>(
             string url,
             T payload,

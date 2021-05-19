@@ -14,12 +14,12 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper
         IDimensionStructureFactory DimensionStructureFactory { get; }
 
         /// <summary>
-        ///     Gets <see cref="SourceFormat" /> object factory.
+        ///     Gets <see cref="SourceFormat"/> object factory.
         /// </summary>
         ISourceFormatFactory SourceFormatFactory { get; }
 
         /// <summary>
-        ///     Gets instance of <see cref="SourceFormatDimensionStructureNodeFactory" />.
+        ///     Gets instance of <see cref="SourceFormatDimensionStructureNodeFactory"/>.
         /// </summary>
         ISourceFormatDimensionStructureNodeFactory SourceFormatDimensionStructureNodeFactory { get; }
     }

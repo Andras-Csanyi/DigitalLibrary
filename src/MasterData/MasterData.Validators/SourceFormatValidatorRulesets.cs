@@ -8,13 +8,13 @@ namespace DigitalLibrary.MasterData.Validators
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    ///     Validator ruleset options for <see cref="SourceFormatValidator" />.
+    ///     Validator ruleset options for <see cref="SourceFormatValidator"/>.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public struct SourceFormatValidatorRulesets
     {
         /// <summary>
-        /// GetAmountOfDimensionStructureNodeOfSourceFormatAsync operation.
+        ///     GetAmountOfDimensionStructureNodeOfSourceFormatAsync operation.
         /// </summary>
         public const string GetAmountOfDimensionStructureNodeOfSourceFormat =
             "GetAmountOfDimensionStructureNodeOfSourceFormatAsync";
@@ -55,7 +55,7 @@ namespace DigitalLibrary.MasterData.Validators
         public const string AddRootNode = "AddRootNode";
 
         /// <summary>
-        /// Ruleset identifier for Removing root DimensionStructureNode operation.
+        ///     Ruleset identifier for Removing root DimensionStructureNode operation.
         /// </summary>
         public const string RemoveRootDimensionStructureNode = "RemoveRootDimensionStructureNode";
     }
