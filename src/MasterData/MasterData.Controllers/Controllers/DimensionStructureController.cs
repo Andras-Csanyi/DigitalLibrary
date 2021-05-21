@@ -19,7 +19,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
-    ///     Controller for managing <see cref="DimensionStructure" /> objects.
+    ///     Controller for managing <see cref="DimensionStructure"/> objects.
     /// </summary>
     [ApiController]
     [Route(MasterDataApi.DimensionStructure.RouteBase)]
@@ -28,10 +28,10 @@ namespace DigitalLibrary.MasterData.Controllers
         private readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DimensionStructureController" /> class.
+        ///     Initializes a new instance of the <see cref="DimensionStructureController"/> class.
         /// </summary>
         /// <param name="masterDataBusinessLogic">
-        ///     <see cref="IMasterDataBusinessLogic" /> instance, which contains the business logic.
+        ///     <see cref="IMasterDataBusinessLogic"/> instance, which contains the business logic.
         /// </param>
         public DimensionStructureController(
             IMasterDataBusinessLogic masterDataBusinessLogic)
@@ -41,13 +41,13 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for adding new <see cref="DimensionStructure" /> objects.
+        ///     Controller method for adding new <see cref="DimensionStructure"/> objects.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     <see cref="DimensionStructure" /> payload objects.
+        ///     <see cref="DimensionStructure"/> payload objects.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpPost]
         [Route(MasterDataApi.DimensionStructure.V1.Add)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -70,14 +70,14 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for deleting <see cref="DimensionStructure" />.
+        ///     Controller method for deleting <see cref="DimensionStructure"/>.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     A <see cref="DimensionStructure" /> object which contains data about which <see cref="DimensionStructure" />
+        ///     A <see cref="DimensionStructure"/> object which contains data about which <see cref="DimensionStructure"/>
         ///     needs to be deleted.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpDelete]
         [Route(MasterDataApi.DimensionStructure.V1.Delete)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -99,13 +99,13 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for requesting <see cref="DimensionStructure" /> object by Id.
+        ///     Controller method for requesting <see cref="DimensionStructure"/> object by Id.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     <see cref="DimensionStructure" /> payload object.
+        ///     <see cref="DimensionStructure"/> payload object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpPost]
         [Route(MasterDataApi.DimensionStructure.V1.GetById)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -129,13 +129,13 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for updating a <see cref="DimensionStructure" />.
+        ///     Controller method for updating a <see cref="DimensionStructure"/>.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     A <see cref="DimensionStructure" /> payload object.
+        ///     A <see cref="DimensionStructure"/> payload object.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpPut]
         [Route(MasterDataApi.DimensionStructure.V1.Update)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -158,10 +158,10 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for getting list of all <see cref="DimensionStructure" />s.
+        ///     Controller method for getting list of all <see cref="DimensionStructure"/>s.
         /// </summary>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetAll)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -183,10 +183,10 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for getting all active <see cref="DimensionStructure" />s.
+        ///     Controller method for getting all active <see cref="DimensionStructure"/>s.
         /// </summary>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -208,10 +208,10 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for getting all inactive <see cref="DimensionStructure" />s.
+        ///     Controller method for getting all inactive <see cref="DimensionStructure"/>s.
         /// </summary>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpGet]
         [Route(MasterDataApi.DimensionStructure.V1.GetInActives)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -233,14 +233,14 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        ///     Controller method for inactivating <see cref="DimensionStructure" />s.
+        ///     Controller method for inactivating <see cref="DimensionStructure"/>s.
         /// </summary>
         /// <param name="dimensionStructure">
-        ///     Payload <see cref="DimensionStructure" /> object from 3rd party where
-        ///     ID marks which <see cref="DimensionStructure" /> going to be inactivated.
+        ///     Payload <see cref="DimensionStructure"/> object from 3rd party where
+        ///     ID marks which <see cref="DimensionStructure"/> going to be inactivated.
         /// </param>
-        /// <param name="cancellationToken"><see cref="CancellationToken" />.</param>
-        /// <returns>A <see cref="Task{TResult}" /> representing the result of the asynchronous operation.</returns>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns> A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. </returns>
         [HttpPut]
         [Route(MasterDataApi.DimensionStructure.V1.Inactivate)]
         [ProducesResponseType(StatusCodes.Status200OK)]

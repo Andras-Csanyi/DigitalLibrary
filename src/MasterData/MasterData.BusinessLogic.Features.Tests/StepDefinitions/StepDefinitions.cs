@@ -30,7 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
     using Xunit.Abstractions;
 
     /// <summary>
-    ///     Background steps for <see cref="SourceFormat" /> related test cases.
+    ///     Background steps for <see cref="SourceFormat"/> related test cases.
     /// </summary>
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]

@@ -6,22 +6,22 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     [ExcludeFromCodeCoverage]
     public class SourceFormatFactory : ISourceFormatFactory
     {
         private readonly IStringHelper _stringHelper;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="SourceFormatFactory" /> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatFactory"/> class.
         /// </summary>
-        /// <param name="stringHelper">SourceFormatFactory instance.</param>
+        /// <param name="stringHelper"> SourceFormatFactory instance. </param>
         public SourceFormatFactory(IStringHelper stringHelper)
         {
             _stringHelper = stringHelper;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public SourceFormat Create<T>(T instance)
             where T : ISourceFormatDomainObject
         {

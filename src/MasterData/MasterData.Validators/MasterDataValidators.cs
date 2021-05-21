@@ -9,23 +9,23 @@ namespace DigitalLibrary.MasterData.Validators
 
     using DigitalLibrary.Utils.Guards;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     [ExcludeFromCodeCoverage]
     public class MasterDataValidators : IMasterDataValidators
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MasterDataValidators" /> class.
+        ///     Initializes a new instance of the <see cref="MasterDataValidators"/> class.
         /// </summary>
-        /// <param name="dimensionValidator">DimensionValidator.</param>
-        /// <param name="dimensionValueValidator">DimensionValueValidator.</param>
-        /// <param name="sourceFormatValidator">SourceFormat validator.</param>
-        /// <param name="dimensionStructureValidator">DimensionStructure validator.</param>
+        /// <param name="dimensionValidator"> DimensionValidator. </param>
+        /// <param name="dimensionValueValidator"> DimensionValueValidator. </param>
+        /// <param name="sourceFormatValidator"> SourceFormat validator. </param>
+        /// <param name="dimensionStructureValidator"> DimensionStructure validator. </param>
         /// <param name="dimensionStructureDimensionStructureValidator">
         ///     DimensionStructureDimensionStructure validator.
         /// </param>
-        /// <param name="dimensionStructureQueryObjectValidator">DimensionStructureQueryObject validator.</param>
-        /// <param name="dimensionStructureNodeValidator">DimensionStructureNode validator.</param>
-        /// <param name="sourceFormatDimensionStructureNodeValidator">SourceFormatDimensionStructureNodeValidator validator.</param>
+        /// <param name="dimensionStructureQueryObjectValidator"> DimensionStructureQueryObject validator. </param>
+        /// <param name="dimensionStructureNodeValidator"> DimensionStructureNode validator. </param>
+        /// <param name="sourceFormatDimensionStructureNodeValidator"> SourceFormatDimensionStructureNodeValidator validator. </param>
         public MasterDataValidators(
             DimensionValidator dimensionValidator,
             MasterDataDimensionValueValidator dimensionValueValidator,
@@ -59,22 +59,22 @@ namespace DigitalLibrary.MasterData.Validators
 
         public DimensionStructureQueryObjectValidator DimensionStructureQueryObjectValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DimensionStructureValidator DimensionStructureValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DimensionValidator DimensionValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public MasterDataDimensionValueValidator DimensionValueValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public SourceFormatValidator SourceFormatValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DimensionStructureNodeValidator DimensionStructureNodeValidator { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public SourceFormatDimensionStructureNodeValidator SourceFormatDimensionStructureNodeValidator { get; }
     }
 }

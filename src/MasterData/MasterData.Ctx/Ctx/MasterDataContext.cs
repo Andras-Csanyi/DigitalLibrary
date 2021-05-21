@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.Ctx
         public DbSet<DimensionValue> DimensionValues { get; set; }
 
         /// <summary>
-        ///     Gets or sets <see cref="SourceFormatDimensionStructureNodes" /> value.
+        ///     Gets or sets <see cref="SourceFormatDimensionStructureNodes"/> value.
         /// </summary>
         public DbSet<SourceFormatDimensionStructureNode> SourceFormatDimensionStructureNodes { get; set; }
 
@@ -52,16 +52,16 @@ namespace DigitalLibrary.MasterData.Ctx
         public DbSet<SourceFormat> SourceFormats { get; set; }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MasterDataContext" /> class.
+        ///     Initializes a new instance of the <see cref="MasterDataContext"/> class.
         /// </summary>
-        /// <param name="options">Instance.</param>
+        /// <param name="options"> Instance. </param>
         public MasterDataContext(DbContextOptions<MasterDataContext> options)
             : base(options)
         {
         }
 
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Check.IsNotNull(modelBuilder);

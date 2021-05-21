@@ -9,10 +9,10 @@ namespace DigitalLibrary.MasterData.WebApi.Client.DimensionStructureNode
         private readonly IDiLibHttpClient _dilibHttpClient;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DimensionStructureNodeHttpClient" /> class.
+        ///     Initializes a new instance of the <see cref="DimensionStructureNodeHttpClient"/> class.
         /// </summary>
         /// <param name="diLibHttpClient">
-        ///     Instance of <see cref="IDiLibHttpClient" />.
+        ///     Instance of <see cref="IDiLibHttpClient"/>.
         /// </param>
         public DimensionStructureNodeHttpClient(IDiLibHttpClient diLibHttpClient)
         {

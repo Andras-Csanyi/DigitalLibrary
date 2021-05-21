@@ -62,7 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionValue
                                 DimensionDimensionValue doesDimensionDimensionValueRelationExist = await ctx
                                    .DimensionDimensionValues
                                    .FirstOrDefaultAsync(p => p.DimensionId == dimension.Id
-                                     && p.DimensionValueId == doesDimensionValueExists.Id)
+                                                          && p.DimensionValueId == doesDimensionValueExists.Id)
                                    .ConfigureAwait(false);
 
                                 // if doesnt exists create one

@@ -6,7 +6,7 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.Utils.Guards;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     [ExcludeFromCodeCoverage]
     public class DimensionStructureFactory
         : IDimensionStructureFactory
@@ -14,15 +14,15 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         private readonly IStringHelper _stringHelper;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DimensionStructureFactory" /> class.
+        ///     Initializes a new instance of the <see cref="DimensionStructureFactory"/> class.
         /// </summary>
-        /// <param name="stringHelper">StringHelper instance.</param>
+        /// <param name="stringHelper"> StringHelper instance. </param>
         public DimensionStructureFactory(IStringHelper stringHelper)
         {
             _stringHelper = stringHelper ?? throw new ArgumentNullException($"{nameof(stringHelper)}");
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DimensionStructure Create<T>(T instance)
             where T : IDimensionStructureDomainObject
         {

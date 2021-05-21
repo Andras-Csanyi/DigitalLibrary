@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DimensionStructure> UpdateAsync(
             DimensionStructure dimensionStructure,
             CancellationToken cancellationToken = default)
@@ -42,7 +42,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
                        .ConfigureAwait(false);
 
                     string msg = $"There is no {typeof(DimensionStructure)} " +
-                        $"entity with id: {dimensionStructure.Id}";
+                                 $"entity with id: {dimensionStructure.Id}";
                     Check.IsNotNull(toBeModified, msg);
 
                     toBeModified.Name = dimensionStructure.Name;
@@ -58,8 +58,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                    $"{nameof(UpdateAsync)} operation failed. " +
-                    $"For further information see inner exception.";
+                             $"{nameof(UpdateAsync)} operation failed. " +
+                             $"For further information see inner exception.";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }

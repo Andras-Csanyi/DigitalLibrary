@@ -27,7 +27,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension
 
                     Dimension result = await ctx.Dimensions
                        .AsNoTracking()
-                       .Include(i => i.DimensionDimensionValues).ThenInclude(ti => ti.DimensionValue)
+                       .Include(i => i.DimensionDimensionValues)
+                       .ThenInclude<Dimension, DimensionDimensionValue, DimensionValue>(ti => ti.DimensionValue)
                        .FirstOrDefaultAsync(p => p.Id == dimensionId)
                        .ConfigureAwait(false);
 

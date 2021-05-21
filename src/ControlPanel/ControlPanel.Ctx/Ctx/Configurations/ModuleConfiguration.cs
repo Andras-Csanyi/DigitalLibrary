@@ -15,7 +15,7 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx.Configurations
     [ExcludeFromCodeCoverage]
     public class ModuleConfiguration : IEntityTypeConfiguration<Module>
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Module> builder)
         {
             builder.HasKey(p => p.Id);

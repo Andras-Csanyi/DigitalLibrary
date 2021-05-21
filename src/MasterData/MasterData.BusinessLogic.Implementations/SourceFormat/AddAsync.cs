@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<SourceFormat> AddAsync(
             SourceFormat sourceFormat,
             CancellationToken cancellationToken = default)
@@ -46,7 +46,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 catch (Exception e)
                 {
                     string msg = $"Operation failed: {nameof(AddAsync)}. " +
-                        $"For further details see inner exception.";
+                                 $"For further details see inner exception.";
                     throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                 }
             }

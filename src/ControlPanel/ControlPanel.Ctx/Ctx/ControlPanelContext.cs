@@ -16,10 +16,10 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx
     public class ControlPanelContext : DbContext
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ControlPanelContext" /> class.
+        ///     Initializes a new instance of the <see cref="ControlPanelContext"/> class.
         /// </summary>
         /// <param name="options">
-        ///     <see cref="DbContextOptions{TContext}" />.
+        ///     <see cref="DbContextOptions{TContext}"/>.
         /// </param>
         public ControlPanelContext(DbContextOptions<ControlPanelContext> options)
             : base(options)
@@ -27,7 +27,7 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ControlPanelContext" /> class.
+        ///     Initializes a new instance of the <see cref="ControlPanelContext"/> class.
         /// </summary>
         protected ControlPanelContext()
         {
@@ -37,7 +37,7 @@ namespace DigitalLibrary.ControlPanel.Ctx.Ctx
 
         public DbSet<Module> Modules { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ModuleConfiguration());

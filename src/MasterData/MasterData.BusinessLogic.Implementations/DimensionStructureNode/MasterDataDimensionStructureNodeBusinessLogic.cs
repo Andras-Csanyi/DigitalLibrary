@@ -14,7 +14,7 @@
         private readonly IMasterDataValidators _masterDataValidators;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MasterDataDimensionStructureNodeBusinessLogic" /> class.
+        ///     Initializes a new instance of the <see cref="MasterDataDimensionStructureNodeBusinessLogic"/> class.
         /// </summary>
         /// <param name="dbContextOptions">
         ///     DbContext options for Master Data context.

@@ -18,27 +18,27 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.6"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="SpecFlow" Version="3.8.7"/>
-        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.7"/>
-        <PackageReference Include="SpecFlow.xUnit" Version="3.8.7"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
-        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="SpecFlow" Version="3.8.7" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.7" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.8.7" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+        <PackageReference Include="xunit.runner.console" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -50,31 +50,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj"/>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
-        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
-        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj"/>
-        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj"/>
-        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj"/>
+        <ProjectReference Include="..\..\Utils\ControlPanel.DataSample\ControlPanel.DataSample.csproj" />
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj" />
+        <ProjectReference Include="..\MasterData.BusinessLogic.Implementations\MasterData.BusinessLogic.Implementations.csproj" />
+        <ProjectReference Include="..\MasterData.BusinessLogic.Interfaces\MasterData.BusinessLogic.Interfaces.csproj" />
+        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\SourceFormatTreeMgmt.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.AddAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormatTreeMgmt\DimensionStructure.LogicDeleteAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="DimensionStructureNode\RootDimensionStructureNode.DeleteAsync.feature">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
-        </SpecFlowFeatureFiles>
-        <SpecFlowFeatureFiles Update="SourceFormat\RemoveDimensionStructureNodeAsync.feature.cs">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\DeleteRootDimensionStructureNodeAsync.Validation.feature">
             <CodeBehindFile>SourceFormat/DeleteRootDimensionStructureNodeAsync.feature.cs</CodeBehindFile>
@@ -82,16 +68,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="SourceFormat\DeleteRootDimensionStructureNodeAsync.Validation.feature.cs">
-            <DependentUpon>DeleteRootDimensionStructureNodeAsync.Validation.feature</DependentUpon>
-            <AutoGen>true</AutoGen>
-            <DesignTime>true</DesignTime>
-            <Visible>true</Visible>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="StepDefinitions\Utils"/>
+        <Folder Include="StepDefinitions\Utils" />
     </ItemGroup>
 
     <ItemGroup>

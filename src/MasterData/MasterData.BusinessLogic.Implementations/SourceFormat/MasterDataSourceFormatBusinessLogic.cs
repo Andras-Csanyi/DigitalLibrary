@@ -7,7 +7,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     using Microsoft.EntityFrameworkCore;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public partial class MasterDataSourceFormatBusinessLogic : IMasterDataSourceFormatBusinessLogic
     {
         private readonly DbContextOptions<MasterDataContext> _dbContextOptions;
@@ -15,13 +15,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
         private readonly IMasterDataValidators _masterDataValidators;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MasterDataSourceFormatBusinessLogic" /> class.
+        ///     Initializes a new instance of the <see cref="MasterDataSourceFormatBusinessLogic"/> class.
         /// </summary>
         /// <param name="dbContextOptions">
-        ///     Instance of <see cref="DbContextOptions<MasterDataContext>"/>.
+        ///     Instance of <see cref="DbContextOptions<MasterDataContext> "/>.
         /// </param>
         /// <param name="masterDataValidators">
-        ///     Instance of <see cref="IMasterDataValidators" />.
+        ///     Instance of <see cref="IMasterDataValidators"/>.
         /// </param>
         public MasterDataSourceFormatBusinessLogic(
             DbContextOptions<MasterDataContext> dbContextOptions,

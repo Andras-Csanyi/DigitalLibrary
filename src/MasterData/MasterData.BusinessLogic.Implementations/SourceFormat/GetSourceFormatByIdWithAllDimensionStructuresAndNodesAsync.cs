@@ -11,7 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     public partial class MasterDataSourceFormatBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<SourceFormat> GetSourceFormatByIdWithAllDimensionStructuresAndNodesAsync(
             SourceFormat sourceFormat)
         {
@@ -23,7 +23,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 {
                     SourceFormat result = await ctx.SourceFormats
                        .AsNoTracking()
-                       .Include(i => i.DimensionStructureNodes).ThenInclude(ii => ii.DimensionStructure)
+                       .Include(i => i.DimensionStructureNodes)
+                       .ThenInclude<SourceFormat, DimensionStructureNode, DimensionStructure>(ii =>
+                            ii.DimensionStructure)
                        .FirstOrDefaultAsync(w => w.Id == sourceFormat.Id)
                        .ConfigureAwait(false);
 

@@ -8,8 +8,8 @@ namespace DigitalLibrary.Utils.MasterDataTestHelper.Tools
         /// <summary>
         ///     Provides random string in the given length.
         /// </summary>
-        /// <param name="length">Length of the string.</param>
-        /// <returns>Result string.</returns>
+        /// <param name="length"> Length of the string. </param>
+        /// <returns> Result string. </returns>
         string GetRandomString(int length);
 
         string GetNamePropertyString(string value);

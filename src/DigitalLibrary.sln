@@ -19,8 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterData.Web.Api.Features
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{107A9921-6CCD-452B-BD01-5A0CAD081D46}"
 	ProjectSection(SolutionItems) = preProject
-		SolutionItems\.editorconfig = SolutionItems\.editorconfig
 		..\.gitignore = ..\.gitignore
+		.editorconfig = .editorconfig
 		SolutionItems\xunit.runner.json = SolutionItems\xunit.runner.json
 		..\README.md = ..\README.md
 		..\azure-pipelines.yml = ..\azure-pipelines.yml

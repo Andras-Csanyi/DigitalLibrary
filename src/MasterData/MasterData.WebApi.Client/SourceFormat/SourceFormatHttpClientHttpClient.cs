@@ -5,7 +5,7 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public partial class SourceFormatHttpClientHttpClient : ISourceFormatHttpClient
     {
         private readonly IDiLibHttpClient _diLibHttpClient;
@@ -13,9 +13,9 @@ namespace DigitalLibrary.MasterData.WebApi.Client.SourceFormat
         private const string SourceFormatBase = MasterDataApi.SourceFormat.BasePath;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="SourceFormatHttpClientHttpClient" /> class.
+        ///     Initializes a new instance of the <see cref="SourceFormatHttpClientHttpClient"/> class.
         /// </summary>
-        /// <param name="diLibHttpClient">Http client.</param>
+        /// <param name="diLibHttpClient"> Http client. </param>
         public SourceFormatHttpClientHttpClient(IDiLibHttpClient diLibHttpClient)
         {
             Check.IsNotNull(diLibHttpClient);

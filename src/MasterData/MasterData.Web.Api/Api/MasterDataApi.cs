@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         public const string Route = "api/masterdata";
 
         /// <summary>
-        ///     <see cref="DimensionStructureNode" /> related endpoints.
+        ///     <see cref="DimensionStructureNode"/> related endpoints.
         /// </summary>
         public struct DimensionStructureNode
         {
@@ -35,7 +35,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         }
 
         /// <summary>
-        ///     <see cref="SourceFormatDimensionStructureNode" /> related endpoints.
+        ///     <see cref="SourceFormatDimensionStructureNode"/> related endpoints.
         /// </summary>
         public struct SourceFormatDimensionStructureNode
         {
@@ -72,7 +72,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         }
 
         /// <summary>
-        ///     <see cref="SourceFormat" /> related endpoints.
+        ///     <see cref="SourceFormat"/> related endpoints.
         /// </summary>
         public struct SourceFormat
         {
@@ -82,7 +82,7 @@ namespace DigitalLibrary.MasterData.Web.Api
             public const string BasePath = Route + "/SourceFormat";
 
             /// <summary>
-            ///     V1 Api endpoint for <see cref="SourceFormat" />.
+            ///     V1 Api endpoint for <see cref="SourceFormat"/>.
             /// </summary>
             public struct V1
             {
@@ -194,7 +194,7 @@ namespace DigitalLibrary.MasterData.Web.Api
         }
 
         /// <summary>
-        ///     <see cref="DimensionStructure" /> related endpoints.
+        ///     <see cref="DimensionStructure"/> related endpoints.
         /// </summary>
         public struct DimensionStructure
         {

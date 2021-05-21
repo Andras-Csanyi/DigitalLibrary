@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
 
     public partial class MasterDataDimensionStructureBusinessLogic
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task DeleteAsync(
             DimensionStructure tobeDeleted,
             CancellationToken cancellationToken = default)
@@ -44,8 +44,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStruc
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataDimensionStructureBusinessLogic)}." +
-                    $"{nameof(DeleteAsync)} operation failed. " +
-                    $"For further details see inner exception!";
+                             $"{nameof(DeleteAsync)} operation failed. " +
+                             $"For further details see inner exception!";
                 throw new MasterDataBusinessLogicDimensionStructureDatabaseOperationException(msg, e);
             }
         }
