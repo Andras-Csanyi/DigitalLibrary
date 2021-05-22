@@ -8,6 +8,8 @@
 
         <LangVersion>default</LangVersion>
         <ProjectGuid>{CBBF8CD6-E12A-4B57-9474-26C419AB755F}</ProjectGuid>
+        <AssemblyName>DigitalLibrary.WebUi.FAST.Components.Tests</AssemblyName>
+        <RootNamespace>DigitalLibrary.WebUi.FAST.Components.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
