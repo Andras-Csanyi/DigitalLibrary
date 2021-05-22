@@ -3,10 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <RazorLangVersion>3.0</RazorLangVersion>
-        <AssemblyName>SayusiAndo.DigitalLibrary.WebUi.FAST.Components</AssemblyName>
+        <AssemblyName>DigitalLibrary.WebUi.FAST.Components</AssemblyName>
         <LangVersion>default</LangVersion>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <ProjectGuid>{BF2AE79F-3CC1-40DF-B7AC-946906790CA1}</ProjectGuid>
+        <RootNamespace>DigitalLibrary.WebUi.FAST.Components</RootNamespace>
     </PropertyGroup>
 
 
@@ -23,9 +24,15 @@
 
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\background.png" />
-        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\styles.css" />
+        <_ContentIncludedByDefault Remove="wwwroot\background.png"/>
+        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\styles.css"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordion.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItem.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemContent.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemHeading.razor"/>
+        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeItem.razor"/>
+        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeView.razor"/>
     </ItemGroup>
 
 </Project>

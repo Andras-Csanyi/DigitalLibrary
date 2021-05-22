@@ -3,7 +3,7 @@
 //  Licensed under MIT.
 // </copyright>
 
-namespace FAST.Components.Utils
+namespace DigitalLibrary.WebUi.FAST.Components.Utils
 {
     using System;
     using System.Collections.Generic;
