@@ -36,7 +36,7 @@ steps:
   - script: |
       dotnet new tool-manifest
       dotnet tool install --local JetBrains.dotCover.GlobalTool
-      dotnet tool install dotnet-reportgenerator-globaltool --version 4.8.8
+      dotnet tool install --local dotnet-reportgenerator-globaltool --version 4.8.8
       dotnet tool install --local dotnet-sonarscanner
     displayName: "Install dotCover tools"
 
