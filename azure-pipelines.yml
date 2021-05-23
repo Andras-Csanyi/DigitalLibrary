@@ -29,7 +29,7 @@ pool: 'contabo'
 
 steps:
   - script: |
-      echo "$(Agent.TempDirectory): "$(Agent.TempDirectory)
+      echo "Agent.TempDirectory: "$(Agent.TempDirectory)
     displayName: "Dump variables"
     
   - script: |
