@@ -1,6 +1,16 @@
 # Badges
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=bugs)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=code_smells)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=coverage)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=ncloc)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=alert_status)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=security_rating)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=sqale_index)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 
-[![codecov](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary/branch/master/graph/badge.svg?token=xLhCIRup4Y)](https://codecov.io/gh/Andras-Csanyi/DigitalLibrary)
 # Digital Library Project
 
 This project is about how to manage huge amount of different documents while you can manage the content connections
