@@ -32,16 +32,20 @@ steps:
       echo Agent.TempDirectory is: $(Agent.TempDirectory)
       echo Agent.BuildDirectory is: $(Agent.BuildDirectory)
     displayName: "Dump variables"
-    
+
   - script: |
       dotnet new tool-manifest
       dotnet tool install --local JetBrains.dotCover.GlobalTool
     displayName: "Install dotCover tools"
-    
+
+  - script: |
+      dotnet add package ReportGenerator --version 4.8.8
+    workingDirectory: src
+
   - script: |
       dotnet tool install --local dotnet-sonarscanner
     displayName: "Install dotnet-sonarscanner"
-    
+
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud'
