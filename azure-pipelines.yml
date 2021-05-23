@@ -52,7 +52,7 @@ steps:
       extraProperties: |
         sonar.coverage.exclusions=**/obj/**/*, **/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, src/MasterData/MasterData.Controllers.Integration.Tests/**/*, src/MasterData/MasterData.Controllers.Unit.Tests/**/*, src/MasterData/MasterData.Validators.Test/**/*, src/MasterData/MasterData.Tests.TestData/**/*, src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, src/MasterData/MasterData.StepDefinitions/**/*, src/MasterData/MasterData.Web.Api.Features.Tests/**/*, src/Utils/Guard.Tests/**/*, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, src/Utils/ControlPanel.DataSample/**/*, src/Utils/TestHelper.Unit.Test/**/*, src/Utils/Guard.Tests/**/*, src/IntegrationTestFactories/**/*, src/MasterDataTestHelper/**/*
         sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/dotCover.xml
+        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/dotcover.Output.xml
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
@@ -225,5 +225,6 @@ steps:
       pollingTimeoutSec: '300'
 
   - script: |
-      reportgenerator -reports:dotcover.xml -reporttypes:Cobertura;SonarQube
+      dotnet reportgenerator -reports:dotcover.Output.xml -reporttypes:Cobertura;SonarQube
     workingDirectory: src
+    displayName: "ReportGenerator"
