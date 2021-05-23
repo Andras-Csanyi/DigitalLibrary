@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SonarQubeAnalysisProperties
     xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-
-    <!--
-    <Property Name="sonar.host.url">http://localhost:9000</Property>
-
-    <Property Name="sonar.login"></Property>
-    <Property Name="sonar.password"></Property>
-    -->
-
-    <!-- Required only for versions of SonarQube prior to 5.2 -->
-    <!--
-    <Property Name="sonar.jdbc.url">jdbc:jtds:sqlserver://mySqlServer/sonar;instance=SQLEXPRESS;SelectMethod=Cursor</Property>
-    <Property Name="sonar.jdbc.username">sonar</Property>
-    <Property Name="sonar.jdbc.password">sonar</Property>
-    -->
     <Property Name="sonar.sources">src</Property>
     <Property Name="sonar.exclusions">
         ../s/src/**/bin/**/*,
@@ -43,5 +29,11 @@
         ../s/src/Utils/Guard.Tests/**/*,
         ../s/src/IntegrationTestFactories/**/*,
         ../s/src/MasterDataTestHelper/**/*
+    </Property>
+    <Property Name="sonar.cs.dotcover.reportsPaths">
+        ../s/src/*.html
+    </Property>
+    <Property Name="sonar.cs.xunit.reportsPaths">
+        ../../_tmp/**.*trx
     </Property>
 </SonarQubeAnalysisProperties>
