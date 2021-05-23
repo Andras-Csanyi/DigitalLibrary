@@ -33,26 +33,32 @@ steps:
       echo Agent.BuildDirectory is: $(Agent.BuildDirectory)
     displayName: "Dump variables"
 
-  - script: |
-      dotnet new tool-manifest
-      dotnet tool install --local JetBrains.dotCover.GlobalTool
-      dotnet tool install --local dotnet-reportgenerator-globaltool --version 4.8.8
-      dotnet tool install --local dotnet-sonarscanner
-    displayName: "Install dotCover tools"
+  #  - script: |
+  #      dotnet new tool-manifest
+  #      dotnet tool install --local JetBrains.dotCover.GlobalTool
+  #      dotnet tool install --local dotnet-reportgenerator-globaltool --version 4.8.8
+  #      dotnet tool install --local dotnet-sonarscanner
+  #    displayName: "Install dotCover tools"
+  #
+  #  - task: SonarCloudPrepare@1
+  #    inputs:
+  #      SonarCloud: 'sonarcloud'
+  #      organization: 'andras-csanyi'
+  #      scannerMode: 'CLI'
+  #      configMode: 'manual'
+  #      cliProjectKey: 'DigitalLibrary'
+  #      cliProjectName: 'DigitalLibrary'
+  #      cliSources: '.'
+  #      extraProperties: |
+  #        sonar.coverage.exclusions=**/obj/**/*, **/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, src/MasterData/MasterData.Controllers.Integration.Tests/**/*, src/MasterData/MasterData.Controllers.Unit.Tests/**/*, src/MasterData/MasterData.Validators.Test/**/*, src/MasterData/MasterData.Tests.TestData/**/*, src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, src/MasterData/MasterData.StepDefinitions/**/*, src/MasterData/MasterData.Web.Api.Features.Tests/**/*, src/Utils/Guard.Tests/**/*, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, src/Utils/ControlPanel.DataSample/**/*, src/Utils/TestHelper.Unit.Test/**/*, src/Utils/Guard.Tests/**/*, src/IntegrationTestFactories/**/*, src/MasterDataTestHelper/**/*
+  #        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
+  #        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/coverageReport/*.xml
 
-  - task: SonarCloudPrepare@1
-    inputs:
-      SonarCloud: 'sonarcloud'
-      organization: 'andras-csanyi'
-      scannerMode: 'CLI'
-      configMode: 'manual'
-      cliProjectKey: 'DigitalLibrary'
-      cliProjectName: 'DigitalLibrary'
-      cliSources: '.'
-      extraProperties: |
-        sonar.coverage.exclusions=**/obj/**/*, **/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, src/MasterData/MasterData.Controllers.Integration.Tests/**/*, src/MasterData/MasterData.Controllers.Unit.Tests/**/*, src/MasterData/MasterData.Validators.Test/**/*, src/MasterData/MasterData.Tests.TestData/**/*, src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, src/MasterData/MasterData.StepDefinitions/**/*, src/MasterData/MasterData.Web.Api.Features.Tests/**/*, src/Utils/Guard.Tests/**/*, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, src/Utils/ControlPanel.DataSample/**/*, src/Utils/TestHelper.Unit.Test/**/*, src/Utils/Guard.Tests/**/*, src/IntegrationTestFactories/**/*, src/MasterDataTestHelper/**/*
-        sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/coverageReport/*.xml
+  - script: |
+      dotnet sonarscanner begin \
+      /k:"DigitalLibrary" \
+      /d:sonar.host.url=$(sonar.host.url) \
+      /d:sonar.login=:$(sonar.login)
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
@@ -68,13 +74,13 @@ steps:
       command: 'build'
       projects: 'src/DigitalLibrary.sln'
       arguments: '-c Debug'
-
-  - script: |
-      dotnet dotcover test \
-      --no-build \
-      --dotCoverReportType=DetailedXML
-    workingDirectory: src
-    displayName: "dotCover"
+  #
+  #  - script: |
+  #      dotnet dotcover test \
+  #      --no-build \
+  #      --dotCoverReportType=DetailedXML
+  #    workingDirectory: src
+  #    displayName: "dotCover"
 
   #  - script: |
   #      dotnet dotcover test \
@@ -210,24 +216,24 @@ steps:
   #      --dotCoverOutput=$(Agent.TempDirectory)"/dotcover/TestHelper.Unit.Test.dotcover.html"
   #    workingDirectory: src/Utils/TestHelper.Unit.Test
   #    displayName: "Coverage Utils/TestHelper.Unit.Test"
-
-  - script: |
-      dotnet reportgenerator \
-      -reports:dotCover.Output.xml \
-      -targetdir:coverageReport \
-      -reporttypes:SonarQube \
-      -verbosity:Verbose
-    workingDirectory: src
-    displayName: "Sonar report generator."
-
-  - script: |
-      dotnet reportgenerator \
-      -reports:dotCover.Output.xml \
-      -targetdir:$(Agent.TempDirectory) \
-      -reporttypes:Cobertura \
-      -verbosity:Verbose
-    workingDirectory: src
-    displayName: "Cobertura report generator."
+  #
+  #  - script: |
+  #      dotnet reportgenerator \
+  #      -reports:dotCover.Output.xml \
+  #      -targetdir:coverageReport \
+  #      -reporttypes:SonarQube \
+  #      -verbosity:Verbose
+  #    workingDirectory: src
+  #    displayName: "Sonar report generator."
+  #
+  #  - script: |
+  #      dotnet reportgenerator \
+  #      -reports:dotCover.Output.xml \
+  #      -targetdir:$(Agent.TempDirectory) \
+  #      -reporttypes:Cobertura \
+  #      -verbosity:Verbose
+  #    workingDirectory: src
+  #    displayName: "Cobertura report generator."
 
   - task: DotNetCoreCLI@2
     displayName: 'Testing and publish result...'
@@ -236,8 +242,12 @@ steps:
       projects: 'src/DigitalLibrary.sln'
       arguments: '--no-build'
 
-  - task: SonarCloudAnalyze@1
+  - script: |
+      dotnet sonarscanner end /d:sonar.login=$(sonar.login)
 
-  - task: SonarCloudPublish@1
-    inputs:
-      pollingTimeoutSec: '300'
+#
+#  - task: SonarCloudAnalyze@1
+#
+#  - task: SonarCloudPublish@1
+#    inputs:
+#      pollingTimeoutSec: '300'
