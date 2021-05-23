@@ -56,13 +56,6 @@ steps:
       command: 'build'
       projects: 'src/DigitalLibrary.sln'
       arguments: '-c Debug'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Testing and publish result...'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
-      arguments: '--no-build'
       
   - script: |
       dotnet dotcover test \
@@ -204,3 +197,10 @@ steps:
   - task: SonarCloudPublish@1
     inputs:
       pollingTimeoutSec: '300'
+      
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing and publish result...'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '--no-build'
