@@ -15,20 +15,24 @@
 
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.6"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
+        <PackageReference Include="JetBrains.dotCover.CommandLineTools" Version="2021.1.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.6" />
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="SpecFlow" Version="3.8.7"/>
-        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.7"/>
-        <PackageReference Include="SpecFlow.xUnit" Version="3.8.7"/>
-        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="SpecFlow" Version="3.8.7" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.7" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.8.7" />
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
         <PackageReference Include="xunit.runner.console" Version="2.4.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -39,15 +43,11 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
-        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
-        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj"/>
-        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj" />
+        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj" />
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -157,16 +157,16 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature" />
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs" />
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature" />
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs" />
     </ItemGroup>
     <ItemGroup>
         <None Update="specflow.json">

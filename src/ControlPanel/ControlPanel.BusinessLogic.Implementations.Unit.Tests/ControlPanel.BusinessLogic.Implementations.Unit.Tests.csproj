@@ -12,20 +12,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
+        <PackageReference Include="JetBrains.dotCover.CommandLineTools" Version="2021.1.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
-        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+        <PackageReference Include="xunit.runner.console" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,18 +37,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
-        <ProjectReference Include="..\ControlPanel.BusinessLogic.Exceptions\ControlPanel.BusinessLogic.Exceptions.csproj"/>
-        <ProjectReference Include="..\ControlPanel.BusinessLogic.Implementations\ControlPanel.BusinessLogic.Implementations.csproj"/>
-        <ProjectReference Include="..\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj"/>
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
+        <ProjectReference Include="..\ControlPanel.BusinessLogic.Exceptions\ControlPanel.BusinessLogic.Exceptions.csproj" />
+        <ProjectReference Include="..\ControlPanel.BusinessLogic.Implementations\ControlPanel.BusinessLogic.Implementations.csproj" />
+        <ProjectReference Include="..\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj" />
     </ItemGroup>
 
 </Project>

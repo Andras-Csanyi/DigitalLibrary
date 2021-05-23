@@ -9,32 +9,33 @@
         <ProjectGuid>{0ED9EAC1-8BB0-451D-85DF-A289E4DECF54}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
+        <PackageReference Include="JetBrains.dotCover.CommandLineTools" Version="2021.1.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
-        <PackageReference Include="xunit" Version="2.4.1"/>
-        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
-        <PackageReference Include="xunit.core" Version="2.4.1"/>
-        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+        <PackageReference Include="xunit.core" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.console" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
-    </ItemGroup>
-    <ItemGroup>
-        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj" />
     </ItemGroup>
 </Project>
