@@ -60,9 +60,8 @@ steps:
       /d:sonar.host.url=$(sonar.host.url) \
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
-      /s:../src/sonar.xml
+      /s:../s/src/sonar.xml
     displayName: "Sonar begin"
-    workingDirectory: src
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
