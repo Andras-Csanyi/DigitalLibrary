@@ -34,10 +34,10 @@ steps:
     displayName: "Dump variables"
 
   - script: |
-      dotnet new tool-manifest
-      dotnet tool install --local JetBrains.dotCover.GlobalTool
-      dotnet tool install --local dotnet-reportgenerator-globaltool --version 4.8.8
-      dotnet tool install --local dotnet-sonarscanner
+              dotnet new tool-manifest
+    #      dotnet tool install --local JetBrains.dotCover.GlobalTool
+    #      dotnet tool install --local dotnet-reportgenerator-globaltool --version 4.8.8
+              dotnet tool install --local dotnet-sonarscanner
     displayName: "Install dotCover tools"
   #
   #  - task: SonarCloudPrepare@1
@@ -60,7 +60,7 @@ steps:
       /d:sonar.host.url=$(sonar.host.url) \
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
-      /s:sonar.xml
+      /s:../sonar.xml
     displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
