@@ -76,13 +76,6 @@ steps:
     workingDirectory: src
     displayName: "dotCover"
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Testing and publish result...'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
-      arguments: '--no-build'
-
   #  - script: |
   #      dotnet dotcover test \
   #      --no-build \
@@ -228,7 +221,23 @@ steps:
       dotnet reportgenerator \
       -reports:dotCover.Output.xml \
       -targetdir:coverageReport \
-      -reporttypes:Cobertura;SonarQube \
+      -reporttypes:SonarQube \
       -verbosity:Verbose
     workingDirectory: src
-    displayName: "ReportGenerator"
+    displayName: "Sonar report generator."
+
+  - script: |
+      dotnet reportgenerator \
+      -reports:dotCover.Output.xml \
+      -targetdir:$(Agent.TempDirectory) \
+      -reporttypes:Cobertura \
+      -verbosity:Verbose
+    workingDirectory: src
+    displayName: "Cobertura report generator."
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Testing and publish result...'
+    inputs:
+      command: 'test'
+      projects: 'src/DigitalLibrary.sln'
+      arguments: '--no-build'
