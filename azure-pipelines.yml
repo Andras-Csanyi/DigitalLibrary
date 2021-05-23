@@ -37,11 +37,8 @@ steps:
       dotnet new tool-manifest
       dotnet tool install --local JetBrains.dotCover.GlobalTool
       dotnet tool install dotnet-reportgenerator-globaltool --version 4.8.8
-    displayName: "Install dotCover tools"
-
-  - script: |
       dotnet tool install --local dotnet-sonarscanner
-    displayName: "Install dotnet-sonarscanner"
+    displayName: "Install dotCover tools"
 
   - task: SonarCloudPrepare@1
     inputs:
