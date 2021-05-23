@@ -62,6 +62,7 @@ steps:
       /o:$(sonar.organization) \
       /s:../s/sonar.xml
     displayName: "Sonar begin"
+    workingDirectory: src
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
