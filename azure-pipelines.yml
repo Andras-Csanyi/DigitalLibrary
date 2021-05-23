@@ -55,10 +55,8 @@ steps:
   #        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/coverageReport/*.xml
 
   - script: |
-      dotnet sonarscanner begin \
-      /k:"DigitalLibrary" \
-      /d:sonar.host.url=$(sonar.host.url) \
-      /d:sonar.login=:$(sonar.login)
+      dotnet sonarscanner begin /k:"DigitalLibrary" /d:sonar.host.url=$(sonar.host.url) /d:sonar.login=:$(sonar.login)
+    displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
@@ -244,6 +242,7 @@ steps:
 
   - script: |
       dotnet sonarscanner end /d:sonar.login=$(sonar.login)
+    displayName: "Sonar end"
 
 #
 #  - task: SonarCloudAnalyze@1
