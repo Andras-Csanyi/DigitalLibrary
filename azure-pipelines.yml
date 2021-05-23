@@ -81,8 +81,8 @@ steps:
       dotnet dotcover test \
       --no-build \
       --dotCoverReportType=html
-  workingDirectory: src
-  displayName: "dotCover"
+    workingDirectory: src
+    displayName: "dotCover"
 
   - task: DotNetCoreCLI@2
     displayName: 'Testing and publish result...'
