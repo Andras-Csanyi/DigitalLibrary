@@ -31,7 +31,7 @@
         ../s/src/MasterDataTestHelper/**/*
     </Property>
     <Property Name="sonar.cs.dotcover.reportsPaths">
-        ../s/src/dotCover.Output.html
+        **/*dotCover.Output.html
     </Property>
     <Property Name="sonar.cs.xunit.reportsPaths">
         ../../_tmp/**.*trx
