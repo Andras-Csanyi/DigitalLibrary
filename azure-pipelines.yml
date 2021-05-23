@@ -72,7 +72,7 @@ steps:
   - script: |
       dotnet dotcover test \
       --no-build \
-      --dotCoverReportType=xml
+      --dotCoverReportType=DetailedXML
     workingDirectory: src
     displayName: "dotCover"
 
