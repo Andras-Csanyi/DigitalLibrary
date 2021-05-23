@@ -33,6 +33,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
     </ItemGroup>
 

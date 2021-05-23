@@ -45,6 +45,11 @@
         <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj"/>
         <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+
     <ItemGroup>
         <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
             <CodeBehindFile>SourceFormat/InactivateAsync.feature.cs</CodeBehindFile>

@@ -56,6 +56,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <DotNetCliToolReference Include="JetBrains.dotCover.DotNetCliTool" Version="2020.3.2"/>
+    </ItemGroup>
+    
+    <ItemGroup>
         <SpecFlowFeatureFiles Update="SourceFormat\InactivateAsync.Validation.feature">
         </SpecFlowFeatureFiles>
         <SpecFlowFeatureFiles Update="SourceFormat\DeleteRootDimensionStructureNodeAsync.Validation.feature">
