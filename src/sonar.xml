@@ -3,32 +3,32 @@
     xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
     <Property Name="sonar.sources">src</Property>
     <Property Name="sonar.exclusions">
-        ../s/src/**/bin/**/*,
-        ../s/src/**obj/**/*,
-        ../s/src/**/*.dll
+        **/bin/**/*,
+        **/obj/**/*,
+        **/*.dll
     </Property>
     <Property Name="sonar.coverage.exclusions">
-        ../s/src/**/bin/**/*,
-        ../s/src/**obj/**/*,
-        ../s/src/**/*.dll,
-        ../s/src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,
-        ../s/src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
-        ../s/src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*,
-        ../s/src/MasterData/MasterData.Controllers.Integration.Tests/**/*,
-        ../s/src/MasterData/MasterData.Controllers.Unit.Tests/**/*,
-        ../s/src/MasterData/MasterData.Validators.Test/**/*,
-        ../s/src/MasterData/MasterData.Tests.TestData/**/*,
-        ../s/src/MasterData/MasterData.DomainModel.Unit.Tests/**/*,
-        ../s/src/MasterData/MasterData.StepDefinitions/**/*,
-        ../s/src/MasterData/MasterData.Web.Api.Features.Tests/**/*,
-        ../s/src/Utils/Guard.Tests/**/*,
-        ../s/src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
-        ../s/src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*,
-        ../s/src/Utils/ControlPanel.DataSample/**/*,
-        ../s/src/Utils/TestHelper.Unit.Test/**/*,
-        ../s/src/Utils/Guard.Tests/**/*,
-        ../s/src/IntegrationTestFactories/**/*,
-        ../s/src/MasterDataTestHelper/**/*
+        **/bin/**/*,
+        **/obj/**/*,
+        **/*.dll,
+        **/MasterData.BusinessLogic.Features.Tests/**/*,
+        **/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
+        **/MasterData.BusinessLogic.Tests.Integration/**/*,
+        **/MasterData.Controllers.Integration.Tests/**/*,
+        **/MasterData.Controllers.Unit.Tests/**/*,
+        **/MasterData.Validators.Test/**/*,
+        **/MasterData.Tests.TestData/**/*,
+        **/MasterData.DomainModel.Unit.Tests/**/*,
+        **/MasterData.StepDefinitions/**/*,
+        **/MasterData.Web.Api.Features.Tests/**/*,
+        **/Guard.Tests/**/*,
+        **/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
+        **/ControlPanel.WebApi.Client.Unit.Tests/**/*,
+        **/ControlPanel.DataSample/**/*,
+        **/TestHelper.Unit.Test/**/*,
+        **/Guard.Tests/**/*,
+        **/IntegrationTestFactories/**/*,
+        **/MasterDataTestHelper/**/*
     </Property>
     <Property Name="sonar.cs.dotcover.reportsPaths">
         **/*dotCover.Output.html
