@@ -60,7 +60,7 @@ steps:
       /d:sonar.host.url=$(sonar.host.url) \
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
-      /s:../sonar.xml
+      /s:sonar.xml
     displayName: "Sonar begin"
     workingDirectory: src
 
