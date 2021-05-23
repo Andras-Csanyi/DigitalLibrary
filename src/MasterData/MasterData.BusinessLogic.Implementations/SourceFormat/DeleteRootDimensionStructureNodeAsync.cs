@@ -20,9 +20,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             long sourceFormatId,
             CancellationToken cancellationToken = default)
         {
-            Check.AreNotEqual(dimensionStructureNodeId, 0);
-            Check.AreNotEqual(sourceFormatId, 0);
-
             using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 using (IDbContextTransaction transaction = await ctx.Database
                    .BeginTransactionAsync(cancellationToken)
@@ -30,6 +27,9 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                 {
                     try
                     {
+                        Check.AreNotEqual(dimensionStructureNodeId, 0);
+                        Check.AreNotEqual(sourceFormatId, 0);
+
                         DimensionStructureNode rootNode = await ctx.DimensionStructureNodes
                            .AsNoTracking()
                            .Include(i => i.SourceFormatDimensionStructureNode)
@@ -41,6 +41,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                                 cancellationToken)
                            .ConfigureAwait(false);
 
+                        if (rootNode == null)
+                        {
+                            string msg = $"There is no {nameof(DimensionStructureNode)} with Id: " +
+                                         $"{dimensionStructureNodeId}.";
+                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                        }
+
                         SourceFormatDimensionStructureNode sourceFormatDimensionStructureNode = await ctx
                            .SourceFormatDimensionStructureNodes
                            .FirstOrDefaultAsync(
@@ -49,13 +56,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                            .ConfigureAwait(false);
                         ctx.Entry(sourceFormatDimensionStructureNode).State = EntityState.Deleted;
                         await ctx.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-                        if (rootNode == null)
-                        {
-                            string msg = $"There is no {nameof(DimensionStructureNode)} with Id: " +
-                                         $"{dimensionStructureNodeId}.";
-                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
-                        }
 
                         if (rootNode.ChildNodes.Any())
                         {
@@ -93,7 +93,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         await transaction.RollbackAsync(cancellationToken).ConfigureAwait(false);
                         string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
                                      $"{nameof(DeleteRootDimensionStructureNodeAsync)} operation has failed. " +
-                                     $"For further information see inner exception.";
+                                     "For further information see inner exception.";
                         throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
                     }
                 }
