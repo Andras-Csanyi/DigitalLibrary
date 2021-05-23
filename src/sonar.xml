@@ -17,31 +17,31 @@
     -->
     <Property Name="sonar.sources">src</Property>
     <Property Name="sonar.exclusions">
-        bin/**/*,
-        obj/**/*,
-        **/*.dll
+        ../s/src/**/bin/**/*,
+        ../s/src/**obj/**/*,
+        ../s/src/**/*.dll
     </Property>
     <Property Name="sonar.coverage.exclusions">
-        bin/**/*,
-        obj/**/*,
-        **/*.dll,
-        MasterData/MasterData.BusinessLogic.Features.Tests/**/*,
-        MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
-        MasterData/MasterData.BusinessLogic.Tests.Integration/**/*,
-        MasterData/MasterData.Controllers.Integration.Tests/**/*,
-        MasterData/MasterData.Controllers.Unit.Tests/**/*,
-        MasterData/MasterData.Validators.Test/**/*,
-        MasterData/MasterData.Tests.TestData/**/*,
-        MasterData/MasterData.DomainModel.Unit.Tests/**/*,
-        MasterData/MasterData.StepDefinitions/**/*,
-        MasterData/MasterData.Web.Api.Features.Tests/**/*,
-        Utils/Guard.Tests/**/*,
-        ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
-        ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*,
-        Utils/ControlPanel.DataSample/**/*,
-        Utils/TestHelper.Unit.Test/**/*,
-        Utils/Guard.Tests/**/*,
-        IntegrationTestFactories/**/*,
-        MasterDataTestHelper/**/*
+        ../s/src/**/bin/**/*,
+        ../s/src/**obj/**/*,
+        ../s/src/**/*.dll,
+        ../s/src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,
+        ../s/src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
+        ../s/src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*,
+        ../s/src/MasterData/MasterData.Controllers.Integration.Tests/**/*,
+        ../s/src/MasterData/MasterData.Controllers.Unit.Tests/**/*,
+        ../s/src/MasterData/MasterData.Validators.Test/**/*,
+        ../s/src/MasterData/MasterData.Tests.TestData/**/*,
+        ../s/src/MasterData/MasterData.DomainModel.Unit.Tests/**/*,
+        ../s/src/MasterData/MasterData.StepDefinitions/**/*,
+        ../s/src/MasterData/MasterData.Web.Api.Features.Tests/**/*,
+        ../s/src/Utils/Guard.Tests/**/*,
+        ../s/src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
+        ../s/src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*,
+        ../s/src/Utils/ControlPanel.DataSample/**/*,
+        ../s/src/Utils/TestHelper.Unit.Test/**/*,
+        ../s/src/Utils/Guard.Tests/**/*,
+        ../s/src/IntegrationTestFactories/**/*,
+        ../s/src/MasterDataTestHelper/**/*
     </Property>
 </SonarQubeAnalysisProperties>
