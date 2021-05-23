@@ -30,7 +30,7 @@ pool: 'contabo'
 steps:
   - script: |
       dotnet new tool-manifest
-      dotnet tool install JetBrains.dotCover.GlobalTools
+      dotnet tool install JetBrains.dotCover.GlobalTool
     displayName: "Install dotCover tools"
     
   - task: SonarCloudPrepare@1
