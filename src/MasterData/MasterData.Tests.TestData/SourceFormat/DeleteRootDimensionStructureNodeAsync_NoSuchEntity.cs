@@ -2,7 +2,9 @@ namespace DigitalLibrary.MasterData.Tests.TestData.SourceFormat
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class DeleteRootDimensionStructureNodeAsync_NoSuchEntity : IEnumerable<object[]>
     {
         IEnumerator IEnumerable.GetEnumerator()
