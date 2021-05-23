@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SonarQubeAnalysisProperties
+    xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+
+    <!--
+    <Property Name="sonar.host.url">http://localhost:9000</Property>
+
+    <Property Name="sonar.login"></Property>
+    <Property Name="sonar.password"></Property>
+    -->
+
+    <!-- Required only for versions of SonarQube prior to 5.2 -->
+    <!--
+    <Property Name="sonar.jdbc.url">jdbc:jtds:sqlserver://mySqlServer/sonar;instance=SQLEXPRESS;SelectMethod=Cursor</Property>
+    <Property Name="sonar.jdbc.username">sonar</Property>
+    <Property Name="sonar.jdbc.password">sonar</Property>
+    -->
+    <Property Name="sonar.sources">src</Property>
+    <Property Name="sonar.exclusions">
+        bin/**/*,
+        obj/**/*,
+        **/*.dll
+    </Property>
+    <Property Name="sonar.coverage.exclusions">
+        bin/**/*,
+        obj/**/*,
+        **/*.dll,
+        MasterData/MasterData.BusinessLogic.Features.Tests/**/*,
+        MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
+        MasterData/MasterData.BusinessLogic.Tests.Integration/**/*,
+        MasterData/MasterData.Controllers.Integration.Tests/**/*,
+        MasterData/MasterData.Controllers.Unit.Tests/**/*,
+        MasterData/MasterData.Validators.Test/**/*,
+        MasterData/MasterData.Tests.TestData/**/*,
+        MasterData/MasterData.DomainModel.Unit.Tests/**/*,
+        MasterData/MasterData.StepDefinitions/**/*,
+        MasterData/MasterData.Web.Api.Features.Tests/**/*,
+        Utils/Guard.Tests/**/*,
+        ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
+        ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*,
+        Utils/ControlPanel.DataSample/**/*,
+        Utils/TestHelper.Unit.Test/**/*,
+        Utils/Guard.Tests/**/*,
+        IntegrationTestFactories/**/*,
+        MasterDataTestHelper/**/*
+    </Property>
+</SonarQubeAnalysisProperties>
