@@ -55,7 +55,11 @@ steps:
   #        sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/coverageReport/*.xml
 
   - script: |
-      dotnet sonarscanner begin /k:"DigitalLibrary" /d:sonar.host.url=$(sonar.host.url) /d:sonar.login=$(sonar.login)
+      dotnet sonarscanner begin \
+      /k:"DigitalLibrary" \
+      /d:sonar.host.url=$(sonar.host.url) \
+      /d:sonar.login=$(sonar.login) \
+      /d:sonar.organization=$(sonar.organization)
     displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
