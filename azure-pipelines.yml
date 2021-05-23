@@ -211,12 +211,6 @@ steps:
   #    workingDirectory: src/Utils/TestHelper.Unit.Test
   #    displayName: "Coverage Utils/TestHelper.Unit.Test"
 
-  - task: SonarCloudAnalyze@1
-
-  - task: SonarCloudPublish@1
-    inputs:
-      pollingTimeoutSec: '300'
-
   - script: |
       dotnet reportgenerator \
       -reports:dotCover.Output.xml \
@@ -241,3 +235,9 @@ steps:
       command: 'test'
       projects: 'src/DigitalLibrary.sln'
       arguments: '--no-build'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
