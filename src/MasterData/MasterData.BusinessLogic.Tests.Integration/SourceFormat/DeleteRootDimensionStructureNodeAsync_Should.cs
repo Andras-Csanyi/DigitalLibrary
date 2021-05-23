@@ -96,5 +96,276 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             // Assert
             task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
+
+        [Fact]
+        public async Task DeleteRootDsn_WhenItDoesNotHaveChildren()
+        {
+            // Arrange
+            SourceFormat sourceFormat = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            // Action
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .DeleteRootDimensionStructureNodeAsync(rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Assert
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
+               .ConfigureAwait(false);
+            result.SourceFormatDimensionStructureNode.Should().BeNull();
+
+            int dsnAmount = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+            dsnAmount.Should().Be(0);
+        }
+
+        [Fact]
+        public async Task DeleteRootDsn_WithItsChildren_WhenItHasOnlyOne()
+        {
+            // Arrange
+            SourceFormat sourceFormat = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Action
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .DeleteRootDimensionStructureNodeAsync(rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Assert
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
+               .ConfigureAwait(false);
+            result.SourceFormatDimensionStructureNode.Should().BeNull();
+
+            int dsnAmount = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+            dsnAmount.Should().Be(0);
+        }
+
+        [Fact]
+        public async Task DeleteRootDsn_WithItsChildren_WhenItHasTwo()
+        {
+            // Arrange
+            SourceFormat sourceFormat = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_2.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Action
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .DeleteRootDimensionStructureNodeAsync(rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Assert
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
+               .ConfigureAwait(false);
+            result.SourceFormatDimensionStructureNode.Should().BeNull();
+
+            int dsnAmount = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+            dsnAmount.Should().Be(0);
+        }
+
+        [Fact]
+        public async Task DeleteRootDsn_WithItsChildren_WhenItHasThree()
+        {
+            // Arrange
+            SourceFormat sourceFormat = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_2.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Action
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .DeleteRootDimensionStructureNodeAsync(rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Assert
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
+               .ConfigureAwait(false);
+            result.SourceFormatDimensionStructureNode.Should().BeNull();
+
+            int dsnAmount = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+            dsnAmount.Should().Be(0);
+        }
+
+        [Fact]
+        public async Task DeleteRootDsn_WithItsChildren_WhenItHasAFullTree()
+        {
+            // Arrange
+            SourceFormat sourceFormat = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sourceFormat.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_1.Id, dsn_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_1_1.Id, dsn_1_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_1_2.Id, dsn_1_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_1_3.Id, dsn_1_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_2.Id, dsn_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_1_3.Id, dsn_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_2.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3.Id, rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_1.Id, dsn_3.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_2.Id, dsn_3.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_3.Id, dsn_3.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_1_1.Id, dsn_3_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_1_2.Id, dsn_3_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_3_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(dsn_3_1_3.Id, dsn_3_1.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Action
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .DeleteRootDimensionStructureNodeAsync(rootDsn.Id, sourceFormat.Id)
+               .ConfigureAwait(false);
+
+            // Assert
+            SourceFormat result = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetSourceFormatByIdWithRootDimensionStructureNodeAsync(sourceFormat)
+               .ConfigureAwait(false);
+            result.SourceFormatDimensionStructureNode.Should().BeNull();
+
+            int dsnAmount = await _masterDataBusinessLogic.MasterDataSourceFormatBusinessLogic
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sourceFormat)
+               .ConfigureAwait(false);
+            dsnAmount.Should().Be(0);
+        }
     }
 }
