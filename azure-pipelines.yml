@@ -34,7 +34,6 @@ steps:
     displayName: "Install dotCover tools"
     
   - script: |
-      dotnet new tool-manifest
       dotnet tool install --local dotnet-sonarscanner
     displayName: "Install dotnet-sonarscanner"
     
