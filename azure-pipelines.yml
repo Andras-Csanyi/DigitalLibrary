@@ -43,21 +43,6 @@ steps:
       dotnet tool install --local dotnet-sonarscanner
     displayName: "Install dotCover tools"
 
-  # - task: SonarCloudPrepare@1
-  #   inputs:
-  #     SonarCloud: 'sonarcloud'
-  #     organization: 'andras-csanyi'
-  #     scannerMode: 'CLI'
-  #     configMode: 'manual'
-  #     cliProjectKey: 'DigitalLibrary'
-  #     cliProjectName: 'DigitalLibrary'
-  #     cliSources: 'src'
-  #     extraProperties: |
-  #       sonar.coverage.exclusions=**/obj/**/*, **/*.dll, src/MasterData/MasterData.BusinessLogic.Features.Tests/**/*,src/MasterData/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*, src/MasterData/MasterData.BusinessLogic.Tests.Integration/**/*, src/MasterData/MasterData.Controllers.Integration.Tests/**/*, src/MasterData/MasterData.Controllers.Unit.Tests/**/*, src/MasterData/MasterData.Validators.Test/**/*, src/MasterData/MasterData.Tests.TestData/**/*, src/MasterData/MasterData.DomainModel.Unit.Tests/**/*, src/MasterData/MasterData.StepDefinitions/**/*, src/MasterData/MasterData.Web.Api.Features.Tests/**/*, src/Utils/Guard.Tests/**/*, src/ControlPanel/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*, src/ControlPanel/ControlPanel.WebApi.Client.Unit.Tests/**/*, src/Utils/ControlPanel.DataSample/**/*, src/Utils/TestHelper.Unit.Test/**/*, src/Utils/Guard.Tests/**/*, src/IntegrationTestFactories/**/*, src/MasterDataTestHelper/**/*
-  #       sonar.cs.xunit.reportsPaths=$(Agent.TempDirectory)/**.*trx
-  #       sonar.cs.dotcover.reportsPaths=$(Agent.BuildDirectory)/s/src/coverageReport/*.xml
-  #       sonar.verbose=true
-
   - script: |
       dotnet sonarscanner begin \
       /k:"DigitalLibrary" \
@@ -65,7 +50,6 @@ steps:
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
       /s:../s/src/sonar.xml \
-      /d:sonar.verbose=true \
       /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestNumber) \
       /d:sonar.pullrequest.branch=$(System.PullRequest.SourceBranch) \
       /d:sonar.pullrequest.base=master
