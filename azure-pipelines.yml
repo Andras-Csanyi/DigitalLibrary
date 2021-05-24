@@ -53,6 +53,8 @@ steps:
       /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestNumber) \
       /d:sonar.pullrequest.branch=$(System.PullRequest.SourceBranch) \
       /d:sonar.pullrequest.base=master \
+      /d:sonar.pullrequest.provider=GitHub \
+      /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary \
       /d:sonar.verbose=true
     displayName: "Sonar begin"
 
