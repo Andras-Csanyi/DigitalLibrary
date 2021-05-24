@@ -11,7 +11,6 @@
         **/bin/**/*,
         **/obj/**/*,
         **/*.dll,
-        **/MasterData.BusinessLogic.Features.Tests/**/*,
         **/MasterData.BusinessLogic.ViewModels.Unit.Tests/**/*,
         **/MasterData.BusinessLogic.Tests.Integration/**/*,
         **/MasterData.Controllers.Integration.Tests/**/*,
@@ -26,7 +25,6 @@
         **/ControlPanel.WebApi.Client.Unit.Tests/**/*,
         **/ControlPanel.DataSample/**/*,
         **/TestHelper.Unit.Test/**/*,
-        **/Guard.Tests/**/*,
         **/IntegrationTestFactories/**/*,
         **/MasterDataTestHelper/**/*
     </Property>
@@ -34,6 +32,6 @@
         **/*dotCover.Output.html
     </Property>
     <Property Name="sonar.cs.xunit.reportsPaths">
-        ../../_tmp/**.*trx
+        **/*.trx
     </Property>
 </SonarQubeAnalysisProperties>

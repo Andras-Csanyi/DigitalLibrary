@@ -11,6 +11,9 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=sqale_index)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=DigitalLibrary&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=DigitalLibrary)
 
+
+[![Build Status](https://dev.azure.com/sayusiando/DigitalLibrary/_apis/build/status/DiLib.GH?branchName=master)](https://dev.azure.com/sayusiando/DigitalLibrary/_build/latest?definitionId=64&branchName=master)
+
 # Digital Library Project
 
 This project is about how to manage huge amount of different documents while you can manage the content connections
