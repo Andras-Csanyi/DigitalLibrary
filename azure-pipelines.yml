@@ -31,6 +31,8 @@ steps:
   - script: |
       echo Agent.TempDirectory is: $(Agent.TempDirectory)
       echo Agent.BuildDirectory is: $(Agent.BuildDirectory)
+      echo Build.SourceBranchName is: $(Build.SourceBranchName)
+      echo System.PullRequest.PullRequestId is: $(System.PullRequest.PullRequestId)
     displayName: "Dump variables"
 
   - script: |
@@ -60,6 +62,8 @@ steps:
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
       /s:../s/src/sonar.xml
+      /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestId) \
+      /d:sonar.pullrequest.branch=$(Build.SourceBranchName)
     displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
