@@ -79,13 +79,18 @@ steps:
       --dotCoverReportType=html
     workingDirectory: src
     displayName: "dotCover"
+    
+  - script: |
+      dotnet test --no-build --logger trx --verbose detailed
+    workingDirectory: src
+    displayName: "Testing"
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Testing and publish result...'
-    inputs:
-      command: 'test'
-      projects: 'src/DigitalLibrary.sln'
-      arguments: '--no-build'
+#  - task: DotNetCoreCLI@2
+#    displayName: 'Testing and publish result...'
+#    inputs:
+#      command: 'test'
+#      projects: 'src/DigitalLibrary.sln'
+#      arguments: '--no-build'
 
   - script: |
       dotnet sonarscanner end /d:sonar.login=$(sonar.login)
