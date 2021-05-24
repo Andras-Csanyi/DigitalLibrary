@@ -65,7 +65,10 @@ steps:
       /d:sonar.login=$(sonar.login) \
       /o:$(sonar.organization) \
       /s:../s/src/sonar.xml \
-      /d:sonar.verbose=true
+      /d:sonar.verbose=true \
+      /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestId) \
+      /d:sonar.pullrequest.branch=$(System.PullRequest.SourceBranch) \
+      /d:sonar.pullrequest.base=master
     displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
