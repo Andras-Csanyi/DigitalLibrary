@@ -65,7 +65,8 @@ steps:
       /o:$(sonar.organization) \
       /s:../s/src/sonar.xml
       /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestId) \
-      /d:sonar.pullrequest.branch=$($(System.PullRequest.SourceBranch)) \
+      /d:sonar.pullrequest.branch=$(System.PullRequest.SourceBranch) \
+      /d:sonar.pullrequest.base=master \
       /d:sonar.verbose=true
     displayName: "Sonar begin"
 
