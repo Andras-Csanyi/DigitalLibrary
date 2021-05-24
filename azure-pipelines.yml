@@ -81,7 +81,7 @@ steps:
     displayName: "dotCover"
     
   - script: |
-      dotnet test --no-build --logger trx --verbose detailed
+      dotnet test --no-build --logger trx --verbosity detailed
     workingDirectory: src
     displayName: "Testing"
 
