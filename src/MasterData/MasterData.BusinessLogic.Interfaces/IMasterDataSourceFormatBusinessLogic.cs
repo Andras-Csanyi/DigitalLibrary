@@ -358,7 +358,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
         ///     Whatever issue happens.
         /// </exception>
-        Task<DimensionStructureNode> GetDimensionStructureNodeById(
+        Task<DimensionStructureNode> GetDimensionStructureNodeByIdAsync(
             long id,
             CancellationToken cancellationToken = default);
 

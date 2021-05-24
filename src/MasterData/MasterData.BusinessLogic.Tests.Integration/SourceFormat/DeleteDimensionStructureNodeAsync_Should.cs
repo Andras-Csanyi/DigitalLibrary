@@ -62,7 +62,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
             // Assert
             DimensionStructureNode result = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeById(toBeDeleted)
+               .GetDimensionStructureNodeByIdAsync(toBeDeleted)
                .ConfigureAwait(false);
             result.Should().BeNull();
         }

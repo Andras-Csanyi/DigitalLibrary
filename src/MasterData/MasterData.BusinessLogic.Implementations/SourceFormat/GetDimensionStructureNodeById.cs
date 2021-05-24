@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
     public partial class MasterDataSourceFormatBusinessLogic
     {
         /// <inheritdoc/>
-        public async Task<DimensionStructureNode> GetDimensionStructureNodeById(
+        public async Task<DimensionStructureNode> GetDimensionStructureNodeByIdAsync(
             long id,
             CancellationToken cancellationToken = default)
         {
@@ -33,7 +33,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             catch (Exception e)
             {
                 string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
-                             $"{nameof(GetDimensionStructureNodeById)} operation failed. " +
+                             $"{nameof(GetDimensionStructureNodeByIdAsync)} operation failed. " +
                              $"For further information see inner exception.";
                 throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
             }

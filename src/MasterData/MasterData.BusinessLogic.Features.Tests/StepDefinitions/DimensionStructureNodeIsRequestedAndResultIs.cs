@@ -26,7 +26,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Features.Tests.StepDefinitions
 
             DimensionStructureNode result = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeById(dimensionStructureNode.Id)
+               .GetDimensionStructureNodeByIdAsync(dimensionStructureNode.Id)
                .ConfigureAwait(false);
 
             switch (instance.ExpectedResult.ToLower())
