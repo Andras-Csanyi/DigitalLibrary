@@ -76,6 +76,11 @@ steps:
       --dotCoverReportType=html
     workingDirectory: src
     displayName: "dotCover"
+    
+  - script: |
+      dotnet test --no-build
+    workingDirectory: src
+    displayName: "Test for Sonar"
 
   - task: DotNetCoreCLI@2
     displayName: 'Testing and publish result...'
