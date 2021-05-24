@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.Validators
     {
         public MasterDataDimensionValueValidator()
         {
-            RuleSet(ValidatorRulesets.AddNewDimensionValue, () => { RuleFor(v => v.Id).Equals(0); });
+            RuleSet(ValidatorRulesets.AddNewDimensionValue, () => { RuleFor(v => v.Id).Equal(0); });
 
             RuleSet(ValidatorRulesets.ModifyDimensionValue, () => { RuleFor(v => v.Id).NotEqual(0); });
         }

@@ -55,7 +55,7 @@ steps:
       /d:sonar.pullrequest.base=master \
       /d:sonar.pullrequest.provider=GitHub \
       /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
-    displayName: "Sonar begin"
+    displayName: "Sonar begin for PR"
     condition: ne(variables['System.PullRequest.SourceBranch'], '')
 
   - script: |
@@ -67,7 +67,7 @@ steps:
       /s:../s/src/sonar.xml \
       /d:sonar.pullrequest.provider=GitHub \
       /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
-    displayName: "Sonar begin"
+    displayName: "Sonar begin for Master"
     condition: eq(variables['System.PullRequest.SourceBranch'], '')
 
   - task: DotNetCoreCLI@2
