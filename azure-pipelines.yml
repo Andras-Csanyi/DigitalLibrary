@@ -33,6 +33,8 @@ steps:
       echo Agent.BuildDirectory is: $(Agent.BuildDirectory)
       echo Build.SourceBranchName is: $(Build.SourceBranchName)
       echo System.PullRequest.PullRequestId is: $(System.PullRequest.PullRequestId)
+      echo System.PullRequest.PullRequestNumber is: $(System.PullRequest.PullRequestNumber)
+      echo System.PullRequest.SourceBranch is: $(System.PullRequest.SourceBranch)
     displayName: "Dump variables"
 
   - script: |
@@ -63,7 +65,8 @@ steps:
       /o:$(sonar.organization) \
       /s:../s/src/sonar.xml
       /d:sonar.pullrequest.key=$(System.PullRequest.PullRequestId) \
-      /d:sonar.pullrequest.branch=$(Build.SourceBranchName)
+      /d:sonar.pullrequest.branch=$($(System.PullRequest.SourceBranch)) \
+      /d:sonar.verbose=true
     displayName: "Sonar begin"
 
   - task: DotNetCoreCLI@2
