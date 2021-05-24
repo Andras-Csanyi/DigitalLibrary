@@ -57,16 +57,16 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                .EnableSensitiveDataLogging()
                .Options;
 
-            DimensionValidator dimensionValidator = new();
-            MasterDataDimensionValueValidator masterDataDimensionValueValidator = new();
-            SourceFormatValidator sourceFormatValidator = new();
-            DimensionStructureValidator dimensionStructureValidator = new();
-            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator = new();
-            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator = new();
-            DimensionStructureNodeValidator dimensionStructureNodeValidator = new();
-            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator = new();
+            DimensionValidator dimensionValidator = new ();
+            MasterDataDimensionValueValidator masterDataDimensionValueValidator = new ();
+            SourceFormatValidator sourceFormatValidator = new ();
+            DimensionStructureValidator dimensionStructureValidator = new ();
+            DimensionStructureDimensionStructureValidator dimensionStructureDimensionStructureValidator = new ();
+            DimensionStructureQueryObjectValidator dimensionStructureQueryObjectValidator = new ();
+            DimensionStructureNodeValidator dimensionStructureNodeValidator = new ();
+            SourceFormatDimensionStructureNodeValidator sourceFormatDimensionStructureNodeValidator = new ();
 
-            MasterDataValidators masterDataValidators = new(
+            MasterDataValidators masterDataValidators = new (
                 dimensionValidator,
                 masterDataDimensionValueValidator,
                 sourceFormatValidator,
@@ -95,7 +95,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                 masterDataDimensionStructureNodeBusinessLogic);
 
 
-            using (MasterDataContext ctx = new(_dbContextOptions))
+            using (MasterDataContext ctx = new (_dbContextOptions))
             {
                 ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
@@ -122,7 +122,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 
         protected async Task<List<DomainModel.DimensionStructure>> CreateInactiveDimensionStructureEntities(int amount)
         {
-            List<DomainModel.DimensionStructure> result = new();
+            List<DomainModel.DimensionStructure> result = new ();
             IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
                 _dimensionStructureFaker.GenerateForever();
 
@@ -142,7 +142,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 
         protected async Task<List<DomainModel.DimensionStructure>> CreateActiveDimensionStructureEntities(int amount)
         {
-            List<DomainModel.DimensionStructure> result = new();
+            List<DomainModel.DimensionStructure> result = new ();
             IEnumerable<DomainModel.DimensionStructure> dimensionStructureInfinite =
                 _dimensionStructureFaker.GenerateForever();
 
@@ -220,6 +220,191 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
             }
 
             return result;
+        }
+
+        protected async Task<Dictionary<string, long>> CreateThreeLevelDeepAndWideDsnTreeAsync()
+        {
+            Dictionary<string, long> result = new Dictionary<string, long>();
+
+            DomainModel.SourceFormat sf = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+            result.Add("sf", sf.Id);
+
+            DimensionStructureNode rootDsn = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            result.Add("rootDsn", rootDsn.Id);
+
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AddRootDimensionStructureNodeAsync(sf.Id, rootDsn.Id)
+               .ConfigureAwait(false);
+
+            DimensionStructureNode dsn_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1, rootDsn, sf).ConfigureAwait(false);
+            result.Add("dsn-1", dsn_1.Id);
+
+            DimensionStructureNode dsn_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_1, dsn_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-1", dsn_1_1.Id);
+
+            DimensionStructureNode dsn_1_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_1_1, dsn_1_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-1-1", dsn_1_1_1.Id);
+
+            DimensionStructureNode dsn_1_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_1_2, dsn_1_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-1-2", dsn_1_1_2.Id);
+
+            DimensionStructureNode dsn_1_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_1_3, dsn_1_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-1-3", dsn_1_1_3.Id);
+
+            DimensionStructureNode dsn_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_2, dsn_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-2", dsn_1_2.Id);
+
+            DimensionStructureNode dsn_1_2_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_2_1, dsn_1_2, sf).ConfigureAwait(false);
+            result.Add("dsn-1-2-1", dsn_1_2_1.Id);
+
+            DimensionStructureNode dsn_1_2_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_2_2, dsn_1_2, sf).ConfigureAwait(false);
+            result.Add("dsn-1-2-2", dsn_1_2_2.Id);
+
+            DimensionStructureNode dsn_1_2_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_2_3, dsn_1_2, sf).ConfigureAwait(false);
+            result.Add("dsn-1-2-3", dsn_1_2_3.Id);
+
+            DimensionStructureNode dsn_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_3, dsn_1, sf).ConfigureAwait(false);
+            result.Add("dsn-1-3", dsn_1_3.Id);
+
+            DimensionStructureNode dsn_1_3_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_3_1, dsn_1_3, sf).ConfigureAwait(false);
+            result.Add("dsn-1-3-1", dsn_1_3_1.Id);
+
+            DimensionStructureNode dsn_1_3_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_3_2, dsn_1_3, sf).ConfigureAwait(false);
+            result.Add("dsn-1-3-2", dsn_1_3_2.Id);
+
+            DimensionStructureNode dsn_1_3_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_1_3_3, dsn_1_3, sf).ConfigureAwait(false);
+            result.Add("dsn-1-3-3", dsn_1_3_3.Id);
+
+            DimensionStructureNode dsn_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2, rootDsn, sf).ConfigureAwait(false);
+            result.Add("dsn-2", dsn_2.Id);
+
+            DimensionStructureNode dsn_2_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_1, dsn_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-1", dsn_2_1.Id);
+
+            DimensionStructureNode dsn_2_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_1_1, dsn_2_1, sf).ConfigureAwait(false);
+            result.Add("dsn-2-1-1", dsn_2_1_1.Id);
+
+            DimensionStructureNode dsn_2_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_1_2, dsn_2_1, sf).ConfigureAwait(false);
+            result.Add("dsn-2-1-2", dsn_2_1_2.Id);
+
+            DimensionStructureNode dsn_2_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_1_3, dsn_2_1, sf).ConfigureAwait(false);
+            result.Add("dsn-2-1-3", dsn_2_1_3.Id);
+
+            DimensionStructureNode dsn_2_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_2, dsn_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-2", dsn_2_2.Id);
+
+            DimensionStructureNode dsn_2_2_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_2_1, dsn_2_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-2-1", dsn_2_2_1.Id);
+
+            DimensionStructureNode dsn_2_2_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_2_2, dsn_2_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-2-2", dsn_2_2_2.Id);
+
+            DimensionStructureNode dsn_2_2_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_2_3, dsn_2_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-2-3", dsn_2_2_3.Id);
+
+            DimensionStructureNode dsn_2_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_3, dsn_2, sf).ConfigureAwait(false);
+            result.Add("dsn-2-3", dsn_2_3.Id);
+
+            DimensionStructureNode dsn_2_3_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_3_1, dsn_2_3, sf).ConfigureAwait(false);
+            result.Add("dsn-2-3-1", dsn_2_3_1.Id);
+
+            DimensionStructureNode dsn_2_3_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_3_2, dsn_2_3, sf).ConfigureAwait(false);
+            result.Add("dsn-2-3-2", dsn_2_3_2.Id);
+
+            DimensionStructureNode dsn_2_3_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_2_3_3, dsn_2_3, sf).ConfigureAwait(false);
+            result.Add("dsn-2-3-3", dsn_2_3_3.Id);
+
+            DimensionStructureNode dsn_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3, rootDsn, sf).ConfigureAwait(false);
+            result.Add("dsn-3", dsn_3.Id);
+
+            DimensionStructureNode dsn_3_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_1, dsn_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-1", dsn_3_1.Id);
+
+            DimensionStructureNode dsn_3_1_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_1_1, dsn_3_1, sf).ConfigureAwait(false);
+            result.Add("dsn-3-1-1", dsn_3_1_1.Id);
+
+            DimensionStructureNode dsn_3_1_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_1_2, dsn_3_1, sf).ConfigureAwait(false);
+            result.Add("dsn-3-1-2", dsn_3_1_2.Id);
+
+            DimensionStructureNode dsn_3_1_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_1_3, dsn_3_1, sf).ConfigureAwait(false);
+            result.Add("dsn-3-1-3", dsn_3_1_3.Id);
+
+            DimensionStructureNode dsn_3_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_2, dsn_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-2", dsn_3_2.Id);
+
+            DimensionStructureNode dsn_3_2_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_2_1, dsn_3_2, sf).ConfigureAwait(false);
+            result.Add("dsn-3-2-1", dsn_3_2_1.Id);
+
+            DimensionStructureNode dsn_3_2_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_2_2, dsn_3_2, sf).ConfigureAwait(false);
+            result.Add("dsn-3-2-2", dsn_3_2_2.Id);
+
+            DimensionStructureNode dsn_3_2_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_2_3, dsn_3_2, sf).ConfigureAwait(false);
+            result.Add("dsn-3-2-3", dsn_3_2_3.Id);
+
+            DimensionStructureNode dsn_3_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_3, dsn_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-3", dsn_3_3.Id);
+
+            DimensionStructureNode dsn_3_3_1 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_3_1, dsn_3_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-3-1", dsn_3_3_1.Id);
+
+            DimensionStructureNode dsn_3_3_2 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_3_2, dsn_3_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-3-2", dsn_3_3_2.Id);
+
+            DimensionStructureNode dsn_3_3_3 = await CreateSavedDimensionStructureNodeEntity().ConfigureAwait(false);
+            await AddChildToDsnAsync(dsn_3_3_3, dsn_3_3, sf).ConfigureAwait(false);
+            result.Add("dsn-3-3-3", dsn_3_3_3.Id);
+
+            return result;
+        }
+
+        protected async Task AddChildToDsnAsync(
+            DimensionStructureNode child,
+            DimensionStructureNode parent,
+            DomainModel.SourceFormat sf)
+        {
+            await _masterDataBusinessLogic
+               .MasterDataSourceFormatBusinessLogic
+               .AppendDimensionStructureNodeToTreeAsync(child.Id, parent.Id, sf.Id)
+               .ConfigureAwait(false);
         }
 
         public void Dispose()
