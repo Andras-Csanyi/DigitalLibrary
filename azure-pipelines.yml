@@ -44,6 +44,7 @@ steps:
     displayName: "Install dotCover tools"
 
   - script: |
+      echo "for PR"
       dotnet sonarscanner begin \
       /k:"DigitalLibrary" \
       /d:sonar.host.url=$(sonar.host.url) \
@@ -59,6 +60,7 @@ steps:
     condition: ne(variables['System.PullRequest.SourceBranch'], '')
 
   - script: |
+      echo "for master"
       dotnet sonarscanner begin \
       /k:"DigitalLibrary" \
       /d:sonar.host.url=$(sonar.host.url) \
