@@ -44,7 +44,6 @@ steps:
     displayName: "Install dotCover tools"
 
   - script: |
-      echo "for PR"
       dotnet sonarscanner begin \
       /k:"DigitalLibrary" \
       /d:sonar.host.url=$(sonar.host.url) \
@@ -56,11 +55,10 @@ steps:
       /d:sonar.pullrequest.base=master \
       /d:sonar.pullrequest.provider=GitHub \
       /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
-    displayName: "Sonar begin"
+    displayName: "Sonar begin for PR"
     condition: ne(variables['System.PullRequest.SourceBranch'], '')
 
   - script: |
-      echo "for master"
       dotnet sonarscanner begin \
       /k:"DigitalLibrary" \
       /d:sonar.host.url=$(sonar.host.url) \
@@ -69,7 +67,7 @@ steps:
       /s:../s/src/sonar.xml \
       /d:sonar.pullrequest.provider=GitHub \
       /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
-    displayName: "Sonar begin"
+    displayName: "Sonar begin for Master"
     condition: eq(variables['System.PullRequest.SourceBranch'], '')
 
   - task: DotNetCoreCLI@2
