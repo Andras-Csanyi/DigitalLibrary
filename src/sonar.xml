@@ -33,4 +33,8 @@
     <Property Name="sonar.cs.dotcover.reportsPaths">
         **/*dotCover.Output.html
     </Property>
+    <Property Name="sonar.cs.xunit.reportsPaths">
+        ../../_tmp/**.*trx,
+        **/*.trx
+    </Property>
 </SonarQubeAnalysisProperties>
