@@ -1,4 +1,4 @@
-namespace DigitalLibrary.WebUi.FAST.Components.Tests.Components.Anchor
+namespace DigitalLibrary.WebUi.FAST.Components.Tests.Anchor
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;

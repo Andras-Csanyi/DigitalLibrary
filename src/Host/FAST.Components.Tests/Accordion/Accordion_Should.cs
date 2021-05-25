@@ -1,4 +1,4 @@
-namespace DigitalLibrary.WebUi.FAST.Components.Tests.Components.Accordion
+namespace DigitalLibrary.WebUi.FAST.Components.Tests.Accordion
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
