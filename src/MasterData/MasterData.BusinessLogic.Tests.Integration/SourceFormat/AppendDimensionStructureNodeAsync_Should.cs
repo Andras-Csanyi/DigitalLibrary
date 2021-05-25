@@ -1,8 +1,10 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
     using DigitalLibrary.MasterData.DomainModel;
 
     using FluentAssertions;
@@ -15,6 +17,57 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     {
         public AppendDimensionStructureNodeAsync_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
+        }
+
+        [Fact]
+        public async Task Throw_WhenNoSuchSourceFormat()
+        {
+            // Act
+            Func<Task> task = async () =>
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AppendDimensionStructureNodeToTreeAsync(100, 101, 102)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
+        }
+
+        [Fact]
+        public async Task Throw_WhenToBeAdded_DoesNotExist()
+        {
+            // Arrange
+            SourceFormat sf = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
+
+            // Act
+            Func<Task> task = async () =>
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AppendDimensionStructureNodeToTreeAsync(100, 101, sf.Id)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
+        }
+
+        [Fact]
+        public async Task Throw_WhenToBeAdded_AndParentId_AreEqual()
+        {
+            // Act
+            Func<Task> task = async () =>
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AppendDimensionStructureNodeToTreeAsync(100, 100, 102)
+                   .ConfigureAwait(false);
+            };
+
+            // Assert
+            task.Should().ThrowExactly<MasterDataBusinessLogicSourceFormatDatabaseOperationException>();
         }
 
         [Fact]
