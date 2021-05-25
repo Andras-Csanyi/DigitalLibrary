@@ -55,7 +55,20 @@ steps:
       /d:sonar.pullrequest.base=master \
       /d:sonar.pullrequest.provider=GitHub \
       /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
-    displayName: "Sonar begin"
+    displayName: "Sonar begin for PR"
+    condition: ne(variables['System.PullRequest.SourceBranch'], '')
+
+  - script: |
+      dotnet sonarscanner begin \
+      /k:"DigitalLibrary" \
+      /d:sonar.host.url=$(sonar.host.url) \
+      /d:sonar.login=$(sonar.login) \
+      /o:$(sonar.organization) \
+      /s:../s/src/sonar.xml \
+      /d:sonar.pullrequest.provider=GitHub \
+      /d:sonar.pullrequest.github.repository=Andras-Csanyi/DigitalLibrary
+    displayName: "Sonar begin for Master"
+    condition: eq(variables['System.PullRequest.SourceBranch'], '')
 
   - task: DotNetCoreCLI@2
     displayName: 'Restoring...'
