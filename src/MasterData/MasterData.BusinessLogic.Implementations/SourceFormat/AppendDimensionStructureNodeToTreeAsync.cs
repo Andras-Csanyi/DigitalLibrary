@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             long sourceFormatId,
             CancellationToken cancellationToken = default)
         {
-            using (MasterDataContext _ctx = new(_dbContextOptions))
+            using (MasterDataContext _ctx = new (_dbContextOptions))
             {
                 using (var transaction = await _ctx.Database.BeginTransactionAsync(cancellationToken)
                    .ConfigureAwait(false))
@@ -30,6 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         Check.AreNotEqual(toBeAddedId, 0);
                         Check.AreNotEqual(parentId, 0);
                         Check.AreNotEqual(sourceFormatId, 0);
+                        Check.AreNotEqual(toBeAddedId, parentId);
 
                         SourceFormat sourceFormat = await _ctx.SourceFormats
                            .FirstOrDefaultAsync(k => k.Id == sourceFormatId, cancellationToken)

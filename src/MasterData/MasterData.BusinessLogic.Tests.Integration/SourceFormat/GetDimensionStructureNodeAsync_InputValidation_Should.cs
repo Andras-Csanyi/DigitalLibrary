@@ -1,6 +1,7 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat;
@@ -10,6 +11,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     using Xunit;
     using Xunit.Abstractions;
 
+    [ExcludeFromCodeCoverage]
     public class GetDimensionStructureNodeAsync_InputValidation_Should : TestBase
     {
         public GetDimensionStructureNodeAsync_InputValidation_Should(ITestOutputHelper testOutputHelper) : base(
