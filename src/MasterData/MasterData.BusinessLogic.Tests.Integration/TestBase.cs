@@ -224,6 +224,46 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
 
         protected async Task<Dictionary<string, long>> CreateThreeLevelDeepAndWideDsnTreeAsync()
         {
+            // DSN - 1
+            //     DSN - 1-1
+            //         DSN - 1-1-1
+            //         DSN - 1-1-2
+            //         DSN - 1-1-3
+            //     DSN - 1-2
+            //         DSN - 1-2-1
+            //         DSN - 1-2-2
+            //         DSN - 1-2-3
+            //     DSN - 1-3
+            //         DSN - 1-3-1
+            //         DSN - 1-3-2
+            //         DSN - 1-3-3
+            // DSN - 2
+            //     DSN - 2-1
+            //         DSN - 2-1-1
+            //         DSN - 2-1-2
+            //         DSN - 2-1-3
+            //     DSN - 2-2
+            //         DSN - 2-2-1
+            //         DSN - 2-2-2
+            //         DSN - 2-2-3
+            //     DSN - 2-3
+            //         DSN - 2-3-1
+            //         DSN - 2-3-2
+            //         DSN - 2-3-3
+            // DSN - 3
+            //     DSN - 3-1
+            //         DSN - 3-1-1
+            //         DSN - 3-1-2
+            //         DSN - 3-1-3
+            //     DSN - 3-2
+            //         DSN - 3-2-1
+            //         DSN - 3-2-2
+            //         DSN - 3-2-3
+            //     DSN - 3-3
+            //         DSN - 3-3-1
+            //         DSN - 3-3-2
+            //         DSN - 3-3-3
+
             Dictionary<string, long> result = new Dictionary<string, long>();
 
             DomainModel.SourceFormat sf = await CreateSavedSourceFormatEntity().ConfigureAwait(false);
