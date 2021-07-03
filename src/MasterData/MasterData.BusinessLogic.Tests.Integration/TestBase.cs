@@ -8,8 +8,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Bogus;
-
     using DigitalLibrary.MasterData.BusinessLogic.Implementations;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.Dimension;
     using DigitalLibrary.MasterData.BusinessLogic.Implementations.DimensionStructure;
@@ -19,6 +17,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Tests.Fakes;
     using DigitalLibrary.MasterData.Validators;
 
     using Microsoft.EntityFrameworkCore;
@@ -26,19 +25,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
     using Xunit.Abstractions;
 
     [ExcludeFromCodeCoverage]
-    public class TestBase : IDisposable
+    public class TestBase : Fakes, IDisposable
     {
         private readonly string sqlLiteFileNameWithPath;
 
         protected readonly IMasterDataBusinessLogic _masterDataBusinessLogic;
 
         protected readonly ITestOutputHelper _testOutputHelper;
-
-        protected Faker<DomainModel.DimensionStructure> _dimensionStructureFaker;
-
-        protected Faker<DomainModel.SourceFormat> _sourceFormatFaker;
-
-        protected Faker<DimensionStructureNode> _dimensionStructureNodeFaker;
 
         public TestBase(ITestOutputHelper testOutputHelper)
         {
@@ -101,23 +94,6 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration
                 ctx.Database.EnsureCreated();
                 // MasterDataDataSample.Populate(ctx);
             }
-
-            InitializeFakers();
-        }
-
-        private void InitializeFakers()
-        {
-            _dimensionStructureFaker = new Faker<DomainModel.DimensionStructure>()
-               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName(1))
-               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
-               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
-
-            _sourceFormatFaker = new Faker<DomainModel.SourceFormat>()
-               .RuleFor(prop => prop.Name, faker => faker.Company.CompanyName())
-               .RuleFor(prop => prop.Desc, prop => $"{prop.Name} description.")
-               .RuleFor(prop => prop.IsActive, faker => faker.Random.Number(1, 0));
-
-            _dimensionStructureNodeFaker = new Faker<DimensionStructureNode>();
         }
 
         protected async Task<List<DomainModel.DimensionStructure>> CreateInactiveDimensionStructureEntities(int amount)

@@ -6,16 +6,20 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net.Http;
+    using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.MasterData.Tests.Fakes;
     using DigitalLibrary.MasterData.Web.Api.Client.Interfaces;
     using DigitalLibrary.MasterData.WebApi.Client;
     using DigitalLibrary.MasterData.WebApi.Client.DimensionStructure;
-    using DigitalLibrary.MasterData.WebApi.Client.DimensionStructureNode;
     using DigitalLibrary.MasterData.WebApi.Client.SourceFormat;
     using DigitalLibrary.Utils.DiLibHttpClient;
     using DigitalLibrary.Utils.Guards;
     using DigitalLibrary.Utils.MasterDataTestHelper;
     using DigitalLibrary.Utils.MasterDataTestHelper.Tools;
+
+    using DiLibHttpClientResponseObjects;
 
     using TechTalk.SpecFlow;
 
@@ -27,7 +31,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
     [Binding]
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "SA1600", Justification = "Reviewed.")]
-    public partial class StepDefinitions : IClassFixture<WebApiFeatureTestApplicationFactory<Startup>>
+    public partial class StepDefinitions : Fakes, IClassFixture<WebApiFeatureTestApplicationFactory<Startup>>
     {
         private ScenarioContext _scenarioContext;
 
@@ -42,6 +46,19 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         private Random rnd = new Random();
 
         protected readonly WebApiFeatureTestApplicationFactory<Startup> _host;
+
+        internal struct ScenarioContextKeys
+        {
+            public const string WebApiCallResult = "WebApiCallResult";
+
+            public const string DimensionStructureNodeId = "DimensionStructureNodeId";
+
+            public const string DimensionStructureNodeIdExist = "DimensionStructureNodeIdExist";
+
+            public const string SourceFormatId = "SourceFormatId";
+
+            public const string SourceFormatExist = "SourceFormatExist";
+        }
 
         public StepDefinitions(
             ScenarioContext scenarioContext,
@@ -82,19 +99,51 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
                 diLibHttpClient);
             IDimensionStructureHttpClient dimensionStructureHttpClient = new DimensionStructureHttpClientHttpClient(
                 diLibHttpClient);
-            IDimensionStructureNodeHttpClient dimensionStructureNodeHttpClient =
-                new DimensionStructureNodeHttpClient(diLibHttpClient);
 
             _masterDataHttpClient = new MasterDataHttpClient(
                 sourceFormatHttpClientHttpClient,
-                dimensionStructureHttpClient,
-                dimensionStructureNodeHttpClient);
+                dimensionStructureHttpClient);
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
             File.Delete(_entityNameWithPath);
+        }
+
+        private TReturnType GetKeyValueFromScenarioContext<TReturnType>(string key)
+        {
+            return (TReturnType)_scenarioContext[key];
+        }
+
+        private async Task<SourceFormat> CreateSourceFormatEntity()
+        {
+            SourceFormat entity = _sourceFormatFaker.Generate();
+            DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient
+               .SourceFormatHttpClient
+               .AddAsync(entity)
+               .ConfigureAwait(false);
+            if (!result.IsSuccess)
+            {
+                throw new Exception();
+            }
+
+            return result.Result;
+        }
+
+        private async Task<DimensionStructureNode> CreateDimensionStructureNodeEntity()
+        {
+            DimensionStructureNode entity = _dimensionStructureNodeFaker.Generate();
+            DilibHttpClientResponse<DimensionStructureNode> result = await _masterDataHttpClient
+               .SourceFormatHttpClient
+               .CreateDimensionStructureNodeAsync(entity)
+               .ConfigureAwait(false);
+            if (!result.IsSuccess)
+            {
+                throw new Exception();
+            }
+
+            return result.Result;
         }
     }
 }

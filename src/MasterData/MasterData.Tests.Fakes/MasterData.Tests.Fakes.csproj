@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>DigitalLibrary.MasterData.Tests.Fakes</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.Tests.Fakes</RootNamespace>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Bogus" Version="33.0.2"/>
+    </ItemGroup>
+
+</Project>

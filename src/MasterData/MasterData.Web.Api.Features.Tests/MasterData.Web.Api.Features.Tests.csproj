@@ -43,6 +43,7 @@
         <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
         <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj" />
         <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj" />
+        <ProjectReference Include="..\MasterData.Tests.Fakes\MasterData.Tests.Fakes.csproj"/>
         <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
     </ItemGroup>
 

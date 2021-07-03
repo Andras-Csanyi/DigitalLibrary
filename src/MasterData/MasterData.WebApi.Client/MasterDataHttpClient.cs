@@ -23,22 +23,15 @@ namespace DigitalLibrary.MasterData.WebApi.Client
         /// <param name="sourceFormatDimensionStructureNodeHttpClient">
         ///     Instance of <see cref="ISourceFormatDimensionStructureNodeHttpClient"/> client.
         /// </param>
-        /// <param name="dimensionStructureNodeHttpClient">
-        ///     Instance of <see cref="IDimensionStructureNodeHttpClient"/> client.
-        /// </param>
         public MasterDataHttpClient(
             ISourceFormatHttpClient sourceFormatHttpClientClient,
-            IDimensionStructureHttpClient dimensionStructureHttpClient,
-            IDimensionStructureNodeHttpClient dimensionStructureNodeHttpClient)
+            IDimensionStructureHttpClient dimensionStructureHttpClient)
         {
             Check.IsNotNull(sourceFormatHttpClientClient);
             SourceFormatHttpClient = sourceFormatHttpClientClient;
 
             Check.IsNotNull(dimensionStructureHttpClient);
             DimensionStructureHttpClient = dimensionStructureHttpClient;
-
-            Check.IsNotNull(dimensionStructureNodeHttpClient);
-            DimensionStructureNodeHttpClient = dimensionStructureNodeHttpClient;
         }
 
         /// <inheritdoc/>
@@ -46,8 +39,5 @@ namespace DigitalLibrary.MasterData.WebApi.Client
 
         /// <inheritdoc/>
         public IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
-
-        /// <inheritdoc/>
-        public IDimensionStructureNodeHttpClient DimensionStructureNodeHttpClient { get; set; }
     }
 }
