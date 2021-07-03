@@ -150,11 +150,12 @@ namespace DigitalLibrary.MasterData.Controllers
         }
 
         /// <summary>
-        /// Adds the specified <see cref="DimensionStructureNode"/> to the specified <see cref="SourceFormat"/>
-        /// entity as root <see cref="DimensionStructureNode"/>.
+        ///     Adds the specified <see cref="DimensionStructureNode"/> to the specified <see cref="SourceFormat"/>
+        ///     entity as root <see cref="DimensionStructureNode"/>.
         /// </summary>
-        /// <param name="addRootDimensionStructureNodeViewModel">The view model contains both the
-        /// <see cref="SourceFormat"/> id and <see cref="DimensionStructureNode"/> id.
+        /// <param name="addRootDimensionStructureNodeViewModel">
+        ///     The view model contains both the
+        ///     <see cref="SourceFormat"/> id and <see cref="DimensionStructureNode"/> id.
         /// </param>
         /// <returns>
         ///     A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.

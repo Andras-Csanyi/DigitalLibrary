@@ -15,18 +15,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="5.10.3" />
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0"/>
-        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.analyzers" Version="0.10.0" />
-        <PackageReference Include="xunit.runner.console" Version="2.4.1" />
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.analyzers" Version="0.10.0"/>
+        <PackageReference Include="xunit.runner.console" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -34,11 +34,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ControlPanel.WebApi.Client\ControlPanel.WebApi.Client.csproj" />
+        <ProjectReference Include="..\ControlPanel.WebApi.Client\ControlPanel.WebApi.Client.csproj"/>
     </ItemGroup>
 
 </Project>

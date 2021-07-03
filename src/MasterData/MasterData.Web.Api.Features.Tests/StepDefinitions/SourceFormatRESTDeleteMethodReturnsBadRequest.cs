@@ -16,9 +16,9 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            int statusCode = (int) _scenarioContext[instance.Key];
+            int statusCode = (int)_scenarioContext[instance.Key];
 
-            statusCode.Should().Be((int) HttpStatusCode.BadRequest);
+            statusCode.Should().Be((int)HttpStatusCode.BadRequest);
         }
     }
 }

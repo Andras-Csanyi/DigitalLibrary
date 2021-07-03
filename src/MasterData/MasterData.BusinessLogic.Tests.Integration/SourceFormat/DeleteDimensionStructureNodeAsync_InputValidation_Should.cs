@@ -15,7 +15,8 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
     [ExcludeFromCodeCoverage]
     public class DeleteDimensionStructureNodeAsync_Validation_Should : TestBase
     {
-        public DeleteDimensionStructureNodeAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public DeleteDimensionStructureNodeAsync_Validation_Should(ITestOutputHelper testOutputHelper) : base(
+            testOutputHelper)
         {
         }
 

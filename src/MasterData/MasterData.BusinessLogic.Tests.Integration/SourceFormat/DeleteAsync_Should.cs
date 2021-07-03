@@ -20,7 +20,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
         public async Task Throws_WhenNoSuchSourceFormat()
         {
             // Arrange
-            SourceFormat sourceFormat = new() { Id = 100 };
+            SourceFormat sourceFormat = new () { Id = 100 };
 
             // Action
             Func<Task> task = async () =>

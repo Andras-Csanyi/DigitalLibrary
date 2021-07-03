@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj" />
+        <ProjectReference Include="..\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj"/>
     </ItemGroup>
 
 

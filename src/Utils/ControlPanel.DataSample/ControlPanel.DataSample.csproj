@@ -10,10 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\ControlPanel\ControlPanel.Ctx\ControlPanel.Ctx.csproj" />
-        <ProjectReference Include="..\..\ControlPanel\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj" />
-        <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj" />
-        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj" />
+        <ProjectReference Include="..\..\ControlPanel\ControlPanel.Ctx\ControlPanel.Ctx.csproj"/>
+        <ProjectReference Include="..\..\ControlPanel\ControlPanel.DomainModel\ControlPanel.DomainModel.csproj"/>
+        <ProjectReference Include="..\..\MasterData\MasterData.Ctx\MasterData.Ctx.csproj"/>
+        <ProjectReference Include="..\..\MasterData\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -24,15 +24,15 @@
 
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\background.png" />
-        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\styles.css" />
-        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordion.razor" />
-        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItem.razor" />
-        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemContent.razor" />
-        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemHeading.razor" />
-        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeItem.razor" />
-        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeView.razor" />
+        <_ContentIncludedByDefault Remove="wwwroot\background.png"/>
+        <_ContentIncludedByDefault Remove="wwwroot\exampleJsInterop.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\styles.css"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordion.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItem.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemContent.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Accordion\BfAccordionItemHeading.razor"/>
+        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeItem.razor"/>
+        <_ContentIncludedByDefault Remove="Components\TreeView\BfTreeView.razor"/>
     </ItemGroup>
 
 </Project>

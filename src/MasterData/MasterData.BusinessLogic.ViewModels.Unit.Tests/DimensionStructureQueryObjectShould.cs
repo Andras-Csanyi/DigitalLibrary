@@ -13,7 +13,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.ViewModels.Unit.Tests
         public void NotChange_GetDimensionsStructuredById()
         {
             // Arrange
-            DimensionStructureQueryObject obj = new();
+            DimensionStructureQueryObject obj = new ();
 
             // Act
             obj.GetDimensionsStructuredById = 100;

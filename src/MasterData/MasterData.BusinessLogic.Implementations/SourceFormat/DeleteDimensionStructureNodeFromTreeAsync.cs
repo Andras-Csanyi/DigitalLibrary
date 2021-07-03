@@ -23,7 +23,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
         {
             DimensionStructureNode tree = null;
 
-            using (MasterDataContext ctx = new(_dbContextOptions))
+            using (MasterDataContext ctx = new (_dbContextOptions))
                 using (IDbContextTransaction transaction = await ctx.Database.BeginTransactionAsync(cancellationToken)
                    .ConfigureAwait(false))
                 {

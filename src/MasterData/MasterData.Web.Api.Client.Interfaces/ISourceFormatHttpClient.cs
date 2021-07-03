@@ -167,12 +167,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
             CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Calls AddRootDimensionStructureNode method of <see cref="SourceFormat"/> REST Api and POSTs the payload.
-        /// As a result the specified <see cref="DimensionStructureNode"/> will be added to the specified
-        /// <see cref="SourceFormat"/> as root DimensionStructureNode.
+        ///     Calls AddRootDimensionStructureNode method of <see cref="SourceFormat"/> REST Api and POSTs the payload.
+        ///     As a result the specified <see cref="DimensionStructureNode"/> will be added to the specified
+        ///     <see cref="SourceFormat"/> as root DimensionStructureNode.
         /// </summary>
-        /// <param name="addRootDimensionStructureNodeViewModel"><see cref="SourceFormat"/> id.</param>
-        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <param name="addRootDimensionStructureNodeViewModel"> <see cref="SourceFormat"/> id. </param>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
         /// <returns>
         ///     Returns a <see cref="Task{TResult}"/> which contains a <see cref="DilibHttpClientResponse{T}"/> enclosing
         ///     the result.

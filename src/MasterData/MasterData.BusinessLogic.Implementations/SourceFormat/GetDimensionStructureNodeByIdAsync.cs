@@ -21,7 +21,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 Check.AreNotEqual(id, 0);
 
-                using (MasterDataContext ctx = new(_dbContextOptions))
+                using (MasterDataContext ctx = new (_dbContextOptions))
                 {
                     return await ctx.DimensionStructureNodes
                        .FirstOrDefaultAsync(

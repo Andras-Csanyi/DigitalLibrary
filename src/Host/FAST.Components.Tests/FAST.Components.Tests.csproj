@@ -13,17 +13,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="bunit.web" Version="1.1.5" />
-        <PackageReference Include="bunit.xunit" Version="1.0.0-preview-01" />
-        <PackageReference Include="FluentAssertions" Version="5.10.3" />
-        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
+        <PackageReference Include="bunit.web" Version="1.1.5"/>
+        <PackageReference Include="bunit.xunit" Version="1.0.0-preview-01"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4"/>
         <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0"/>
-        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
-        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.console" Version="2.4.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,8 +35,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FAST.Components\FAST.Components.csproj" />
-        <AdditionalFiles Include="../../Rulesets/stylecop.json" />
+        <ProjectReference Include="..\FAST.Components\FAST.Components.csproj"/>
+        <AdditionalFiles Include="../../Rulesets/stylecop.json"/>
     </ItemGroup>
 
 </Project>

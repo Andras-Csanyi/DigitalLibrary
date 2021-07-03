@@ -1,8 +1,8 @@
 namespace DigitalLibrary.MasterData.BusinessLogic.ViewModels
 {
     /// <summary>
-    /// View model object to add the specified <see cref="DimensionStructureNode"/> entity
-    /// to <see cref="SourceFormat"/> as root DimensionStructureNode.
+    ///     View model object to add the specified <see cref="DimensionStructureNode"/> entity
+    ///     to <see cref="SourceFormat"/> as root DimensionStructureNode.
     /// </summary>
     public class AddRootDimensionStructureNodeViewModel
     {
