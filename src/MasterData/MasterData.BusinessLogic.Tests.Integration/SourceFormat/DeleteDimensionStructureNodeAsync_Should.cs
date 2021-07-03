@@ -203,93 +203,75 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.SourceFormat
                .ConfigureAwait(false);
 
             // Assert
-
-            // Nodes should not be in the database
-            DimensionStructureNode result = await _masterDataBusinessLogic
+            int amountOfDsnNodes = await _masterDataBusinessLogic
                .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(toBeDeleted)
+               .GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sfId)
                .ConfigureAwait(false);
-            result.Should().BeNull();
+            amountOfDsnNodes.Should().Be(36);
 
-            long dsn_1_1_1_id = tree["dsn-1-1-1"];
-            DimensionStructureNode dsn_1_1_1_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_1_1_id)
-               .ConfigureAwait(false);
-            dsn_1_1_1_result.Should().BeNull();
+            List<string> nodesShouldNotBeInTheDb = new List<string>
+            {
+                "dsn-1-1",
+                "dsn-1-1-1",
+                "dsn-1-1-2",
+                "dsn-1-1-3",
+            };
+            foreach (string s in nodesShouldNotBeInTheDb)
+            {
+                long id = tree[s];
+                DimensionStructureNode node = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .GetDimensionStructureNodeByIdAsync(id)
+                   .ConfigureAwait(false);
+                node.Should().BeNull();
+            }
 
-            long dsn_1_1_2_id = tree["dsn-1-1-2"];
-            DimensionStructureNode dsn_1_1_2_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_1_2_id)
-               .ConfigureAwait(false);
-            dsn_1_1_2_result.Should().BeNull();
+            List<string> nodesStillShouldBeInTheDb = new List<string>
+            {
+                "dsn-1-2",
+                "dsn-1-2-1",
+                "dsn-1-2-2",
+                "dsn-1-2-3",
+                "dsn-1-3",
+                "dsn-1-3-1",
+                "dsn-1-3-2",
+                "dsn-1-3-3",
 
-            long dsn_1_1_3_id = tree["dsn-1-1-3"];
-            DimensionStructureNode dsn_1_1_3_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_1_3_id)
-               .ConfigureAwait(false);
-            dsn_1_1_3_result.Should().BeNull();
+                "dsn-2-1",
+                "dsn-2-1-1",
+                "dsn-2-1-2",
+                "dsn-2-1-3",
+                "dsn-2-2",
+                "dsn-2-2-1",
+                "dsn-2-2-2",
+                "dsn-2-2-3",
+                "dsn-2-3",
+                "dsn-2-3-1",
+                "dsn-2-3-2",
+                "dsn-2-3-3",
 
-            // Nodes should be still in the database
-            long dsn_1_2_id = tree["dsn-1-2"];
-            DimensionStructureNode dsn_1_2_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_2_id)
-               .ConfigureAwait(false);
-            dsn_1_2_result.Should().NotBeNull();
-
-            long dsn_1_2_1_id = tree["dsn-1-2-1"];
-            DimensionStructureNode dsn_1_2_1_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_2_1_id)
-               .ConfigureAwait(false);
-            dsn_1_2_1_result.Should().NotBeNull();
-
-            long dsn_1_2_2_id = tree["dsn-1-2-2"];
-            DimensionStructureNode dsn_1_2_2_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_2_2_id)
-               .ConfigureAwait(false);
-            dsn_1_2_2_result.Should().NotBeNull();
-
-            long dsn_1_2_3_id = tree["dsn-1-2-3"];
-            DimensionStructureNode dsn_1_2_3_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_2_3_id)
-               .ConfigureAwait(false);
-            dsn_1_2_3_result.Should().NotBeNull();
-
-            long dsn_1_3_id = tree["dsn-1-3"];
-            DimensionStructureNode dsn_1_3_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_3_id)
-               .ConfigureAwait(false);
-            dsn_1_3_result.Should().NotBeNull();
-
-            long dsn_1_3_1_id = tree["dsn-1-3-1"];
-            DimensionStructureNode dsn_1_3_1_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_3_1_id)
-               .ConfigureAwait(false);
-            dsn_1_3_1_result.Should().NotBeNull();
-
-            long dsn_1_3_2_id = tree["dsn-1-3-2"];
-            DimensionStructureNode dsn_1_3_2_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_3_2_id)
-               .ConfigureAwait(false);
-            dsn_1_3_2_result.Should().NotBeNull();
-
-            long dsn_1_3_3_id = tree["dsn-1-3-3"];
-            DimensionStructureNode dsn_1_3_3_result = await _masterDataBusinessLogic
-               .MasterDataSourceFormatBusinessLogic
-               .GetDimensionStructureNodeByIdAsync(dsn_1_3_3_id)
-               .ConfigureAwait(false);
-            dsn_1_3_3_result.Should().NotBeNull();
-
-            // TODO: add all the nodes
+                "dsn-3-1",
+                "dsn-3-1-1",
+                "dsn-3-1-2",
+                "dsn-3-1-3",
+                "dsn-3-2",
+                "dsn-3-2-1",
+                "dsn-3-2-2",
+                "dsn-3-2-3",
+                "dsn-3-3",
+                "dsn-3-3-1",
+                "dsn-3-3-2",
+                "dsn-3-3-3",
+            };
+            foreach (string s in nodesStillShouldBeInTheDb)
+            {
+                long id = tree[s];
+                DimensionStructureNode node = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .GetDimensionStructureNodeByIdAsync(id)
+                   .ConfigureAwait(false);
+                node.Should().NotBeNull();
+            }
         }
     }
 }

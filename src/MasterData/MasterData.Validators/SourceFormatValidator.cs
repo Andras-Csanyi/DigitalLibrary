@@ -83,8 +83,6 @@ namespace DigitalLibrary.MasterData.Validators
 
             RuleSet(SourceFormatValidatorRulesets.Delete, () => { RuleFor(p => p.Id).NotEqual(0); });
             RuleSet(SourceFormatValidatorRulesets.GetById, () => { RuleFor(p => p.Id).GreaterThan(0); });
-            RuleSet(SourceFormatValidatorRulesets.GetAmountOfDimensionStructureNodeOfSourceFormat,
-                () => { RuleFor(p => p.Id).GreaterThan(0); });
             RuleSet(SourceFormatValidatorRulesets.GetByName, () =>
             {
                 RuleFor(p => p.Name).NotNull().NotEmpty();

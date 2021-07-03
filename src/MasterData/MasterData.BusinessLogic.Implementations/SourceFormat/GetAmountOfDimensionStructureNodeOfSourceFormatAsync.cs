@@ -6,10 +6,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
 
     using DigitalLibrary.MasterData.Ctx;
     using DigitalLibrary.MasterData.DomainModel;
-    using DigitalLibrary.MasterData.Validators;
     using DigitalLibrary.Utils.Guards;
-
-    using FluentValidation;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -24,19 +21,31 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
             {
                 Check.IsNotNull(sf);
 
-                await _masterDataValidators.SourceFormatValidator.ValidateAsync(sf, o =>
-                        {
-                            o.IncludeRuleSets(SourceFormatValidatorRulesets
-                               .GetAmountOfDimensionStructureNodeOfSourceFormat);
-                            o.ThrowOnFailures();
-                        },
-                        cancellationToken)
+                return await GetAmountOfDimensionStructureNodeOfSourceFormatAsync(sf.Id, cancellationToken)
                    .ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                string msg = $"{nameof(MasterDataSourceFormatBusinessLogic)}." +
+                             $"{nameof(GetAmountOfDimensionStructureNodeOfSourceFormatAsync)} operation failed. " +
+                             "For further information see inner exception.";
+                throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg, e);
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<int> GetAmountOfDimensionStructureNodeOfSourceFormatAsync(
+            long id,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                Check.AreNotEqual(id, 0);
 
                 using (MasterDataContext ctx = new MasterDataContext(_dbContextOptions))
                 {
                     return await ctx.DimensionStructureNodes.CountAsync(
-                            p => p.SourceFormatId == sf.Id,
+                            p => p.SourceFormatId == id,
                             cancellationToken)
                        .ConfigureAwait(false);
                 }

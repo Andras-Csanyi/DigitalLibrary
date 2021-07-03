@@ -448,5 +448,23 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<int> GetAmountOfDimensionStructureNodeOfSourceFormatAsync(
             SourceFormat sf,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        ///     Returns the amount of <see cref="DimensionStructureNode"/> belong to a <see cref="SourceFormat"/>.
+        ///     If <see cref="SourceFormat"/> doesn't have any <see cref="DimensionStructureNode"/> then returns 0.
+        ///     <see cref="DimensionStructureNode"/>s are the building blocks of a document format and this tree
+        ///     is attached to a <see cref="SourceFormat"/>.
+        /// </summary>
+        /// <param name="Id">Id of the SourceFormat. </param>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns>
+        ///     <see cref="Task{TResult}"/> representing result of an asynchronous operation. It also includes the amount.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<int> GetAmountOfDimensionStructureNodeOfSourceFormatAsync(
+            long Id,
+            CancellationToken cancellationToken = default);
     }
 }
