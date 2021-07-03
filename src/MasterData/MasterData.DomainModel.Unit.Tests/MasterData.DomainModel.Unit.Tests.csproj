@@ -3,8 +3,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <CodeAnalysisRuleSet>../../Rulesets/DigitalLibrary.ruleset</CodeAnalysisRuleSet>
         <IsPackable>false</IsPackable>
-        <AssemblyName>DigitalLibarary.MasterData.DomainModel.Unit.Tests</AssemblyName>
-        <RootNamespace>DigitalLibarary.MasterData.DomainModel.Unit.Tests</RootNamespace>
+        <AssemblyName>DigitalLibrary.MasterData.DomainModel.Unit.Tests</AssemblyName>
+        <RootNamespace>DigitalLibrary.MasterData.DomainModel.Unit.Tests</RootNamespace>
         <LangVersion>default</LangVersion>
         <ProjectGuid>{0ED9EAC1-8BB0-451D-85DF-A289E4DECF54}</ProjectGuid>
     </PropertyGroup>
