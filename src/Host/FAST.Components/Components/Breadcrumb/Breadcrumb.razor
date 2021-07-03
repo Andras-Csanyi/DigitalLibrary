@@ -1,0 +1,8 @@
+<fast-breadcrumb>
+    @foreach (Crumb crumb in _crumbs)
+    {
+        <fast-breadcrumb-item href="@crumb.Url">
+            @crumb.ItemName
+        </fast-breadcrumb-item>
+    }
+</fast-breadcrumb>
