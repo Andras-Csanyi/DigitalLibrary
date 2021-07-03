@@ -14,12 +14,6 @@ namespace DigitalLibrary.MasterData.Validators
     public struct SourceFormatValidatorRulesets
     {
         /// <summary>
-        ///     GetAmountOfDimensionStructureNodeOfSourceFormatAsync operation.
-        /// </summary>
-        public const string GetAmountOfDimensionStructureNodeOfSourceFormat =
-            "GetAmountOfDimensionStructureNodeOfSourceFormatAsync";
-
-        /// <summary>
         ///     Add operation.
         /// </summary>
         public const string Add = "Add";
