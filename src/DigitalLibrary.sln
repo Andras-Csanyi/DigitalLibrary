@@ -130,6 +130,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Tests.TestData",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Tests.Fakes", "MasterData\MasterData.Tests.Fakes\MasterData.Tests.Fakes.csproj", "{14568DEE-5F32-4102-B0E0-FC32B1DFE498}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiLibHttpClient.Tests.Unit", "Utils\DiLibHttpClient.Tests.Unit\DiLibHttpClient.Tests.Unit.csproj", "{01588A60-CAD8-426F-A927-F8C9A97DC253}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -332,6 +334,10 @@ Global
 		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01588A60-CAD8-426F-A927-F8C9A97DC253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01588A60-CAD8-426F-A927-F8C9A97DC253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01588A60-CAD8-426F-A927-F8C9A97DC253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01588A60-CAD8-426F-A927-F8C9A97DC253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -386,6 +392,7 @@ Global
 		{0DA35766-0BB2-41BD-A2BE-2C31C3DD7F2A} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{14568DEE-5F32-4102-B0E0-FC32B1DFE498} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
+		{01588A60-CAD8-426F-A927-F8C9A97DC253} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {525FE7A8-2BB5-46C1-BDBA-37960809C286}

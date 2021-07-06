@@ -21,6 +21,7 @@
         **/MasterData.StepDefinitions/**/*,
         **/MasterData.Web.Api.Features.Tests/**/*,
         **/Guard.Tests/**/*,
+        **/DiLibHttpClient.Tests.Unit/**/*,
         **/ControlPanel.BusinessLogic.Implementations.Unit.Tests/**/*,
         **/ControlPanel.WebApi.Client.Unit.Tests/**/*,
         **/ControlPanel.DataSample/**/*,

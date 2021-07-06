@@ -48,27 +48,26 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 HttpMethod.Delete, url);
             httpRequestMessage.Content = CreateStringContent(payload);
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-               .ConfigureAwait(false))
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
+                httpResponseMessage.EnsureSuccessStatusCode();
 
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.Exception = e;
-                    result.ExceptionMessage = e.Message;
-                    result.IsSuccess = false;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.ExceptionMessage = e.Message;
+                result.IsSuccess = false;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
+                return result;
             }
         }
 
@@ -83,31 +82,30 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
             DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-               .ConfigureAwait(false))
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
-                    string responseString = await httpResponseMessage.Content.ReadAsStringAsync()
-                       .ConfigureAwait(false);
-                    T res = JsonToObject<T>(responseString);
+                httpResponseMessage.EnsureSuccessStatusCode();
+                string responseString = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                T res = JsonToObject<T>(responseString);
 
-                    result.Result = res;
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.Result = res;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.IsSuccess = false;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
-                    result.Exception = e;
-                    result.ExceptionMessage = e.Message;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.IsSuccess = false;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.Exception = e;
+                result.ExceptionMessage = e.Message;
 
-                    return result;
-                }
+                return result;
             }
         }
 
@@ -125,36 +123,35 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url);
             httpRequestMessage.Content = CreateStringContent(payload);
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(
                     httpRequestMessage,
                     cancellationToken)
-               .ConfigureAwait(false))
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
-                    string content = await httpResponseMessage
-                       .Content
-                       .ReadAsStringAsync(cancellationToken)
-                       .ConfigureAwait(false);
+                httpResponseMessage.EnsureSuccessStatusCode();
+                string content = await httpResponseMessage
+                   .Content
+                   .ReadAsStringAsync(cancellationToken)
+                   .ConfigureAwait(false);
 
-                    T res = JsonToObject<T>(content);
+                T res = JsonToObject<T>(content);
 
-                    result.Result = res;
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.Result = res;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.ExceptionMessage = e.Message;
-                    result.Exception = e;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
-                    result.IsSuccess = false;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.ExceptionMessage = e.Message;
+                result.Exception = e;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.IsSuccess = false;
 
-                    return result;
-                }
+                return result;
             }
         }
 
@@ -173,30 +170,29 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 HttpMethod.Post, url);
             httpRequestMessage.Content = CreateStringContent(payload);
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-               .ConfigureAwait(false))
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
-                    string content = await httpResponseMessage
-                       .Content
-                       .ReadAsStringAsync(cancellationToken)
-                       .ConfigureAwait(false);
-                    TReturnType res = JsonToObject<TReturnType>(content);
-                    result.Result = res;
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.ExceptionMessage = e.Message;
-                    result.Exception = e;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
-                    result.IsSuccess = false;
-                    return result;
-                }
+                httpResponseMessage.EnsureSuccessStatusCode();
+                string content = await httpResponseMessage
+                   .Content
+                   .ReadAsStringAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                TReturnType res = JsonToObject<TReturnType>(content);
+                result.Result = res;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.ExceptionMessage = e.Message;
+                result.Exception = e;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.IsSuccess = false;
+                return result;
             }
         }
 
@@ -216,33 +212,31 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
 
             DilibHttpClientResponse<T> result = new DilibHttpClientResponse<T>();
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient
-               .SendAsync(httpRequestMessage, cancellationToken)
-               .ConfigureAwait(false))
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
+                httpResponseMessage.EnsureSuccessStatusCode();
 
-                    string resultString = await httpResponseMessage.Content.ReadAsStringAsync()
-                       .ConfigureAwait(false);
-                    T resulToObject = JsonToObject<T>(resultString);
+                string resultString = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken)
+                   .ConfigureAwait(false);
+                T resulToObject = JsonToObject<T>(resultString);
 
-                    result.Result = resulToObject;
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.Result = resulToObject;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.Exception = e;
-                    result.ExceptionMessage = e.Message;
-                    result.IsSuccess = false;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.ExceptionMessage = e.Message;
+                result.IsSuccess = false;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
+                return result;
             }
         }
 
