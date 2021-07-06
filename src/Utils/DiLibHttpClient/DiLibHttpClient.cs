@@ -48,27 +48,26 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
                 HttpMethod.Delete, url);
             httpRequestMessage.Content = CreateStringContent(payload);
 
-            using (HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage)
-               .ConfigureAwait(false))
+            HttpResponseMessage httpResponseMessage = await _httpClient.SendAsync(httpRequestMessage, cancellationToken)
+               .ConfigureAwait(false);
+
+            try
             {
-                try
-                {
-                    httpResponseMessage.EnsureSuccessStatusCode();
+                httpResponseMessage.EnsureSuccessStatusCode();
 
-                    result.IsSuccess = true;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                result.IsSuccess = true;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
-                catch (Exception e)
-                {
-                    result.Exception = e;
-                    result.ExceptionMessage = e.Message;
-                    result.IsSuccess = false;
-                    result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
+                return result;
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.ExceptionMessage = e.Message;
+                result.IsSuccess = false;
+                result.HttpStatusCode = (int)httpResponseMessage.StatusCode;
 
-                    return result;
-                }
+                return result;
             }
         }
 
