@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj" />
+        <ProjectReference Include="..\MasterData.DomainModel\MasterData.DomainModel.csproj"/>
     </ItemGroup>
 
 </Project>

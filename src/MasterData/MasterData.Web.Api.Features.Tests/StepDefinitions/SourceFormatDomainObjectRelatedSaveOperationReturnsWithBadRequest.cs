@@ -15,9 +15,9 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             Check.IsNotNull(key);
 
-            int result = (int) _scenarioContext[key];
+            int result = (int)_scenarioContext[key];
 
-            result.Should().Be((int) HttpStatusCode.BadRequest);
+            result.Should().Be((int)HttpStatusCode.BadRequest);
         }
     }
 }

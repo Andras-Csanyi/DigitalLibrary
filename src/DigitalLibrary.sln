@@ -128,6 +128,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.BusinessLogic.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Tests.TestData", "MasterData\MasterData.Tests.TestData\MasterData.Tests.TestData.csproj", "{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterData.Tests.Fakes", "MasterData\MasterData.Tests.Fakes\MasterData.Tests.Fakes.csproj", "{14568DEE-5F32-4102-B0E0-FC32B1DFE498}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -326,6 +328,10 @@ Global
 		{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14568DEE-5F32-4102-B0E0-FC32B1DFE498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -379,6 +385,7 @@ Global
 		{2F8F5522-16C1-4945-A0D3-FB5EEED753CA} = {5DC05A13-9489-49BE-8335-C5A6E766CDF8}
 		{0DA35766-0BB2-41BD-A2BE-2C31C3DD7F2A} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 		{4389F1C7-852E-4FC0-BCA3-1AFAEBA17AF5} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
+		{14568DEE-5F32-4102-B0E0-FC32B1DFE498} = {2E768E9C-7D0C-47F3-A42A-7B7E0983A010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {525FE7A8-2BB5-46C1-BDBA-37960809C286}

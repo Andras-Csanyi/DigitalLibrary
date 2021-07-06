@@ -48,7 +48,7 @@ namespace DigitalLibrary.WebUi.FAST.Components.Tests.Badge
             IRenderedComponent<Badge> cut = ctx.RenderComponent<Badge>(
                 p => p.AddChildContent("child-content")
                    .Add(pr => pr.Color, ComponentApis.Badge.Color.White)
-                );
+            );
 
             // Assert
             cut.MarkupMatches("<fast-badge color=\"white\">child-content</fast-badge>");

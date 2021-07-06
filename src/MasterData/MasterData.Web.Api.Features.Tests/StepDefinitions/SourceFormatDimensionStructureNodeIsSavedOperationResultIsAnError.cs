@@ -14,7 +14,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            int result = (int) _scenarioContext[instance.Key];
+            int result = (int)_scenarioContext[instance.Key];
 
             result.Should().Be(400);
         }

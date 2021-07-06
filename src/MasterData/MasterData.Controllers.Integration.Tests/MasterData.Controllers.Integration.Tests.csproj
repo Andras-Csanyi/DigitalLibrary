@@ -40,13 +40,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj" />
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
-        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
+        <ProjectReference Include="..\..\Host\WebApp\WebApp.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
 
 </Project>

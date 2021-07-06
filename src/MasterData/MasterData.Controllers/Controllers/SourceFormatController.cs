@@ -11,6 +11,7 @@ namespace DigitalLibrary.MasterData.Controllers
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.Interfaces;
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
     using DigitalLibrary.MasterData.Web.Api;
     using DigitalLibrary.Utils.Guards;
@@ -64,33 +65,6 @@ namespace DigitalLibrary.MasterData.Controllers
                    .AddAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
-        }
-
-        /// <summary>
-        ///     Deletes <see cref="SourceFormat"/> from the system.
-        /// </summary>
-        /// <param name="sourceFormat"> The <see cref="SourceFormat"/> going to be deleted. </param>
-        /// <returns>
-        ///     A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.
-        /// </returns>
-        [HttpDelete]
-        [Route(MasterDataApi.SourceFormat.V1.Delete)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> DeleteAsync(SourceFormat sourceFormat)
-        {
-            try
-            {
-                await _masterDataBusinessLogic
-                   .MasterDataSourceFormatBusinessLogic
-                   .DeleteAsync(sourceFormat)
-                   .ConfigureAwait(false);
-                return Ok();
             }
             catch (Exception e)
             {
@@ -168,6 +142,67 @@ namespace DigitalLibrary.MasterData.Controllers
                    .GetByIdAsync(sourceFormat)
                    .ConfigureAwait(false);
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        ///     Adds the specified <see cref="DimensionStructureNode"/> to the specified <see cref="SourceFormat"/>
+        ///     entity as root <see cref="DimensionStructureNode"/>.
+        /// </summary>
+        /// <param name="addRootDimensionStructureNodeViewModel">
+        ///     The view model contains both the
+        ///     <see cref="SourceFormat"/> id and <see cref="DimensionStructureNode"/> id.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.
+        /// </returns>
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormat.V1.AddRootDimensionStructureNode)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddRootDimensionStructureNodeAsync(
+            AddRootDimensionStructureNodeViewModel addRootDimensionStructureNodeViewModel)
+        {
+            try
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .AddRootDimensionStructureNodeAsync(
+                        addRootDimensionStructureNodeViewModel.SourceFormatId,
+                        addRootDimensionStructureNodeViewModel.DimensionStructureNodeId)
+                   .ConfigureAwait(false);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        ///     Deletes <see cref="SourceFormat"/> from the system.
+        /// </summary>
+        /// <param name="sourceFormat"> The <see cref="SourceFormat"/> going to be deleted. </param>
+        /// <returns>
+        ///     A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.
+        /// </returns>
+        [HttpDelete]
+        [Route(MasterDataApi.SourceFormat.V1.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> DeleteAsync(SourceFormat sourceFormat)
+        {
+            try
+            {
+                await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .DeleteAsync(sourceFormat)
+                   .ConfigureAwait(false);
+                return Ok();
             }
             catch (Exception e)
             {

@@ -71,7 +71,7 @@ namespace DigitalLibrary.Utils.DiLibHttpClient
         /// <typeparam name="TReturnType"> Generic ReturnType. </typeparam>
         /// <typeparam name="TPayloadType"> Generic PayloadType. </typeparam>
         /// <returns> HttpResponseMessage with Status 200, content type is TReturnType. </returns>
-        Task<TReturnType> PostAsync<TReturnType, TPayloadType>(
+        Task<DilibHttpClientResponse<TReturnType>> PostAsync<TReturnType, TPayloadType>(
             string url,
             TPayloadType payload,
             CancellationToken cancellationToken = default);

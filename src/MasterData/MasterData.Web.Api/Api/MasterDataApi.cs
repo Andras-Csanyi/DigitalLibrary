@@ -87,6 +87,16 @@ namespace DigitalLibrary.MasterData.Web.Api
             public struct V1
             {
                 /// <summary>
+                ///     Add root DimensionStructureNode path.
+                /// </summary>
+                public const string AddRootDimensionStructureNode = "AddRootDimensionStructureNode";
+
+                /// <summary>
+                ///     Create DimensionStructureNode path.
+                /// </summary>
+                public const string CreateDimensionStructureNode = "v1/CreateDimensionStructureNode";
+
+                /// <summary>
                 ///     Add endpoint path.
                 /// </summary>
                 public const string Add = "v1/Add";

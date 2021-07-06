@@ -10,8 +10,8 @@
         <ProjectGuid>{CB1FF012-D2CA-41A7-84F6-85E0F3B39B3F}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json" />
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
+        <AdditionalFiles Include="../../SolutionItems/xunit.runner.json"/>
 
     </ItemGroup>
     <ItemGroup>
@@ -39,11 +39,12 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj" />
-        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj" />
-        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj" />
-        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj" />
-        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj" />
+        <ProjectReference Include="..\..\Utils\Guards\Guards.csproj"/>
+        <ProjectReference Include="..\..\Utils\IntegrationTestFactories\IntegrationTestFactories.csproj"/>
+        <ProjectReference Include="..\..\Utils\MasterDataTestHelper\MasterDataTestHelper.csproj"/>
+        <ProjectReference Include="..\MasterData.StepDefinitions\MasterData.StepDefinitions.csproj"/>
+        <ProjectReference Include="..\MasterData.Tests.Fakes\MasterData.Tests.Fakes.csproj"/>
+        <ProjectReference Include="..\MasterData.WebApi.Client\MasterData.WebApi.Client.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -153,16 +154,16 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature" />
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs" />
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature" />
+        <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>
     </ItemGroup>
     <ItemGroup>
-        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs" />
+        <UpToDateCheckBuild Remove="DimensionStructureTree\AddRootDimensionStructure.feature.cs"/>
     </ItemGroup>
     <ItemGroup>
         <None Update="specflow.json">

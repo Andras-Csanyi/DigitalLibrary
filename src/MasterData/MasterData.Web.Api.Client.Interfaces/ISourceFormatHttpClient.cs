@@ -9,6 +9,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
     using System.Threading;
     using System.Threading.Tasks;
 
+    using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
     using DigitalLibrary.MasterData.DomainModel;
 
     using DiLibHttpClientResponseObjects;
@@ -145,6 +146,41 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         /// </returns>
         Task<DilibHttpClientResponse<SourceFormat>> DeleteAsync(
             SourceFormat tobeDeleted,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        ///     Calls CreateDimensionStructureNode method of <see cref="SourceFormat"/> REST Api and POSTs
+        ///     the payload.
+        /// </summary>
+        /// <param name="dimensionStructureNode">
+        ///     The object contains the properties of the new object.
+        /// </param>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns>
+        ///     Returns a <see cref="Task{TResult}"/> which contains a <see cref="DilibHttpClientResponse{T}"/> enclosing
+        ///     the result.
+        ///     In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}"/> other
+        ///     properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<DimensionStructureNode>> CreateDimensionStructureNodeAsync(
+            DimensionStructureNode dimensionStructureNode,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        ///     Calls AddRootDimensionStructureNode method of <see cref="SourceFormat"/> REST Api and POSTs the payload.
+        ///     As a result the specified <see cref="DimensionStructureNode"/> will be added to the specified
+        ///     <see cref="SourceFormat"/> as root DimensionStructureNode.
+        /// </summary>
+        /// <param name="addRootDimensionStructureNodeViewModel"> <see cref="SourceFormat"/> id. </param>
+        /// <param name="cancellationToken"> <see cref="CancellationToken"/>. </param>
+        /// <returns>
+        ///     Returns a <see cref="Task{TResult}"/> which contains a <see cref="DilibHttpClientResponse{T}"/> enclosing
+        ///     the result.
+        ///     In case of any error the other properties of the <see cref="DilibHttpClientResponse{T}"/> other
+        ///     properties provide further information about the error details.
+        /// </returns>
+        Task<DilibHttpClientResponse<SourceFormat>> AddRootDimensionStructureNodeAsync(
+            AddRootDimensionStructureNodeViewModel addRootDimensionStructureNodeViewModel,
             CancellationToken cancellationToken = default);
     }
 }

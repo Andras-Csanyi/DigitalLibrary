@@ -31,7 +31,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         cancellationToken)
                    .ConfigureAwait(false);
 
-                using (MasterDataContext ctx = new(_dbContextOptions))
+                using (MasterDataContext ctx = new (_dbContextOptions))
                 {
                     SourceFormat targetSourceFormat = await ctx
                        .SourceFormats

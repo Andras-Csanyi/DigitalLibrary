@@ -16,7 +16,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             KeyExpectedValueEntity instance = table.CreateInstance<KeyExpectedValueEntity>();
 
-            int result = (int) _scenarioContext[instance.Key];
+            int result = (int)_scenarioContext[instance.Key];
 
             int expected = Convert.ToInt32(instance.ExpectedValue);
             result.Should().Be(expected);

@@ -15,7 +15,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             KeyExpectedHttpStatusCodeEntity instance = table.CreateInstance<KeyExpectedHttpStatusCodeEntity>();
 
-            int result = (int) _scenarioContext[instance.Key];
+            int result = (int)_scenarioContext[instance.Key];
             Check.IsNotNull(result);
 
             result.Should().Be(instance.ExpectedHttpStatusCode);

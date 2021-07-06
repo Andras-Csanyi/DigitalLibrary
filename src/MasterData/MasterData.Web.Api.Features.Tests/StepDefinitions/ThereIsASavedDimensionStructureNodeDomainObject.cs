@@ -20,8 +20,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
             DimensionStructureNode node = new DimensionStructureNode();
 
             DilibHttpClientResponse<DimensionStructureNode> result = await _masterDataHttpClient
-               .DimensionStructureNodeHttpClient
-               .AddAsync(node)
+               .SourceFormatHttpClient
+               .CreateDimensionStructureNodeAsync(node)
                .ConfigureAwait(false);
 
             if (result.IsSuccess)

@@ -19,10 +19,5 @@ namespace DigitalLibrary.MasterData.Web.Api.Client.Interfaces
         ///     Gets or sets instance of <see cref="DimensionStructureHttpClient"/>.
         /// </summary>
         IDimensionStructureHttpClient DimensionStructureHttpClient { get; set; }
-
-        /// <summary>
-        ///     Gets or sets instance of <see cref="DimensionStructureNodeHttpClient"/>.
-        /// </summary>
-        IDimensionStructureNodeHttpClient DimensionStructureNodeHttpClient { get; set; }
     }
 }

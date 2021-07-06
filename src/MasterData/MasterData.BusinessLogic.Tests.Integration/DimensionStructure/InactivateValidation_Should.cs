@@ -38,7 +38,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Tests.Integration.DimensionStr
         public async Task Throw_WhenInputIdIsZero()
         {
             // Arrange
-            DimensionStructure queryObject = new();
+            DimensionStructure queryObject = new ();
 
             // Action
             Func<Task> action = async () =>
