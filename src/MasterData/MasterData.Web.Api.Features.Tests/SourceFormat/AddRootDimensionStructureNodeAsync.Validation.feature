@@ -1,4 +1,4 @@
-Feature: SourceFormat REST Api - adding root DimensionStructureNode to SourceFormat
+Feature: SourceFormat REST Api - adding root DimensionStructureNode to SourceFormat validation
 
 As a Data Owner and Data Curator
 I need to be able to build SourceFormat data structure and add root DimensionStructure to it.
