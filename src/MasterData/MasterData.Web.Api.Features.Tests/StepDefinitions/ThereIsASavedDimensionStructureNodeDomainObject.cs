@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
 {
+    using System;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.DomainModel;
@@ -24,10 +25,12 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
                .CreateDimensionStructureNodeAsync(node)
                .ConfigureAwait(false);
 
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
             {
-                _scenarioContext.Add(instance.ResultKey, result.Result);
+                throw new Exception(result.ExceptionMessage);
             }
+
+            _scenarioContext.Add(instance.ResultKey, result.Result);
         }
     }
 }

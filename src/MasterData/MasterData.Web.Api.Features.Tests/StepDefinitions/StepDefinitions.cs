@@ -49,8 +49,6 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
 
         internal struct ScenarioContextKeys
         {
-            public const string WebApiCallResult = "WebApiCallResult";
-
             public const string DimensionStructureNodeId = "DimensionStructureNodeId";
 
             public const string DimensionStructureNodeIdExist = "DimensionStructureNodeIdExist";
@@ -113,7 +111,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
 
         private TReturnType GetKeyValueFromScenarioContext<TReturnType>(string key)
         {
-            return (TReturnType)_scenarioContext[key];
+            return (TReturnType) _scenarioContext[key];
         }
 
         private async Task<SourceFormat> CreateSourceFormatEntity()

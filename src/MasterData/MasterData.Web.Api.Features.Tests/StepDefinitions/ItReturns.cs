@@ -6,6 +6,8 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
 
     using DiLibHttpClientResponseObjects;
 
+    using FluentAssertions;
+
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
@@ -15,11 +17,11 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         public void ItReturns(Table table)
         {
             var instance = table.CreateInstance<StatusCodeEntity>();
-            DilibHttpClientResponse<SourceFormat> webApiRequestResult =
-                GetKeyValueFromScenarioContext<DilibHttpClientResponse<SourceFormat>>(ScenarioContextKeys
-                   .WebApiCallResult);
+            DilibHttpClientResponse<SourceFormat> result =
+                GetKeyValueFromScenarioContext<DilibHttpClientResponse<SourceFormat>>(instance.ResultKey);
 
-            int statusCode = int.Parse(instance.StatusCode);
+            int expectedStatusCode = int.Parse(instance.StatusCode);
+            result.HttpStatusCode.Should().Be(expectedStatusCode);
         }
     }
 
@@ -27,5 +29,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
     internal class StatusCodeEntity
     {
         public string StatusCode { get; set; }
+
+        public string ResultKey { get; set; }
     }
 }

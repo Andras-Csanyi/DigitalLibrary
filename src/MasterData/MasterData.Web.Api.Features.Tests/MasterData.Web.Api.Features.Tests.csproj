@@ -152,6 +152,12 @@
             <DesignTime>true</DesignTime>
             <Visible>true</Visible>
         </Compile>
+        <Compile Update="SourceFormat\AddRootDimensionStructureNodeAsync.feature.cs">
+            <DependentUpon>AddRootDimensionStructureNodeAsync.feature</DependentUpon>
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <Visible>true</Visible>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
         <UpToDateCheckInput Remove="DimensionStructureTree\AddRootDimensionStructure.feature"/>

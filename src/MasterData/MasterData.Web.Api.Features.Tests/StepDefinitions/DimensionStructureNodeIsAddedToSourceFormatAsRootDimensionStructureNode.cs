@@ -1,5 +1,6 @@
 namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     using DigitalLibrary.MasterData.BusinessLogic.ViewModels;
@@ -8,12 +9,16 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
     using DiLibHttpClientResponseObjects;
 
     using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow.Assist;
 
     public partial class StepDefinitions
     {
         [When(@"DimensionStructureNode is added to SourceFormat as root DimensionStructureNode")]
-        public async Task DimensionStructureNodeIsAddedToSourceFormatAsRootDimensionStructureNode()
+        public async Task DimensionStructureNodeIsAddedToSourceFormatAsRootDimensionStructureNode(Table table)
         {
+            DimensionStructureNodeIsAddedToSourceFormatAsRootDimensionStructureNodeEntity instance = table
+               .CreateInstance<DimensionStructureNodeIsAddedToSourceFormatAsRootDimensionStructureNodeEntity>();
+
             bool doesSourceFormatExist = GetKeyValueFromScenarioContext<bool>(ScenarioContextKeys.SourceFormatExist);
             bool doesDimensionStructureNodeExist =
                 GetKeyValueFromScenarioContext<bool>(ScenarioContextKeys.DimensionStructureNodeIdExist);
@@ -55,7 +60,13 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
                .SourceFormatHttpClient
                .AddRootDimensionStructureNodeAsync(addRootDimensionStructureNodeViewModel)
                .ConfigureAwait(false);
-            _scenarioContext.Add(ScenarioContextKeys.WebApiCallResult, result);
+            _scenarioContext.Add(instance.ResultKey, result);
         }
+    }
+
+    [ExcludeFromCodeCoverage]
+    internal class DimensionStructureNodeIsAddedToSourceFormatAsRootDimensionStructureNodeEntity
+    {
+        public string ResultKey { get; set; }
     }
 }
