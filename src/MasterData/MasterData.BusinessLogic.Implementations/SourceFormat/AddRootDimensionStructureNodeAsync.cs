@@ -30,6 +30,7 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         Check.AreNotEqual(dimensionStructureNodeId, 0);
 
                         SourceFormat sourceFormat = await ctx.SourceFormats
+                           .Include(root => root.SourceFormatDimensionStructureNode)
                            .FirstOrDefaultAsync(k => k.Id == sourceFormatId, cancellationToken)
                            .ConfigureAwait(false);
 
@@ -46,6 +47,13 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Implementations.SourceFormat
                         if (dimensionStructureNode is null)
                         {
                             string msg = $"No {nameof(DimensionStructureNode)} with id: {dimensionStructureNodeId}.";
+                            throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
+                        }
+
+                        if (sourceFormat.SourceFormatDimensionStructureNode is not null)
+                        {
+                            string msg = $"{nameof(SourceFormat)}(${sourceFormat.Id}) already has " +
+                                         $"root ${nameof(DimensionStructureNode)}.";
                             throw new MasterDataBusinessLogicSourceFormatDatabaseOperationException(msg);
                         }
 
