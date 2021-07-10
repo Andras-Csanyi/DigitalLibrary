@@ -3,6 +3,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
     using System.Diagnostics.CodeAnalysis;
 
     using DigitalLibrary.MasterData.DomainModel;
+    using DigitalLibrary.Utils.Guards;
 
     using DiLibHttpClientResponseObjects;
 
@@ -16,9 +17,10 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         [Then(@"it returns")]
         public void ItReturns(Table table)
         {
-            var instance = table.CreateInstance<StatusCodeEntity>();
-            DilibHttpClientResponse<SourceFormat> result =
-                GetKeyValueFromScenarioContext<DilibHttpClientResponse<SourceFormat>>(instance.ResultKey);
+            StatusCodeEntity instance = table.CreateInstance<StatusCodeEntity>();
+            DilibHttpClientResponse<SourceFormat> result = _scenarioContext[instance.ResultKey]
+                as DilibHttpClientResponse<SourceFormat>;
+            Check.IsNotNull(result);
 
             int expectedStatusCode = int.Parse(instance.StatusCode);
             result.HttpStatusCode.Should().Be(expectedStatusCode);

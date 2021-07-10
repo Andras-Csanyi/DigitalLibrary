@@ -466,5 +466,20 @@ namespace DigitalLibrary.MasterData.BusinessLogic.Interfaces
         Task<int> GetAmountOfDimensionStructureNodeOfSourceFormatAsync(
             long Id,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a <see cref="DimensionStructureNode"/> entity and returns it.
+        /// </summary>
+        /// <param name="node">The object contains the properties of the new entity.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>
+        /// Returns <see cref="Task{TResult}"/> representing result of an asynchronous operation.
+        /// </returns>
+        /// <exception cref="MasterDataDimensionStructureNodeBusinessLogicException">
+        ///     Whatever issue happens.
+        /// </exception>
+        Task<DimensionStructureNode> CreateDimensionStructureNodeAsync(
+            DimensionStructureNode node,
+            CancellationToken cancellationToken = default);
     }
 }

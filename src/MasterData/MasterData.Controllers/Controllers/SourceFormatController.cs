@@ -121,6 +121,27 @@ namespace DigitalLibrary.MasterData.Controllers
             }
         }
 
+        [HttpPost]
+        [Route(MasterDataApi.SourceFormat.V1.CreateDimensionStructureNode)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DimensionStructureNode>> CreateDimensionStructureNodeAsync(
+            DimensionStructureNode dimensionStructureNode)
+        {
+            try
+            {
+                DimensionStructureNode result = await _masterDataBusinessLogic
+                   .MasterDataSourceFormatBusinessLogic
+                   .CreateDimensionStructureNodeAsync(dimensionStructureNode)
+                   .ConfigureAwait(false);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
         /// <summary>
         ///     Returns a <see cref="SourceFormat"/> object identified by the provided object ID value.
         /// </summary>

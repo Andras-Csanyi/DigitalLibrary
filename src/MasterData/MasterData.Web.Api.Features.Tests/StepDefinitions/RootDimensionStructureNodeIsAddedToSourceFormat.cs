@@ -36,7 +36,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
             DilibHttpClientResponse<SourceFormat> result = await _masterDataHttpClient.SourceFormatHttpClient
                .AddRootDimensionStructureNodeAsync(vm)
                .ConfigureAwait(false);
-            _scenarioContext.Add(instance.ResultKey, result.HttpStatusCode);
+            _scenarioContext.Add(instance.ResultKey, result);
         }
     }
 

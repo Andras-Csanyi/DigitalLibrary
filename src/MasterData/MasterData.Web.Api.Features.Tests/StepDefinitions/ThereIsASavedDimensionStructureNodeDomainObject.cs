@@ -18,7 +18,7 @@ namespace DigitalLibrary.MasterData.Web.Api.Features.Tests.StepDefinitions
         {
             KeyResultKeyEntity instance = table.CreateInstance<KeyResultKeyEntity>();
 
-            DimensionStructureNode node = new DimensionStructureNode();
+            DimensionStructureNode node = _dimensionStructureNodeFaker.Generate();
 
             DilibHttpClientResponse<DimensionStructureNode> result = await _masterDataHttpClient
                .SourceFormatHttpClient

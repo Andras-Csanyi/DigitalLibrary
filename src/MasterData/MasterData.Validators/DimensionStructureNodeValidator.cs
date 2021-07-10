@@ -11,7 +11,13 @@
     {
         public DimensionStructureNodeValidator()
         {
-            RuleSet(DimensionStructureNodeValidatorRulesets.Add, () => { RuleFor(r => r.Id).Equal(0); });
+            RuleSet(SourceFormatValidatorRulesets.CreateDimensionStructureNode, () =>
+            {
+                RuleFor(r => r.Id).Equal(0);
+                RuleFor(r => r.IsActive)
+                   .GreaterThanOrEqualTo(0)
+                   .LessThanOrEqualTo(1);
+            });
         }
     }
 }
