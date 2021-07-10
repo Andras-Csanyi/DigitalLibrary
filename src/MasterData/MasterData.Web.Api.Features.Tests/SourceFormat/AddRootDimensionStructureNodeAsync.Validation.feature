@@ -1,4 +1,4 @@
-Feature: SourceFormat REST Api - adding root DimensionStructureNode to SourceFormat
+Feature: SourceFormat REST Api - adding root DimensionStructureNode to SourceFormat validation
 
 As a Data Owner and Data Curator
 I need to be able to build SourceFormat data structure and add root DimensionStructure to it.
@@ -11,10 +11,13 @@ I need to be able to build SourceFormat data structure and add root DimensionStr
         And there is the <DoesDimensionStructureNodeExist> value whether DimensionStructureNode exist or not
 
         When DimensionStructureNode is added to SourceFormat as root DimensionStructureNode
+          | Field     | Value  |
+          | ResultKey | result |
 
         Then it returns
-          | StatusCode |
-          | 400        |
+          | Field      | Value  |
+          | ResultKey  | result |
+          | StatusCode | 400    |
 
         Examples:
           | SourceFormatId | DoesSourceFormatExist | DimensionStructureNodeId | DoesDimensionStructureNodeExist |
