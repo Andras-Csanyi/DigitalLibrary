@@ -14,14 +14,6 @@ trigger:
       - src/README.md
       - src/doc/*
 
-schedules:
-  - cron: "0 */12 * * *"
-    displayName: Daily build
-    branches:
-      include:
-        - master
-    always: true
-
 pr:
   - master
 
